@@ -225,5 +225,6 @@ COHESION_GRID = [
     {"weight": 0.0, "temperature": 0.07, "similarity_threshold": 0.0, "layers": []},  # Baseline
     {"weight": 0.1, "temperature": 0.07, "similarity_threshold": 0.0, "layers": ["layer3"]},
     {"weight": 0.1, "temperature": 0.07, "similarity_threshold": 0.3, "layers": ["layer3"]},
+    {"weight": 0.1, "temperature": 0.07, "similarity_threshold": 0.3, "layers": ["layer2", "layer3"]},
     {"weight": 0.5, "temperature": 0.07, "similarity_threshold": 0.3, "layers": ["layer2", "layer3"]}
 ]

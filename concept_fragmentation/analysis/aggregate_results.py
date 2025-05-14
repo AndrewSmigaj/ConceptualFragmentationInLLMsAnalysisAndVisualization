@@ -23,6 +23,7 @@ from scipy import stats
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from concept_fragmentation.config import DATASETS, RESULTS_DIR, COHESION_GRID
+from concept_fragmentation.experiments.train import convert_tensors_to_python
 
 # Configure logging
 logging.basicConfig(
@@ -63,6 +64,13 @@ def extract_metrics_from_history(history_path: str) -> Dict[str, Any]:
         
         if "angle_fragmentation" in history and len(history["angle_fragmentation"]) > 0:
             metrics["final_angle"] = history["angle_fragmentation"][-1]
+        
+        if "layer_fragmentation" in history:
+            layer_frag = history["layer_fragmentation"]
+            for metric_type in ["entropy", "angle"]:
+                if metric_type in layer_frag:
+                    for layer_name, value in layer_frag[metric_type].items():
+                        metrics[f"final_{metric_type}_{layer_name}"] = value
         
         # Best values
         if "test_accuracy" in history and len(history["test_accuracy"]) > 0:
@@ -541,7 +549,9 @@ def main():
         import json
         test_results_path = os.path.join(args.output_dir, "statistical_tests.json")
         with open(test_results_path, "w") as f:
-            json.dump(test_results, f, indent=2)
+            # Convert any tensors or numpy arrays to Python types
+            serializable_results = convert_tensors_to_python(test_results)
+            json.dump(serializable_results, f, indent=2)
         logger.info(f"Saved statistical test results to {test_results_path}")
         
         # Also save a simplified version to TXT

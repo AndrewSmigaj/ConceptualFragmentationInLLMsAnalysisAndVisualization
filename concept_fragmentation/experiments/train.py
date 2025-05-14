@@ -22,6 +22,7 @@ from typing import Dict, List, Tuple, Optional, Union, Any
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import argparse
+import sys
 
 from concept_fragmentation.config import (
     MODELS, TRAINING, REGULARIZATION, RANDOM_SEED, RESULTS_DIR, DATASETS
@@ -36,6 +37,8 @@ from concept_fragmentation.metrics import (
     compute_angle_fragmentation_score
 )
 
+# Add project root to sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 # Configure logging
 os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -48,6 +51,31 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+# Helper function to convert PyTorch tensors to Python types for JSON serialization
+def convert_tensors_to_python(obj):
+    """
+    Recursively convert PyTorch tensors to Python lists or scalars.
+    
+    Args:
+        obj: Object that may contain PyTorch tensors
+        
+    Returns:
+        Object with all PyTorch tensors converted to Python types
+    """
+    if isinstance(obj, torch.Tensor):
+        # Convert tensor to CPU and then to list or scalar
+        return obj.detach().cpu().numpy().tolist() if obj.numel() > 1 else obj.item()
+    elif isinstance(obj, dict):
+        return {k: convert_tensors_to_python(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_tensors_to_python(i) for i in obj]
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, np.number):
+        return obj.item()
+    else:
+        return obj
 
 
 def prepare_dataset(
@@ -268,7 +296,8 @@ def train_model(
         "test_loss": [],
         "test_accuracy": [],
         "entropy_fragmentation": [],
-        "angle_fragmentation": []
+        "angle_fragmentation": [],
+        "layer_fragmentation": {}
     }
     
     # Store experiment configuration
@@ -303,6 +332,9 @@ def train_model(
         }
     else:
         layer_activations = None
+    
+    # Initialize layer fragmentation dict outside epoch loop
+    layer_fragmentation: Dict[str, Dict[str, float]] = {}
     
     # Training loop
     best_test_accuracy = 0.0
@@ -503,40 +535,59 @@ def train_model(
                     layer_activations[layer_name]["test"].append(torch.cat(test_epoch_activations[layer_name], dim=0))
             layer_activations["labels"]["test"].append(torch.cat(test_epoch_labels, dim=0))
         
-        # Compute fragmentation metrics on test data
-        if save_fragmentation_metrics:
-            layer_name = "layer3"  # Use the last hidden layer
-            
-            if isinstance(test_data, tuple):
-                # Get activations and labels from model
-                model.eval()
-                with torch.no_grad():
-                    _ = model(X_test)
-                test_activations = model.activations[layer_name]
-                test_labels = y_test
-            else:
-                # Concatenate activations from all batches
-                test_activations = torch.cat(test_epoch_activations[layer_name], dim=0)
-                test_labels = torch.cat(test_epoch_labels, dim=0)
-            
-            # Compute cluster entropy
-            entropy_score = compute_entropy_fragmentation_score(
-                test_activations, test_labels
-            )
-            
-            # Compute subspace angle
-            angle_score = compute_angle_fragmentation_score(
-                test_activations, test_labels
-            )
-            
-            logger.info(f"Epoch {epoch+1}/{epochs} - Fragmentation Metrics: "
-                       f"Entropy Score: {entropy_score:.4f}, "
-                       f"Angle Score: {angle_score:.4f}")
+        # Compute fragmentation metrics on test data ONLY on the final epoch
+        if save_fragmentation_metrics and epoch == epochs - 1:
+            # Iterate over each recorded layer
+            entropy_scores_per_layer = {}
+            angle_scores_per_layer = {}
+
+            # Decide which layers to evaluate – use keys present in activations
+            layers_to_evaluate = list(test_epoch_activations.keys()) if not isinstance(test_data, tuple) else [
+                name for name in model.activations.keys() if name.startswith("layer")
+            ]
+
+            for layer_name in layers_to_evaluate:
+                # Obtain activations and labels for this layer
+                if isinstance(test_data, tuple):
+                    # Full-batch case (tabular datasets)
+                    model.eval()
+                    with torch.no_grad():
+                        _ = model(X_test)
+                    test_activations_layer = model.activations[layer_name]
+                    test_labels_layer = y_test
+                else:
+                    # Dataloader case – concatenate batches captured earlier
+                    if layer_name not in test_epoch_activations:
+                        continue
+                    test_activations_layer = torch.cat(test_epoch_activations[layer_name], dim=0)
+                    test_labels_layer = torch.cat(test_epoch_labels, dim=0)
+
+                # Compute fragmentation metrics
+                entropy_layer = compute_entropy_fragmentation_score(
+                    test_activations_layer, test_labels_layer
+                )
+                angle_layer = compute_angle_fragmentation_score(
+                    test_activations_layer, test_labels_layer
+                )
+
+                # Store per-layer values
+                entropy_scores_per_layer[layer_name] = entropy_layer
+                angle_scores_per_layer[layer_name] = angle_layer
+
+                # For logging convenience capture final layer metrics
+                if layer_name == "layer3":
+                    entropy_score = entropy_layer
+                    angle_score = angle_layer
+
+            # Save to global dict
+            layer_fragmentation["entropy"] = entropy_scores_per_layer
+            layer_fragmentation["angle"] = angle_scores_per_layer
         else:
+            # Skip expensive computation on intermediate epochs
             entropy_score = 0.0
             angle_score = 0.0
         
-        # Update training history
+        # Update training history (per-epoch)
         training_history["train_loss"].append(train_loss)
         training_history["train_accuracy"].append(train_accuracy)
         training_history["train_regularization_loss"].append(train_reg_loss)
@@ -564,6 +615,84 @@ def train_model(
                 logger.info("Early stopping triggered")
                 break
     
+    # After training loop finishes, attach per-layer fragmentation metrics (final epoch)
+    training_history["layer_fragmentation"] = layer_fragmentation
+    
+    # If we didn't compute fragmentation in the last epoch (due to early stopping),
+    # compute it here on the final model
+    if save_fragmentation_metrics and (not layer_fragmentation or not layer_fragmentation.get("entropy")):
+        # Create dictionaries to store metrics per layer
+        entropy_scores_per_layer = {}
+        angle_scores_per_layer = {}
+        
+        # Get list of layers to evaluate
+        layers_to_evaluate = [name for name in model.activations.keys() if name.startswith("layer")]
+        
+        # Compute fragmentation for each layer
+        model.eval()
+        with torch.no_grad():
+            # Get test data activations
+            if isinstance(test_data, tuple):
+                X_test, y_test = test_data
+                _ = model(X_test)
+                test_labels = y_test
+                
+                for layer_name in layers_to_evaluate:
+                    # Get activations for this layer
+                    test_activations = model.activations[layer_name]
+                    
+                    # Compute fragmentation metrics
+                    entropy_score = compute_entropy_fragmentation_score(test_activations, test_labels)
+                    angle_score = compute_angle_fragmentation_score(test_activations, test_labels)
+                    
+                    # Store in dictionaries
+                    entropy_scores_per_layer[layer_name] = entropy_score
+                    angle_scores_per_layer[layer_name] = angle_score
+                    
+                    # Also update the per-epoch metrics with final layer scores
+                    if layer_name == "layer3":
+                        training_history["entropy_fragmentation"][-1] = entropy_score
+                        training_history["angle_fragmentation"][-1] = angle_score
+            else:
+                # For DataLoader, we need to process in batches and concatenate
+                all_activations = {layer: [] for layer in layers_to_evaluate}
+                all_labels = []
+                
+                for inputs, labels in test_data:
+                    _ = model(inputs)
+                    for layer_name in layers_to_evaluate:
+                        all_activations[layer_name].append(model.activations[layer_name].detach().cpu())
+                    all_labels.append(labels.detach().cpu())
+                
+                # Concatenate all batches
+                for layer_name in layers_to_evaluate:
+                    test_activations = torch.cat(all_activations[layer_name], dim=0)
+                    test_labels = torch.cat(all_labels, dim=0)
+                    
+                    # Compute fragmentation metrics
+                    entropy_score = compute_entropy_fragmentation_score(test_activations, test_labels)
+                    angle_score = compute_angle_fragmentation_score(test_activations, test_labels)
+                    
+                    # Store in dictionaries
+                    entropy_scores_per_layer[layer_name] = entropy_score
+                    angle_scores_per_layer[layer_name] = angle_score
+                    
+                    # Also update the per-epoch metrics with final layer scores
+                    if layer_name == "layer3":
+                        training_history["entropy_fragmentation"][-1] = entropy_score
+                        training_history["angle_fragmentation"][-1] = angle_score
+        
+        # Save to layer_fragmentation dictionary
+        layer_fragmentation["entropy"] = entropy_scores_per_layer
+        layer_fragmentation["angle"] = angle_scores_per_layer
+        
+        # Update the training history
+        training_history["layer_fragmentation"] = layer_fragmentation
+        
+        logger.info(f"Computed fragmentation metrics on final model")
+        logger.info(f"Entropy Score: {training_history['entropy_fragmentation'][-1]:.4f}, "
+                   f"Angle Score: {training_history['angle_fragmentation'][-1]:.4f}")
+    
     # Save the final model
     if save_model:
         final_model_path = os.path.join(experiment_dir, "final_model.pt")
@@ -573,7 +702,9 @@ def train_model(
     # Save training history
     history_path = os.path.join(experiment_dir, "training_history.json")
     with open(history_path, "w") as f:
-        json.dump(training_history, f, indent=4)
+        # Convert tensors to Python types before serialization
+        serializable_history = convert_tensors_to_python(training_history)
+        json.dump(serializable_history, f, indent=4)
     logger.info(f"Saved training history to {history_path}")
     
     # Save the activations if requested

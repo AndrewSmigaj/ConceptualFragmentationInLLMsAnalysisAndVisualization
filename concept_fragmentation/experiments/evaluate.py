@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import pearsonr, spearmanr
 import glob
 from datetime import datetime
+import sys
 
 from concept_fragmentation.config import (
     MODELS, TRAINING, REGULARIZATION, RANDOM_SEED, RESULTS_DIR
@@ -31,6 +32,7 @@ from concept_fragmentation.metrics import (
     compute_subspace_angle,
     compute_angle_fragmentation_score
 )
+from concept_fragmentation.experiments.train import convert_tensors_to_python
 
 
 # Configure logging
@@ -291,16 +293,8 @@ def evaluate_model(experiment_name: str, model_type: str = "best") -> Dict[str, 
     # Save metrics to file
     metrics_path = os.path.join(experiment_dir, f"detailed_metrics_{model_type}.json")
     
-    # Prepare metrics for JSON serialization (handle non-serializable types)
-    serializable_metrics = {}
-    for key, value in metrics.items():
-        if key in ["entropy_fragmentation", "angle_fragmentation", "layer_metrics"]:
-            if isinstance(value, dict):
-                serializable_metrics[key] = json.loads(json.dumps(value, default=lambda o: float(o) if isinstance(o, np.number) else str(o)))
-            else:
-                serializable_metrics[key] = float(value) if hasattr(value, "item") else value
-        else:
-            serializable_metrics[key] = value
+    # Convert metrics to JSON-serializable format using the helper function
+    serializable_metrics = convert_tensors_to_python(metrics)
     
     with open(metrics_path, "w") as f:
         json.dump(serializable_metrics, f, indent=4)
