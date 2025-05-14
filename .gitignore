@@ -172,3 +172,42 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Project specific
+results/
+data/
+datasets/
+models/
+checkpoints/
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npz
+*.npy
+
+# Visualization outputs
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+*.eps
+*.gif
+*.mp4
+
+# VS Code
+.vscode/
+
+# Configuration that might contain sensitive information
+local_config.py
+
+# Temporary experiment files
+tmp/
+temp/
+.runs/
+wandb/
+mlruns/
+lightning_logs/
