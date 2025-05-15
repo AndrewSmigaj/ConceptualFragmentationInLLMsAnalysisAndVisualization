@@ -1,0 +1,16 @@
+# Core dependencies
+numpy>=1.25.0,<2.0.0
+pandas>=2.0.0,<3.0.0
+matplotlib>=3.7.0,<4.0.0
+scikit-learn>=1.3.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+
+# Dimensionality reduction
+umap-learn>=0.5.4,<0.6.0
+
+# Visualization
+plotly>=5.18.0,<6.0.0
+kaleido>=0.2.1,<0.3.0  # For static image export
+
+# Dashboard (optional)
+dash>=2.14.0,<3.0.0 
