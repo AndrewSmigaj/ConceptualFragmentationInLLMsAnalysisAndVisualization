@@ -169,10 +169,7 @@ def build_single_scene_figure(
         print(f"DEBUG: highlight_indices length: {len(highlight_indices)}")
         print(f"DEBUG: highlight_indices first few values: {highlight_indices[:5] if len(highlight_indices) > 0 else 'empty'}")
     
-    # Initialize layer_to_colors at the top level to ensure it's available throughout
-    layer_to_colors = {}
-    cluster_to_color_map = {}  # Global cluster-to-color mapping
-    global_class_to_color_map = {}
+    # Initialize layer_to_colors at the top level to ensure it's available throughout    layer_to_colors = {}    cluster_to_color_map = {}  # Global cluster-to-color mapping    global_class_to_color_map = {}
     
     configs = list(embeddings_dict.keys())
     if not configs:
@@ -224,8 +221,6 @@ def build_single_scene_figure(
             max_color_val += 1e-9 # Add a tiny epsilon if all values are the same
             if max_color_val == min_color_val: # Still same (e.g. if min_color_val was 0 and epsilon was too small)
                  min_color_val -= 1e-9 # try subtracting
-
-    added_clusters = set()  # Initialize a set to track added cluster centers
 
     for config_idx, config_name in enumerate(configs):
         config_data_per_seed = embeddings_dict[config_name]
@@ -327,8 +322,37 @@ def build_single_scene_figure(
                                 offset_centers = centers.copy()
                                 offset_centers[:, 1] += i * layer_separation
                                 
-                                # Note: Cluster centers will be drawn later, after colors are determined
-                                # This ensures correct coloring in cluster_majority mode
+                                # Add cluster centers as spheres
+                                for cluster_idx, center_coord in enumerate(offset_centers):
+                                    # Determine color based on coloring mode
+                                                                        center_color = QUALITATIVE_COLORS[cluster_idx % len(QUALITATIVE_COLORS)]                                                                        # For cluster_majority mode, use the consistent cluster color mapping                                    if color_by == "cluster_majority" and layer in layer_to_colors:                                        # Use our consistent mapping with config_name in the key                                        cluster_key = (config_name, layer, cluster_idx)                                        if cluster_key in cluster_to_color_map:                                            center_color = cluster_to_color_map[cluster_key]                                            print(f"DEBUG: Using consistent color for {config_name}-{layer} cluster {cluster_idx}: {center_color}")
+                                        else:
+                                            # Fallback to the old method if needed
+                                            cluster_labels = cluster_info["labels"]
+                                            cluster_points = np.where(cluster_labels == cluster_idx)[0]
+                                            if len(cluster_points) > 0:
+                                                first_point = cluster_points[0]
+                                                if first_point < len(layer_to_colors[layer]):
+                                                    center_color = layer_to_colors[layer][first_point]
+                                    
+                                    all_traces.append(go.Scatter3d(
+                                        x=[center_coord[0]],
+                                        y=[center_coord[1]],
+                                        z=[center_coord[2]],
+                                        mode="markers",
+                                        marker=dict(
+                                            size=8,  # Reduced from 25 to 8 (about 1/3 of the previous size)
+                                            color=center_color,
+                                            symbol="circle",
+                                            opacity=1.0,
+                                            line=dict(width=1, color="black")  # Reduced line width back to 1
+                                        ),
+                                        name=f"Cluster {cluster_idx} Ctr ({config_name}-{layer})", # Clarified name
+                                        legendgroup=f"cluster_centers_{config_name}", # Config specific legend group
+                                        showlegend=True, # Show all clusters in legend
+                                        customdata=[[cluster_idx, layer, config_name]],  # Add metadata for click
+                                        hovertemplate="Cluster %{customdata[0]} (Layer %{customdata[1]})<extra></extra>"
+                                    ))
                             else:
                                 print(f"Warning: Invalid cluster centers for {config_name} - {layer}: {centers}")
                         else:
@@ -419,41 +443,24 @@ def build_single_scene_figure(
                                 for cluster_id in np.unique(cluster_labels):
                                     cluster_mask = cluster_labels == cluster_id
                                     if np.sum(cluster_mask) > 0:  # Ensure cluster has points
-                                        cluster_classes = class_labels[cluster_mask]
-                                        class_counts = np.bincount(cluster_classes.astype(int))
-                                        majority_class = np.argmax(class_counts)
-                                        # Use config_name in the key for global consistency
-                                        cluster_key = (config_name, layer, cluster_id)
-                                        cluster_majority_class_map[cluster_key] = majority_class
-                                        # Store color directly in global map
-                                        cluster_to_color_map[cluster_key] = class_to_color_map.get(majority_class, "grey")
-                                        print(f"DEBUG: {config_name}-{layer}, Cluster {cluster_id} -> Class {majority_class}, Color {cluster_to_color_map[cluster_key]}")
-                                    else:
-                                        # Use config_name in the key for consistency
-                                        cluster_key = (config_name, layer, cluster_id)
-                                        cluster_majority_class_map[cluster_key] = 0  # Default if empty
-                                        cluster_to_color_map[cluster_key] = class_to_color_map.get(0, "grey")
+                                                                                cluster_classes = class_labels[cluster_mask]                                        class_counts = np.bincount(cluster_classes.astype(int))                                        majority_class = np.argmax(class_counts)                                        # Use config_name in the key for global consistency                                        cluster_key = (config_name, layer, cluster_id)                                        cluster_majority_class_map[cluster_key] = majority_class                                        # Store color directly in global map                                        cluster_to_color_map[cluster_key] = class_to_color_map.get(majority_class, "grey")                                        print(f"DEBUG: {config_name}-{layer}, Cluster {cluster_id} -> Class {majority_class}, Color {cluster_to_color_map[cluster_key]}")
+                                                                        else:                                        # Use config_name in the key for consistency                                        cluster_key = (config_name, layer, cluster_id)                                        cluster_majority_class_map[cluster_key] = 0  # Default if empty                                        cluster_to_color_map[cluster_key] = class_to_color_map.get(0, "grey")
                             else:
                                 print(f"Warning: Cluster label count mismatch for {config_name}-{layer}. Got {len(cluster_labels)}, expected {num_samples_in_data}")
                         else:
                             print(f"Warning: No or invalid cluster_info['labels'] for {config_name}-{layer} for majority coloring")
                 
-                # Colors are already stored in cluster_to_color_map when calculating majority class
-                # So we don't need to create the mapping again
+                                # Colors are already stored in cluster_to_color_map when calculating majority class                # So we don't need to create the mapping again
                 
                 # Now create the layer_to_colors mapping based on this consistent mapping
-                # IMPORTANT: Don't reinitialize layer_to_colors - it's already initialized at the top of the function
+                layer_to_colors = {}
                 for layer in current_layers:
                     if layer in config_specific_clusters:
                         cluster_info = config_specific_clusters[layer]
                         if cluster_info and "labels" in cluster_info and cluster_info["labels"] is not None:
                             cluster_labels = cluster_info["labels"]
                             if len(cluster_labels) == num_samples_in_data:
-                                # Assign colors based on our consistent mapping
-                                layer_colors = np.array([
-                                    cluster_to_color_map.get((config_name, layer, cluster_id), "grey") 
-                                    for cluster_id in cluster_labels
-                                ])
+                                                                # Assign colors based on our consistent mapping                                layer_colors = np.array([                                    cluster_to_color_map.get((config_name, layer, cluster_id), "grey")                                     for cluster_id in cluster_labels                                ])
                                 layer_to_colors[layer] = layer_colors
                                 print(f"DEBUG: Created colors for layer {layer} with {len(np.unique(layer_colors))} unique colors")
             else:
@@ -586,57 +593,6 @@ def build_single_scene_figure(
                         direction_vectors=unit_direction.reshape(1,3),
                         scale=arrow_scale,
                         color=arrow_color_for_segment # Use the determined color
-                    ))
-                    
-        # Draw cluster centers (moved here to ensure they appear on top of other elements)
-        if show_cluster_centers and layer_clusters and config_name in layer_clusters:
-            config_specific_clusters = layer_clusters[config_name]
-            for layer in current_layers:
-                if layer not in config_specific_clusters:
-                    continue
-                cluster_info = config_specific_clusters[layer]
-                if not cluster_info or "centers" not in cluster_info or cluster_info["centers"] is None:
-                    continue
-                centers = cluster_info["centers"]
-                if normalize:
-                    orig_emb = raw_seed_data[layer]
-                    if orig_emb.shape[0] > 0:
-                        emb_mean = np.mean(orig_emb, axis=0)
-                        emb_std = np.std(orig_emb, axis=0)
-                        emb_std[emb_std == 0] = 1.0
-                        centers = (centers - emb_mean) / emb_std
-                layer_y_offset = current_layers.index(layer) * layer_separation
-                offset_centers = centers.copy()
-                offset_centers[:, 1] += layer_y_offset
-                for cluster_idx, center_coord in enumerate(offset_centers):
-                    center_color = QUALITATIVE_COLORS[cluster_idx % len(QUALITATIVE_COLORS)]
-                    if color_by == "cluster_majority":
-                        cluster_key = (config_name, layer, cluster_idx)
-                        if cluster_key in cluster_to_color_map:
-                            center_color = cluster_to_color_map[cluster_key]
-                    if center_color == '#636EFA':
-                        light_center_color = 'rgba(135, 206, 250, 0.8)'
-                    elif center_color == '#EF553B':
-                        light_center_color = 'rgba(255, 182, 193, 0.8)'
-                    else:
-                        light_center_color = center_color
-                    all_traces.append(go.Scatter3d(
-                        x=[center_coord[0]],
-                        y=[center_coord[1]],
-                        z=[center_coord[2]],
-                        mode="markers",
-                        marker=dict(
-                            size=12,
-                            color=light_center_color,
-                            symbol="circle",
-                            opacity=0.8,
-                            line=dict(width=1, color="black")
-                        ),
-                        name=f"Cluster {cluster_idx} Ctr ({config_name}-{layer})",
-                        legendgroup=f"cluster_centers_{config_name}",
-                        showlegend=True,
-                        customdata=[[cluster_idx, layer, config_name]],
-                        hovertemplate="Cluster %{customdata[0]} (Layer %{customdata[1]})<extra></extra>"
                     ))
     
     for trace in all_traces:

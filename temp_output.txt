@@ -1,0 +1,31 @@
+
+    Directory: C:\Repos\ConceptualFragmentationInLLMsAnalysisAndVisualization
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           5/14/2025  1:59 PM                __pycache__
+d----           5/13/2025  5:10 PM                .pytest_cache
+d----           5/13/2025 10:11 PM                concept_fragmentation
+d----           5/13/2025  6:01 PM                data
+d----           5/14/2025 12:42 PM                docs
+d----           5/13/2025  3:14 PM                hooks
+d----           5/13/2025  8:22 PM                logs
+d----           5/13/2025  1:43 PM                metrics
+d----           5/14/2025  1:31 PM                results
+d----           5/13/2025  2:22 PM                venv311
+d----           5/14/2025 11:21 PM                visualization
+-a---           5/14/2025  8:00 AM           4019 .gitignore
+-a---           5/14/2025  9:18 PM           3697 cluster_integration_plan.md
+-a---           5/14/2025  1:59 PM             51 config.py
+-a---           5/14/2025  7:46 PM            294 fix_dash.py
+-a---           5/14/2025  7:55 PM            629 fix_script.py
+-a---           5/13/2025  4:50 PM           7026 implementation_plan.md
+-a---           5/14/2025  9:28 PM           9679 paper.md
+-a---           5/13/2025 12:42 PM             75 README.md
+-a---           5/13/2025  6:44 PM           6441 remaining_implementation.md
+-a---           5/13/2025  6:11 PM           2196 run_baseline_experiments.ps1
+-a---           5/13/2025  6:12 PM            783 run_single_experiment.py
+-a---           5/14/2025 11:33 PM              0 temp_output.txt
+-a---           5/13/2025  6:40 PM           3657 test_dataset_fixes.py
+-a---           5/13/2025  2:40 PM            525 test_imports.py
+

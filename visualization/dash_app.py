@@ -8,12 +8,13 @@ visualizations of neural network layer trajectories.
 import os
 import sys
 import numpy as np
+import pandas as pd
 from typing import Dict, List, Tuple, Any, Optional, Union
 import plotly.graph_objects as go
 
 try:
     import dash
-    from dash import dcc, html
+    from dash import dcc, html, dash_table
     from dash.dependencies import Input, Output, State
 except ImportError:
     print("Dash not installed. Install with: pip install dash")
@@ -28,10 +29,13 @@ if parent_dir not in sys.path:
 from visualization.data_interface import (
     load_stats, get_best_config, get_baseline_config, 
     select_samples, load_dataset_metadata,
-    load_layer_class_metrics, load_activations  # Add this import
+    load_layer_class_metrics, load_activations, compute_layer_clusters,
+    get_config_id
 )
 from visualization.reducers import Embedder, embed_layer_activations
 from visualization.traj_plot import build_single_scene_figure, plot_dataset_trajectories, save_figure, LAYER_SEPARATION_OFFSET
+from visualization.cluster_utils import compute_layer_clusters_embedded, get_embedded_clusters_cache_path
+from concept_fragmentation.config import DATASETS as DATASET_CFG
 
 # Define the datasets and seeds
 DATASETS = ["titanic", "heart"]
@@ -50,6 +54,14 @@ AVAILABLE_POINT_COLOR_METRICS = {
     "cluster_entropy": "Cluster Entropy",
     "subspace_angle": "Subspace Angle"
     # Add more metrics here as they become available, e.g. "custom_fracture_score"
+}
+
+# Define color modes
+COLOR_MODES = {
+    "class": "Color by Class",
+    "metric": "Color by Metric",
+    "cluster": "Color by Cluster",
+    "cluster_majority": "Color by Majority-Class of Cluster"
 }
 
 # Helper functions for JSON serialization
@@ -140,11 +152,22 @@ app.layout = html.Div([
                     {"label": "Show Baseline", "value": "baseline"},
                     {"label": "Show Regularized", "value": "regularized"},
                     {"label": "Show Arrows", "value": "arrows"},
+                    {"label": "Show Cluster Centers", "value": "show_centers"},
                     {"label": "Normalize Embeddings", "value": "normalize"}
                 ],
                 value=["baseline", "regularized", "arrows", "normalize"]
             ),
             html.Br(), # Added for spacing
+            html.Label("Color Mode:"),
+            dcc.Dropdown(
+                id="color-mode-dropdown",
+                options=[
+                    {"label": name, "value": key}
+                    for key, name in COLOR_MODES.items()
+                ],
+                value="class" # Default to color by class
+            ),
+            html.Br(),
             html.Label("Trajectory Point Color Metric:"),
             dcc.Dropdown(
                 id="trajectory-point-metric-dropdown",
@@ -174,6 +197,16 @@ app.layout = html.Div([
                 step=5,
                 value=20,
                 marks={i: str(i) for i in range(0, 51, 10)},
+            ),
+            html.Br(),
+            html.Label("Max Clusters (k):"),
+            dcc.Slider(
+                id="max-k-slider",
+                min=4,
+                max=15,
+                step=1,
+                value=10,
+                marks={i: str(i) for i in range(4, 16, 2)},
             ),
         ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
         
@@ -209,13 +242,29 @@ app.layout = html.Div([
         ]
     ),
     
+    # Cluster statistics display
+    html.Div(
+        id="cluster-summary",
+        style={
+            "padding": "15px", 
+            "marginTop": "10px", 
+            "backgroundColor": "#f8f9fa", 
+            "border": "1px solid #ddd",
+            "borderRadius": "5px"
+        },
+        children="Click a cluster center to view statistics"
+    ),
+    
     html.Div(id="status-message", style={"padding": "10px", "color": "gray"}),
     
     # Hidden data storage
-    dcc.Store(id="embeddings-store")
+    dcc.Store(id="embeddings-store"),
+    dcc.Store(id="layer-clusters-store"),
+    dcc.Store(id="true-labels-store"),
+    dcc.Store(id="dataset-data-store")
 ])
 
-def load_and_embed_data(dataset, seed):
+def load_and_embed_data(dataset, seed, max_k=10):
     """Load and embed data for the given dataset and seed."""
     try:
         # Get configurations
@@ -227,12 +276,12 @@ def load_and_embed_data(dataset, seed):
         
         # Embed baseline
         print(f"Embedding baseline data for {dataset}, seed {seed}")
-        baseline_embeddings = embed_layer_activations(
+        baseline_embeddings, baseline_true_labels = embed_layer_activations(
             dataset, baseline_config, seed, embedder=embedder, use_test_set=True)
         
         # Embed best config
         print(f"Embedding regularized data for {dataset}, seed {seed}")
-        best_embeddings = embed_layer_activations(
+        best_embeddings, best_true_labels = embed_layer_activations(
             dataset, best_config, seed, embedder=embedder, use_test_set=True)
         
         # Create dictionary for storage
@@ -241,195 +290,322 @@ def load_and_embed_data(dataset, seed):
             "regularized": {seed: best_embeddings}
         }
         
-        return embeddings_dict, None
+        # Store true labels for each configuration
+        true_labels_dict = {
+            "baseline": baseline_true_labels,
+            "regularized": best_true_labels
+        }
+        
+        # Use the true labels that are available, preferring regularized if available
+        actual_true_labels = None
+        if best_true_labels is not None:
+            actual_true_labels = best_true_labels
+            print(f"Using true labels from regularized config with shape {actual_true_labels.shape}")
+        elif baseline_true_labels is not None:
+            actual_true_labels = baseline_true_labels
+            print(f"Using true labels from baseline config with shape {actual_true_labels.shape}")
+        
+        # Compute clusters in the embedded space for each configuration
+        print(f"Computing embedded clusters for {dataset}, seed {seed}, max_k={max_k}")
+        
+        # Get cache paths
+        baseline_cache_dir = os.path.join(CACHE_DIR, "embedded_clusters")
+        best_cache_dir = os.path.join(CACHE_DIR, "embedded_clusters")
+        baseline_cache_path = get_embedded_clusters_cache_path(
+            dataset, "baseline", seed, max_k, cache_dir=baseline_cache_dir
+        )
+        best_config_id = get_config_id(best_config)
+        best_cache_path = get_embedded_clusters_cache_path(
+            dataset, best_config_id, seed, max_k, cache_dir=best_cache_dir
+        )
+        
+        # Compute clusters
+        baseline_clusters = compute_layer_clusters_embedded(
+            baseline_embeddings, max_k=max_k, random_state=42, cache_path=baseline_cache_path
+        )
+        best_clusters = compute_layer_clusters_embedded(
+            best_embeddings, max_k=max_k, random_state=42, cache_path=best_cache_path
+        )
+        
+        # Store clusters by configuration
+        layer_clusters_by_config = {
+            "baseline": baseline_clusters,
+            "regularized": best_clusters
+        }
+        
+        return embeddings_dict, layer_clusters_by_config, true_labels_dict, None
     
     except Exception as e:
         import traceback
         error_msg = f"Error loading embeddings: {str(e)}\n{traceback.format_exc()}"
         print(error_msg)
-        return None, error_msg
+        return None, None, None, error_msg
 
 @app.callback(
     [Output("embeddings-store", "data"),
+     Output("layer-clusters-store", "data"),
+     Output("true-labels-store", "data"),
+     Output("dataset-data-store", "data"),
      Output("status-message", "children")],
     [Input("dataset-dropdown", "value"),
-     Input("seed-dropdown", "value")]
+     Input("seed-dropdown", "value"),
+     Input("max-k-slider", "value")]
 )
-def update_embeddings(dataset, seed):
-    """Update embeddings when dataset or seed changes."""
-    print(f"DEBUG: dash_app.py - update_embeddings callback triggered for dataset: {dataset}, seed: {seed}")
-    status = f"Loading embeddings for {dataset.title()}, seed {seed}..."
+def update_embeddings(dataset, seed, max_k):
+    """Update embeddings and cluster data when dataset, seed, or max_k changes."""
+    if not dataset or seed is None:
+        return None, None, None, None, "Please select a dataset and seed."
     
-    print(f"DEBUG: dash_app.py - update_embeddings: Calling load_and_embed_data for {dataset}, {seed}")
-    embeddings_dict, error = load_and_embed_data(dataset, seed)
-    print(f"DEBUG: dash_app.py - update_embeddings: Returned from load_and_embed_data for {dataset}, {seed}")
-
-    if error:
-        print(f"DEBUG: dash_app.py - update_embeddings: Error occurred: {error}")
-        return None, f"Error: {error}"
+    print(f"Loading data for {dataset}, seed {seed}, max_k {max_k}")
+    embeddings_dict, layer_clusters, true_labels, error_msg = load_and_embed_data(dataset, seed, max_k)
     
-    serializable_embeddings_dict = None
-    if embeddings_dict is not None:
-        print(f"DEBUG: dash_app.py - update_embeddings: embeddings_dict is populated. Type: {type(embeddings_dict)}")
-        print("DEBUG: dash_app.py - update_embeddings: Converting np.ndarray to lists for dcc.Store...")
-        serializable_embeddings_dict = numpy_to_list_recursive(embeddings_dict)
-        print("DEBUG: dash_app.py - update_embeddings: Conversion finished.")
-        # Basic check for numpy arrays (should be none now)
-        try:
-            # Example path, adjust if your structure is different or for a more thorough check
-            sample_data_path = serializable_embeddings_dict.get("baseline", {}).get(seed, {}).get("layer1")
-            if isinstance(sample_data_path, np.ndarray):
-                print("DEBUG: dash_app.py - update_embeddings: WARNING! Found np.ndarray AFTER serialization attempt.")
-            elif isinstance(sample_data_path, list):
-                print("DEBUG: dash_app.py - update_embeddings: Verified sample data is now a list.")
-        except Exception as e:
-            print(f"DEBUG: dash_app.py - update_embeddings: Error during post-serialization check: {e}")
-            pass
-    else:
-        print("DEBUG: dash_app.py - update_embeddings: embeddings_dict is None after load_and_embed_data.")
-
-    print(f"DEBUG: dash_app.py - update_embeddings: About to return data to dcc.Store. Type of serializable_embeddings_dict: {type(serializable_embeddings_dict)}")
-    return serializable_embeddings_dict, f"Loaded embeddings for {dataset.title()}, seed {seed}"
+    if error_msg:
+        return None, None, None, None, error_msg
+    
+    # Convert embeddings to JSON-serializable format
+    embeddings_json = numpy_to_list_recursive(embeddings_dict)
+    
+    # Convert clusters to JSON-serializable format
+    clusters_json = numpy_to_list_recursive(layer_clusters)
+    
+    # Convert true labels to JSON-serializable format
+    true_labels_json = numpy_to_list_recursive(true_labels)
+    
+    # Load dataset numeric features
+    try:
+        # Get dataset path from config
+        dataset_path = DATASET_CFG[dataset]["path"]
+        numeric_features = DATASET_CFG[dataset]["numerical_features"]
+        
+        # Instead of direct CSV loading, use the data loaders
+        from concept_fragmentation.data.loaders import get_dataset_loader
+        
+        # Get the appropriate dataset loader
+        loader = get_dataset_loader(dataset)
+        
+        # Load data using the loader
+        train_df, test_df = loader.load_data()
+        
+        # Include both numeric features and the 'sex' column
+        features_to_include = numeric_features.copy()
+        if 'Sex' in train_df.columns:
+            features_to_include.append('Sex')
+        elif 'sex' in train_df.columns:
+            features_to_include.append('sex')
+        
+        # Filter to selected features
+        df_selected = train_df[features_to_include]
+        
+        # Convert to JSON-serializable format
+        dataset_json = df_selected.to_json(orient="split")
+    except Exception as e:
+        print(f"Error loading dataset: {e}")
+        dataset_json = None
+    
+    return embeddings_json, clusters_json, true_labels_json, dataset_json, f"Loaded {dataset} data for seed {seed}"
 
 @app.callback(
     Output("trajectory-graph", "figure"),
     [Input("update-button", "n_clicks")],
     [State("embeddings-store", "data"),
+     State("layer-clusters-store", "data"),
+     State("true-labels-store", "data"),
      State("dataset-dropdown", "value"),
      State("samples-slider", "value"),
      State("highlight-slider", "value"),
      State("visualization-controls", "value"),
      State("highlight-controls", "value"),
      State("trajectory-point-metric-dropdown", "value"),
-     State("seed-dropdown", "value")]  # Add seed to the state parameters
+     State("color-mode-dropdown", "value"),
+     State("seed-dropdown", "value")]
 )
-def update_visualization(n_clicks, stored_data, dataset, n_samples, n_highlights, 
-                        vis_controls, highlight_controls, selected_point_metric, seed):
-    print(f"DEBUG: dash_app.py - update_visualization callback triggered. n_clicks: {n_clicks}")
-    print(f"DEBUG: dash_app.py - selected dataset: {dataset}, n_samples: {n_samples}, n_highlights: {n_highlights}")
-    print(f"DEBUG: dash_app.py - vis_controls: {vis_controls}, highlight_controls: {highlight_controls}")
-    print(f"DEBUG: dash_app.py - selected_point_metric for trajectory points: {selected_point_metric}")
-
-    if not stored_data:
-        print("DEBUG: dash_app.py - update_visualization: No stored_data (embeddings) found. Returning empty figure.")
-        return go.Figure(layout={"title": "No embeddings data loaded. Please select a dataset and seed."})
-
+def update_visualization(n_clicks, stored_data, stored_clusters, stored_true_labels, dataset, n_samples, n_highlights, 
+                        vis_controls, highlight_controls, selected_point_metric, color_mode, seed):
+    """
+    Update the visualization based on user selections.
+    """
+    if n_clicks is None or not stored_data or not dataset:
+        # Initial load or no data
+        return go.Figure().update_layout(
+            title="Click 'Update Visualization' after selecting options",
+            height=700
+        )
+    
+    # Debug: Print received data types
+    print("DEBUG: Starting update_visualization function")
+    
+    # Convert stored JSON data back to Python objects with NumPy arrays
     embeddings_dict = list_to_numpy_recursive(stored_data)
     
-    if not embeddings_dict:
-        print("DEBUG: dash_app.py - update_visualization: embeddings_dict is empty after list_to_numpy_recursive. Returning empty figure.")
-        return go.Figure(layout={"title": "Embeddings data is empty after processing."})
-
-    # Load metadata for class info
-    print(f"DEBUG: dash_app.py - update_visualization: Loading metadata for dataset: {dataset}")
-    metadata = load_dataset_metadata(dataset)
+    # Convert stored clusters back
+    layer_clusters = None
+    if stored_clusters:
+        layer_clusters = list_to_numpy_recursive(stored_clusters)
     
-    # Load activations to get per-sample labels
-    try:
-        config = get_baseline_config(dataset)
-        activations = load_activations(dataset, config, seed)
-        
-        # Extract per-sample class labels
-        if 'labels' in activations and isinstance(activations['labels'], dict) and 'test' in activations['labels']:
-            # If we have a test/train split, use the test set labels (last epoch)
-            labels_array = activations['labels']['test']
-            if labels_array.ndim > 1:  # Multiple epochs
-                sample_class_labels = labels_array[-1]  # Use the last epoch
-            else:
-                sample_class_labels = labels_array
-            print(f"DEBUG: Got per-sample class labels with shape {sample_class_labels.shape}")
-        else:
-            # Fallback to unique class labels
-            print("DEBUG: Could not find per-sample labels, using unique classes from metadata")
-            sample_class_labels = metadata.get("class_labels")
-    except Exception as e:
-        print(f"WARNING: Error getting per-sample labels: {e}")
-        sample_class_labels = metadata.get("class_labels")
-        
-    # Load per-class, per-layer metrics for both baseline and regularized models
-    layer_class_metrics_data_baseline = None
-    layer_class_metrics_data_regularized = None
+    # Convert stored true labels back
+    true_labels_by_config = None
+    if stored_true_labels:
+        true_labels_by_config = list_to_numpy_recursive(stored_true_labels)
+        print(f"DEBUG: true_labels_by_config type: {type(true_labels_by_config)}")
+        print(f"DEBUG: true_labels_by_config keys: {true_labels_by_config.keys() if isinstance(true_labels_by_config, dict) else 'not a dict'}")
     
-    try:
-        if "baseline" in vis_controls:
-            baseline_config = get_baseline_config(dataset)
-            layer_class_metrics_data_baseline = load_layer_class_metrics(dataset, baseline_config, seed)
-            print("DEBUG: Loaded baseline metrics successfully")
-            
-        if "regularized" in vis_controls:
-            regularized_config = get_best_config(dataset)
-            layer_class_metrics_data_regularized = load_layer_class_metrics(dataset, regularized_config, seed)
-            print("DEBUG: Loaded regularized metrics successfully")
-    except Exception as e:
-        print(f"WARNING: Error loading layer class metrics: {e}")
-        # Continue with None values for metrics
+    # Filter configurations based on user selection
+    show_baseline = "baseline" in vis_controls
+    show_regularized = "regularized" in vis_controls
+    
+    filtered_embeddings = {}
+    filtered_layer_clusters = {}
+    config_for_samples = None
+    config_details = None
+    clusters_for_samples = None
+    true_labels_for_samples = None
 
-    # Compute highlight indices using the new fractured-off detection
-    highlight_indices = None
-    if "high_frag" in highlight_controls:
-        try:
-            # Use the regularized model's data for highlighting if available, else baseline
-            config_for_highlighting = get_best_config(dataset) if "regularized" in vis_controls else get_baseline_config(dataset)
-            highlight_indices = select_samples(
-                dataset=dataset,
-                config=config_for_highlighting,
-                seed=seed,
-                k_frag=n_highlights,
-                k_norm=0  # We're only interested in fractured samples
-            )
-            print(f"DEBUG: Selected {len(highlight_indices) if highlight_indices else 0} samples for highlighting")
-        except Exception as e:
-            print(f"WARNING: Error computing highlight indices: {e}")
-            highlight_indices = []
+    if show_baseline and "baseline" in embeddings_dict:
+        filtered_embeddings["baseline"] = embeddings_dict["baseline"]
+        if layer_clusters and "baseline" in layer_clusters:
+             filtered_layer_clusters["baseline"] = layer_clusters["baseline"]
+             config_for_samples = "baseline"
+             config_details = get_baseline_config(dataset)
+             clusters_for_samples = layer_clusters["baseline"]
+             if true_labels_by_config and "baseline" in true_labels_by_config:
+                 true_labels_for_samples = true_labels_by_config["baseline"]
+                 print(f"DEBUG: Using baseline true_labels_for_samples, type: {type(true_labels_for_samples)}")
+                 if isinstance(true_labels_for_samples, np.ndarray):
+                     print(f"DEBUG: true_labels_for_samples shape: {true_labels_for_samples.shape}")
+                 else:
+                     print(f"DEBUG: true_labels_for_samples is not an array, it's a {type(true_labels_for_samples)}")
 
-    # Create sample color values from metrics if available
-    sample_color_values = None
-    if selected_point_metric and "baseline" in vis_controls and layer_class_metrics_data_baseline:
-        # Extract per-class metric values from the first layer
-        first_layer = next(iter(layer_class_metrics_data_baseline))
-        metrics_by_class = layer_class_metrics_data_baseline[first_layer]
-        
-        # Get per-sample fracture scores based on selected metric
-        if hasattr(sample_class_labels, '__len__') and len(sample_class_labels) > 2:
-            values = []
-            for sample_idx in range(len(sample_class_labels)):
-                class_str = str(sample_class_labels[sample_idx])
-                if class_str in metrics_by_class and selected_point_metric in metrics_by_class[class_str]:
-                    values.append(metrics_by_class[class_str][selected_point_metric])
+    if show_regularized and "regularized" in embeddings_dict:
+        filtered_embeddings["regularized"] = embeddings_dict["regularized"]
+        if layer_clusters and "regularized" in layer_clusters:
+            filtered_layer_clusters["regularized"] = layer_clusters["regularized"]
+            # Prefer regularized for sample selection if available
+            config_for_samples = "regularized"
+            config_details = get_best_config(dataset)
+            clusters_for_samples = layer_clusters["regularized"]
+            if true_labels_by_config and "regularized" in true_labels_by_config:
+                true_labels_for_samples = true_labels_by_config["regularized"]
+                print(f"DEBUG: Using regularized true_labels_for_samples, type: {type(true_labels_for_samples)}")
+                if isinstance(true_labels_for_samples, np.ndarray):
+                    print(f"DEBUG: true_labels_for_samples shape: {true_labels_for_samples.shape}")
                 else:
-                    values.append(np.nan)
-            sample_color_values = np.array(values)
-
-    # Filter embeddings_dict to only include configs that are in vis_controls
-    filtered_embeddings_dict = {
-        config_name: config_data 
-        for config_name, config_data in embeddings_dict.items()
-        if config_name in vis_controls
-    }
-
-    print(f"DEBUG: dash_app.py - update_visualization: About to call build_single_scene_figure")
-    print(f"  dataset: {dataset}")
-    print(f"  n_samples: {n_samples}")
-    print(f"  highlight_indices count: {len(highlight_indices) if highlight_indices else 0}")
-    print(f"  Using sample_color_values: {sample_color_values is not None}")
-    print(f"  Using per-sample class_labels: {hasattr(sample_class_labels, '__len__') and len(sample_class_labels) > 2}")
-    print(f"  Using layer_separation: {LAYER_SEPARATION_OFFSET}")
+                    print(f"DEBUG: true_labels_for_samples is not an array, it's a {type(true_labels_for_samples)}")
     
-    # Use build_single_scene_figure instead of plot_dataset_trajectories
-    fig = build_single_scene_figure(
-        embeddings_dict=filtered_embeddings_dict,
-        samples_to_plot=np.arange(n_samples),
-        max_samples=n_samples,
-        highlight_indices=highlight_indices,
-        class_labels=sample_class_labels,
-        sample_color_values=sample_color_values,
-        color_value_name=selected_point_metric if selected_point_metric else "Score",
-        show_arrows="arrows" in vis_controls,
-        normalize="normalize" in vis_controls,
-        layer_separation=LAYER_SEPARATION_OFFSET
-    )
+    if not filtered_embeddings:
+        return go.Figure().update_layout(
+            title="No configurations selected to display",
+            height=700
+        )
     
-    return fig
+    # Get metadata for this dataset
+    try:
+        metadata = load_dataset_metadata(dataset)
+        class_labels = metadata.get("class_labels", [])
+        print(f"DEBUG: class_labels from metadata, type: {type(class_labels)}")
+        print(f"DEBUG: class_labels from metadata, length: {len(class_labels) if hasattr(class_labels, '__len__') else 'no length'}")
+    except Exception as e:
+        print(f"Error loading metadata: {e}")
+        class_labels = []
+    
+    # Select samples with high/low fragmentation
+    highlight_indices = []
+    if "high_frag" in highlight_controls and n_highlights > 0:
+        try:
+            if config_for_samples and clusters_for_samples:
+                print(f"DEBUG: Before select_samples, true_labels_for_samples type: {type(true_labels_for_samples)}")
+                if isinstance(true_labels_for_samples, np.ndarray):
+                    print(f"DEBUG: Before select_samples, true_labels_for_samples shape: {true_labels_for_samples.shape}")
+                
+                print(f"Using pre-computed embedded layer clusters from '{config_for_samples}' config for sample selection")
+                highlight_indices = select_samples(
+                    dataset, config_details, seed, 
+                    k_frag=n_highlights, k_norm=0,
+                    layer_clusters=clusters_for_samples,
+                    actual_class_labels=true_labels_for_samples
+                )
+                print(f"DEBUG: After select_samples, highlight_indices: {highlight_indices[:5]}... (showing first 5)")
+            else:
+                 print("Skipping sample selection as no suitable config/clusters found.")
+
+        except Exception as e:
+            import traceback
+            print(f"DEBUG: Error in select_samples: {e}")
+            print(f"DEBUG: {traceback.format_exc()}")
+    
+    # Visualization options
+    show_arrows = "arrows" in vis_controls
+    normalize = "normalize" in vis_controls
+    show_cluster_centers = "show_centers" in vis_controls
+    
+    # Color mode
+    color_by = color_mode if color_mode else "class"
+    
+    # Sample color values for the "metric" color mode
+    sample_color_values = None
+    if color_by == "metric":
+        # Load metric values (this would need to be implemented based on your data)
+        # For now, just use a dummy placeholder
+        pass
+    
+    # If we have true labels from embeddings, use them instead of metadata labels
+    # This ensures alignment with the actual data we're visualizing
+    print(f"DEBUG: Before class_labels check, true_labels_for_samples is {type(true_labels_for_samples)}")
+    print(f"DEBUG: Before class_labels check, class_labels is {type(class_labels)}")
+    
+    # Fix the potential ambiguous truth value error by checking existence properly
+    if true_labels_for_samples is not None:
+        # Check properly depending on the type
+        has_labels = False
+        if isinstance(true_labels_for_samples, np.ndarray):
+            has_labels = true_labels_for_samples.size > 0
+        elif isinstance(true_labels_for_samples, list):
+            has_labels = len(true_labels_for_samples) > 0
+        else:
+            has_labels = bool(true_labels_for_samples)
+            
+        if has_labels:
+            print(f"DEBUG: Using true labels from embeddings")
+            class_labels = np.array(true_labels_for_samples)
+            print(f"DEBUG: class_labels now: {type(class_labels)} with shape {class_labels.shape if isinstance(class_labels, np.ndarray) else 'not array'}")
+    elif class_labels:
+        print(f"DEBUG: Using class labels from metadata: {class_labels}")
+    
+    # Build the figure
+    title = f"{dataset.title()} Neural Network Layer Trajectories"
+    try:
+        print(f"DEBUG: Before build_single_scene_figure, class_labels type: {type(class_labels)}")
+        if isinstance(class_labels, np.ndarray):
+            print(f"DEBUG: class_labels shape: {class_labels.shape}")
+        else:
+            print(f"DEBUG: class_labels not an ndarray: {class_labels}")
+            
+        # Ensure we pass class_labels as a numpy array if it isn't already
+        class_labels_arg = np.array(class_labels) if class_labels is not None and not isinstance(class_labels, np.ndarray) else class_labels
+        
+        fig = build_single_scene_figure(
+            embeddings_dict=filtered_embeddings,
+            samples_to_plot=None,  # Use all available samples up to max
+            max_samples=n_samples,
+            highlight_indices=highlight_indices,
+            class_labels=class_labels_arg,
+            sample_color_values=sample_color_values,
+            color_value_name=selected_point_metric if color_by == "metric" else "",
+            title=title,
+            show_arrows=show_arrows,
+            normalize=normalize,
+            layer_clusters=filtered_layer_clusters,
+            show_cluster_centers=show_cluster_centers,
+            color_by=color_by
+        )
+        return fig
+    except Exception as e:
+        import traceback
+        print(f"DEBUG: Error building figure: {e}")
+        print(f"DEBUG: {traceback.format_exc()}")
+        return go.Figure().update_layout(
+            title=f"Error: {str(e)}",
+            height=700
+        )
 
 @app.callback(
     Output("download-html", "data"),
@@ -470,6 +646,109 @@ def clear_cache(n_clicks):
         except Exception as e:
             return f"Error clearing cache: {str(e)}"
     return ""
+
+@app.callback(
+    Output("cluster-summary", "children"),
+    [Input("trajectory-graph", "clickData")],
+    [State("dataset-data-store", "data"),
+     State("layer-clusters-store", "data"),
+     State("dataset-dropdown", "value")]
+)
+def show_cluster_stats(click_data, dataset_json, clusters_json, dataset):
+    """Show descriptive statistics for the clicked cluster."""
+    if not click_data or not dataset_json or not clusters_json or not dataset:
+        return "Click a cluster center to view statistics."
+    
+    try:
+        # Extract the point data and ensure it's a cluster center (has customdata)
+        points = click_data.get("points", [])
+        if not points or "customdata" not in points[0]:
+            return "Click a cluster center to view statistics."
+        
+        # Extract cluster details
+        cluster_id, layer, config_name = points[0]["customdata"]
+        
+        # Convert clusters back from JSON
+        clusters = list_to_numpy_recursive(clusters_json)
+        
+        # Get cluster labels for this layer
+        if config_name not in clusters or layer not in clusters[config_name]:
+            return f"No cluster data found for {config_name}, {layer}."
+        
+        cluster_info = clusters[config_name][layer]
+        if "labels" not in cluster_info:
+            return f"No cluster labels found for {config_name}, {layer}."
+        
+        # Get indices of samples in this cluster
+        cluster_labels = cluster_info["labels"]
+        cluster_mask = cluster_labels == cluster_id
+        sample_indices = np.where(cluster_mask)[0]
+        
+        if len(sample_indices) == 0:
+            return f"No samples found in Cluster {cluster_id} of {layer}."
+        
+        # Load dataset features
+        df = pd.read_json(dataset_json, orient="split")
+        print("DEBUG: DataFrame columns after loading:", df.columns)
+
+        # Convert 'sex' column to 0 and 1 if needed
+        if 'sex' in df.columns:
+            df['sex'] = df['sex'].apply(lambda x: 1 if x.lower() in ['male', 'm'] else 0)
+            df['sex'] = df['sex'].astype(int)  # Ensure 'sex' is treated as a numeric column
+            print("DEBUG: 'sex' column after conversion:", df['sex'].head())
+
+        # Select samples in this cluster
+        if len(sample_indices) > df.shape[0]:
+            sample_indices = sample_indices[:df.shape[0]]
+        
+        cluster_samples = df.iloc[sample_indices]
+        
+        # Calculate statistics
+        print("DEBUG: DataFrame dtypes before describe:", df.dtypes)  # Debug statement to check dtypes
+        stats = cluster_samples.describe().round(2)
+        print("DEBUG: Statistics DataFrame columns:", stats.columns)
+        print("DEBUG: Statistics DataFrame head:", stats.head())
+        
+        # Create data table
+        table = dash_table.DataTable(
+            id='cluster-stats-table',
+            columns=[
+                {"name": "Metric", "id": "metric"},
+                *[{"name": col, "id": col} for col in stats.columns]
+            ],
+            data=[
+                {"metric": idx, **{col: stats.loc[idx, col] for col in stats.columns}}
+                for idx in stats.index
+            ],
+            style_table={
+                'overflowX': 'auto',
+                'width': '100%'
+            },
+            style_cell={
+                'textAlign': 'left',
+                'padding': '8px',
+                'font-family': 'sans-serif'
+            },
+            style_header={
+                'backgroundColor': '#f4f4f4',
+                'fontWeight': 'bold'
+            }
+        )
+        
+        # Create summary
+        summary_div = html.Div([
+            html.H4(f"Cluster {cluster_id} Statistics ({layer}, {config_name})"),
+            html.P(f"Number of samples: {len(sample_indices)}"),
+            table
+        ])
+        
+        return summary_div
+    
+    except Exception as e:
+        import traceback
+        error_msg = f"Error generating cluster statistics: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return f"Error: {str(e)}"
 
 if __name__ == "__main__":
     print("Starting Dash app...")

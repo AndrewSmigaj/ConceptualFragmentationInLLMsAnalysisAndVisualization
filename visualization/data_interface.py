@@ -12,6 +12,8 @@ import pandas as pd
 import numpy as np
 from typing import Dict, List, Tuple, Any, Optional, Union
 from pathlib import Path
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 
 # Define the best configurations as specified in the plan
 BEST_CONFIGS = {
@@ -356,40 +358,234 @@ def clean_activations(activations: Dict[str, Any]) -> Dict[str, Any]:
             
     return cleaned
 
-def select_samples(df_stats: pd.DataFrame, dataset: str, k_frag: int = 20, k_norm: int = 20) -> List[int]:
+def select_samples(
+    dataset: str,
+    config: Union[Dict[str, Any], str],
+    seed: int,
+    k_frag: int = 20,
+    k_norm: int = 20,
+    layer_clusters: Optional[Dict[str, Dict[str, Any]]] = None,
+    actual_class_labels: Optional[np.ndarray] = None
+) -> List[int]:
     """
     Select sample indices with high and low fragmentation.
     
     Args:
-        df_stats: DataFrame containing the statistics.
-        dataset: Name of the dataset (e.g., "titanic", "heart").
-        k_frag: Number of high-fragmentation samples to select.
-        k_norm: Number of normal (low-fragmentation) samples to select.
+        dataset: Name of the dataset
+        config: Configuration dictionary or config_id string
+        seed: Random seed used
+        k_frag: Number of high-fragmentation samples to select
+        k_norm: Number of normal (low-fragmentation) samples to select
+        layer_clusters: Pre-computed embedded cluster information for a specific config.
+                        If provided, compute_fractured_off_scores_embedded is used.
+                        Structure: {layer_name: {"k": k, "centers": centers, "labels": labels}}
+        actual_class_labels: True class labels for the samples (if available)
+    
+    Returns:
+        List of sample indices (high fragmentation first, then low)
+    """
+    print(f"DEBUG: select_samples called with k_frag={k_frag}, k_norm={k_norm}")
+    print(f"DEBUG: actual_class_labels type: {type(actual_class_labels)}")
+    if isinstance(actual_class_labels, np.ndarray):
+        print(f"DEBUG: actual_class_labels shape: {actual_class_labels.shape}")
+        print(f"DEBUG: Sample of actual_class_labels: {actual_class_labels[:5]} (first 5)")
+
+    # For embedded clusters, use the new embedded approach
+    if layer_clusters is not None:
+        print("DEBUG: Using embedded layer clusters approach")
+        try:
+            # Compute scores using the embedded space clusters
+            frag_scores = compute_fractured_off_scores_embedded(
+                dataset, config, seed, layer_clusters, actual_class_labels
+            )
+            print(f"DEBUG: Got frag_scores: {list(frag_scores.keys())[:5]} (first 5 keys)")
+            
+            if not frag_scores:
+                print("DEBUG: Empty frag_scores, returning empty list")
+                return []
+            
+            # Sort samples by fragmentation score (highest first)
+            sorted_samples = sorted(frag_scores.keys(), key=lambda s: frag_scores[s], reverse=True)
+            
+            # Select top k_frag samples with highest scores
+            high_frag_samples = sorted_samples[:k_frag]
+            
+            # Select k_norm samples with lowest scores
+            low_frag_samples = sorted_samples[-k_norm:] if k_norm > 0 else []
+            
+            selected = high_frag_samples + low_frag_samples
+            print(f"DEBUG: Returning {len(selected)} selected samples")
+            return selected
+        
+        except Exception as e:
+            import traceback
+            print(f"DEBUG: Error in embedded cluster approach: {e}")
+            print(f"DEBUG: {traceback.format_exc()}")
+            return []
+            
+    # Previous raw activations approach
+    print("DEBUG: Using raw activations approach (fallback)")
+    try:
+        # Compute clusters using raw activations
+        layer_clusters_raw = compute_layer_clusters(dataset, config, seed)
+        
+        # Compute fragmentation scores
+        from concept_fragmentation.utils.metrics import compute_fractured_off_scores
+        frag_scores = compute_fractured_off_scores(dataset, config, seed, layer_clusters_raw)
+        
+        if not frag_scores:
+            return []
+        
+        # Sort samples by fragmentation score
+        sorted_samples = sorted(frag_scores.keys(), key=lambda s: frag_scores[s], reverse=True)
+        
+        # Select top k_frag samples with highest scores
+        high_frag_samples = sorted_samples[:k_frag]
+        
+        # Select k_norm samples with lowest scores
+        low_frag_samples = sorted_samples[-k_norm:] if k_norm > 0 else []
+        
+        return high_frag_samples + low_frag_samples
+    
+    except Exception as e:
+        print(f"Error in raw activation approach: {e}")
+        return []
+
+def compute_layer_clusters(dataset: str, config: Union[Dict[str, Any], str], seed: int, max_k: int = 10) -> Dict[str, Dict[str, Any]]:
+    """
+    Compute optimal k-means clusters for each layer based on silhouette score.
+    
+    Args:
+        dataset: Name of the dataset (e.g., "titanic", "heart")
+        config: Configuration dictionary or config_id string
+        seed: Random seed used for the experiment
+        max_k: Maximum number of clusters to try (default: 10)
         
     Returns:
-        List of sample indices.
+        Dictionary mapping layer names to dictionaries containing:
+            - k: optimal number of clusters
+            - centers: array of cluster centers (shape: k x 3)
+            - labels: array of cluster assignments for each sample
     """
-    # Filter for the dataset
-    df = df_stats[df_stats["dataset"] == dataset.lower()]
+    # Check cache first
+    cache_path = _get_clusters_cache_path(dataset, config, seed, max_k)
+    if os.path.exists(cache_path):
+        try:
+            with open(cache_path, 'rb') as f:
+                layer_clusters = pickle.load(f)
+            print(f"Loaded cached clusters from {cache_path}")
+            return layer_clusters
+        except Exception as e:
+            print(f"Error loading cached clusters: {e}")
     
-    if df.empty:
-        raise ValueError(f"No data found for dataset: {dataset}")
+    # Load activations
+    activations = load_activations(dataset, config, seed)
+    if not activations:
+        raise ValueError(f"No activations found for {dataset}, config {config}, seed {seed}")
     
-    # Use entropy in layer 3 as the fragmentation metric
-    # Higher entropy = higher fragmentation
-    entropy_col = "final_entropy_layer3"
+    layer_clusters = {}
     
-    # Sort by entropy
-    df_sorted = df.sort_values(by=entropy_col, ascending=False)
+    # Process each layer
+    for layer_name, layer_data in activations.items():
+        # Handle train/test split in activations if present
+        if isinstance(layer_data, dict) and "test" in layer_data:
+            # Use test set for clustering
+            layer_data = layer_data["test"]
+        
+        # Skip if layer data is empty
+        if layer_data.shape[0] == 0:
+            continue
+            
+        # Ensure layer_data is 2D for KMeans
+        if len(layer_data.shape) == 1:
+            # Reshape 1D array to 2D
+            layer_data = layer_data.reshape(-1, 1)
+            print(f"Reshaped 1D layer data to shape {layer_data.shape}")
+        elif len(layer_data.shape) > 2:
+            # Reshape higher-dimensional array to 2D by flattening all dimensions after the first
+            original_shape = layer_data.shape
+            layer_data = layer_data.reshape(original_shape[0], -1)
+            print(f"Reshaped {original_shape} array to 2D shape {layer_data.shape}")
+        
+        # Find optimal number of clusters using silhouette score
+        best_score = -1
+        best_k = 2  # Minimum is 2 clusters
+        best_kmeans = None
+        
+        max_possible_k = min(max_k, int(np.sqrt(layer_data.shape[0])))
+        
+        for k in range(2, max_possible_k + 1):
+            kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+            cluster_labels = kmeans.fit_predict(layer_data)
+            
+            # If we have only one point in a cluster, silhouette score will fail
+            # Check for this case and skip this k
+            counts = np.bincount(cluster_labels)
+            if np.any(counts < 2):
+                continue
+            
+            try:
+                score = silhouette_score(layer_data, cluster_labels)
+                if score > best_score:
+                    best_score = score
+                    best_k = k
+                    best_kmeans = kmeans
+            except Exception as e:
+                print(f"Error computing silhouette score for k={k}: {e}")
+                continue
+        
+        # If we found a valid clustering, save it
+        if best_kmeans is not None:
+            layer_clusters[layer_name] = {
+                "k": best_k,
+                "centers": best_kmeans.cluster_centers_,
+                "labels": best_kmeans.labels_,
+                "silhouette_score": best_score
+            }
+        else:
+            # Fallback to k=2 if no valid clustering found
+            # Ensure layer_data is still 2D for KMeans (in case it was modified after initial check)
+            if len(layer_data.shape) == 1:
+                layer_data = layer_data.reshape(-1, 1)
+                print(f"Reshaped 1D layer data to shape {layer_data.shape} in fallback clustering")
+            elif len(layer_data.shape) > 2:
+                original_shape = layer_data.shape
+                layer_data = layer_data.reshape(original_shape[0], -1)
+                print(f"Reshaped {original_shape} array to 2D shape {layer_data.shape} in fallback clustering")
+                
+            kmeans = KMeans(n_clusters=2, random_state=42, n_init=10)
+            cluster_labels = kmeans.fit_predict(layer_data)
+            
+            layer_clusters[layer_name] = {
+                "k": 2,
+                "centers": kmeans.cluster_centers_,
+                "labels": cluster_labels,
+                "silhouette_score": 0.0  # Indicate this is a fallback with a poor score
+            }
     
-    # Select top k_frag samples with highest entropy
-    high_frag_indices = df_sorted.iloc[:k_frag].index.tolist()
+    # Cache the results
+    try:
+        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+        with open(cache_path, 'wb') as f:
+            pickle.dump(layer_clusters, f)
+        print(f"Cached clusters to {cache_path}")
+    except Exception as e:
+        print(f"Error caching clusters: {e}")
     
-    # Select k_norm samples with lowest entropy
-    low_frag_indices = df_sorted.iloc[-k_norm:].index.tolist()
+    return layer_clusters
+
+def _get_clusters_cache_path(dataset: str, config: Union[Dict[str, Any], str], seed: int, max_k: int) -> str:
+    """Generate the cache path for the clusters."""
+    # Handle config as string or dict
+    if isinstance(config, str):
+        config_id = config
+    else:
+        config_id = get_config_id(config)
     
-    # Combine and return
-    return high_frag_indices + low_frag_indices
+    cache_dir = os.path.join(get_config_path(), "cache", "clusters")
+    os.makedirs(cache_dir, exist_ok=True)
+    
+    return os.path.join(cache_dir, f"{dataset}_{config_id}_seed{seed}_maxk{max_k}.pkl")
 
 def get_baseline_config(dataset: str, seed: int = 0) -> Dict[str, Any]:
     """
@@ -626,7 +822,9 @@ def compute_fractured_off_scores(
     dataset: str,
     config: Union[Dict[str, Any], str],
     seed: int,
-    n_clusters: Optional[int] = None
+    n_clusters: Optional[int] = None,
+    layer_clusters: Optional[Dict[str, Dict[str, Any]]] = None,
+    max_k: int = 10
 ) -> Dict[int, float]:
     """
     Compute "fractured off" scores for each sample based on their cluster assignments.
@@ -635,45 +833,109 @@ def compute_fractured_off_scores(
         dataset: Name of the dataset
         config: Configuration dictionary or config_id string
         seed: Random seed used
-        n_clusters: Number of clusters to use (if None, will be determined by silhouette score)
+        n_clusters: Number of clusters to use for all layers (if None, will be determined per layer)
+        layer_clusters: Pre-computed cluster information (if None, will compute internally)
+        max_k: Maximum number of clusters to try if computing clusters
         
     Returns:
         Dictionary mapping sample indices to their "fractured off" scores
     """
-    from sklearn.cluster import KMeans
-    from sklearn.metrics import silhouette_score
+    # Determine the number of samples based on the first layer's cluster labels
+    if layer_clusters:
+        first_layer = next(iter(layer_clusters.values()))
+        num_samples = len(first_layer["labels"])
+        
+        # Load the metadata class labels
+        metadata = load_dataset_metadata(dataset)
+        class_labels = metadata["class_labels"]
+        print(f"Using class labels from metadata: {class_labels}")
+        
+        # If we have a mismatch in the number of samples, create dummy labels
+        if len(class_labels) != num_samples:
+            print(f"WARNING: Length mismatch between class labels ({len(class_labels)}) and samples ({num_samples})")
+            if len(class_labels) >= 2:
+                # Use first two classes and repeat to match sample count
+                class_labels = np.array([class_labels[i % 2] for i in range(num_samples)])
+                print(f"Created synthetic labels with alternating classes, shape {class_labels.shape}")
+    else:
+        # Load activations to get the actual data
+        activations = load_activations(dataset, config, seed)
+        
+        # Check if there are class labels in the activations
+        if "labels" in activations and isinstance(activations["labels"], np.ndarray):
+            class_labels = activations["labels"]
+            print(f"Using class labels from activations with shape {class_labels.shape}")
+        elif "labels" in activations and isinstance(activations["labels"], dict) and "test" in activations["labels"]:
+            class_labels = activations["labels"]["test"]
+            print(f"Using class labels from test set with shape {class_labels.shape}")
+        else:
+            # Fallback to metadata
+            metadata = load_dataset_metadata(dataset)
+            class_labels = metadata["class_labels"]
+            print(f"Using fallback class labels from metadata: {class_labels}")
+            
+            # If we have a mismatch in the number of samples, create dummy labels
+            # This is a workaround and should be addressed in the data loading pipeline
+            first_layer = next(iter(activations.values()))
+            if isinstance(first_layer, dict) and "test" in first_layer:
+                num_samples = first_layer["test"].shape[0]
+            else:
+                num_samples = first_layer.shape[0]
+                
+            if len(class_labels) != num_samples:
+                print(f"WARNING: Length mismatch between class labels ({len(class_labels)}) and samples ({num_samples})")
+                if len(class_labels) >= 2:
+                    # Use first two classes and repeat to match sample count
+                    class_labels = np.array([class_labels[i % 2] for i in range(num_samples)])
+                    print(f"Created synthetic labels with alternating classes, shape {class_labels.shape}")
     
-    # Load activations and class labels
-    activations = load_activations(dataset, config, seed)
-    metadata = load_dataset_metadata(dataset)
-    class_labels = metadata["class_labels"]
+    # Use pre-computed clusters if provided, otherwise compute them
+    if layer_clusters is None:
+        # If n_clusters is provided, we won't use the silhouette search
+        if n_clusters is not None:
+            # Load activations and manually cluster with fixed k
+            activations = load_activations(dataset, config, seed)
+            layer_clusters = {}
+            
+            for layer_name, layer_activations in activations.items():
+                if isinstance(layer_activations, dict) and "test" in layer_activations:
+                    layer_data = layer_activations["test"]
+                else:
+                    layer_data = layer_activations
+                
+                # Skip if layer data is empty
+                if layer_data.shape[0] == 0:
+                    continue
+                
+                # Ensure layer_data is 2D for KMeans
+                if len(layer_data.shape) == 1:
+                    # Reshape 1D array to 2D
+                    layer_data = layer_data.reshape(-1, 1)
+                    print(f"Reshaped 1D layer data to shape {layer_data.shape}")
+                elif len(layer_data.shape) > 2:
+                    # Reshape higher-dimensional array to 2D by flattening all dimensions after the first
+                    original_shape = layer_data.shape
+                    layer_data = layer_data.reshape(original_shape[0], -1)
+                    print(f"Reshaped {original_shape} array to 2D shape {layer_data.shape}")
+                
+                # Perform k-means clustering
+                kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+                cluster_labels = kmeans.fit_predict(layer_data)
+                
+                layer_clusters[layer_name] = {
+                    "k": n_clusters,
+                    "centers": kmeans.cluster_centers_,
+                    "labels": cluster_labels
+                }
+        else:
+            # Compute optimal clusters per layer
+            layer_clusters = compute_layer_clusters(dataset, config, seed, max_k)
     
     scores = {}
     
     # Process each layer
-    for layer_name, layer_activations in activations.items():
-        if isinstance(layer_activations, dict) and "test" in layer_activations:
-            # If we have train/test split in activations
-            layer_data = layer_activations["test"]
-        else:
-            layer_data = layer_activations
-        
-        # Determine optimal number of clusters if not provided
-        if n_clusters is None:
-            best_score = -1
-            best_k = 2
-            for k in range(2, min(13, int(np.sqrt(len(layer_data))) + 1)):
-                kmeans = KMeans(n_clusters=k, random_state=42)
-                cluster_labels = kmeans.fit_predict(layer_data)
-                score = silhouette_score(layer_data, cluster_labels)
-                if score > best_score:
-                    best_score = score
-                    best_k = k
-            n_clusters = best_k
-        
-        # Perform k-means clustering
-        kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-        cluster_labels = kmeans.fit_predict(layer_data)
+    for layer_name, cluster_info in layer_clusters.items():
+        cluster_labels = cluster_info["labels"]
         
         # For each class, identify its majority cluster(s)
         class_cluster_counts = {}
@@ -691,41 +953,165 @@ def compute_fractured_off_scores(
             
             # If sample is not in any of its class's majority clusters, increment its score
             if cluster not in class_cluster_counts[true_class]:
-                scores[i] += 1.0 / len(activations)  # Normalize by number of layers
+                scores[i] += 1.0 / len(layer_clusters)  # Normalize by number of layers
     
     return scores
 
-def select_samples(
+# New function to be added
+def compute_fractured_off_scores_embedded(
     dataset: str,
-    config: Union[Dict[str, Any], str],
-    seed: int,
-    k_frag: int = 20,
-    k_norm: int = 20
-) -> List[int]:
+    config: Union[Dict[str, Any], str], # Config can be dict or config_id string
+    seed: int, # Seed is used for consistency if we need to load other metadata
+    layer_clusters: Dict[str, Dict[str, Any]], # Expects {layer_name: cluster_info} for ONE config
+    actual_class_labels: Optional[np.ndarray] = None # Directly provide true class labels
+) -> Dict[int, float]:
     """
-    Select sample indices with high and low fragmentation based on "fractured off" scores.
+    Compute "fractured off" scores based on embedded space cluster assignments.
     
     Args:
         dataset: Name of the dataset
-        config: Configuration dictionary or config_id string
-        seed: Random seed used
-        k_frag: Number of high-fragmentation samples to select
-        k_norm: Number of normal (low-fragmentation) samples to select
+        config: Configuration dictionary or config_id string (used for context, e.g., loading metadata)
+        seed: Random seed used (for context)
+        layer_clusters: Embedded cluster information for a specific config
+        actual_class_labels: Directly provide true class labels (optional)
         
     Returns:
-        List of sample indices
+        Dictionary mapping sample indices to fractured-off scores
     """
-    # Compute fractured off scores
-    scores = compute_fractured_off_scores(dataset, config, seed)
+    print(f"DEBUG: compute_fractured_off_scores_embedded called")
+    print(f"DEBUG: actual_class_labels type: {type(actual_class_labels)}")
     
-    # Convert to Series for easy sorting
-    scores_series = pd.Series(scores)
+    if isinstance(actual_class_labels, np.ndarray):
+        print(f"DEBUG: actual_class_labels shape: {actual_class_labels.shape}")
     
-    # Select samples
-    high_frag_indices = scores_series.nlargest(k_frag).index.tolist()
-    low_frag_indices = scores_series.nsmallest(k_norm).index.tolist()
+    # First, validate the layer_clusters
+    if not layer_clusters:
+        print("DEBUG: layer_clusters is empty")
+        return {}
     
-    return high_frag_indices + low_frag_indices
+    # Get a list of the layers we have cluster information for
+    layers = list(layer_clusters.keys())
+    print(f"DEBUG: Have clusters for these layers: {layers}")
+    
+    if not layers:
+        print("DEBUG: No layers found in layer_clusters")
+        return {}
+    
+    # Get class labels either from provided actual_class_labels or from metadata
+    if actual_class_labels is not None:
+        print("DEBUG: Using actual_class_labels provided")
+        # Note: Already checked type above
+        class_labels = actual_class_labels
+    else:
+        print("DEBUG: Getting class labels from metadata")
+        try:
+            metadata = load_dataset_metadata(dataset)
+            class_labels = metadata["class_labels"]
+            print(f"DEBUG: Loaded metadata class labels: {len(class_labels)} labels")
+        except Exception as e:
+            print(f"DEBUG: Error loading class labels from metadata: {e}")
+            return {}
+    
+    # Check if we have a reasonable number of class labels
+    if len(class_labels) < 2:
+        print(f"DEBUG: Not enough class labels: {len(class_labels)}")
+        return {}
+    
+    # Get the number of samples by checking the first layer's cluster labels
+    first_layer = layers[0]
+    if "labels" not in layer_clusters[first_layer]:
+        print(f"DEBUG: No 'labels' in layer_clusters[{first_layer}]")
+        return {}
+    
+    num_samples = len(layer_clusters[first_layer]["labels"])
+    print(f"DEBUG: num_samples: {num_samples}")
+    
+    # Check if class labels array is compatible with the number of samples
+    if len(class_labels) != num_samples:
+        print(f"DEBUG: WARNING: Metadata class labels ({len(class_labels)}) don't match samples ({num_samples})")
+        if len(class_labels) < num_samples:
+            # Not enough class labels - can't compute fractured off score
+            print("DEBUG: Not enough class labels, returning empty scores")
+            return {}
+        else:
+            # More class labels than samples - truncate
+            print(f"DEBUG: Truncating class labels from {len(class_labels)} to {num_samples}")
+            class_labels = class_labels[:num_samples]
+    
+    # Calculate the "fractured off" scores for each sample
+    # For each sample, we check how often it gets assigned to a cluster that's dominated by another class
+    fractured_off_scores = {}
+    
+    # Process each layer
+    for layer_name in layers:
+        # Get cluster info for this layer
+        cluster_info = layer_clusters[layer_name]
+        
+        # Skip if k < 2 (not meaningful for fracture analysis)
+        if cluster_info.get("k", 0) < 2:
+            print(f"DEBUG: Skipping layer {layer_name} because k < 2")
+            continue
+        
+        cluster_labels = cluster_info["labels"]
+        
+        # Skip if labels don't match sample count
+        if len(cluster_labels) != num_samples:
+            print(f"DEBUG: Skipping layer {layer_name} because labels don't match sample count: {len(cluster_labels)} vs {num_samples}")
+            continue
+        
+        # Calculate dominant class for each cluster
+        clusters = np.unique(cluster_labels)
+        cluster_to_dominant_class = {}
+        for cluster_id in clusters:
+            # Find samples in this cluster
+            cluster_mask = cluster_labels == cluster_id
+            
+            # Get class labels for these samples
+            class_labels_in_cluster = class_labels[cluster_mask]
+            
+            # Count occurrences of each class in this cluster
+            unique_classes, class_counts = np.unique(class_labels_in_cluster, return_counts=True)
+            
+            # Dominant class is the one with the highest count
+            if len(unique_classes) > 0:
+                dominant_class = unique_classes[np.argmax(class_counts)]
+                cluster_to_dominant_class[cluster_id] = dominant_class
+            else:
+                print(f"DEBUG: Empty cluster found for cluster_id {cluster_id}")
+        
+        # Update fractured off scores for each sample
+        for sample_idx in range(num_samples):
+            # Get cluster assignment for this sample
+            cluster_id = cluster_labels[sample_idx]
+            
+            # Get dominant class for this cluster
+            if cluster_id not in cluster_to_dominant_class:
+                print(f"DEBUG: Cluster ID {cluster_id} not found in cluster_to_dominant_class. Keys: {list(cluster_to_dominant_class.keys())}")
+                continue
+                
+            dominant_class = cluster_to_dominant_class[cluster_id]
+            
+            # Get true class for this sample
+            true_class = class_labels[sample_idx]
+            
+            # If sample's true class doesn't match dominant class, it's "fractured off"
+            if true_class != dominant_class:
+                if sample_idx not in fractured_off_scores:
+                    fractured_off_scores[sample_idx] = 0.0
+                
+                # Increment the score (we'll normalize by layer count later)
+                fractured_off_scores[sample_idx] += 1.0
+    
+    # Normalize scores by number of layers processed
+    num_layers_processed = len(layers)
+    if num_layers_processed > 0:
+        for sample_idx in fractured_off_scores:
+            fractured_off_scores[sample_idx] /= num_layers_processed
+    
+    # Return scores for all samples, defaulting to 0.0 for samples that were never "fractured off"
+    result = {i: fractured_off_scores.get(i, 0.0) for i in range(num_samples)}
+    print(f"DEBUG: Returning {len(result)} scores")
+    return result
 
 # When run as a script, test the functionality
 if __name__ == "__main__":

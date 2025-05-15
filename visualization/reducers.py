@@ -216,7 +216,7 @@ def embed_layer_activations(
     embedder: Optional[Embedder] = None,
     use_test_set: bool = True,  # Whether to use test or train set
     epoch_idx: int = -1  # Which epoch to use (-1 means last epoch)
-) -> Dict[str, np.ndarray]:
+) -> Tuple[Dict[str, np.ndarray], Optional[np.ndarray]]:
     """
     Embed layer activations for the given dataset, configuration, and seed.
     
@@ -230,7 +230,9 @@ def embed_layer_activations(
         epoch_idx: Which epoch to use (-1 for last epoch).
         
     Returns:
-        Dictionary mapping layer names to embedded activations.
+        Tuple containing:
+        - Dictionary mapping layer names to embedded activations
+        - NumPy array of true class labels for the samples (or None if not available)
     """
     # Load activations
     activations = load_activations(dataset, config, seed)
@@ -442,6 +444,59 @@ def embed_layer_activations(
     if not valid_activations:
         raise ValueError(f"No valid layer activations found for {dataset}, {config}, seed {seed}")
     
+    # Extract true labels from activations if available
+    true_labels = None
+    split_key = 'test' if use_test_set else 'train'
+    
+    # Try to get labels from activations
+    if "labels" in activations:
+        if isinstance(activations["labels"], np.ndarray):
+            true_labels = activations["labels"]
+            print(f"Extracted true labels from activations array with shape {true_labels.shape}")
+        elif isinstance(activations["labels"], dict) and split_key in activations["labels"]:
+            labels_data = activations["labels"][split_key]
+            
+            # Handle 3D epochs data for labels
+            if isinstance(labels_data, np.ndarray) and labels_data.ndim > 1:
+                if actual_epoch_idx is not None and 0 <= actual_epoch_idx < labels_data.shape[0]:
+                    true_labels = labels_data[actual_epoch_idx]
+                    print(f"Extracted true labels for epoch {actual_epoch_idx} with shape {true_labels.shape}")
+                else:
+                    # Just take the last epoch if we couldn't determine actual_epoch_idx
+                    true_labels = labels_data[-1]
+                    print(f"Using labels from last epoch with shape {true_labels.shape}")
+            elif isinstance(labels_data, list) and labels_data:
+                # Handle labels as a list
+                try:
+                    if isinstance(labels_data[0], list) or isinstance(labels_data[0], np.ndarray):
+                        # List of arrays/lists (epochs)
+                        epoch_to_use = actual_epoch_idx if actual_epoch_idx is not None else -1
+                        if epoch_to_use < 0:
+                            epoch_to_use = len(labels_data) + epoch_to_use
+                        if 0 <= epoch_to_use < len(labels_data):
+                            true_labels = np.array(labels_data[epoch_to_use])
+                            print(f"Extracted true labels from list for epoch {epoch_to_use} with shape {true_labels.shape}")
+                    else:
+                        # Simple list of labels
+                        true_labels = np.array(labels_data)
+                        print(f"Converted labels list to array with shape {true_labels.shape}")
+                except Exception as e:
+                    print(f"Error extracting labels from list: {e}")
+            else:
+                true_labels = labels_data
+                print(f"Using labels data of type {type(true_labels)}")
+    
+    # Validate true_labels shape matches the data
+    if true_labels is not None:
+        # Get expected number of samples from the first layer
+        first_layer = next(iter(valid_activations.values()))
+        expected_samples = first_layer.shape[0]
+        
+        if len(true_labels) != expected_samples:
+            print(f"WARNING: True labels shape ({len(true_labels)}) doesn't match data shape ({expected_samples})")
+            print("Labels will not be used due to shape mismatch.")
+            true_labels = None  # Don't use mismatched labels
+    
     # Embed each layer
     embeddings = {}
     for layer, layer_activations in valid_activations.items():
@@ -453,7 +508,7 @@ def embed_layer_activations(
         print(f"Embedding layer {layer}...")
         embeddings[layer] = embedder.fit_transform(layer_activations)
     
-    return embeddings
+    return embeddings, true_labels
 
 def embed_all_configs(dataset: str, seeds: List[int] = [0, 1, 2], use_test_set: bool = True) -> Dict[str, Dict[str, Dict[str, np.ndarray]]]:
     """

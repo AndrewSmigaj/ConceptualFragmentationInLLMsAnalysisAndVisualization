@@ -60,7 +60,7 @@ Subspace Angle: For each class, compute the first  principal components (explain
 Where  and  are subspace bases from different bootstrap samples ( total) of class .
 
 3.4 Visualization
-We use PCA and UMAP to reduce high-dimensional activation vectors into 2D or 3D spaces for visualization. This dimensionality reduction enables us to extend fragmentation analysis beyond small 3×3×3 networks to arbitrarily wide or deep models. Trajectories are color-coded by class and optionally by sub-cluster. All visualizations use deterministic seeds to ensure reproducibility.
+We use PCA and UMAP to reduce high-dimensional activation vectors into 2D or 3D spaces for visualization. This dimensionality reduction enables us to extend fragmentation analysis beyond small 3×3×3 networks to arbitrarily wide or deep models. Trajectories are color-coded by class and optionally by sub-cluster. Our interactive Dash visualization tool displays the same k-means cluster centers that are used for the fragmentation metrics, providing a cohesive view between the quantitative metrics and qualitative exploration. All visualizations use deterministic seeds to ensure reproducibility.
 
 3.5 Cohesion Regularization
 We experiment with a simple contrastive loss term that pulls latent activations of same-class datapoints closer:
