@@ -98,6 +98,9 @@ def generate_baseline_summary(datasets, seeds):
                 "test_loss": history["test_loss"][-1],
                 "entropy_fragmentation": history["entropy_fragmentation"][-1],
                 "angle_fragmentation": history["angle_fragmentation"][-1],
+                "icpd_fragmentation": history["icpd_fragmentation"][-1],
+                "kstar_fragmentation": history["kstar_fragmentation"][-1],
+                "stability_fragmentation": history["stability_fragmentation"][-1],
                 "experiment_dir": full_exp_dir
             }
             
@@ -112,7 +115,10 @@ def generate_baseline_summary(datasets, seeds):
             "test_accuracy": ["mean", "std"],
             "train_accuracy": ["mean", "std"],
             "entropy_fragmentation": ["mean", "std"],
-            "angle_fragmentation": ["mean", "std"]
+            "angle_fragmentation": ["mean", "std"],
+            "icpd_fragmentation": ["mean", "std"],
+            "kstar_fragmentation": ["mean", "std"],
+            "stability_fragmentation": ["mean", "std"]
         })
         
         # Save summary files

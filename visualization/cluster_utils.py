@@ -35,6 +35,10 @@ def compute_layer_clusters_embedded(
             with open(cache_path, 'rb') as f:
                 result = pickle.load(f)
                 print(f"Loaded cached embedded clusters from {cache_path}")
+                # Debug the structure
+                for layer, info in result.items():
+                    print(f"DEBUG layer: {layer} has keys: {list(info.keys())}")
+                    print(f"DEBUG layer: {layer} has k={info.get('k')}, labels.shape={info.get('labels').shape if 'labels' in info else 'No labels'}")
                 return result
         except Exception as e:
             print(f"Error loading cached clusters: {e}")
@@ -44,6 +48,7 @@ def compute_layer_clusters_embedded(
     
     # Process each layer
     for layer_name, embeddings in embeddings_dict.items():
+        print(f"DEBUG: Processing layer {layer_name} with embeddings shape {embeddings.shape}")
         if embeddings.shape[0] < 4:  # Need at least a few points
             continue
             

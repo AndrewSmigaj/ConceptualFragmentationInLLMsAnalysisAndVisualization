@@ -12,6 +12,7 @@ import pandas as pd
 from typing import Dict, List, Tuple, Any, Optional, Union
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import re
 
 # Add parent directory to path to import data_interface
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -70,51 +71,84 @@ def normalize_embeddings(embeddings: Dict[str, np.ndarray], scale: float = 1.0) 
 def create_arrows(
     points: np.ndarray, 
     direction_vectors: np.ndarray, # Expect pre-calculated vectors
-    scale: float = 0.1,
-    color: str = "gray" # Can also be a numeric value if using a colorscale on the main trace
+    scale: float = 0.00825,  # Quarter of previous size (0.033 * 0.25)
+    color: str = "gray", # Can also be a numeric value if using a colorscale on the main trace
+    layer_names: Optional[List[str]] = None  # Add layer names parameter for hover text
 ) -> go.Cone:
     """
-    Create arrow cones at specified points with given direction vectors.
+    Create arrow cones to visualize direction of movement between points.
     
     Args:
-        points: Points to place arrows at (tail of the cone).
-        direction_vectors: Unit vectors indicating the direction of each cone.
-        scale: Scale of the arrows (sizeref for cone).
-        color: Color of the arrows.
-        
-    Returns:
-        Plotly Cone object.
-    """
-    if points.shape[0] == 0 or direction_vectors.shape[0] == 0:
-        # Return an empty cone trace if no points/vectors
-        return go.Cone(x=[], y=[], z=[], u=[], v=[], w=[])
-
-    # If color is numeric, it implies a colorscale is used by the parent trace.
-    # Cones themselves don't directly use a numeric color with a global colorscale in the same way lines can.
-    # We'll pass the color directly. If it's a number, plotly might handle it or default.
-    # For simplicity, cone color will be a single color string here.
-    # If dynamic cone colors are needed based on 'color' value, it would need more complex handling.
+        points: Array of starting points (N, 3)
+        direction_vectors: Array of direction vectors (N, 3)
+        scale: Scale factor for arrows
+        color: Color for arrows
+        layer_names: Names of layers for hover text
     
-    actual_cone_color = color
-    if not isinstance(color, str):
-        # If 'color' is a number (from a colorscale value), default to a visible fixed color for arrows
-        # or make it dependent on the number if you set up a specific colorscale for arrows too.
-        actual_cone_color = 'grey' # Fallback for numeric color values
-
+    Returns:
+        Plotly Cone trace
+    """
+    # Scale the direction vectors
+    scaled_vectors = direction_vectors * scale
+    
+    # Get friendly layer names for hover text if provided
+    friendly_names = None
+    if layer_names is not None:
+        friendly_names = [get_friendly_layer_name(layer) for layer in layer_names]
+    else:
+        friendly_names = [""] * len(points)
+    
+    # Cone objects require special handling for color
+    # Create intensity values for coloring (all the same value)
+    intensity = np.ones(len(points))
+    
+    # Create arrow trace with color
     return go.Cone(
         x=points[:, 0],
         y=points[:, 1],
         z=points[:, 2],
-        u=direction_vectors[:, 0],
-        v=direction_vectors[:, 1],
-        w=direction_vectors[:, 2],
+        u=scaled_vectors[:, 0],
+        v=scaled_vectors[:, 1],
+        w=scaled_vectors[:, 2],
         sizemode="absolute",
-        sizeref=scale, # Adjust this for arrow size
+        sizeref=0.5,
+        colorscale=[[0, color], [1, color]],  # Single color across the entire scale
+        cmin=0,
+        cmax=1,
         showscale=False,
-        colorscale=[[0, actual_cone_color], [1, actual_cone_color]], # For single color cones
-        anchor="tail",
-        hoverinfo='skip' # Usually arrows don't need hoverinfo
+        opacity=0.8,
+        hovertext=friendly_names,
+        hoverinfo="text" if layer_names else "skip"
     )
+
+def get_friendly_layer_name(layer_name: str) -> str:
+    """
+    Convert internal layer names to user-friendly display names.
+    
+    Args:
+        layer_name: The internal layer name (e.g., 'layer1', 'input')
+        
+    Returns:
+        A user-friendly layer name (e.g., 'Input Space', 'Layer 1')
+    """
+    if layer_name == "input":
+        return "Input Space"
+    elif layer_name.startswith("layer"):
+        # Extract layer number if present
+        match = re.match(r'layer(\d+)', layer_name)
+        if match:
+            layer_num = int(match.group(1))
+            if layer_num == 1:
+                return "Input Space"  # Hidden Layer 1 is now Input Space
+            elif layer_num == 2:
+                return "Layer 1"      # Hidden Layer 2 is now Layer 1
+            elif layer_num == 3:
+                return "Layer 2"      # Hidden Layer 3 is now Layer 2
+            else:
+                return f"Layer {layer_num-1}"  # Other layers shifted by 1
+    
+    # If no pattern matches, just capitalize and clean up the name
+    return layer_name.replace('_', ' ').title()
 
 def build_single_scene_figure(
     embeddings_dict: Dict[str, Dict[int, Dict[str, np.ndarray]]],
@@ -131,7 +165,8 @@ def build_single_scene_figure(
     layer_separation: float = LAYER_SEPARATION_OFFSET,
     layer_clusters: Optional[Dict[str, Dict[str, Dict[str, Any]]]] = None,
     show_cluster_centers: bool = False,
-    color_by: str = "class"  # {"class", "metric", "cluster", "cluster_majority"}
+    color_by: str = "class",  # {"class", "metric", "cluster", "cluster_majority"}
+    cluster_name_mapping: Optional[Dict[str, str]] = None  # New parameter for custom cluster names
 ) -> go.Figure:
     """
     Build a single 3D scene figure showing trajectories across layers.
@@ -153,6 +188,7 @@ def build_single_scene_figure(
         layer_clusters: Dictionary of cluster information per config, then per layer (k, centers, labels).
         show_cluster_centers: Whether to display cluster centers as spheres.
         color_by: How to color the points: "class", "metric", "cluster", or "cluster_majority".
+        cluster_name_mapping: Optional dictionary mapping cluster keys to descriptive names.
         
     Returns:
         Plotly Figure object with a single 3D scene.
@@ -271,7 +307,7 @@ def build_single_scene_figure(
                     x=layer_mean_x,
                     y= current_layer_y_base + layer_separation * 0.3, # Adjusted y for annotation relative to new offset
                     z=layer_mean_z,
-                    text=f"<b>{layer.replace('layer', 'Layer ').title()}</b>",
+                    text=f"<b>{get_friendly_layer_name(layer)}</b>",
                     xanchor="center",
                     yanchor="middle",
                     font=dict(color="black", size=12),
@@ -560,12 +596,11 @@ def build_single_scene_figure(
 
             # Arrow coloring needs to be consistent
             arrow_color_for_segment = line_props["color"]
-            if use_divergent_color :
-                # For arrows on a divergently colored line, they should probably match the line's color.
-                # However, create_arrows expects a color string for its simple colorscale.
-                # We could map numeric_color_val to a hex string from the colorscale, but that's complex.
-                # For now, make arrows for divergently colored lines a distinct, neutral color or match highlight.
-                arrow_color_for_segment = COLORS["highlight"] if is_highlight else "darkgrey"
+            if use_divergent_color:
+                # For arrows on a divergently colored line, they should match the line's color
+                # Instead of using the numeric value directly, we'll use the same color as the line
+                # This ensures visual consistency between lines and arrows
+                arrow_color_for_segment = line_props["color"]  # Keep the same color as the line
 
             if show_arrows and coords.shape[0] > 1:
                 # Add arrows between segments of the trajectory
@@ -577,7 +612,7 @@ def build_single_scene_figure(
                     if dist < 1e-6: continue # Skip if points are virtually identical
                     unit_direction = direction / dist
                     
-                    arrow_scale = 0.1 # Smaller arrows for segments
+                    arrow_scale = 0.00825 # Quarter of previous size (was 0.033)
                     # Place arrow closer to midpoint or endpoint of segment
                     arrow_tail = p1 + 0.8 * direction # Arrow closer to p2
 
@@ -585,7 +620,8 @@ def build_single_scene_figure(
                         points=arrow_tail.reshape(1,3),
                         direction_vectors=unit_direction.reshape(1,3),
                         scale=arrow_scale,
-                        color=arrow_color_for_segment # Use the determined color
+                        color=arrow_color_for_segment, # Use the determined color
+                        layer_names=[get_friendly_layer_name(layer) for layer in current_layers]
                     ))
                     
         # Draw cluster centers (moved here to ensure they appear on top of other elements)
@@ -620,6 +656,13 @@ def build_single_scene_figure(
                         light_center_color = 'rgba(255, 182, 193, 0.8)'
                     else:
                         light_center_color = center_color
+                    
+                    # Get the descriptive name for this cluster if available
+                    cluster_key = f"{config_name}-{layer}-cluster{cluster_idx}"
+                    cluster_name = f"Cluster {cluster_idx} Ctr ({config_name}-{layer})"
+                    if cluster_name_mapping and cluster_key in cluster_name_mapping:
+                        cluster_name = cluster_name_mapping[cluster_key]
+                    
                     all_traces.append(go.Scatter3d(
                         x=[center_coord[0]],
                         y=[center_coord[1]],
@@ -632,7 +675,7 @@ def build_single_scene_figure(
                             opacity=0.8,
                             line=dict(width=1, color="black")
                         ),
-                        name=f"Cluster {cluster_idx} Ctr ({config_name}-{layer})",
+                        name=cluster_name,  # Use the descriptive name if available
                         legendgroup=f"cluster_centers_{config_name}",
                         showlegend=True,
                         customdata=[[cluster_idx, layer, config_name]],
@@ -660,10 +703,17 @@ def build_single_scene_figure(
             yaxis=dict(range=y_range, autorange=False),
             zaxis=dict(range=z_range, autorange=False),
             aspectmode='data',  # Changed from 'cube' to respect true data scale
-            camera=dict(eye=dict(x=1.5, y=1.5, z=1.5)),
+            camera=dict(eye=dict(x=1.0, y=1.7, z=1.8)),  # Rotated slightly counter-clockwise
             annotations=scene_annotations
         ),
-        legend=dict(x=0.01, y=0.99, bordercolor="Black", borderwidth=1),
+        # Update legend position to the left side of the plot
+        legend=dict(
+            x=0,
+            y=1,
+            xanchor='left',
+            yanchor='top',
+            bgcolor='rgba(255,255,255,0.8)'  # Semi-transparent background
+        ),
         margin=dict(l=0, r=0, b=0, t=40)
     )
     return fig
@@ -788,28 +838,41 @@ def plot_dataset_trajectories(
             # Check if this sample should be highlighted
             is_highlight = highlight_indices is not None and sample_idx in highlight_indices
 
-            # Create the trajectory trace
+            # Get layer names for hover text
+            layers = [layer for layer in layer_order if layer in offset_data and sample_idx < offset_data[layer].shape[0]]
+            friendly_layer_names = [get_friendly_layer_name(layer) for layer in layers]
+            
+            # Add trajectory line
             fig.add_trace(go.Scatter3d(
                 x=coords[:, 0],
                 y=coords[:, 1],
                 z=coords[:, 2],
-                mode="lines+markers",
+                mode='lines+markers' if show_arrows else 'lines',
                 line=dict(
                     color=line_color,
-                    width=3 if is_highlight else 2
+                    width=3 if is_highlight else 2,
+                    dash="solid"
                 ),
                 marker=dict(
                     size=5 if is_highlight else 3,
                     color=point_colors if not np.all(np.isnan(point_colors)) else line_color,
                     colorscale="Viridis" if not np.all(np.isnan(point_colors)) else None,
                     showscale=not np.all(np.isnan(point_colors)),
-                    colorbar=dict(
-                        title=point_color_metric_name,
-                        thickness=15,
-                        len=0.75
-                    ) if not np.all(np.isnan(point_colors)) else None
+                    colorbar=dict(title=point_color_metric_name) if not np.all(np.isnan(point_colors)) and len(layers) > 0 else None,
+                    opacity=0.7
                 ),
-                name=f"{config_name} Sample {sample_idx}",
+                opacity=0.7,
+                line_dash="solid",
+                hovertemplate=(
+                    f"{config_name.title()}<br>" +
+                    "Sample %{customdata}<br>" +
+                    "Layer: %{text}<br>" +
+                    "x: %{x:.2f}<br>" +
+                    "y: %{y:.2f}<br>" +
+                    "z: %{z:.2f}"
+                ),
+                text=friendly_layer_names,  # Use friendly layer names
+                customdata=[sample_idx] * len(coords),
                 showlegend=False
             ))
 
@@ -828,8 +891,9 @@ def plot_dataset_trajectories(
                     fig.add_trace(create_arrows(
                         points=arrow_tail.reshape(1, 3),
                         direction_vectors=unit_direction.reshape(1, 3),
-                        scale=0.1,
-                        color=line_color
+                        scale=0.00825,
+                        color=line_color,
+                        layer_names=[get_friendly_layer_name(layer) for layer in layers]
                     ))
 
         # Update layout
@@ -840,7 +904,7 @@ def plot_dataset_trajectories(
             yaxis_title="UMAP-2 (Layers Offset)",
             zaxis_title="UMAP-3",
             aspectmode='data',  # Use data proportions, don't force cubic view
-            camera=dict(eye=dict(x=1.5, y=1.5, z=1.5))
+            camera=dict(eye=dict(x=1.0, y=1.7, z=1.8))  # Rotated slightly counter-clockwise
         ),
         showlegend=True,
         legend=dict(

@@ -34,7 +34,18 @@ from concept_fragmentation.metrics import (
     compute_cluster_entropy,
     compute_entropy_fragmentation_score,
     compute_subspace_angle,
-    compute_angle_fragmentation_score
+    compute_angle_fragmentation_score,
+    compute_intra_class_distance,
+    compute_icpd_fragmentation_score,
+    compute_optimal_k,
+    compute_kstar_fragmentation_score,
+    compute_representation_stability,
+    compute_stability_fragmentation_score,
+    compute_layer_stability_profile
+)
+from concept_fragmentation.utils.cluster_paths import (
+    prepare_cluster_path_data,
+    save_cluster_paths as save_paths
 )
 
 # Add project root to sys.path
@@ -84,7 +95,8 @@ def prepare_dataset(
     Union[torch.utils.data.DataLoader, Tuple[torch.Tensor, torch.Tensor]],
     Union[torch.utils.data.DataLoader, Tuple[torch.Tensor, torch.Tensor]],
     int,
-    int
+    int,
+    Optional[pd.DataFrame]  # Added return type for test_df_raw
 ]:
     """
     Prepare dataset for training.
@@ -98,6 +110,7 @@ def prepare_dataset(
             - Testing data (dataloader or tensors)
             - Input dimension
             - Number of classes
+            - Raw test dataframe (for preserving original features)
     """
     logger.info(f"Preparing dataset: {dataset_name}")
     
@@ -112,12 +125,15 @@ def prepare_dataset(
         # Get number of classes
         num_classes = len(DATASETS["fashion_mnist"]["classes"])
         
-        return train_loader, test_loader, input_dim, num_classes
+        return train_loader, test_loader, input_dim, num_classes, None
     
     elif dataset_name in ["titanic", "adult", "heart"]:
         # Load the tabular dataset
         DatasetClass = get_dataset_loader(dataset_name)
         train_df, test_df = DatasetClass.load_data()
+        
+        # Keep a copy of the original test dataframe before preprocessing
+        test_df_raw = test_df.copy()
         
         # Get dataset configuration
         dataset_config = DATASETS[dataset_name]
@@ -143,7 +159,7 @@ def prepare_dataset(
         input_dim = X_train_tensor.shape[1]
         num_classes = len(np.unique(y_train))
         
-        return (X_train_tensor, y_train_tensor), (X_test_tensor, y_test_tensor), input_dim, num_classes
+        return (X_train_tensor, y_train_tensor), (X_test_tensor, y_test_tensor), input_dim, num_classes, test_df_raw
     
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")
@@ -155,6 +171,7 @@ def train_model(
     save_activations: bool = True,
     save_model: bool = True,
     save_fragmentation_metrics: bool = True,
+    save_cluster_paths: bool = True,  # New parameter
     experiment_name: Optional[str] = None,
     experiment_dir: Optional[str] = None,
     epochs: Optional[int] = None,
@@ -173,6 +190,7 @@ def train_model(
         save_activations: Whether to save activations during training
         save_model: Whether to save the trained model
         save_fragmentation_metrics: Whether to compute and save fragmentation metrics
+        save_cluster_paths: Whether to save cluster path data
         experiment_name: Custom name for the experiment (default: auto-generated)
         experiment_dir: Custom directory for storing experiment results (default: auto-generated)
         epochs: Number of epochs to train (default: from config)
@@ -230,7 +248,7 @@ def train_model(
     
     # Prepare dataset
     dataset_data = prepare_dataset(dataset_name)
-    train_data, test_data, input_dim, num_classes = dataset_data
+    train_data, test_data, input_dim, num_classes, test_df_raw = dataset_data
     
     logger.info(f"Dataset prepared: input_dim={input_dim}, num_classes={num_classes}")
     
@@ -297,6 +315,9 @@ def train_model(
         "test_accuracy": [],
         "entropy_fragmentation": [],
         "angle_fragmentation": [],
+        "icpd_fragmentation": [],
+        "kstar_fragmentation": [],
+        "stability_fragmentation": [],
         "layer_fragmentation": {}
     }
     
@@ -537,55 +558,153 @@ def train_model(
         
         # Compute fragmentation metrics on test data ONLY on the final epoch
         if save_fragmentation_metrics and epoch == epochs - 1:
-            # Iterate over each recorded layer
+            # Create dictionaries to store metrics per layer
             entropy_scores_per_layer = {}
             angle_scores_per_layer = {}
-
-            # Decide which layers to evaluate – use keys present in activations
-            layers_to_evaluate = list(test_epoch_activations.keys()) if not isinstance(test_data, tuple) else [
-                name for name in model.activations.keys() if name.startswith("layer")
-            ]
-
-            for layer_name in layers_to_evaluate:
-                # Obtain activations and labels for this layer
+            icpd_scores_per_layer = {}
+            kstar_scores_per_layer = {}
+            all_layer_activations = {}
+            
+            # For cluster paths
+            layer_cluster_labels = {}
+            
+            # Get list of layers to evaluate
+            layers_to_evaluate = [name for name in model.activations.keys() if name.startswith("layer")]
+            
+            # Compute fragmentation for each layer
+            model.eval()
+            with torch.no_grad():
+                # Get test data activations
                 if isinstance(test_data, tuple):
-                    # Full-batch case (tabular datasets)
-                    model.eval()
-                    with torch.no_grad():
-                        _ = model(X_test)
-                    test_activations_layer = model.activations[layer_name]
-                    test_labels_layer = y_test
+                    X_test, y_test = test_data
+                    _ = model(X_test)
+                    test_labels = y_test
+                    
+                    for layer_name in layers_to_evaluate:
+                        # Get activations for this layer
+                        test_activations = model.activations[layer_name]
+                        all_layer_activations[layer_name] = test_activations
+                        
+                        # Compute fragmentation metrics
+                        entropy_score = compute_entropy_fragmentation_score(test_activations, test_labels)
+                        angle_score = compute_angle_fragmentation_score(test_activations, test_labels)
+                        icpd_score = compute_icpd_fragmentation_score(test_activations, test_labels)
+                        kstar_score = compute_kstar_fragmentation_score(test_activations, test_labels)
+                        
+                        # Store in dictionaries
+                        entropy_scores_per_layer[layer_name] = entropy_score
+                        angle_scores_per_layer[layer_name] = angle_score
+                        icpd_scores_per_layer[layer_name] = icpd_score
+                        kstar_scores_per_layer[layer_name] = kstar_score
+                        
+                        # Also update the per-epoch metrics with final layer scores
+                        if layer_name == "layer3":
+                            training_history["entropy_fragmentation"][-1] = entropy_score
+                            training_history["angle_fragmentation"][-1] = angle_score
+                            training_history["icpd_fragmentation"][-1] = icpd_score
+                            training_history["kstar_fragmentation"][-1] = kstar_score
+                        
+                        # For cluster paths, store the cluster assignments for each layer
+                        if save_cluster_paths:
+                            # Get cluster assignments from the entropy computation
+                            entropy_result = compute_cluster_entropy(
+                                test_activations, test_labels, 
+                                return_clusters=True, k_selection='auto'
+                            )
+                            # Get global assignments
+                            global_assignments = np.zeros(len(test_labels), dtype=int)
+                            for label, indices in entropy_result.get('cluster_assignments', {}).items():
+                                label_indices = np.where(test_labels.cpu().numpy() == label)[0]
+                                for i, cluster_idx in enumerate(indices):
+                                    if i < len(label_indices):
+                                        global_assignments[label_indices[i]] = cluster_idx
+                            
+                            # Store for cluster paths
+                            layer_cluster_labels[layer_name] = global_assignments.tolist()
+                    
+                    # Compute stability metric
+                    stability_score = compute_stability_fragmentation_score(all_layer_activations)
+                    stability_scores_per_layer = compute_layer_stability_profile(all_layer_activations)
+                    training_history["stability_fragmentation"][-1] = stability_score
+                    
+                    # Save cluster paths if requested
+                    if save_cluster_paths and dataset_name in ["titanic", "adult", "heart"]:
+                        # Create cluster paths data
+                        ordered_layers = sorted(layer_cluster_labels.keys())
+                        
+                        # Get final layer activations for finding representative samples
+                        final_layer = ordered_layers[-1] if ordered_layers else None
+                        final_activations = all_layer_activations.get(final_layer, None)
+                        if final_activations is not None:
+                            final_activations = final_activations.cpu().numpy()
+                        
+                        # Prepare and save cluster paths data
+                        cluster_paths_data = prepare_cluster_path_data(
+                            layer_cluster_labels=layer_cluster_labels,
+                            test_df_raw=test_df_raw,
+                            y_test=y_test.cpu().numpy(),
+                            ordered_layers=ordered_layers,
+                            final_layer_activations=final_activations
+                        )
+                        
+                        # Save to file
+                        cluster_paths_path = os.path.join(experiment_dir, "cluster_paths.json")
+                        save_paths(cluster_paths_data, cluster_paths_path)
+                        logger.info(f"Saved cluster paths data to {cluster_paths_path}")
                 else:
-                    # Dataloader case – concatenate batches captured earlier
-                    if layer_name not in test_epoch_activations:
-                        continue
-                    test_activations_layer = torch.cat(test_epoch_activations[layer_name], dim=0)
-                    test_labels_layer = torch.cat(test_epoch_labels, dim=0)
-
-                # Compute fragmentation metrics
-                entropy_layer = compute_entropy_fragmentation_score(
-                    test_activations_layer, test_labels_layer
-                )
-                angle_layer = compute_angle_fragmentation_score(
-                    test_activations_layer, test_labels_layer
-                )
-
-                # Store per-layer values
-                entropy_scores_per_layer[layer_name] = entropy_layer
-                angle_scores_per_layer[layer_name] = angle_layer
-
-                # For logging convenience capture final layer metrics
-                if layer_name == "layer3":
-                    entropy_score = entropy_layer
-                    angle_score = angle_layer
-
-            # Save to global dict
+                    # For DataLoader, we need to process in batches and concatenate
+                    all_activations = {layer: [] for layer in layers_to_evaluate}
+                    all_labels = []
+                    
+                    for inputs, labels in test_data:
+                        _ = model(inputs)
+                        for layer_name in layers_to_evaluate:
+                            all_activations[layer_name].append(model.activations[layer_name].detach().cpu())
+                        all_labels.append(labels.detach().cpu())
+                    
+                    # Process each layer
+                    for layer_name in layers_to_evaluate:
+                        test_activations = torch.cat(all_activations[layer_name], dim=0)
+                        test_labels = torch.cat(all_labels, dim=0)
+                        all_layer_activations[layer_name] = test_activations
+                        
+                        # Compute fragmentation metrics
+                        entropy_score = compute_entropy_fragmentation_score(test_activations, test_labels)
+                        angle_score = compute_angle_fragmentation_score(test_activations, test_labels)
+                        icpd_score = compute_icpd_fragmentation_score(test_activations, test_labels)
+                        kstar_score = compute_kstar_fragmentation_score(test_activations, test_labels)
+                        
+                        # Store in dictionaries
+                        entropy_scores_per_layer[layer_name] = entropy_score
+                        angle_scores_per_layer[layer_name] = angle_score
+                        icpd_scores_per_layer[layer_name] = icpd_score
+                        kstar_scores_per_layer[layer_name] = kstar_score
+                        
+                        # Also update the per-epoch metrics with final layer scores
+                        if layer_name == "layer3":
+                            training_history["entropy_fragmentation"][-1] = entropy_score
+                            training_history["angle_fragmentation"][-1] = angle_score
+                            training_history["icpd_fragmentation"][-1] = icpd_score
+                            training_history["kstar_fragmentation"][-1] = kstar_score
+                    
+                    # Compute stability metric
+                    stability_score = compute_stability_fragmentation_score(all_layer_activations)
+                    stability_scores_per_layer = compute_layer_stability_profile(all_layer_activations)
+                    training_history["stability_fragmentation"][-1] = stability_score
+            
+            # Save to layer_fragmentation dictionary
             layer_fragmentation["entropy"] = entropy_scores_per_layer
             layer_fragmentation["angle"] = angle_scores_per_layer
+            layer_fragmentation["icpd"] = icpd_scores_per_layer
+            layer_fragmentation["kstar"] = kstar_scores_per_layer
+            layer_fragmentation["stability"] = stability_scores_per_layer
         else:
             # Skip expensive computation on intermediate epochs
             entropy_score = 0.0
             angle_score = 0.0
+            icpd_score = 0.0
+            kstar_score = 0.0
+            stability_score = 0.0
         
         # Update training history (per-epoch)
         training_history["train_loss"].append(train_loss)
@@ -595,6 +714,9 @@ def train_model(
         training_history["test_accuracy"].append(test_accuracy)
         training_history["entropy_fragmentation"].append(entropy_score)
         training_history["angle_fragmentation"].append(angle_score)
+        training_history["icpd_fragmentation"].append(icpd_score)
+        training_history["kstar_fragmentation"].append(kstar_score)
+        training_history["stability_fragmentation"].append(stability_score)
         
         # Check for early stopping
         if test_accuracy > best_test_accuracy:
@@ -624,6 +746,9 @@ def train_model(
         # Create dictionaries to store metrics per layer
         entropy_scores_per_layer = {}
         angle_scores_per_layer = {}
+        icpd_scores_per_layer = {}
+        kstar_scores_per_layer = {}
+        all_layer_activations = {}
         
         # Get list of layers to evaluate
         layers_to_evaluate = [name for name in model.activations.keys() if name.startswith("layer")]
@@ -640,19 +765,31 @@ def train_model(
                 for layer_name in layers_to_evaluate:
                     # Get activations for this layer
                     test_activations = model.activations[layer_name]
+                    all_layer_activations[layer_name] = test_activations
                     
                     # Compute fragmentation metrics
                     entropy_score = compute_entropy_fragmentation_score(test_activations, test_labels)
                     angle_score = compute_angle_fragmentation_score(test_activations, test_labels)
+                    icpd_score = compute_icpd_fragmentation_score(test_activations, test_labels)
+                    kstar_score = compute_kstar_fragmentation_score(test_activations, test_labels)
                     
                     # Store in dictionaries
                     entropy_scores_per_layer[layer_name] = entropy_score
                     angle_scores_per_layer[layer_name] = angle_score
+                    icpd_scores_per_layer[layer_name] = icpd_score
+                    kstar_scores_per_layer[layer_name] = kstar_score
                     
                     # Also update the per-epoch metrics with final layer scores
                     if layer_name == "layer3":
                         training_history["entropy_fragmentation"][-1] = entropy_score
                         training_history["angle_fragmentation"][-1] = angle_score
+                        training_history["icpd_fragmentation"][-1] = icpd_score
+                        training_history["kstar_fragmentation"][-1] = kstar_score
+                
+                # Compute stability metric
+                stability_score = compute_stability_fragmentation_score(all_layer_activations)
+                stability_scores_per_layer = compute_layer_stability_profile(all_layer_activations)
+                training_history["stability_fragmentation"][-1] = stability_score
             else:
                 # For DataLoader, we need to process in batches and concatenate
                 all_activations = {layer: [] for layer in layers_to_evaluate}
@@ -664,30 +801,42 @@ def train_model(
                         all_activations[layer_name].append(model.activations[layer_name].detach().cpu())
                     all_labels.append(labels.detach().cpu())
                 
-                # Concatenate all batches
+                # Process each layer
                 for layer_name in layers_to_evaluate:
                     test_activations = torch.cat(all_activations[layer_name], dim=0)
                     test_labels = torch.cat(all_labels, dim=0)
+                    all_layer_activations[layer_name] = test_activations
                     
                     # Compute fragmentation metrics
                     entropy_score = compute_entropy_fragmentation_score(test_activations, test_labels)
                     angle_score = compute_angle_fragmentation_score(test_activations, test_labels)
+                    icpd_score = compute_icpd_fragmentation_score(test_activations, test_labels)
+                    kstar_score = compute_kstar_fragmentation_score(test_activations, test_labels)
                     
                     # Store in dictionaries
                     entropy_scores_per_layer[layer_name] = entropy_score
                     angle_scores_per_layer[layer_name] = angle_score
+                    icpd_scores_per_layer[layer_name] = icpd_score
+                    kstar_scores_per_layer[layer_name] = kstar_score
                     
                     # Also update the per-epoch metrics with final layer scores
                     if layer_name == "layer3":
                         training_history["entropy_fragmentation"][-1] = entropy_score
                         training_history["angle_fragmentation"][-1] = angle_score
-        
-        # Save to layer_fragmentation dictionary
-        layer_fragmentation["entropy"] = entropy_scores_per_layer
-        layer_fragmentation["angle"] = angle_scores_per_layer
-        
-        # Update the training history
-        training_history["layer_fragmentation"] = layer_fragmentation
+                        training_history["icpd_fragmentation"][-1] = icpd_score
+                        training_history["kstar_fragmentation"][-1] = kstar_score
+                
+                # Compute stability metric
+                stability_score = compute_stability_fragmentation_score(all_layer_activations)
+                stability_scores_per_layer = compute_layer_stability_profile(all_layer_activations)
+                training_history["stability_fragmentation"][-1] = stability_score
+            
+            # Save to layer_fragmentation dictionary
+            layer_fragmentation["entropy"] = entropy_scores_per_layer
+            layer_fragmentation["angle"] = angle_scores_per_layer
+            layer_fragmentation["icpd"] = icpd_scores_per_layer
+            layer_fragmentation["kstar"] = kstar_scores_per_layer
+            layer_fragmentation["stability"] = stability_scores_per_layer
         
         logger.info(f"Computed fragmentation metrics on final model")
         logger.info(f"Entropy Score: {training_history['entropy_fragmentation'][-1]:.4f}, "
@@ -760,16 +909,86 @@ def plot_training_curves(history: Dict[str, List[float]], output_dir: str):
     plt.savefig(os.path.join(output_dir, "loss.png"))
     plt.close()
     
-    # Plot fragmentation metrics
+    # Plot original fragmentation metrics
     plt.figure(figsize=(10, 5))
     plt.plot(history["entropy_fragmentation"], label="Entropy Fragmentation")
     plt.plot(history["angle_fragmentation"], label="Angle Fragmentation")
-    plt.title("Fragmentation Metrics over epochs")
+    plt.title("Original Fragmentation Metrics over epochs")
     plt.xlabel("Epoch")
     plt.ylabel("Fragmentation Score")
     plt.legend()
     plt.grid(True)
-    plt.savefig(os.path.join(output_dir, "fragmentation.png"))
+    plt.savefig(os.path.join(output_dir, "original_fragmentation.png"))
+    plt.close()
+    
+    # Plot new fragmentation metrics
+    plt.figure(figsize=(10, 5))
+    plt.plot(history["icpd_fragmentation"], label="ICPD", color='blue')
+    plt.title("Intra-Class Pairwise Distance over epochs")
+    plt.xlabel("Epoch")
+    plt.ylabel("ICPD Score")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(os.path.join(output_dir, "icpd_fragmentation.png"))
+    plt.close()
+    
+    # Plot optimal k
+    plt.figure(figsize=(10, 5))
+    plt.plot(history["kstar_fragmentation"], label="k*", color='green')
+    plt.title("Optimal Number of Clusters (k*) over epochs")
+    plt.xlabel("Epoch")
+    plt.ylabel("k* Value")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(os.path.join(output_dir, "kstar_fragmentation.png"))
+    plt.close()
+    
+    # Plot representation stability
+    plt.figure(figsize=(10, 5))
+    plt.plot(history["stability_fragmentation"], label="Δ-Norm", color='red')
+    plt.title("Representation Stability (Δ-Norm) over epochs")
+    plt.xlabel("Epoch")
+    plt.ylabel("Δ-Norm")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(os.path.join(output_dir, "stability_fragmentation.png"))
+    plt.close()
+    
+    # Combined new metrics plot
+    plt.figure(figsize=(12, 6))
+    
+    # Primary y-axis for ICPD
+    ax1 = plt.gca()
+    ax1.set_xlabel("Epoch")
+    ax1.set_ylabel("ICPD Score", color='blue')
+    ax1.plot(history["icpd_fragmentation"], label="ICPD", color='blue')
+    ax1.tick_params(axis='y', labelcolor='blue')
+    
+    # Secondary y-axis for k*
+    ax2 = ax1.twinx()
+    ax2.set_ylabel("k* Value", color='green')
+    ax2.plot(history["kstar_fragmentation"], label="k*", color='green')
+    ax2.tick_params(axis='y', labelcolor='green')
+    
+    # Third y-axis for stability
+    ax3 = ax1.twinx()
+    # Offset the third axis to the right
+    ax3.spines['right'].set_position(('outward', 60))
+    ax3.set_ylabel("Δ-Norm", color='red')
+    ax3.plot(history["stability_fragmentation"], label="Δ-Norm", color='red')
+    ax3.tick_params(axis='y', labelcolor='red')
+    
+    # Add title
+    plt.title("Combined Fragmentation Metrics over epochs")
+    
+    # Create combined legend
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    lines3, labels3 = ax3.get_legend_handles_labels()
+    ax3.legend(lines1 + lines2 + lines3, labels1 + labels2 + labels3, loc='upper center')
+    
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "combined_fragmentation.png"))
     plt.close()
 
 
