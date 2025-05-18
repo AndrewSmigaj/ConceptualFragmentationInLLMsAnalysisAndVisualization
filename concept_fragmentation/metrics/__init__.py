@@ -31,6 +31,13 @@ from .representation_stability import (
     compute_fragmentation_score as compute_stability_fragmentation_score
 )
 
+from .explainable_threshold_similarity import (
+    compute_ets_clustering,
+    compute_dimension_thresholds,
+    explain_ets_similarity,
+    compute_ets_statistics
+)
+
 __all__ = [
     'compute_cluster_entropy',
     'compute_entropy_fragmentation_score',
@@ -43,5 +50,9 @@ __all__ = [
     'compute_representation_stability',
     'compute_layer_stability_profile',
     'compute_average_stability',
-    'compute_stability_fragmentation_score'
+    'compute_stability_fragmentation_score',
+    'compute_ets_clustering',
+    'compute_dimension_thresholds',
+    'explain_ets_similarity',
+    'compute_ets_statistics'
 ]

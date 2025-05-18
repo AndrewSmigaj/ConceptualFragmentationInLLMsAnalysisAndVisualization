@@ -180,6 +180,13 @@ METRICS = {
         "bootstrap_samples": 10,
         "confidence_level": 0.95,
         "random_state": RANDOM_SEED
+    },
+    
+    "explainable_threshold_similarity": {
+        "threshold_percentile": 0.1,  # Percentile for automatic threshold calculation
+        "min_threshold": 1e-5,       # Minimum threshold to avoid numerical issues
+        "batch_size": 1000,          # Batch size for processing large datasets
+        "verbose": False             # Whether to print progress information
     }
 }
 
@@ -213,6 +220,29 @@ VISUALIZATION = {
         "marker_size": 8,
         "alpha_fg": 0.8,
         "alpha_bg": 0.2
+    },
+    
+    "ets": {
+        "dimension_color_threshold": 0.8,  # Color dimensions that are close to threshold
+        "similarity_matrix_colormap": "viridis",
+        "cluster_colormap": "tab10"
+    }
+}
+
+###########################################
+# Analysis Settings
+###########################################
+
+ANALYSIS = {
+    "path_archetypes": {
+        "top_k": 5,           # Number of top paths to analyze
+        "max_members": 50,    # Maximum number of member indices to include
+        "min_path_size": 3    # Minimum number of samples in a path to include in analysis
+    },
+    
+    "transition_matrix": {
+        "entropy_normalization": True,  # Whether to normalize entropy by log2(n_clusters)
+        "max_steps": 3                  # Maximum number of steps for multi-step transitions
     }
 }
 
