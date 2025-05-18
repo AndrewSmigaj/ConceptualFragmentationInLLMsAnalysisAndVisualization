@@ -15,6 +15,8 @@ from typing import Dict, List, Tuple, Any, Optional, Union
 import re
 import warnings
 import pickle
+import glob
+from datetime import datetime
 
 # Import sklearn for our own clustering if needed
 from sklearn.cluster import KMeans
@@ -407,12 +409,13 @@ if __name__ == "__main__":
         sys.path.insert(0, parent_dir)
     
     from concept_fragmentation.data.loaders import get_dataset_loader
+    from concept_fragmentation.config import RESULTS_DIR
     
     parser = argparse.ArgumentParser(description="Compute and save cluster paths.")
     parser.add_argument("--dataset", type=str, required=True, help="Dataset name (e.g., titanic)")
     parser.add_argument("--seed", type=int, required=True, help="Random seed")
     parser.add_argument("--max_k", type=int, default=10, help="Maximum number of clusters")
-    parser.add_argument("--output_dir", type=str, default="data/cluster_paths", help="Output directory")
+    parser.add_argument("--output_dir", type=str, default=None, help="Output directory (default: [RESULTS_DIR]/cluster_paths)")
     parser.add_argument("--top_k", type=int, default=3, help="Number of path archetypes")
     parser.add_argument("--max_members", type=int, default=50, help="Maximum member indices per archetype")
     parser.add_argument("--target_column", type=str, help="Target column (e.g., 'survived' for Titanic)")
@@ -455,13 +458,25 @@ if __name__ == "__main__":
     # If no cached clusters found, compute them from activations
     if layer_clusters is None:
         print(f"No cached clusters found. Computing from activations...")
-        # Load activations from experiment
-        results_dir = os.path.join("results", "baselines", args.dataset, f"baseline_seed{args.seed}")
+        
+        # Find the correct experiment directory with the latest timestamp
+        # The baseline experiments create directories like: baselines/titanic/titanic_baseline_seed0_20250518
+        search_pattern = os.path.join(RESULTS_DIR, "baselines", args.dataset, f"{args.dataset}_baseline_seed{args.seed}_*")
+        matching_dirs = glob.glob(search_pattern)
+        
+        if not matching_dirs:
+            print(f"No experiment directories found matching: {search_pattern}")
+            print(f"Please run the baseline experiment for {args.dataset} seed {args.seed} first.")
+            sys.exit(1)
+        
+        # Get the most recent directory by sorting based on timestamp
+        results_dir = sorted(matching_dirs)[-1]
         print(f"Loading activations from {results_dir}")
+        
         try:
             activations = load_experiment_activations(results_dir)
         except FileNotFoundError:
-            print(f"No activation files found. Please run the baseline experiment for {args.dataset} seed {args.seed} first.")
+            print(f"No activation files found in {results_dir}. Please run the baseline experiment for {args.dataset} seed {args.seed} first.")
             sys.exit(1)
         
         # Compute clusters for each layer
@@ -478,6 +493,12 @@ if __name__ == "__main__":
                 "labels": labels
             }
     
+    # Set default output directory if not specified
+    if args.output_dir is None:
+        output_dir = os.path.join(RESULTS_DIR, "cluster_paths")
+    else:
+        output_dir = args.output_dir
+    
     # Write cluster paths and archetypes
     output_path = write_cluster_paths(
         args.dataset,
@@ -486,7 +507,7 @@ if __name__ == "__main__":
         df,
         target_column=args.target_column,
         demographic_columns=args.demographic_columns,
-        output_dir=args.output_dir,
+        output_dir=output_dir,
         top_k=args.top_k,
         max_members=args.max_members
     )

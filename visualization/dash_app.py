@@ -14,6 +14,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import json
 import re
+import networkx as nx
 
 try:
     import dash
@@ -36,10 +37,25 @@ from visualization.data_interface import (
     get_config_id, get_config_path
 )
 from visualization.reducers import Embedder, embed_layer_activations
-from visualization.traj_plot import build_single_scene_figure, plot_dataset_trajectories, save_figure, LAYER_SEPARATION_OFFSET
+from visualization.traj_plot import build_single_scene_figure, plot_dataset_trajectories, save_figure, LAYER_SEPARATION_OFFSET, get_friendly_layer_name
 from visualization.cluster_utils import compute_layer_clusters_embedded, get_embedded_clusters_cache_path
 from concept_fragmentation.config import DATASETS as DATASET_CFG
 from concept_fragmentation.analysis.cluster_stats import write_cluster_stats
+
+# Import cross-layer metrics
+from concept_fragmentation.metrics.cross_layer_metrics import (
+    compute_centroid_similarity, compute_membership_overlap,
+    compute_trajectory_fragmentation, compute_path_density,
+    analyze_cross_layer_metrics
+)
+from visualization.cross_layer_viz import (
+    plot_centroid_similarity_heatmap, plot_membership_overlap_sankey,
+    plot_trajectory_fragmentation_bars, plot_path_density_network
+)
+from visualization.cross_layer_utils import (
+    serialize_cross_layer_metrics, deserialize_cross_layer_metrics,
+    networkx_to_dict, dict_to_networkx
+)
 
 # Define the datasets and seeds
 DATASETS = ["titanic", "heart"]
@@ -117,152 +133,263 @@ def list_to_numpy_recursive(data: Any) -> Any:
 app.layout = html.Div([
     html.H1("Neural Network Trajectory Explorer", style={"textAlign": "center"}),
     
-    html.Div([
-        html.Div([
-            html.Label("Dataset:"),
-            dcc.Dropdown(
-                id="dataset-dropdown",
-                options=[{"label": d.title(), "value": d} for d in DATASETS],
-                value=DATASETS[0] if DATASETS else None
+    # Main tabs
+    dcc.Tabs([
+        # Tab 1: Trajectory Visualization
+        dcc.Tab(label="Trajectory Visualization", children=[
+            html.Div([
+                html.Div([
+                    html.Label("Dataset:"),
+                    dcc.Dropdown(
+                        id="dataset-dropdown",
+                        options=[{"label": d.title(), "value": d} for d in DATASETS],
+                        value=DATASETS[0] if DATASETS else None
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+                
+                html.Div([
+                    html.Label("Seed:"),
+                    dcc.Dropdown(
+                        id="seed-dropdown",
+                        options=[{"label": f"Seed {s}", "value": s} for s in SEEDS],
+                        value=SEEDS[0] if SEEDS else None
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+                
+                html.Div([
+                    html.Label("Number of Samples:"),
+                    dcc.Slider(
+                        id="samples-slider",
+                        min=20,
+                        max=MAX_SAMPLES,
+                        step=20,
+                        value=100,
+                        marks={i: str(i) for i in range(0, MAX_SAMPLES + 1, 100)},
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+            ]),
+            
+            html.Div([
+                html.Div([
+                    html.Label("Visualization Controls:"),
+                    dcc.Checklist(
+                        id="visualization-controls",
+                        options=[
+                            {"label": "Show Baseline", "value": "baseline"},
+                            {"label": "Show Regularized", "value": "regularized"},
+                            {"label": "Show Arrows", "value": "arrows"},
+                            {"label": "Show Cluster Centers", "value": "show_centers"},
+                            {"label": "Normalize Embeddings", "value": "normalize"}
+                        ],
+                        value=["baseline", "regularized", "arrows", "normalize"]
+                    ),
+                    html.Br(), # Added for spacing
+                    html.Label("Color Mode:"),
+                    dcc.Dropdown(
+                        id="color-mode-dropdown",
+                        options=[
+                            {"label": name, "value": key}
+                            for key, name in COLOR_MODES.items()
+                        ],
+                        value="class" # Default to color by class
+                    ),
+                    html.Br(),
+                    html.Label("Trajectory Point Color Metric:"),
+                    dcc.Dropdown(
+                        id="trajectory-point-metric-dropdown",
+                        options=[
+                            {"label": name, "value": key}
+                            for key, name in AVAILABLE_POINT_COLOR_METRICS.items()
+                        ],
+                        value=list(AVAILABLE_POINT_COLOR_METRICS.keys())[0] # Default to the first metric
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
+                
+                html.Div([
+                    html.Label("Highlight Options:"),
+                    dcc.Checklist(
+                        id="highlight-controls",
+                        options=[
+                            {"label": "Highlight High Fragmentation", "value": "high_frag"},
+                            {"label": "Color by Class", "value": "class_color"}
+                        ],
+                        value=["high_frag"]
+                    ),
+                    html.Label("Number of Highlights:"),
+                    dcc.Slider(
+                        id="highlight-slider",
+                        min=0,
+                        max=50,
+                        step=5,
+                        value=20,
+                        marks={i: str(i) for i in range(0, 51, 10)},
+                    ),
+                    html.Br(),
+                    html.Label("Max Clusters (k):"),
+                    dcc.Slider(
+                        id="max-k-slider",
+                        min=4,
+                        max=15,
+                        step=1,
+                        value=10,
+                        marks={i: str(i) for i in range(4, 16, 2)},
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
+                
+                html.Div([
+                    html.Button("Update Visualization", id="update-button", n_clicks=0, 
+                                style={"backgroundColor": "#4CAF50", "color": "white", "padding": "10px"}),
+                    html.Button("Export HTML", id="export-button", n_clicks=0,
+                                style={"backgroundColor": "#008CBA", "color": "white", "padding": "10px", "marginLeft": "10px"}),
+                    dcc.Download(id="download-html"),
+                ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "20px"}),
+                
+                # Cache clearing button
+                html.Button('Clear Cache', id='clear-cache-button', n_clicks=0),
+                html.Div(id='cache-cleared-message'),
+            ]),
+            
+            dcc.Loading(
+                id="loading-visualization",
+                type="circle",
+                children=[
+                    dcc.Graph(
+                        id="trajectory-graph",
+                        style={"height": "700px"},
+                        config={
+                            "toImageButtonOptions": {
+                                "format": "png",
+                                "filename": "trajectory_plot",
+                                "height": 700,
+                                "width": 1200
+                            }
+                        }
+                    )
+                ]
             ),
-        ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+            
+            # DEBUG: We need to add this element for showing fracture scores
+            dcc.Graph(id="layer-fracture-graph", style={"height": "250px", "marginTop": "15px"}),
+            
+            # Cluster statistics display
+            html.Div(
+                id="cluster-summary",
+                style={
+                    "padding": "15px", 
+                    "marginTop": "10px", 
+                    "backgroundColor": "#f8f9fa", 
+                    "border": "1px solid #ddd",
+                    "borderRadius": "5px"
+                },
+                children="Click a cluster center to view statistics"
+            ),
+        ]), 
         
-        html.Div([
-            html.Label("Seed:"),
-            dcc.Dropdown(
-                id="seed-dropdown",
-                options=[{"label": f"Seed {s}", "value": s} for s in SEEDS],
-                value=SEEDS[0] if SEEDS else None
-            ),
-        ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
-        
-        html.Div([
-            html.Label("Number of Samples:"),
-            dcc.Slider(
-                id="samples-slider",
-                min=20,
-                max=MAX_SAMPLES,
-                step=20,
-                value=100,
-                marks={i: str(i) for i in range(0, MAX_SAMPLES + 1, 100)},
-            ),
-        ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+        # Tab 2: Cross-Layer Metrics
+        dcc.Tab(label="Cross-Layer Metrics", children=[
+            html.Div([
+                html.Div([
+                    html.Label("Dataset:"),
+                    dcc.Dropdown(
+                        id="cl-dataset-dropdown",
+                        options=[{"label": d.title(), "value": d} for d in DATASETS],
+                        value=DATASETS[0] if DATASETS else None
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+                
+                html.Div([
+                    html.Label("Seed:"),
+                    dcc.Dropdown(
+                        id="cl-seed-dropdown",
+                        options=[{"label": f"Seed {s}", "value": s} for s in SEEDS],
+                        value=SEEDS[0] if SEEDS else None
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+                
+                html.Div([
+                    html.Label("Configuration:"),
+                    dcc.RadioItems(
+                        id="cl-config-radio",
+                        options=[
+                            {"label": "Baseline", "value": "baseline"},
+                            {"label": "Regularized", "value": "regularized"}
+                        ],
+                        value="baseline",
+                        inline=True
+                    ),
+                ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+            ]),
+            
+            html.Div([
+                html.Div([
+                    html.Label("Metric Controls:"),
+                    dcc.Checklist(
+                        id="cl-metric-controls",
+                        options=[
+                            {"label": "Centroid Similarity", "value": "centroid_similarity"},
+                            {"label": "Membership Overlap", "value": "membership_overlap"},
+                            {"label": "Trajectory Fragmentation", "value": "trajectory_fragmentation"},
+                            {"label": "Path Density", "value": "path_density"}
+                        ],
+                        value=["centroid_similarity", "membership_overlap", "trajectory_fragmentation", "path_density"]
+                    ),
+                ], style={"width": "40%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
+                
+                html.Div([
+                    html.Label("Visualization Parameters:"),
+                    html.Br(),
+                    html.Label("Min. Overlap Threshold:"),
+                    dcc.Slider(
+                        id="cl-overlap-slider",
+                        min=0.05,
+                        max=0.5,
+                        step=0.05,
+                        value=0.1,
+                        marks={i/100: str(i/100) for i in range(5, 55, 10)},
+                    ),
+                ], style={"width": "40%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
+                
+                html.Div([
+                    html.Button("Update Cross-Layer Metrics", id="cl-update-button", n_clicks=0, 
+                                style={"backgroundColor": "#4CAF50", "color": "white", "padding": "10px"}),
+                ], style={"width": "20%", "display": "inline-block", "verticalAlign": "top", "padding": "20px"}),
+            ]),
+            
+            # Cross-Layer Metrics Visualizations
+            html.Div([
+                # Loading indicator for cross-layer metrics
+                dcc.Loading(
+                    id="loading-cl-metrics",
+                    type="circle",
+                    children=[
+                        # Centroid Similarity Section
+                        html.Div([
+                            html.H3("Centroid Similarity Heatmaps", style={"textAlign": "center"}),
+                            dcc.Graph(id="centroid-similarity-graph")
+                        ], id="centroid-similarity-section"),
+                        
+                        # Membership Overlap Section
+                        html.Div([
+                            html.H3("Membership Overlap Flow", style={"textAlign": "center"}),
+                            dcc.Graph(id="membership-overlap-graph")
+                        ], id="membership-overlap-section"),
+                        
+                        # Trajectory Fragmentation Section
+                        html.Div([
+                            html.H3("Trajectory Fragmentation by Layer", style={"textAlign": "center"}),
+                            dcc.Graph(id="trajectory-fragmentation-graph")
+                        ], id="trajectory-fragmentation-section"),
+                        
+                        # Path Density Section
+                        html.Div([
+                            html.H3("Inter-Cluster Path Density", style={"textAlign": "center"}),
+                            dcc.Graph(id="path-density-graph")
+                        ], id="path-density-section"),
+                    ]
+                )
+            ])
+        ])
     ]),
-    
-    html.Div([
-        html.Div([
-            html.Label("Visualization Controls:"),
-            dcc.Checklist(
-                id="visualization-controls",
-                options=[
-                    {"label": "Show Baseline", "value": "baseline"},
-                    {"label": "Show Regularized", "value": "regularized"},
-                    {"label": "Show Arrows", "value": "arrows"},
-                    {"label": "Show Cluster Centers", "value": "show_centers"},
-                    {"label": "Normalize Embeddings", "value": "normalize"}
-                ],
-                value=["baseline", "regularized", "arrows", "normalize"]
-            ),
-            html.Br(), # Added for spacing
-            html.Label("Color Mode:"),
-            dcc.Dropdown(
-                id="color-mode-dropdown",
-                options=[
-                    {"label": name, "value": key}
-                    for key, name in COLOR_MODES.items()
-                ],
-                value="class" # Default to color by class
-            ),
-            html.Br(),
-            html.Label("Trajectory Point Color Metric:"),
-            dcc.Dropdown(
-                id="trajectory-point-metric-dropdown",
-                options=[
-                    {"label": name, "value": key}
-                    for key, name in AVAILABLE_POINT_COLOR_METRICS.items()
-                ],
-                value=list(AVAILABLE_POINT_COLOR_METRICS.keys())[0] # Default to the first metric
-            ),
-        ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
-        
-        html.Div([
-            html.Label("Highlight Options:"),
-            dcc.Checklist(
-                id="highlight-controls",
-                options=[
-                    {"label": "Highlight High Fragmentation", "value": "high_frag"},
-                    {"label": "Color by Class", "value": "class_color"}
-                ],
-                value=["high_frag"]
-            ),
-            html.Label("Number of Highlights:"),
-            dcc.Slider(
-                id="highlight-slider",
-                min=0,
-                max=50,
-                step=5,
-                value=20,
-                marks={i: str(i) for i in range(0, 51, 10)},
-            ),
-            html.Br(),
-            html.Label("Max Clusters (k):"),
-            dcc.Slider(
-                id="max-k-slider",
-                min=4,
-                max=15,
-                step=1,
-                value=10,
-                marks={i: str(i) for i in range(4, 16, 2)},
-            ),
-        ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
-        
-        html.Div([
-            html.Button("Update Visualization", id="update-button", n_clicks=0, 
-                        style={"backgroundColor": "#4CAF50", "color": "white", "padding": "10px"}),
-            html.Button("Export HTML", id="export-button", n_clicks=0,
-                        style={"backgroundColor": "#008CBA", "color": "white", "padding": "10px", "marginLeft": "10px"}),
-            dcc.Download(id="download-html"),
-        ], style={"width": "30%", "display": "inline-block", "verticalAlign": "top", "padding": "20px"}),
-        
-        # Cache clearing button
-        html.Button('Clear Cache', id='clear-cache-button', n_clicks=0),
-        html.Div(id='cache-cleared-message'),
-    ]),
-    
-    dcc.Loading(
-        id="loading-visualization",
-        type="circle",
-        children=[
-            dcc.Graph(
-                id="trajectory-graph",
-                style={"height": "700px"},
-                config={
-                    "toImageButtonOptions": {
-                        "format": "png",
-                        "filename": "trajectory_plot",
-                        "height": 700,
-                        "width": 1200
-                    }
-                }
-            )
-        ]
-    ),
-    
-    # DEBUG: We need to add this element for showing fracture scores
-    dcc.Graph(id="layer-fracture-graph", style={"height": "250px", "marginTop": "15px"}),
-    
-    # Cluster statistics display
-    html.Div(
-        id="cluster-summary",
-        style={
-            "padding": "15px", 
-            "marginTop": "10px", 
-            "backgroundColor": "#f8f9fa", 
-            "border": "1px solid #ddd",
-            "borderRadius": "5px"
-        },
-        children="Click a cluster center to view statistics"
-    ),
     
     html.Div(id="status-message", style={"padding": "10px", "color": "gray"}),
     
@@ -270,7 +397,10 @@ app.layout = html.Div([
     dcc.Store(id="embeddings-store"),
     dcc.Store(id="layer-clusters-store"),
     dcc.Store(id="true-labels-store"),
-    dcc.Store(id="dataset-data-store")
+    dcc.Store(id="dataset-data-store"),
+    
+    # Storage for cross-layer metrics
+    dcc.Store(id="cl-metrics-store")
 ])
 
 def load_and_embed_data(dataset, seed, max_k=10):
@@ -1056,38 +1186,6 @@ for i, child in enumerate(app.layout.children):
 
 print("DEBUG: Fixed version - removed conflicting callbacks")
 
-# Add this function if it doesn't exist (similar to the one in traj_plot.py)
-def get_friendly_layer_name(layer_name: str) -> str:
-    """
-    Convert internal layer names to user-friendly display names.
-    
-    Args:
-        layer_name: The internal layer name (e.g., 'layer1', 'input')
-        
-    Returns:
-        A user-friendly layer name (e.g., 'Input Space', 'Layer 1')
-    """
-    if layer_name == "input":
-        return "Input Space"
-    elif layer_name == "output":
-        return "Output Layer"
-    elif layer_name.startswith("layer"):
-        # Extract layer number if present
-        match = re.match(r'layer(\d+)', layer_name)
-        if match:
-            layer_num = int(match.group(1))
-            if layer_num == 1:
-                return "Input Space"  # Hidden Layer 1 is now Input Space
-            elif layer_num == 2:
-                return "Layer 1"      # Hidden Layer 2 is now Layer 1
-            elif layer_num == 3:
-                return "Layer 2"      # Hidden Layer 3 is now Layer 2
-            else:
-                return f"Layer {layer_num-1}"  # Other layers shifted by 1
-    
-    # If no pattern matches, just capitalize and clean up the name
-    return layer_name.replace('_', ' ').title()
-
 def create_fracture_graph(stored_data, stored_clusters, stored_true_labels, dataset, vis_controls, seed, selected_metric):
     """
     Create the fracture metrics line graph showing the three key metrics:
@@ -1312,7 +1410,6 @@ def create_fracture_graph(stored_data, stored_clusters, stored_true_labels, data
     
     return fig
 
-# Add this function after the load_and_embed_data function
 def load_cluster_paths_data(dataset: str, seed: int) -> Optional[Dict[str, Any]]:
     """Load cluster paths data for the given dataset and seed."""
     try:
@@ -1336,7 +1433,443 @@ def load_cluster_paths_data(dataset: str, seed: int) -> Optional[Dict[str, Any]]
         print(error_msg)
         return None
 
+# Cross-Layer Metrics callbacks
+@app.callback(
+    Output("cl-metrics-store", "data"),
+    [Input("cl-update-button", "n_clicks")],
+    [State("cl-dataset-dropdown", "value"),
+     State("cl-seed-dropdown", "value"),
+     State("cl-config-radio", "value"),
+     State("layer-clusters-store", "data"),
+     State("true-labels-store", "data"),
+     State("embeddings-store", "data"),
+     State("cl-overlap-slider", "value")]
+)
+def update_cross_layer_metrics(n_clicks, dataset, seed, config, stored_clusters, stored_true_labels, stored_embeddings, min_overlap):
+    """Compute cross-layer metrics and store them."""
+    if n_clicks is None or not dataset or seed is None or not config or not stored_clusters:
+        return None
+    
+    try:
+        # Convert stored data from JSON
+        clusters = list_to_numpy_recursive(stored_clusters)
+        true_labels = list_to_numpy_recursive(stored_true_labels)
+        embeddings = list_to_numpy_recursive(stored_embeddings)
+        
+        # Check if we have the selected configuration
+        if config not in clusters:
+            return {
+                "error": f"No cluster data available for {config} configuration."
+            }
+        
+        layer_clusters = clusters[config]
+        
+        # Get class labels for the selected configuration
+        class_labels = true_labels.get(config) if true_labels else None
+        
+        # Get activations for the selected configuration (if available)
+        activations = None
+        if embeddings and config in embeddings and str(seed) in embeddings[config]:
+            activations = embeddings[config][str(seed)]
+        
+        # Create configuration dictionary
+        metrics_config = {
+            "similarity_metric": "cosine",
+            "min_overlap": min_overlap if min_overlap is not None else 0.1
+        }
+        
+        # Use the analyze_cross_layer_metrics wrapper function to compute all metrics
+        print(f"Computing cross-layer metrics for {dataset} {config} (seed {seed})")
+        all_metrics = analyze_cross_layer_metrics(
+            layer_clusters=layer_clusters,
+            activations=activations,
+            class_labels=class_labels,
+            config=metrics_config
+        )
+        
+        # Convert complex data structures to JSON-serializable format
+        numpy_to_list = numpy_to_list_recursive  # Use existing function for numpy arrays
+        
+        # Handle the tuple keys in dictionaries (which JSON doesn't support)
+        result = {}
+        
+        # Process centroid_similarity (has tuple keys)
+        if "centroid_similarity" in all_metrics:
+            centroid_sim = all_metrics["centroid_similarity"]
+            # Convert tuple keys to strings and numpy arrays to lists
+            result["centroid_similarity"] = {
+                str(k): numpy_to_list(v) for k, v in centroid_sim.items()
+            }
+        
+        # Process membership_overlap (has tuple keys)
+        if "membership_overlap" in all_metrics:
+            membership_overlap = all_metrics["membership_overlap"]
+            # Convert tuple keys to strings and numpy arrays to lists
+            result["membership_overlap"] = {
+                str(k): numpy_to_list(v) for k, v in membership_overlap.items()
+            }
+        
+        # Process trajectory_fragmentation (simple dict)
+        if "trajectory_fragmentation" in all_metrics:
+            result["trajectory_fragmentation"] = all_metrics["trajectory_fragmentation"]
+        
+        # Process path_density (has tuple keys)
+        if "path_density" in all_metrics:
+            path_density = all_metrics["path_density"]
+            # Convert tuple keys to strings
+            result["path_density"] = {
+                str(k): v for k, v in path_density.items()
+            }
+        
+        # Process path_graph (convert NetworkX graph to dict)
+        if "path_graph" in all_metrics:
+            G = all_metrics["path_graph"]
+            # Convert graph to dictionary representation
+            graph_dict = {
+                "nodes": [],
+                "edges": [],
+                "directed": isinstance(G, nx.DiGraph)
+            }
+            
+            # Add nodes with attributes
+            for node in G.nodes():
+                node_attrs = dict(G.nodes[node])
+                graph_dict["nodes"].append({
+                    "id": node,
+                    "attributes": node_attrs
+                })
+            
+            # Add edges with attributes
+            for u, v in G.edges():
+                edge_attrs = dict(G.edges[u, v])
+                graph_dict["edges"].append({
+                    "source": u,
+                    "target": v,
+                    "attributes": edge_attrs
+                })
+                
+            result["path_graph"] = graph_dict
+            
+        # Add any error messages
+        for key in all_metrics:
+            if key.endswith("_error"):
+                result[key] = str(all_metrics[key])
+                
+        return result
+    
+    except Exception as e:
+        import traceback
+        error_msg = f"Error computing cross-layer metrics: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return {"error": str(e)}
+
+@app.callback(
+    [Output("centroid-similarity-graph", "figure"),
+     Output("centroid-similarity-section", "style")],
+    [Input("cl-metrics-store", "data"),
+     Input("cl-metric-controls", "value")]
+)
+def update_centroid_similarity_graph(cl_metrics, metric_controls):
+    """Update centroid similarity heatmap visualization."""
+    if cl_metrics is None or "error" in cl_metrics:
+        return go.Figure().update_layout(
+            title="No centroid similarity data available",
+            height=500
+        ), {"display": "none"}
+    
+    # Hide if not selected
+    if "centroid_similarity" not in metric_controls:
+        return go.Figure(), {"display": "none"}
+    
+    try:
+        # Check for centroid similarity error
+        if "centroid_similarity_error" in cl_metrics:
+            return go.Figure().update_layout(
+                title=f"Error: {cl_metrics['centroid_similarity_error']}",
+                height=500
+            ), {"display": "block"}
+        
+        # Get centroid similarity data
+        centroid_similarity_str = cl_metrics.get("centroid_similarity", {})
+        
+        # Convert string tuple keys back to actual tuples
+        centroid_similarity = {}
+        for k_str, v in centroid_similarity_str.items():
+            # Convert string representation of tuple back to tuple
+            if k_str.startswith('(') and k_str.endswith(')') and ',' in k_str:
+                try:
+                    # Safely evaluate the string as a tuple
+                    k_tuple = eval(k_str)
+                    # Ensure it's a proper tuple with two elements
+                    if isinstance(k_tuple, tuple) and len(k_tuple) == 2:
+                        # Convert values to numpy arrays if needed
+                        if isinstance(v, list):
+                            v_array = np.array(v)
+                            centroid_similarity[k_tuple] = v_array
+                        else:
+                            centroid_similarity[k_tuple] = v
+                except:
+                    # Skip malformed keys
+                    print(f"Warning: Skipping malformed key: {k_str}")
+                    continue
+        
+        # Check if we have any valid data
+        if not centroid_similarity:
+            return go.Figure().update_layout(
+                title="No valid centroid similarity data available",
+                height=500
+            ), {"display": "block"}
+        
+        # Create heatmap
+        fig = plot_centroid_similarity_heatmap(
+            centroid_similarity,
+            colorscale="Viridis",
+            height=500,
+            width=1000,
+            get_friendly_layer_name=get_friendly_layer_name
+        )
+        
+        return fig, {"display": "block"}
+    
+    except Exception as e:
+        import traceback
+        error_msg = f"Error creating centroid similarity graph: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return go.Figure().update_layout(
+            title=f"Error: {str(e)}",
+            height=500
+        ), {"display": "block"}
+
+@app.callback(
+    [Output("membership-overlap-graph", "figure"),
+     Output("membership-overlap-section", "style")],
+    [Input("cl-metrics-store", "data"),
+     Input("cl-metric-controls", "value"),
+     Input("cl-overlap-slider", "value")]
+)
+def update_membership_overlap_graph(cl_metrics, metric_controls, min_overlap):
+    """Update membership overlap Sankey diagram."""
+    if cl_metrics is None or "error" in cl_metrics:
+        return go.Figure().update_layout(
+            title="No membership overlap data available",
+            height=500
+        ), {"display": "none"}
+    
+    # Hide if not selected
+    if "membership_overlap" not in metric_controls:
+        return go.Figure(), {"display": "none"}
+    
+    try:
+        # Check for membership overlap error
+        if "membership_overlap_error" in cl_metrics:
+            return go.Figure().update_layout(
+                title=f"Error: {cl_metrics['membership_overlap_error']}",
+                height=500
+            ), {"display": "block"}
+        
+        # Get membership overlap data with string keys
+        membership_overlap_str = cl_metrics.get("membership_overlap", {})
+        
+        # Convert string tuple keys back to actual tuples
+        membership_overlap = {}
+        for k_str, v in membership_overlap_str.items():
+            # Convert string representation of tuple back to tuple
+            if k_str.startswith('(') and k_str.endswith(')') and ',' in k_str:
+                try:
+                    # Safely evaluate the string as a tuple
+                    k_tuple = eval(k_str)
+                    # Ensure it's a proper tuple with two elements
+                    if isinstance(k_tuple, tuple) and len(k_tuple) == 2:
+                        # Convert values to numpy arrays if needed
+                        if isinstance(v, list):
+                            v_array = np.array(v)
+                            membership_overlap[k_tuple] = v_array
+                        else:
+                            membership_overlap[k_tuple] = v
+                except:
+                    # Skip malformed keys
+                    print(f"Warning: Skipping malformed key: {k_str}")
+                    continue
+        
+        # If empty, display an error
+        if not membership_overlap:
+            return go.Figure().update_layout(
+                title="No valid membership overlap data available",
+                height=500
+            ), {"display": "block"}
+        
+        # Create dummy layer_clusters dict for Sankey function
+        layer_clusters = {}
+        
+        # Process all layer pairs to extract unique layers
+        for (layer1, layer2), overlap_matrix in membership_overlap.items():
+            # Extract cluster counts from matrix dimensions
+            n_clusters1, n_clusters2 = overlap_matrix.shape
+            
+            # Add to layer_clusters if not already there
+            if layer1 not in layer_clusters:
+                layer_clusters[layer1] = {
+                    "labels": np.arange(n_clusters1),
+                    "k": n_clusters1
+                }
+            
+            if layer2 not in layer_clusters:
+                layer_clusters[layer2] = {
+                    "labels": np.arange(n_clusters2),
+                    "k": n_clusters2
+                }
+        
+        # Create Sankey diagram
+        fig = plot_membership_overlap_sankey(
+            membership_overlap,
+            layer_clusters,
+            min_overlap=min_overlap,
+            height=600,
+            width=1000,
+            get_friendly_layer_name=get_friendly_layer_name
+        )
+        
+        return fig, {"display": "block"}
+    
+    except Exception as e:
+        import traceback
+        error_msg = f"Error creating membership overlap graph: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return go.Figure().update_layout(
+            title=f"Error: {str(e)}",
+            height=500
+        ), {"display": "block"}
+
+@app.callback(
+    [Output("trajectory-fragmentation-graph", "figure"),
+     Output("trajectory-fragmentation-section", "style")],
+    [Input("cl-metrics-store", "data"),
+     Input("cl-metric-controls", "value")]
+)
+def update_trajectory_fragmentation_graph(cl_metrics, metric_controls):
+    """Update trajectory fragmentation bar chart."""
+    if cl_metrics is None or "error" in cl_metrics:
+        return go.Figure().update_layout(
+            title="No trajectory fragmentation data available",
+            height=400
+        ), {"display": "none"}
+    
+    # Hide if not selected
+    if "trajectory_fragmentation" not in metric_controls:
+        return go.Figure(), {"display": "none"}
+    
+    try:
+        # Check for trajectory fragmentation error
+        if "trajectory_fragmentation_error" in cl_metrics:
+            return go.Figure().update_layout(
+                title=f"Error: {cl_metrics['trajectory_fragmentation_error']}",
+                height=400
+            ), {"display": "block"}
+        
+        # Get trajectory fragmentation data
+        trajectory_fragmentation = cl_metrics.get("trajectory_fragmentation", {})
+        
+        # If empty, display an error
+        if not trajectory_fragmentation:
+            return go.Figure().update_layout(
+                title="No class labels available for trajectory fragmentation analysis",
+                height=400
+            ), {"display": "block"}
+        
+        # Create bar chart
+        fig = plot_trajectory_fragmentation_bars(
+            trajectory_fragmentation,
+            height=400,
+            width=800,
+            get_friendly_layer_name=get_friendly_layer_name
+        )
+        
+        return fig, {"display": "block"}
+    
+    except Exception as e:
+        import traceback
+        error_msg = f"Error creating trajectory fragmentation graph: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return go.Figure().update_layout(
+            title=f"Error: {str(e)}",
+            height=400
+        ), {"display": "block"}
+
+@app.callback(
+    [Output("path-density-graph", "figure"),
+     Output("path-density-section", "style")],
+    [Input("cl-metrics-store", "data"),
+     Input("cl-metric-controls", "value")]
+)
+def update_path_density_graph(cl_metrics, metric_controls):
+    """Update path density network graph."""
+    if cl_metrics is None or "error" in cl_metrics:
+        return go.Figure().update_layout(
+            title="No path density data available",
+            height=600
+        ), {"display": "none"}
+    
+    # Hide if not selected
+    if "path_density" not in metric_controls:
+        return go.Figure(), {"display": "none"}
+    
+    try:
+        # Check for path density error
+        if "path_density_error" in cl_metrics:
+            return go.Figure().update_layout(
+                title=f"Error: {cl_metrics['path_density_error']}",
+                height=600
+            ), {"display": "block"}
+        
+        # Get path graph data
+        path_graph_dict = cl_metrics.get("path_graph", {})
+        
+        # Check if we have valid graph data
+        if not path_graph_dict or "nodes" not in path_graph_dict or not path_graph_dict["nodes"]:
+            return go.Figure().update_layout(
+                title="No path density data available",
+                height=600
+            ), {"display": "block"}
+        
+        # Build NetworkX graph from dictionary
+        G = nx.Graph() if not path_graph_dict.get("directed", False) else nx.DiGraph()
+        
+        # Add nodes with attributes
+        for node_data in path_graph_dict.get("nodes", []):
+            if "id" in node_data:
+                node_id = node_data["id"]
+                attrs = node_data.get("attributes", {})
+                G.add_node(node_id, **attrs)
+        
+        # Add edges with attributes
+        for edge_data in path_graph_dict.get("edges", []):
+            if "source" in edge_data and "target" in edge_data:
+                source = edge_data["source"]
+                target = edge_data["target"]
+                attrs = edge_data.get("attributes", {})
+                G.add_edge(source, target, **attrs)
+        
+        # Create network visualization
+        fig = plot_path_density_network(
+            G,
+            layout="multipartite",
+            height=600,
+            width=1000,
+            get_friendly_layer_name=get_friendly_layer_name
+        )
+        
+        return fig, {"display": "block"}
+    
+    except Exception as e:
+        import traceback
+        error_msg = f"Error creating path density graph: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return go.Figure().update_layout(
+            title=f"Error: {str(e)}",
+            height=600
+        ), {"display": "block"}
+
 if __name__ == "__main__":
     print("Starting Dash app...")
     print("Navigate to http://127.0.0.1:8050/ in your web browser.")
-    app.run_server(debug=True) 
+    app.run_server(debug=True)
