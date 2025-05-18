@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(python:*)",
+      "Bash(venv311/Scripts/python.exe -m:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(ls:*)",
+      "Bash(source:*)",
+      "Bash(dos2unix:*)",
+      "Bash(pip3 install:*)",
+      "Bash(apt-get:*)"
+    ],
+    "deny": []
+  }
+}
