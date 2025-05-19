@@ -57,6 +57,18 @@ from visualization.cross_layer_utils import (
     networkx_to_dict, dict_to_networkx
 )
 
+# Import similarity network visualization
+from visualization.similarity_network_tab import (
+    create_similarity_network_tab,
+    register_similarity_callbacks
+)
+
+# Import path fragmentation visualization
+from visualization.path_fragmentation_tab import (
+    create_path_fragmentation_tab,
+    register_path_fragmentation_callbacks
+)
+
 # Define the datasets and seeds
 DATASETS = ["titanic", "heart"]
 SEEDS = [0, 1, 2]
@@ -135,6 +147,12 @@ app.layout = html.Div([
     
     # Main tabs
     dcc.Tabs([
+        # Similarity Network Tab
+        create_similarity_network_tab(),
+        
+        # Path Fragmentation Tab
+        create_path_fragmentation_tab(),
+        
         # Tab 1: Trajectory Visualization
         dcc.Tab(label="Trajectory Visualization", children=[
             html.Div([
@@ -1413,19 +1431,53 @@ def create_fracture_graph(stored_data, stored_clusters, stored_true_labels, data
 def load_cluster_paths_data(dataset: str, seed: int) -> Optional[Dict[str, Any]]:
     """Load cluster paths data for the given dataset and seed."""
     try:
-        # Path to cluster paths JSON file
-        paths_file = os.path.join("data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json")
+        # Check all possible paths for cluster paths file
+        # Prioritize results directory first as it has populated similarity matrices
+        possible_paths = [
+            os.path.join("results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join(os.getcwd(), "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join("visualization", "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join(os.getcwd(), "visualization", "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join(os.path.dirname(os.getcwd()), "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            # Then check data directories as fallback
+            os.path.join("data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join("visualization", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join(os.getcwd(), "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join(os.getcwd(), "visualization", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join(os.path.dirname(os.getcwd()), "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json")
+        ]
         
-        if not os.path.exists(paths_file):
-            print(f"Cluster paths file not found: {paths_file}")
-            return None
-            
-        # Load the JSON data
-        with open(paths_file, 'r') as f:
-            cluster_paths_data = json.load(f)
-            
-        print(f"Loaded cluster paths data for {dataset} (seed {seed})")
-        return cluster_paths_data
+        # Try each path
+        for paths_file in possible_paths:
+            if os.path.exists(paths_file):
+                print(f"Found cluster paths file at: {paths_file}")
+                # Load the JSON data
+                with open(paths_file, 'r') as f:
+                    cluster_paths_data = json.load(f)
+                
+                # Verify that similarity data is populated
+                has_similarity = (
+                    "similarity" in cluster_paths_data and
+                    "normalized_similarity" in cluster_paths_data["similarity"] and
+                    len(cluster_paths_data["similarity"]["normalized_similarity"]) > 0
+                )
+                
+                if has_similarity:
+                    print(f"Successfully loaded cluster paths data with similarity matrix for {dataset} (seed {seed})")
+                    similarity_count = len(cluster_paths_data["similarity"]["normalized_similarity"])
+                    print(f"Found {similarity_count} similarity connections")
+                    return cluster_paths_data
+                else:
+                    print(f"Warning: File {paths_file} has empty similarity matrices, continuing search...")
+        
+        # If we get here, no file was found or all files had empty similarity matrices
+        print(f"No cluster paths file with populated similarity data found. Checked these locations:")
+        for path in possible_paths:
+            print(f"  - {path}")
+        
+        print(f"\nPlease run: python -m concept_fragmentation.analysis.cluster_paths --compute_similarity --min_similarity 0.3 --dataset {dataset} --seed {seed}")
+        print(f"This will generate a new paths file with similarity data in the results directory.")
+        return None
     
     except Exception as e:
         import traceback
@@ -1868,6 +1920,12 @@ def update_path_density_graph(cl_metrics, metric_controls):
             title=f"Error: {str(e)}",
             height=600
         ), {"display": "block"}
+
+# Register the callbacks for the Similarity Network tab
+register_similarity_callbacks(app)
+
+# Register the callbacks for the Path Fragmentation tab
+register_path_fragmentation_callbacks(app)
 
 if __name__ == "__main__":
     print("Starting Dash app...")

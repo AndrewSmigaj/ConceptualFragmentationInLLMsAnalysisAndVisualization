@@ -13,4 +13,8 @@ plotly>=5.18.0,<6.0.0
 kaleido>=0.2.1,<0.3.0  # For static image export
 
 # Dashboard (optional)
-dash>=2.14.0,<3.0.0 
+dash>=2.14.0,<3.0.0
+
+# Cross-Layer Metrics visualization
+networkx>=3.1,<4.0.0  # For network graph visualization
+psutil>=5.9.0,<6.0.0  # For process management in run_dash_safe.py

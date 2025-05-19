@@ -1,6 +1,6 @@
 # Neural Network Concept Fragmentation Visualization
 
-This module provides tools for visualizing concept fragmentation in neural networks by creating 3D trajectory visualizations that show how samples move through the network layers.
+This module provides tools for visualizing concept fragmentation in neural networks by creating 3D trajectory visualizations that show how samples move through the network layers, along with cross-layer metrics visualizations.
 
 ## Features
 
@@ -9,6 +9,16 @@ This module provides tools for visualizing concept fragmentation in neural netwo
 - **Comparison Views**: Compare baseline and regularized models side-by-side
 - **Interactive Exploration**: Rotate, zoom, and filter visualizations
 - **Static Exports**: Generate publication-quality PDF/SVG figures
+- **Cross-Layer Metrics**: Visualize relationships between clusters across layers
+
+### Cross-Layer Metrics
+
+The dashboard now includes a dedicated tab for cross-layer metrics with the following visualizations:
+
+1. **Centroid Similarity Heatmaps**: Shows similarity between cluster centroids across different layers
+2. **Membership Overlap Flow**: Sankey diagram showing how samples flow between clusters across layers
+3. **Trajectory Fragmentation**: Bar chart showing how much samples from the same class are split across clusters in each layer
+4. **Inter-Cluster Path Density**: Network graph showing connections between clusters across adjacent layers
 
 ## Installation
 
@@ -16,6 +26,16 @@ This module provides tools for visualizing concept fragmentation in neural netwo
 
 ```bash
 pip install -r requirements.txt
+```
+
+For cross-layer metrics visualizations, you need these additional dependencies:
+```bash
+pip install networkx scikit-learn scipy
+```
+
+Or use the safer runner which will install missing dependencies automatically:
+```bash
+python run_dash_safe.py
 ```
 
 2. Ensure you have access to the activation data at `D:/concept_fragmentation_results/` or update the path in `config.py`.
@@ -83,6 +103,8 @@ save_figure(fig, "titanic_trajectories.html")
 - **dash_app.py**: Interactive web dashboard
 - **main.py**: Command-line entry point
 - **notebooks/**: Example Jupyter notebooks
+- **cross_layer_viz.py**: Cross-layer metrics visualizations
+- **run_dash_safe.py**: Safe runner with dependency checks
 
 ## Customization
 

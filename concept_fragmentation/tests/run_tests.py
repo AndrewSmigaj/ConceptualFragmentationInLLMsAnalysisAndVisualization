@@ -29,6 +29,8 @@ def run_specific_test(test_name):
         module_name = 'test_e2e'
     elif 'import' in test_name:
         module_name = 'test_imports'
+    elif 'path' in test_name or 'similarity' in test_name or 'enhanced' in test_name:
+        module_name = 'test_enhanced_path_analysis'
     else:
         print(f"Unknown test name: {test_name}")
         return False
@@ -55,7 +57,7 @@ def run_with_pytest():
 
 def main():
     parser = argparse.ArgumentParser(description="Run the Concept Fragmentation test suite.")
-    parser.add_argument('--test', choices=['all', 'metrics', 'hooks', 'e2e', 'imports'],
+    parser.add_argument('--test', choices=['all', 'metrics', 'hooks', 'e2e', 'imports', 'path', 'similarity', 'enhanced'],
                         default='all', help='Specify which tests to run')
     parser.add_argument('--pytest', action='store_true', help='Use pytest instead of unittest')
     

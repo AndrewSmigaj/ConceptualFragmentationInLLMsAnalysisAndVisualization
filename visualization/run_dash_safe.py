@@ -3,6 +3,7 @@
 Safer Dash runner script.
 
 This script runs the Dash app with better resource management and cleanup.
+It also checks for dependencies required by the cross-layer metrics visualizations.
 """
 
 import os
@@ -12,6 +13,42 @@ import time
 import signal
 import subprocess
 import psutil
+import importlib.util
+
+def check_dependencies():
+    """Check if all required dependencies are installed."""
+    dependencies = [
+        "dash",
+        "plotly",
+        "pandas",
+        "numpy",
+        "networkx",  # Added for cross-layer metrics network visualization
+        "scikit-learn",  # For various metrics computation
+        "scipy",  # For various metrics computation
+    ]
+    
+    missing = []
+    for dep in dependencies:
+        if not importlib.util.find_spec(dep):
+            missing.append(dep)
+    
+    if missing:
+        print(f"Missing dependencies: {', '.join(missing)}")
+        print("Installing missing packages...")
+        
+        try:
+            import pip
+            for package in missing:
+                print(f"Installing {package}...")
+                subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+            print("All dependencies installed!")
+        except Exception as e:
+            print(f"Error installing dependencies: {e}")
+            print("Please install the following packages manually:")
+            print(f"  {' '.join(missing)}")
+            return False
+    
+    return True
 
 def find_dash_process():
     """Find and return any running Dash processes."""
@@ -82,6 +119,11 @@ if __name__ == "__main__":
     for sig in (signal.SIGTERM, signal.SIGINT):
         signal.signal(sig, lambda s, f: sys.exit(0))
     
+    # Check for dependencies first
+    if not check_dependencies():
+        print("Critical dependencies missing. Exiting...")
+        sys.exit(1)
+    
     # Kill any existing Dash processes first
     kill_existing_dash()
     
@@ -91,6 +133,8 @@ if __name__ == "__main__":
     print(f"Starting Dash app from {dash_app_path}")
     print("Navigate to http://127.0.0.1:8050/ in your web browser.")
     print("Press Ctrl+C to stop the server and clean up.")
+    print("\nThe dashboard now includes Cross-Layer Metrics visualizations!")
+    print("Click on the 'Cross-Layer Metrics' tab to explore them.")
     
     # Start the Dash app as a subprocess
     dash_process = subprocess.Popen(

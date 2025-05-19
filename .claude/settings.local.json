@@ -11,7 +11,13 @@
       "Bash(source:*)",
       "Bash(dos2unix:*)",
       "Bash(pip3 install:*)",
-      "Bash(apt-get:*)"
+      "Bash(apt-get:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(./venv311/Scripts/python tests/test_cross_layer_dashboard.py)",
+      "Bash(pip install:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

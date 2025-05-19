@@ -22,6 +22,16 @@ from datetime import datetime
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
+# Import our similarity metrics module
+from concept_fragmentation.analysis.similarity_metrics import (
+    compute_centroid_similarity,
+    normalize_similarity_matrix,
+    compute_layer_similarity_matrix,
+    get_top_similar_clusters,
+    serialize_similarity_matrix,
+    deserialize_similarity_matrix
+)
+
 
 def _natural_layer_sort(layer_name: str) -> Tuple[str, int]:
     """
@@ -194,7 +204,218 @@ def compute_clusters_for_layer(
     return best_k, best_centers, best_labels
 
 
-def compute_cluster_paths(layer_clusters: Dict[str, Dict[str, Any]]) -> Tuple[np.ndarray, List[str]]:
+def assign_unique_cluster_ids(layer_clusters: Dict[str, Dict[str, Any]]) -> Tuple[Dict[str, Dict[str, Any]], Dict[int, Tuple[str, int, int]], Dict[str, Dict[int, int]]]:
+    """
+    Assign unique IDs to all clusters across all layers.
+    
+    This function preserves the original cluster labels while adding unique IDs.
+    
+    Args:
+        layer_clusters: Dictionary of cluster information per layer
+        
+    Returns:
+        Tuple of (updated_layer_clusters, id_to_layer_cluster, cluster_to_unique_id)
+        - updated_layer_clusters: Same dictionary with added unique IDs
+        - id_to_layer_cluster: Mapping from unique ID to (layer_name, original_id, layer_idx)
+        - cluster_to_unique_id: Mapping from (layer_name, original_id) to unique ID
+    """
+    # Sort layers to ensure consistent ordering
+    layer_names = sorted(layer_clusters.keys(), key=_natural_layer_sort)
+    
+    # Create mapping from unique ID to (layer, original_cluster_id, layer_idx)
+    id_to_layer_cluster = {}
+    cluster_to_unique_id = {}
+    next_id = 0
+    
+    # Assign unique IDs to each cluster in each layer
+    for layer_idx, layer_name in enumerate(layer_names):
+        original_labels = layer_clusters[layer_name]["labels"]
+        unique_clusters = np.unique(original_labels)
+        
+        # Create mapping for this layer's clusters
+        layer_mapping = {}
+        for original_id in unique_clusters:
+            unique_id = next_id
+            layer_mapping[original_id] = unique_id
+            id_to_layer_cluster[unique_id] = (layer_name, original_id, layer_idx)
+            next_id += 1
+        
+        cluster_to_unique_id[layer_name] = layer_mapping
+        
+        # Create new labels array with unique IDs
+        unique_labels = np.zeros_like(original_labels)
+        for orig_id, unique_id in layer_mapping.items():
+            unique_labels[original_labels == orig_id] = unique_id
+        
+        # Update layer clusters with unique IDs while preserving original
+        layer_clusters[layer_name]["unique_labels"] = unique_labels
+        layer_clusters[layer_name]["id_mapping"] = {
+            unique_id: (original_id, layer_idx) for original_id, unique_id in layer_mapping.items()
+        }
+    
+    return layer_clusters, id_to_layer_cluster, cluster_to_unique_id
+
+
+def get_human_readable_path(path: np.ndarray, id_to_layer_cluster: Dict[int, Tuple[str, int, int]]) -> str:
+    """
+    Convert a path of unique IDs to a human-readable string.
+    
+    Args:
+        path: List of unique cluster IDs
+        id_to_layer_cluster: Mapping from unique IDs to layer information
+        
+    Returns:
+        Human-readable path string (e.g., "L0C1→L1C2→L2C0")
+    """
+    parts = []
+    for cluster_id in path:
+        if cluster_id in id_to_layer_cluster:
+            layer_name, original_id, layer_idx = id_to_layer_cluster[cluster_id]
+            parts.append(f"L{layer_idx}C{original_id}")
+        else:
+            parts.append(f"Unknown({cluster_id})")
+    
+    return "→".join(parts)
+
+
+def compute_fragmentation_score(
+    path: np.ndarray,
+    similarity_matrix: Dict[Tuple[int, int], float],
+    id_to_layer_cluster: Dict[int, Tuple[str, int, int]]
+) -> float:
+    """
+    Compute a fragmentation score for a path through the network.
+    
+    A high fragmentation score means that clusters in the path have low similarity
+    across consecutive layers, indicating that concepts are being fragmented.
+    
+    Args:
+        path: Array of cluster IDs representing a path through the network
+        similarity_matrix: Dictionary mapping (cluster1_id, cluster2_id) to similarity score
+        id_to_layer_cluster: Mapping from unique ID to layer information
+        
+    Returns:
+        Fragmentation score in [0, 1], where 0 is perfectly coherent (no fragmentation)
+        and 1 is completely fragmented
+    """
+    if len(path) < 2:
+        return 0.0  # Can't compute fragmentation for a single point
+    
+    # Convert similarity matrix to lookup for faster access
+    similarity_lookup = {}
+    for (id1, id2), sim in similarity_matrix.items():
+        if id1 not in similarity_lookup:
+            similarity_lookup[id1] = {}
+        if id2 not in similarity_lookup:
+            similarity_lookup[id2] = {}
+        similarity_lookup[id1][id2] = sim
+        similarity_lookup[id2][id1] = sim  # Ensure symmetry
+    
+    # Compute average similarity between consecutive pairs
+    total_similarity = 0.0
+    valid_pairs = 0
+    
+    for i in range(len(path) - 1):
+        id1 = path[i]
+        id2 = path[i + 1]
+        
+        # Skip invalid pairs (missing cluster IDs)
+        if id1 not in id_to_layer_cluster or id2 not in id_to_layer_cluster:
+            continue
+        
+        # Get similarity between consecutive clusters
+        similarity = similarity_lookup.get(id1, {}).get(id2, 0.0)
+        total_similarity += similarity
+        valid_pairs += 1
+    
+    if valid_pairs == 0:
+        return 1.0  # Maximum fragmentation if no valid pairs
+    
+    avg_similarity = total_similarity / valid_pairs
+    
+    # Convert similarity to fragmentation (1 - similarity)
+    fragmentation = 1.0 - avg_similarity
+    
+    return fragmentation
+
+
+def identify_similarity_convergent_paths(
+    unique_paths: np.ndarray,
+    similarity_matrix: Dict[Tuple[int, int], float],
+    id_to_layer_cluster: Dict[int, Tuple[str, int, int]],
+    min_similarity: float = 0.6,
+    max_layer_distance: int = None
+) -> Dict[int, List[Dict[str, Any]]]:
+    """
+    Identify paths where clusters in later layers have high similarity to clusters in earlier layers.
+    
+    Args:
+        unique_paths: Array where paths[i,j] is the unique cluster ID of sample i in layer j
+        similarity_matrix: Dictionary mapping (cluster1_id, cluster2_id) to similarity score
+        id_to_layer_cluster: Mapping from unique ID to layer information
+        min_similarity: Minimum similarity threshold to consider
+        max_layer_distance: Maximum distance between layers to consider (None for any distance)
+        
+    Returns:
+        Dictionary mapping path_idx to list of detected similarity convergences
+    """
+    if not similarity_matrix:
+        return {}
+    
+    # Convert sparse similarity matrix to more efficient lookup
+    similarity_lookup = {}
+    for (id1, id2), sim in similarity_matrix.items():
+        if id1 not in similarity_lookup:
+            similarity_lookup[id1] = {}
+        if id2 not in similarity_lookup:
+            similarity_lookup[id2] = {}
+        similarity_lookup[id1][id2] = sim
+        similarity_lookup[id2][id1] = sim  # Ensure symmetry
+    
+    convergent_paths = {}
+    
+    # For each path
+    for path_idx, path in enumerate(unique_paths):
+        convergences = []
+        
+        # For each pair of clusters in the path
+        for i in range(len(path)):
+            for j in range(i+1, len(path)):
+                id1 = path[i]
+                id2 = path[j]
+                
+                # Skip if we don't have information about these clusters
+                if id1 not in id_to_layer_cluster or id2 not in id_to_layer_cluster:
+                    continue
+                
+                # Get layer indices
+                _, _, layer_idx1 = id_to_layer_cluster[id1]
+                _, _, layer_idx2 = id_to_layer_cluster[id2]
+                
+                # Skip if layers are too far apart
+                if max_layer_distance is not None and (layer_idx2 - layer_idx1) > max_layer_distance:
+                    continue
+                
+                # Check similarity
+                similarity = similarity_lookup.get(id1, {}).get(id2, 0.0)
+                
+                if similarity >= min_similarity:
+                    convergences.append({
+                        "early_layer": layer_idx1,
+                        "late_layer": layer_idx2,
+                        "early_cluster": id1,
+                        "late_cluster": id2,
+                        "similarity": similarity
+                    })
+        
+        # Add to results if we found any convergences in this path
+        if convergences:
+            convergent_paths[path_idx] = convergences
+    
+    return convergent_paths
+
+
+def compute_cluster_paths(layer_clusters: Dict[str, Dict[str, Any]]) -> Tuple[np.ndarray, List[str], Dict[int, Tuple[str, int, int]], np.ndarray, List[str]]:
     """
     Compute cluster paths based on layer-wise cluster assignments.
     
@@ -203,36 +424,50 @@ def compute_cluster_paths(layer_clusters: Dict[str, Dict[str, Any]]) -> Tuple[np
                        {layer_name: {"k": k_opt, "centers": centers, "labels": labels}}
                        
     Returns:
-        Tuple of (paths, layer_names)
-        - paths: Array of shape (n_samples, n_layers) where paths[i,j] is the 
-                cluster of sample i in layer j
+        Tuple of (unique_paths, layer_names, id_to_layer_cluster, original_paths, human_readable_paths)
+        - unique_paths: Array where paths[i,j] is the unique cluster ID of sample i in layer j
         - layer_names: List of layer names in the order used for paths
+        - id_to_layer_cluster: Mapping from unique ID to (layer_name, original_id, layer_idx)
+        - original_paths: Array where paths[i,j] is the original cluster ID (0-based within layer)
+        - human_readable_paths: List of human-readable path strings for each sample
     """
+    # Assign unique IDs if not already done
+    if not all("unique_labels" in layer_info for layer_info in layer_clusters.values()):
+        layer_clusters, id_to_layer_cluster, _ = assign_unique_cluster_ids(layer_clusters)
+    else:
+        # Extract mapping from existing data
+        id_to_layer_cluster = {}
+        for layer_idx, (layer_name, layer_info) in enumerate(sorted(layer_clusters.items(), key=lambda x: _natural_layer_sort(x[0]))):
+            if "id_mapping" in layer_info:
+                for unique_id, (original_id, _) in layer_info["id_mapping"].items():
+                    id_to_layer_cluster[unique_id] = (layer_name, original_id, layer_idx)
+    
     # Sort layers naturally
     layer_names = sorted(layer_clusters.keys(), key=_natural_layer_sort)
     
-    # Ensure all layers have the same number of samples
-    first_layer = layer_names[0]
-    n_samples = len(layer_clusters[first_layer]["labels"])
-    
-    # Collect labels for each layer
-    labels_per_layer = []
+    # Collect both original and unique labels for each layer
+    unique_labels_per_layer = []
+    original_labels_per_layer = []
     for layer in layer_names:
-        layer_labels = layer_clusters[layer]["labels"]
-        if len(layer_labels) != n_samples:
-            raise ValueError(f"Layer {layer} has {len(layer_labels)} samples, expected {n_samples}")
-        labels_per_layer.append(layer_labels)
+        unique_labels_per_layer.append(layer_clusters[layer]["unique_labels"])
+        original_labels_per_layer.append(layer_clusters[layer]["labels"])
     
     # Transpose so rows are samples, columns are layers
-    paths = np.vstack(labels_per_layer).T  # Shape: (n_samples, n_layers)
+    unique_paths = np.vstack(unique_labels_per_layer).T  # Shape: (n_samples, n_layers)
+    original_paths = np.vstack(original_labels_per_layer).T  # Shape: (n_samples, n_layers)
     
-    return paths, layer_names
+    # Create human-readable versions of paths
+    human_readable_paths = [get_human_readable_path(path, id_to_layer_cluster) for path in unique_paths]
+    
+    return unique_paths, layer_names, id_to_layer_cluster, original_paths, human_readable_paths
 
 
 def compute_path_archetypes(
     paths: np.ndarray, 
     layer_names: List[str], 
     df: pd.DataFrame, 
+    id_to_layer_cluster: Optional[Dict[int, Tuple[str, int, int]]] = None,
+    human_readable_paths: Optional[List[str]] = None,
     target_column: Optional[str] = None,
     demographic_columns: Optional[List[str]] = None,
     top_k: int = 3,
@@ -245,6 +480,8 @@ def compute_path_archetypes(
         paths: Array of shape (n_samples, n_layers) containing cluster IDs
         layer_names: Names of the layers corresponding to path columns
         df: Original dataframe with demographic information
+        id_to_layer_cluster: Mapping from unique IDs to layer information
+        human_readable_paths: Pre-computed human-readable paths (if available)
         target_column: Name of the target column (e.g., 'survived')
         demographic_columns: Columns to include in demographic statistics
         top_k: Number of most frequent paths to analyze
@@ -253,11 +490,16 @@ def compute_path_archetypes(
     Returns:
         List of dictionaries, each representing a path archetype
     """
-    # Convert paths to string representation for counting
-    path_strings = []
-    for path in paths:
-        path_str = "→".join(str(cluster_id) for cluster_id in path)
-        path_strings.append(path_str)
+    # Generate path strings for counting
+    if human_readable_paths is not None:
+        # Use pre-computed human-readable paths if provided
+        path_strings = human_readable_paths
+    elif id_to_layer_cluster is not None:
+        # Generate human-readable paths from unique IDs
+        path_strings = [get_human_readable_path(path, id_to_layer_cluster) for path in paths]
+    else:
+        # Fall back to simple numeric representation
+        path_strings = ["→".join(str(cluster_id) for cluster_id in path) for path in paths]
     
     # Count path frequencies
     path_counts = {}
@@ -283,10 +525,16 @@ def compute_path_archetypes(
         # Get indices of members with this path
         member_indices = path_info["indices"]
         
+        # Get sample path to extract numeric cluster IDs (for future reference)
+        sample_idx = member_indices[0]
+        numeric_path = paths[sample_idx].tolist()
+        
         # Create archetype with basic info
         archetype = {
-            "path": path_str,
+            "path": path_str,  # Human-readable path
+            "numeric_path": numeric_path,  # Underlying numeric IDs
             "count": path_info["count"],
+            "percentage": 100 * path_info["count"] / len(paths),  # Add percentage of total
             "demo_stats": {},
             "member_indices": member_indices[:max_members]  # Limit number of indices
         }
@@ -339,10 +587,13 @@ def write_cluster_paths(
     demographic_columns: Optional[List[str]] = None,
     output_dir: str = "data/cluster_paths",
     top_k: int = 3,
-    max_members: int = 50
+    max_members: int = 50,
+    compute_similarity: bool = True,
+    similarity_metric: str = 'cosine',
+    min_similarity: float = 0.3
 ) -> str:
     """
-    Compute and save cluster paths and associated information.
+    Compute and save cluster paths and associated information using unique cluster IDs.
     
     Args:
         dataset_name: Name of the dataset
@@ -358,29 +609,148 @@ def write_cluster_paths(
     Returns:
         Path to the written JSON file
     """
-    # Compute cluster paths
-    paths, layer_names = compute_cluster_paths(layer_clusters)
+    # Compute cluster paths with unique IDs
+    unique_paths, layer_names, id_to_layer_cluster, original_paths, human_readable_paths = compute_cluster_paths(layer_clusters)
+    
+    # Create serializable version of id_to_layer_cluster
+    serializable_mapping = {}
+    for unique_id, (layer_name, original_id, layer_idx) in id_to_layer_cluster.items():
+        serializable_mapping[str(unique_id)] = {
+            "layer_name": layer_name,
+            "original_id": int(original_id),
+            "layer_idx": int(layer_idx)
+        }
+    
+    # Compute similarity matrix between clusters across layers if requested
+    similarity_data = {}
+    similarity_matrix = {}
+    normalized_matrix = {}
+    
+    if compute_similarity:
+        print(f"Computing centroid similarity matrix using {similarity_metric} similarity...")
+        # Compute raw similarity matrix
+        similarity_matrix = compute_centroid_similarity(
+            layer_clusters,
+            id_to_layer_cluster,
+            metric=similarity_metric,
+            min_similarity=min_similarity,
+            same_layer=False
+        )
+        
+        # Normalize similarity matrix to [0, 1] range
+        normalized_matrix = normalize_similarity_matrix(similarity_matrix)
+        
+        # Compute layer-wise similarity statistics
+        layer_similarity = compute_layer_similarity_matrix(
+            normalized_matrix,
+            id_to_layer_cluster
+        )
+        
+        # Get top similar clusters for each cluster
+        top_similar_clusters = get_top_similar_clusters(
+            normalized_matrix, 
+            id_to_layer_cluster,
+            top_k=min(5, top_k),
+            min_similarity=min_similarity
+        )
+        
+        # Identify similarity-convergent paths (where later layers have clusters similar to earlier ones)
+        convergent_paths = identify_similarity_convergent_paths(
+            unique_paths,
+            normalized_matrix,
+            id_to_layer_cluster,
+            min_similarity=min_similarity,
+            max_layer_distance=None
+        )
+        
+        # Compute fragmentation scores for all paths
+        print("Computing fragmentation scores for all paths...")
+        fragmentation_scores = np.zeros(len(unique_paths))
+        for path_idx, path in enumerate(unique_paths):
+            fragmentation_scores[path_idx] = compute_fragmentation_score(
+                path, normalized_matrix, id_to_layer_cluster
+            )
+        
+        # Identify paths with notably high or low fragmentation
+        low_frag_threshold = np.percentile(fragmentation_scores, 25)  # bottom 25%
+        high_frag_threshold = np.percentile(fragmentation_scores, 75)  # top 25%
+        
+        high_fragmentation_paths = np.where(fragmentation_scores >= high_frag_threshold)[0].tolist()
+        low_fragmentation_paths = np.where(fragmentation_scores <= low_frag_threshold)[0].tolist()
+        
+        print(f"Identified {len(high_fragmentation_paths)} paths with high fragmentation (score >= {high_frag_threshold:.3f})")
+        print(f"Identified {len(low_fragmentation_paths)} paths with low fragmentation (score <= {low_frag_threshold:.3f})")
+        
+        # Convert path indices to human-readable paths for easier interpretation
+        human_readable_convergent_paths = {}
+        for path_idx, convergences in convergent_paths.items():
+            # Get the human-readable version of this path
+            if path_idx < len(human_readable_paths):
+                path_str = human_readable_paths[path_idx]
+                # Convert cluster IDs in convergences to human-readable format
+                readable_convergences = []
+                for conv in convergences:
+                    readable_conv = conv.copy()
+                    if conv["early_cluster"] in id_to_layer_cluster:
+                        _, early_original_id, early_layer_idx = id_to_layer_cluster[conv["early_cluster"]]
+                        readable_conv["early_cluster_str"] = f"L{early_layer_idx}C{early_original_id}"
+                    if conv["late_cluster"] in id_to_layer_cluster:
+                        _, late_original_id, late_layer_idx = id_to_layer_cluster[conv["late_cluster"]]
+                        readable_conv["late_cluster_str"] = f"L{late_layer_idx}C{late_original_id}"
+                    readable_convergences.append(readable_conv)
+                human_readable_convergent_paths[path_str] = readable_convergences
+        
+        # Prepare serialized versions for JSON output
+        similarity_data = {
+            "raw_similarity": serialize_similarity_matrix(similarity_matrix),
+            "normalized_similarity": serialize_similarity_matrix(normalized_matrix),
+            "layer_similarity": {f"{l1},{l2}": stats for (l1, l2), stats in layer_similarity.items()},
+            "top_similar_clusters": {str(cluster_id): [(int(similar_id), float(sim)) 
+                                   for similar_id, sim in similarities] 
+                               for cluster_id, similarities in top_similar_clusters.items()},
+            "convergent_paths": {str(path_idx): convergences for path_idx, convergences in convergent_paths.items()},
+            "human_readable_convergent_paths": human_readable_convergent_paths,
+            "fragmentation_scores": {
+                "scores": fragmentation_scores.tolist(),
+                "high_fragmentation_paths": high_fragmentation_paths,
+                "low_fragmentation_paths": low_fragmentation_paths,
+                "high_threshold": float(high_frag_threshold),
+                "low_threshold": float(low_frag_threshold),
+                "mean": float(np.mean(fragmentation_scores)),
+                "median": float(np.median(fragmentation_scores)),
+                "std": float(np.std(fragmentation_scores))
+            }
+        }
+        
+        print(f"Found {len(similarity_matrix)} similarity relationships between clusters")
+        print(f"Identified {len(convergent_paths)} paths with similarity convergence")
     
     # Create output data structure
     data = {
         "dataset": dataset_name,
         "seed": seed,
         "layers": layer_names,
-        "paths": paths.tolist()  # Convert numpy array to list for JSON
+        "unique_paths": unique_paths.tolist(),  # Paths with unique IDs
+        "original_paths": original_paths.tolist(),  # Paths with layer-local IDs
+        "human_readable_paths": human_readable_paths,  # Human-readable path strings
+        "id_mapping": serializable_mapping,  # Mapping from unique ID to layer info
+        "similarity": similarity_data  # Similarity metrics between clusters
     }
     
     # Add target column values if specified
     if target_column and target_column in df.columns:
         # Ensure df has the right number of rows
-        if len(df) >= len(paths):
+        if len(df) >= len(unique_paths):
             # Only take the rows corresponding to the paths
-            data[target_column] = df[target_column].values[:len(paths)].tolist()
+            data[target_column] = df[target_column].values[:len(unique_paths)].tolist()
     
-    # Compute path archetypes
+    # Compute path archetypes with enhanced information
     archetypes = compute_path_archetypes(
-        paths, 
+        unique_paths, 
         layer_names, 
-        df, 
+        df,
+        id_to_layer_cluster=id_to_layer_cluster,
+        human_readable_paths=human_readable_paths,
         target_column=target_column, 
         demographic_columns=demographic_columns,
         top_k=top_k,
@@ -395,6 +765,41 @@ def write_cluster_paths(
     output_path = os.path.join(output_dir, f"{dataset_name}_seed_{seed}_paths.json")
     with open(output_path, 'w') as f:
         json.dump(data, f, indent=2)
+    
+    # Save copies in all commonly accessed locations for compatibility
+    # 1. In data/cluster_paths
+    data_output_dir = os.path.join("data", "cluster_paths")
+    os.makedirs(data_output_dir, exist_ok=True)
+    data_output_path = os.path.join(data_output_dir, f"{dataset_name}_seed_{seed}_paths.json")
+    with open(data_output_path, 'w') as f:
+        json.dump(data, f, indent=2)
+        
+    # 2. In visualization/data/cluster_paths
+    vis_data_dir = os.path.join("visualization", "data", "cluster_paths") 
+    os.makedirs(vis_data_dir, exist_ok=True)
+    vis_data_path = os.path.join(vis_data_dir, f"{dataset_name}_seed_{seed}_paths.json")
+    with open(vis_data_path, 'w') as f:
+        json.dump(data, f, indent=2)
+        
+    # 3. In absolute project root locations (create absolute paths)
+    project_root = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    abs_data_path = os.path.join(project_root, "data", "cluster_paths", f"{dataset_name}_seed_{seed}_paths.json")
+    os.makedirs(os.path.dirname(abs_data_path), exist_ok=True)
+    with open(abs_data_path, 'w') as f:
+        json.dump(data, f, indent=2)
+    
+    print(f"Saved cluster paths with unique IDs to:")
+    print(f"  - {output_path}")
+    print(f"  - {data_output_path}")
+    print(f"  - {vis_data_path}")
+    print(f"  - {abs_data_path}")
+    
+    # Check if the files were successfully written
+    for path in [output_path, data_output_path, vis_data_path, abs_data_path]:
+        if os.path.exists(path):
+            print(f"✓ Verified: {path} exists")
+        else:
+            print(f"⚠ Warning: {path} was not created!")
     
     return output_path
 
@@ -411,12 +816,15 @@ if __name__ == "__main__":
     from concept_fragmentation.data.loaders import get_dataset_loader
     from concept_fragmentation.config import RESULTS_DIR
     
-    parser = argparse.ArgumentParser(description="Compute and save cluster paths.")
+    parser = argparse.ArgumentParser(description="Compute and save cluster paths using unique cluster IDs.")
     parser.add_argument("--dataset", type=str, required=True, help="Dataset name (e.g., titanic)")
     parser.add_argument("--seed", type=int, required=True, help="Random seed")
     parser.add_argument("--max_k", type=int, default=10, help="Maximum number of clusters")
     parser.add_argument("--output_dir", type=str, default=None, help="Output directory (default: [RESULTS_DIR]/cluster_paths)")
-    parser.add_argument("--top_k", type=int, default=3, help="Number of path archetypes")
+    parser.add_argument("--top_k", type=int, default=5, help="Number of path archetypes")
+    parser.add_argument("--compute_similarity", action="store_true", help="Compute similarity matrix between clusters")
+    parser.add_argument("--similarity_metric", type=str, default="cosine", choices=["cosine", "euclidean"], help="Similarity metric to use")
+    parser.add_argument("--min_similarity", type=float, default=0.3, help="Minimum similarity threshold")
     parser.add_argument("--max_members", type=int, default=50, help="Maximum member indices per archetype")
     parser.add_argument("--target_column", type=str, help="Target column (e.g., 'survived' for Titanic)")
     parser.add_argument("--demographic_columns", type=str, nargs="+", help="Demographic columns to include")
@@ -490,16 +898,29 @@ if __name__ == "__main__":
             layer_clusters[layer_name] = {
                 "k": k,
                 "centers": centers,
-                "labels": labels
+                "labels": labels,
+                "activations": layer_activations  # Store activations for centroid similarity later
             }
+    
+    # Assign unique IDs to clusters across layers
+    print("Assigning unique cluster IDs across all layers...")
+    layer_clusters, id_to_layer_cluster, cluster_to_unique_id = assign_unique_cluster_ids(layer_clusters)
     
     # Set default output directory if not specified
     if args.output_dir is None:
+        # Try both RESULTS_DIR and a fallback to the data directory
         output_dir = os.path.join(RESULTS_DIR, "cluster_paths")
+        
+        # Also create a copy in the data directory for compatibility with existing code
+        data_output_dir = os.path.join("data", "cluster_paths")
+        os.makedirs(data_output_dir, exist_ok=True)
     else:
         output_dir = args.output_dir
+        
+    # Ensure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
     
-    # Write cluster paths and archetypes
+    # Write cluster paths and archetypes with unique IDs
     output_path = write_cluster_paths(
         args.dataset,
         args.seed,
@@ -509,7 +930,48 @@ if __name__ == "__main__":
         demographic_columns=args.demographic_columns,
         output_dir=output_dir,
         top_k=args.top_k,
-        max_members=args.max_members
+        max_members=args.max_members,
+        compute_similarity=args.compute_similarity,
+        similarity_metric=args.similarity_metric,
+        min_similarity=args.min_similarity
     )
     
-    print(f"Cluster paths written to: {output_path}") 
+    # Display summary information
+    total_clusters = sum(len(np.unique(layer_info["labels"])) for layer_info in layer_clusters.values())
+    unique_ids = len(id_to_layer_cluster)
+    
+    # Add sanity check for total datapoints
+    sample_counts = []
+    for layer_name, layer_info in layer_clusters.items():
+        if "labels" in layer_info:
+            sample_count = len(layer_info["labels"])
+            sample_counts.append((layer_name, sample_count))
+    
+    print(f"Summary:")
+    print(f"- Dataset: {args.dataset}")
+    print(f"- Layers: {', '.join(sorted(layer_clusters.keys(), key=_natural_layer_sort))}")
+    print(f"- Total clusters across all layers: {total_clusters}")
+    print(f"- Unique cluster IDs assigned: {unique_ids}")
+    print(f"- Top {args.top_k} paths analyzed")
+    
+    # Print sample count sanity check
+    print(f"\nSanity Check - Sample counts by layer:")
+    for layer_name, count in sorted(sample_counts, key=lambda x: _natural_layer_sort(x[0])):
+        print(f"  {layer_name}: {count} samples")
+    
+    if sample_counts:
+        first_layer_count = sample_counts[0][1]
+        all_same = all(count == first_layer_count for _, count in sample_counts)
+        if all_same:
+            print(f"✓ All layers have the same number of samples ({first_layer_count})")
+        else:
+            print(f"⚠ WARNING: Inconsistent sample counts across layers!")
+            
+    # Print total datapoints across all clusters
+    total_datapoints = sum(count for _, count in sample_counts)
+    points_per_layer = sample_counts[0][1] if sample_counts else 0
+    expected_total = points_per_layer * len(sample_counts)
+    print(f"- Total datapoints across all clusters: {total_datapoints}")
+    print(f"- Expected total ({points_per_layer} samples × {len(sample_counts)} layers): {expected_total}")
+    
+    print(f"\n- Cluster paths written to: {output_path}")
