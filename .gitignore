@@ -203,6 +203,8 @@ checkpoints/
 
 # Configuration that might contain sensitive information
 local_config.py
+concept_fragmentation/llm/api_keys.py
+**/api_keys.py
 
 # Temporary experiment files
 tmp/

@@ -48,6 +48,9 @@ from concept_fragmentation.metrics.cross_layer_metrics import (
     compute_trajectory_fragmentation, compute_path_density,
     analyze_cross_layer_metrics
 )
+
+# Import LLM tab
+from visualization.llm_tab import create_llm_tab, register_llm_callbacks
 from visualization.cross_layer_viz import (
     plot_centroid_similarity_heatmap, plot_membership_overlap_sankey,
     plot_trajectory_fragmentation_bars, plot_path_density_network
@@ -67,6 +70,13 @@ from visualization.similarity_network_tab import (
 from visualization.path_fragmentation_tab import (
     create_path_fragmentation_tab,
     register_path_fragmentation_callbacks
+)
+
+# Import LLM integration
+from visualization.llm_tab import (
+    create_llm_tab,
+    register_llm_callbacks,
+    check_provider_availability
 )
 
 # Define the datasets and seeds
@@ -152,6 +162,9 @@ app.layout = html.Div([
         
         # Path Fragmentation Tab
         create_path_fragmentation_tab(),
+        
+        # LLM Integration Tab
+        create_llm_tab(),
         
         # Tab 1: Trajectory Visualization
         dcc.Tab(label="Trajectory Visualization", children=[
@@ -537,6 +550,14 @@ def update_embeddings(dataset, seed, max_k):
         # DEBUG: Print which numeric features are available
         print(f"DEBUG: Numeric features from config: {numeric_features}")
         print(f"DEBUG: All features in config: {DATASET_CFG[dataset]}")
+        
+        # Check if LLM results exist
+        llm_results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "llm")
+        print(f"Checking for LLM results in: {llm_results_dir}")
+        if os.path.exists(llm_results_dir):
+            llm_files = [f for f in os.listdir(llm_results_dir) if f.startswith(f"{dataset}_seed_{seed}")]
+            if llm_files:
+                print(f"Found LLM results files: {llm_files}")
         
         # Instead of direct CSV loading, use the data loaders
         from concept_fragmentation.data.loaders import get_dataset_loader
@@ -1428,62 +1449,168 @@ def create_fracture_graph(stored_data, stored_clusters, stored_true_labels, data
     
     return fig
 
-def load_cluster_paths_data(dataset: str, seed: int) -> Optional[Dict[str, Any]]:
-    """Load cluster paths data for the given dataset and seed."""
+def load_cluster_paths_data(dataset: str, seed: int) -> Dict[str, Any]:
+    """
+    Load cluster paths data for the given dataset and seed.
+    
+    This function searches multiple locations for cluster paths JSON files and validates
+    that they contain the required similarity data.
+    
+    Args:
+        dataset: Name of the dataset (e.g., 'titanic')
+        seed: Random seed used for the experiment
+        
+    Returns:
+        Dictionary containing cluster paths data, or error information if not found
+    """
+    import glob
+    
     try:
-        # Check all possible paths for cluster paths file
-        # Prioritize results directory first as it has populated similarity matrices
-        possible_paths = [
-            os.path.join("results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join(os.getcwd(), "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join("visualization", "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join(os.getcwd(), "visualization", "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join(os.path.dirname(os.getcwd()), "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            # Then check data directories as fallback
-            os.path.join("data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join("visualization", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join(os.getcwd(), "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join(os.getcwd(), "visualization", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-            os.path.join(os.path.dirname(os.getcwd()), "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json")
+        # Get the project root directory (absolute path)
+        # Try multiple approaches to find the project root
+        possible_roots = [
+            os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),  # From visualization dir
+            os.path.abspath(os.getcwd()),  # Current directory
+            os.path.abspath(os.path.dirname(os.getcwd())),  # Parent of current directory
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),  # Relative to this file
         ]
         
-        # Try each path
-        for paths_file in possible_paths:
-            if os.path.exists(paths_file):
-                print(f"Found cluster paths file at: {paths_file}")
-                # Load the JSON data
-                with open(paths_file, 'r') as f:
-                    cluster_paths_data = json.load(f)
-                
-                # Verify that similarity data is populated
-                has_similarity = (
-                    "similarity" in cluster_paths_data and
-                    "normalized_similarity" in cluster_paths_data["similarity"] and
-                    len(cluster_paths_data["similarity"]["normalized_similarity"]) > 0
-                )
-                
-                if has_similarity:
-                    print(f"Successfully loaded cluster paths data with similarity matrix for {dataset} (seed {seed})")
-                    similarity_count = len(cluster_paths_data["similarity"]["normalized_similarity"])
-                    print(f"Found {similarity_count} similarity connections")
-                    return cluster_paths_data
-                else:
-                    print(f"Warning: File {paths_file} has empty similarity matrices, continuing search...")
+        # Define all possible path patterns to check
+        possible_paths = []
         
-        # If we get here, no file was found or all files had empty similarity matrices
-        print(f"No cluster paths file with populated similarity data found. Checked these locations:")
+        # For each possible root, add standard paths
+        for root in possible_roots:
+            # Results directories (most likely to have data with similarity matrices)
+            possible_paths.extend([
+                os.path.join(root, "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+                os.path.join(root, "concept_fragmentation", "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            ])
+            
+            # Data directories (fallback locations)
+            possible_paths.extend([
+                os.path.join(root, "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+                os.path.join(root, "concept_fragmentation", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+                os.path.join(root, "visualization", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            ])
+        
+        # Add relative paths for backward compatibility
+        possible_paths.extend([
+            os.path.join("results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join("data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join("visualization", "results", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+            os.path.join("visualization", "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+        ])
+        
+        # Add recursive glob path to catch files in any subdirectory (more expensive, use last)
+        for root in possible_roots:
+            possible_paths.append(os.path.join(root, "**", f"{dataset}_seed_{seed}_paths.json"))
+        
+        # Remove duplicates while preserving order
+        unique_paths = []
+        seen = set()
         for path in possible_paths:
-            print(f"  - {path}")
+            normalized = os.path.normpath(path)
+            if normalized not in seen:
+                seen.add(normalized)
+                unique_paths.append(path)
         
-        print(f"\nPlease run: python -m concept_fragmentation.analysis.cluster_paths --compute_similarity --min_similarity 0.3 --dataset {dataset} --seed {seed}")
-        print(f"This will generate a new paths file with similarity data in the results directory.")
-        return None
+        # Try direct paths first (faster than glob)
+        checked_paths = []
+        direct_match_paths = [p for p in unique_paths if "**" not in p]
+        
+        for paths_file in direct_match_paths:
+            checked_paths.append(paths_file)
+            
+            if os.path.exists(paths_file):
+                with open(paths_file, 'r') as f:
+                    try:
+                        cluster_paths_data = json.load(f)
+                        
+                        # Check if it has similarity data
+                        has_similarity = (
+                            "similarity" in cluster_paths_data and
+                            "normalized_similarity" in cluster_paths_data["similarity"] and
+                            len(cluster_paths_data["similarity"]["normalized_similarity"]) > 0
+                        )
+                        
+                        if has_similarity:
+                            print(f"Successfully loaded cluster paths data with similarity matrix for {dataset} (seed {seed})")
+                            similarity_count = len(cluster_paths_data["similarity"]["normalized_similarity"])
+                            print(f"Found {similarity_count} similarity connections in {paths_file}")
+                            return cluster_paths_data
+                    except json.JSONDecodeError:
+                        print(f"Warning: Could not decode JSON in {paths_file}")
+                    except Exception as e:
+                        print(f"Warning: Error processing {paths_file}: {str(e)}")
+        
+        # If no direct matches, try glob patterns
+        glob_paths = [p for p in unique_paths if "**" in p]
+        for pattern in glob_paths:
+            try:
+                matching_files = glob.glob(pattern, recursive=True)
+                for paths_file in matching_files:
+                    checked_paths.append(paths_file)
+                    
+                    with open(paths_file, 'r') as f:
+                        try:
+                            cluster_paths_data = json.load(f)
+                            
+                            # Check if it has similarity data
+                            has_similarity = (
+                                "similarity" in cluster_paths_data and
+                                "normalized_similarity" in cluster_paths_data["similarity"] and
+                                len(cluster_paths_data["similarity"]["normalized_similarity"]) > 0
+                            )
+                            
+                            if has_similarity:
+                                print(f"Successfully loaded cluster paths data with similarity matrix for {dataset} (seed {seed})")
+                                similarity_count = len(cluster_paths_data["similarity"]["normalized_similarity"])
+                                print(f"Found {similarity_count} similarity connections in {paths_file}")
+                                return cluster_paths_data
+                        except json.JSONDecodeError:
+                            print(f"Warning: Could not decode JSON in {paths_file}")
+                        except Exception as e:
+                            print(f"Warning: Error processing {paths_file}: {str(e)}")
+            except Exception as e:
+                print(f"Warning: Error processing glob pattern {pattern}: {str(e)}")
+        
+        # If we get here, no valid data was found
+        missing_data_error = {
+            "status": "error",
+            "error_type": "missing_data",
+            "dataset": dataset,
+            "seed": seed,
+            "checked_paths": checked_paths,
+            "message": f"No cluster paths file with similarity data found for dataset '{dataset}' with seed {seed}",
+            "command": f"python -m concept_fragmentation.analysis.cluster_paths --compute_similarity --min_similarity 0.3 --dataset {dataset} --seed {seed}"
+        }
+        
+        # Print helpful message to console
+        print(f"\n*** MISSING DATA ERROR ***")
+        print(f"No cluster paths file with similarity data found for dataset '{dataset}' with seed {seed}")
+        print("\nChecked these locations:")
+        for path in checked_paths[:10]:  # Limit to first 10 to avoid overwhelming output
+            print(f"  - {path}")
+        if len(checked_paths) > 10:
+            print(f"  ... and {len(checked_paths) - 10} more locations")
+        
+        print("\nTo generate the required data, run:")
+        print(f"  {missing_data_error['command']}")
+        print("This will generate similarity data in the results directory.\n")
+        
+        return missing_data_error
     
     except Exception as e:
         import traceback
         error_msg = f"Error loading cluster paths data: {str(e)}\n{traceback.format_exc()}"
         print(error_msg)
-        return None
+        
+        return {
+            "status": "error",
+            "error_type": "exception",
+            "message": str(e),
+            "traceback": traceback.format_exc()
+        }
 
 # Cross-Layer Metrics callbacks
 @app.callback(
@@ -1926,6 +2053,9 @@ register_similarity_callbacks(app)
 
 # Register the callbacks for the Path Fragmentation tab
 register_path_fragmentation_callbacks(app)
+
+# Register the callbacks for the LLM Integration tab
+register_llm_callbacks(app)
 
 if __name__ == "__main__":
     print("Starting Dash app...")

@@ -18,3 +18,7 @@ dash>=2.14.0,<3.0.0
 # Cross-Layer Metrics visualization
 networkx>=3.1,<4.0.0  # For network graph visualization
 psutil>=5.9.0,<6.0.0  # For process management in run_dash_safe.py
+
+# LLM integration
+aiohttp>=3.8.0,<4.0.0  # For async HTTP requests
+requests>=2.31.0,<3.0.0  # For HTTP requests

@@ -17,7 +17,8 @@
       "Bash(./venv311/Scripts/python tests/test_cross_layer_dashboard.py)",
       "Bash(pip install:*)",
       "Bash(cat:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

@@ -1,0 +1,28 @@
+{
+  "dataset": "titanic",
+  "seed": 0,
+  "provider": "mock",
+  "model": "mock-model",
+  "cluster_labels": {
+    "layer1C0": "High Survival likelihood",
+    "layer1C1": "Low Luxury traveler",
+    "layer1C2": "High Cabin type",
+    "layer1C3": "Low Solo traveler",
+    "layer1C4": "High Budget traveler",
+    "layer1C5": "Low Budget traveler",
+    "layer1C6": "High Elderly passenger",
+    "layer2C0": "High Survival likelihood",
+    "layer2C1": "Low Solo traveler",
+    "layer3C0": "High Passenger class",
+    "layer3C1": "Low Frequent traveler",
+    "outputC0": "High Family size",
+    "outputC1": "Low Luxury traveler"
+  },
+  "path_narratives": {
+    "0": "This path represents a journey through 4 layers. Starting with High Elderly passenger, the data points transition to High Family size by the final layer. This suggests the model is detecting patterns related to survival probability.",
+    "1": "This path represents a journey through 4 layers. Starting with Low Luxury traveler, the data points transition to Low Luxury traveler by the final layer. This suggests the model is detecting patterns related to passenger demographics.",
+    "2": "This path represents a journey through 4 layers. Starting with Low Solo traveler, the data points transition to High Family size by the final layer. This suggests the model is detecting patterns related to passenger demographics.",
+    "3": "This path represents a journey through 4 layers. Starting with Low Budget traveler, the data points transition to High Family size by the final layer. This suggests the model is detecting patterns related to survival probability.",
+    "4": "This path represents a journey through 4 layers. Starting with High Cabin type, the data points transition to High Family size by the final layer. This suggests the model is detecting patterns related to survival probability."
+  }
+}
