@@ -109,8 +109,18 @@ def load_experiment_activations(results_dir: str) -> Dict[str, np.ndarray]:
                     # Get and combine the last epoch's activations from both train and test
                     train_activations = layer_activations[layer_name]["train"][-1].numpy()
                     test_activations = layer_activations[layer_name]["test"][-1].numpy()
-                    activations[layer_name] = np.concatenate([train_activations, test_activations], axis=0)
-                    print(f"  Combined {train_activations.shape[0]} train + {test_activations.shape[0]} test = {activations[layer_name].shape[0]} total samples")
+                    
+                    # Check if dimensions match for concatenation
+                    if train_activations.shape[1:] == test_activations.shape[1:]:
+                        # Normal case: dimensions match, concatenate along first axis
+                        activations[layer_name] = np.concatenate([train_activations, test_activations], axis=0)
+                        print(f"  Combined {train_activations.shape[0]} train + {test_activations.shape[0]} test = {activations[layer_name].shape[0]} total samples")
+                    else:
+                        # Dimensions don't match, use only test data
+                        print(f"  ⚠ Warning: Train shape {train_activations.shape} doesn't match test shape {test_activations.shape}")
+                        print(f"  Using only test data for layer {layer_name}")
+                        activations[layer_name] = test_activations
+                        print(f"  Using {test_activations.shape[0]} test samples")
                 elif layer_activations[layer_name]["test"]:
                     # Fallback to just test if train isn't available
                     activations[layer_name] = layer_activations[layer_name]["test"][-1].numpy()

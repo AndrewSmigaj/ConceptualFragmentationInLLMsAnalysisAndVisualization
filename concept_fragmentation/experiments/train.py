@@ -480,7 +480,7 @@ def train_model(
         if save_activations:
             for layer_name in epoch_activations.keys():
                 if epoch_activations[layer_name]:
-                    layer_activations["layer1"]["train"].append(torch.cat(epoch_activations[layer_name], dim=0))
+                    layer_activations[layer_name]["train"].append(torch.cat(epoch_activations[layer_name], dim=0))
             layer_activations["labels"]["train"].append(torch.cat(epoch_labels, dim=0))
             layer_activations["epoch"].append(epoch)
         
