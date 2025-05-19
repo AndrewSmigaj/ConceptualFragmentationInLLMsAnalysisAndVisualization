@@ -27,6 +27,7 @@ import sys
 from concept_fragmentation.config import (
     MODELS, TRAINING, REGULARIZATION, RANDOM_SEED, RESULTS_DIR, DATASETS
 )
+from concept_fragmentation.utils.path_utils import build_experiment_dir
 from concept_fragmentation.models.feedforward import FeedforwardNetwork
 from concept_fragmentation.models.regularizers import CohesionRegularizer
 from concept_fragmentation.data import get_dataset_loader, DataPreprocessor
@@ -96,7 +97,8 @@ def prepare_dataset(
     Union[torch.utils.data.DataLoader, Tuple[torch.Tensor, torch.Tensor]],
     int,
     int,
-    Optional[pd.DataFrame]  # Added return type for test_df_raw
+    Optional[pd.DataFrame],  # Added return type for test_df_raw
+    Optional[Dict[str, Any]]  # Added return type for metadata
 ]:
     """
     Prepare dataset for training.
@@ -159,7 +161,20 @@ def prepare_dataset(
         input_dim = X_train_tensor.shape[1]
         num_classes = len(np.unique(y_train))
         
-        return (X_train_tensor, y_train_tensor), (X_test_tensor, y_test_tensor), input_dim, num_classes, test_df_raw
+        # Validate dimensions between train and test
+        metadata = {
+            "train_shape": X_train.shape,
+            "test_shape": X_test.shape,
+            "dimensions_match": X_train.shape[1] == X_test.shape[1]
+        }
+        
+        # Log warning if dimensions don't match
+        if not metadata["dimensions_match"]:
+            logger.warning(f"Dimension mismatch in {dataset_name} dataset: ")
+            logger.warning(f"  Train shape: {X_train.shape}, Test shape: {X_test.shape}")
+            logger.warning(f"  This may cause issues during activation collection and analysis")
+        
+        return (X_train_tensor, y_train_tensor), (X_test_tensor, y_test_tensor), input_dim, num_classes, test_df_raw, metadata
     
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")
@@ -217,7 +232,8 @@ def train_model(
     
     # Create results directory
     if experiment_dir is None:
-        experiment_dir = os.path.join(RESULTS_DIR, experiment_name)
+        config_id = "regularized" if use_regularization else "baseline"
+        experiment_dir = build_experiment_dir(dataset_name, config_id, random_seed)
     os.makedirs(experiment_dir, exist_ok=True)
     
     # Configure logging for this experiment
@@ -248,7 +264,17 @@ def train_model(
     
     # Prepare dataset
     dataset_data = prepare_dataset(dataset_name)
-    train_data, test_data, input_dim, num_classes, test_df_raw = dataset_data
+    train_data, test_data, input_dim, num_classes, test_df_raw, dataset_metadata = dataset_data
+    
+    # Validate dataset dimensions
+    if dataset_metadata and not dataset_metadata.get("dimensions_match", True):
+        logger.warning(f"Dataset {dataset_name} has dimension mismatch between train and test sets")
+        logger.warning(f"Train shape: {dataset_metadata['train_shape']}, Test shape: {dataset_metadata['test_shape']}")
+        logger.warning("This might cause issues when analyzing activations later")
+        
+        # Add indication to experiment name if dimensions don't match
+        if experiment_name is None:
+            experiment_name += "_dim_mismatch"
     
     logger.info(f"Dataset prepared: input_dim={input_dim}, num_classes={num_classes}")
     

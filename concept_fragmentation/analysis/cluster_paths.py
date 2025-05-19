@@ -16,6 +16,7 @@ import re
 import warnings
 import pickle
 import glob
+import shutil
 from datetime import datetime
 
 # Import sklearn for our own clustering if needed
@@ -83,12 +84,13 @@ def load_clusters_from_cache(dataset_name: str, config_id: str, seed: int, max_k
     return None
 
 
-def load_experiment_activations(results_dir: str) -> Dict[str, np.ndarray]:
+def load_experiment_activations(results_dir: str, use_full_dataset: bool = False) -> Dict[str, np.ndarray]:
     """
     Load activations from a previously run experiment.
     
     Args:
         results_dir: Path to the experiment results directory
+        use_full_dataset: Force use of full dataset even if dimensions don't match
         
     Returns:
         Dictionary mapping layer names to activation arrays
@@ -100,35 +102,100 @@ def load_experiment_activations(results_dir: str) -> Dict[str, np.ndarray]:
         with open(activations_path, 'rb') as f:
             layer_activations = pickle.load(f)
         
-        # Extract the last epoch's train + test activations for each layer
+        # First scan all layers to determine the activation strategy
+        # We'll use the same strategy for all layers to maintain sample count consistency
+        use_combined = True  # Default: try to use combined data
+        use_test_only = False
+        train_test_dimension_mismatch = False
+        sample_sizes = {}
+        
+        # Check feature dimensions for all layers
+        for layer_name in layer_activations:
+            if layer_name != "epoch" and layer_name != "labels":
+                if layer_activations[layer_name]["train"] and layer_activations[layer_name]["test"]:
+                    train_activations = layer_activations[layer_name]["train"][-1].numpy()
+                    test_activations = layer_activations[layer_name]["test"][-1].numpy()
+                    
+                    # Store sample sizes
+                    sample_sizes[layer_name] = {
+                        "train": train_activations.shape[0],
+                        "test": test_activations.shape[0],
+                        "combined": train_activations.shape[0] + test_activations.shape[0]
+                    }
+                    
+                    # Check if any layer has dimension mismatch
+                    if train_activations.shape[1:] != test_activations.shape[1:]:
+                        train_test_dimension_mismatch = True
+                        
+                        # If we can't fix with use_full_dataset, we must use test only
+                        if not use_full_dataset:
+                            use_combined = False
+                            use_test_only = True
+                            break
+        
+        # Determine the global strategy based on scanned information
+        if train_test_dimension_mismatch:
+            if use_full_dataset:
+                print(f"  ⚠ Dimension mismatch detected in one or more layers")
+                print(f"  Using --use_full_dataset flag to truncate to common feature dimensions")
+            else:
+                print(f"  ⚠ Dimension mismatch detected in one or more layers")
+                print(f"  Using test data only for all layers to ensure consistent sample counts")
+                print(f"  Use --use_full_dataset flag to use both train and test data with truncated features")
+        
+        # Extract activations consistently across all layers
         activations = {}
         for layer_name in layer_activations:
             if layer_name != "epoch" and layer_name != "labels":
                 # Ensure we have both train and test activations
                 if layer_activations[layer_name]["train"] and layer_activations[layer_name]["test"]:
-                    # Get and combine the last epoch's activations from both train and test
+                    # Get the last epoch's activations from both train and test
                     train_activations = layer_activations[layer_name]["train"][-1].numpy()
                     test_activations = layer_activations[layer_name]["test"][-1].numpy()
                     
-                    # Check if dimensions match for concatenation
-                    if train_activations.shape[1:] == test_activations.shape[1:]:
-                        # Normal case: dimensions match, concatenate along first axis
-                        activations[layer_name] = np.concatenate([train_activations, test_activations], axis=0)
-                        print(f"  Combined {train_activations.shape[0]} train + {test_activations.shape[0]} test = {activations[layer_name].shape[0]} total samples")
-                    else:
-                        # Dimensions don't match, use only test data
-                        print(f"  ⚠ Warning: Train shape {train_activations.shape} doesn't match test shape {test_activations.shape}")
-                        print(f"  Using only test data for layer {layer_name}")
+                    if use_test_only:
+                        # Use only test data for all layers for consistency
                         activations[layer_name] = test_activations
-                        print(f"  Using {test_activations.shape[0]} test samples")
+                        print(f"  Layer {layer_name}: Using {test_activations.shape[0]} test samples with shape {test_activations.shape}")
+                    elif use_combined and train_activations.shape[1:] == test_activations.shape[1:]:
+                        # No dimension mismatch, can concatenate directly
+                        activations[layer_name] = np.concatenate([train_activations, test_activations], axis=0)
+                        print(f"  Layer {layer_name}: Combined {train_activations.shape[0]} train + {test_activations.shape[0]} test = {activations[layer_name].shape[0]} total samples")
+                    elif use_combined and use_full_dataset:
+                        # Dimension mismatch but using full dataset, truncate features
+                        min_features = min(train_activations.shape[1], test_activations.shape[1])
+                        train_trunc = train_activations[:, :min_features]
+                        test_trunc = test_activations[:, :min_features]
+                        
+                        # Concatenate the truncated arrays
+                        activations[layer_name] = np.concatenate([train_trunc, test_trunc], axis=0)
+                        print(f"  Layer {layer_name}: Truncated to common feature size {min_features}")
+                        print(f"  Layer {layer_name}: Combined {train_trunc.shape[0]} train + {test_trunc.shape[0]} test = {activations[layer_name].shape[0]} total samples")
+                    else:
+                        # Fallback to test-only data for consistency with other layers
+                        activations[layer_name] = test_activations
+                        print(f"  Layer {layer_name}: Using {test_activations.shape[0]} test samples with shape {test_activations.shape}")
                 elif layer_activations[layer_name]["test"]:
                     # Fallback to just test if train isn't available
                     activations[layer_name] = layer_activations[layer_name]["test"][-1].numpy()
-                    print(f"  Using only test data: {activations[layer_name].shape[0]} samples")
+                    print(f"  Layer {layer_name}: Using {activations[layer_name].shape[0]} test samples (train data not available)")
                 elif layer_activations[layer_name]["train"]:
                     # Fallback to just train if test isn't available
                     activations[layer_name] = layer_activations[layer_name]["train"][-1].numpy()
-                    print(f"  Using only train data: {activations[layer_name].shape[0]} samples")
+                    print(f"  Layer {layer_name}: Using {activations[layer_name].shape[0]} train samples (test data not available)")
+        
+        # Final sanity check: verify all layers have the same number of samples
+        sample_count = None
+        for layer_name, activation in activations.items():
+            if sample_count is None:
+                sample_count = activation.shape[0]
+            elif sample_count != activation.shape[0]:
+                print(f"  ⚠ WARNING: Inconsistent sample counts across layers!")
+                print(f"  Layer {layer_name} has {activation.shape[0]} samples, expected {sample_count}")
+                print(f"  This will cause errors in subsequent processing steps")
+        
+        if sample_count is not None:
+            print(f"  ✓ All layers have consistent sample count: {sample_count}")
         
         return activations
     
@@ -824,6 +891,10 @@ def write_cluster_paths(
     output_path = os.path.join(output_dir, f"{dataset_name}_seed_{seed}_paths.json")
     with open(output_path, 'w') as f:
         json.dump(data, f, indent=2)
+        
+    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    with_centroids = output_path.replace("_paths.json", "_paths_with_centroids.json")
+    shutil.copy(output_path, with_centroids)
     
     # Save copies in all commonly accessed locations for compatibility
     # 1. In data/cluster_paths
@@ -833,6 +904,9 @@ def write_cluster_paths(
     with open(data_output_path, 'w') as f:
         json.dump(data, f, indent=2)
         
+    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    shutil.copy(data_output_path, data_output_path.replace("_paths.json", "_paths_with_centroids.json"))
+        
     # 2. In visualization/data/cluster_paths
     vis_data_dir = os.path.join("visualization", "data", "cluster_paths") 
     os.makedirs(vis_data_dir, exist_ok=True)
@@ -840,12 +914,18 @@ def write_cluster_paths(
     with open(vis_data_path, 'w') as f:
         json.dump(data, f, indent=2)
         
+    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    shutil.copy(vis_data_path, vis_data_path.replace("_paths.json", "_paths_with_centroids.json"))
+        
     # 3. In absolute project root locations (create absolute paths)
     project_root = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
     abs_data_path = os.path.join(project_root, "data", "cluster_paths", f"{dataset_name}_seed_{seed}_paths.json")
     os.makedirs(os.path.dirname(abs_data_path), exist_ok=True)
     with open(abs_data_path, 'w') as f:
         json.dump(data, f, indent=2)
+        
+    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    shutil.copy(abs_data_path, abs_data_path.replace("_paths.json", "_paths_with_centroids.json"))
     
     print(f"Saved cluster paths with unique IDs to:")
     print(f"  - {output_path}")
@@ -901,6 +981,7 @@ if __name__ == "__main__":
     parser.add_argument("--demographic_columns", type=str, nargs="+", help="Demographic columns to include")
     parser.add_argument("--config_id", type=str, default="baseline", help="Configuration ID to use (e.g., 'baseline')")
     parser.add_argument("--use_cached_clusters", action="store_true", help="Use clusters from visualization cache")
+    parser.add_argument("--use_full_dataset", action="store_true", help="Force use of full dataset (both train and test) even if dimensions don't match")
     
     args = parser.parse_args()
     
@@ -953,7 +1034,7 @@ if __name__ == "__main__":
         print(f"Loading activations from {results_dir}")
         
         try:
-            activations = load_experiment_activations(results_dir)
+            activations = load_experiment_activations(results_dir, use_full_dataset=args.use_full_dataset)
         except FileNotFoundError:
             print(f"No activation files found in {results_dir}. Please run the baseline experiment for {args.dataset} seed {args.seed} first.")
             sys.exit(1)
