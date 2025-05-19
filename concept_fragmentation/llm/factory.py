@@ -171,32 +171,40 @@ class LLMClientFactory:
 def register_clients():
     """Register all available LLM clients with the factory."""
     # Try to import each client implementation and register it if available
+    print("Registering LLM clients...")
+    
     try:
         from .openai_client import OpenAIClient
         LLMClientFactory.PROVIDER_MAP["openai"] = OpenAIClient
         LLMClientFactory.PROVIDER_MAP["gpt"] = OpenAIClient
-    except ImportError:
-        pass
+        print("✓ Registered OpenAI/GPT client")
+    except ImportError as e:
+        print(f"✗ Failed to register OpenAI client: {e}")
     
     try:
         from .claude import ClaudeClient
         LLMClientFactory.PROVIDER_MAP["claude"] = ClaudeClient
         LLMClientFactory.PROVIDER_MAP["anthropic"] = ClaudeClient
-    except ImportError:
-        pass
+        print("✓ Registered Claude/Anthropic client")
+    except ImportError as e:
+        print(f"✗ Failed to register Claude client: {e}")
     
     try:
         from .grok import GrokClient
         LLMClientFactory.PROVIDER_MAP["grok"] = GrokClient
         LLMClientFactory.PROVIDER_MAP["xai"] = GrokClient
-    except ImportError:
-        pass
+        print("✓ Registered Grok/xAI client")
+    except ImportError as e:
+        print(f"✗ Failed to register Grok client: {e}")
     
     try:
         from .gemini import GeminiClient
         LLMClientFactory.PROVIDER_MAP["gemini"] = GeminiClient
-    except ImportError:
-        pass
+        print("✓ Registered Gemini client")
+    except ImportError as e:
+        print(f"✗ Failed to register Gemini client: {e}")
+        
+    print(f"Available providers: {', '.join(LLMClientFactory.PROVIDER_MAP.keys())}")
 
 
 # Register clients when the module is imported

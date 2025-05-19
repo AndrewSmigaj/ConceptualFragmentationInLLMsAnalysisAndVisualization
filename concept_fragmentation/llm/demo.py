@@ -4,6 +4,7 @@ Demo script for LLM-based analysis of concept clusters and paths.
 This script demonstrates how to use the LLM integration to:
 1. Generate human-readable labels for clusters
 2. Generate narratives for paths through activation space
+3. Perform bias audits on cluster paths
 """
 
 import os
@@ -17,6 +18,7 @@ from typing import Dict, Any, List, Tuple, Optional, Union
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from concept_fragmentation.llm.analysis import ClusterAnalysis
+from concept_fragmentation.llm.bias_audit import compute_bias_scores, generate_bias_report, analyze_bias_with_llm
 
 
 def load_cluster_paths_data(dataset: str, seed: int) -> Dict[str, Any]:
@@ -271,10 +273,11 @@ def main():
     parser = argparse.ArgumentParser(description="Demo script for LLM-based analysis")
     parser.add_argument("--dataset", type=str, default="titanic", help="Dataset name")
     parser.add_argument("--seed", type=int, default=0, help="Random seed")
-    parser.add_argument("--provider", type=str, default="grok", help="LLM provider (openai, claude, grok)")
+    parser.add_argument("--provider", type=str, default="grok", help="LLM provider (openai, claude, grok, gemini)")
     parser.add_argument("--model", type=str, default="default", help="LLM model")
     parser.add_argument("--output", type=str, default="analysis_results.json", help="Output file path")
     parser.add_argument("--no-cache", action="store_true", help="Disable caching of LLM responses")
+    parser.add_argument("--skip-bias-audit", action="store_true", help="Skip bias audit analysis")
     args = parser.parse_args()
     
     # Load cluster paths data
@@ -324,6 +327,60 @@ def main():
         print(f"\nPath {path_id} ({path_str}):")
         print(narrative)
     
+    # Perform bias audit if requested and demographic info is available
+    bias_report = {}
+    bias_analysis = ""
+    
+    if not args.skip_bias_audit:
+        print("\nPerforming bias audit...")
+        if demographic_info:
+            # Determine demographic columns based on dataset
+            demographic_columns = []
+            if args.dataset == "titanic":
+                demographic_columns = ["sex", "age", "pclass"]
+            elif args.dataset == "adult":
+                demographic_columns = ["sex", "race", "age", "education"]
+            elif args.dataset == "heart":
+                demographic_columns = ["sex", "age"]
+            
+            # Filter to include only available columns
+            available_demo_cols = []
+            for path_id, demos in demographic_info.items():
+                for col in demographic_columns:
+                    if col in demos and col not in available_demo_cols:
+                        available_demo_cols.append(col)
+            
+            if available_demo_cols:
+                print(f"Analyzing demographic factors: {', '.join(available_demo_cols)}")
+                
+                # Generate bias report
+                bias_report = generate_bias_report(
+                    paths=paths,
+                    demographic_info=demographic_info,
+                    demographic_columns=available_demo_cols,
+                    cluster_labels=cluster_labels
+                )
+                
+                # Analyze bias with LLM
+                print("Generating bias analysis with LLM...")
+                bias_analysis = analyze_bias_with_llm(analyzer, bias_report)
+                
+                print("\nBias Analysis Excerpt:")
+                # Print first 3 lines of the analysis
+                analysis_lines = bias_analysis.split('\n')
+                for line in analysis_lines[:3]:
+                    print(line)
+                print("...")
+            else:
+                print("No demographic information available for bias analysis")
+                bias_analysis = "No demographic information available for bias analysis"
+        else:
+            print("No demographic information available for bias analysis")
+            bias_analysis = "No demographic information available for bias analysis"
+    else:
+        print("Bias audit skipped (--skip-bias-audit flag provided)")
+        bias_analysis = "Bias audit skipped"
+
     # Save the results
     results = {
         "dataset": args.dataset,
@@ -331,7 +388,9 @@ def main():
         "provider": args.provider,
         "model": analyzer.model,
         "cluster_labels": cluster_labels,
-        "path_narratives": path_narratives
+        "path_narratives": path_narratives,
+        "bias_report": bias_report,
+        "bias_analysis": bias_analysis
     }
     
     save_results(results, args.output)
