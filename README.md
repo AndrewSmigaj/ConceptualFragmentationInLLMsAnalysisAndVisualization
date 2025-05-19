@@ -33,6 +33,7 @@ concept_fragmentation/
 ├── data/               # Data loading and preprocessing utilities
 ├── experiments/        # Training and experiment scripts
 ├── hooks/              # Hooks for extracting activations from models
+├── llm/                # Large Language Model integration for interpretability
 ├── metrics/            # Metrics for measuring conceptual fragmentation
 ├── models/             # Model definitions and utilities
 ├── notebooks/          # Example and demonstration notebooks
@@ -66,6 +67,10 @@ The interactive dashboard allows exploration of neural network trajectories and 
    - Membership overlap Sankey diagrams
    - Trajectory fragmentation bar charts
    - Path density network graphs
+3. **LLM Integration**:
+   - Cluster labeling for human-readable interpretations
+   - Path narratives explaining data flow through the network
+   - Integration with multiple LLM providers (Grok, Gemini, Claude, OpenAI)
 
 ## Usage
 
@@ -82,6 +87,20 @@ This will start a Dash web application. Navigate to the displayed URL (typically
 ### Example Workflow
 
 See `notebooks/demo_workflow.ipynb` for a complete demonstration of the analysis pipeline, from extracting activations to visualizing paths.
+
+### LLM Integration
+
+To generate interpretable explanations of clusters and paths:
+
+```bash
+# Generate cluster paths data with centroids
+python run_analysis.py cluster_paths --dataset titanic --seed 0 --compute_similarity
+
+# Run LLM analysis
+python concept_fragmentation/llm/demo.py --dataset titanic --seed 0 --provider grok
+```
+
+See `README_LLM_TESTING.md` for more detailed instructions on using the LLM integration features.
 
 ## Getting Started
 

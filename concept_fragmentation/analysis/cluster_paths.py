@@ -100,13 +100,25 @@ def load_experiment_activations(results_dir: str) -> Dict[str, np.ndarray]:
         with open(activations_path, 'rb') as f:
             layer_activations = pickle.load(f)
         
-        # Extract the last epoch's test activations for each layer
+        # Extract the last epoch's train + test activations for each layer
         activations = {}
         for layer_name in layer_activations:
             if layer_name != "epoch" and layer_name != "labels":
-                if layer_activations[layer_name]["test"]:
-                    # Get the last epoch's activations
+                # Ensure we have both train and test activations
+                if layer_activations[layer_name]["train"] and layer_activations[layer_name]["test"]:
+                    # Get and combine the last epoch's activations from both train and test
+                    train_activations = layer_activations[layer_name]["train"][-1].numpy()
+                    test_activations = layer_activations[layer_name]["test"][-1].numpy()
+                    activations[layer_name] = np.concatenate([train_activations, test_activations], axis=0)
+                    print(f"  Combined {train_activations.shape[0]} train + {test_activations.shape[0]} test = {activations[layer_name].shape[0]} total samples")
+                elif layer_activations[layer_name]["test"]:
+                    # Fallback to just test if train isn't available
                     activations[layer_name] = layer_activations[layer_name]["test"][-1].numpy()
+                    print(f"  Using only test data: {activations[layer_name].shape[0]} samples")
+                elif layer_activations[layer_name]["train"]:
+                    # Fallback to just train if test isn't available
+                    activations[layer_name] = layer_activations[layer_name]["train"][-1].numpy()
+                    print(f"  Using only train data: {activations[layer_name].shape[0]} samples")
         
         return activations
     
@@ -578,6 +590,37 @@ def compute_path_archetypes(
     return archetypes
 
 
+def extract_unique_centroids(layer_clusters: Dict[str, Dict[str, Any]], id_to_layer_cluster: Dict[int, Tuple[str, int, int]]) -> Dict[str, List[float]]:
+    """
+    Extract centroids for each unique cluster ID.
+    
+    Args:
+        layer_clusters: Dictionary mapping layer names to cluster information
+        id_to_layer_cluster: Mapping from unique ID to (layer_name, original_id, layer_idx)
+        
+    Returns:
+        Dictionary mapping unique cluster IDs to their centroids
+    """
+    unique_centroids = {}
+    
+    # Process each unique cluster ID
+    for unique_id, (layer_name, original_id, _) in id_to_layer_cluster.items():
+        # Get the layer's cluster information
+        if layer_name in layer_clusters and "centers" in layer_clusters[layer_name]:
+            # Find the centroid for this cluster
+            cluster_centers = layer_clusters[layer_name]["centers"]
+            
+            # Ensure original_id is within range
+            if original_id < len(cluster_centers):
+                # Get the centroid as a Python list (for JSON serialization)
+                centroid = cluster_centers[original_id].tolist() if hasattr(cluster_centers[original_id], "tolist") else list(cluster_centers[original_id])
+                
+                # Store with unique_id as a string key (for JSON compatibility)
+                unique_centroids[str(unique_id)] = centroid
+    
+    return unique_centroids
+
+
 def write_cluster_paths(
     dataset_name: str,
     seed: int,
@@ -725,6 +768,11 @@ def write_cluster_paths(
         print(f"Found {len(similarity_matrix)} similarity relationships between clusters")
         print(f"Identified {len(convergent_paths)} paths with similarity convergence")
     
+    # Extract centroids for each unique cluster ID
+    print("Extracting centroids for unique cluster IDs...")
+    unique_centroids = extract_unique_centroids(layer_clusters, id_to_layer_cluster)
+    print(f"Extracted centroids for {len(unique_centroids)} unique clusters")
+    
     # Create output data structure
     data = {
         "dataset": dataset_name,
@@ -734,6 +782,7 @@ def write_cluster_paths(
         "original_paths": original_paths.tolist(),  # Paths with layer-local IDs
         "human_readable_paths": human_readable_paths,  # Human-readable path strings
         "id_mapping": serializable_mapping,  # Mapping from unique ID to layer info
+        "unique_centroids": unique_centroids,  # Centroids for each unique cluster ID
         "similarity": similarity_data  # Similarity metrics between clusters
     }
     
@@ -798,6 +847,18 @@ def write_cluster_paths(
     for path in [output_path, data_output_path, vis_data_path, abs_data_path]:
         if os.path.exists(path):
             print(f"✓ Verified: {path} exists")
+            
+            # Verify that unique_centroids was included
+            try:
+                with open(path, 'r') as f:
+                    verify_data = json.load(f)
+                if "unique_centroids" in verify_data:
+                    centroid_count = len(verify_data["unique_centroids"])
+                    print(f"  ✓ Verified: {path} contains {centroid_count} unique centroids")
+                else:
+                    print(f"  ⚠ Warning: {path} does not contain unique_centroids field")
+            except Exception as e:
+                print(f"  ⚠ Warning: Could not verify content of {path}: {e}")
         else:
             print(f"⚠ Warning: {path} was not created!")
     
@@ -963,7 +1024,16 @@ if __name__ == "__main__":
         first_layer_count = sample_counts[0][1]
         all_same = all(count == first_layer_count for _, count in sample_counts)
         if all_same:
+            # Check if we're using the full dataset
+            train_test_count = len(df)
             print(f"✓ All layers have the same number of samples ({first_layer_count})")
+            
+            if abs(first_layer_count - train_test_count) < 5:  # Allow small differences due to filtering
+                print(f"✓ Using full dataset - Sample count ({first_layer_count}) matches combined train+test dataframe size ({train_test_count})")
+            elif first_layer_count < 0.5 * train_test_count:  # Less than half
+                print(f"⚠ WARNING: May be using partial dataset - Sample count ({first_layer_count}) is much smaller than combined dataset size ({train_test_count})")
+            else:
+                print(f"ℹ️ Sample count: {first_layer_count}, Dataset size: {train_test_count}")
         else:
             print(f"⚠ WARNING: Inconsistent sample counts across layers!")
             
