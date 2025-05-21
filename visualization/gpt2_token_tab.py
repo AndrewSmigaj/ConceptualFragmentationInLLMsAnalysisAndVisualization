@@ -31,6 +31,14 @@ from visualization.gpt2_token_sankey import (
     create_3layer_window_sankey
 )
 
+# Import GPT-2 attention Sankey diagram visualization
+from visualization.gpt2_attention_sankey import (
+    extract_attention_flow,
+    generate_attention_sankey_diagram,
+    create_attention_token_comparison,
+    create_token_attention_window_visualization
+)
+
 # Constants
 GPT2_RESULTS_DIR = os.path.join(parent_dir, "results", "gpt2")
 DEFAULT_HEIGHT = 600
@@ -234,9 +242,23 @@ def create_gpt2_token_tab():
             
             # Visualizations
             html.Div([
+                # Visualization type selector
+                html.Div([
+                    html.Label("Visualization Type:"),
+                    dcc.RadioItems(
+                        id="gpt2-viz-type",
+                        options=[
+                            {"label": "Token Path Flow", "value": "token_path"},
+                            {"label": "Attention Flow", "value": "attention_flow"}
+                        ],
+                        value="token_path",
+                        inline=True
+                    )
+                ], style={"width": "100%", "padding": "10px"}),
+                
                 # Sankey diagram
                 html.Div([
-                    html.H5("Token Path Flow", style={"textAlign": "center"}),
+                    html.H5(id="gpt2-sankey-title", style={"textAlign": "center"}),
                     dcc.Loading(
                         id="gpt2-sankey-loading",
                         type="circle",
@@ -247,6 +269,34 @@ def create_gpt2_token_tab():
                         )
                     )
                 ], style={"width": "100%", "padding": "10px"}),
+                
+                # Attention settings (initially hidden)
+                html.Div([
+                    html.Div([
+                        html.Label("Min Attention Threshold:"),
+                        dcc.Slider(
+                            id="gpt2-attention-threshold",
+                            min=0.01,
+                            max=0.5,
+                            step=0.01,
+                            value=0.05,
+                            marks={i/100: str(i/100) for i in range(5, 55, 10)}
+                        )
+                    ], style={"width": "50%", "display": "inline-block", "padding": "10px"}),
+                    
+                    html.Div([
+                        html.Label("Max Attention Edges:"),
+                        dcc.Slider(
+                            id="gpt2-max-edges",
+                            min=50,
+                            max=500,
+                            step=50,
+                            value=250,
+                            marks={i: str(i) for i in range(50, 550, 100)}
+                        )
+                    ], style={"width": "50%", "display": "inline-block", "padding": "10px"})
+                ], id="gpt2-attention-settings", style={"width": "100%", "display": "none"}),
+                
                 
                 # Token statistics and path comparison
                 html.Div([
@@ -260,7 +310,7 @@ def create_gpt2_token_tab():
                     ], style={"width": "40%", "display": "inline-block", "verticalAlign": "top", "padding": "10px"}),
                     
                     html.Div([
-                        html.H5("Token Path Comparison", style={"textAlign": "center"}),
+                        html.H5(id="gpt2-comparison-title", style={"textAlign": "center"}),
                         dcc.Loading(
                             id="gpt2-comparison-loading",
                             type="circle",
@@ -324,6 +374,19 @@ def register_gpt2_token_callbacks(app):
             return [], None
     
     # Update visualizations when inputs change
+    # Update attention settings visibility based on visualization type
+    @app.callback(
+        Output("gpt2-attention-settings", "style"),
+        Output("gpt2-sankey-title", "children"),
+        Output("gpt2-comparison-title", "children"),
+        Input("gpt2-viz-type", "value")
+    )
+    def update_viz_type(viz_type):
+        if viz_type == "attention_flow":
+            return {"width": "100%", "display": "block"}, "Attention Flow Between Tokens", "Token vs Attention Comparison"
+        else:
+            return {"width": "100%", "display": "none"}, "Token Path Flow", "Token Path Comparison"
+    
     @app.callback(
         Output("gpt2-sankey-diagram", "figure"),
         Output("gpt2-path-comparison", "figure"),
@@ -332,9 +395,12 @@ def register_gpt2_token_callbacks(app):
         Input("gpt2-result-dropdown", "value"),
         Input("gpt2-window-dropdown", "value"),
         Input("gpt2-token-filter", "value"),
-        Input("gpt2-min-path-count", "value")
+        Input("gpt2-min-path-count", "value"),
+        Input("gpt2-viz-type", "value"),
+        Input("gpt2-attention-threshold", "value"),
+        Input("gpt2-max-edges", "value")
     )
-    def update_visualizations(metadata_file, window_name, token_filter, min_path_count):
+    def update_visualizations(metadata_file, window_name, token_filter, min_path_count, viz_type, attention_threshold, max_edges):
         if not metadata_file or not window_name:
             empty_fig = go.Figure().update_layout(title="Select a GPT-2 analysis result")
             return empty_fig, empty_fig, "No data selected", "No data selected"
@@ -355,14 +421,24 @@ def register_gpt2_token_callbacks(app):
             if not min_path_count or min_path_count < 1:
                 min_path_count = 1
             
-            # Create visualizations
-            viz_results = create_3layer_window_sankey(
-                window_data,
-                apa_results,
-                highlight_tokens=highlight_tokens,
-                min_path_count=min_path_count,
-                save_html=False  # Don't save to files in the dashboard
-            )
+            # Create visualizations based on selected type
+            if viz_type == "attention_flow":
+                viz_results = create_token_attention_window_visualization(
+                    window_data,
+                    apa_results,
+                    highlight_tokens=highlight_tokens,
+                    min_attention=attention_threshold,
+                    max_edges=max_edges,
+                    save_html=False  # Don't save to files in the dashboard
+                )
+            else:
+                viz_results = create_3layer_window_sankey(
+                    window_data,
+                    apa_results,
+                    highlight_tokens=highlight_tokens,
+                    min_path_count=min_path_count,
+                    save_html=False  # Don't save to files in the dashboard
+                )
             
             # Extract results
             sankey_fig = viz_results["sankey"]
