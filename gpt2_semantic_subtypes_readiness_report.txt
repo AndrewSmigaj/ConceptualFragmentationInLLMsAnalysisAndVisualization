@@ -1,0 +1,37 @@
+=== GPT-2 Semantic Subtypes Experimental Readiness Report ===
+
+DATASET OVERVIEW:
+Total words curated: 774/800 (96.8%)
+Perfect subtypes: 5/8
+Average success rate: 96.8%
+Balance score: 87.6%
+
+SUBTYPE BREAKDOWN:
+  concrete_nouns       100 words (100.0%) - READY
+  abstract_nouns       100 words (100.0%) - READY
+  physical_adjectives  100 words (100.0%) - READY
+  emotive_adjectives    88 words (88.0%) - PARTIAL 88/100
+  manner_adverbs        92 words (92.0%) - PARTIAL 92/100
+  degree_adverbs        94 words (94.0%) - PARTIAL 94/100
+  action_verbs         100 words (100.0%) - READY
+  stative_verbs        100 words (100.0%) - READY
+
+WORD LENGTH STATISTICS:
+Average word length: 4.7 characters
+Length range: 2-13 characters
+
+EXPERIMENTAL SUITABILITY:
+Overall assessment: EXCELLENT - Sufficient words for robust analysis
+Balance quality: EXCELLENT - Well-balanced across subtypes
+
+RECOMMENDATIONS:
+* Dataset is ready for GPT-2 semantic analysis
+* Sufficient words for clustering and path analysis
+* Good semantic diversity across all major POS categories
+* 5 subtypes have full 100-word sets
+
+NEXT STEPS:
+1. Proceed with GPT-2 activation extraction
+2. Apply clustering analysis (k-means + HDBSCAN)
+3. Calculate APA metrics and path coherence
+4. Generate semantic subtype interpretation

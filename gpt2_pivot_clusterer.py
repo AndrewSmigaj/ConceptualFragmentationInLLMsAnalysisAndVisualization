@@ -21,28 +21,44 @@ class GPT2PivotClusterer:
     based on silhouette scores.
     """
     
-    def __init__(self, k_range: Tuple[int, int] = (2, 15), random_state: int = 42):
+    def __init__(self, k_range: Tuple[int, int] = (2, 15), random_state: int = 42, clustering_method: str = 'kmeans'):
         """
         Initialize the clusterer.
         
         Args:
             k_range: Range of k values to test (min, max)
             random_state: Random seed for reproducibility
+            clustering_method: Clustering method to use ('kmeans' or 'hdbscan')
         """
         self.k_range = k_range
         self.random_state = random_state
+        self.clustering_method = clustering_method
         self.sklearn_available = False
         
     def _setup_sklearn(self):
-        """Setup sklearn imports."""
+        """Setup sklearn and HDBSCAN imports."""
         try:
-            global KMeans, silhouette_score
+            global KMeans, silhouette_score, HDBSCAN
             from sklearn.cluster import KMeans
             from sklearn.metrics import silhouette_score
             self.sklearn_available = True
+            
+            # Try to import HDBSCAN
+            try:
+                from hdbscan import HDBSCAN
+                self.hdbscan_available = True
+                print("Both sklearn and HDBSCAN available")
+            except ImportError:
+                self.hdbscan_available = False
+                print("sklearn available, but HDBSCAN not available")
+                if self.clustering_method == 'hdbscan':
+                    print("Warning: HDBSCAN requested but not available, will fall back to k-means")
+            
             return True
         except ImportError:
             print("sklearn not available, cannot perform real clustering")
+            self.sklearn_available = False
+            self.hdbscan_available = False
             return False
     
     def _find_optimal_k(self, activations: List[List[float]]) -> int:
@@ -81,6 +97,87 @@ class GPT2PivotClusterer:
         
         return best_k
     
+    def _cluster_with_hdbscan(self, activations: List[List[float]]) -> Tuple[List[int], List[List[float]], int, float]:
+        """
+        Cluster activations using HDBSCAN with automatic parameter optimization.
+        
+        Args:
+            activations: List of activation vectors
+            
+        Returns:
+            Tuple of (cluster_labels, cluster_centers, num_clusters, silhouette_score)
+        """
+        if not hasattr(self, 'hdbscan_available') or not self.hdbscan_available:
+            print("HDBSCAN not available, falling back to k-means")
+            optimal_k = self._find_optimal_k(activations)
+            kmeans = KMeans(n_clusters=optimal_k, random_state=self.random_state, n_init=10)
+            cluster_labels = kmeans.fit_predict(activations)
+            cluster_centers = kmeans.cluster_centers_.tolist()
+            silhouette = silhouette_score(activations, cluster_labels) if len(set(cluster_labels)) > 1 else 0.0
+            return cluster_labels.tolist(), cluster_centers, optimal_k, silhouette
+        
+        import numpy as np
+        
+        # Try different min_cluster_size values to find optimal clustering
+        min_samples_range = range(max(2, len(activations) // 50), max(3, len(activations) // 10))
+        min_cluster_sizes = range(max(5, len(activations) // 100), max(6, len(activations) // 20))
+        
+        best_score = -1
+        best_labels = None
+        best_clusterer = None
+        
+        for min_cluster_size in min_cluster_sizes:
+            for min_samples in min_samples_range:
+                if min_samples >= min_cluster_size:
+                    continue
+                    
+                try:
+                    clusterer = HDBSCAN(
+                        min_cluster_size=min_cluster_size,
+                        min_samples=min_samples,
+                        cluster_selection_epsilon=0.0,
+                        alpha=1.0
+                    )
+                    cluster_labels = clusterer.fit_predict(activations)
+                    
+                    # Check if we have valid clusters (not all noise)
+                    unique_labels = set(cluster_labels)
+                    if len(unique_labels) > 1 and -1 not in unique_labels:
+                        # Calculate silhouette score
+                        score = silhouette_score(activations, cluster_labels)
+                        if score > best_score:
+                            best_score = score
+                            best_labels = cluster_labels
+                            best_clusterer = clusterer
+                            
+                except Exception as e:
+                    continue
+        
+        # If no good clustering found, fall back to k-means
+        if best_labels is None or best_score < 0.1:
+            print(f"HDBSCAN failed to find good clusters (best score: {best_score}), falling back to k-means")
+            optimal_k = self._find_optimal_k(activations)
+            kmeans = KMeans(n_clusters=optimal_k, random_state=self.random_state, n_init=10)
+            cluster_labels = kmeans.fit_predict(activations)
+            cluster_centers = kmeans.cluster_centers_.tolist()
+            silhouette = silhouette_score(activations, cluster_labels) if len(set(cluster_labels)) > 1 else 0.0
+            return cluster_labels.tolist(), cluster_centers, optimal_k, silhouette
+        
+        # Calculate cluster centers for HDBSCAN results
+        cluster_centers = []
+        unique_labels = sorted(set(best_labels))
+        
+        for label in unique_labels:
+            if label != -1:  # Skip noise points
+                mask = np.array(best_labels) == label
+                cluster_activations = np.array(activations)[mask]
+                center = np.mean(cluster_activations, axis=0)
+                cluster_centers.append(center.tolist())
+        
+        num_clusters = len(unique_labels) - (1 if -1 in unique_labels else 0)
+        
+        return best_labels.tolist(), cluster_centers, num_clusters, best_score
+    
     def _cluster_layer(self, layer_activations: Dict[int, Dict[int, List[float]]], layer_idx: int) -> Dict[str, Any]:
         """
         Cluster activations for a single layer.
@@ -112,16 +209,15 @@ class GPT2PivotClusterer:
                 'layer_idx': layer_idx
             }
         
-        # Find optimal k
-        optimal_k = self._find_optimal_k(all_activations)
-        
         if not self.sklearn_available:
             # Simple fallback clustering (just assign based on position)
+            optimal_k = self.k_range[0]
             cluster_labels_list = [i % optimal_k for i in range(len(all_activations))]
             cluster_centers = []
             silhouette = 0.0
-        else:
-            # Real k-means clustering
+        elif self.clustering_method == 'kmeans':
+            # K-means clustering with optimal k selection
+            optimal_k = self._find_optimal_k(all_activations)
             kmeans = KMeans(n_clusters=optimal_k, random_state=self.random_state, n_init=10)
             cluster_labels_list = kmeans.fit_predict(all_activations)
             cluster_centers = kmeans.cluster_centers_.tolist()
@@ -131,6 +227,11 @@ class GPT2PivotClusterer:
                 silhouette = silhouette_score(all_activations, cluster_labels_list)
             else:
                 silhouette = 0.0
+        elif self.clustering_method == 'hdbscan':
+            # HDBSCAN clustering with automatic parameter optimization
+            cluster_labels_list, cluster_centers, optimal_k, silhouette = self._cluster_with_hdbscan(all_activations)
+        else:
+            raise ValueError(f"Unsupported clustering method: {self.clustering_method}")
         
         # Map back to sentence/token structure with layer-specific labels
         cluster_labels = {}
@@ -168,7 +269,7 @@ class GPT2PivotClusterer:
         print(f"Layers: {activations_data['metadata']['num_layers']}")
         
         # Reorganize data by layer
-        num_layers = 13  # embedding + 12 transformer layers  
+        num_layers = activations_data['metadata']['num_layers']
         layer_results = {}
         
         for layer_idx in range(num_layers):
@@ -197,9 +298,10 @@ class GPT2PivotClusterer:
             'labels': activations_data['labels'],
             'metadata': {
                 **activations_data['metadata'],
-                'clustering_method': 'kmeans_with_silhouette',
+                'clustering_method': self.clustering_method,
                 'k_range': self.k_range,
-                'sklearn_available': self.sklearn_available
+                'sklearn_available': self.sklearn_available,
+                'hdbscan_available': getattr(self, 'hdbscan_available', False)
             }
         }
         
@@ -219,6 +321,7 @@ class GPT2PivotClusterer:
         print("Creating token paths across layers...")
         
         token_paths = {}
+        num_layers = activations_data['metadata']['num_layers']
         
         for sent_idx in activations_data['activations'].keys():
             token_paths[sent_idx] = {}
@@ -228,7 +331,7 @@ class GPT2PivotClusterer:
                 token_paths[sent_idx][token_idx] = []
                 
                 # Collect cluster labels across all layers
-                for layer_idx in range(13):
+                for layer_idx in range(num_layers):
                     layer_key = f"layer_{layer_idx}"
                     if (layer_key in layer_results and 
                         sent_idx in layer_results[layer_key]['cluster_labels'] and

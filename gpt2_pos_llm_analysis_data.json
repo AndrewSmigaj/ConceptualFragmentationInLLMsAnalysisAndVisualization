@@ -1,0 +1,231 @@
+{
+  "experiment_overview": {
+    "title": "GPT-2 Parts-of-Speech Clustering Analysis",
+    "description": "Analysis of how GPT-2 clusters grammatical categories (nouns, adjectives, adverbs, verbs) across 13 layers",
+    "methodology": "Single words processed through GPT-2, clustered at each layer, paths tracked across layers",
+    "total_words": 120,
+    "pos_distribution": {
+      "noun": 30,
+      "adjective": 30,
+      "adverb": 30,
+      "verb": 30
+    },
+    "layers_analyzed": 13,
+    "clustering_method": "k-means with silhouette optimization"
+  },
+  "word_data": {
+    "nouns": [
+      "cat",
+      "dog",
+      "house",
+      "car",
+      "book",
+      "tree",
+      "chair",
+      "table",
+      "phone",
+      "computer"
+    ],
+    "adjectives": [
+      "big",
+      "small",
+      "good",
+      "bad",
+      "happy",
+      "sad",
+      "fast",
+      "slow",
+      "hot",
+      "cold"
+    ],
+    "adverbs": [
+      "quickly",
+      "slowly",
+      "carefully",
+      "loudly",
+      "quietly",
+      "easily",
+      "hardly",
+      "really",
+      "very",
+      "quite"
+    ],
+    "verbs": [
+      "run",
+      "walk",
+      "eat",
+      "drink",
+      "sleep",
+      "work",
+      "play",
+      "read",
+      "write",
+      "think"
+    ],
+    "total_per_category": 30
+  },
+  "archetypal_paths": {
+    "total_unique_paths": 55,
+    "top_10_paths": {
+      "L0C2->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 8,
+      "L0C2->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 7,
+      "L0C2->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 7,
+      "L0C5->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C0": 6,
+      "L0C1->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 5,
+      "L0C2->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C2": 4,
+      "L0C7->L1C1->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 4,
+      "L0C1->L1C1->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 4,
+      "L0C5->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C0": 4,
+      "L0C7->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C2": 3
+    },
+    "paths_by_pos": {
+      "noun": {
+        "L0C2->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 4,
+        "L0C7->L1C1->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 4,
+        "L0C2->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 3,
+        "L0C7->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C2": 3,
+        "L0C2->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C2": 2
+      },
+      "adjective": {
+        "L0C1->L1C1->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 4,
+        "L0C1->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 4,
+        "L0C2->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 2,
+        "L0C4->L1C1->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 2,
+        "L0C1->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 2
+      },
+      "adverb": {
+        "L0C5->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C0": 5,
+        "L0C5->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C0": 4,
+        "L0C4->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 2,
+        "L0C6->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C2": 2,
+        "L0C3->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C2": 2
+      },
+      "verb": {
+        "L0C2->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C1": 5,
+        "L0C2->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 3,
+        "L0C2->L1C0->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C1": 3,
+        "L0C2->L1C1->L2C0->L3C0->L4C1->L5C1->L6C1->L7C0->L8C0->L9C0->L10C1->L11C0->L12C2": 2,
+        "L0C2->L1C0->L2C1->L3C1->L4C0->L5C0->L6C0->L7C1->L8C1->L9C1->L10C0->L11C1->L12C2": 2
+      }
+    },
+    "pos_comparison": {
+      "pos_unique_counts": {
+        "noun": 19,
+        "adjective": 20,
+        "adverb": 20,
+        "verb": 19
+      },
+      "total_paths": 120
+    }
+  },
+  "clustering_statistics": {
+    "silhouette_scores": {
+      "layer_0": "0.02559388",
+      "layer_1": "0.07394134",
+      "layer_2": "0.08667393",
+      "layer_3": "0.15988998",
+      "layer_4": "0.24911617",
+      "layer_5": "0.28179666",
+      "layer_6": "0.30187792",
+      "layer_7": "0.31305",
+      "layer_8": "0.31855795",
+      "layer_9": "0.32261398",
+      "layer_10": "0.32305443",
+      "layer_11": "0.3224086",
+      "layer_12": "0.21893342"
+    },
+    "optimal_k_values": {
+      "layer_0": 8,
+      "layer_1": 2,
+      "layer_2": 2,
+      "layer_3": 2,
+      "layer_4": 2,
+      "layer_5": 2,
+      "layer_6": 2,
+      "layer_7": 2,
+      "layer_8": 2,
+      "layer_9": 2,
+      "layer_10": 2,
+      "layer_11": 2,
+      "layer_12": 4
+    },
+    "cluster_distributions": {
+      "layer_0": {
+        "L0C2": 44,
+        "L0C6": 16,
+        "L0C7": 14,
+        "L0C1": 17,
+        "L0C4": 7,
+        "L0C3": 5,
+        "L0C5": 15,
+        "L0C0": 2
+      },
+      "layer_1": {
+        "L1C0": 73,
+        "L1C1": 47
+      },
+      "layer_2": {
+        "L2C1": 56,
+        "L2C0": 64
+      },
+      "layer_3": {
+        "L3C1": 63,
+        "L3C0": 57
+      },
+      "layer_4": {
+        "L4C0": 63,
+        "L4C1": 57
+      },
+      "layer_5": {
+        "L5C0": 62,
+        "L5C1": 58
+      },
+      "layer_6": {
+        "L6C0": 62,
+        "L6C1": 58
+      },
+      "layer_7": {
+        "L7C1": 62,
+        "L7C0": 58
+      },
+      "layer_8": {
+        "L8C1": 62,
+        "L8C0": 58
+      },
+      "layer_9": {
+        "L9C1": 62,
+        "L9C0": 58
+      },
+      "layer_10": {
+        "L10C0": 61,
+        "L10C1": 59
+      },
+      "layer_11": {
+        "L11C1": 62,
+        "L11C0": 58
+      },
+      "layer_12": {
+        "L12C3": 16,
+        "L12C1": 65,
+        "L12C2": 28,
+        "L12C0": 11
+      }
+    }
+  },
+  "research_questions": [
+    "Using word examples, label each cluster with semantic names based on grammatical categories",
+    "Do nouns, adjectives, adverbs, and verbs cluster into distinct groups across layers?",
+    "Which layers show the clearest separation between grammatical categories?",
+    "How do archetypal paths differ between parts of speech?",
+    "Does GPT-2 organize representations by grammatical function vs semantic meaning?",
+    "Which grammatical categories are most stable vs most variable across layers?"
+  ],
+  "metadata": {
+    "model": "gpt2",
+    "total_parameters": "117M",
+    "layers": 13,
+    "hidden_size": 768,
+    "analysis_type": "Parts-of-Speech Archetypal Path Analysis",
+    "experiment_type": "grammatical_category_clustering"
+  }
+}

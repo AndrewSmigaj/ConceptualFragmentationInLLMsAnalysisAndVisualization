@@ -45,7 +45,14 @@
       "Bash(wget:*)",
       "Bash(venv311/Scripts/python.exe test_gpt2_persistence.py)",
       "Bash(venv311/Scripts/python.exe test_integration_tests.py:*)",
-      "Bash(venv311/Scripts/python.exe run_integration_tests.py:*)"
+      "Bash(venv311/Scripts/python.exe run_integration_tests.py:*)",
+      "Bash(./venv311/Scripts/activate)",
+      "Bash(./venv311/Scripts/python.exe -m pip install transformers torch)",
+      "Bash(./venv311/Scripts/python.exe gpt2_activation_extractor.py)",
+      "Bash(./venv311/Scripts/python.exe gpt2_pivot_clusterer.py)",
+      "Bash(./venv311/Scripts/python.exe gpt2_apa_metrics.py)",
+      "Bash(./venv311/Scripts/python.exe:*)",
+      "Bash(./venv311/Scripts/python test_enhanced_clusterer.py)"
     ],
     "deny": []
   }
