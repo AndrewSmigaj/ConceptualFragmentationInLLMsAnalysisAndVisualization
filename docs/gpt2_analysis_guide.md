@@ -8,7 +8,7 @@ Archetypal Path Analysis (APA) provides a principled geometry for cluster-based 
 
 The key components in this implementation are:
 
-1. **GPT2ActivationExtractor**: Specialized adapter for extracting activations from GPT-2 models
+1. **GPT2Adapter**: Specialized adapter for extracting activations from GPT-2 models with APA-specific methods
 2. **Sliding Window Analysis**: Analysis of 3-layer windows to focus on high-fragmentation regions
 3. **Token-Aware Clustering**: Clustering that respects token identities in sequence models
 4. **Attention-Weighted Fragmentation**: Integration of attention patterns with path metrics
@@ -26,14 +26,20 @@ pip install torch transformers numpy scikit-learn matplotlib
 Here's a minimal example of analyzing a GPT-2 model with APA:
 
 ```python
-from concept_fragmentation.analysis.gpt2_model_adapter import GPT2ActivationExtractor
+from concept_fragmentation.models.transformer_adapter import GPT2Adapter
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-# Initialize extractor for GPT-2 small model
-extractor = GPT2ActivationExtractor(model_type="gpt2")
+# Load GPT-2 model and tokenizer
+model = GPT2LMHeadModel.from_pretrained("gpt2", output_hidden_states=True, output_attentions=True)
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+model.eval()
 
-# Extract activations for a text input
+# Initialize adapter for GPT-2 small model
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
+
+# Extract activations for a text input using sliding windows
 text = "The quick brown fox jumps over the lazy dog."
-windows = extractor.extract_activations_for_windows(text, window_size=3)
+windows = adapter.extract_activations_for_windows(text, window_size=3)
 
 # Analyze activations with APA (in a separate module)
 from concept_fragmentation.analysis.cluster_paths import analyze_layer_paths
@@ -43,12 +49,8 @@ from concept_fragmentation.analysis.similarity_metrics import calculate_cross_la
 for window_name, window_data in windows.items():
     activations = window_data["activations"]
     
-    # Reshape for APA format
-    apa_activations = {}
-    for layer_name, layer_activations in activations.items():
-        batch_size, seq_len, hidden_dim = layer_activations.shape
-        samples = batch_size * seq_len
-        apa_activations[layer_name] = layer_activations.reshape(samples, hidden_dim)
+    # Format activations for APA analysis
+    apa_activations = adapter.get_apa_formatted_activations(text, flatten_sequence=True)
     
     # Run APA analysis
     result = analyze_layer_paths(apa_activations, n_clusters=10)
@@ -77,27 +79,29 @@ python -m concept_fragmentation.analysis.gpt2_adapter_example \
 
 ### Customizing Analysis
 
-You can customize the GPT-2 analysis through the `GPT2ActivationConfig` class:
+You can customize the GPT-2 analysis by loading different model sizes and configuring the adapter:
 
 ```python
-from concept_fragmentation.analysis.gpt2_model_adapter import (
-    GPT2ActivationExtractor, 
-    GPT2ModelType,
-    GPT2ActivationConfig
-)
+from concept_fragmentation.models.transformer_adapter import GPT2Adapter
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import torch
 
-# Create custom configuration
-config = GPT2ActivationConfig(
-    model_type=GPT2ModelType.MEDIUM,
-    context_window=512,  # Maximum sequence length
-    device="cuda" if torch.cuda.is_available() else "cpu",
-    include_lm_head=False,  # Exclude language model head activations
-    capture_embeddings=True,  # Include embedding layer
-    concat_attention_heads=True  # Concatenate attention heads instead of averaging
+# Load GPT-2 medium model with custom settings
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model = GPT2LMHeadModel.from_pretrained(
+    "gpt2-medium",  # Use larger model
+    output_hidden_states=True,
+    output_attentions=True,
+    cache_dir="./model_cache"  # Custom cache directory
 )
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2-medium", cache_dir="./model_cache")
 
-# Initialize with custom config
-extractor = GPT2ActivationExtractor(config=config)
+# Move to device and set to eval mode
+model.to(device)
+model.eval()
+
+# Initialize adapter
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
 ```
 
 ### Working with Attention Patterns
@@ -109,10 +113,10 @@ To analyze attention patterns integrated with APA:
 text = "The quick brown fox jumps over the lazy dog."
 
 # Get attention patterns for specific layers
-attention_patterns = extractor.get_attention_patterns(text)
+attention_patterns = adapter.get_attention_patterns(text)
 
 # Get token representations
-token_representations = extractor.get_token_representations(text)
+token_representations = adapter.get_token_representations(text)
 
 # Process each layer
 for layer_name in attention_patterns:
@@ -133,7 +137,7 @@ The sliding window approach helps focus on high-fragmentation regions:
 
 ```python
 # Extract activations for windows with specific stride
-windows = extractor.extract_activations_for_windows(
+windows = adapter.extract_activations_for_windows(
     text,
     window_size=3,  # 3-layer windows
     stride=1,       # Move window by 1 layer at a time
@@ -158,30 +162,28 @@ To save activations for later analysis:
 
 ```python
 # Extract and save activations
-windows = extractor.extract_activations_for_windows(text)
-metadata_file = extractor.save_activations(
-    windows,
+windows = adapter.extract_activations_for_windows(text)
+window_data = windows["window_0_2"]
+activations = window_data["activations"]
+metadata = window_data["metadata"]
+
+# Save activations with metadata
+metadata_file = adapter.save_activations_with_metadata(
+    activations,
+    metadata,
     output_dir="./activations",
-    filename_prefix="gpt2_analysis"
+    prefix="gpt2_analysis"
 )
 
 # The metadata file contains paths to all saved activations
 print(f"Saved activations metadata to: {metadata_file}")
 
 # Later, load the activations
-import json
-import numpy as np
+loaded_activations, loaded_metadata = GPT2Adapter.load_activations_from_metadata(metadata_file)
 
-with open(metadata_file, 'r') as f:
-    metadata = json.load(f)
-
-# Load a specific layer's activations
-window_name = "window_0_2"
-layer_name = "layer_0"
-file_path = metadata["layer_files"][window_name][layer_name]
-activations = np.load(file_path)
-
-print(f"Loaded activations with shape: {activations.shape}")
+print(f"Loaded {len(loaded_activations)} layers:")
+for layer_name, layer_data in loaded_activations.items():
+    print(f"  {layer_name}: shape {layer_data.shape}")
 ```
 
 ## Integration with Visualization Tools
@@ -194,7 +196,7 @@ from concept_fragmentation.analysis.cluster_paths import analyze_layer_paths
 from concept_fragmentation.analysis.gpt2_path_extraction import extract_token_paths
 
 # Get token-level analysis
-windows = extractor.extract_activations_for_windows(text)
+windows = adapter.extract_activations_for_windows(text)
 window_data = windows["window_0_2"]
 activations = window_data["activations"]
 
@@ -228,7 +230,7 @@ from concept_fragmentation.hooks.activation_hooks import set_dimension_logging
 set_dimension_logging(True)
 
 # Extract activations
-extractor.get_layer_activations(text)
+adapter.get_layer_outputs(text)
 ```
 
 ### Memory Issues
@@ -240,13 +242,19 @@ For large models or long sequences, you may encounter memory issues. Try:
 3. Processing batches of texts separately
 
 ```python
-# Use smaller context window
-config = GPT2ActivationConfig(
-    model_type=GPT2ModelType.SMALL,
-    context_window=128,  # Reduced context window
-    device="cpu"  # Use CPU if GPU memory is limited
+# Use smaller model and CPU processing
+model = GPT2LMHeadModel.from_pretrained(
+    "gpt2",  # Use smallest model
+    output_hidden_states=True,
+    output_attentions=True
 )
-extractor = GPT2ActivationExtractor(config=config)
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+# Keep on CPU if memory is limited
+model.to("cpu")
+model.eval()
+
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
 ```
 
 ### Model Loading Issues
@@ -260,16 +268,20 @@ If you have trouble loading models, check that you have:
 You can specify a custom cache directory:
 
 ```python
-config = GPT2ActivationConfig(
+model = GPT2LMHeadModel.from_pretrained(
+    "gpt2",
     cache_dir="/path/to/model/cache",
+    output_hidden_states=True,
+    output_attentions=True
 )
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2", cache_dir="/path/to/model/cache")
 ```
 
 ## Extending the Adapter
 
 The adapter can be extended for custom analyses:
 
-1. Subclass `GPT2ActivationExtractor` for custom extraction logic
+1. Subclass `GPT2Adapter` for custom extraction logic
 2. Create new analysis methods that integrate with the existing architecture
 3. Add new visualization techniques tailored to your specific analysis needs
 
@@ -281,11 +293,11 @@ GPT-2's multi-head attention provides rich information about token relationships
 
 ```python
 # Extract attention patterns with metadata
-extractor = GPT2ActivationExtractor(model_type="gpt2")
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
 text = "The quick brown fox jumps over the lazy dog."
 
 # Get detailed attention analysis
-attention_analysis = extractor.analyze_attention_patterns(text)
+attention_analysis = adapter.get_attention_patterns(text)
 
 for layer_idx, layer_attention in attention_analysis.items():
     print(f"Layer {layer_idx}:")
@@ -496,21 +508,24 @@ print(f"Processed {len(batch_results)} texts successfully")
 Handle large models and long sequences:
 
 ```python
-# Configure for memory efficiency
-memory_config = GPT2ActivationConfig(
-    model_type=GPT2ModelType.LARGE,
-    context_window=1024,
-    device="cuda",
-    use_gradient_checkpointing=True,
-    activation_offload="disk",
-    attention_computation="sparse"
+# Configure for memory efficiency - use large model with optimizations
+model = GPT2LMHeadModel.from_pretrained(
+    "gpt2-large",
+    output_hidden_states=True,
+    output_attentions=True,
+    torch_dtype=torch.float16,  # Use half precision
+    device_map="auto"  # Automatic device placement
 )
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2-large")
 
-extractor = GPT2ActivationExtractor(config=memory_config)
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
 
-# Process with memory management
-with extractor.memory_manager():
-    results = extractor.extract_full_analysis(long_text)
+# Process with sliding windows for memory efficiency
+windows = adapter.extract_activations_for_windows(
+    long_text,
+    window_size=3,
+    stride=2  # Larger stride for memory efficiency
+)
 ```
 
 ## API Reference
@@ -518,24 +533,17 @@ with extractor.memory_manager():
 ### Core Classes
 
 ```python
-class GPT2ActivationExtractor:
-    """Main class for extracting activations from GPT-2 models."""
+class GPT2Adapter(TransformerModelAdapter):
+    """Main class for extracting activations from GPT-2 models with APA extensions."""
     
-    def __init__(self, model_type: str = "gpt2", config: GPT2ActivationConfig = None)
-    def extract_activations_for_windows(self, text: str, window_size: int = 3) -> Dict
-    def get_attention_patterns(self, text: str) -> Dict[str, torch.Tensor]
-    def analyze_attention_patterns(self, text: str) -> Dict[str, torch.Tensor]
-    def save_activations(self, data: Dict, output_dir: str) -> str
-
-class GPT2ActivationConfig:
-    """Configuration for GPT-2 activation extraction."""
+    def __init__(self, model: nn.Module, tokenizer: Optional[Any] = None)
+    def extract_activations_for_windows(self, inputs: Any, window_size: int = 3, stride: int = 1) -> Dict
+    def get_apa_formatted_activations(self, inputs: Any, flatten_sequence: bool = True) -> Dict[str, torch.Tensor]
+    def get_attention_patterns(self, inputs: Any, layer_names: Optional[List[str]] = None) -> Dict[str, torch.Tensor]
+    def save_activations_with_metadata(self, activations: Dict, metadata: Dict, output_dir: str) -> str
     
-    model_type: GPT2ModelType
-    context_window: int
-    device: str
-    include_attention: bool
-    window_size: int
-    n_clusters: int
+    @classmethod
+    def load_activations_from_metadata(cls, metadata_filepath: str) -> Tuple[Dict, Dict]
 ```
 
 ### Utility Functions

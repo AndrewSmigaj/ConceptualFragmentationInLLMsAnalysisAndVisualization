@@ -439,20 +439,27 @@ class GPT2PathAnalyzer:
     def generate_analysis_report(self, results: GPT2AnalysisResults) -> str
 ```
 
-### Configuration Classes
+### Configuration Pattern
+
+GPT-2 analysis is configured through model initialization parameters:
 
 ```python
-@dataclass
-class GPT2ActivationConfig:
-    model_type: GPT2ModelType = GPT2ModelType.SMALL
-    context_window: int = 512
-    device: str = "auto"
-    include_attention: bool = True
-    attention_head_analysis: bool = True
-    window_size: int = 3
-    stride: int = 1
-    n_clusters: int = 10
-    cache_dir: Optional[str] = None
+# Load model with desired configuration
+model = GPT2LMHeadModel.from_pretrained(
+    "gpt2",  # or "gpt2-medium", "gpt2-large", "gpt2-xl"
+    output_hidden_states=True,
+    output_attentions=True,
+    cache_dir="./model_cache"  # Optional custom cache
+)
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+# Initialize adapter
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
+
+# Configure analysis parameters
+window_size = 3
+stride = 1
+n_clusters = 10
 ```
 
 For detailed implementation guides, see:

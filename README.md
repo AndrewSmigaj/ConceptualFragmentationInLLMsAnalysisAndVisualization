@@ -1,27 +1,43 @@
-# Concept Fragmentation in Neural Networks: Analysis and Visualization
+# Foundations of Archetypal Path Analysis: A Principled Geometry for Cluster-Based Neural Network Interpretability
 
-This repository contains the code implementation and resources for the paper: **"Concept Fragmentation in Neural Networks: Visualizing and Measuring Intra-Class Dispersion in Feedforward Models"**.
+This repository contains the implementation for the ArXiv paper: **"Foundations of Archetypal Path Analysis: Toward a Principled Geometry for Cluster-Based Interpretability with LLM-Powered Narrative Explanation"**.
 
 ## Overview
 
-We introduce a framework to quantify and interpret concept fragmentation in neural networks. Concept fragmentation occurs when datapoints of the same class are scattered across disjoint regions in the latent space, complicating interpretability and potentially revealing bias.
+We introduce **Archetypal Path Analysis (APA)**, a principled framework for neural network interpretability that tracks datapoints through clustered activation spaces across layers. APA provides both mathematical rigor and intuitive understanding of how networks process information, with extensions to transformer architectures including GPT-2.
 
-Our approach combines:
-- **Quantitative metrics** (cluster entropy, subspace angles, intra-class pairwise distance)
-- **Trajectory visualizations** to track activation patterns
-- **LLM-based narrative synthesis** from computed archetype paths
-- **Cross-layer metrics** to analyze relationships between representations across network layers
+Our comprehensive approach combines:
+- **Principled clustering geometry** with layer-specific labels and mathematical validation
+- **Explainable Threshold Similarity (ETS)** for dimension-wise transparent clustering
+- **Cross-layer metrics** (centroid similarity, membership overlap, trajectory fragmentation)
+- **GPT-2 transformer integration** with attention-weighted path analysis
+- **LLM-powered narrative generation** for human-readable explanations
+- **Interactive visualizations** for exploring activation patterns and attention flows
 
 ## Key Features
 
-- Implementation of multiple fragmentation metrics
-- Activation capturing and visualization tools
-- Archetype path computation and analysis
-- Cross-layer metrics for analyzing representation relationships
-- Interactive dashboard for exploring neural network trajectories
-- LLM integration for interpretive narratives
-- Titanic passenger dataset case study
-- Extensibility to large language models
+### Core APA Framework
+- **Principled clustering** with layer-specific labels and geometric validation
+- **Cross-layer metrics** for centroid similarity, membership overlap, and fragmentation
+- **ETS clustering** for dimension-wise explainable cluster membership
+- **Statistical robustness** testing with multiple seeds and validation measures
+
+### GPT-2 Transformer Extension
+- **Full GPT-2 model support** (117M to 1.5B parameters)
+- **Attention-weighted path analysis** integrating multi-head attention patterns
+- **Token-aware clustering** respecting sequence structure
+- **Sliding window analysis** for computational efficiency on deep transformers
+
+### Analysis and Visualization
+- **Interactive dashboards** for exploring activation patterns and attention flows
+- **Comprehensive visualizations** including Sankey diagrams, attention heatmaps, and trajectory plots
+- **LLM-powered narratives** for human-readable explanations of analysis results
+- **Automated report generation** combining quantitative metrics with qualitative insights
+
+### Datasets and Applications
+- **Titanic and Heart Disease** case studies demonstrating bias detection
+- **GPT-2 text analysis** examples with attention pattern interpretation
+- **Extensible framework** for custom datasets and model architectures
 
 ## Project Structure
 
@@ -29,17 +45,30 @@ The project is organized into the following main components:
 
 ```
 concept_fragmentation/
-├── analysis/           # Analysis tools for evaluating model representations
-├── data/               # Data loading and preprocessing utilities
-├── experiments/        # Training and experiment scripts
-├── hooks/              # Hooks for extracting activations from models
-├── llm/                # Large Language Model integration for interpretability
-├── metrics/            # Metrics for measuring conceptual fragmentation
-├── models/             # Model definitions and utilities
-├── notebooks/          # Example and demonstration notebooks
-├── tests/              # Test suite
-├── utils/              # Utility functions
-└── visualization/      # Visualization tools for network trajectories
+├── analysis/           # Core APA analysis tools and GPT-2 extensions
+│   ├── cluster_paths.py           # Main APA analysis functions
+│   ├── similarity_metrics.py     # Cross-layer similarity calculations
+│   ├── gpt2_attention_integration.py  # Attention-weighted analysis
+│   └── gpt2_path_extraction.py   # Token path analysis for transformers
+├── models/             # Model adapters and interfaces
+│   ├── transformer_adapter.py    # GPT-2 adapter with APA methods
+│   └── model_interfaces.py       # Unified model interface protocols
+├── metrics/            # APA-specific metrics and transformer extensions
+├── llm/                # LLM integration for narrative generation
+├── hooks/              # Activation extraction hooks for various architectures
+├── experiments/        # Training scripts and experimental configurations
+├── tests/              # Comprehensive test suite
+└── utils/              # Utility functions for path and data processing
+
+visualization/          # Interactive visualization and dashboard components
+├── dash_app.py         # Main dashboard application
+├── gpt2_token_tab.py   # GPT-2 specific visualization components
+└── path_metrics_tab.py # APA metrics visualization
+
+docs/                   # Comprehensive documentation
+├── gpt2_analysis_guide.md         # GPT-2 usage guide
+├── gpt2_apa_theoretical_foundation.md  # Mathematical foundations
+└── integration_tests_guide.md     # Testing and validation guide
 ```
 
 ## Key Components
@@ -92,21 +121,96 @@ The interactive dashboard allows exploration of neural network trajectories and 
    - Path narratives explaining data flow through the network
    - Provider selection and analysis configuration
 
-## Usage
+## Installation
 
-### Running the Dashboard
+### Prerequisites
 
-To launch the interactive visualization dashboard:
+- Python 3.8 or higher
+- CUDA-compatible GPU (recommended for GPT-2 analysis)
+
+### Core Dependencies
 
 ```bash
-python visualization/main.py
+pip install torch torchvision numpy pandas scikit-learn matplotlib seaborn plotly dash
 ```
 
-This will start a Dash web application. Navigate to the displayed URL (typically http://127.0.0.1:8050/) in your web browser.
+### For GPT-2 Analysis
 
-### Example Workflow
+```bash
+pip install transformers tokenizers
+```
 
-See `notebooks/demo_workflow.ipynb` for a complete demonstration of the analysis pipeline, from extracting activations to visualizing paths.
+### For LLM Integration
+
+```bash
+pip install openai anthropic google-generativeai
+```
+
+### Development Installation
+
+```bash
+git clone https://github.com/yourusername/ConceptualFragmentationInLLMsAnalysisAndVisualization.git
+cd ConceptualFragmentationInLLMsAnalysisAndVisualization
+pip install -e .
+```
+
+## Usage
+
+### Quick Start: Traditional APA Analysis
+
+For traditional neural network analysis on tabular data:
+
+```python
+from concept_fragmentation.analysis.cluster_paths import analyze_layer_paths
+from concept_fragmentation.analysis.similarity_metrics import calculate_cross_layer_similarity
+
+# Load your trained model and data
+# Extract activations from each layer
+# activations = {"layer_0": ..., "layer_1": ..., "layer_2": ...}
+
+# Run APA analysis
+results = analyze_layer_paths(activations, n_clusters=10)
+
+# Calculate cross-layer relationships
+similarity_matrix = calculate_cross_layer_similarity(results)
+```
+
+### Quick Start: GPT-2 Analysis
+
+For transformer analysis with attention integration:
+
+```python
+from concept_fragmentation.models.transformer_adapter import GPT2Adapter
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+
+# Load GPT-2 model
+model = GPT2LMHeadModel.from_pretrained("gpt2", output_hidden_states=True, output_attentions=True)
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+adapter = GPT2Adapter(model, tokenizer=tokenizer)
+
+# Analyze text with sliding windows
+text = "The quick brown fox jumps over the lazy dog."
+windows = adapter.extract_activations_for_windows(text, window_size=3)
+
+# Get attention patterns
+attention_patterns = adapter.get_attention_patterns(text)
+
+# Format for APA analysis
+apa_activations = adapter.get_apa_formatted_activations(text)
+```
+
+### Running the Interactive Dashboard
+
+To launch the visualization dashboard:
+
+```bash
+python visualization/dash_app.py
+```
+
+Navigate to http://127.0.0.1:8050/ to explore:
+- **Path Fragmentation**: Traditional APA analysis with trajectory visualization
+- **GPT-2 Token Analysis**: Transformer-specific analysis with attention patterns
+- **LLM Integration**: AI-powered explanations of analysis results
 
 ### LLM Integration
 
@@ -155,19 +259,51 @@ print(labels)
 print(narratives[0])
 ```
 
-## Getting Started
+## Documentation
 
-See the detailed documentation in the `concept_fragmentation` directory for installation instructions, usage examples, and API reference.
+### Core APA Framework
+- [Theoretical Foundation](docs/gpt2_apa_theoretical_foundation.md) - Mathematical foundations and principles
+- [Cross-Layer Metrics](docs/transformer_cross_layer.md) - Detailed metrics documentation
+- [Integration Tests Guide](docs/integration_tests_guide.md) - Testing and validation
 
-## Citation
+### GPT-2 Extensions
+- [GPT-2 Analysis Guide](docs/gpt2_analysis_guide.md) - Comprehensive usage guide for transformers
+- [GPT-2 Architecture Overview](docs/gpt2_apa_architecture.md) - Implementation architecture
+- [Attention Integration Guide](docs/gpt2_attention_interpretation_guide.md) - Working with attention patterns
 
-If you use this code in your research, please cite our paper:
+### LLM Integration
+- [LLM Integration Guide](docs/llm_integration_guide.md) - User guide for AI-powered analysis
+- [LLM Implementation Details](docs/llm_implementation_details.md) - Technical details for developers
 
-```
-@article{
-    title={Concept Fragmentation in Neural Networks: Visualizing and Measuring Intra-Class Dispersion in Feedforward Models},
-    author={Anonymous Submission},
-    journal={ArXiv},
-    year={2025}
+### Examples and Tutorials
+- [GPT-2 Analysis Tutorials](docs/gpt2_analysis_tutorials.md) - Step-by-step tutorials
+- [Command Line Interface](docs/gpt2_analysis_cli.md) - CLI usage guide
+
+## Paper and Citation
+
+This implementation accompanies our ArXiv paper on principled neural network interpretability. If you use this code in your research, please cite:
+
+```bibtex
+@article{archetypal_path_analysis_2025,
+    title={Foundations of Archetypal Path Analysis: Toward a Principled Geometry for Cluster-Based Interpretability with LLM-Powered Narrative Explanation},
+    author={Andrew Smigaj and Claude Anthropic and Grok xAI},
+    journal={ArXiv preprint},
+    year={2025},
+    note={Implementation available at: https://github.com/yourusername/ConceptualFragmentationInLLMsAnalysisAndVisualization}
 }
 ```
+
+### Key Contributions
+
+1. **Mathematical Framework**: Formal foundations for activation-space clustering with layer-specific labels
+2. **GPT-2 Extension**: Attention-weighted path analysis for transformer architectures
+3. **LLM Integration**: AI-powered narrative generation for interpretable explanations
+4. **Comprehensive Implementation**: Full framework with visualization and analysis tools
+
+## Contributing
+
+Contributions are welcome! Please see our contribution guidelines and submit pull requests for improvements, bug fixes, or new features.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
