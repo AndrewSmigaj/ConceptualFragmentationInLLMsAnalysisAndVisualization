@@ -1,0 +1,8 @@
+{
+  "model_name": "gpt2",
+  "num_layers": 12,
+  "hidden_size": 768,
+  "extraction_method": "real",
+  "num_contrast": 101,
+  "num_consistent": 101
+}

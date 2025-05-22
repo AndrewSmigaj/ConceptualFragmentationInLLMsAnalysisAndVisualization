@@ -1,0 +1,72 @@
+{
+  "num_sentences": 202,
+  "num_layers": 13,
+  "metadata": {
+    "model_name": "gpt2",
+    "num_layers": 12,
+    "hidden_size": 768,
+    "extraction_method": "real",
+    "num_contrast": 101,
+    "num_consistent": 101,
+    "clustering_method": "kmeans_with_silhouette",
+    "k_range": [
+      4,
+      6
+    ],
+    "sklearn_available": true
+  },
+  "layer_stats": {
+    "layer_0": {
+      "optimal_k": 6,
+      "silhouette_score": 0.3115498721599579
+    },
+    "layer_1": {
+      "optimal_k": 5,
+      "silhouette_score": 0.2292909026145935
+    },
+    "layer_2": {
+      "optimal_k": 5,
+      "silhouette_score": 0.272577702999115
+    },
+    "layer_3": {
+      "optimal_k": 6,
+      "silhouette_score": 0.2957994341850281
+    },
+    "layer_4": {
+      "optimal_k": 5,
+      "silhouette_score": 0.32066088914871216
+    },
+    "layer_5": {
+      "optimal_k": 5,
+      "silhouette_score": 0.3259669840335846
+    },
+    "layer_6": {
+      "optimal_k": 5,
+      "silhouette_score": 0.33245059847831726
+    },
+    "layer_7": {
+      "optimal_k": 5,
+      "silhouette_score": 0.33898940682411194
+    },
+    "layer_8": {
+      "optimal_k": 5,
+      "silhouette_score": 0.3284626007080078
+    },
+    "layer_9": {
+      "optimal_k": 5,
+      "silhouette_score": 0.32163766026496887
+    },
+    "layer_10": {
+      "optimal_k": 4,
+      "silhouette_score": 0.3060649335384369
+    },
+    "layer_11": {
+      "optimal_k": 5,
+      "silhouette_score": 0.41981953382492065
+    },
+    "layer_12": {
+      "optimal_k": 4,
+      "silhouette_score": 0.4713510572910309
+    }
+  }
+}
