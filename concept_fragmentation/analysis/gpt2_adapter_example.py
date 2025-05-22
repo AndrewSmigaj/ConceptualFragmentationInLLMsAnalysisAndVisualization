@@ -21,11 +21,7 @@ import logging
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 # Import relevant modules
-from concept_fragmentation.analysis.gpt2_model_adapter import (
-    GPT2ActivationExtractor, 
-    GPT2ModelType,
-    GPT2ActivationConfig
-)
+from concept_fragmentation.models.transformer_adapter import GPT2Adapter
 from concept_fragmentation.analysis.cluster_paths import (
     analyze_layer_paths,
     calculate_path_metrics
@@ -123,18 +119,31 @@ def main():
     
     # Load GPT-2 model
     logger.info(f"Loading GPT-2 model: {args.model_type}")
-    config = GPT2ActivationConfig(
-        model_type=GPT2ModelType.from_string(args.model_type),
-        context_window=512,  # Reduced for example
-        device="cuda" if torch.cuda.is_available() else "cpu"
-    )
     
-    extractor = GPT2ActivationExtractor(config=config)
+    try:
+        from transformers import GPT2LMHeadModel, GPT2Tokenizer
+    except ImportError:
+        raise ImportError("transformers library required. Install with: pip install transformers")
+    
+    # Load model and tokenizer
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = GPT2LMHeadModel.from_pretrained(
+        args.model_type,
+        output_hidden_states=True,
+        output_attentions=True
+    )
+    tokenizer = GPT2Tokenizer.from_pretrained(args.model_type)
+    
+    model.to(device)
+    model.eval()
+    
+    # Initialize adapter
+    adapter = GPT2Adapter(model, tokenizer=tokenizer)
     
     # Extract activations
     logger.info("Extracting activations")
     input_text = args.input_text
-    windows = extractor.extract_activations_for_windows(
+    windows = adapter.extract_activations_for_windows(
         input_text,
         window_size=args.window_size,
         stride=args.stride
@@ -142,9 +151,16 @@ def main():
     
     # Save activations
     logger.info("Saving activations")
-    metadata_file = extractor.save_activations(
-        windows,
-        output_dir=str(output_dir / "activations")
+    metadata = windows[list(windows.keys())[0]].get("metadata", {})
+    
+    # Save first window as example
+    first_window = list(windows.keys())[0]
+    window_activations = windows[first_window]["activations"]
+    metadata_file = adapter.save_activations_with_metadata(
+        window_activations,
+        {"window_name": first_window, **metadata},
+        output_dir=str(output_dir / "activations"),
+        prefix="gpt2_example"
     )
     logger.info(f"Saved activations metadata to: {metadata_file}")
     

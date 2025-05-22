@@ -52,11 +52,7 @@ from concept_fragmentation.analysis.transformer_cross_layer import (
 )
 
 # Import GPT-2 specific components
-from concept_fragmentation.analysis.gpt2_model_adapter import (
-    GPT2ActivationExtractor,
-    GPT2ModelType,
-    GPT2ActivationConfig
-)
+from concept_fragmentation.models.transformer_adapter import GPT2Adapter
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -218,7 +214,7 @@ class GPT2MetricsAnalyzer:
     token paths, and concept representation.
     
     Attributes:
-        extractor: GPT2ActivationExtractor for extracting activations
+        adapter: GPT2Adapter for extracting activations and handling model interface
         metrics_calculator: Calculator for transformer-specific metrics
         cross_layer_analyzer: Analyzer for cross-layer relationships
         use_cache: Whether to use caching for faster analysis
@@ -228,11 +224,11 @@ class GPT2MetricsAnalyzer:
     
     def __init__(
         self,
-        model_type: Union[str, GPT2ModelType] = GPT2ModelType.SMALL,
+        model_type: str = "gpt2",
         use_cache: bool = True,
         cache_dir: Optional[str] = None,
         random_state: int = 42,
-        extractor: Optional[GPT2ActivationExtractor] = None,
+        adapter: Optional[GPT2Adapter] = None,
         metrics_calculator: Optional[TransformerMetricsCalculator] = None,
         cross_layer_analyzer: Optional[TransformerCrossLayerAnalyzer] = None
     ):
@@ -240,28 +236,38 @@ class GPT2MetricsAnalyzer:
         Initialize the GPT-2 metrics analyzer.
         
         Args:
-            model_type: Type of GPT-2 model ('small', 'medium', 'large', 'xl')
+            model_type: Type of GPT-2 model ('gpt2', 'gpt2-medium', 'gpt2-large', 'gpt2-xl')
             use_cache: Whether to use caching for faster analysis
             cache_dir: Directory for caching results
             random_state: Random seed for reproducibility
-            extractor: Optional pre-initialized GPT2ActivationExtractor
+            adapter: Optional pre-initialized GPT2Adapter
             metrics_calculator: Optional pre-initialized TransformerMetricsCalculator
             cross_layer_analyzer: Optional pre-initialized TransformerCrossLayerAnalyzer
         """
-        # Set up activation extractor
-        if extractor is None:
-            if isinstance(model_type, str):
-                model_type = GPT2ModelType.from_string(model_type)
+        # Set up GPT-2 adapter
+        if adapter is None:
+            try:
+                from transformers import GPT2LMHeadModel, GPT2Tokenizer
+            except ImportError:
+                raise ImportError("transformers library required. Install with: pip install transformers")
             
-            config = GPT2ActivationConfig(
-                model_type=model_type,
-                use_cache=use_cache,
+            # Load model and tokenizer
+            model = GPT2LMHeadModel.from_pretrained(
+                model_type,
+                output_hidden_states=True,
+                output_attentions=True,
                 cache_dir=cache_dir
             )
+            tokenizer = GPT2Tokenizer.from_pretrained(model_type, cache_dir=cache_dir)
             
-            self.extractor = GPT2ActivationExtractor(config=config)
+            # Move to device
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            model.to(device)
+            model.eval()
+            
+            self.adapter = GPT2Adapter(model, tokenizer=tokenizer)
         else:
-            self.extractor = extractor
+            self.adapter = adapter
         
         # Set up metrics calculator
         self.metrics_calculator = metrics_calculator or TransformerMetricsCalculator(
@@ -314,13 +320,17 @@ class GPT2MetricsAnalyzer:
         Returns:
             GPT2AnalysisResult with comprehensive analysis results
         """
-        logger.info(f"Analyzing text with GPT-2 {self.extractor.config.model_type.value}")
+        logger.info(f"Analyzing text with GPT-2 model")
         
         # Extract activations and prepare input information
-        activations = self.extractor.get_apa_activations(text, layers=layer_indices)
+        activations = self.adapter.get_apa_formatted_activations(text, flatten_sequence=True)
         
-        # Prepare token information
-        inputs = self.extractor.prepare_inputs(text)
+        # Prepare token information using existing method
+        if isinstance(text, str) and self.adapter.tokenizer is not None:
+            inputs = self.adapter.tokenizer(text, return_tensors="pt")
+        else:
+            inputs = text
+            
         token_ids = inputs["input_ids"].cpu().numpy()
         attention_mask = inputs["attention_mask"].cpu().numpy()
         
@@ -329,7 +339,10 @@ class GPT2MetricsAnalyzer:
         for batch_idx in range(token_ids.shape[0]):
             batch_tokens = []
             for token_id in token_ids[batch_idx]:
-                batch_tokens.append(self.extractor.tokenizer.decode([token_id]))
+                if self.adapter.tokenizer is not None:
+                    batch_tokens.append(self.adapter.tokenizer.decode([token_id]))
+                else:
+                    batch_tokens.append(str(token_id))
             tokens.append(batch_tokens)
         
         # Create input info
@@ -343,14 +356,14 @@ class GPT2MetricsAnalyzer:
         attention_patterns = None
         if include_attention_metrics or include_cross_layer_metrics:
             # Get layer indices
-            if layer_indices is None:
-                layer_indices = list(range(len(self.extractor.model.transformer.h)))
+            if layer_indices is None and hasattr(self.adapter.model, 'transformer'):
+                layer_indices = list(range(len(self.adapter.model.transformer.h)))
             
             # Format layer names for extraction
-            attention_layer_names = [f"transformer_layer_{i}_attention" for i in layer_indices]
+            attention_layer_names = [f"transformer_layer_{i}_attention" for i in (layer_indices or [])]
             
             # Extract attention patterns
-            attention_patterns = self.extractor.get_attention_patterns(text, attention_layer_names)
+            attention_patterns = self.adapter.get_attention_patterns(text, attention_layer_names)
         
         # Analyze attention metrics
         attention_metrics = None
@@ -464,12 +477,15 @@ class GPT2MetricsAnalyzer:
             )
         
         # Create model info
-        model_info = {
-            "model_type": self.extractor.config.model_type.value,
-            "n_layers": len(self.extractor.model.transformer.h),
-            "hidden_size": self.extractor.model.config.hidden_size,
-            "n_heads": self.extractor.model.config.n_head
-        }
+        model_info = {}
+        if hasattr(self.adapter.model, 'config'):
+            config = self.adapter.model.config
+            model_info = {
+                "model_type": getattr(config, 'model_type', 'gpt2'),
+                "n_layers": getattr(config, 'n_layer', len(self.adapter.model.transformer.h) if hasattr(self.adapter.model, 'transformer') else 0),
+                "hidden_size": getattr(config, 'hidden_size', getattr(config, 'n_embd', 0)),
+                "n_heads": getattr(config, 'n_head', getattr(config, 'num_attention_heads', 0))
+            }
         
         # Create metadata
         metadata = {

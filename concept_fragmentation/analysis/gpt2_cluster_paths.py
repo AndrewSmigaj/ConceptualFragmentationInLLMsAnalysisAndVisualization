@@ -22,11 +22,7 @@ import torch
 from datetime import datetime
 
 # Import GPT-2 adapter
-from concept_fragmentation.analysis.gpt2_model_adapter import (
-    GPT2ActivationExtractor,
-    GPT2ModelType,
-    GPT2ActivationConfig
-)
+from concept_fragmentation.models.transformer_adapter import GPT2Adapter
 
 # Import visualization tools
 try:
@@ -151,25 +147,41 @@ def extract_gpt2_activations(
     Returns:
         Dictionary mapping window names to activation data
     """
-    # Convert model_type to GPT2ModelType if it's a string
-    if isinstance(model_type, str):
-        model_type = GPT2ModelType.from_string(model_type)
+    # Load GPT-2 model and tokenizer
+    try:
+        from transformers import GPT2LMHeadModel, GPT2Tokenizer
+    except ImportError:
+        raise ImportError("transformers library required for GPT-2 analysis. Install with: pip install transformers")
     
-    logger.info(f"Extracting activations for model: {model_type.value}")
+    # Ensure model_type is a string
+    if not isinstance(model_type, str):
+        model_type = str(model_type)
     
-    # Create configuration
-    config = GPT2ActivationConfig(
-        model_type=model_type,
-        context_window=context_window,
-        device=device
+    logger.info(f"Loading GPT-2 model: {model_type}")
+    
+    # Load model and tokenizer
+    model = GPT2LMHeadModel.from_pretrained(
+        model_type,
+        output_hidden_states=True,
+        output_attentions=True
     )
+    tokenizer = GPT2Tokenizer.from_pretrained(model_type)
     
-    # Initialize extractor
-    extractor = GPT2ActivationExtractor(config=config)
+    # Move to device
+    if device != 'cpu' and torch.cuda.is_available():
+        model.to(device)
+    elif device != 'cpu':
+        logger.warning(f"Device {device} not available, using CPU")
+        device = 'cpu'
+    
+    model.eval()
+    
+    # Initialize adapter
+    adapter = GPT2Adapter(model, tokenizer=tokenizer)
     
     # Extract activations with sliding windows
     logger.info(f"Extracting activations with window_size={window_size}, stride={stride}")
-    windows = extractor.extract_activations_for_windows(
+    windows = adapter.extract_activations_for_windows(
         text,
         window_size=window_size,
         stride=stride
@@ -177,10 +189,20 @@ def extract_gpt2_activations(
     
     # Save activations if output_dir is provided
     if output_dir:
-        metadata_file = extractor.save_activations(
-            windows,
-            output_dir=output_dir
-        )
+        # Get metadata from first window
+        metadata = windows[list(windows.keys())[0]].get("metadata", {})
+        
+        # Save all window activations
+        activation_files = {}
+        for window_name, window_data in windows.items():
+            window_activations = window_data["activations"]
+            metadata_file = adapter.save_activations_with_metadata(
+                window_activations,
+                {"window_name": window_name, **metadata},
+                output_dir=output_dir,
+                prefix=f"gpt2_apa_{window_name}"
+            )
+            activation_files[window_name] = metadata_file
         logger.info(f"Saved activations to: {metadata_file}")
     
     return windows
