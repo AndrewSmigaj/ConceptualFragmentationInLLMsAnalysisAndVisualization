@@ -81,32 +81,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 88,
@@ -117,32 +157,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "perfect but ghastly",
                 "type": "contrast",
-                "sentence_idx": 8,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
               },
               {
                 "text": "pleasant but nasty",
                 "type": "contrast",
-                "sentence_idx": 26,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "hard",
+                "intensity": "mild"
+              },
+              {
+                "text": "clean but filthy",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "filthy",
+                "intensity": "mild"
+              },
+              {
+                "text": "fresh but stale",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "stale",
+                "intensity": "mild"
+              },
+              {
+                "text": "pretty but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "sweet but bitter",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "bitter",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 37,
@@ -153,32 +233,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -189,32 +309,72 @@
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "outstanding but vile",
                 "type": "contrast",
-                "sentence_idx": 10,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "impressive but sickening",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sickening",
+                "intensity": "mild"
+              },
+              {
+                "text": "charming but repellent",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repellent",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "enjoyable but harsh",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "harsh",
+                "intensity": "mild"
+              },
+              {
+                "text": "satisfying but bitter",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "bitter",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -225,32 +385,72 @@
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
               },
               {
                 "text": "brilliant but atrocious",
                 "type": "contrast",
-                "sentence_idx": 7,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "loathsome",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 64,
@@ -261,32 +461,72 @@
               {
                 "text": "pleasant but nasty",
                 "type": "contrast",
-                "sentence_idx": 26,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
               },
               {
                 "text": "peaceful but chaotic",
                 "type": "contrast",
-                "sentence_idx": 32,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "chaotic",
+                "intensity": "mild"
               },
               {
                 "text": "adorable but awful",
                 "type": "contrast",
-                "sentence_idx": 56,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "healthy but sick",
                 "type": "contrast",
-                "sentence_idx": 70,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "sick",
+                "intensity": "mild"
               },
               {
                 "text": "strong but weak",
                 "type": "contrast",
-                "sentence_idx": 71,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "weak",
+                "intensity": "mild"
+              },
+              {
+                "text": "powerful but feeble",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "feeble",
+                "intensity": "mild"
+              },
+              {
+                "text": "stable but unstable",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "unstable",
+                "intensity": "mild"
+              },
+              {
+                "text": "secure but vulnerable",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vulnerable",
+                "intensity": "mild"
+              },
+              {
+                "text": "safe but dangerous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "dangerous",
+                "intensity": "mild"
+              },
+              {
+                "text": "peaceful but violent",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "violent",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 13,
@@ -304,32 +544,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "incredible but execrable",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
+              },
+              {
+                "text": "exceptional but repugnant",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repugnant",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 49,
@@ -340,32 +620,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -376,32 +696,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "brilliant but atrocious",
                 "type": "contrast",
-                "sentence_idx": 7,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "fabulous but detestable",
                 "type": "contrast",
-                "sentence_idx": 14,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "detestable",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
+              },
+              {
+                "text": "admirable but disturbing",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "disturbing",
+                "intensity": "mild"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "gentle but rough",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "rough",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hard",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 29,
@@ -412,32 +772,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 72,
@@ -448,32 +848,72 @@
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
               },
               {
                 "text": "brilliant but atrocious",
                 "type": "contrast",
-                "sentence_idx": 7,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "outstanding but vile",
                 "type": "contrast",
-                "sentence_idx": 10,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "loathsome",
+                "intensity": "intense"
+              },
+              {
+                "text": "fabulous but detestable",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "detestable",
+                "intensity": "intense"
+              },
+              {
+                "text": "terrific but abominable",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "abominable",
+                "intensity": "intense"
+              },
+              {
+                "text": "remarkable but odious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "odious",
+                "intensity": "intense"
+              },
+              {
+                "text": "impressive but sickening",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sickening",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 52,
@@ -491,32 +931,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -527,32 +1007,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -563,32 +1083,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
               },
               {
                 "text": "brilliant but atrocious",
                 "type": "contrast",
-                "sentence_idx": 7,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
               },
               {
                 "text": "magnificent but repulsive",
                 "type": "contrast",
-                "sentence_idx": 11,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "fabulous but detestable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "detestable",
+                "intensity": "intense"
+              },
+              {
+                "text": "incredible but execrable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
+              },
+              {
+                "text": "exceptional but repugnant",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repugnant",
+                "intensity": "intense"
+              },
+              {
+                "text": "admirable but disturbing",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "disturbing",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 47,
@@ -599,32 +1159,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "fabulous but detestable",
                 "type": "contrast",
-                "sentence_idx": 14,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "detestable",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
+              },
+              {
+                "text": "phenomenal but nauseating",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "appealing but disagreeable",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "disagreeable",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -635,32 +1235,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "perfect but ghastly",
                 "type": "contrast",
-                "sentence_idx": 8,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
+              },
+              {
+                "text": "terrific but abominable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "abominable",
+                "intensity": "intense"
+              },
+              {
+                "text": "remarkable but odious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "odious",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 54,
@@ -678,32 +1318,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 72,
@@ -714,32 +1394,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -750,32 +1470,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "delightful but offensive",
                 "type": "contrast",
-                "sentence_idx": 22,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
               },
               {
                 "text": "relaxing but stressful",
                 "type": "contrast",
-                "sentence_idx": 31,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "gentle but rough",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "rough",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hard",
+                "intensity": "mild"
+              },
+              {
+                "text": "pristine but dirty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "dirty",
+                "intensity": "mild"
+              },
+              {
+                "text": "clean but filthy",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "filthy",
+                "intensity": "mild"
+              },
+              {
+                "text": "lovely but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 25,
@@ -786,32 +1546,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 29,
@@ -822,32 +1622,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "fabulous but detestable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "detestable",
+                "intensity": "intense"
+              },
+              {
+                "text": "terrific but abominable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "abominable",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 44,
@@ -858,32 +1698,72 @@
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "perfect but ghastly",
                 "type": "contrast",
-                "sentence_idx": 8,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
               },
               {
                 "text": "outstanding but vile",
                 "type": "contrast",
-                "sentence_idx": 10,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               },
               {
                 "text": "splendid but loathsome",
                 "type": "contrast",
-                "sentence_idx": 13,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "impressive but sickening",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sickening",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "enjoyable but harsh",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "harsh",
+                "intensity": "mild"
+              },
+              {
+                "text": "satisfying but bitter",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "bitter",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sour",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 32,
@@ -901,32 +1781,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -937,32 +1857,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -973,32 +1933,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "delightful but offensive",
                 "type": "contrast",
-                "sentence_idx": 22,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
               },
               {
                 "text": "relaxing but stressful",
                 "type": "contrast",
-                "sentence_idx": 31,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
               },
               {
                 "text": "gentle but rough",
                 "type": "contrast",
-                "sentence_idx": 37,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "rough",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hard",
+                "intensity": "mild"
+              },
+              {
+                "text": "pristine but dirty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "dirty",
+                "intensity": "mild"
+              },
+              {
+                "text": "lovely but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "gentle but violent",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "violent",
+                "intensity": "mild"
+              },
+              {
+                "text": "warm but cold",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "cold",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 22,
@@ -1009,32 +2009,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -1045,32 +2085,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 79,
@@ -1088,32 +2168,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -1124,32 +2244,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -1160,32 +2320,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "delightful but offensive",
                 "type": "contrast",
-                "sentence_idx": 22,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
               },
               {
                 "text": "relaxing but stressful",
                 "type": "contrast",
-                "sentence_idx": 31,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
               },
               {
                 "text": "gentle but rough",
                 "type": "contrast",
-                "sentence_idx": 37,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "rough",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hard",
+                "intensity": "mild"
+              },
+              {
+                "text": "pristine but dirty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "dirty",
+                "intensity": "mild"
+              },
+              {
+                "text": "lovely but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "gentle but violent",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "violent",
+                "intensity": "mild"
+              },
+              {
+                "text": "warm but cold",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "cold",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 23,
@@ -1196,32 +2396,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -1232,32 +2472,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 78,
@@ -1275,32 +2555,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -1311,32 +2631,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -1347,32 +2707,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "delightful but offensive",
                 "type": "contrast",
-                "sentence_idx": 22,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
               },
               {
                 "text": "relaxing but stressful",
                 "type": "contrast",
-                "sentence_idx": 31,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "gentle but rough",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "rough",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hard",
+                "intensity": "mild"
+              },
+              {
+                "text": "pristine but dirty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "dirty",
+                "intensity": "mild"
+              },
+              {
+                "text": "lovely but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "gentle but violent",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "violent",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -1383,32 +2783,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -1419,32 +2859,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -1462,32 +2942,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 74,
@@ -1498,32 +3018,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -1534,32 +3094,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "delightful but offensive",
                 "type": "contrast",
-                "sentence_idx": 22,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
               },
               {
                 "text": "relaxing but stressful",
                 "type": "contrast",
-                "sentence_idx": 31,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "gentle but rough",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "rough",
+                "intensity": "mild"
+              },
+              {
+                "text": "soft but hard",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hard",
+                "intensity": "mild"
+              },
+              {
+                "text": "pristine but dirty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "dirty",
+                "intensity": "mild"
+              },
+              {
+                "text": "lovely but hideous",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "gentle but violent",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "violent",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 25,
@@ -1570,32 +3170,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 27,
@@ -1606,32 +3246,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 76,
@@ -1649,32 +3329,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -1685,32 +3405,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -1721,32 +3481,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
+              },
+              {
+                "text": "impressive but sickening",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sickening",
+                "intensity": "mild"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "peaceful but chaotic",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "chaotic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 36,
@@ -1757,32 +3557,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -1793,32 +3633,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 65,
@@ -1836,32 +3716,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -1872,32 +3792,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -1908,32 +3868,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "execrable",
+                "intensity": "intense"
+              },
+              {
+                "text": "impressive but sickening",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sickening",
+                "intensity": "mild"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "peaceful but chaotic",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "chaotic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 36,
@@ -1944,32 +3944,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -1980,32 +4020,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 65,
@@ -2023,32 +4103,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "hideous",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 73,
@@ -2059,32 +4179,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -2095,32 +4255,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -2131,32 +4331,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "incredible but execrable",
                 "type": "contrast",
-                "sentence_idx": 16,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "execrable",
+                "intensity": "intense"
               },
               {
                 "text": "phenomenal but nauseating",
                 "type": "contrast",
-                "sentence_idx": 19,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "nauseating",
+                "intensity": "intense"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "sour",
+                "intensity": "mild"
+              },
+              {
+                "text": "relaxing but stressful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "stressful",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 28,
@@ -2174,32 +4414,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -2210,32 +4490,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "perfect but ghastly",
                 "type": "contrast",
-                "sentence_idx": 8,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "loathsome",
+                "intensity": "intense"
+              },
+              {
+                "text": "terrific but abominable",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "abominable",
+                "intensity": "intense"
+              },
+              {
+                "text": "exceptional but repugnant",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "repugnant",
+                "intensity": "intense"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "calm but frantic",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "frantic",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 57,
@@ -2246,32 +4566,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "superb but revolting",
                 "type": "contrast",
-                "sentence_idx": 9,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "revolting",
+                "intensity": "intense"
               },
               {
                 "text": "marvelous but hideous",
                 "type": "contrast",
-                "sentence_idx": 12,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "impressive but sickening",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sickening",
+                "intensity": "mild"
+              },
+              {
+                "text": "delightful but offensive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "offensive",
+                "intensity": "mild"
+              },
+              {
+                "text": "appealing but disagreeable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "disagreeable",
+                "intensity": "mild"
+              },
+              {
+                "text": "attractive but unpleasant",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "unpleasant",
+                "intensity": "mild"
+              },
+              {
+                "text": "refreshing but sour",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "sour",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 42,
@@ -2282,32 +4642,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
               },
               {
                 "text": "brilliant but atrocious",
                 "type": "contrast",
-                "sentence_idx": 7,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
+              },
+              {
+                "text": "fabulous but detestable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "detestable",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 59,
@@ -2318,32 +4718,72 @@
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
               },
               {
                 "text": "brilliant but atrocious",
                 "type": "contrast",
-                "sentence_idx": 7,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "vile",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "marvelous but hideous",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "hideous",
+                "intensity": "intense"
+              },
+              {
+                "text": "fabulous but detestable",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "detestable",
+                "intensity": "intense"
+              },
+              {
+                "text": "incredible but execrable",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "execrable",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 44,
@@ -2361,32 +4801,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 0
+                "token_position": 0,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 0,
+                "third_word": "revolting",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 101,
@@ -2397,32 +4877,72 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 1
+                "token_position": 1,
+                "third_word": "disgusting",
+                "intensity": "intense"
+              },
+              {
+                "text": "amazing but dreadful",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "dreadful",
+                "intensity": "mild"
+              },
+              {
+                "text": "fantastic but appalling",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "perfect but ghastly",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "ghastly",
+                "intensity": "intense"
+              },
+              {
+                "text": "outstanding but vile",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "vile",
+                "intensity": "intense"
               }
             ],
             "contrast_count": 87,
@@ -2433,35 +4953,75 @@
               {
                 "text": "good but bad",
                 "type": "contrast",
-                "sentence_idx": 0,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "bad",
+                "intensity": "mild"
               },
               {
                 "text": "nice but terrible",
                 "type": "contrast",
-                "sentence_idx": 2,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "terrible",
+                "intensity": "mild"
               },
               {
                 "text": "excellent but horrible",
                 "type": "contrast",
-                "sentence_idx": 3,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "horrible",
+                "intensity": "mild"
               },
               {
                 "text": "wonderful but disgusting",
                 "type": "contrast",
-                "sentence_idx": 4,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "disgusting",
+                "intensity": "intense"
               },
               {
                 "text": "fantastic but appalling",
                 "type": "contrast",
-                "sentence_idx": 6,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "appalling",
+                "intensity": "intense"
+              },
+              {
+                "text": "brilliant but atrocious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "atrocious",
+                "intensity": "intense"
+              },
+              {
+                "text": "superb but revolting",
+                "type": "contrast",
+                "token_position": 1,
+                "third_word": "revolting",
+                "intensity": "intense"
+              },
+              {
+                "text": "magnificent but repulsive",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repulsive",
+                "intensity": "intense"
+              },
+              {
+                "text": "splendid but loathsome",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "loathsome",
+                "intensity": "intense"
+              },
+              {
+                "text": "fabulous but detestable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "detestable",
+                "intensity": "intense"
               }
             ],
-            "contrast_count": 59,
+            "contrast_count": 58,
             "consistent_count": 66
           },
           "cluster_L12C3": {
@@ -2469,32 +5029,72 @@
               {
                 "text": "great but awful",
                 "type": "contrast",
-                "sentence_idx": 1,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "awful",
+                "intensity": "mild"
               },
               {
                 "text": "amazing but dreadful",
                 "type": "contrast",
-                "sentence_idx": 5,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "dreadful",
+                "intensity": "mild"
               },
               {
                 "text": "perfect but ghastly",
                 "type": "contrast",
-                "sentence_idx": 8,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "ghastly",
+                "intensity": "intense"
               },
               {
                 "text": "outstanding but vile",
                 "type": "contrast",
-                "sentence_idx": 10,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "vile",
+                "intensity": "intense"
               },
               {
                 "text": "terrific but abominable",
                 "type": "contrast",
-                "sentence_idx": 15,
-                "token_position": 2
+                "token_position": 2,
+                "third_word": "abominable",
+                "intensity": "intense"
+              },
+              {
+                "text": "remarkable but odious",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "odious",
+                "intensity": "intense"
+              },
+              {
+                "text": "charming but repellent",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "repellent",
+                "intensity": "mild"
+              },
+              {
+                "text": "appealing but disagreeable",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "disagreeable",
+                "intensity": "mild"
+              },
+              {
+                "text": "pleasant but nasty",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "nasty",
+                "intensity": "mild"
+              },
+              {
+                "text": "satisfying but bitter",
+                "type": "contrast",
+                "token_position": 2,
+                "third_word": "bitter",
+                "intensity": "mild"
               }
             ],
             "contrast_count": 56,
@@ -3089,18 +5689,30 @@
     "interpretation": "Fragmentation delta = post-pivot fragmentation - pre-pivot fragmentation, Path divergence = Hamming distance between pre/post-pivot paths"
   },
   "key_research_questions": [
-    "How does the semantic pivot 'but' affect token representation trajectories in GPT-2?",
+    "Using the samples, and comparing clusters, label the clusters with unique names",
+    "How does the third token change the trajectory",
     "Do contrast sentences (positive but negative) create different archetypal paths than consistent sentences (positive but positive)?",
     "Which layers show the most fragmentation/processing of the semantic contradiction?",
     "What narrative can explain the differences in path patterns between the two sentence classes?",
-    "How do pre-pivot and post-pivot tokens change their cluster assignments after processing the pivot?"
+    "How do the three token positions (first, 'but', third) cluster differently across layers?"
+  ],
+  "additional_research_questions": [
+    "How does the intensity of adjectives affect clustering and pathway divergence?",
+    "Are there positional effects on token clustering within the three-token sequence?",
+    "How do clustering patterns differ for rare vs. frequent adjectives?",
+    "Does GPT-2 exhibit layer-specific attention to syntactic vs. semantic roles?",
+    "How do pathways differ for sentences with antonymous vs. non-antonymous adjective pairs?",
+    "Do 'but' tokens cluster together regardless of the surrounding adjectives?",
+    "How do final token representations reflect the complete semantic context?",
+    "Are contrast sentences more dispersed across clusters than consistent sentences?"
   ],
   "analysis_focus": [
+    "Label each cluster with semantic names based on sentence examples and intensity patterns",
+    "Analyze how third token intensity (mild vs intense) affects trajectory changes",
     "Compare archetypal path patterns between contrast and consistent sentence classes",
-    "Identify layers with highest fragmentation or path divergence",
-    "Explain what the different path patterns reveal about GPT-2's internal processing",
-    "Generate narrative explanations for why certain paths are more common in each class",
-    "Discuss implications for understanding transformer language processing"
+    "Identify layers with highest fragmentation or path divergence around the semantic pivot",
+    "Generate narrative explanations for cluster semantics and archetypal path differences",
+    "Discuss implications for understanding how GPT-2 processes semantic contradictions"
   ],
   "metadata": {
     "model": "gpt2",

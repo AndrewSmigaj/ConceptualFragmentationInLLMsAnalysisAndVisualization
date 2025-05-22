@@ -91,19 +91,32 @@ def compile_llm_analysis_data():
         },
         
         "key_research_questions": [
-            "How does the semantic pivot 'but' affect token representation trajectories in GPT-2?",
+            "Using the samples, and comparing clusters, label the clusters with unique names",
+            "How does the third token change the trajectory",
             "Do contrast sentences (positive but negative) create different archetypal paths than consistent sentences (positive but positive)?",
             "Which layers show the most fragmentation/processing of the semantic contradiction?",
             "What narrative can explain the differences in path patterns between the two sentence classes?",
-            "How do pre-pivot and post-pivot tokens change their cluster assignments after processing the pivot?"
+            "How do the three token positions (first, 'but', third) cluster differently across layers?"
+        ],
+        
+        "additional_research_questions": [
+            "How does the intensity of adjectives affect clustering and pathway divergence?",
+            "Are there positional effects on token clustering within the three-token sequence?",
+            "How do clustering patterns differ for rare vs. frequent adjectives?",
+            "Does GPT-2 exhibit layer-specific attention to syntactic vs. semantic roles?",
+            "How do pathways differ for sentences with antonymous vs. non-antonymous adjective pairs?",
+            "Do 'but' tokens cluster together regardless of the surrounding adjectives?",
+            "How do final token representations reflect the complete semantic context?",
+            "Are contrast sentences more dispersed across clusters than consistent sentences?"
         ],
         
         "analysis_focus": [
+            "Label each cluster with semantic names based on sentence examples and intensity patterns",
+            "Analyze how third token intensity (mild vs intense) affects trajectory changes",
             "Compare archetypal path patterns between contrast and consistent sentence classes",
-            "Identify layers with highest fragmentation or path divergence",
-            "Explain what the different path patterns reveal about GPT-2's internal processing",
-            "Generate narrative explanations for why certain paths are more common in each class",
-            "Discuss implications for understanding transformer language processing"
+            "Identify layers with highest fragmentation or path divergence around the semantic pivot",
+            "Generate narrative explanations for cluster semantics and archetypal path differences",
+            "Discuss implications for understanding how GPT-2 processes semantic contradictions"
         ],
         
         "metadata": {
@@ -144,20 +157,34 @@ def compile_llm_analysis_data():
                 sentence_info = {
                     "text": sentence_text,
                     "type": sentence_type,
-                    "sentence_idx": sent_idx,
-                    "token_position": token_idx
+                    "token_position": token_idx  # 0=first_word, 1=but, 2=third_word
                 }
                 
                 # Check if this sentence is already recorded for this cluster
                 existing = False
                 for existing_sent in cluster_contents[cluster_key]["sentences"]:
-                    if existing_sent["sentence_idx"] == sent_idx:
+                    if existing_sent["text"] == sentence_text:
                         existing = True
                         break
                 
                 if not existing:
-                    # Only keep first 5 examples per cluster to save space
-                    if len(cluster_contents[cluster_key]["sentences"]) < 5:
+                    # Keep first 10 examples per cluster and add intensity info
+                    if len(cluster_contents[cluster_key]["sentences"]) < 10:
+                        # Add intensity classification for third word
+                        tokens = sentence_text.split()
+                        third_word = tokens[2] if len(tokens) == 3 else ""
+                        
+                        # Simple intensity classification
+                        intense_negative = ['disgusting', 'appalling', 'atrocious', 'ghastly', 'revolting', 'vile', 'repulsive', 'hideous', 'loathsome', 'detestable', 'abominable', 'execrable', 'odious', 'repugnant', 'nauseating']
+                        intense_positive = ['outstanding', 'magnificent', 'marvelous', 'splendid', 'fabulous', 'terrific', 'incredible', 'remarkable', 'exceptional', 'phenomenal']
+                        
+                        if third_word.lower() in intense_negative or third_word.lower() in intense_positive:
+                            intensity = "intense"
+                        else:
+                            intensity = "mild"
+                        
+                        sentence_info["third_word"] = third_word
+                        sentence_info["intensity"] = intensity
                         cluster_contents[cluster_key]["sentences"].append(sentence_info)
                     
                     if sentence_type == "contrast":

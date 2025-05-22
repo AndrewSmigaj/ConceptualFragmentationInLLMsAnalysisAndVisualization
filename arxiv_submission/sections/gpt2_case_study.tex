@@ -1,0 +1,163 @@
+\section{GPT-2 Semantic Pivot Case Study: Demonstrating APA Methodology}
+
+To demonstrate the practical application of Archetypal Path Analysis with LLM-powered narrative generation, we present a comprehensive case study analyzing semantic pivot processing in GPT-2. This experiment showcases how APA methodology can reveal the internal representational dynamics of large language models when processing semantic contradictions.
+
+\subsection{Experimental Design}
+
+We designed a controlled experiment to study how GPT-2 processes semantic pivots using the contrastive word ``but'' in minimal 3-token sentences. The experiment compares two sentence classes:
+
+\begin{itemize}
+    \item \textbf{Contrast sentences}: ``positive but negative'' (e.g., ``good but bad'', ``nice but terrible'')
+    \item \textbf{Consistent sentences}: ``positive but positive'' (e.g., ``good but great'', ``nice but wonderful'')
+\end{itemize}
+
+\subsubsection{Dataset Construction}
+
+We generated 202 balanced sentences (101 contrast, 101 consistent) with systematic intensity variation:
+
+\begin{itemize}
+    \item \textbf{Mild adjectives}: ``bad'', ``poor'', ``good'', ``nice''
+    \item \textbf{Intense adjectives}: ``atrocious'', ``vile'', ``magnificent'', ``phenomenal''
+\end{itemize}
+
+Each sentence follows the pattern: \texttt{[positive\_adjective] but [target\_adjective]}, where the target adjective determines the sentence class and intensity level.
+
+\subsubsection{Activation Extraction}
+
+Using GPT-2 (117M parameters), we extracted 768-dimensional activation vectors for each token across all 13 layers (embedding + 12 transformer layers). Critical implementation details:
+
+\begin{itemize}
+    \item \textbf{Word-level tokenization}: Ensured alignment with 3-token sentence structure
+    \item \textbf{Single forward pass}: Complete sentence processing to capture final representations
+    \item \textbf{Layer-wise extraction}: All hidden states from embedding through final transformer layer
+\end{itemize}
+
+This yielded 606 total tokens (202 sentences × 3 tokens) with 13-layer trajectories each.
+
+\subsubsection{Clustering and Path Analysis}
+
+We applied k-means clustering with silhouette-based optimization (k ∈ [2, 15]) at each layer, discovering optimal k=4 across all layers. Cluster labels follow the format L\{layer\}C\{cluster\} (e.g., L0C1, L11C3).
+
+Token paths were tracked across layers to identify archetypal patterns, yielding 72 unique paths with clear differentiation between sentence classes.
+
+\subsection{Key Findings}
+
+\subsubsection{Representational Evolution Across Layers}
+
+The analysis revealed a systematic progression from syntactic to semantic clustering:
+
+\begin{description}
+    \item[Early Layers (0--2)] Syntactic clustering with mixed valence and intensity. Third tokens cluster by position rather than meaning (J ≈ 0.95).
+    
+    \item[Middle Layers (3--9)] Intensity refinement begins. Negative adjectives start separating by intensity level, with mild and intense adjectives forming distinct subclusters.
+    
+    \item[Late Layers (10--12)] Clear semantic separation achieved. Peak processing occurs with highest silhouette scores (Layer 11: 0.4198, Layer 12: 0.4714), indicating robust semantic clustering.
+\end{description}
+
+\subsubsection{Third Token Fragmentation Patterns}
+
+The third token (post-pivot adjective) exhibits the most dramatic representational changes:
+
+\textbf{Contrast Sentences:}
+\begin{itemize}
+    \item Fragment by intensity: ``bad'' vs ``atrocious'' follow different archetypal paths
+    \item Higher fragmentation scores (≈0.3) in layers 10--12
+    \item 51 unique archetypal paths reflecting semantic processing complexity
+\end{itemize}
+
+\textbf{Consistent Sentences:}
+\begin{itemize}
+    \item Maintain cohesive clustering due to positive valence alignment
+    \item Lower fragmentation scores (≈0.2) across all layers  
+    \item 57 unique paths but with higher frequency concentration
+\end{itemize}
+
+\subsubsection{Position-Specific Clustering Behavior}
+
+Analysis by token position revealed distinct processing patterns:
+
+\begin{description}
+    \item[First Position (token\_position=0)] Highly stable clustering (J ≈ 0.95) due to consistent positive valence across all sentences.
+    
+    \item[Pivot Position (token\_position=1)] Invariant clustering (J ≈ 1.0) -- all ``but'' tokens cluster together regardless of context, with zero fragmentation deltas.
+    
+    \item[Third Position (token\_position=2)] Maximum fragmentation in contrast sentences (J ≈ 0.70), where negative adjectives split by intensity in layers 11--12.
+\end{description}
+
+\subsubsection{Intensity-Driven Path Divergence}
+
+Adjective intensity significantly impacts archetypal path selection:
+
+\begin{itemize}
+    \item \textbf{Mild adjectives} (e.g., ``bad'', ``terrible''): Converge to clusters L11C2, L12C3 with lower fragmentation (≈0.25)
+    \item \textbf{Intense adjectives} (e.g., ``atrocious'', ``vile''): Diverge to clusters L11C3, L12C2 with higher fragmentation (≈0.35)
+\end{itemize}
+
+Representative archetypal paths:
+\begin{itemize}
+    \item \textbf{Intense contrast}: L0C4→L1C2→L2C2→...→L11C3→L12C2 (42 tokens)
+    \item \textbf{Mild contrast}: L0C5→L1C4→L2C3→...→L11C2→L12C3 (35 tokens)  
+    \item \textbf{Consistent}: L0C4→L1C2→L2C3→...→L11C2→L12C3 (30 tokens)
+\end{itemize}
+
+\subsection{LLM-Generated Cluster Labels}
+
+Applying our LLM-powered analysis framework, we obtained semantically meaningful cluster labels based on sentence contents and archetypal path patterns:
+
+\begin{table}[h!]
+\centering
+\caption{Semantic cluster labels for key layers}
+\label{tab:gpt2_cluster_labels}
+\begin{tabular}{lll}
+\toprule
+Layer & Cluster & Semantic Label \\
+\midrule
+0 & L0C4 & ``Mixed Third Adjectives'' \\
+0 & L0C5 & ``Mild Negative Third Adjectives'' \\
+11 & L11C2 & ``Mild Third Adjectives'' \\  
+11 & L11C3 & ``Intense Third Adjectives'' \\
+12 & L12C2 & ``Intense Third Adjectives'' \\
+12 & L12C3 & ``Mild Third Adjectives'' \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Implications for Transformer Interpretability}
+
+This case study demonstrates several key insights about transformer language processing:
+
+\begin{enumerate}
+    \item \textbf{Hierarchical Semantic Processing}: GPT-2 progresses from syntactic to semantic representations, with semantic contradiction resolution concentrated in layers 11--12.
+    
+    \item \textbf{Context-Dependent Fragmentation}: The semantic pivot ``but'' triggers different representational strategies depending on the post-pivot adjective's intensity and valence.
+    
+    \item \textbf{Position-Specific Processing}: Different token positions exhibit distinct clustering behaviors, with maximum complexity at the semantically critical third position.
+    
+    \item \textbf{Intensity as Organizing Principle}: Beyond simple valence, adjective intensity serves as a key organizing principle for representational clustering in later layers.
+\end{enumerate}
+
+\subsection{Methodological Validation}
+
+This case study validates several aspects of our APA methodology:
+
+\begin{itemize}
+    \item \textbf{Cross-layer tracking}: Successfully traced representational evolution across 13 layers
+    \item \textbf{Semantic cluster labeling}: LLM-generated labels accurately captured cluster semantics
+    \item \textbf{Archetypal path identification}: Discovered meaningful path patterns distinguishing sentence classes
+    \item \textbf{Quantitative grounding}: APA metrics (ρ\textsuperscript{c}, J, F\textsubscript{i}) provided statistical validation for qualitative insights
+\end{itemize}
+
+The high silhouette scores in final layers (0.42--0.47) and clear archetypal path differentiation demonstrate the method's ability to detect genuine semantic processing patterns rather than random clustering artifacts.
+
+\subsection{Broader Applications}
+
+This GPT-2 analysis exemplifies how APA methodology can be applied to study:
+
+\begin{itemize}
+    \item \textbf{Semantic processing mechanisms} in large language models
+    \item \textbf{Layer-specific functionality} in transformer architectures  
+    \item \textbf{Context-dependent representation} formation
+    \item \textbf{Systematic biases} in model processing of different input types
+\end{itemize}
+
+The combination of quantitative path tracking with LLM-powered semantic interpretation provides a powerful framework for understanding the internal dynamics of complex neural architectures.
