@@ -29,6 +29,15 @@ def compute_layer_clusters_embedded(
         Dictionary mapping layer names to clustering info:
             {layer_name: {"k": optimal_k, "centers": cluster_centers, "labels": cluster_assignments}}
     """
+    # Print information about the embeddings dictionary
+    print(f"DEBUG: compute_layer_clusters_embedded received {len(embeddings_dict)} layers")
+    print(f"DEBUG: Layer names: {list(embeddings_dict.keys())}")
+    
+    # Check for empty embeddings dict
+    if not embeddings_dict:
+        print("WARNING: Empty embeddings dictionary provided to compute_layer_clusters_embedded")
+        return {}
+    
     # Check cache if provided
     if cache_path and os.path.exists(cache_path):
         try:
@@ -36,12 +45,56 @@ def compute_layer_clusters_embedded(
                 result = pickle.load(f)
                 print(f"Loaded cached embedded clusters from {cache_path}")
                 # Debug the structure
+                layer_names_in_cache = list(result.keys())
+                print(f"DEBUG: Cache contains {len(layer_names_in_cache)} layers: {layer_names_in_cache}")
+                
                 for layer, info in result.items():
                     print(f"DEBUG layer: {layer} has keys: {list(info.keys())}")
-                    print(f"DEBUG layer: {layer} has k={info.get('k')}, labels.shape={info.get('labels').shape if 'labels' in info else 'No labels'}")
-                return result
+                    print(f"DEBUG layer: {layer} has k={info.get('k')}, labels.shape={info.get('labels').shape if 'labels' in info and hasattr(info.get('labels'), 'shape') else 'No valid labels'}")
+                
+                # Check if cache has all required layers
+                missing_layers = [layer for layer in embeddings_dict.keys() if layer not in result]
+                if missing_layers:
+                    print(f"WARNING: Cache is missing layers that are in embeddings_dict: {missing_layers}")
+                    print(f"Will compute clusters for these layers and update cache")
+                    
+                    # Initialize with cached results
+                    layer_clusters = result
+                    
+                    # Add missing layers
+                    for layer_name in missing_layers:
+                        embeddings = embeddings_dict[layer_name]
+                        print(f"DEBUG: Processing missing layer {layer_name} with embeddings shape {embeddings.shape}")
+                        if embeddings.shape[0] < 4:  # Need at least a few points
+                            print(f"DEBUG: Skipping layer {layer_name} because it has too few points: {embeddings.shape[0]}")
+                            continue
+                            
+                        # Find optimal k and cluster assignments
+                        best_k, best_centers, best_labels = _silhouette_search(
+                            embeddings, max_k, random_state)
+                        
+                        layer_clusters[layer_name] = {
+                            "k": best_k,
+                            "centers": best_centers,
+                            "labels": best_labels,
+                        }
+                    
+                    # Update cache with new results
+                    if cache_path:
+                        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+                        with open(cache_path, 'wb') as f:
+                            pickle.dump(layer_clusters, f)
+                            print(f"Updated cache at {cache_path} with {len(missing_layers)} new layers")
+                    
+                    return layer_clusters
+                else:
+                    return result
+                
         except Exception as e:
+            import traceback
             print(f"Error loading cached clusters: {e}")
+            print(traceback.format_exc())
+            print(f"Will compute clusters from scratch")
     
     # Initialize results dictionary
     layer_clusters = {}
@@ -49,26 +102,56 @@ def compute_layer_clusters_embedded(
     # Process each layer
     for layer_name, embeddings in embeddings_dict.items():
         print(f"DEBUG: Processing layer {layer_name} with embeddings shape {embeddings.shape}")
-        if embeddings.shape[0] < 4:  # Need at least a few points
-            continue
-            
-        # Find optimal k and cluster assignments
-        best_k, best_centers, best_labels = _silhouette_search(
-            embeddings, max_k, random_state)
         
-        layer_clusters[layer_name] = {
-            "k": best_k,
-            "centers": best_centers,
-            "labels": best_labels,
-        }
+        # Validate the shape
+        if embeddings.shape[0] < 4:  # Need at least a few points
+            print(f"DEBUG: Skipping layer {layer_name} because it has too few points: {embeddings.shape[0]}")
+            continue
+        
+        if embeddings.shape[1] != 3:
+            print(f"WARNING: Expected 3D embeddings for layer {layer_name}, but got shape {embeddings.shape}")
+            if embeddings.shape[1] < 2:
+                print(f"DEBUG: Skipping layer {layer_name} because it doesn't have enough dimensions")
+                continue
+                
+        # Check for NaNs or infinities that could break clustering
+        if np.isnan(embeddings).any() or np.isinf(embeddings).any():
+            print(f"WARNING: Layer {layer_name} contains NaN or infinite values. Attempting to handle them.")
+            # Replace NaNs and infinities with zeros
+            embeddings = np.nan_to_num(embeddings, nan=0.0, posinf=0.0, neginf=0.0)
+            
+        try:
+            # Find optimal k and cluster assignments
+            best_k, best_centers, best_labels = _silhouette_search(
+                embeddings, max_k, random_state)
+            
+            if best_k > 0 and best_labels is not None and len(best_labels) > 0:
+                layer_clusters[layer_name] = {
+                    "k": best_k,
+                    "centers": best_centers,
+                    "labels": best_labels,
+                }
+                print(f"DEBUG: Successfully clustered layer {layer_name} with k={best_k}, centers shape={best_centers.shape}, labels shape={best_labels.shape}")
+            else:
+                print(f"DEBUG: Skipping layer {layer_name} because clustering failed to find valid clusters")
+        except Exception as e:
+            import traceback
+            print(f"ERROR: Failed to cluster layer {layer_name}: {e}")
+            print(traceback.format_exc())
     
     # Cache results if requested
-    if cache_path:
-        os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-        with open(cache_path, 'wb') as f:
-            pickle.dump(layer_clusters, f)
-            print(f"Cached embedded clusters to {cache_path}")
+    if cache_path and layer_clusters:
+        try:
+            os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+            with open(cache_path, 'wb') as f:
+                pickle.dump(layer_clusters, f)
+                print(f"Cached embedded clusters to {cache_path} with {len(layer_clusters)} layers")
+        except Exception as e:
+            import traceback
+            print(f"ERROR: Failed to cache clusters: {e}")
+            print(traceback.format_exc())
     
+    print(f"DEBUG: Returning clusters for {len(layer_clusters)} layers: {list(layer_clusters.keys())}")
     return layer_clusters
 
 def _silhouette_search(X: np.ndarray, max_k: int, random_state: int) -> Tuple[int, np.ndarray, np.ndarray]:

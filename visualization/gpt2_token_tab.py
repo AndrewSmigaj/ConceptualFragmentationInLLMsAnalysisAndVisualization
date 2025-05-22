@@ -39,6 +39,23 @@ from visualization.gpt2_attention_sankey import (
     create_token_attention_window_visualization
 )
 
+# Import GPT-2 token movement metrics visualization
+from visualization.gpt2_token_movement import (
+    calculate_token_movement_metrics,
+    create_token_trajectory_plot,
+    create_token_velocity_heatmap,
+    create_mobility_ranking_plot,
+    create_token_movement_visualization
+)
+
+# Import GPT-2 attention-to-token path correlation visualization
+from visualization.gpt2_attention_correlation import (
+    calculate_correlation_metrics,
+    create_correlation_heatmap,
+    create_token_correlation_scatter,
+    create_attention_path_correlation_visualization
+)
+
 # Constants
 GPT2_RESULTS_DIR = os.path.join(parent_dir, "results", "gpt2")
 DEFAULT_HEIGHT = 600
@@ -249,12 +266,47 @@ def create_gpt2_token_tab():
                         id="gpt2-viz-type",
                         options=[
                             {"label": "Token Path Flow", "value": "token_path"},
-                            {"label": "Attention Flow", "value": "attention_flow"}
+                            {"label": "Attention Flow", "value": "attention_flow"},
+                            {"label": "Token Movement", "value": "token_movement"},
+                            {"label": "Path-Attention Correlation", "value": "path_attention_correlation"}
                         ],
                         value="token_path",
                         inline=True
                     )
                 ], style={"width": "100%", "padding": "10px"}),
+                
+                # Movement metrics selector (initially hidden)
+                html.Div([
+                    html.Div([
+                        html.Label("Movement Metric:"),
+                        dcc.RadioItems(
+                            id="gpt2-movement-metric",
+                            options=[
+                                {"label": "Token Trajectories", "value": "trajectory"},
+                                {"label": "Activation Velocity", "value": "velocity"},
+                                {"label": "Mobility Ranking", "value": "mobility"}
+                            ],
+                            value="trajectory",
+                            inline=True
+                        )
+                    ], style={"width": "100%", "padding": "10px"}),
+                ], id="gpt2-movement-settings", style={"width": "100%", "display": "none"}),
+                
+                # Correlation metrics selector (initially hidden)
+                html.Div([
+                    html.Div([
+                        html.Label("Correlation View:"),
+                        dcc.RadioItems(
+                            id="gpt2-correlation-view",
+                            options=[
+                                {"label": "Layer Correlation Heatmap", "value": "heatmap"},
+                                {"label": "Token Correlation Scatter", "value": "scatter"}
+                            ],
+                            value="heatmap",
+                            inline=True
+                        )
+                    ], style={"width": "100%", "padding": "10px"}),
+                ], id="gpt2-correlation-settings", style={"width": "100%", "display": "none"}),
                 
                 # Sankey diagram
                 html.Div([
@@ -374,18 +426,41 @@ def register_gpt2_token_callbacks(app):
             return [], None
     
     # Update visualizations when inputs change
-    # Update attention settings visibility based on visualization type
+    # Update settings visibility based on visualization type
     @app.callback(
         Output("gpt2-attention-settings", "style"),
+        Output("gpt2-movement-settings", "style"),
+        Output("gpt2-correlation-settings", "style"),
         Output("gpt2-sankey-title", "children"),
         Output("gpt2-comparison-title", "children"),
         Input("gpt2-viz-type", "value")
     )
     def update_viz_type(viz_type):
+        # Default - all settings hidden
+        attention_style = {"width": "100%", "display": "none"}
+        movement_style = {"width": "100%", "display": "none"}
+        correlation_style = {"width": "100%", "display": "none"}
+        sankey_title = "Token Path Flow"
+        comparison_title = "Token Path Comparison"
+        
+        # Show settings based on visualization type
         if viz_type == "attention_flow":
-            return {"width": "100%", "display": "block"}, "Attention Flow Between Tokens", "Token vs Attention Comparison"
-        else:
-            return {"width": "100%", "display": "none"}, "Token Path Flow", "Token Path Comparison"
+            attention_style = {"width": "100%", "display": "block"}
+            sankey_title = "Attention Flow Between Tokens"
+            comparison_title = "Token vs Attention Comparison"
+        elif viz_type == "token_movement":
+            movement_style = {"width": "100%", "display": "block"}
+            sankey_title = "Token Movement Visualization"
+            comparison_title = "Token Movement Metrics"
+        elif viz_type == "path_attention_correlation":
+            correlation_style = {"width": "100%", "display": "block"}
+            sankey_title = "Path-Attention Correlation"
+            comparison_title = "Token Correlation Analysis"
+        else:  # Default to token_path
+            sankey_title = "Token Path Flow"
+            comparison_title = "Token Path Comparison"
+        
+        return attention_style, movement_style, correlation_style, sankey_title, comparison_title
     
     @app.callback(
         Output("gpt2-sankey-diagram", "figure"),
@@ -398,9 +473,11 @@ def register_gpt2_token_callbacks(app):
         Input("gpt2-min-path-count", "value"),
         Input("gpt2-viz-type", "value"),
         Input("gpt2-attention-threshold", "value"),
-        Input("gpt2-max-edges", "value")
+        Input("gpt2-max-edges", "value"),
+        Input("gpt2-movement-metric", "value"),
+        Input("gpt2-correlation-view", "value")
     )
-    def update_visualizations(metadata_file, window_name, token_filter, min_path_count, viz_type, attention_threshold, max_edges):
+    def update_visualizations(metadata_file, window_name, token_filter, min_path_count, viz_type, attention_threshold, max_edges, movement_metric, correlation_view):
         if not metadata_file or not window_name:
             empty_fig = go.Figure().update_layout(title="Select a GPT-2 analysis result")
             return empty_fig, empty_fig, "No data selected", "No data selected"
@@ -431,7 +508,63 @@ def register_gpt2_token_callbacks(app):
                     max_edges=max_edges,
                     save_html=False  # Don't save to files in the dashboard
                 )
-            else:
+            elif viz_type == "token_movement":
+                # Create token movement visualization
+                movement_viz = create_token_movement_visualization(
+                    window_data,
+                    apa_results,
+                    highlight_tokens=highlight_tokens,
+                    top_n=20,  # Show top 20 tokens
+                    save_html=False  # Don't save to files in the dashboard
+                )
+                
+                # Select appropriate visualization based on metric
+                if movement_metric == "trajectory":
+                    main_fig = movement_viz["trajectory_plot"]
+                    comparison_fig = movement_viz["mobility_ranking"]
+                elif movement_metric == "velocity":
+                    main_fig = movement_viz["velocity_heatmap"]
+                    comparison_fig = movement_viz["trajectory_plot"]
+                else:  # Default to mobility
+                    main_fig = movement_viz["mobility_ranking"]
+                    comparison_fig = movement_viz["velocity_heatmap"]
+                
+                # Create custom results structure to match expected format
+                viz_results = {
+                    "sankey": main_fig,
+                    "comparison": comparison_fig,
+                    "stats": {
+                        "total_tokens": len(movement_viz["metrics"]["token_metrics"]),
+                        "avg_mobility": movement_viz["metrics"]["global_metrics"].get("avg_path_length", 0.0)
+                    }
+                }
+            elif viz_type == "path_attention_correlation":
+                # Create correlation visualization
+                correlation_viz = create_attention_path_correlation_visualization(
+                    window_data,
+                    apa_results,
+                    highlight_tokens=highlight_tokens,
+                    save_html=False  # Don't save to files in the dashboard
+                )
+                
+                # Select appropriate visualization based on view
+                if correlation_view == "heatmap":
+                    main_fig = correlation_viz["correlation_heatmap"]
+                    comparison_fig = correlation_viz["token_scatter"]
+                else:  # Default to scatter
+                    main_fig = correlation_viz["token_scatter"]
+                    comparison_fig = correlation_viz["correlation_heatmap"]
+                
+                # Create custom results structure to match expected format
+                viz_results = {
+                    "sankey": main_fig,
+                    "comparison": comparison_fig,
+                    "stats": {
+                        "total_tokens": len(correlation_viz["metrics"]["token_correlations"]) if "token_correlations" in correlation_viz["metrics"] else 0,
+                        "global_correlation": correlation_viz["metrics"]["global_metrics"].get("avg_path_attention_correlation", 0.0) if "global_metrics" in correlation_viz["metrics"] else 0.0
+                    }
+                }
+            else:  # Default to token_path
                 viz_results = create_3layer_window_sankey(
                     window_data,
                     apa_results,
@@ -450,7 +583,9 @@ def register_gpt2_token_callbacks(app):
                 html.P(f"Total Tokens: {stats['total_tokens']}"),
                 html.P(f"Unique Tokens: {stats['unique_tokens']}"),
                 html.P(f"Total Paths: {stats['paths']['total']}"),
-                html.P(f"Unique Paths: {stats['paths']['unique']}")
+                html.P(f"Unique Paths: {stats['paths']['unique']}"),
+                html.P(f"Highlighted Tokens: {len(highlight_tokens)}"),
+                html.P(f"Fragmentation Range: {min_frag:.2f} - {max_frag:.2f}")
             ])
             
             # Create most fragmented tokens display

@@ -1,0 +1,98 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{natbib}
+
+% Define colors for hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% Code listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    commentstyle=\color{gray},
+    keywordstyle=\color{blue},
+    stringstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    breaklines=true,
+    showstringspaces=false,
+    frame=single,
+    captionpos=b
+}
+
+% Title information
+\title{Foundations of Archetypal Path Analysis: \\
+Toward a Principled Geometry for Cluster-Based Interpretability with LLM-Powered Narrative Explanation}
+\author{Andrew Smigaj$^1$, Claude Anthropic$^2$, Grok xAI$^3$ \\
+$^1$University of Technical Sciences, $^2$Anthropic Research, $^3$xAI Corp}
+\date{July 2025}
+
+\begin{document}
+
+\maketitle
+
+% Abstract
+\input{sections/abstract.tex}
+
+% Introduction
+\input{sections/introduction.tex}
+
+% Background and Motivation
+\input{sections/background.tex}
+
+% Mathematical Foundation
+\input{sections/mathematical_foundation.tex}
+
+% Statistical Robustness
+\input{sections/statistical_robustness.tex}
+
+% Experimental Design
+\input{sections/experimental_design.tex}
+
+% LLM-Powered Analysis
+\input{sections/llm_powered_analysis.tex}
+
+% Use Cases for LLMs
+\input{sections/use_cases.tex}
+
+% Reproducibility and Open Science
+\input{sections/reproducibility.tex}
+
+% Societal Impact
+\input{sections/societal_impact.tex}
+
+% Conclusion
+\input{sections/conclusion.tex}
+
+% Future Directions
+\input{sections/future_directions.tex}
+
+% Acknowledgments
+\section*{Acknowledgments}
+This work was created as part of an exploration of interpretability methods for neural networks. We appreciate the open-source community for developing the libraries and tools used in this research.
+
+% References
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

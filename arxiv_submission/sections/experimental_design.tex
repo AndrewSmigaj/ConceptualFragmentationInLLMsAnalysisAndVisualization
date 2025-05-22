@@ -1,0 +1,30 @@
+\section{Experimental Design (Blueprint)}
+
+\begin{itemize}
+    \item \textbf{Datasets}: Titanic (binary survival), UCI Heart Disease, Adult Income
+    \item \textbf{Models}: 2--3-layer MLPs and LLM feedforward substructures (e.g., MLP head blocks)
+    \item \textbf{Metrics}: Silhouette, ARI, MI, path reproducibility, path purity, centroid similarity (cosine/Euclidean), Jaccard similarity, fragmentation scores, similarity-convergent path density, interestingness score
+    \item \textbf{Clustering}: k-means and ETS comparison
+    \item \textbf{Visuals}: Alluvial cluster-transition diagrams, stepped-layer PCA plots, cluster transition matrices, interactive visualizations (Plotly/Bokeh)
+    \item \textbf{Narrative}: LLM-generated archetypal path explanations
+\end{itemize}
+
+\subsection{Stepped-Layer Trajectory Visualization}
+
+PCA or UMAP reduces activations to 2-D; layers are offset along the y-axis so each datapoint traces a polyline $\mathbf{v}_i^l$ in $(x,y,z)$ space, revealing fragmentation, convergence, and drift. This 3D representation provides a direct way to observe how datapoints flow through the network, with each transition between layers showing how internal representations evolve. LLM-generated semantic labels are attached to each cluster centroid, making the visualization more interpretable by connecting abstract mathematical patterns to human-understandable concepts.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/labeled_trajectory.png}
+    \caption{Stepped-layer visualization of paths through activation space, with clusters labeled by LLM-generated semantic descriptions. Each layer is represented as a 2D plane stacked along the y-axis, with datapoints connected across layers to form trajectories. Colors indicate the endpoint cluster assignment, showing how datapoints with similar final representations may take different paths through the network. The LLM-generated labels provide human-interpretable descriptions of what each cluster might represent, enhancing the visualization's explanatory power.}
+    \label{fig:labeled_trajectory}
+\end{figure}
+
+For interactive exploration, we implement the visualization using Plotly, allowing users to rotate the view, zoom into specific regions, and click on paths to view similarity scores, fragmentation metrics, and detailed narratives. This interactive capability is particularly valuable for identifying interesting patterns that might be missed in static visualizations.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/trajectory_annotated.png}
+    \caption{Annotated visualization of paths through activation space, showing how datapoints move between clusters across layers. The paths are colored by their final classification outcome, revealing how the model progressively organizes information toward its decision boundary.}
+    \label{fig:trajectory_annotated}
+\end{figure}

@@ -1,0 +1,24 @@
+\section{Use Cases for LLMs}
+
+\begin{itemize}
+    \item \textbf{Prompt Strategy Evaluation}: Compare similarity-convergent path density and fragmentation scores across prompt framings (e.g., Socratic vs. assertive) to reveal shifts in internal decision consistency.
+    \item \textbf{Layerwise Ambiguity Detection}: Identify prompt-token pairs with divergent latent paths across LLM layers, highlighting instability or multiple plausible completions.
+    \item \textbf{Subgroup Drift Analysis}: Track membership overlap for datapoint groups (e.g., positive vs. negative sentiment) across layers, using centroid similarity to identify convergence.
+    \item \textbf{Behavioral Explanation}: Generate LLM-authored natural language summaries for archetypal paths, e.g., ``Datapoints in L1C0, characterized by [feature], transition to L3C2, which is geometrically similar (cosine similarity 0.92), indicating [semantic consistency].''
+    \item \textbf{Failure Mode Discovery}: Flag high-fragmentation paths as potential errors, e.g., misclassifications or hallucinations.
+\end{itemize}
+
+\subsection{Example Use Cases}
+
+\begin{itemize}
+    \item \textbf{Prompt Engineering}: Compare paths for prompts like ``Tell me a story'' vs. ``Write a creative tale'' to see how wording affects internal flow. The former might follow a more fragmented path, indicating uncertainty, while the latter converges quickly to a ``creative'' cluster.
+    \item \textbf{Bias Detection}: Analyze paths for inputs with gender pronouns (e.g., ``he'' vs. ``she'' in professional contexts) to detect divergent behavior. A path diverging at layer 2 for ``she'' might indicate biased feature weighting.
+    \item \textbf{Error Analysis}: Study paths for misclassified inputs to pinpoint failure points. A misclassified datapoint might exhibit a highly fragmented path, suggesting internal confusion.
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/trajectory_by_endpoint_cluster.png}
+    \caption{Visualization of paths colored by their endpoint clusters, revealing how datapoints that end up in the same final representation may take different routes through the network's internal spaces.}
+    \label{fig:trajectory_endpoint}
+\end{figure}

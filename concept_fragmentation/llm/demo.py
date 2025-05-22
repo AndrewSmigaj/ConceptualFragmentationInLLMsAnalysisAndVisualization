@@ -32,15 +32,15 @@ def load_cluster_paths_data(dataset: str, seed: int) -> Dict[str, Any]:
     Returns:
         The cluster paths data as a dictionary
     """
-    # Get data directory
-    data_dir = os.path.join(os.getcwd(), "data")
+    # Get project root directory (two levels up from this file)
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
     
     # Construct the file path
     # Try both naming conventions
     file_paths = [
-        os.path.join(data_dir, "cluster_paths", f"{dataset}_seed_{seed}.json"),
-        os.path.join(data_dir, "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
-        os.path.join(data_dir, "cluster_paths", f"{dataset}_seed_{seed}_paths_with_centroids.json")
+        os.path.join(project_root, "data", "cluster_paths", f"{dataset}_seed_{seed}.json"),
+        os.path.join(project_root, "data", "cluster_paths", f"{dataset}_seed_{seed}_paths.json"),
+        os.path.join(project_root, "data", "cluster_paths", f"{dataset}_seed_{seed}_paths_with_centroids.json")
     ]
     
     # Find the first file that exists
@@ -278,6 +278,8 @@ def main():
     parser.add_argument("--output", type=str, default="analysis_results.json", help="Output file path")
     parser.add_argument("--no-cache", action="store_true", help="Disable caching of LLM responses")
     parser.add_argument("--skip-bias-audit", action="store_true", help="Skip bias audit analysis")
+    parser.add_argument("--debug", action="store_true", help="Enable prompt/response debug prints")
+    parser.add_argument("--report", action="store_true", help="Generate single comprehensive report instead of per-path narratives")
     args = parser.parse_args()
     
     # Load cluster paths data
@@ -297,33 +299,117 @@ def main():
     analyzer = ClusterAnalysis(
         provider=args.provider,
         model=args.model,
-        use_cache=not args.no_cache
+        use_cache=not args.no_cache,
+        debug=args.debug
     )
     
-    # Generate labels for clusters
-    print(f"Generating labels for {len(centroids)} clusters using {args.provider}...")
-    cluster_labels = analyzer.label_clusters_sync(centroids)
+    # ------------------------------------------------------------------
+    # Generate semantic labels using cluster statistics (mean Age, Fare, etc.)
+    # ------------------------------------------------------------------
+    def load_cluster_stats(dataset: str, seed: int):
+        """Return stats dict[layer][cluster_id] with summary means."""
+        stats_path = os.path.join(project_root, "data", "cluster_stats", f"{dataset}_seed_{seed}.json")
+        if not os.path.exists(stats_path):
+            return {}
+        with open(stats_path) as f:
+            stats_json = json.load(f)
+        return stats_json.get("layers", {})
+
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    layer_stats = load_cluster_stats(args.dataset, args.seed)
+
+    cluster_labels: Dict[str, str] = {}
+    print(f"Generating labels for {len(centroids)} clusters using descriptive statistics + {args.provider}…")
+
+    for cluster_id, centroid in centroids.items():
+        # Parse layer and cluster number
+        layer_name, cluster_num = cluster_id.split("C")
+        cluster_key = f"cluster_{cluster_num}"
+
+        stats_section = layer_stats.get(layer_name, {})
+        num_stats = stats_section.get("numeric_stats", {}).get(cluster_key, {})
+        cat_stats = stats_section.get("categorical_stats", {}).get(cluster_key, {})
+
+        # Build lines for prompt: up to 4 numeric means + key categorical percentages
+        prompt_lines = []
+
+        # Include up to 4 numeric features with highest variance (proxy: std)
+        numeric_items = list(num_stats.items())
+        numeric_items.sort(key=lambda x: x[1].get("std", 0), reverse=True)
+        for feat, feat_stats in numeric_items[:4]:
+            if isinstance(feat_stats, dict) and "mean" in feat_stats:
+                prompt_lines.append(f"{feat} mean: {feat_stats['mean']:.2f}")
+
+        # Include Sex distribution if present
+        if "Sex" in cat_stats and cat_stats["Sex"]:
+            male_pct = cat_stats["Sex"].get("male", 0) * 100
+            prompt_lines.append(f"Male %: {male_pct:.0f}%")
+
+        # Include Pclass distribution for Titanic
+        if args.dataset == "titanic" and "Pclass" in cat_stats:
+            pclass_stats = cat_stats["Pclass"]
+            if pclass_stats:
+                dominant = max(pclass_stats, key=pclass_stats.get)
+                prompt_lines.append(f"Dominant Class: {dominant}")
+
+        # If still empty, fall back to centroid magnitude stats
+        if not prompt_lines:
+            abs_vals = np.abs(centroid)
+            top_idx = abs_vals.argsort()[-3:][::-1]
+            prompt_lines = [f"feature_{i} mag: {abs_vals[i]:.2f}" for i in top_idx]
+
+        stats_desc = "\n".join(prompt_lines) if prompt_lines else "(no stats)"
+
+        prompt = (
+            f"You are analysing a cluster of datapoints from the {args.dataset.title()} dataset.\n"
+            f"Statistics for this cluster:\n{stats_desc}\n\n"
+            "Provide a concise (1-5 words) human-readable label describing the passenger / patient archetype.\n"
+            "Label:"
+        )
+
+        llm_resp = analyzer.generate_with_cache(prompt, temperature=0.3, max_tokens=10)
+        label_text = llm_resp.text.strip().strip('"')
+        # Ensure non-empty label
+        if not label_text:
+            label_text = "Unknown Archetype"
+        cluster_labels[cluster_id] = label_text
     
     # Print some example labels
     print("\nExample cluster labels:")
     for cluster_id, label in list(cluster_labels.items())[:5]:
         print(f"{cluster_id}: {label}")
     
-    # Generate narratives for paths
-    print(f"\nGenerating narratives for {len(paths)} paths...")
-    path_narratives = analyzer.generate_path_narratives_sync(
-        paths,
-        cluster_labels,
-        centroids,
-        convergent_points,
-        fragmentation_scores,
-        demographic_info
-    )
+    # If --report is passed, create a single mega-prompt report instead of per-path narratives
+    if args.report:
+        report_text = generate_comprehensive_report(
+            dataset=args.dataset,
+            paths=paths,
+            archetypes=data.get("path_archetypes", []),
+            cluster_stats=layer_stats,
+            similarity_data=data.get("similarity", {}),
+            fragmentation_scores=fragmentation_scores,
+            cluster_labels=cluster_labels,
+            debug=args.debug,
+            analyzer=analyzer
+        )
+        path_narratives = {}
+    else:
+        # Generate narratives for each path individually
+        print(f"\nGenerating narratives for {len(paths)} paths...")
+        path_narratives = analyzer.generate_path_narratives_sync(
+            paths,
+            cluster_labels,
+            centroids,
+            convergent_points,
+            fragmentation_scores,
+            demographic_info,
+            cluster_stats=layer_stats
+        )
     
     # Print some example narratives
     print("\nExample path narratives:")
     for path_id, narrative in list(path_narratives.items())[:3]:
-        path_str = " → ".join(paths[path_id])
+        path_str = " -> ".join(paths[path_id])
         print(f"\nPath {path_id} ({path_str}):")
         print(narrative)
     
@@ -393,8 +479,97 @@ def main():
         "bias_analysis": bias_analysis
     }
     
+    if args.report:
+        results["full_report"] = report_text
+    
     save_results(results, args.output)
 
 
 if __name__ == "__main__":
     main()
+
+
+# -------------------------------------------------------------
+# Helper to build mega prompt report
+# -------------------------------------------------------------
+
+
+def generate_comprehensive_report(
+    dataset: str,
+    paths: Dict[int, List[str]],
+    archetypes: List[Dict[str, Any]],
+    cluster_stats: Dict[str, Dict[str, Any]],
+    similarity_data: Dict[str, Any],
+    fragmentation_scores: Dict[int, float],
+    cluster_labels: Dict[str, str],
+    debug: bool,
+    analyzer: ClusterAnalysis,
+) -> str:
+    """Build mega prompt, call LLM once, return report string."""
+
+    # 1. Path archetype table (use top 5)
+    lines = []
+    lines.append("============================")
+    lines.append("1. PATH ARCHETYPES (top-5)")
+    lines.append("============================")
+    lines.append("PathID | Path | Count | % | Frag")
+    for arche in archetypes[:5]:
+        path_str = arche["path"]
+        count = arche["count"]
+        perc = arche["percentage"]
+        # get fragmentation via human_readable_paths list match
+        frag = 1.0
+        try:
+            idx = list(paths.values()).index(path_str)  # may fail
+            frag = fragmentation_scores.get(idx, 1.0)
+        except Exception:
+            pass
+        lines.append(f"{arche['numeric_path'][0]} | {path_str} | {count} | {perc:.1f}% | {frag:.2f}")
+
+    # 2. Demographics per cluster
+    lines.append("\n============================")
+    lines.append("2. PER-CLUSTER DEMOGRAPHICS")
+    lines.append("============================")
+    lines.append("LayerCluster | Age | Fare | Male%")
+    for layer_name, layer_info in cluster_stats.items():
+        num_stats = layer_info.get("numeric_stats", {})
+        cat_stats = layer_info.get("categorical_stats", {})
+        for cluster_key, stats_num in num_stats.items():
+            cid = cluster_key.split("_")[-1]
+            cluster_id = f"{layer_name}C{cid}"
+            age = stats_num.get("Age", {}).get("mean", "-")
+            fare = stats_num.get("Fare", {}).get("mean", "-")
+            male_pct = cat_stats.get(cluster_key, {}).get("Sex", {}).get("male", None)
+            male_pct = f"{male_pct*100:.0f}%" if male_pct is not None else "-"
+            lines.append(f"{cluster_id} | {age} | {fare} | {male_pct}")
+
+    # 3. Cross-layer centroid similarity > 0.6
+    norm_sim = similarity_data.get("normalized_similarity", {})
+    lines.append("\n============================")
+    lines.append("3. HIGH CENTROID SIMILARITIES (>0.6)")
+    lines.append("============================")
+    for pair, sim in norm_sim.items():
+        if sim >= 0.6:
+            id1, id2 = map(int, pair.split(","))
+            lines.append(f"{id1}->{id2}: {sim:.2f}")
+
+    # Build TASK section
+    lines.append("\n#############################")
+    lines.append("TASK")
+    lines.append("#############################")
+    lines.append("A. Summarise the three most important insights you see.")
+    lines.append("B. For each Path_ID above give a 2-sentence narrative about the semantic transition and fragmentation.")
+    lines.append("C. Point out any demographic bias you observe.")
+    lines.append("D. Other insights.")
+
+    prompt = "\n".join(lines)
+
+    if debug:
+        print("\n=== FULL REPORT PROMPT (first 1000 chars) ===\n", prompt[:1000])
+
+    report_resp = analyzer.generate_with_cache(prompt, temperature=0.3, max_tokens=800)
+
+    if debug:
+        print("\n=== FULL REPORT RESPONSE (first 400 chars) ===\n", report_resp.text[:400])
+
+    return report_resp.text.strip()

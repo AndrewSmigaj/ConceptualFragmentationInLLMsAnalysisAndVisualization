@@ -1,0 +1,9 @@
+\section{Background and Motivation}
+
+\subsection{Archetypal Path Analysis Recap}
+
+Archetypal Path Analysis (APA) clusters datapoint activations in each layer's activation space (e.g., using k-means or DBSCAN), assigning layer-specific cluster IDs, denoted $(L_lC_k)$, where $(l)$ is the layer index and $(k)$ is the cluster index (e.g., L1C0 for cluster 0 in layer 1). Transitions between clusters are tracked across layers, forming paths $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, interpreted as latent semantic trajectories. In feedforward networks, paths are strictly unidirectional, and clusters with different layer-specific IDs (e.g., L1C0 and L3C0) are not assumed to be related unless validated by geometric similarity (e.g., centroid cosine similarity). Large language models (LLMs) can narrate these trajectories to provide interpretable insights.
+
+\subsection{Critique from Foundational Viewpoints}
+
+Activation spaces are emergent, high-dimensional representations whose coordinate systems may not map to semantically meaningful axes. Without grounding, Euclidean distances can be misleading, and clustering is sensitive to initialization and density assumptions. Prior work echoes this concern: \citet{ribeiro2016} and \citet{lundberg2017} show that LIME and SHAP trade exactness for intuition; \citet{dasgupta2020} advocate explainable clustering by rule-based thresholds rather than arbitrary distances.

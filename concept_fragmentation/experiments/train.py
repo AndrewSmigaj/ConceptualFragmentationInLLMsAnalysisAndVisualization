@@ -371,6 +371,7 @@ def train_model(
     if save_activations:
         layer_activations = {
             "epoch": [],
+            "input": {"train": [], "test": []},
             "layer1": {"train": [], "test": []},
             "layer2": {"train": [], "test": []},
             "layer3": {"train": [], "test": []},
@@ -399,6 +400,7 @@ def train_model(
         
         # Store activations and labels for this epoch
         epoch_activations = {
+            "input": [],
             "layer1": [],
             "layer2": [],
             "layer3": [],
@@ -423,6 +425,10 @@ def train_model(
                 inputs = X_train[batch_indices]
                 labels = y_train[batch_indices]
                 
+                # Store input activations before forward pass
+                if save_activations:
+                    epoch_activations["input"].append(inputs.detach().cpu())
+                
                 # Forward pass
                 outputs = model(inputs)
                 loss = criterion(outputs, labels)
@@ -454,12 +460,17 @@ def train_model(
                 if save_activations:
                     activations_dict = model.get_activations()
                     for layer_name, activations in activations_dict.items():
-                        epoch_activations[layer_name].append(activations.detach().cpu())
+                        if layer_name != "input":  # Skip input since we stored it before forward pass
+                            epoch_activations[layer_name].append(activations.detach().cpu())
                     epoch_labels.append(labels.detach().cpu())
                 
         else:
             # Data is in a DataLoader
             for batch_idx, (inputs, labels) in enumerate(tqdm(train_data, desc="Training")):
+                # Store input activations before forward pass
+                if save_activations:
+                    epoch_activations["input"].append(inputs.detach().cpu())
+                
                 # Forward pass
                 outputs = model(inputs)
                 loss = criterion(outputs, labels)
@@ -491,7 +502,8 @@ def train_model(
                 if save_activations:
                     activations_dict = model.get_activations()
                     for layer_name, activations in activations_dict.items():
-                        epoch_activations[layer_name].append(activations.detach().cpu())
+                        if layer_name != "input":  # Skip input since we stored it before forward pass
+                            epoch_activations[layer_name].append(activations.detach().cpu())
                     epoch_labels.append(labels.detach().cpu())
         
         # Calculate average loss and accuracy
@@ -518,6 +530,7 @@ def train_model(
         
         # Store test activations and labels for this epoch
         test_epoch_activations = {
+            "input": [],
             "layer1": [],
             "layer2": [],
             "layer3": [],
@@ -526,10 +539,13 @@ def train_model(
         test_epoch_labels = []
         
         with torch.no_grad():
-            # Handle different data formats (DataLoader vs. tensors)
             if isinstance(test_data, tuple):
-                # Data is already in tensors (X_test, y_test)
+                # Data is already in tensors
                 X_test, y_test = test_data
+                
+                # Store input activations before forward pass
+                if save_activations:
+                    test_epoch_activations["input"].append(X_test.detach().cpu())
                 
                 # Forward pass
                 outputs = model(X_test)
@@ -541,16 +557,20 @@ def train_model(
                 test_correct += (predicted == y_test).sum().item()
                 test_total += len(y_test)
                 
-                # Store activations and labels for later analysis
+                # Store activations and labels
                 if save_activations:
                     activations_dict = model.get_activations()
                     for layer_name, activations in activations_dict.items():
-                        test_epoch_activations[layer_name].append(activations.detach().cpu())
+                        if layer_name != "input":  # Skip input since we stored it before forward pass
+                            test_epoch_activations[layer_name].append(activations.detach().cpu())
                     test_epoch_labels.append(y_test.detach().cpu())
-                
             else:
                 # Data is in a DataLoader
-                for batch_idx, (inputs, labels) in enumerate(tqdm(test_data, desc="Testing")):
+                for inputs, labels in test_data:
+                    # Store input activations before forward pass
+                    if save_activations:
+                        test_epoch_activations["input"].append(inputs.detach().cpu())
+                    
                     # Forward pass
                     outputs = model(inputs)
                     loss = criterion(outputs, labels)
@@ -561,11 +581,12 @@ def train_model(
                     test_correct += (predicted == labels).sum().item()
                     test_total += len(labels)
                     
-                    # Store activations and labels for later analysis
+                    # Store activations and labels
                     if save_activations:
                         activations_dict = model.get_activations()
                         for layer_name, activations in activations_dict.items():
-                            test_epoch_activations[layer_name].append(activations.detach().cpu())
+                            if layer_name != "input":  # Skip input since we stored it before forward pass
+                                test_epoch_activations[layer_name].append(activations.detach().cpu())
                         test_epoch_labels.append(labels.detach().cpu())
         
         # Calculate average loss and accuracy
@@ -882,6 +903,57 @@ def train_model(
         json.dump(serializable_history, f, indent=4)
     logger.info(f"Saved training history to {history_path}")
     
+    # ----------------- SANITIZE LAYER ACTIVATIONS BEFORE SAVING -----------------
+    # Ensure every layer's 'train' and 'test' entries are plain 2-D float32 numpy
+    # arrays instead of lists of tensors.  This guarantees downstream loaders
+    # (e.g., Dash visualisation) see all layers, including deeper ones like
+    # 'layer3'.
+    if save_activations and layer_activations:
+        for layer_key, splits in layer_activations.items():
+            # Expect splits to be a dict with "train"/"test" keys; skip others
+            if not isinstance(splits, dict):
+                continue
+            for split_name in ["train", "test"]:
+                if split_name not in splits:
+                    continue
+                data_obj = splits[split_name]
+
+                # Case 1: list of per-epoch tensors / arrays
+                if isinstance(data_obj, list) and len(data_obj) > 0:
+                    try:
+                        # Stack along epoch dimension then keep last epoch
+                        stacked = torch.stack(data_obj, dim=0)  # (epochs, samples, feats)
+                        cleaned = stacked[-1].cpu().numpy().astype(np.float32)
+                    except Exception:
+                        # Fallback: try to use the last element directly
+                        last = data_obj[-1]
+                        if torch.is_tensor(last):
+                            cleaned = last.cpu().numpy().astype(np.float32)
+                        else:
+                            cleaned = np.asarray(last, dtype=np.float32)
+                    splits[split_name] = cleaned
+
+                # Case 2: single tensor
+                elif torch.is_tensor(data_obj):
+                    splits[split_name] = data_obj.cpu().numpy().astype(np.float32)
+
+                # Case 3: already ndarray – cast to float32 to be safe
+                elif isinstance(data_obj, np.ndarray):
+                    splits[split_name] = data_obj.astype(np.float32)
+
+            # Convert labels, which live under layer_activations["labels"], too
+            if "labels" in layer_activations and isinstance(layer_activations["labels"], dict):
+                for split_name in ["train", "test"]:
+                    lbl_obj = layer_activations["labels"].get(split_name)
+                    if isinstance(lbl_obj, list) and len(lbl_obj) > 0:
+                        last = lbl_obj[-1]
+                        if torch.is_tensor(last):
+                            layer_activations["labels"][split_name] = last.cpu().numpy()
+                        else:
+                            layer_activations["labels"][split_name] = np.asarray(last)
+                    elif torch.is_tensor(lbl_obj):
+                        layer_activations["labels"][split_name] = lbl_obj.cpu().numpy()
+    # --------------------------------------------------------------------------
     # Save the activations if requested
     if save_activations and layer_activations:
         activations_path = os.path.join(experiment_dir, "layer_activations.pkl")

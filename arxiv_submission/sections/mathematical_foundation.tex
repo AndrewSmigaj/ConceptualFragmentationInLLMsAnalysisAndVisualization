@@ -1,0 +1,36 @@
+\section{Mathematical Foundation of Layerwise Activation Geometry}
+
+\subsection{What Is Being Clustered?}
+
+Let $A^l \in \mathbb{R}^{n \times d_l}$ denote the matrix of activations at layer $(l)$, where each row $\mathbf{a}_i^l$ is a datapoint's activation vector. Once the model is trained, $A^l$ provides a static representation space per layer.
+
+\subsection{Metric Selection and Validity}
+
+We cluster $A^l$ into $k_l$ clusters, assigning layer-specific labels L$l$C0, L$l$C1, \dots, L$l$C$\{k_l-1\}$. A datapoint's path is a sequence $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, where $c_i^l = \text{L}l\text{C}k$ is the cluster assignment at layer $(l)$. We examine Euclidean, cosine, and Mahalanobis metrics. In high-dimensional spaces, Euclidean norms lose contrast; cosine and L1 often behave better. PCA or normalization can stabilize comparisons. In feedforward networks, paths are unidirectional, and apparent convergence (e.g., [L1C0 $\rightarrow$ L2C2 $\rightarrow$ L3C0]) is validated by computing cosine or Euclidean similarity between cluster centroids across layers, ensuring that any perceived similarity reflects geometric proximity in activation space rather than shared labels.
+
+\subsection{Geometry Stability Across Training Seeds}
+
+We quantify stability with Earth Mover's Distance and adjusted Rand Index (ARI) across retrained models, pruning, and dropout. Stable archetypal paths indicate robustness to training noise. Cluster transition matrices are visualized and analyzed via entropy and sparsity. To assess whether paths exhibit similarity-convergent behavior (e.g., [L1C0 $\rightarrow$ L2C2 $\rightarrow$ L3C0] where L3C0 resembles L1C0), we compute centroids $\mathbf{c}_k^l$ for each cluster $(L_lC_k)$ as the mean of activation vectors $\mathbf{a}_i^l$ for datapoints $(i)$ in cluster $(k)$ at layer $(l)$. We calculate pairwise cosine similarity, $\text{cos}(\mathbf{c}_k^l, \mathbf{c}_j^m) = \frac{\mathbf{c}_k^l \cdot \mathbf{c}_j^m}{\|\mathbf{c}_k^l\| \|\mathbf{c}_j^m\|}$, or Euclidean distance, $d(\mathbf{c}_k^l, \mathbf{c}_j^m) = \|\mathbf{c}_k^l - \mathbf{c}_j^m\|_2$, between clusters across layers (e.g., L1C0 and L3C0). High similarity (e.g., $\text{cos}(\mathbf{c}_0^1, \mathbf{c}_0^3) > 0.9$) indicates a similarity-convergent path, suggesting semantic consistency.
+
+\subsection{Explainable Threshold Similarity (ETS)}
+
+Following \citet{kovalerchuk2024}, ETS declares two activations similar if $\bigl|a_{ij}^l - a_{kj}^l\bigr| \leq \tau_j$ for every dimension $j$. Cluster membership can therefore be verbalized as ``neuron $j$ differs by less than $\tau_j$,'' yielding transparent, per-dimension semantics. We propose ETS as satisfying desiderata that centroid-based methods lack:
+\begin{itemize}
+    \item Dimension-wise interpretability
+    \item Explicit bounds on membership
+    \item Compatibility with heterogeneous feature scales
+\end{itemize}
+
+\subsection{Concept-Based Cluster Annotation}
+
+To enhance interpretability, we integrate concept-based annotations using methods like Testing with Concept Activation Vectors (TCAV). For each cluster $(L_lC_k)$, we compute its alignment with human-defined concepts (e.g., ``positive sentiment,'' ``action verbs'') by measuring the sensitivity of activations to concept vectors. This allows us to label clusters with meaningful descriptors, enriching the interpretability of paths. For example, a path transitioning from a ``neutral'' cluster in layer 1 to a ``negative sentiment'' cluster in layer 3 can be narrated as reflecting a shift in the model's internal evaluation of the input.
+
+\subsection{Baseline Benchmarking}
+
+To ensure APA's added complexity is justified, we benchmark against:
+\begin{itemize}
+    \item Random clustering as a null model
+    \item Centroid-free ETS grouping
+    \item Simple attribution methods (saliency, IG) 
+\end{itemize}
+Improvements are validated via paired tests on silhouette and MI scores.

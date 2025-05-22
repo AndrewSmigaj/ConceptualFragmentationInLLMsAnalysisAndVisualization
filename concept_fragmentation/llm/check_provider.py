@@ -42,9 +42,9 @@ def main():
         
         # Check if the client has necessary attributes and methods
         if hasattr(client, 'generate_sync'):
-            print("✓ Client has generate_sync method")
+            print("[+] Client has generate_sync method")
         else:
-            print("✗ Client is missing generate_sync method")
+            print("[-] Client is missing generate_sync method")
             
         # Try a simple generation (uncomment if needed)
         # response = client.generate_sync(

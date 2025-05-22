@@ -533,6 +533,128 @@ def plot_path_density_network(
     
     return fig
 
+def integrate_figures(
+    figures: List[go.Figure],
+    titles: Optional[List[str]] = None,
+    layout: str = "vertical",
+    spacing: float = 0.05,
+    offset: float = 0.0,
+    shared_xaxes: bool = False,
+    shared_yaxes: bool = False,
+    row_heights: Optional[List[float]] = None,
+    column_widths: Optional[List[float]] = None,
+    title: Optional[str] = None,
+    height: Optional[int] = None,
+    width: Optional[int] = None
+) -> go.Figure:
+    """
+    Integrate multiple Plotly figures into a single figure with custom layout.
+    
+    Args:
+        figures: List of Plotly figure objects to integrate
+        titles: Optional list of subplot titles
+        layout: Layout type ('vertical', 'horizontal', or 'grid')
+        spacing: Spacing between subplots
+        offset: Offset amount to shift subplots (for 3D visualizations)
+        shared_xaxes: Whether to share x-axes
+        shared_yaxes: Whether to share y-axes
+        row_heights: Optional list of relative row heights (if layout='grid')
+        column_widths: Optional list of relative column widths (if layout='grid')
+        title: Optional title for the integrated figure
+        height: Optional height for the integrated figure
+        width: Optional width for the integrated figure
+        
+    Returns:
+        Plotly Figure object with integrated subplots
+    """
+    if not figures:
+        return go.Figure().update_layout(title="No figures to integrate")
+    
+    n_figures = len(figures)
+    
+    # Determine rows and columns based on layout
+    if layout == "vertical":
+        rows, cols = n_figures, 1
+    elif layout == "horizontal":
+        rows, cols = 1, n_figures
+    elif layout == "grid":
+        # Calculate a reasonable grid layout
+        cols = int(np.ceil(np.sqrt(n_figures)))
+        rows = int(np.ceil(n_figures / cols))
+    else:
+        raise ValueError(f"Unknown layout: {layout}")
+    
+    # Create subplot titles
+    subplot_titles = titles if titles else [""] * n_figures
+    if len(subplot_titles) < n_figures:
+        subplot_titles.extend([""] * (n_figures - len(subplot_titles)))
+    
+    # Create integrated figure
+    fig = make_subplots(
+        rows=rows, 
+        cols=cols,
+        subplot_titles=subplot_titles,
+        shared_xaxes=shared_xaxes,
+        shared_yaxes=shared_yaxes,
+        row_heights=row_heights,
+        column_widths=column_widths,
+        vertical_spacing=spacing,
+        horizontal_spacing=spacing
+    )
+    
+    # Add each figure's traces to the integrated figure
+    for i, source_fig in enumerate(figures):
+        # Calculate row and column for this figure
+        if layout == "vertical":
+            row, col = i + 1, 1
+        elif layout == "horizontal":
+            row, col = 1, i + 1
+        else:  # grid
+            row = i // cols + 1
+            col = i % cols + 1
+        
+        # Process each trace in the source figure
+        for trace in source_fig.data:
+            # Apply offset if needed (for 3D plots)
+            if hasattr(trace, 'type') and trace.type in ['scatter3d', 'mesh3d', 'surface', 'volume']:
+                # Deep copy the trace to avoid modifying the original
+                import copy
+                new_trace = copy.deepcopy(trace)
+                
+                # Apply offset to y-coordinate for 3D plots if specified
+                if offset != 0.0 and hasattr(new_trace, 'y') and new_trace.y is not None:
+                    new_trace.y = [y + (offset * i) for y in new_trace.y]
+                
+                fig.add_trace(new_trace, row=row, col=col)
+            else:
+                # For 2D plots, just add the trace as is
+                fig.add_trace(trace, row=row, col=col)
+    
+    # Update layout properties
+    layout_updates = {}
+    
+    if title:
+        layout_updates["title"] = title
+    
+    # Set dimensions if provided
+    if height:
+        layout_updates["height"] = height
+    elif layout == "vertical":
+        # Estimate height based on number of rows
+        layout_updates["height"] = min(300 * rows, 1000)
+    
+    if width:
+        layout_updates["width"] = width
+    elif layout == "horizontal":
+        # Estimate width based on number of columns
+        layout_updates["width"] = min(400 * cols, 1200)
+    
+    # Apply layout updates
+    fig.update_layout(**layout_updates)
+    
+    return fig
+
+
 def create_cross_layer_dashboard(
     cl_metrics: Dict[str, Any],
     layer_clusters: Dict[str, Dict[str, Any]],

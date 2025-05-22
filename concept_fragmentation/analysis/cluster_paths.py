@@ -418,7 +418,11 @@ def compute_fragmentation_score(
         valid_pairs += 1
     
     if valid_pairs == 0:
-        return 1.0  # Maximum fragmentation if no valid pairs
+        # Fallback: proportion of layer transitions that change cluster
+        changes = sum(1 for i in range(len(path) - 1) if path[i] != path[i + 1])
+        if len(path) > 1:
+            return changes / (len(path) - 1)
+        return 0.0
     
     avg_similarity = total_similarity / valid_pairs
     
@@ -555,6 +559,7 @@ def compute_path_archetypes(
     paths: np.ndarray, 
     layer_names: List[str], 
     df: pd.DataFrame, 
+    dataset_name: str,
     id_to_layer_cluster: Optional[Dict[int, Tuple[str, int, int]]] = None,
     human_readable_paths: Optional[List[str]] = None,
     target_column: Optional[str] = None,
@@ -579,6 +584,11 @@ def compute_path_archetypes(
     Returns:
         List of dictionaries, each representing a path archetype
     """
+    print(f"[DEBUG compute_path_archetypes] Dataset: {dataset_name}") # DEBUG
+    print(f"[DEBUG compute_path_archetypes] Demographic columns: {demographic_columns}") # DEBUG
+    print(f"[DEBUG compute_path_archetypes] Target column: {target_column}") # DEBUG
+    print(f"[DEBUG compute_path_archetypes] Top K archetypes to compute: {top_k}") # DEBUG
+    
     # Generate path strings for counting
     if human_readable_paths is not None:
         # Use pre-computed human-readable paths if provided
@@ -614,6 +624,9 @@ def compute_path_archetypes(
         # Get indices of members with this path
         member_indices = path_info["indices"]
         
+        print(f"\n[DEBUG compute_path_archetypes] Processing archetype {i+1}/{top_k} for path: {path_str}") # DEBUG
+        print(f"[DEBUG compute_path_archetypes] Member count for this path: {len(member_indices)}") # DEBUG
+        
         # Get sample path to extract numeric cluster IDs (for future reference)
         sample_idx = member_indices[0]
         numeric_path = paths[sample_idx].tolist()
@@ -624,12 +637,21 @@ def compute_path_archetypes(
             "numeric_path": numeric_path,  # Underlying numeric IDs
             "count": path_info["count"],
             "percentage": 100 * path_info["count"] / len(paths),  # Add percentage of total
-            "demo_stats": {},
             "member_indices": member_indices[:max_members]  # Limit number of indices
         }
         
         # Extract relevant subset of the dataframe
         members_df = df.iloc[member_indices].copy()
+        print(f"[DEBUG compute_path_archetypes] members_df shape: {members_df.shape}") # DEBUG
+        if not members_df.empty and demographic_columns:
+            # Print head for specified demographic columns if they exist in members_df
+            cols_to_print = [col for col in demographic_columns if col in members_df.columns]
+            if cols_to_print:
+                 print(f"[DEBUG compute_path_archetypes] members_df head for relevant columns:\n{members_df[cols_to_print].head()}") # DEBUG
+            else:
+                print("[DEBUG compute_path_archetypes] No specified demographic columns found in members_df to print head.")
+        elif demographic_columns:
+            print("[DEBUG compute_path_archetypes] members_df is empty, cannot print head.")
         
         # Compute target column statistics if provided
         if target_column and target_column in df.columns:
@@ -641,27 +663,47 @@ def compute_path_archetypes(
                 target_counts = members_df[target_column].value_counts(normalize=True).to_dict()
                 archetype[f"{target_column}_distribution"] = target_counts
         
-        # Compute demographic statistics
+        # Compute demographic statistics and store them as top-level keys
+        print(f"[DEBUG compute_path_archetypes] Starting demographic calculations for path: {path_str}") # DEBUG
         for col in demographic_columns:
+            print(f"[DEBUG compute_path_archetypes]   Processing column: {col}") # DEBUG
             if col not in df.columns:
+                print(f"[DEBUG compute_path_archetypes]     Column {col} not in df. Skipping.") # DEBUG
                 continue
             
             if pd.api.types.is_numeric_dtype(df[col]):
-                # For numeric columns
-                col_stats = {
-                    "mean": float(members_df[col].mean()),
-                    "std": float(members_df[col].std()),
-                    "min": float(members_df[col].min()),
-                    "max": float(members_df[col].max()),
-                }
-                archetype["demo_stats"][col] = col_stats
+                print(f"[DEBUG compute_path_archetypes]     Column {col} is numeric.") # DEBUG
+                mean_val = float(members_df[col].mean()) if not members_df[col].dropna().empty else None
+                std_val = float(members_df[col].std()) if not members_df[col].dropna().empty else None
+                min_val = float(members_df[col].min()) if not members_df[col].dropna().empty else None
+                max_val = float(members_df[col].max()) if not members_df[col].dropna().empty else None
+                archetype[f"{col}_mean"] = mean_val
+                archetype[f"{col}_std"] = std_val
+                archetype[f"{col}_min"] = min_val
+                archetype[f"{col}_max"] = max_val
+                print(f"[DEBUG compute_path_archetypes]       {col}_mean: {mean_val}, {col}_std: {std_val}, {col}_min: {min_val}, {col}_max: {max_val}") # DEBUG
             else:
-                # For categorical columns
+                print(f"[DEBUG compute_path_archetypes]     Column {col} is categorical.") # DEBUG
                 value_counts = members_df[col].value_counts(normalize=True).to_dict()
-                # Convert keys to strings for JSON compatibility
-                value_counts = {str(k): float(v) for k, v in value_counts.items()}
-                archetype["demo_stats"][col] = value_counts
+                dist_val = {str(k): float(v) for k, v in value_counts.items()}
+                archetype[f"{col}_distribution"] = dist_val
+                print(f"[DEBUG compute_path_archetypes]       {col}_distribution: {dist_val}") # DEBUG
+                                
+                if col == "sex": 
+                    if dataset_name == "titanic": 
+                        male_pct = float(100 * (members_df[col].str.lower() == "male").mean())
+                        archetype["male_percentage"] = male_pct
+                        print(f"[DEBUG compute_path_archetypes]       titanic male_percentage: {male_pct}") # DEBUG
+                    elif dataset_name == "heart": 
+                        if 1 in members_df[col].unique(): 
+                            male_pct = float(100 * (members_df[col] == 1).mean())
+                            archetype["male_percentage"] = male_pct
+                            print(f"[DEBUG compute_path_archetypes]       heart male_percentage (1 is male): {male_pct}") # DEBUG
+                        else: 
+                            archetype["male_percentage"] = 0.0
+                            print(f"[DEBUG compute_path_archetypes]       heart male_percentage (no 1s found, set to 0.0)") # DEBUG
         
+        print(f"[DEBUG compute_path_archetypes] Final archetype for path {path_str}:\n{json.dumps(archetype, indent=2)}") # DEBUG
         archetypes.append(archetype)
     
     return archetypes
@@ -719,9 +761,9 @@ def write_cluster_paths(
         dataset_name: Name of the dataset
         seed: Random seed used for experiment
         layer_clusters: Dictionary of cluster information per layer
-        df: Original dataframe with demographic information
-        target_column: Name of the target column (e.g., 'survived' for Titanic)
-        demographic_columns: Columns to include in demographic statistics
+        df: Original dataframe with demographic information (already filtered and column names lowercased)
+        target_column: Name of the target column (e.g., 'survived') (already lowercased)
+        demographic_columns: Columns to include in demographic statistics (already lowercased and validated)
         output_dir: Directory to save the output JSON
         top_k: Number of most frequent paths to analyze
         max_members: Maximum number of member indices to include
@@ -748,33 +790,28 @@ def write_cluster_paths(
     
     if compute_similarity:
         print(f"Computing centroid similarity matrix using {similarity_metric} similarity...")
-        # Compute raw similarity matrix
         similarity_matrix = compute_centroid_similarity(
             layer_clusters,
             id_to_layer_cluster,
             metric=similarity_metric,
-            min_similarity=min_similarity,
-            same_layer=False
+            min_similarity=0.0, # Capture all similarities
+            same_layer=True 
         )
         
-        # Normalize similarity matrix to [0, 1] range
-        normalized_matrix = normalize_similarity_matrix(similarity_matrix)
+        normalized_matrix = normalize_similarity_matrix(similarity_matrix, metric=similarity_metric)
         
-        # Compute layer-wise similarity statistics
         layer_similarity = compute_layer_similarity_matrix(
             normalized_matrix,
             id_to_layer_cluster
         )
         
-        # Get top similar clusters for each cluster
         top_similar_clusters = get_top_similar_clusters(
             normalized_matrix, 
             id_to_layer_cluster,
-            top_k=min(5, top_k),
+            top_k=min(5, top_k), # Use a reasonable number for top_k
             min_similarity=min_similarity
         )
         
-        # Identify similarity-convergent paths (where later layers have clusters similar to earlier ones)
         convergent_paths = identify_similarity_convergent_paths(
             unique_paths,
             normalized_matrix,
@@ -783,7 +820,6 @@ def write_cluster_paths(
             max_layer_distance=None
         )
         
-        # Compute fragmentation scores for all paths
         print("Computing fragmentation scores for all paths...")
         fragmentation_scores = np.zeros(len(unique_paths))
         for path_idx, path in enumerate(unique_paths):
@@ -791,9 +827,8 @@ def write_cluster_paths(
                 path, normalized_matrix, id_to_layer_cluster
             )
         
-        # Identify paths with notably high or low fragmentation
-        low_frag_threshold = np.percentile(fragmentation_scores, 25)  # bottom 25%
-        high_frag_threshold = np.percentile(fragmentation_scores, 75)  # top 25%
+        low_frag_threshold = np.percentile(fragmentation_scores, 25)
+        high_frag_threshold = np.percentile(fragmentation_scores, 75)
         
         high_fragmentation_paths = np.where(fragmentation_scores >= high_frag_threshold)[0].tolist()
         low_fragmentation_paths = np.where(fragmentation_scores <= low_frag_threshold)[0].tolist()
@@ -801,13 +836,10 @@ def write_cluster_paths(
         print(f"Identified {len(high_fragmentation_paths)} paths with high fragmentation (score >= {high_frag_threshold:.3f})")
         print(f"Identified {len(low_fragmentation_paths)} paths with low fragmentation (score <= {low_frag_threshold:.3f})")
         
-        # Convert path indices to human-readable paths for easier interpretation
         human_readable_convergent_paths = {}
         for path_idx, convergences in convergent_paths.items():
-            # Get the human-readable version of this path
             if path_idx < len(human_readable_paths):
                 path_str = human_readable_paths[path_idx]
-                # Convert cluster IDs in convergences to human-readable format
                 readable_convergences = []
                 for conv in convergences:
                     readable_conv = conv.copy()
@@ -820,7 +852,6 @@ def write_cluster_paths(
                     readable_convergences.append(readable_conv)
                 human_readable_convergent_paths[path_str] = readable_convergences
         
-        # Prepare serialized versions for JSON output
         similarity_data = {
             "raw_similarity": serialize_similarity_matrix(similarity_matrix),
             "normalized_similarity": serialize_similarity_matrix(normalized_matrix),
@@ -845,112 +876,126 @@ def write_cluster_paths(
         print(f"Found {len(similarity_matrix)} similarity relationships between clusters")
         print(f"Identified {len(convergent_paths)} paths with similarity convergence")
     
-    # Extract centroids for each unique cluster ID
     print("Extracting centroids for unique cluster IDs...")
     unique_centroids = extract_unique_centroids(layer_clusters, id_to_layer_cluster)
     print(f"Extracted centroids for {len(unique_centroids)} unique clusters")
     
-    # Create output data structure
+    metrics_block = {}
+    try:
+        import torch
+        from concept_fragmentation.metrics.cluster_entropy import compute_cluster_entropy
+        from concept_fragmentation.metrics.subspace_angle import compute_subspace_angle
+
+        if target_column and target_column in df.columns: # target_column is now lowercased
+            labels_vector = df[target_column].values
+
+            entropy_per_layer = {}
+            angle_per_layer = {}
+            kstar_per_layer = {}
+
+            for layer_name, layer_info in layer_clusters.items():
+                if "activations" not in layer_info:
+                    continue
+                activations = layer_info["activations"]
+                n_samples = activations.shape[0]
+                if len(labels_vector) < n_samples:
+                    activations = activations[: len(labels_vector)]
+                    n_samples = activations.shape[0]
+                layer_labels = labels_vector[:n_samples]
+
+                act_tensor = torch.tensor(activations, dtype=torch.float32)
+                lbl_tensor = torch.tensor(layer_labels, dtype=torch.long)
+
+                ce_res = compute_cluster_entropy(act_tensor, lbl_tensor, k_selection="auto", normalize=True)
+                entropy_per_layer[layer_name] = float(ce_res.get("mean_entropy", 0.0))
+                kstar_per_layer[layer_name] = int(ce_res.get("chosen_k", layer_info.get("k", 1)))
+                try:
+                    sa_res = compute_subspace_angle(act_tensor, lbl_tensor, bootstrap_samples=3)
+                    angle_per_layer[layer_name] = float(sa_res.get("mean_angle", 0.0))
+                except Exception as e:
+                    print(f"  ⚠ Sub-space angle failed for {layer_name}: {e}")
+            if entropy_per_layer:
+                entropy_vals = list(entropy_per_layer.values())
+                metrics_block["entropy_fragmentation"] = {"per_layer": entropy_per_layer, "mean": float(np.mean(entropy_vals)), "std": float(np.std(entropy_vals))}
+            if angle_per_layer:
+                angle_vals = list(angle_per_layer.values())
+                metrics_block["angle_fragmentation"] = {"per_layer": angle_per_layer, "mean": float(np.mean(angle_vals)), "std": float(np.std(angle_vals))}
+            if kstar_per_layer:
+                metrics_block["k_star"] = kstar_per_layer
+    except Exception as e:
+        print(f"⚠ Label-aware metrics could not be computed: {e}")
+    
     data = {
         "dataset": dataset_name,
         "seed": seed,
         "layers": layer_names,
-        "unique_paths": unique_paths.tolist(),  # Paths with unique IDs
-        "original_paths": original_paths.tolist(),  # Paths with layer-local IDs
-        "human_readable_paths": human_readable_paths,  # Human-readable path strings
-        "id_mapping": serializable_mapping,  # Mapping from unique ID to layer info
-        "unique_centroids": unique_centroids,  # Centroids for each unique cluster ID
-        "similarity": similarity_data  # Similarity metrics between clusters
+        "unique_paths": unique_paths.tolist(),
+        "original_paths": original_paths.tolist(),
+        "human_readable_paths": human_readable_paths,
+        "id_mapping": serializable_mapping,
+        "unique_centroids": unique_centroids,
+        "similarity": similarity_data,
+        "metrics": metrics_block
     }
     
-    # Add target column values if specified
-    if target_column and target_column in df.columns:
-        # Ensure df has the right number of rows
-        if len(df) >= len(unique_paths):
-            # Only take the rows corresponding to the paths
-            data[target_column] = df[target_column].values[:len(unique_paths)].tolist()
+    if target_column and target_column in df.columns: # target_column is now lowercased
+        if len(df) >= len(unique_paths): # df here is the filtered one
+            data[target_column] = df[target_column].values[:len(unique_paths)].tolist() # Use the already lowercased target_column
     
-    # Compute path archetypes with enhanced information
     archetypes = compute_path_archetypes(
         unique_paths, 
         layer_names, 
-        df,
+        df, # df is already filtered and column names lowercased
+        dataset_name,
         id_to_layer_cluster=id_to_layer_cluster,
         human_readable_paths=human_readable_paths,
-        target_column=target_column, 
-        demographic_columns=demographic_columns,
+        target_column=target_column, # Already lowercased
+        demographic_columns=demographic_columns, # Already lowercased and validated
         top_k=top_k,
         max_members=max_members
     )
     data["path_archetypes"] = archetypes
     
-    # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
-    
-    # Save to JSON
     output_path = os.path.join(output_dir, f"{dataset_name}_seed_{seed}_paths.json")
     with open(output_path, 'w') as f:
         json.dump(data, f, indent=2)
-        
-    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    
     with_centroids = output_path.replace("_paths.json", "_paths_with_centroids.json")
     shutil.copy(output_path, with_centroids)
     
-    # Save copies in all commonly accessed locations for compatibility
-    # 1. In data/cluster_paths
+    # Save copies in commonly accessed locations
     data_output_dir = os.path.join("data", "cluster_paths")
     os.makedirs(data_output_dir, exist_ok=True)
     data_output_path = os.path.join(data_output_dir, f"{dataset_name}_seed_{seed}_paths.json")
-    with open(data_output_path, 'w') as f:
-        json.dump(data, f, indent=2)
-        
-    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    with open(data_output_path, 'w') as f: json.dump(data, f, indent=2)
     shutil.copy(data_output_path, data_output_path.replace("_paths.json", "_paths_with_centroids.json"))
         
-    # 2. In visualization/data/cluster_paths
     vis_data_dir = os.path.join("visualization", "data", "cluster_paths") 
     os.makedirs(vis_data_dir, exist_ok=True)
     vis_data_path = os.path.join(vis_data_dir, f"{dataset_name}_seed_{seed}_paths.json")
-    with open(vis_data_path, 'w') as f:
-        json.dump(data, f, indent=2)
-        
-    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    with open(vis_data_path, 'w') as f: json.dump(data, f, indent=2)
     shutil.copy(vis_data_path, vis_data_path.replace("_paths.json", "_paths_with_centroids.json"))
         
-    # 3. In absolute project root locations (create absolute paths)
     project_root = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
     abs_data_path = os.path.join(project_root, "data", "cluster_paths", f"{dataset_name}_seed_{seed}_paths.json")
     os.makedirs(os.path.dirname(abs_data_path), exist_ok=True)
-    with open(abs_data_path, 'w') as f:
-        json.dump(data, f, indent=2)
-        
-    # Create a copy with the "_paths_with_centroids" naming convention for compatibility
+    with open(abs_data_path, 'w') as f: json.dump(data, f, indent=2)
     shutil.copy(abs_data_path, abs_data_path.replace("_paths.json", "_paths_with_centroids.json"))
     
     print(f"Saved cluster paths with unique IDs to:")
-    print(f"  - {output_path}")
-    print(f"  - {data_output_path}")
-    print(f"  - {vis_data_path}")
-    print(f"  - {abs_data_path}")
+    for p in [output_path, data_output_path, vis_data_path, abs_data_path]: print(f"  - {p}")
     
-    # Check if the files were successfully written
-    for path in [output_path, data_output_path, vis_data_path, abs_data_path]:
-        if os.path.exists(path):
-            print(f"✓ Verified: {path} exists")
-            
-            # Verify that unique_centroids was included
+    for path_to_check in [output_path, data_output_path, vis_data_path, abs_data_path]:
+        if os.path.exists(path_to_check):
+            print(f"✓ Verified: {path_to_check} exists")
             try:
-                with open(path, 'r') as f:
-                    verify_data = json.load(f)
+                with open(path_to_check, 'r') as f: verify_data = json.load(f)
                 if "unique_centroids" in verify_data:
-                    centroid_count = len(verify_data["unique_centroids"])
-                    print(f"  ✓ Verified: {path} contains {centroid_count} unique centroids")
-                else:
-                    print(f"  ⚠ Warning: {path} does not contain unique_centroids field")
-            except Exception as e:
-                print(f"  ⚠ Warning: Could not verify content of {path}: {e}")
-        else:
-            print(f"⚠ Warning: {path} was not created!")
+                    print(f"  ✓ Verified: {path_to_check} contains {len(verify_data['unique_centroids'])} unique centroids")
+                else: print(f"  ⚠ Warning: {path_to_check} does not contain unique_centroids field")
+            except Exception as e: print(f"  ⚠ Warning: Could not verify content of {path_to_check}: {e}")
+        else: print(f"⚠ Warning: {path_to_check} was not created!")
     
     return output_path
 
@@ -959,13 +1004,12 @@ if __name__ == "__main__":
     import argparse
     import sys
     
-    # Add project root to path if running as main script
     parent_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     if parent_dir not in sys.path:
         sys.path.insert(0, parent_dir)
     
     from concept_fragmentation.data.loaders import get_dataset_loader
-    from concept_fragmentation.config import RESULTS_DIR
+    from concept_fragmentation.config import RESULTS_DIR # Ensure this is correctly imported/defined
     
     parser = argparse.ArgumentParser(description="Compute and save cluster paths using unique cluster IDs.")
     parser.add_argument("--dataset", type=str, required=True, help="Dataset name (e.g., titanic)")
@@ -981,106 +1025,108 @@ if __name__ == "__main__":
     parser.add_argument("--demographic_columns", type=str, nargs="+", help="Demographic columns to include")
     parser.add_argument("--config_id", type=str, default="baseline", help="Configuration ID to use (e.g., 'baseline')")
     parser.add_argument("--use_cached_clusters", action="store_true", help="Use clusters from visualization cache")
-    parser.add_argument("--use_full_dataset", action="store_true", help="Force use of full dataset (both train and test) even if dimensions don't match")
+    parser.add_argument("--use_full_dataset", action="store_true", help="Force use of full dataset")
     
     args = parser.parse_args()
     
-    # Load dataset
     dataset_loader = get_dataset_loader(args.dataset)
     train_df, test_df = dataset_loader.load_data()
-    
-    # Combine train and test for complete data
     df = pd.concat([train_df, test_df], axis=0).reset_index(drop=True)
     
-    # Set default demographic columns based on dataset if not specified
-    if args.demographic_columns is None:
-        if args.dataset == "titanic":
-            args.demographic_columns = ["age", "sex", "pclass", "fare"]
-        elif args.dataset == "adult":
-            args.demographic_columns = ["age", "education", "occupation", "race", "sex"]
-        elif args.dataset == "heart":
-            args.demographic_columns = ["age", "sex", "cp", "trestbps", "chol"]
+    # Normalize df column names to lowercase for consistent access
+    df.columns = [col.lower() for col in df.columns]
     
-    # Set default target column based on dataset if not specified
+    # Determine and normalize target_column
     if args.target_column is None:
-        if args.dataset == "titanic":
-            args.target_column = "survived"
-        elif args.dataset == "adult":
-            args.target_column = "income"
-        elif args.dataset == "heart":
-            args.target_column = "target"
+        if args.dataset == "titanic": args.target_column = "survived"
+        elif args.dataset == "adult": args.target_column = "income"
+        elif args.dataset == "heart": args.target_column = "target"
+    if args.target_column:
+        args.target_column = args.target_column.lower()
+
+    # Determine, normalize, and validate demographic_columns
+    if args.demographic_columns is None:
+        if args.dataset == "titanic": args.demographic_columns = ["age", "sex", "pclass", "fare"]
+        elif args.dataset == "adult": args.demographic_columns = ["age", "education", "occupation", "race", "sex"]
+        elif args.dataset == "heart": args.demographic_columns = ["age", "sex", "cp", "trestbps", "chol"]
     
-    # First try to load precomputed clusters from cache if requested
+    actual_demographic_columns = []
+    if args.demographic_columns:
+        for col_name in args.demographic_columns:
+            lower_col_name = col_name.lower()
+            if lower_col_name in df.columns:
+                actual_demographic_columns.append(lower_col_name)
+            else:
+                print(f"[Info] Demographic column '{col_name}' (as '{lower_col_name}') not found in DataFrame. Excluding.")
+    args.demographic_columns = actual_demographic_columns # Update args with validated, lowercased columns
+
+    # Prepare a minimal df with only necessary columns for compute_path_archetypes
+    # This df is passed to write_cluster_paths which then passes it to compute_path_archetypes
+    columns_to_keep_for_archetypes = []
+    if args.target_column and args.target_column in df.columns:
+        columns_to_keep_for_archetypes.append(args.target_column)
+    if args.demographic_columns:
+        columns_to_keep_for_archetypes.extend(args.demographic_columns)
+    
+    # Ensure unique columns, especially if target_column is also in demographic_columns
+    columns_to_keep_for_archetypes = list(set(columns_to_keep_for_archetypes)) 
+    
+    # Create the filtered df to be passed to write_cluster_paths
+    # If no relevant columns, pass the original df (now with lowercased columns)
+    # compute_path_archetypes should handle cases where df might not have all expected columns.
+    if columns_to_keep_for_archetypes:
+        archetype_df = df[columns_to_keep_for_archetypes].copy()
+    else:
+        print("[Warning] No target or demographic columns found for archetypes. Passing full (lowercased) DataFrame.")
+        archetype_df = df.copy() # Pass the full df (with lowercased columns)
+
+    print(f"[Info] DataFrame for archetypes will contain columns: {list(archetype_df.columns)}")
+    print(f"[Info] Effective demographic columns for archetypes: {args.demographic_columns}")
+    print(f"[Info] Effective target column for archetypes: {args.target_column}")
+
     layer_clusters = None
     if args.use_cached_clusters:
         layer_clusters = load_clusters_from_cache(args.dataset, args.config_id, args.seed, args.max_k)
     
-    # If no cached clusters found, compute them from activations
     if layer_clusters is None:
-        print(f"No cached clusters found. Computing from activations...")
-        
-        # Find the correct experiment directory with the latest timestamp
-        # The baseline experiments create directories like: baselines/titanic/titanic_baseline_seed0_20250518
+        print(f"No cached clusters found or not using cache. Computing from activations...")
         search_pattern = os.path.join(RESULTS_DIR, "baselines", args.dataset, f"{args.dataset}_baseline_seed{args.seed}_*")
         matching_dirs = glob.glob(search_pattern)
-        
         if not matching_dirs:
             print(f"No experiment directories found matching: {search_pattern}")
-            print(f"Please run the baseline experiment for {args.dataset} seed {args.seed} first.")
             sys.exit(1)
-        
-        # Get the most recent directory by sorting based on timestamp
         results_dir = sorted(matching_dirs)[-1]
         print(f"Loading activations from {results_dir}")
-        
         try:
             activations = load_experiment_activations(results_dir, use_full_dataset=args.use_full_dataset)
         except FileNotFoundError:
-            print(f"No activation files found in {results_dir}. Please run the baseline experiment for {args.dataset} seed {args.seed} first.")
+            print(f"No activation files found in {results_dir}.")
             sys.exit(1)
         
-        # Compute clusters for each layer
         layer_clusters = {}
         for layer_name, layer_activations in activations.items():
             print(f"Computing clusters for layer {layer_name}...")
-            k, centers, labels = compute_clusters_for_layer(
-                layer_activations, max_k=args.max_k, random_state=args.seed
-            )
+            k, centers, labels = compute_clusters_for_layer(layer_activations, max_k=args.max_k, random_state=args.seed)
             print(f"  Found {k} clusters")
-            layer_clusters[layer_name] = {
-                "k": k,
-                "centers": centers,
-                "labels": labels,
-                "activations": layer_activations  # Store activations for centroid similarity later
-            }
+            layer_clusters[layer_name] = {"k": k, "centers": centers, "labels": labels, "activations": layer_activations}
     
-    # Assign unique IDs to clusters across layers
     print("Assigning unique cluster IDs across all layers...")
     layer_clusters, id_to_layer_cluster, cluster_to_unique_id = assign_unique_cluster_ids(layer_clusters)
     
-    # Set default output directory if not specified
+    default_output_dir_base = RESULTS_DIR if RESULTS_DIR else "results" # Fallback for RESULTS_DIR
     if args.output_dir is None:
-        # Try both RESULTS_DIR and a fallback to the data directory
-        output_dir = os.path.join(RESULTS_DIR, "cluster_paths")
-        
-        # Also create a copy in the data directory for compatibility with existing code
-        data_output_dir = os.path.join("data", "cluster_paths")
-        os.makedirs(data_output_dir, exist_ok=True)
-    else:
-        output_dir = args.output_dir
-        
-    # Ensure output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+        args.output_dir = os.path.join(default_output_dir_base, "cluster_paths")
     
-    # Write cluster paths and archetypes with unique IDs
+    os.makedirs(args.output_dir, exist_ok=True) # Ensure output_dir from args is created
+    
     output_path = write_cluster_paths(
         args.dataset,
         args.seed,
         layer_clusters,
-        df,
-        target_column=args.target_column,
-        demographic_columns=args.demographic_columns,
-        output_dir=output_dir,
+        archetype_df, # Pass the filtered DataFrame
+        target_column=args.target_column, # Already lowercased
+        demographic_columns=args.demographic_columns, # Already lowercased and validated
+        output_dir=args.output_dir,
         top_k=args.top_k,
         max_members=args.max_members,
         compute_similarity=args.compute_similarity,
@@ -1088,51 +1134,44 @@ if __name__ == "__main__":
         min_similarity=args.min_similarity
     )
     
-    # Display summary information
     total_clusters = sum(len(np.unique(layer_info["labels"])) for layer_info in layer_clusters.values())
-    unique_ids = len(id_to_layer_cluster)
+    unique_ids_count = len(id_to_layer_cluster)
     
-    # Add sanity check for total datapoints
     sample_counts = []
     for layer_name, layer_info in layer_clusters.items():
-        if "labels" in layer_info:
-            sample_count = len(layer_info["labels"])
-            sample_counts.append((layer_name, sample_count))
+        if "labels" in layer_info: sample_counts.append((layer_name, len(layer_info["labels"])))
     
     print(f"Summary:")
     print(f"- Dataset: {args.dataset}")
     print(f"- Layers: {', '.join(sorted(layer_clusters.keys(), key=_natural_layer_sort))}")
     print(f"- Total clusters across all layers: {total_clusters}")
-    print(f"- Unique cluster IDs assigned: {unique_ids}")
+    print(f"- Unique cluster IDs assigned: {unique_ids_count}")
     print(f"- Top {args.top_k} paths analyzed")
     
-    # Print sample count sanity check
     print(f"\nSanity Check - Sample counts by layer:")
     for layer_name, count in sorted(sample_counts, key=lambda x: _natural_layer_sort(x[0])):
         print(f"  {layer_name}: {count} samples")
     
     if sample_counts:
         first_layer_count = sample_counts[0][1]
-        all_same = all(count == first_layer_count for _, count in sample_counts)
-        if all_same:
-            # Check if we're using the full dataset
-            train_test_count = len(df)
+        all_same_count = all(count == first_layer_count for _, count in sample_counts)
+        if all_same_count:
+            # Use the original full df for this comparison, not archetype_df
+            full_df_row_count = len(df) # df here is concat of train_df and test_df with lowercased columns
             print(f"✓ All layers have the same number of samples ({first_layer_count})")
-            
-            if abs(first_layer_count - train_test_count) < 5:  # Allow small differences due to filtering
-                print(f"✓ Using full dataset - Sample count ({first_layer_count}) matches combined train+test dataframe size ({train_test_count})")
-            elif first_layer_count < 0.5 * train_test_count:  # Less than half
-                print(f"⚠ WARNING: May be using partial dataset - Sample count ({first_layer_count}) is much smaller than combined dataset size ({train_test_count})")
+            if abs(first_layer_count - full_df_row_count) < 5:
+                print(f"✓ Using full dataset - Sample count ({first_layer_count}) matches combined train+test dataframe size ({full_df_row_count})")
+            elif first_layer_count < 0.5 * full_df_row_count:
+                print(f"⚠ WARNING: May be using partial dataset - Sample count ({first_layer_count}) is smaller than combined dataset size ({full_df_row_count})")
             else:
-                print(f"ℹ️ Sample count: {first_layer_count}, Dataset size: {train_test_count}")
+                print(f"ℹ️ Sample count: {first_layer_count}, Combined Dataset size: {full_df_row_count}")
         else:
             print(f"⚠ WARNING: Inconsistent sample counts across layers!")
             
-    # Print total datapoints across all clusters
     total_datapoints = sum(count for _, count in sample_counts)
-    points_per_layer = sample_counts[0][1] if sample_counts else 0
-    expected_total = points_per_layer * len(sample_counts)
+    points_per_layer_val = sample_counts[0][1] if sample_counts else 0
+    expected_total_val = points_per_layer_val * len(sample_counts)
     print(f"- Total datapoints across all clusters: {total_datapoints}")
-    print(f"- Expected total ({points_per_layer} samples × {len(sample_counts)} layers): {expected_total}")
+    print(f"- Expected total ({points_per_layer_val} samples × {len(sample_counts)} layers): {expected_total_val}")
     
     print(f"\n- Cluster paths written to: {output_path}")

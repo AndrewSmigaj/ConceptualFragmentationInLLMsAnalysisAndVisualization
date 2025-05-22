@@ -1,0 +1,23 @@
+\section{Introduction}
+
+Interpretability research often struggles to balance rigor and accessibility, oscillating between visually compelling but loosely grounded ``quasi-explanations'' and mathematically sound but opaque theoretical analyses. Archetypal Path Analysis (APA) aims to bridge this gap by clustering datapoint activations at each layer of a trained network and tracing their transitions through activation space. This approach provides both mathematical precision and intuitive understanding of how neural networks process information, but its utility depends on addressing several foundational questions:
+
+\begin{itemize}
+    \item What makes activation geometry suitable for clustering?
+    \item Under what transformations are cluster paths stable?
+    \item Do cluster paths reflect genuine semantic or decision-relevant structure?
+    \item How can we translate mathematical patterns into domain-meaningful explanations?
+\end{itemize}
+
+The challenge of translating quantitative patterns into qualitative understanding is particularly acute. While metrics like silhouette scores or mutual information can validate clustering quality, they offer limited insight into the semantic meaning of identified patterns. Our work introduces a novel approach to this problem by leveraging large language models (LLMs) to generate human-readable narratives that explain the conceptual significance of activation patterns.
+
+\textbf{Contributions}:
+\begin{itemize}
+    \item Formalize activation-space geometry for datapoint clustering with layer-specific labels and mathematical validation criteria
+    \item Introduce ETS-based clustering for dimension-wise explainability with verbalizably transparent membership conditions
+    \item Develop cross-layer metrics (centroid similarity, membership overlap, fragmentation scores) to quantify concept evolution
+    \item Propose a reproducible framework for path stability assessment using statistical robustness measures (ARI, MI, null models)
+    \item Implement LLM-powered analysis to generate human-readable explanations of cluster paths
+    \item Demonstrate bias detection capabilities through demographic analysis of paths
+    \item Provide an open-source implementation blueprint for application across diverse domains
+\end{itemize}

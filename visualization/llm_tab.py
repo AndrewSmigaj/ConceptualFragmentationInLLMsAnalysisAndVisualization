@@ -15,7 +15,7 @@ import importlib
 import os
 import sys
 import json
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Dict, List, Tuple, Any, Optional, Union
 
 # Add a function to find and load existing LLM results files
 def find_existing_llm_results(dataset: str, seed: int) -> Optional[Dict[str, Any]]:
@@ -94,7 +94,11 @@ def create_llm_tab():
                         id="llm-analysis-type",
                         options=[
                             {"label": "Cluster Labeling", "value": "cluster_labels"},
-                            {"label": "Path Narratives", "value": "path_narratives"}
+                            {"label": "Path Narratives", "value": "path_narratives"},
+                            {"label": "GPT-2 Attention Patterns", "value": "attention_patterns"},
+                            {"label": "GPT-2 Token Movement", "value": "token_movement"},
+                            {"label": "GPT-2 Concept Purity", "value": "concept_purity"},
+                            {"label": "Token Path Comparison", "value": "token_path_comparison"}
                         ],
                         value=["cluster_labels"],
                         inline=True
@@ -131,7 +135,7 @@ def create_llm_tab():
             html.Div(id="llm-status-area", style={"padding": "10px", "margin": "10px"}),
             
             # Analysis Results Tabs
-            dcc.Tabs([
+            dcc.Tabs(id="llm-result-tabs", children=[
                 # Cluster Labels Tab
                 dcc.Tab(label="Cluster Labels", children=[
                     dcc.Loading(
@@ -150,6 +154,50 @@ def create_llm_tab():
                         type="circle",
                         children=[
                             html.Div(id="path-narratives-container", style={"padding": "15px"})
+                        ]
+                    )
+                ]),
+                
+                # Attention Patterns Tab
+                dcc.Tab(label="Attention Patterns", children=[
+                    dcc.Loading(
+                        id="loading-attention-patterns",
+                        type="circle",
+                        children=[
+                            html.Div(id="attention-patterns-container", style={"padding": "15px"})
+                        ]
+                    )
+                ]),
+                
+                # Token Movement Tab
+                dcc.Tab(label="Token Movement", children=[
+                    dcc.Loading(
+                        id="loading-token-movement",
+                        type="circle",
+                        children=[
+                            html.Div(id="token-movement-container", style={"padding": "15px"})
+                        ]
+                    )
+                ]),
+                
+                # Concept Purity Tab
+                dcc.Tab(label="Concept Purity", children=[
+                    dcc.Loading(
+                        id="loading-concept-purity",
+                        type="circle",
+                        children=[
+                            html.Div(id="concept-purity-container", style={"padding": "15px"})
+                        ]
+                    )
+                ]),
+                
+                # Token Path Comparison Tab
+                dcc.Tab(label="Token Path Comparison", children=[
+                    dcc.Loading(
+                        id="loading-token-path-comparison",
+                        type="circle",
+                        children=[
+                            html.Div(id="token-path-comparison-container", style={"padding": "15px"})
                         ]
                     )
                 ]),
@@ -413,6 +461,400 @@ def register_llm_callbacks(app):
                         html.Div("No paths or cluster labels found for narrative generation.", style={"color": "orange"})
                     ])
             
+            # If GPT-2 attention patterns analysis is requested
+            if "attention_patterns" in analysis_types:
+                # Check if we're dealing with a GPT-2 model data
+                is_gpt2_data = False
+                model_type = cluster_paths_data.get("model_type", "").lower()
+                if "gpt2" in model_type or "transformer" in model_type:
+                    is_gpt2_data = True
+                
+                if is_gpt2_data and "attention_data" in cluster_paths_data:
+                    # Extract attention data
+                    attention_data = cluster_paths_data["attention_data"]
+                    
+                    # Update status
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("Generating attention pattern analysis...")
+                    ])
+                    dash.callback_context.record_timing("llm-status-update", "Generating attention pattern analysis...")
+                    
+                    try:
+                        # Import GPT-2 prompts module
+                        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                        from concept_fragmentation.llm.gpt2_prompts import generate_attention_pattern_prompt
+                        
+                        # Prepare attention pattern data for each layer
+                        attention_patterns = {}
+                        
+                        # Process each layer's attention data
+                        for layer_name, layer_data in attention_data.items():
+                            # Extract metrics
+                            entropy = layer_data.get("entropy", 0.0)
+                            head_agreement = layer_data.get("head_agreement", 0.0)
+                            num_heads = layer_data.get("num_heads", 12)  # Default for GPT-2
+                            
+                            # Extract notable patterns (top 5)
+                            notable_patterns = []
+                            if "notable_patterns" in layer_data:
+                                for pattern in layer_data["notable_patterns"][:5]:
+                                    pattern_desc = f"{pattern['description']} (score: {pattern['score']:.3f})"
+                                    notable_patterns.append(pattern_desc)
+                            
+                            # Extract token-to-token examples (top 5)
+                            token_examples = []
+                            if "token_attention" in layer_data:
+                                for example in layer_data["token_attention"][:5]:
+                                    example_desc = f"'{example['source']}' → '{example['target']}' (strength: {example['strength']:.3f})"
+                                    token_examples.append(example_desc)
+                            
+                            # Generate prompt for this layer
+                            prompt = generate_attention_pattern_prompt(
+                                layer_name=layer_name,
+                                attention_entropy=entropy,
+                                head_agreement=head_agreement,
+                                num_heads=num_heads,
+                                attention_patterns=notable_patterns or ["Pattern information not available"],
+                                token_attention_examples=token_examples or ["Token attention examples not available"]
+                            )
+                            
+                            # Get narrative from LLM
+                            response = analyzer.client.generate(prompt)
+                            
+                            # Store results
+                            attention_patterns[layer_name] = {
+                                "entropy": entropy,
+                                "head_agreement": head_agreement,
+                                "num_heads": num_heads,
+                                "narrative": response
+                            }
+                        
+                        # Store the results
+                        results["attention_patterns"] = attention_patterns
+                        
+                        # Update status
+                        status_div = html.Div([
+                            status_div,
+                            html.Div(f"Generated attention pattern analysis for {len(attention_patterns)} layers successfully.", 
+                                    style={"color": "green"})
+                        ])
+                    except Exception as e:
+                        import traceback
+                        error_msg = f"Error generating attention pattern analysis: {str(e)}\n{traceback.format_exc()}"
+                        print(error_msg)
+                        status_div = html.Div([
+                            status_div,
+                            html.Div(f"Error generating attention pattern analysis: {str(e)}", style={"color": "red"})
+                        ])
+                else:
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("No GPT-2 attention data found for analysis.", style={"color": "orange"})
+                    ])
+            
+            # If GPT-2 token movement analysis is requested
+            if "token_movement" in analysis_types:
+                # Check if we're dealing with a GPT-2 model data with token paths
+                is_gpt2_data = False
+                model_type = cluster_paths_data.get("model_type", "").lower()
+                if "gpt2" in model_type or "transformer" in model_type:
+                    is_gpt2_data = True
+                
+                if is_gpt2_data and "token_paths" in cluster_paths_data:
+                    # Extract token path data
+                    token_paths = cluster_paths_data["token_paths"]
+                    
+                    # Update status
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("Generating token movement analysis...")
+                    ])
+                    dash.callback_context.record_timing("llm-status-update", "Generating token movement analysis...")
+                    
+                    try:
+                        # Import GPT-2 prompts module
+                        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                        from concept_fragmentation.llm.gpt2_prompts import generate_token_movement_prompt
+                        
+                        # Prepare token movement data
+                        token_movement = {}
+                        
+                        # Calculate average metrics for comparison
+                        total_tokens = len(token_paths)
+                        all_path_lengths = [path.get("path_length", 0) for path in token_paths.values()]
+                        all_cluster_changes = [path.get("cluster_changes", 0) for path in token_paths.values()]
+                        
+                        avg_path_length = sum(all_path_lengths) / max(len(all_path_lengths), 1)
+                        avg_cluster_changes = sum(all_cluster_changes) / max(len(all_cluster_changes), 1)
+                        
+                        # Rank tokens by mobility
+                        if total_tokens > 0:
+                            mobility_scores = {token_id: path.get("mobility_score", 0) 
+                                            for token_id, path in token_paths.items()}
+                            ranked_tokens = sorted(mobility_scores.keys(), 
+                                                key=lambda k: mobility_scores[k], reverse=True)
+                            token_ranks = {token_id: idx+1 for idx, token_id in enumerate(ranked_tokens)}
+                        else:
+                            token_ranks = {}
+                        
+                        # Select top N most mobile tokens for analysis
+                        tokens_to_analyze = 10
+                        selected_tokens = list(token_ranks.items())[:tokens_to_analyze] if token_ranks else []
+                        
+                        # Process each selected token
+                        for token_id, rank in selected_tokens:
+                            path_data = token_paths.get(token_id, {})
+                            
+                            # Extract path metrics
+                            token_text = path_data.get("token_text", f"Token {token_id}")
+                            token_position = path_data.get("position", 0)
+                            cluster_path = path_data.get("cluster_path", [])
+                            path_length = path_data.get("path_length", 0)
+                            cluster_changes = path_data.get("cluster_changes", 0)
+                            mobility_score = path_data.get("mobility_score", 0)
+                            
+                            # Convert cluster path to format needed for prompt
+                            formatted_path = []
+                            for i, cluster_id in enumerate(cluster_path):
+                                layer_name = f"L{i}"
+                                formatted_path.append((layer_name, cluster_id))
+                            
+                            # Generate prompt for this token
+                            prompt = generate_token_movement_prompt(
+                                token_text=token_text,
+                                token_position=token_position,
+                                cluster_path=formatted_path,
+                                path_length=path_length,
+                                cluster_changes=cluster_changes,
+                                mobility_score=mobility_score,
+                                avg_path_length=avg_path_length,
+                                avg_cluster_changes=avg_cluster_changes,
+                                mobility_ranking=rank,
+                                total_tokens=total_tokens
+                            )
+                            
+                            # Get narrative from LLM
+                            response = analyzer.client.generate(prompt)
+                            
+                            # Create path string representation for display
+                            cluster_path_str = " → ".join([f"L{i}C{cluster_id}" for i, cluster_id in enumerate(cluster_path)])
+                            
+                            # Store results
+                            token_movement[token_id] = {
+                                "token_text": token_text,
+                                "position": token_position,
+                                "path_length": path_length,
+                                "cluster_changes": cluster_changes,
+                                "mobility_score": mobility_score,
+                                "mobility_ranking": rank,
+                                "cluster_path_str": cluster_path_str,
+                                "narrative": response
+                            }
+                        
+                        # Store the results
+                        results["token_movement"] = token_movement
+                        
+                        # Update status
+                        status_div = html.Div([
+                            status_div,
+                            html.Div(f"Generated token movement analysis for {len(token_movement)} tokens successfully.", 
+                                    style={"color": "green"})
+                        ])
+                    except Exception as e:
+                        import traceback
+                        error_msg = f"Error generating token movement analysis: {str(e)}\n{traceback.format_exc()}"
+                        print(error_msg)
+                        status_div = html.Div([
+                            status_div,
+                            html.Div(f"Error generating token movement analysis: {str(e)}", style={"color": "red"})
+                        ])
+                else:
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("No GPT-2 token path data found for analysis.", style={"color": "orange"})
+                    ])
+            
+            # If GPT-2 concept purity analysis is requested
+            if "concept_purity" in analysis_types:
+                # Check if we're dealing with a GPT-2 model data
+                is_gpt2_data = False
+                model_type = cluster_paths_data.get("model_type", "").lower()
+                if "gpt2" in model_type or "transformer" in model_type:
+                    is_gpt2_data = True
+                
+                if is_gpt2_data and "cluster_metrics" in cluster_paths_data:
+                    # Extract cluster metrics data
+                    cluster_metrics = cluster_paths_data["cluster_metrics"]
+                    
+                    # Update status
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("Generating concept purity analysis...")
+                    ])
+                    dash.callback_context.record_timing("llm-status-update", "Generating concept purity analysis...")
+                    
+                    try:
+                        # Import GPT-2 prompts module
+                        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                        from concept_fragmentation.llm.gpt2_prompts import generate_concept_purity_prompt
+                        
+                        # Extract layer metrics
+                        layer_metrics = {}
+                        for layer_name, metrics in cluster_metrics.items():
+                            if "purity" in metrics and "silhouette" in metrics:
+                                layer_metrics[layer_name] = {
+                                    "purity": metrics["purity"],
+                                    "silhouette": metrics["silhouette"]
+                                }
+                        
+                        # Calculate overall metrics
+                        avg_silhouette = sum([m["silhouette"] for m in layer_metrics.values()]) / len(layer_metrics) if layer_metrics else 0
+                        cluster_stability = cluster_paths_data.get("cluster_stability", 0)
+                        
+                        # Find best and worst layers
+                        sorted_layers = sorted(layer_metrics.items(), key=lambda x: x[1]["purity"], reverse=True)
+                        best_layer = sorted_layers[0][0] if sorted_layers else "Unknown"
+                        best_purity = sorted_layers[0][1]["purity"] if sorted_layers else 0
+                        
+                        worst_layer = sorted_layers[-1][0] if sorted_layers else "Unknown"
+                        worst_purity = sorted_layers[-1][1]["purity"] if sorted_layers else 0
+                        
+                        # Generate prompt for concept purity analysis
+                        prompt = generate_concept_purity_prompt(
+                            layer_metrics=layer_metrics,
+                            avg_silhouette=avg_silhouette,
+                            cluster_stability=cluster_stability,
+                            best_layer=best_layer,
+                            best_purity=best_purity,
+                            worst_layer=worst_layer,
+                            worst_purity=worst_purity
+                        )
+                        
+                        # Get narrative from LLM
+                        response = analyzer.client.generate(prompt)
+                        
+                        # Store results
+                        concept_purity_results = {
+                            "layer_metrics": layer_metrics,
+                            "avg_silhouette": avg_silhouette,
+                            "cluster_stability": cluster_stability,
+                            "best_layer": best_layer,
+                            "best_purity": best_purity,
+                            "worst_layer": worst_layer,
+                            "worst_purity": worst_purity,
+                            "narrative": response
+                        }
+                        
+                        # Store the results
+                        results["concept_purity"] = concept_purity_results
+                        
+                        # Update status
+                        status_div = html.Div([
+                            status_div,
+                            html.Div("Generated concept purity analysis successfully.", style={"color": "green"})
+                        ])
+                    except Exception as e:
+                        import traceback
+                        error_msg = f"Error generating concept purity analysis: {str(e)}\n{traceback.format_exc()}"
+                        print(error_msg)
+                        status_div = html.Div([
+                            status_div,
+                            html.Div(f"Error generating concept purity analysis: {str(e)}", style={"color": "red"})
+                        ])
+                else:
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("No GPT-2 cluster metrics found for concept purity analysis.", style={"color": "orange"})
+                    ])
+            
+            # If token path comparison analysis is requested
+            if "token_path_comparison" in analysis_types:
+                # Check if we have the necessary data
+                if "attention_data" in cluster_paths_data and "token_paths" in cluster_paths_data:
+                    # Update status
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("Generating token path comparison analysis...")
+                    ])
+                    dash.callback_context.record_timing("llm-status-update", "Generating token path comparison analysis...")
+                    
+                    try:
+                        # Import correlation module
+                        from visualization.gpt2_attention_correlation import calculate_correlation_metrics
+                        
+                        # Import GPT-2 prompts module
+                        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                        from concept_fragmentation.llm.gpt2_prompts import generate_path_attention_correlation_prompt
+                        
+                        # Get token paths and attention data
+                        token_paths = cluster_paths_data["token_paths"]
+                        attention_data = cluster_paths_data["attention_data"]
+                        
+                        # Calculate correlation metrics
+                        correlation_metrics = calculate_correlation_metrics(
+                            token_paths=token_paths,
+                            attention_flow=attention_data,
+                            cluster_labels=cluster_paths_data.get("cluster_labels", {}),
+                            layer_names=cluster_paths_data.get("layers", [])
+                        )
+                        
+                        # Check if we have token correlations
+                        token_correlations = correlation_metrics.get("token_correlations", {})
+                        if token_correlations:
+                            # Get tokens with strongest/weakest correlation
+                            sorted_tokens = sorted(
+                                [(token, stats.get("avg_correlation", 0)) 
+                                 for token, stats in token_correlations.items()],
+                                key=lambda x: x[1],
+                                reverse=True
+                            )
+                            
+                            # Get strongest and weakest tokens
+                            strong_examples = sorted_tokens[:5]  # Top 5
+                            weak_examples = sorted_tokens[-5:]   # Bottom 5
+                            
+                            # Generate prompt for correlation analysis
+                            prompt = generate_path_attention_correlation_prompt(
+                                correlation_metrics=correlation_metrics,
+                                strong_examples=strong_examples,
+                                weak_examples=weak_examples
+                            )
+                            
+                            # Get narrative from LLM
+                            response = analyzer.client.generate(prompt)
+                            
+                            # Store the results
+                            results["token_path_comparison"] = {
+                                "overall": response,
+                                "metrics": correlation_metrics
+                            }
+                            
+                            # Update status
+                            status_div = html.Div([
+                                status_div,
+                                html.Div("Generated token path comparison analysis successfully.", 
+                                         style={"color": "green"})
+                            ])
+                        else:
+                            status_div = html.Div([
+                                status_div,
+                                html.Div("No token correlation data found for analysis.", style={"color": "orange"})
+                            ])
+                    except Exception as e:
+                        import traceback
+                        error_msg = f"Error generating token path comparison analysis: {str(e)}\n{traceback.format_exc()}"
+                        print(error_msg)
+                        status_div = html.Div([
+                            status_div,
+                            html.Div(f"Error generating token path comparison analysis: {str(e)}", style={"color": "red"})
+                        ])
+                else:
+                    status_div = html.Div([
+                        status_div,
+                        html.Div("Token path or attention data not found for comparison analysis.", style={"color": "orange"})
+                    ])
+            
             return status_div, results
         except Exception as e:
             import traceback
@@ -453,9 +895,15 @@ def register_llm_callbacks(app):
                 "Label": label
             })
         
-        # Sort by layer and cluster
+        # Create DataFrame
         df = pd.DataFrame(rows)
-        df = df.sort_values(by=["Layer", "Cluster"])
+        
+        # Check if sorting columns exist before sorting
+        if 'Layer' in df.columns and 'Cluster' in df.columns:
+            df = df.sort_values(by=["Layer", "Cluster"])
+        elif 'Cluster ID' in df.columns:
+            # Fall back to sorting just by Cluster ID if Layer column is missing
+            df = df.sort_values(by=["Cluster ID"])
         
         # Create table
         table = dash_table.DataTable(
@@ -597,7 +1045,343 @@ def register_llm_callbacks(app):
         ])
         
         return html.Div([header, html.Div(narrative_cards)])
+    
+    @app.callback(
+        Output("attention-patterns-container", "children"),
+        [Input("llm-analysis-store", "data")]
+    )
+    def update_attention_patterns(analysis_data):
+        """Update the attention patterns analysis."""
+        if not analysis_data or "attention_patterns" not in analysis_data:
+            return html.Div("No attention pattern analysis available. Generate GPT-2 analysis first.")
         
+        # Extract attention patterns analysis
+        attention_patterns = analysis_data["attention_patterns"]
+        provider = analysis_data.get("provider", "unknown")
+        model = analysis_data.get("model", "unknown")
+        
+        # Create the attention patterns view
+        pattern_cards = []
+        
+        # Import the dashboard module dynamically to avoid circular imports
+        dash_app = importlib.import_module("visualization.dash_app")
+        
+        # Load model data to get attention information
+        dataset = dash_app.current_dataset
+        seed = dash_app.current_seed
+        
+        # Sort layer names for consistent display
+        sorted_layer_names = sorted(attention_patterns.keys())
+        
+        for layer_name in sorted_layer_names:
+            pattern_analysis = attention_patterns[layer_name]
+            
+            # Create card for this layer's attention pattern
+            card = html.Div([
+                # Header with layer name
+                html.Div([
+                    html.Span(f"Layer: {layer_name}", style={"fontWeight": "bold", "fontSize": "18px"})
+                ]),
+                
+                # Attention metrics
+                html.Div([
+                    html.Div("Attention Metrics:", style={"fontWeight": "bold", "marginTop": "10px"}),
+                    html.Div([
+                        html.Div([
+                            html.Span("Entropy: ", style={"fontWeight": "bold"}),
+                            html.Span(f"{pattern_analysis.get('entropy', 'N/A'):.3f}" if 'entropy' in pattern_analysis else "N/A")
+                        ], style={"marginRight": "20px", "display": "inline-block"}),
+                        html.Div([
+                            html.Span("Head Agreement: ", style={"fontWeight": "bold"}),
+                            html.Span(f"{pattern_analysis.get('head_agreement', 'N/A'):.3f}" if 'head_agreement' in pattern_analysis else "N/A")
+                        ], style={"marginRight": "20px", "display": "inline-block"}),
+                        html.Div([
+                            html.Span("Heads: ", style={"fontWeight": "bold"}),
+                            html.Span(f"{pattern_analysis.get('num_heads', 'N/A')}" if 'num_heads' in pattern_analysis else "N/A")
+                        ], style={"display": "inline-block"})
+                    ], style={"marginTop": "5px"})
+                ]),
+                
+                # Analysis text
+                html.Div([
+                    html.Div("Analysis:", style={"fontWeight": "bold", "marginTop": "10px"}),
+                    html.Div(pattern_analysis.get('narrative', 'No analysis available'), 
+                             style={"marginTop": "5px", "padding": "10px", "backgroundColor": "#f8f8f8", "borderRadius": "5px"})
+                ])
+            ], style={
+                "border": "1px solid #ddd",
+                "borderRadius": "5px",
+                "padding": "15px",
+                "marginBottom": "15px",
+                "backgroundColor": "white",
+                "boxShadow": "0 2px 5px rgba(0,0,0,0.1)"
+            })
+            
+            pattern_cards.append(card)
+        
+        # Create header with model info
+        header = html.Div([
+            html.H5(f"Attention Pattern Analysis Generated by {provider.title()} ({model})"),
+            html.P(f"Total layers analyzed: {len(attention_patterns)}")
+        ])
+        
+        return html.Div([header, html.Div(pattern_cards)])
+    
+    @app.callback(
+        Output("token-movement-container", "children"),
+        [Input("llm-analysis-store", "data")]
+    )
+    def update_token_movement(analysis_data):
+        """Update the token movement analysis."""
+        if not analysis_data or "token_movement" not in analysis_data:
+            return html.Div("No token movement analysis available. Generate GPT-2 analysis first.")
+        
+        # Extract token movement analysis
+        token_movement = analysis_data["token_movement"]
+        provider = analysis_data.get("provider", "unknown")
+        model = analysis_data.get("model", "unknown")
+        
+        # Create the token movement view
+        token_cards = []
+        
+        # Import the dashboard module dynamically to avoid circular imports
+        dash_app = importlib.import_module("visualization.dash_app")
+        
+        # Sort token IDs for consistent display
+        sorted_token_ids = sorted(token_movement.keys())
+        
+        for token_id in sorted_token_ids:
+            movement_analysis = token_movement[token_id]
+            
+            # Get token text and position
+            token_text = movement_analysis.get('token_text', f"Token {token_id}")
+            token_position = movement_analysis.get('position', 'Unknown')
+            
+            # Get movement metrics
+            path_length = movement_analysis.get('path_length', 'N/A')
+            cluster_changes = movement_analysis.get('cluster_changes', 'N/A')
+            mobility_score = movement_analysis.get('mobility_score', 'N/A')
+            mobility_rank = movement_analysis.get('mobility_ranking', 'N/A')
+            
+            # Create card for this token's movement pattern
+            card = html.Div([
+                # Header with token info
+                html.Div([
+                    html.Span(f"Token: \"{token_text}\"", style={"fontWeight": "bold", "fontSize": "18px"}),
+                    html.Span(f" (position {token_position})", style={"color": "#666", "marginLeft": "10px"})
+                ]),
+                
+                # Movement metrics
+                html.Div([
+                    html.Div("Movement Metrics:", style={"fontWeight": "bold", "marginTop": "10px"}),
+                    html.Div([
+                        html.Div([
+                            html.Span("Path Length: ", style={"fontWeight": "bold"}),
+                            html.Span(f"{path_length:.3f}" if isinstance(path_length, (int, float)) else path_length)
+                        ], style={"marginRight": "20px", "display": "inline-block"}),
+                        html.Div([
+                            html.Span("Cluster Changes: ", style={"fontWeight": "bold"}),
+                            html.Span(f"{cluster_changes}" if isinstance(cluster_changes, (int, float)) else cluster_changes)
+                        ], style={"marginRight": "20px", "display": "inline-block"}),
+                        html.Div([
+                            html.Span("Mobility Score: ", style={"fontWeight": "bold"}),
+                            html.Span(f"{mobility_score:.3f}" if isinstance(mobility_score, (int, float)) else mobility_score)
+                        ], style={"display": "inline-block"})
+                    ], style={"marginTop": "5px"}),
+                    html.Div([
+                        html.Span("Mobility Ranking: ", style={"fontWeight": "bold"}),
+                        html.Span(f"{mobility_rank}" if isinstance(mobility_rank, (int, float)) else mobility_rank)
+                    ], style={"marginTop": "5px"})
+                ]),
+                
+                # Cluster path if available
+                html.Div([
+                    html.Div("Cluster Path:", style={"fontWeight": "bold", "marginTop": "10px"}),
+                    html.Div(movement_analysis.get('cluster_path_str', 'Path not available'), 
+                             style={"marginTop": "5px", "fontSize": "12px", "color": "#666"})
+                ]) if 'cluster_path_str' in movement_analysis else None,
+                
+                # Analysis text
+                html.Div([
+                    html.Div("Analysis:", style={"fontWeight": "bold", "marginTop": "10px"}),
+                    html.Div(movement_analysis.get('narrative', 'No analysis available'), 
+                             style={"marginTop": "5px", "padding": "10px", "backgroundColor": "#f8f8f8", "borderRadius": "5px"})
+                ])
+            ], style={
+                "border": "1px solid #ddd",
+                "borderRadius": "5px",
+                "padding": "15px",
+                "marginBottom": "15px",
+                "backgroundColor": "white",
+                "boxShadow": "0 2px 5px rgba(0,0,0,0.1)"
+            })
+            
+            token_cards.append(card)
+        
+        # Create header with model info
+        header = html.Div([
+            html.H5(f"Token Movement Analysis Generated by {provider.title()} ({model})"),
+            html.P(f"Total tokens analyzed: {len(token_movement)}")
+        ])
+        
+        return html.Div([header, html.Div(token_cards)])
+    
+    @app.callback(
+        Output("concept-purity-container", "children"),
+        [Input("llm-analysis-store", "data")]
+    )
+    def update_concept_purity(analysis_data):
+        """Update the concept purity analysis."""
+        if not analysis_data or "concept_purity" not in analysis_data:
+            return html.Div("No concept purity analysis available. Generate GPT-2 analysis first.")
+        
+        # Extract concept purity analysis
+        concept_purity = analysis_data["concept_purity"]
+        provider = analysis_data.get("provider", "unknown")
+        model = analysis_data.get("model", "unknown")
+        
+        # Get overall metrics
+        avg_silhouette = concept_purity.get('avg_silhouette', 'N/A')
+        cluster_stability = concept_purity.get('cluster_stability', 'N/A')
+        best_layer = concept_purity.get('best_layer', 'N/A')
+        best_purity = concept_purity.get('best_purity', 'N/A')
+        worst_layer = concept_purity.get('worst_layer', 'N/A')
+        worst_purity = concept_purity.get('worst_purity', 'N/A')
+        
+        # Get layer metrics
+        layer_metrics = concept_purity.get('layer_metrics', {})
+        
+        # Create the concept purity view
+        metrics_card = html.Div([
+            # Overall metrics
+            html.Div([
+                html.Div("Overall Metrics:", style={"fontWeight": "bold", "fontSize": "16px"}),
+                html.Div([
+                    html.Div([
+                        html.Span("Average Silhouette: ", style={"fontWeight": "bold"}),
+                        html.Span(f"{avg_silhouette:.3f}" if isinstance(avg_silhouette, (int, float)) else avg_silhouette)
+                    ], style={"marginRight": "20px", "display": "inline-block"}),
+                    html.Div([
+                        html.Span("Cluster Stability: ", style={"fontWeight": "bold"}),
+                        html.Span(f"{cluster_stability:.3f}" if isinstance(cluster_stability, (int, float)) else cluster_stability)
+                    ], style={"display": "inline-block"})
+                ], style={"marginTop": "5px"}),
+                html.Div([
+                    html.Div([
+                        html.Span("Best Layer: ", style={"fontWeight": "bold"}),
+                        html.Span(f"{best_layer} (purity: {best_purity:.3f})" if isinstance(best_purity, (int, float)) else f"{best_layer} (purity: {best_purity})")
+                    ], style={"marginRight": "20px", "display": "inline-block"}),
+                    html.Div([
+                        html.Span("Worst Layer: ", style={"fontWeight": "bold"}),
+                        html.Span(f"{worst_layer} (purity: {worst_purity:.3f})" if isinstance(worst_purity, (int, float)) else f"{worst_layer} (purity: {worst_purity})")
+                    ], style={"display": "inline-block"})
+                ], style={"marginTop": "5px"})
+            ], style={"marginBottom": "20px"}),
+            
+            # Layer metrics
+            html.Div([
+                html.Div("Layer Metrics:", style={"fontWeight": "bold", "fontSize": "16px"}),
+                html.Div([
+                    html.Table([
+                        html.Thead(html.Tr([
+                            html.Th("Layer", style={"textAlign": "left", "padding": "8px"}),
+                            html.Th("Purity Score", style={"textAlign": "left", "padding": "8px"}),
+                            html.Th("Silhouette Score", style={"textAlign": "left", "padding": "8px"})
+                        ])),
+                        html.Tbody([
+                            html.Tr([
+                                html.Td(layer, style={"padding": "8px"}),
+                                html.Td(f"{metrics.get('purity', 'N/A'):.3f}" if isinstance(metrics.get('purity'), (int, float)) else metrics.get('purity', 'N/A'), 
+                                        style={"padding": "8px"}),
+                                html.Td(f"{metrics.get('silhouette', 'N/A'):.3f}" if isinstance(metrics.get('silhouette'), (int, float)) else metrics.get('silhouette', 'N/A'), 
+                                        style={"padding": "8px"})
+                            ]) for layer, metrics in sorted(layer_metrics.items())
+                        ])
+                    ], style={"width": "100%", "borderCollapse": "collapse"})
+                ], style={"marginTop": "10px"})
+            ], style={"marginBottom": "20px"})
+        ], style={
+            "border": "1px solid #ddd",
+            "borderRadius": "5px",
+            "padding": "15px",
+            "marginBottom": "15px",
+            "backgroundColor": "white",
+            "boxShadow": "0 2px 5px rgba(0,0,0,0.1)"
+        })
+        
+        # Narrative section
+        narrative_card = html.Div([
+            html.Div("Analysis:", style={"fontWeight": "bold", "fontSize": "16px"}),
+            html.Div(concept_purity.get('narrative', 'No analysis available'), 
+                     style={"marginTop": "10px", "padding": "15px", "backgroundColor": "#f8f8f8", "borderRadius": "5px"})
+        ], style={
+            "border": "1px solid #ddd",
+            "borderRadius": "5px",
+            "padding": "15px",
+            "marginBottom": "15px",
+            "backgroundColor": "white",
+            "boxShadow": "0 2px 5px rgba(0,0,0,0.1)"
+        })
+        
+        # Create header with model info
+        header = html.Div([
+            html.H5(f"Concept Purity Analysis Generated by {provider.title()} ({model})"),
+            html.P("Analysis of how well-defined and distinct clusters are across layers")
+        ])
+        
+        return html.Div([header, metrics_card, narrative_card])
+    
+    @app.callback(
+        Output("token-path-comparison-container", "children"),
+        [Input("llm-analysis-store", "data")]
+    )
+    def update_token_path_comparison(analysis_data):
+        """Update the token path comparison analysis."""
+        if not analysis_data or "token_path_comparison" not in analysis_data:
+            return html.Div("No token path comparison analysis available. Generate LLM analysis with 'Token Path Comparison' selected.")
+        
+        # Extract token path comparison analysis
+        token_path_comparison = analysis_data["token_path_comparison"]
+        provider = analysis_data.get("provider", "unknown")
+        model = analysis_data.get("model", "unknown")
+        
+        # Create the token path comparison view
+        comparison_cards = []
+        
+        for correlation_type, analysis in token_path_comparison.items():
+            # Create card for this comparison
+            card = html.Div([
+                # Header with correlation type
+                html.Div([
+                    html.Span(f"Correlation Type: {correlation_type}", style={"fontWeight": "bold", "fontSize": "18px"})
+                ]),
+                
+                # Narrative text
+                html.Div([
+                    html.Div("Analysis:", style={"fontWeight": "bold", "marginTop": "10px"}),
+                    html.Div(analysis, style={"marginTop": "5px", "padding": "10px", "backgroundColor": "#f8f8f8", "borderRadius": "5px"})
+                ])
+            ], style={
+                "border": "1px solid #ddd",
+                "borderRadius": "5px",
+                "padding": "15px",
+                "marginBottom": "15px",
+                "backgroundColor": "white",
+                "boxShadow": "0 2px 5px rgba(0,0,0,0.1)"
+            })
+            
+            comparison_cards.append(card)
+        
+        if not comparison_cards:
+            return html.Div("No token path comparison analysis available.")
+        
+        # Create header with model info
+        header = html.Div([
+            html.H5(f"Token Path Comparison Analysis Generated by {provider.title()} ({model})"),
+            html.P(f"Analysis of correlations between token paths and attention patterns")
+        ])
+        
+        return html.Div([header, html.Div(comparison_cards)])
 
 def check_provider_availability():
     """Check which LLM providers are available."""

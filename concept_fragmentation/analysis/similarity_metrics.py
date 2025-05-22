@@ -35,6 +35,7 @@ def compute_centroid_similarity(
     
     # Extract centroids for each cluster
     centers_by_id = {}
+    total_clusters = len(id_to_layer_cluster)
     
     # First try to get pre-computed centers
     for unique_id, (layer_name, original_id, _) in id_to_layer_cluster.items():
@@ -53,8 +54,20 @@ def compute_centroid_similarity(
                 if np.sum(mask) > 0:
                     centers_by_id[unique_id] = np.mean(activations[mask], axis=0)
     
+    print(f"Extracted {len(centers_by_id)} centroids out of {total_clusters} clusters")
+    if len(centers_by_id) < total_clusters:
+        missing = set(id_to_layer_cluster.keys()) - set(centers_by_id.keys())
+        print(f"⚠️ Warning: {len(missing)} clusters missing centroids!")
+    
     # Compute similarity between all pairs of centroids across different layers
     cluster_ids = list(centers_by_id.keys())
+    total_combinations = len(cluster_ids) * (len(cluster_ids) - 1) // 2
+    print(f"Computing similarity for {total_combinations} pairs of clusters...")
+    
+    similarity_count = 0
+    below_threshold_count = 0
+    same_layer_count = 0
+    different_shape_count = 0
     
     for i, id1 in enumerate(cluster_ids):
         for j, id2 in enumerate(cluster_ids):
@@ -71,6 +84,7 @@ def compute_centroid_similarity(
                 _, _, layer_idx1 = id_to_layer_cluster[id1]
                 _, _, layer_idx2 = id_to_layer_cluster[id2]
                 if layer_idx1 == layer_idx2:
+                    same_layer_count += 1
                     continue
             
             # Get centroids
@@ -79,6 +93,7 @@ def compute_centroid_similarity(
             
             # Skip if dimensions don't match (this can happen with different layer sizes)
             if c1.shape != c2.shape:
+                different_shape_count += 1
                 continue
             
             # Compute similarity based on selected metric
@@ -114,36 +129,70 @@ def compute_centroid_similarity(
             else:
                 raise ValueError(f"Unsupported similarity metric: {metric}")
             
-            # Only include similarities above threshold
-            if sim >= min_similarity:
-                similarity_matrix[(id1, id2)] = float(sim)
-                similarity_matrix[(id2, id1)] = float(sim)  # Ensure symmetry
+            # Check if similarity is below threshold but log it anyway
+            if sim < min_similarity:
+                below_threshold_count += 1
+            
+            # Add to matrix regardless of threshold for debugging
+            similarity_matrix[(id1, id2)] = float(sim)
+            similarity_matrix[(id2, id1)] = float(sim)  # Ensure symmetry
+            similarity_count += 1
+    
+    # Print diagnostic information
+    print(f"Computed {similarity_count} similarities")
+    print(f"Skipped {same_layer_count} same-layer pairs")
+    print(f"Skipped {different_shape_count} pairs with different shapes")
+    print(f"Found {below_threshold_count} below threshold (< {min_similarity})")
+    
+    # Calculate statistics on similarity values
+    if similarity_matrix:
+        sim_values = list(similarity_matrix.values())
+        print(f"Similarity stats: min={min(sim_values):.4f}, max={max(sim_values):.4f}, mean={np.mean(sim_values):.4f}, median={np.median(sim_values):.4f}")
+    
+    # Create a filtered matrix at the end if needed
+    if min_similarity > 0:
+        filtered_matrix = {k: v for k, v in similarity_matrix.items() if v >= min_similarity}
+        print(f"After filtering: {len(filtered_matrix) // 2} unique pairs remain")
+        return filtered_matrix
     
     return similarity_matrix
 
 
 def normalize_similarity_matrix(
-    similarity_matrix: Dict[Tuple[int, int], float]
+    similarity_matrix: Dict[Tuple[int, int], float],
+    metric: str = 'cosine'
 ) -> Dict[Tuple[int, int], float]:
     """
     Normalize similarity scores to [0, 1] range.
     
     Args:
         similarity_matrix: Dictionary mapping (cluster1_id, cluster2_id) to similarity score
+        metric: The similarity metric used ('cosine' or 'euclidean')
         
     Returns:
         Normalized similarity matrix
     """
     if not similarity_matrix:
         return {}
+    
+    # For cosine similarity, no global normalization is needed,
+    # just map from [-1, 1] to [0, 1] as cosine similarity is 
+    # naturally bounded in this range
+    if metric == 'cosine':
+        normalized = {}
+        for pair, sim in similarity_matrix.items():
+            # Map from [-1, 1] to [0, 1]
+            normalized[pair] = (sim + 1) / 2.0
+        return normalized
         
+    # For Euclidean or other metrics, use standard normalization
     # Find min and max similarity
     min_sim = min(similarity_matrix.values())
     max_sim = max(similarity_matrix.values())
     
     # Handle case where all similarities are the same
     if min_sim == max_sim:
-        return {pair: 1.0 for pair in similarity_matrix}
+        return {pair: 0.5 for pair in similarity_matrix}  # Use 0.5 instead of 1.0 to avoid all high fragmentation
     
     # Normalize to [0, 1] range
     normalized = {}

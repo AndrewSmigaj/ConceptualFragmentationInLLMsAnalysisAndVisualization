@@ -1,0 +1,39 @@
+\section{Reproducibility and Open Science}
+
+\begin{itemize}
+    \item Code and configs released under MIT license at \href{https://github.com/ConceptualFragmentationInLLMsAnalysisAndVisualization}{GitHub repository}
+    \item Seed lists and hyperparameters logged in JSON format
+    \item Dockerfile ensures environment parity across research teams
+    \item Negative results and failed variants documented in appendices
+    \item LLM prompts and responses cached for reproducibility
+\end{itemize}
+
+\paragraph{Key pipeline steps (pseudocode).}
+
+\begin{verbatim}
+# 1. Train baseline model and cache activations
+python train_baseline.py --dataset <dataset> --seed <seed>
+
+# 2. Compute cluster paths and metrics
+python concept_fragmentation/analysis/cluster_paths.py \
+       --dataset <dataset> --seed <seed> --compute_similarity
+
+# 3. Generate cluster labels and LLM narratives
+python llm_path_analysis.py --dataset <dataset> --seed <seed>
+
+# 4. Build LaTeX fragments & figures
+python tools/build_paper_tables.py
+python generate_paper_figures.py --dataset <dataset>
+\end{verbatim}
+
+Full, runnable code is available in the public repository; all prompts and
+LLM responses are cached for deterministic builds.
+
+Interactive demos and full code implementation are available on our project repository.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/subspace_angle.png}
+    \caption{Subspace angle analysis showing convergence and divergence patterns across layers. Lower angles represent more coherent trajectories.}
+    \label{fig:subspace_angle}
+\end{figure}

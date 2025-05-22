@@ -1,10 +1,11 @@
 import os, datetime
+from typing import List, Optional
 from concept_fragmentation.config import RESULTS_DIR
 
 def build_experiment_dir(dataset: str,
                          config_id: str = "baseline",
                          seed: int = 0,
-                         timestamp: str | None = None) -> str:
+                         timestamp: Optional[str] = None) -> str:
     """
     Canonical path:
       RESULTS_DIR / <config_id>s / <dataset> /

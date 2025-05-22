@@ -1,7 +1,8 @@
 """
 Metrics package for the Concept Fragmentation project.
 
-This package provides metrics to quantify concept fragmentation in neural networks.
+This package provides metrics to quantify concept fragmentation in neural networks,
+including transformer-specific metrics for analyzing attention patterns and activations.
 """
 
 from .cluster_entropy import (
@@ -38,7 +39,21 @@ from .explainable_threshold_similarity import (
     compute_ets_statistics
 )
 
+# Transformer-specific metrics
+from .transformer_metrics import (
+    calculate_attention_entropy,
+    calculate_attention_sparsity,
+    calculate_head_importance,
+    analyze_attention_patterns,
+    calculate_activation_statistics,
+    analyze_cross_attention_consistency,
+    calculate_activation_sensitivity,
+    AttentionMetricsResult,
+    TransformerMetricsCalculator
+)
+
 __all__ = [
+    # Existing metrics
     'compute_cluster_entropy',
     'compute_entropy_fragmentation_score',
     'compute_subspace_angle',
@@ -54,5 +69,16 @@ __all__ = [
     'compute_ets_clustering',
     'compute_dimension_thresholds',
     'explain_ets_similarity',
-    'compute_ets_statistics'
+    'compute_ets_statistics',
+    
+    # Transformer-specific metrics
+    'calculate_attention_entropy',
+    'calculate_attention_sparsity',
+    'calculate_head_importance',
+    'analyze_attention_patterns',
+    'calculate_activation_statistics',
+    'analyze_cross_attention_consistency', 
+    'calculate_activation_sensitivity',
+    'AttentionMetricsResult',
+    'TransformerMetricsCalculator'
 ]

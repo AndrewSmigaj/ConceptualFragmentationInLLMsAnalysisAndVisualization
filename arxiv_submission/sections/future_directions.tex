@@ -1,0 +1,28 @@
+\section{Future Directions for Archetypal Path Analysis}
+
+\begin{itemize}
+    \item \textbf{Extend APA to Large Language Models (LLMs)}: Apply APA to full LLMs like GPT-2 to trace archetype paths across all layers, using PCA to visualize high-dimensional activation spaces and top-k neuron analysis to pinpoint which neurons drive cluster transitions.
+    
+    \item \textbf{Enhance Interpretability with Concept-Based Path Annotations}: Integrate TCAV to align archetype paths with human-defined concepts, making transitions more interpretable by linking them to meaningful semantic changes.
+    
+    \item \textbf{Attribute Features to Path Transitions}: Use Integrated Gradients (IG) to identify which input features are responsible for datapoint transitions between clusters, providing a clear, feature-level explanation of path dynamics.
+    
+    \item \textbf{Validate Path Robustness with Topological Analysis}: Employ persistent homology to analyze the topological structure of activation spaces, ensuring that archetype paths and fragmentation patterns are stable.
+    
+    \item \textbf{Extend to Attention-Based LLMs}: Use layer-specific labels to track token-level similarity-convergent paths in transformer models.
+    
+    \item \textbf{Explore Interesting Paths}: Use the interestingness score to prioritize paths for further study, especially in reinforcement learning or policy networks.
+    
+    \item \textbf{Interactive Visualization Tools}: Develop interactive interfaces that allow users to explore paths, view narratives on demand, and interactively probe the model's behavior.
+    
+    \item \textbf{Domain-Specific Applications}: Adapt APA to specific domains like healthcare, finance, and natural language processing, with domain-informed metrics and explanations.
+    
+    \item \textbf{Enhanced Path Narratives with Domain-Specific Context}: Enrich path narratives by incorporating domain-specific knowledge and contextual information. This will include demographic data, domain expertise, and specialized terminologies tailored to each application domain (e.g., medical, financial, social sciences). By providing LLMs with this contextual information, narratives will become more accurate, relevant, and accessible to domain experts, facilitating better model interpretability within specific fields.
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/optimal_clusters.png}
+    \caption{Analysis of optimal cluster counts across layers, showing how representational complexity evolves through the network.}
+    \label{fig:optimal_clusters}
+\end{figure}

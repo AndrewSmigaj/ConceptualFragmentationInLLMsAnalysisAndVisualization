@@ -1,0 +1,34 @@
+{
+  "dataset": "titanic",
+  "seed": 0,
+  "llm": {
+    "provider": "grok",
+    "model": "default"
+  },
+  "cluster_labels": {
+    "L0C0": "**Cluster Label: \"Wealthy Young Adult Males in ...",
+    "L0C1": "**Cluster Label: \"Wealthy Families with Childre...",
+    "L0C2": "**Cluster label:** \"Wealthy Young Adult Males i...",
+    "L0C3": "**Cluster Label: \"Wealthy Young Adult Females w...",
+    "L0C4": "**Cluster Label: \"Wealthy Families with Childre...",
+    "L0C5": "**Cluster Label:** \"High-Class Female Survivors...",
+    "L0C6": "**Cluster Label: \"Young, Single, Third-Class Ma...",
+    "L0C7": "**Cluster Label: \"Wealthy Families with Childre...",
+    "L0C8": "**Cluster Label:** \"High-Class Female Survivors...",
+    "L0C9": "**Cluster Label: \"Wealthy Families with Childre...",
+    "L1C0": "**Cluster Label: \"Wealthy Young Adult Females w...",
+    "L1C1": "**Cluster Label: \"Wealthy Young Adult Females w...",
+    "L2C0": "**Cluster Label: \"Wealthy, Young, Female Surviv...",
+    "L2C1": "**Cluster label: \"Wealthy Female Survivors\"** \n...",
+    "L3C0": "**Cluster Label: \"Wealthy Female Survivors\"**\n\n...",
+    "L3C1": "**Cluster Label: \"Wealthy Young Adult Females w..."
+  },
+  "path_narratives": {
+    "0": "This path through the neural network layers suggests a focus on **wealthy young adult females**, initially identified by their socioeconomic status and age. As the data progresses through the layers, there's a notable shift towards **survivorship**, possibly indicating that the model is learning to associate this demographic with specific outcomes or behaviors related to survival or resilience. The high fragmentation score implies that the concept of \"wealthy young adult females\" undergoes significant transformation or splits into multiple sub-concepts, which might reflect the complexity of this demographic's life experiences or the model's attempt to capture nuanced decision criteria. This path could be indicative of the model's decision-making process where demographic factors like wealth and gender play a critical role in predicting outcomes or behaviors, highlighting how these attributes influence the model's understanding of survival scenarios.",
+    "1": "This path through the neural network layers suggests a focus on **wealthy female demographics**, starting with families with children and evolving into a more specific group of **young adult females** who are likely survivors of some event or condition. The convergence at layers L2 and L3 on \"Wealthy Female Survivors\" indicates that the model is honing in on this particular demographic, possibly due to their higher likelihood of survival or success in the context of the dataset, like in a survival scenario or a social-economic study. The high fragmentation score suggests that the model might be struggling to maintain a consistent concept across layers, possibly due to the complexity or variability in the data related to wealth, survival, and gender dynamics. This path could reflect the model's attempt to navigate through demographic factors like wealth, age, and gender to make predictions or classifications, highlighting how these factors might influence outcomes in the model's decision-making process.",
+    "2": "This path through the neural network layers traces the journey of individuals from **wealthy families with children** at the initial layer to **wealthy young adult females** in the first hidden layer, and ultimately converges to **wealthy female survivors** in the subsequent layers. The evolution from a broad demographic group to a very specific one suggests that the model is narrowing down its focus on survival outcomes, particularly for wealthy females, indicating a potential bias or emphasis on this demographic's survival probability. The high fragmentation score implies that the model might be struggling to maintain a consistent concept of wealth or survival across layers, possibly due to the complexity of factors influencing survival in the dataset. This path highlights how the model might prioritize or overfit on certain demographic features like wealth and gender when predicting survival, reflecting real-world historical biases or data patterns.",
+    "3": "This path through the neural network layers suggests a focus on **young, wealthy individuals**, initially identifying **males** at Layer 0, but quickly shifting to **females** by Layer 1. The concept evolves from a broad demographic categorization to a more specific focus on **young, wealthy, female survivors** by Layer 2, possibly indicating a convergence towards a particular survival scenario or outcome. The high fragmentation score implies that the model might be struggling to maintain a coherent concept as it moves through these layers, potentially reflecting the complexity or ambiguity in the data related to these demographic groups. This path could be indicative of the model's attempt to predict or classify outcomes or behaviors associated with young, wealthy females, highlighting how demographic factors like gender and socioeconomic status influence the model's decision-making process.",
+    "4": "This path through the neural network layers appears to represent a journey from **general demographic features** to **specific survival outcomes**. Initially, the network identifies **wealthy young adult males**, but as it progresses to the next layer, there's a shift towards **wealthy young adult females**, suggesting a focus on gender-specific survival patterns. By the final layers, the path converges on **wealthy female survivors**, indicating that the model has learned to associate wealth and gender with survival outcomes, possibly reflecting historical or situational biases in the data. The high fragmentation score suggests that the model's decision-making process involves significant shifts in focus, potentially highlighting the complexity or unpredictability of survival factors in the context provided."
+  },
+  "bias_analysis": null
+}

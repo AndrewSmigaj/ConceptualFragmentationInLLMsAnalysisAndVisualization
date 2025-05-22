@@ -13,12 +13,22 @@ This module provides tools for visualizing concept fragmentation in neural netwo
 
 ### Cross-Layer Metrics
 
-The dashboard now includes a dedicated tab for cross-layer metrics with the following visualizations:
+The dashboard includes a dedicated tab for cross-layer metrics with the following visualizations:
 
 1. **Centroid Similarity Heatmaps**: Shows similarity between cluster centroids across different layers
 2. **Membership Overlap Flow**: Sankey diagram showing how samples flow between clusters across layers
 3. **Trajectory Fragmentation**: Bar chart showing how much samples from the same class are split across clusters in each layer
 4. **Inter-Cluster Path Density**: Network graph showing connections between clusters across adjacent layers
+
+### New Paper Visualizations
+
+The repository now includes scripts to generate all visualizations referenced in the Results section of the paper:
+
+1. **Stepped-Layer Plots**: Visualize archetypal paths with layers offset along the y-axis
+2. **Transition Matrix Heatmaps**: Display cluster-to-cluster transition probabilities
+3. **Cross-Layer Similarity Heatmaps**: Show similarity between cluster centroids across layers
+4. **Membership Overlap Sankey Diagrams**: Visualize flow of datapoints between clusters
+5. **ETS Threshold Boundaries**: Display the threshold boundaries for explainable clustering
 
 ## Installation
 
@@ -64,6 +74,34 @@ python dash_app.py
 
 Then open your browser to http://127.0.0.1:8050/
 
+### Paper Visualizations
+
+Generate all visualizations for the Results section of the paper:
+
+```bash
+# Generate all visualizations
+python run_visualizations.py
+
+# Generate visualizations for specific datasets and seeds
+python run_visualizations.py --datasets titanic heart --seeds 0 1 2
+
+# Generate only static visualizations (no interactive HTML)
+python run_visualizations.py --static_only
+```
+
+Individual visualization scripts can also be run directly:
+
+```bash
+# Generate stepped-layer visualization
+python visualization/generate_stepped_layer_viz.py --dataset titanic --seed 0
+
+# Generate Sankey diagram
+python visualization/generate_sankey_diagram.py --dataset titanic --seed 0
+
+# Generate ETS threshold boundaries visualization
+python visualization/generate_ets_visualization.py --dataset titanic --layer layer2
+```
+
 ### Python API
 
 Use the modules directly in your Python code:
@@ -106,6 +144,14 @@ save_figure(fig, "titanic_trajectories.html")
 - **cross_layer_viz.py**: Cross-layer metrics visualizations
 - **run_dash_safe.py**: Safe runner with dependency checks
 
+### Paper Visualization Scripts
+
+- **generate_stepped_layer_viz.py**: Generates stepped-layer visualizations for archetypal paths
+- **generate_sankey_diagram.py**: Creates Sankey diagrams of membership overlap
+- **generate_ets_visualization.py**: Visualizes ETS threshold boundaries
+- **generate_all_visualizations.py**: Runs all visualization scripts
+- **run_visualizations.py**: Master script to generate all paper visualizations
+
 ## Customization
 
 - **UMAP Parameters**: Adjust `n_neighbors` and `min_dist` to control the embedding
@@ -114,4 +160,4 @@ save_figure(fig, "titanic_trajectories.html")
 
 ## Notebook Examples
 
-See the Jupyter notebooks in the `notebooks/` directory for examples and sanity checks. 
+See the Jupyter notebooks in the `notebooks/` directory for examples and sanity checks.

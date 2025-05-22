@@ -1,0 +1,8 @@
+{
+  "cluster_labels": {
+    "L0C0": "**Cluster label: \"Facial Expressions\"**",
+    "L0C1": "**Cluster label: \"Visual Patterns\"**",
+    "L0C2": "**Cluster label: \"Object Recognition\"**",
+    "L0C3": "**Cluster label: \"Emotional Context\"**"
+  }
+}

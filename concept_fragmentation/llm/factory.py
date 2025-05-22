@@ -15,7 +15,8 @@ try:
         OPENAI_KEY,
         OPENAI_API_BASE,
         XAI_API_KEY,
-        GEMINI_API_KEY
+        GEMINI_API_KEY,
+        ANTHROPIC_API_KEY
     )
     API_KEYS_AVAILABLE = True
 except ImportError:
@@ -24,6 +25,7 @@ except ImportError:
     OPENAI_API_BASE = None
     XAI_API_KEY = None
     GEMINI_API_KEY = None
+    ANTHROPIC_API_KEY = None
 
 
 class LLMClientFactory:
@@ -50,7 +52,9 @@ class LLMClientFactory:
         "xai": XAI_API_KEY,
         "openai": OPENAI_KEY,
         "gpt": OPENAI_KEY,
-        "gemini": GEMINI_API_KEY
+        "gemini": GEMINI_API_KEY,
+        "claude": ANTHROPIC_API_KEY,
+        "anthropic": ANTHROPIC_API_KEY
     }
     
     @classmethod
@@ -166,6 +170,31 @@ class LLMClientFactory:
         return list(cls.PROVIDER_MAP.keys())
 
 
+# Add a convenience function for backward compatibility
+def create_llm_client(
+    provider: str,
+    api_key: Optional[str] = None,
+    model: str = "default",
+    config: Optional[Dict[str, Any]] = None
+) -> BaseLLMClient:
+    """
+    Create an LLM client for the specified provider.
+    
+    Args:
+        provider: The name of the provider (e.g., "openai", "claude", "grok")
+        api_key: The API key to use (if None, will try to get from environment)
+        model: The model to use (default: provider's default model)
+        config: Additional configuration for the client
+        
+    Returns:
+        An instance of the appropriate LLM client
+        
+    Raises:
+        ValueError: If the provider is unknown or no API key is available
+    """
+    return LLMClientFactory.create_client(provider, api_key, model, config)
+
+
 # Import the provider-specific clients and register them
 # This prevents circular imports
 def register_clients():
@@ -177,32 +206,32 @@ def register_clients():
         from .openai_client import OpenAIClient
         LLMClientFactory.PROVIDER_MAP["openai"] = OpenAIClient
         LLMClientFactory.PROVIDER_MAP["gpt"] = OpenAIClient
-        print("✓ Registered OpenAI/GPT client")
+        print("[+] Registered OpenAI/GPT client")
     except ImportError as e:
-        print(f"✗ Failed to register OpenAI client: {e}")
+        print(f"[-] Failed to register OpenAI client: {e}")
     
     try:
         from .claude import ClaudeClient
         LLMClientFactory.PROVIDER_MAP["claude"] = ClaudeClient
         LLMClientFactory.PROVIDER_MAP["anthropic"] = ClaudeClient
-        print("✓ Registered Claude/Anthropic client")
+        print("[+] Registered Claude/Anthropic client")
     except ImportError as e:
-        print(f"✗ Failed to register Claude client: {e}")
+        print(f"[-] Failed to register Claude client: {e}")
     
     try:
         from .grok import GrokClient
         LLMClientFactory.PROVIDER_MAP["grok"] = GrokClient
         LLMClientFactory.PROVIDER_MAP["xai"] = GrokClient
-        print("✓ Registered Grok/xAI client")
+        print("[+] Registered Grok/xAI client")
     except ImportError as e:
-        print(f"✗ Failed to register Grok client: {e}")
+        print(f"[-] Failed to register Grok client: {e}")
     
     try:
         from .gemini import GeminiClient
         LLMClientFactory.PROVIDER_MAP["gemini"] = GeminiClient
-        print("✓ Registered Gemini client")
+        print("[+] Registered Gemini client")
     except ImportError as e:
-        print(f"✗ Failed to register Gemini client: {e}")
+        print(f"[-] Failed to register Gemini client: {e}")
         
     print(f"Available providers: {', '.join(LLMClientFactory.PROVIDER_MAP.keys())}")
 

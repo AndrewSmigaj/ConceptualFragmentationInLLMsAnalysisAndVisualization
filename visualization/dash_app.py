@@ -51,6 +51,19 @@ from concept_fragmentation.metrics.cross_layer_metrics import (
 
 # Import LLM tab
 from visualization.llm_tab import create_llm_tab, register_llm_callbacks
+
+# Import GPT-2 metrics tab
+from visualization.gpt2_metrics_tab import create_gpt2_metrics_tab, register_gpt2_metrics_callbacks
+
+# Import GPT-2 persistence
+from concept_fragmentation.persistence import GPT2AnalysisPersistence
+
+# Import path metrics tab
+from visualization.path_metrics_tab import (
+    create_path_metrics_tab,
+    register_path_metrics_callbacks
+)
+
 from visualization.cross_layer_viz import (
     plot_centroid_similarity_heatmap, plot_membership_overlap_sankey,
     plot_trajectory_fragmentation_bars, plot_path_density_network
@@ -72,12 +85,8 @@ from visualization.path_fragmentation_tab import (
     register_path_fragmentation_callbacks
 )
 
-# Import LLM integration
-from visualization.llm_tab import (
-    create_llm_tab,
-    register_llm_callbacks,
-    check_provider_availability
-)
+# Import LLM availability checker
+from visualization.llm_tab import check_provider_availability
 
 # Define the datasets and seeds
 DATASETS = ["titanic", "heart"]
@@ -163,6 +172,12 @@ app.layout = html.Div([
         # Path Fragmentation Tab
         create_path_fragmentation_tab(),
         
+        # Path Metrics Tab
+        create_path_metrics_tab(),
+        
+        # GPT-2 Metrics Dashboard Tab
+        create_gpt2_metrics_tab(),
+        
         # LLM Integration Tab
         create_llm_tab(),
         
@@ -210,9 +225,10 @@ app.layout = html.Div([
                             {"label": "Show Regularized", "value": "regularized"},
                             {"label": "Show Arrows", "value": "arrows"},
                             {"label": "Show Cluster Centers", "value": "show_centers"},
-                            {"label": "Normalize Embeddings", "value": "normalize"}
+                            {"label": "Normalize Embeddings", "value": "normalize"},
+                            {"label": "Shape by Class", "value": "shape_by_class"}
                         ],
-                        value=["baseline", "regularized", "arrows", "normalize"]
+                        value=["baseline", "regularized", "arrows", "normalize", "shape_by_class"]
                     ),
                     html.Br(), # Added for spacing
                     html.Label("Color Mode:"),
@@ -441,6 +457,10 @@ def load_and_embed_data(dataset, seed, max_k=10):
         best_config = get_best_config(dataset)
         baseline_config = get_baseline_config(dataset)
         
+        print(f"DEBUG: Using dataset={dataset}, seed={seed}")
+        print(f"DEBUG: Baseline config = {baseline_config}")
+        print(f"DEBUG: Best config = {best_config}")
+        
         # Create embedder
         embedder = Embedder(n_components=3, random_state=42, cache_dir=CACHE_DIR)
         
@@ -449,16 +469,42 @@ def load_and_embed_data(dataset, seed, max_k=10):
         baseline_embeddings, baseline_true_labels = embed_layer_activations(
             dataset, baseline_config, seed, embedder=embedder, use_test_set=True)
         
+        # Check what layers we got in baseline
+        if baseline_embeddings:
+            print(f"DEBUG: Baseline layers: {list(baseline_embeddings.keys())}")
+            for layer, embedding in baseline_embeddings.items():
+                print(f"  DEBUG: Baseline {layer} shape = {embedding.shape}")
+        else:
+            print("DEBUG: No baseline embeddings were returned")
+        
         # Embed best config
         print(f"Embedding regularized data for {dataset}, seed {seed}")
         best_embeddings, best_true_labels = embed_layer_activations(
             dataset, best_config, seed, embedder=embedder, use_test_set=True)
+        
+        # Check what layers we got in regularized
+        if best_embeddings:
+            print(f"DEBUG: Regularized layers: {list(best_embeddings.keys())}")
+            for layer, embedding in best_embeddings.items():
+                print(f"  DEBUG: Regularized {layer} shape = {embedding.shape}")
+        else:
+            print("DEBUG: No regularized embeddings were returned")
         
         # Create dictionary for storage
         embeddings_dict = {
             "baseline": {seed: baseline_embeddings},
             "regularized": {seed: best_embeddings}
         }
+        
+        # Check that we have at least some layers for each config
+        if not baseline_embeddings or len(baseline_embeddings) == 0:
+            print("WARNING: No baseline embeddings available, will attempt to continue with just regularized")
+        
+        if not best_embeddings or len(best_embeddings) == 0:
+            print("WARNING: No regularized embeddings available, will attempt to continue with just baseline")
+        
+        if (not baseline_embeddings or len(baseline_embeddings) == 0) and (not best_embeddings or len(best_embeddings) == 0):
+            raise ValueError(f"No embeddings available for either baseline or regularized configurations")
         
         # Store true labels for each configuration
         true_labels_dict = {
@@ -481,6 +527,9 @@ def load_and_embed_data(dataset, seed, max_k=10):
         # Get cache paths
         baseline_cache_dir = os.path.join(CACHE_DIR, "embedded_clusters")
         best_cache_dir = os.path.join(CACHE_DIR, "embedded_clusters")
+        os.makedirs(baseline_cache_dir, exist_ok=True)
+        os.makedirs(best_cache_dir, exist_ok=True)
+        
         baseline_cache_path = get_embedded_clusters_cache_path(
             dataset, "baseline", seed, max_k, cache_dir=baseline_cache_dir
         )
@@ -489,19 +538,46 @@ def load_and_embed_data(dataset, seed, max_k=10):
             dataset, best_config_id, seed, max_k, cache_dir=best_cache_dir
         )
         
-        # Compute clusters
-        baseline_clusters = compute_layer_clusters_embedded(
-            baseline_embeddings, max_k=max_k, random_state=42, cache_path=baseline_cache_path
-        )
-        best_clusters = compute_layer_clusters_embedded(
-            best_embeddings, max_k=max_k, random_state=42, cache_path=best_cache_path
-        )
+        # Compute clusters for each config
+        layer_clusters_by_config = {}
         
-        # Store clusters by configuration
-        layer_clusters_by_config = {
-            "baseline": baseline_clusters,
-            "regularized": best_clusters
-        }
+        # Process baseline clusters if we have baseline embeddings
+        if baseline_embeddings and len(baseline_embeddings) > 0:
+            try:
+                print(f"Computing baseline clusters from {len(baseline_embeddings)} embeddings")
+                baseline_clusters = compute_layer_clusters_embedded(
+                    baseline_embeddings, max_k=max_k, random_state=42, cache_path=baseline_cache_path
+                )
+                
+                # Check what layers got clusters
+                print(f"DEBUG: Baseline cluster layers: {list(baseline_clusters.keys())}")
+                layer_clusters_by_config["baseline"] = baseline_clusters
+            except Exception as e:
+                print(f"WARNING: Failed to compute baseline clusters: {e}")
+        
+        # Process regularized clusters if we have regularized embeddings
+        if best_embeddings and len(best_embeddings) > 0:
+            try:
+                print(f"Computing regularized clusters from {len(best_embeddings)} embeddings")
+                best_clusters = compute_layer_clusters_embedded(
+                    best_embeddings, max_k=max_k, random_state=42, cache_path=best_cache_path
+                )
+                
+                # Check what layers got clusters
+                print(f"DEBUG: Regularized cluster layers: {list(best_clusters.keys())}")
+                layer_clusters_by_config["regularized"] = best_clusters
+            except Exception as e:
+                print(f"WARNING: Failed to compute regularized clusters: {e}")
+        
+        # Final summary
+        if "baseline" in layer_clusters_by_config and "regularized" in layer_clusters_by_config:
+            print(f"Successfully computed clusters for both configs")
+        elif "baseline" in layer_clusters_by_config:
+            print(f"Only computed clusters for baseline config")
+        elif "regularized" in layer_clusters_by_config:
+            print(f"Only computed clusters for regularized config")
+        else:
+            print(f"WARNING: Failed to compute clusters for any config, visualization will be limited")
         
         return embeddings_dict, layer_clusters_by_config, true_labels_dict, None
     
@@ -666,6 +742,20 @@ def update_visualization(n_clicks, stored_data, stored_clusters, stored_true_lab
                 if isinstance(stored_clusters[config][layer], dict):
                     print(f"DEBUG: Layer keys: {list(stored_clusters[config][layer].keys())}")
     
+    # Detailed debug of stored data embeddings
+    if stored_data and isinstance(stored_data, dict):
+        for config_name, config_data in stored_data.items():
+            print(f"DEBUG: Config: {config_name}")
+            if isinstance(config_data, dict):
+                for seed, seed_data in config_data.items():
+                    print(f"DEBUG:   Seed: {seed}")
+                    if isinstance(seed_data, dict):
+                        print(f"DEBUG:     Available layers: {list(seed_data.keys())}")
+                        for layer_name, layer_data in seed_data.items():
+                            print(f"DEBUG:       Layer {layer_name}: type={type(layer_data)}")
+                            if hasattr(layer_data, 'shape'):
+                                print(f"DEBUG:       Layer {layer_name} shape: {layer_data.shape}")
+    
     # Diagnostic check for options
     print(f"DEBUG: vis_controls: {vis_controls}")
     print(f"DEBUG: selected_point_metric: {selected_point_metric}")
@@ -687,26 +777,90 @@ def update_visualization(n_clicks, stored_data, stored_clusters, stored_true_lab
     
     # Create custom cluster name mappings
     # This is hardcoded for now, but could be loaded from a configuration file
-    cluster_name_mapping = {
-        # Layer 1
-        "baseline-layer1-cluster0": "Older mixed-class males (likely to die)",
-        "baseline-layer1-cluster1": "Younger low-fare males (likely survivors)",
-        "baseline-layer1-cluster2": "Middle-aged moderate-fare group (likely to die)",
-        "baseline-layer1-cluster3": "Young females, lower class (likely survivors)",
+    cluster_name_mapping = {}
+    
+    # Try to load LLM-generated labels first
+    try:
+        # Look for LLM results with the latest timestamp
+        llm_results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "llm")
+        if os.path.exists(llm_results_dir):
+            llm_files = [f for f in os.listdir(llm_results_dir) if f.startswith(f"{dataset}_seed_{seed}") and f.endswith(".json")]
+            if llm_files:
+                # Sort by timestamp to get the most recent
+                llm_files.sort(reverse=True)
+                latest_file = os.path.join(llm_results_dir, llm_files[0])
+                print(f"Loading cluster labels from {latest_file}")
+                with open(latest_file, 'r') as f:
+                    llm_results = json.load(f)
+                    if "cluster_labels" in llm_results:
+                        print(f"Found {len(llm_results['cluster_labels'])} cluster labels from LLM analysis")
+                        cluster_name_mapping = llm_results["cluster_labels"]
+    except Exception as e:
+        print(f"Error loading LLM cluster labels: {e}")
+    
+    # Fall back to hardcoded labels if no LLM labels were found or loading failed
+    if not cluster_name_mapping:
+        print("Using hardcoded cluster labels as fallback")
+        if dataset == "titanic":
+            cluster_name_mapping = {
+                # Layer 1
+                "baseline-layer1-cluster0": "Older mixed-class males (likely to die)",
+                "baseline-layer1-cluster1": "Younger low-fare males (likely survivors)",
+                "baseline-layer1-cluster2": "Middle-aged moderate-fare group (likely to die)",
+                "baseline-layer1-cluster3": "Young females, lower class (likely survivors)",
 
-        # Layer 2
-        "baseline-layer2-cluster0": "Middle-class passengers, moderate fare (died)",
-        "baseline-layer2-cluster1": "Low-fare men, unrefined identity (died)",
-        "baseline-layer2-cluster2": "High-fare older passengers (likely to die)",
-        "baseline-layer2-cluster3": "Females and children, low-to-mid fare (survivors)",
-        "baseline-layer2-cluster4": "Older moderate-income males (died)",
-        "baseline-layer2-cluster5": "Surviving females, likely 1st class",
+                # Layer 2
+                "baseline-layer2-cluster0": "Middle-class passengers, moderate fare (died)",
+                "baseline-layer2-cluster1": "Low-fare men, unrefined identity (died)",
+                "baseline-layer2-cluster2": "High-fare older passengers (likely to die)",
+                "baseline-layer2-cluster3": "Females and children, low-to-mid fare (survivors)",
+                "baseline-layer2-cluster4": "Older moderate-income males (died)",
+                "baseline-layer2-cluster5": "Surviving females, likely 1st class",
 
-        # Layer 3
-        "baseline-layer3-cluster0": "High-fare older survivors",
-        "baseline-layer3-cluster1": "Lower-fare males (some saved)",
-        "baseline-layer3-cluster2": "Young male non-survivors"
-    }
+                # Layer 3
+                "baseline-layer3-cluster0": "High-fare older survivors",
+                "baseline-layer3-cluster1": "Lower-fare males (some saved)",
+                "baseline-layer3-cluster2": "Young male non-survivors"
+            }
+        elif dataset == "heart":
+            cluster_name_mapping = {
+                # Layer 1
+                "baseline-layer1-cluster0": "Low-risk middle-aged patients",
+                "baseline-layer1-cluster1": "High-risk elderly patients with chest pain",
+                "baseline-layer1-cluster2": "Middle-aged men with elevated cholesterol",
+                "baseline-layer1-cluster3": "Younger patients with atypical symptoms",
+
+                # Layer 2
+                "baseline-layer2-cluster0": "Elderly patients with cardiac abnormalities",
+                "baseline-layer2-cluster1": "Middle-aged women with typical angina",
+                "baseline-layer2-cluster2": "High-risk males with multiple risk factors",
+                "baseline-layer2-cluster3": "Younger patients with reversible defects",
+
+                # Layer 3
+                "baseline-layer3-cluster0": "Severe cardiac cases with chest pain",
+                "baseline-layer3-cluster1": "Low-risk patients with good test results",
+                "baseline-layer3-cluster2": "High-risk elderly with abnormal ECG"
+            }
+    
+    # Ensure we have correct keys in the mapping (layer3 may be called 'hidden3' in some contexts)
+    # Create additional entries with alternative keys to make sure all layers are covered
+    updated_mapping = cluster_name_mapping.copy()
+    for key, value in cluster_name_mapping.items():
+        # Convert keys like "baseline-layer3-cluster0" to "baseline-hidden3-cluster0"
+        if "layer3" in key:
+            hidden_key = key.replace("layer3", "hidden3")
+            updated_mapping[hidden_key] = value
+        
+        # Also handle layerX to hiddenX conversion
+        if "layer1" in key:
+            hidden_key = key.replace("layer1", "hidden1")
+            updated_mapping[hidden_key] = value
+        elif "layer2" in key:
+            hidden_key = key.replace("layer2", "hidden2")
+            updated_mapping[hidden_key] = value
+    
+    cluster_name_mapping = updated_mapping
+    print(f"Final cluster name mapping contains {len(cluster_name_mapping)} entries")
     
     # Filter configurations based on user selection
     show_baseline = "baseline" in vis_controls
@@ -847,6 +1001,12 @@ def update_visualization(n_clicks, stored_data, stored_clusters, stored_true_lab
         class_labels_arg = np.array(class_labels) if class_labels is not None and not isinstance(class_labels, np.ndarray) else class_labels
         
         # Build the trajectory figure
+        # Check if "shape_by_class" is in the visualization controls
+        use_shape_by_class = "shape_by_class" in vis_controls
+        
+        # Debug: Print dataset for diagnostic purposes
+        print(f"DEBUG: Using dataset={dataset} for visualization")
+        
         fig = build_single_scene_figure(
             embeddings_dict=filtered_embeddings,
             samples_to_plot=None,  # Use all available samples up to max
@@ -861,7 +1021,9 @@ def update_visualization(n_clicks, stored_data, stored_clusters, stored_true_lab
             layer_clusters=filtered_layer_clusters,
             show_cluster_centers=show_cluster_centers,
             color_by=color_by,
-            cluster_name_mapping=cluster_name_mapping  # Pass the custom cluster name mapping
+            cluster_name_mapping=cluster_name_mapping,  # Pass the custom cluster name mapping
+            shape_by_class=use_shape_by_class,  # Use different shapes based on class
+            dataset_name=dataset  # Pass dataset name for class labels
         )
         
         # Now build the fracture graph using the fracture_graph function
@@ -2053,6 +2215,12 @@ register_similarity_callbacks(app)
 
 # Register the callbacks for the Path Fragmentation tab
 register_path_fragmentation_callbacks(app)
+
+# Register the callbacks for the Path Metrics tab
+register_path_metrics_callbacks(app)
+
+# Register the callbacks for the GPT-2 metrics dashboard tab
+register_gpt2_metrics_callbacks(app)
 
 # Register the callbacks for the LLM Integration tab
 register_llm_callbacks(app)

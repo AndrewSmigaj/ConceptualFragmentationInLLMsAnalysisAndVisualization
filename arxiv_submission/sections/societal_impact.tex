@@ -1,0 +1,18 @@
+\section{Societal Impact}
+
+APA's narratives can demystify opaque models but risk misuse if interpreted uncritically. By using layer-specific cluster labels, APA avoids misleading implications of cyclic behavior in feedforward networks, enhancing transparency. However, similarity-convergent paths risk overinterpretation as causal relationships. We mitigate this by validating convergence with centroid similarity and null-model baselines, ensuring narratives align with IEEE and EU AI guidelines.
+
+\subsection{Limitations and Risks}
+
+\begin{itemize}
+    \item \textbf{Overinterpretation}: APA narratives reflect patterns in activation spaces, not causal relationships. Users should avoid inferring definitive explanations from paths alone.
+    \item \textbf{Scalability}: Applying APA to massive models (e.g., LLMs with billions of parameters) may be computationally intensive. We recommend sampling datapoints or using approximate clustering methods.
+    \item \textbf{Validation}: Narratives should be cross-checked with domain expertise and other interpretability methods to ensure accuracy. To mitigate these risks, LLM-generated narratives include disclaimers, e.g., ``This description is a hypothesis based on activation patterns, not a definitive explanation.''
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/intra_class_distance.png}
+    \caption{Intra-class distance analysis showing how members of the same class may have different representations across layers, indicating potential concept fragmentation.}
+    \label{fig:intra_class_distance}
+\end{figure}

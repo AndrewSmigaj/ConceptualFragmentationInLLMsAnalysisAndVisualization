@@ -57,6 +57,26 @@ The framework implements several metrics for analyzing relationships between clu
 3. **Trajectory Fragmentation (F)**: Measures how coherent or dispersed a datapoint's path is through the network
 4. **Inter-Cluster Path Density**: Analyzes higher-order patterns in concept flow between layers
 
+### LLM Integration for Interpretability
+
+Our framework leverages Large Language Models (LLMs) to enhance interpretability:
+
+1. **Automatic Cluster Labeling**: Generates human-readable labels for clusters based on their centroids
+2. **Path Narratives**: Creates natural language explanations of how concepts evolve through network layers
+3. **Multi-Provider Support**: Works with multiple LLM providers:
+   - Grok (Meta AI)
+   - Claude (Anthropic)
+   - GPT (OpenAI)
+   - Gemini (Google)
+4. **Integration Features**:
+   - Caching for efficiency and cost management
+   - Batch processing for improved performance
+   - Context-aware prompting incorporating centroids, demographics, and fragmentation metrics
+
+For detailed documentation on the LLM integration, see:
+- [LLM Integration Guide](docs/llm_integration_guide.md) - User guide for the LLM features
+- [LLM Implementation Details](docs/llm_implementation_details.md) - Technical details for developers
+
 ### Visualization Dashboard
 
 The interactive dashboard allows exploration of neural network trajectories and cross-layer relationships:
@@ -67,10 +87,10 @@ The interactive dashboard allows exploration of neural network trajectories and 
    - Membership overlap Sankey diagrams
    - Trajectory fragmentation bar charts
    - Path density network graphs
-3. **LLM Integration**:
+3. **LLM Integration Tab**:
    - Cluster labeling for human-readable interpretations
    - Path narratives explaining data flow through the network
-   - Integration with multiple LLM providers (Grok, Gemini, Claude, OpenAI)
+   - Provider selection and analysis configuration
 
 ## Usage
 
@@ -93,14 +113,47 @@ See `notebooks/demo_workflow.ipynb` for a complete demonstration of the analysis
 To generate interpretable explanations of clusters and paths:
 
 ```bash
+# Set up your API keys
+export OPENAI_API_KEY="your_key_here"  # For OpenAI
+export ANTHROPIC_API_KEY="your_key_here"  # For Claude
+export XAI_API_KEY="your_key_here"  # For Grok
+export GEMINI_API_KEY="your_key_here"  # For Gemini
+
 # Generate cluster paths data with centroids
 python run_analysis.py cluster_paths --dataset titanic --seed 0 --compute_similarity
 
-# Run LLM analysis
+# Run LLM analysis directly
 python concept_fragmentation/llm/demo.py --dataset titanic --seed 0 --provider grok
+
+# Or use the interactive dashboard
+python visualization/main.py
+# Then navigate to the LLM Integration tab
 ```
 
-See `README_LLM_TESTING.md` for more detailed instructions on using the LLM integration features.
+See [LLM Integration Guide](docs/llm_integration_guide.md) for detailed instructions on using the LLM features.
+
+### Programmatic LLM Analysis
+
+You can also use the LLM integration directly in your code:
+
+```python
+from concept_fragmentation.llm.analysis import ClusterAnalysis
+
+# Initialize analyzer with preferred provider
+analyzer = ClusterAnalysis(provider="claude")
+
+# Label clusters
+labels = analyzer.label_clusters_sync(centroids)
+
+# Generate narratives
+narratives = analyzer.generate_path_narratives_sync(
+    paths, labels, centroids, 
+    fragmentation_scores=frag_scores
+)
+
+print(labels)
+print(narratives[0])
+```
 
 ## Getting Started
 

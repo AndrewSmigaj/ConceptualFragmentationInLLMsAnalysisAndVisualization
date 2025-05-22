@@ -178,3 +178,6 @@ class BaseLLMClient(abc.ABC):
         
         # If we get here, all retries failed
         raise last_exception or Exception("Request failed after all retries")
+
+# Create an alias for backward compatibility
+LLMClient = BaseLLMClient
