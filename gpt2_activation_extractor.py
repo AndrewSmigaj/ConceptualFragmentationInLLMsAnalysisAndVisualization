@@ -25,6 +25,27 @@ class SimpleGPT2ActivationExtractor:
         self.model = None
         self.tokenizer = None
         self.device = "cpu"
+    
+    def _get_memory_usage(self):
+        """Get current memory usage in MB."""
+        try:
+            import psutil
+            process = psutil.Process()
+            return process.memory_info().rss / 1024 / 1024
+        except ImportError:
+            # Fallback if psutil not available
+            return 0.0
+    
+    def _check_memory_pressure(self, threshold_mb=2048):
+        """Check if system is under memory pressure."""
+        try:
+            import psutil
+            memory = psutil.virtual_memory()
+            available_mb = memory.available / 1024 / 1024
+            return available_mb < threshold_mb
+        except ImportError:
+            # Conservative fallback if psutil not available
+            return False
         
     def setup_model(self):
         """Setup GPT-2 model and tokenizer."""
@@ -113,9 +134,28 @@ class SimpleGPT2ActivationExtractor:
             results['activations'][sent_idx] = {}
             
             # Forward pass with all hidden states
-            with torch.no_grad():
-                outputs = self.model(token_ids, output_hidden_states=True)
-                hidden_states = outputs.hidden_states  # Tuple of (batch, seq_len, hidden_size)
+            try:
+                with torch.no_grad():
+                    outputs = self.model(token_ids, output_hidden_states=True)
+                    hidden_states = outputs.hidden_states  # Tuple of (batch, seq_len, hidden_size)
+            except Exception as e:
+                # Handle CUDA OOM or other GPU memory errors
+                error_msg = str(e).lower()
+                if "out of memory" in error_msg or "cuda" in error_msg:
+                    print(f"GPU memory error at sentence {sent_idx+1}/{len(sentences)}: {e}")
+                    print("Falling back to mock activations for remaining sentences...")
+                    # Return partial results + mock for remainder
+                    mock_results = self._generate_mock_activations(sentences[sent_idx:])
+                    # Merge results
+                    for mock_idx, mock_sent_idx in enumerate(range(sent_idx, len(sentences))):
+                        results['activations'][mock_sent_idx] = mock_results['activations'][mock_idx]
+                        results['tokens'].extend(mock_results['tokens'][mock_idx:])
+                    results['metadata']['partial_extraction'] = True
+                    results['metadata']['oom_at_sentence'] = sent_idx
+                    return results
+                else:
+                    # Re-raise non-memory errors
+                    raise
             
             # Map activations back to our 3 word tokens
             # For simplicity, take the first subword token for each word
@@ -136,8 +176,26 @@ class SimpleGPT2ActivationExtractor:
                         activation = hidden_states[layer_idx][0, token_pos, :].cpu().numpy()
                         results['activations'][sent_idx][word_idx][layer_idx] = activation
             
-            if (sent_idx + 1) % 10 == 0:
-                print(f"Processed {sent_idx + 1}/{len(sentences)} sentences")
+            # Memory cleanup to prevent accumulation
+            del outputs, hidden_states
+            if self.device == "cuda":
+                try:
+                    import torch
+                    torch.cuda.empty_cache()
+                except:
+                    pass
+            
+            # Periodic garbage collection for large datasets
+            if (sent_idx + 1) % 50 == 0:
+                import gc
+                gc.collect()
+            
+            # Improved progress reporting
+            progress_interval = max(1, len(sentences) // 20)  # Report every 5%
+            if (sent_idx + 1) % progress_interval == 0 or sent_idx == 0:
+                percent = ((sent_idx + 1) / len(sentences)) * 100
+                memory_usage = self._get_memory_usage()
+                print(f"Progress: {sent_idx + 1}/{len(sentences)} ({percent:.1f}%) - Memory: {memory_usage:.1f}MB")
         
         return results
     
