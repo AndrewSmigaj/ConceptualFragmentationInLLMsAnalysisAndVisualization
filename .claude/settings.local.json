@@ -52,7 +52,9 @@
       "Bash(./venv311/Scripts/python.exe gpt2_pivot_clusterer.py)",
       "Bash(./venv311/Scripts/python.exe gpt2_apa_metrics.py)",
       "Bash(./venv311/Scripts/python.exe:*)",
-      "Bash(./venv311/Scripts/python test_enhanced_clusterer.py)"
+      "Bash(./venv311/Scripts/python test_enhanced_clusterer.py)",
+      "Bash(tree:*)",
+      "Bash(diff:*)"
     ],
     "deny": []
   }

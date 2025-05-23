@@ -1,0 +1,86 @@
+\section{GPT-2 Semantic Subtypes Case Study: CTA on Semantic Organization}
+
+Building upon the semantic pivot analysis, we present a comprehensive case study demonstrating how Concept Trajectory Analysis can reveal the internal semantic organization of transformer models. This experiment analyzes 774 validated single-token words across 8 distinct semantic subtypes, showcasing CTA's ability to identify both within-category coherence and between-category differentiation in GPT-2's representational space.
+
+\subsection{Experimental Design}
+
+We designed a systematic experiment to study how GPT-2 organizes semantic knowledge using 8 semantically distinct word categories:
+
+\begin{itemize}
+    \item \textbf{Concrete Nouns}: Physical objects (e.g., ``table'', ``mountain'', ``book'')
+    \item \textbf{Abstract Nouns}: Conceptual entities (e.g., ``freedom'', ``justice'', ``emotion'')
+    \item \textbf{Physical Adjectives}: Observable properties (e.g., ``tall'', ``smooth'', ``bright'')
+    \item \textbf{Emotive Adjectives}: Emotional descriptors (e.g., ``joyful'', ``melancholy'', ``serene'')
+    \item \textbf{Manner Adverbs}: How actions are performed (e.g., ``quickly'', ``carefully'', ``boldly'')
+    \item \textbf{Degree Adverbs}: Intensity modifiers (e.g., ``extremely'', ``barely'', ``quite'')
+    \item \textbf{Action Verbs}: Dynamic processes (e.g., ``run'', ``create'', ``destroy'')
+    \item \textbf{Stative Verbs}: State descriptions (e.g., ``exist'', ``belong'', ``resemble'')
+\end{itemize}
+
+\subsubsection{Dataset Construction}
+
+We curated 774 validated single-token words distributed across semantic subtypes through systematic linguistic analysis. Each word was verified for single-token representation in GPT-2's tokenizer and semantic category membership, ensuring clean experimental conditions for concept trajectory analysis.
+
+\subsubsection{CTA Methodology Application}
+
+Using GPT-2 (117M parameters), we extracted 768-dimensional activation vectors for each token across all 13 layers. The CTA pipeline included:
+
+\begin{itemize}
+    \item \textbf{Single-token processing}: Each word processed individually to capture pure semantic representations
+    \item \textbf{Enhanced clustering}: K-means and HDBSCAN clustering with silhouette-based optimization
+    \item \textbf{Trajectory tracking}: Concept paths traced through 13-layer representational space
+    \item \textbf{Dual analysis}: Both within-subtype coherence and between-subtype differentiation
+\end{itemize}
+
+\subsection{Key Findings}
+
+\subsubsection{Within-Subtype Coherence}
+
+Analysis of concept trajectory coherence within each semantic subtype revealed distinct organizational patterns. Semantic categories with higher conceptual similarity (e.g., concrete nouns, action verbs) demonstrated strong trajectory coherence, with words following similar paths through GPT-2's representational layers. This suggests that GPT-2 develops consistent processing strategies for semantically related concepts.
+
+\subsubsection{Between-Subtype Differentiation}
+
+Cross-subtype analysis revealed systematic differentiation patterns in concept trajectories. Part-of-speech boundaries emerged as primary organizational principles, with clear representational separation between nouns, adjectives, adverbs, and verbs. Within grammatical categories, semantic distinctions (concrete vs. abstract, physical vs. emotive) were encoded through distinct trajectory patterns.
+
+\subsubsection{Layer-Specific Semantic Evolution}
+
+CTA revealed a systematic progression of semantic organization across GPT-2's layers:
+
+\begin{description}
+    \item[Early Layers (0--2)] Mixed semantic clustering with high trajectory overlap between subtypes, indicating initial feature extraction without clear semantic boundaries.
+    
+    \item[Middle Layers (3--9)] Gradual semantic refinement with emerging part-of-speech distinctions and within-category clustering development.
+    
+    \item[Late Layers (10--12)] Peak semantic organization with robust within-subtype coherence and clear between-subtype differentiation, demonstrating mature semantic representations.
+\end{description}
+
+\subsection{LLM-Generated Semantic Interpretation}
+
+Applying our LLM-powered analysis framework to the semantic subtypes experiment, we obtained interpretable cluster labels and narrative explanations of trajectory patterns. The analysis revealed that GPT-2's internal semantic organization closely mirrors human linguistic intuitions, with systematic hierarchical structure from broad grammatical categories to fine-grained semantic distinctions.
+
+\subsection{Implications for Transformer Interpretability}
+
+This comprehensive semantic analysis demonstrates several key insights:
+
+\begin{enumerate}
+    \item \textbf{Hierarchical Semantic Processing}: GPT-2 develops increasingly refined semantic distinctions across layers, with clear progression from syntactic to semantic representations.
+    
+    \item \textbf{Systematic Organization}: The model maintains consistent organizational principles across different semantic domains, suggesting robust internal semantic architecture.
+    
+    \item \textbf{Interpretable Trajectories}: Concept trajectories provide direct insight into how semantic knowledge is processed and organized in transformer models.
+    
+    \item \textbf{Scalable Analysis}: CTA methodology successfully scales to comprehensive semantic analysis across multiple categories and hundreds of concepts.
+\end{enumerate}
+
+\subsection{Methodological Validation}
+
+This semantic subtypes case study validates CTA's effectiveness for transformer analysis:
+
+\begin{itemize}
+    \item \textbf{Semantic trajectory tracking}: Successfully traced concept evolution across 13 layers for 8 distinct categories
+    \item \textbf{Coherence quantification}: Demonstrated measurable within-category consistency in trajectory patterns
+    \item \textbf{Differentiation analysis}: Quantified systematic between-category distinctions in representational processing
+    \item \textbf{Interpretable insights}: Generated human-readable explanations of complex semantic organization patterns
+\end{itemize}
+
+The combination of within-subtype coherence analysis with between-subtype differentiation provides a comprehensive framework for understanding semantic knowledge organization in large language models, demonstrating CTA's utility for transformer interpretability research.

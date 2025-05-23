@@ -1,8 +1,8 @@
 \section{Background and Motivation}
 
-\subsection{Archetypal Path Analysis Recap}
+\subsection{Concept Trajectory Analysis Recap}
 
-Archetypal Path Analysis (APA) clusters datapoint activations in each layer's activation space (e.g., using k-means or DBSCAN), assigning layer-specific cluster IDs, denoted $(L_lC_k)$, where $(l)$ is the layer index and $(k)$ is the cluster index (e.g., L1C0 for cluster 0 in layer 1). Transitions between clusters are tracked across layers, forming paths $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, interpreted as latent semantic trajectories. In feedforward networks, paths are strictly unidirectional, and clusters with different layer-specific IDs (e.g., L1C0 and L3C0) are not assumed to be related unless validated by geometric similarity (e.g., centroid cosine similarity). Large language models (LLMs) can narrate these trajectories to provide interpretable insights.
+Concept Trajectory Analysis (CTA) clusters datapoint activations in each layer's activation space (e.g., using k-means or DBSCAN), assigning layer-specific cluster IDs, denoted $(L_lC_k)$, where $(l)$ is the layer index and $(k)$ is the cluster index (e.g., L1C0 for cluster 0 in layer 1). Transitions between clusters are tracked across layers, forming trajectories $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, interpreted as latent semantic concept evolution. In feedforward networks, trajectories are strictly unidirectional, and clusters with different layer-specific IDs (e.g., L1C0 and L3C0) are not assumed to be related unless validated by geometric similarity (e.g., centroid cosine similarity). Large language models (LLMs) can narrate these trajectories to provide interpretable insights.
 
 \subsection{Critique from Foundational Viewpoints}
 

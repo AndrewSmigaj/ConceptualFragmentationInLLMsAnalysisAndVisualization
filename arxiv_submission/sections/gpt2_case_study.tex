@@ -1,6 +1,6 @@
-\section{GPT-2 Semantic Pivot Case Study: Demonstrating APA Methodology}
+\section{GPT-2 Semantic Pivot Case Study: Demonstrating CTA Methodology}
 
-To demonstrate the practical application of Archetypal Path Analysis with LLM-powered narrative generation, we present a comprehensive case study analyzing semantic pivot processing in GPT-2. This experiment showcases how APA methodology can reveal the internal representational dynamics of large language models when processing semantic contradictions.
+To demonstrate the practical application of Concept Trajectory Analysis with LLM-powered narrative generation, we present a comprehensive case study analyzing semantic pivot processing in GPT-2. This experiment showcases how CTA methodology can reveal the internal representational dynamics of large language models when processing semantic contradictions.
 
 \subsection{Experimental Design}
 
@@ -38,7 +38,7 @@ This yielded 606 total tokens (202 sentences × 3 tokens) with 13-layer trajecto
 
 We applied k-means clustering with silhouette-based optimization (k ∈ [2, 15]) at each layer, discovering optimal k=4 across all layers. Cluster labels follow the format L\{layer\}C\{cluster\} (e.g., L0C1, L11C3).
 
-Token paths were tracked across layers to identify archetypal patterns, yielding 72 unique paths with clear differentiation between sentence classes.
+Token trajectories were tracked across layers to identify concept patterns, yielding 72 unique trajectories with clear differentiation between sentence classes.
 
 \subsection{Key Findings}
 
@@ -60,16 +60,16 @@ The third token (post-pivot adjective) exhibits the most dramatic representation
 
 \textbf{Contrast Sentences:}
 \begin{itemize}
-    \item Fragment by intensity: ``bad'' vs ``atrocious'' follow different archetypal paths
+    \item Fragment by intensity: ``bad'' vs ``atrocious'' follow different concept trajectories
     \item Higher fragmentation scores (≈0.3) in layers 10--12
-    \item 51 unique archetypal paths reflecting semantic processing complexity
+    \item 51 unique concept trajectories reflecting semantic processing complexity
 \end{itemize}
 
 \textbf{Consistent Sentences:}
 \begin{itemize}
     \item Maintain cohesive clustering due to positive valence alignment
     \item Lower fragmentation scores (≈0.2) across all layers  
-    \item 57 unique paths but with higher frequency concentration
+    \item 57 unique trajectories but with higher frequency concentration
 \end{itemize}
 
 \subsubsection{Position-Specific Clustering Behavior}
@@ -86,14 +86,14 @@ Analysis by token position revealed distinct processing patterns:
 
 \subsubsection{Intensity-Driven Path Divergence}
 
-Adjective intensity significantly impacts archetypal path selection:
+Adjective intensity significantly impacts concept trajectory selection:
 
 \begin{itemize}
     \item \textbf{Mild adjectives} (e.g., ``bad'', ``terrible''): Converge to clusters L11C2, L12C3 with lower fragmentation (≈0.25)
     \item \textbf{Intense adjectives} (e.g., ``atrocious'', ``vile''): Diverge to clusters L11C3, L12C2 with higher fragmentation (≈0.35)
 \end{itemize}
 
-Representative archetypal paths:
+Representative concept trajectories:
 \begin{itemize}
     \item \textbf{Intense contrast}: L0C4→L1C2→L2C2→...→L11C3→L12C2 (42 tokens)
     \item \textbf{Mild contrast}: L0C5→L1C4→L2C3→...→L11C2→L12C3 (35 tokens)  
@@ -102,7 +102,7 @@ Representative archetypal paths:
 
 \subsection{LLM-Generated Cluster Labels}
 
-Applying our LLM-powered analysis framework, we obtained semantically meaningful cluster labels based on sentence contents and archetypal path patterns:
+Applying our LLM-powered analysis framework, we obtained semantically meaningful cluster labels based on sentence contents and concept trajectory patterns:
 
 \begin{table}[h!]
 \centering
@@ -138,20 +138,20 @@ This case study demonstrates several key insights about transformer language pro
 
 \subsection{Methodological Validation}
 
-This case study validates several aspects of our APA methodology:
+This case study validates several aspects of our CTA methodology:
 
 \begin{itemize}
     \item \textbf{Cross-layer tracking}: Successfully traced representational evolution across 13 layers
     \item \textbf{Semantic cluster labeling}: LLM-generated labels accurately captured cluster semantics
-    \item \textbf{Archetypal path identification}: Discovered meaningful path patterns distinguishing sentence classes
-    \item \textbf{Quantitative grounding}: APA metrics (ρ\textsuperscript{c}, J, F\textsubscript{i}) provided statistical validation for qualitative insights
+    \item \textbf{Concept trajectory identification}: Discovered meaningful trajectory patterns distinguishing sentence classes
+    \item \textbf{Quantitative grounding}: CTA metrics (ρ\textsuperscript{c}, J, F\textsubscript{i}) provided statistical validation for qualitative insights
 \end{itemize}
 
-The high silhouette scores in final layers (0.42--0.47) and clear archetypal path differentiation demonstrate the method's ability to detect genuine semantic processing patterns rather than random clustering artifacts.
+The high silhouette scores in final layers (0.42--0.47) and clear concept trajectory differentiation demonstrate the method's ability to detect genuine semantic processing patterns rather than random clustering artifacts.
 
 \subsection{Broader Applications}
 
-This GPT-2 analysis exemplifies how APA methodology can be applied to study:
+This GPT-2 analysis exemplifies how CTA methodology can be applied to study:
 
 \begin{itemize}
     \item \textbf{Semantic processing mechanisms} in large language models
