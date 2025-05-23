@@ -54,7 +54,12 @@
       "Bash(./venv311/Scripts/python.exe:*)",
       "Bash(./venv311/Scripts/python test_enhanced_clusterer.py)",
       "Bash(tree:*)",
-      "Bash(diff:*)"
+      "Bash(diff:*)",
+      "Bash(./venv311/Scripts/pip.exe list)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe gpt2_semantic_subtypes_experiment.py)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe gpt2_semantic_subtypes_experiment.py --help)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe gpt2_semantic_subtypes_experiment.py --words-file data/gpt2_semantic_subtypes_curated.json)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe complete_analysis.py)"
     ],
     "deny": []
   }

@@ -21,19 +21,23 @@ class GPT2PivotClusterer:
     based on silhouette scores.
     """
     
-    def __init__(self, k_range: Tuple[int, int] = (2, 15), random_state: int = 42, clustering_method: str = 'kmeans'):
+    def __init__(self, k_range: Tuple[int, int] = (2, 15), random_state: int = 42, 
+                 clustering_method: str = 'kmeans', threshold_percentile: float = 0.1):
         """
         Initialize the clusterer.
         
         Args:
             k_range: Range of k values to test (min, max)
             random_state: Random seed for reproducibility
-            clustering_method: Clustering method to use ('kmeans' or 'hdbscan')
+            clustering_method: Clustering method to use ('kmeans', 'hdbscan', or 'ets')
+            threshold_percentile: Percentile for ETS threshold computation (0.0-1.0)
         """
         self.k_range = k_range
         self.random_state = random_state
         self.clustering_method = clustering_method
+        self.threshold_percentile = threshold_percentile
         self.sklearn_available = False
+        self.ets_available = False
         
     def _setup_sklearn(self):
         """Setup sklearn and HDBSCAN imports."""
@@ -54,11 +58,35 @@ class GPT2PivotClusterer:
                 if self.clustering_method == 'hdbscan':
                     print("Warning: HDBSCAN requested but not available, will fall back to k-means")
             
+            # Try to import ETS functions
+            try:
+                import sys
+                from pathlib import Path
+                # Add root to path for imports
+                root_dir = Path(__file__).parent.parent.parent.parent
+                if str(root_dir) not in sys.path:
+                    sys.path.insert(0, str(root_dir))
+                
+                global compute_dimension_thresholds, compute_similarity_matrix, extract_clusters
+                from concept_fragmentation.metrics.explainable_threshold_similarity import (
+                    compute_dimension_thresholds,
+                    compute_similarity_matrix,
+                    extract_clusters
+                )
+                self.ets_available = True
+                print("ETS clustering functions available")
+            except ImportError as e:
+                self.ets_available = False
+                print(f"ETS not available: {e}")
+                if self.clustering_method == 'ets':
+                    print("Warning: ETS requested but not available, will fall back to k-means")
+            
             return True
         except ImportError:
             print("sklearn not available, cannot perform real clustering")
             self.sklearn_available = False
             self.hdbscan_available = False
+            self.ets_available = False
             return False
     
     def _find_optimal_k(self, activations: List[List[float]]) -> int:
@@ -178,6 +206,72 @@ class GPT2PivotClusterer:
         
         return best_labels.tolist(), cluster_centers, num_clusters, best_score
     
+    def _cluster_with_ets(self, activations: List[List[float]]) -> Tuple[List[int], List[List[float]], int, float]:
+        """
+        Cluster activations using ETS (Explainable Threshold Similarity).
+        
+        Args:
+            activations: List of activation vectors
+            
+        Returns:
+            Tuple of (cluster_labels, cluster_centers, num_clusters, silhouette_score)
+        """
+        if not hasattr(self, 'ets_available') or not self.ets_available:
+            print("ETS not available, falling back to k-means")
+            optimal_k = self._find_optimal_k(activations)
+            kmeans = KMeans(n_clusters=optimal_k, random_state=self.random_state, n_init=10)
+            cluster_labels = kmeans.fit_predict(activations)
+            cluster_centers = kmeans.cluster_centers_.tolist()
+            silhouette = silhouette_score(activations, cluster_labels) if len(set(cluster_labels)) > 1 else 0.0
+            return cluster_labels.tolist(), cluster_centers, optimal_k, silhouette
+        
+        import numpy as np
+        
+        # Convert to numpy array for ETS
+        activations_array = np.array(activations)
+        
+        # Compute dimension thresholds
+        thresholds = compute_dimension_thresholds(
+            activations_array, 
+            threshold_percentile=self.threshold_percentile,
+            min_threshold=1e-5
+        )
+        
+        # Compute similarity matrix
+        similarity_matrix = compute_similarity_matrix(
+            activations_array,
+            thresholds,
+            verbose=False
+        )
+        
+        # Extract clusters from similarity matrix
+        cluster_labels = extract_clusters(similarity_matrix)
+        
+        # Calculate cluster centers
+        unique_labels = sorted(set(cluster_labels))
+        cluster_centers = []
+        
+        for label in unique_labels:
+            mask = cluster_labels == label
+            cluster_activations = activations_array[mask]
+            center = np.mean(cluster_activations, axis=0)
+            cluster_centers.append(center.tolist())
+        
+        num_clusters = len(unique_labels)
+        
+        # Calculate silhouette score if we have more than one cluster
+        if num_clusters > 1:
+            silhouette = silhouette_score(activations_array, cluster_labels)
+        else:
+            silhouette = 0.0
+        
+        # Store thresholds for interpretability
+        self.last_ets_thresholds = thresholds
+        
+        print(f"ETS clustering found {num_clusters} clusters with percentile={self.threshold_percentile}")
+        
+        return cluster_labels.tolist(), cluster_centers, num_clusters, silhouette
+    
     def _cluster_layer(self, layer_activations: Dict[int, Dict[int, List[float]]], layer_idx: int) -> Dict[str, Any]:
         """
         Cluster activations for a single layer.
@@ -230,6 +324,9 @@ class GPT2PivotClusterer:
         elif self.clustering_method == 'hdbscan':
             # HDBSCAN clustering with automatic parameter optimization
             cluster_labels_list, cluster_centers, optimal_k, silhouette = self._cluster_with_hdbscan(all_activations)
+        elif self.clustering_method == 'ets':
+            # ETS clustering with threshold-based similarity
+            cluster_labels_list, cluster_centers, optimal_k, silhouette = self._cluster_with_ets(all_activations)
         else:
             raise ValueError(f"Unsupported clustering method: {self.clustering_method}")
         
@@ -295,7 +392,7 @@ class GPT2PivotClusterer:
             'layer_results': layer_results,
             'token_paths': token_paths,
             'sentences': activations_data['sentences'],
-            'labels': activations_data['labels'],
+            'labels': activations_data.get('labels', None),  # Labels are optional
             'metadata': {
                 **activations_data['metadata'],
                 'clustering_method': self.clustering_method,

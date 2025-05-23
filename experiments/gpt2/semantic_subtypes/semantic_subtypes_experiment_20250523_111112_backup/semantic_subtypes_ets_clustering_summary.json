@@ -1,0 +1,67 @@
+{
+  "num_sentences": 774,
+  "num_layers": 12,
+  "metadata": {
+    "model_name": "gpt2",
+    "num_layers": 12,
+    "hidden_size": 768,
+    "extraction_method": "real",
+    "clustering_method": "ets",
+    "k_range": [
+      2,
+      15
+    ],
+    "sklearn_available": true,
+    "hdbscan_available": false
+  },
+  "layer_stats": {
+    "layer_0": {
+      "optimal_k": 2,
+      "silhouette_score": 0.0116145433858037
+    },
+    "layer_1": {
+      "optimal_k": 2,
+      "silhouette_score": 0.0714079737663269
+    },
+    "layer_2": {
+      "optimal_k": 2,
+      "silhouette_score": 0.10159433633089066
+    },
+    "layer_3": {
+      "optimal_k": 2,
+      "silhouette_score": 0.17365045845508575
+    },
+    "layer_4": {
+      "optimal_k": 2,
+      "silhouette_score": 0.25816580653190613
+    },
+    "layer_5": {
+      "optimal_k": 2,
+      "silhouette_score": 0.28858301043510437
+    },
+    "layer_6": {
+      "optimal_k": 2,
+      "silhouette_score": 0.30594828724861145
+    },
+    "layer_7": {
+      "optimal_k": 2,
+      "silhouette_score": 0.31568750739097595
+    },
+    "layer_8": {
+      "optimal_k": 2,
+      "silhouette_score": 0.32028162479400635
+    },
+    "layer_9": {
+      "optimal_k": 2,
+      "silhouette_score": 0.32413002848625183
+    },
+    "layer_10": {
+      "optimal_k": 2,
+      "silhouette_score": 0.3247493505477905
+    },
+    "layer_11": {
+      "optimal_k": 2,
+      "silhouette_score": 0.3237665593624115
+    }
+  }
+}

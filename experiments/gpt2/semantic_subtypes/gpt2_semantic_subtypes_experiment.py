@@ -52,12 +52,14 @@ class SemanticSubtypesExperiment:
             config: Experiment configuration dictionary
         """
         self.config = config
-        self.logger = self._setup_logging()
         self.results = {}
         
-        # Create output directory
+        # Create output directory BEFORE setting up logging
         self.output_dir = Path(config['output_dir'])
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Now setup logging (which uses self.output_dir)
+        self.logger = self._setup_logging()
         
         self.logger.info(f"Initialized semantic subtypes experiment")
         self.logger.info(f"Output directory: {self.output_dir}")
@@ -140,12 +142,12 @@ class SemanticSubtypesExperiment:
         
         self.logger.info(f"Extracting activations for {len(all_words)} words")
         
-        # Use enhanced activation extractor
-        extractor = SimpleGPT2ActivationExtractor(
-            model_name=self.config['model_name'],
-            cache_dir=self.config.get('cache_dir'),
-            max_memory_mb=self.config.get('max_memory_mb', 8000)
-        )
+        # Use activation extractor (it doesn't take parameters in constructor)
+        extractor = SimpleGPT2ActivationExtractor()
+        
+        # Setup the model
+        if not extractor.setup_model():
+            raise RuntimeError("Failed to setup GPT-2 model")
         
         # Extract activations
         activations_data = extractor.extract_activations(all_words)
@@ -216,7 +218,7 @@ class SemanticSubtypesExperiment:
         metrics_calculator = GPT2APAMetricsCalculator()
         
         # Calculate metrics
-        apa_metrics = metrics_calculator.calculate_all_metrics(clustering_results)
+        apa_metrics = metrics_calculator.compute_all_metrics(clustering_results)
         
         # Save metrics
         metrics_file = self.output_dir / f"semantic_subtypes_{method}_apa_metrics.json"
@@ -346,6 +348,37 @@ class SemanticSubtypesExperiment:
         
         return subtype_analysis
     
+    def prepare_llm_analysis_data(self, kmeans_results: Dict[str, Any], 
+                                 ets_results: Dict[str, Any],
+                                 subtypes_words: Dict[str, List[str]]) -> None:
+        """
+        Prepare data for LLM interpretability analysis.
+        
+        Args:
+            kmeans_results: K-means clustering results
+            ets_results: ETS clustering results  
+            subtypes_words: Word lists by semantic subtype
+        """
+        self.logger.info("Preparing data for LLM analysis...")
+        
+        # Import the preparer
+        sys.path.insert(0, str(Path(__file__).parent.parent / "shared"))
+        from prepare_llm_analysis_data import LLMAnalysisDataPreparer
+        
+        preparer = LLMAnalysisDataPreparer(output_format='markdown')
+        
+        # Save the formatted comparison for LLM analysis
+        output_file = self.output_dir / "llm_analysis_data.md"
+        preparer.save_for_llm_analysis(
+            kmeans_results, 
+            ets_results,
+            subtypes_words,
+            str(output_file)
+        )
+        
+        self.logger.info(f"LLM analysis data saved to: {output_file}")
+        self.logger.info("Ready for copy-paste into LLM for interpretability scoring")
+    
     def generate_experiment_summary(self) -> Dict[str, Any]:
         """
         Generate comprehensive experiment summary.
@@ -362,19 +395,18 @@ class SemanticSubtypesExperiment:
             'results_files': {
                 'activations': 'semantic_subtypes_activations.pkl',
                 'kmeans_clustering': 'semantic_subtypes_kmeans_clustering.pkl',
-                'hdbscan_clustering': 'semantic_subtypes_hdbscan_clustering.pkl',
+                'ets_clustering': 'semantic_subtypes_ets_clustering.pkl',
                 'kmeans_metrics': 'semantic_subtypes_kmeans_apa_metrics.json',
-                'hdbscan_metrics': 'semantic_subtypes_hdbscan_apa_metrics.json',
-                'comparison': 'clustering_methods_comparison.json',
-                'comparison_report': 'clustering_methods_comparison_report.txt',
-                'semantic_analysis': 'semantic_organization_analysis.json'
+                'ets_metrics': 'semantic_subtypes_ets_apa_metrics.json',
+                'semantic_analysis': 'semantic_organization_analysis.json',
+                'llm_analysis_data': 'llm_analysis_data.md'
             },
             'experiment_status': 'completed',
             'infrastructure_used': {
-                'activation_extractor': 'SimpleGPT2ActivationExtractor (enhanced)',
-                'clusterer': 'GPT2PivotClusterer (enhanced with HDBSCAN)',
+                'activation_extractor': 'SimpleGPT2ActivationExtractor',
+                'clusterer': 'GPT2PivotClusterer (with K-means and ETS)',
                 'metrics_calculator': 'GPT2APAMetricsCalculator',
-                'comparison_utility': 'ClusteringComparison'
+                'llm_data_preparer': 'LLMAnalysisDataPreparer'
             }
         }
         
@@ -407,15 +439,15 @@ class SemanticSubtypesExperiment:
             # Step 3: Run k-means clustering
             kmeans_results = self.run_clustering_analysis(activations_file, 'kmeans')
             
-            # Step 4: Run HDBSCAN clustering
-            hdbscan_results = self.run_clustering_analysis(activations_file, 'hdbscan')
+            # Step 4: Run ETS clustering  
+            ets_results = self.run_clustering_analysis(activations_file, 'ets')
             
             # Step 5: Calculate APA metrics for both methods
             kmeans_metrics = self.calculate_apa_metrics(kmeans_results, 'kmeans')
-            hdbscan_metrics = self.calculate_apa_metrics(hdbscan_results, 'hdbscan')
+            ets_metrics = self.calculate_apa_metrics(ets_results, 'ets')
             
-            # Step 6: Generate comparison analysis
-            comparison = self.generate_comparison_analysis(kmeans_results, hdbscan_results)
+            # Step 6: Prepare data for LLM analysis
+            self.prepare_llm_analysis_data(kmeans_results, ets_results, subtypes_words)
             
             # Step 7: Analyze semantic organization (using k-means results)
             semantic_analysis = self.analyze_semantic_organization(kmeans_results, activations_file)
@@ -429,12 +461,12 @@ class SemanticSubtypesExperiment:
                 'subtypes_words': subtypes_words,
                 'activations_file': activations_file,
                 'kmeans_results': kmeans_results,
-                'hdbscan_results': hdbscan_results,
+                'ets_results': ets_results,
                 'kmeans_metrics': kmeans_metrics,
-                'hdbscan_metrics': hdbscan_metrics,
-                'comparison': comparison,
+                'ets_metrics': ets_metrics,
                 'semantic_analysis': semantic_analysis,
-                'summary': summary
+                'summary': summary,
+                'llm_analysis_file': str(self.output_dir / "llm_analysis_data.md")
             }
             
         except Exception as e:
