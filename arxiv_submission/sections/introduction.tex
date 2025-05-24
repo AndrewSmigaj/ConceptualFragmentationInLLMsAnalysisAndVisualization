@@ -11,6 +11,8 @@ Interpretability research often struggles to balance rigor and accessibility, os
 
 The challenge of translating quantitative patterns into qualitative understanding is particularly acute. While metrics like silhouette scores or mutual information can validate clustering quality, they offer limited insight into the semantic meaning of identified patterns. Our work introduces a novel approach to this problem by leveraging large language models (LLMs) to generate human-readable narratives that explain the conceptual significance of activation patterns.
 
+We demonstrate this methodology through comprehensive case studies analyzing GPT-2's internal representations. Our semantic pivot analysis reveals how transformer models process contradictory information, while our semantic subtypes study examines the organization of conceptual knowledge across 774 validated words spanning 8 semantic categories. These studies showcase CTA's ability to uncover both syntactic and semantic processing patterns in large language models.
+
 \textbf{Contributions}:
 \begin{itemize}
     \item Formalize activation-space geometry for datapoint clustering with layer-specific labels and mathematical validation criteria
@@ -18,6 +20,8 @@ The challenge of translating quantitative patterns into qualitative understandin
     \item Develop cross-layer metrics (centroid similarity, membership overlap, fragmentation scores) to quantify concept evolution
     \item Propose a reproducible framework for path stability assessment using statistical robustness measures (ARI, MI, null models)
     \item Implement LLM-powered analysis to generate human-readable explanations of cluster paths
+    \item Demonstrate transformer interpretability through GPT-2 semantic pivot and subtypes analysis
+    \item Reveal layer-specific semantic organization patterns in large language models
     \item Demonstrate bias detection capabilities through demographic analysis of paths
     \item Provide an open-source implementation blueprint for application across diverse domains
 \end{itemize}

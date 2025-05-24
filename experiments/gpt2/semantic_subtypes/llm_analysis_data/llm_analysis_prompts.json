@@ -1,0 +1,24 @@
+{
+  "cluster_interpretation_prompts": [
+    {
+      "task": "semantic_feature_discovery",
+      "prompt": "Looking at the words in each cluster at layer {layer}, identify the common semantic features that unite them. \n                    Consider features beyond our predefined categories like:\n                    - Abstractness/concreteness\n                    - Animacy\n                    - Agency\n                    - Temporal properties\n                    - Emotional valence\n                    - Syntactic flexibility\n                    - Frequency of use\n                    - Morphological complexity\n                    \n                    For each cluster, provide:\n                    1. Primary semantic feature(s)\n                    2. Secondary features\n                    3. Why these features might be computationally relevant for GPT-2"
+    },
+    {
+      "task": "emergent_categories",
+      "prompt": "Based on the clustering patterns across layers, what emergent semantic categories has GPT-2 learned that differ from our linguistic intuitions?\n                    \n                    Consider:\n                    1. Categories that span traditional part-of-speech boundaries\n                    2. Distributional patterns that create unexpected groupings\n                    3. Functional categories based on typical contexts\n                    4. How these might optimize for next-token prediction"
+    }
+  ],
+  "outlier_analysis_prompts": [
+    {
+      "task": "outlier_explanation",
+      "prompt": "Analyze why '{word}' is consistently an outlier across layers. Consider:\n                    1. Unique distributional properties\n                    2. Multiple meanings or uses\n                    3. Syntactic flexibility\n                    4. Frequency effects\n                    5. Morphological uniqueness"
+    }
+  ],
+  "synthesis_prompts": [
+    {
+      "task": "semantic_organization_hypothesis",
+      "prompt": "Based on all the clustering patterns, propose a hypothesis for how GPT-2 organizes semantic information across its layers.\n                    \n                    Address:\n                    1. What principles govern the organization at early vs. late layers?\n                    2. How does this differ from human semantic intuitions?\n                    3. What does this reveal about how transformers learn meaning?\n                    4. Implications for understanding LLM representations"
+    }
+  ]
+}

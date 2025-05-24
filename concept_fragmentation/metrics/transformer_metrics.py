@@ -14,7 +14,6 @@ import logging
 from dataclasses import dataclass
 import warnings
 from scipy.stats import entropy
-from scipy.sparse import sparsity
 from scipy.spatial.distance import cosine, euclidean
 
 # Setup logger

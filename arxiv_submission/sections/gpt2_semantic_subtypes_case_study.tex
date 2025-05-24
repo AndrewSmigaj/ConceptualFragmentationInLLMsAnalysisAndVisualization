@@ -27,20 +27,57 @@ Using GPT-2 (117M parameters), we extracted 768-dimensional activation vectors f
 
 \begin{itemize}
     \item \textbf{Single-token processing}: Each word processed individually to capture pure semantic representations
-    \item \textbf{Enhanced clustering}: K-means and HDBSCAN clustering with silhouette-based optimization
+    \item \textbf{Enhanced clustering}: K-means and ETS clustering with layer-specific threshold optimization
     \item \textbf{Trajectory tracking}: Concept paths traced through 13-layer representational space
     \item \textbf{Dual analysis}: Both within-subtype coherence and between-subtype differentiation
+    \item \textbf{ETS optimization}: Per-layer elbow analysis to find optimal thresholds (range: 0.95-0.999)
 \end{itemize}
 
 \subsection{Key Findings}
 
+\subsubsection{Per-Layer ETS Threshold Optimization}
+
+Our elbow analysis revealed layer-specific optimal thresholds for ETS clustering, demonstrating that different layers require different similarity criteria for meaningful semantic clustering:
+
+\begin{table}[h!]
+\centering
+\caption{Optimal ETS thresholds per layer}
+\label{tab:ets_thresholds}
+\begin{tabular}{cccc}
+\toprule
+Layer & Optimal Threshold & Clusters & Silhouette Score \\
+\midrule
+0 & [PLACEHOLDER] & [PLACEHOLDER] & [PLACEHOLDER] \\
+1 & [PLACEHOLDER] & [PLACEHOLDER] & [PLACEHOLDER] \\
+6 & [PLACEHOLDER] & [PLACEHOLDER] & [PLACEHOLDER] \\
+11 & [PLACEHOLDER] & [PLACEHOLDER] & [PLACEHOLDER] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The optimal thresholds showed systematic variation across layers, with [ANALYSIS PENDING] indicating [INTERPRETATION PENDING].
+
+\subsubsection{K-means vs ETS Clustering Comparison}
+
+Comparative analysis between K-means and layer-optimized ETS clustering revealed:
+
+\begin{itemize}
+    \item \textbf{Cluster granularity}: ETS produced [PLACEHOLDER] clusters vs K-means [PLACEHOLDER] clusters
+    \item \textbf{Semantic coherence}: [PLACEHOLDER - comparison of cluster quality]
+    \item \textbf{Interpretability}: [PLACEHOLDER - which method produces more interpretable clusters]
+\end{itemize}
+
 \subsubsection{Within-Subtype Coherence}
 
-Analysis of concept trajectory coherence within each semantic subtype revealed distinct organizational patterns. Semantic categories with higher conceptual similarity (e.g., concrete nouns, action verbs) demonstrated strong trajectory coherence, with words following similar paths through GPT-2's representational layers. This suggests that GPT-2 develops consistent processing strategies for semantically related concepts.
+Analysis of concept trajectory coherence within each semantic subtype revealed distinct organizational patterns:
+
+[PLACEHOLDER - specific coherence scores and patterns for each subtype]
 
 \subsubsection{Between-Subtype Differentiation}
 
-Cross-subtype analysis revealed systematic differentiation patterns in concept trajectories. Part-of-speech boundaries emerged as primary organizational principles, with clear representational separation between nouns, adjectives, adverbs, and verbs. Within grammatical categories, semantic distinctions (concrete vs. abstract, physical vs. emotive) were encoded through distinct trajectory patterns.
+Cross-subtype analysis revealed systematic differentiation patterns in concept trajectories:
+
+[PLACEHOLDER - specific differentiation patterns and archetypal paths]
 
 \subsubsection{Layer-Specific Semantic Evolution}
 
@@ -54,9 +91,19 @@ CTA revealed a systematic progression of semantic organization across GPT-2's la
     \item[Late Layers (10--12)] Peak semantic organization with robust within-subtype coherence and clear between-subtype differentiation, demonstrating mature semantic representations.
 \end{description}
 
+\subsubsection{Cluster Content Analysis}
+
+Analysis of which specific words belong to each cluster revealed semantic organization patterns:
+
+[PLACEHOLDER - cluster contents for key layers showing which words cluster together]
+
 \subsection{LLM-Generated Semantic Interpretation}
 
-Applying our LLM-powered analysis framework to the semantic subtypes experiment, we obtained interpretable cluster labels and narrative explanations of trajectory patterns. The analysis revealed that GPT-2's internal semantic organization closely mirrors human linguistic intuitions, with systematic hierarchical structure from broad grammatical categories to fine-grained semantic distinctions.
+Applying our LLM-powered analysis framework to the semantic subtypes experiment, we obtained interpretable cluster labels and narrative explanations of trajectory patterns:
+
+[PLACEHOLDER - specific cluster labels and interpretations from enhanced analysis]
+
+The analysis revealed systematic patterns in how GPT-2 organizes semantic knowledge, with [PLACEHOLDER - specific findings about semantic organization].
 
 \subsection{Implications for Transformer Interpretability}
 

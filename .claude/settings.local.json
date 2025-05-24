@@ -59,7 +59,11 @@
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe gpt2_semantic_subtypes_experiment.py)",
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe gpt2_semantic_subtypes_experiment.py --help)",
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe gpt2_semantic_subtypes_experiment.py --words-file data/gpt2_semantic_subtypes_curated.json)",
-      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe complete_analysis.py)"
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe complete_analysis.py)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"import scipy; print(f'scipy version: {scipy.__version__}')\")",
+      "Bash(../../../venv311/Scripts/python.exe complete_analysis_enhanced.py:*)",
+      "Bash(timeout:*)",
+      "Bash(../../../venv311/Scripts/python.exe:*)"
     ],
     "deny": []
   }

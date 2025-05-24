@@ -1,0 +1,166 @@
+{
+  "description": "Analysis of how words move between clusters across layers",
+  "transition_patterns": [
+    {
+      "window": "layers_0-4",
+      "common_transitions": [
+        {
+          "transition": "C1->C1",
+          "count": 543
+        },
+        {
+          "transition": "C2->C0",
+          "count": 405
+        },
+        {
+          "transition": "C0->C2",
+          "count": 357
+        },
+        {
+          "transition": "C2->C1",
+          "count": 243
+        },
+        {
+          "transition": "C0->C1",
+          "count": 177
+        },
+        {
+          "transition": "C1->C0",
+          "count": 174
+        },
+        {
+          "transition": "C1->C2",
+          "count": 126
+        },
+        {
+          "transition": "C2->C2",
+          "count": 91
+        },
+        {
+          "transition": "C0->C0",
+          "count": 78
+        },
+        {
+          "transition": "C3->C1",
+          "count": 37
+        }
+      ]
+    },
+    {
+      "window": "layers_4-8",
+      "common_transitions": [
+        {
+          "transition": "C0->C1",
+          "count": 472
+        },
+        {
+          "transition": "C1->C2",
+          "count": 453
+        },
+        {
+          "transition": "C1->C0",
+          "count": 325
+        },
+        {
+          "transition": "C2->C1",
+          "count": 313
+        },
+        {
+          "transition": "C2->C2",
+          "count": 243
+        },
+        {
+          "transition": "C0->C0",
+          "count": 239
+        },
+        {
+          "transition": "C2->C0",
+          "count": 111
+        },
+        {
+          "transition": "C0->C2",
+          "count": 100
+        },
+        {
+          "transition": "C1->C1",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "window": "layers_8-12",
+      "common_transitions": [
+        {
+          "transition": "C2->C2",
+          "count": 802
+        },
+        {
+          "transition": "C1->C1",
+          "count": 772
+        },
+        {
+          "transition": "C0->C0",
+          "count": 309
+        },
+        {
+          "transition": "C1->C2",
+          "count": 118
+        },
+        {
+          "transition": "C2->C0",
+          "count": 93
+        },
+        {
+          "transition": "C1->C0",
+          "count": 93
+        },
+        {
+          "transition": "C2->C1",
+          "count": 31
+        },
+        {
+          "transition": "C0->C2",
+          "count": 29
+        },
+        {
+          "transition": "C0->C1",
+          "count": 17
+        }
+      ]
+    }
+  ],
+  "stability_by_subtype": {
+    "concrete_nouns": {
+      "avg_stability": 0.437,
+      "std_stability": 0.107
+    },
+    "abstract_nouns": {
+      "avg_stability": 0.448,
+      "std_stability": 0.114
+    },
+    "physical_adjectives": {
+      "avg_stability": 0.448,
+      "std_stability": 0.126
+    },
+    "emotive_adjectives": {
+      "avg_stability": 0.472,
+      "std_stability": 0.117
+    },
+    "manner_adverbs": {
+      "avg_stability": 0.461,
+      "std_stability": 0.133
+    },
+    "degree_adverbs": {
+      "avg_stability": 0.46,
+      "std_stability": 0.136
+    },
+    "action_verbs": {
+      "avg_stability": 0.47,
+      "std_stability": 0.126
+    },
+    "stative_verbs": {
+      "avg_stability": 0.462,
+      "std_stability": 0.117
+    }
+  }
+}

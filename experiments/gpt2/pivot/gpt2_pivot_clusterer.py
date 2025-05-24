@@ -67,11 +67,11 @@ class GPT2PivotClusterer:
                 if str(root_dir) not in sys.path:
                     sys.path.insert(0, str(root_dir))
                 
-                global compute_dimension_thresholds, compute_similarity_matrix, extract_clusters
+                global compute_dimension_thresholds, compute_similarity_matrix, compute_ets_clustering
                 from concept_fragmentation.metrics.explainable_threshold_similarity import (
                     compute_dimension_thresholds,
                     compute_similarity_matrix,
-                    extract_clusters
+                    compute_ets_clustering
                 )
                 self.ets_available = True
                 print("ETS clustering functions available")
@@ -230,22 +230,13 @@ class GPT2PivotClusterer:
         # Convert to numpy array for ETS
         activations_array = np.array(activations)
         
-        # Compute dimension thresholds
-        thresholds = compute_dimension_thresholds(
-            activations_array, 
-            threshold_percentile=self.threshold_percentile,
-            min_threshold=1e-5
-        )
-        
-        # Compute similarity matrix
-        similarity_matrix = compute_similarity_matrix(
+        # Use compute_ets_clustering which handles everything internally
+        cluster_labels, thresholds = compute_ets_clustering(
             activations_array,
-            thresholds,
+            threshold_percentile=self.threshold_percentile,
+            min_threshold=1e-5,
             verbose=False
         )
-        
-        # Extract clusters from similarity matrix
-        cluster_labels = extract_clusters(similarity_matrix)
         
         # Calculate cluster centers
         unique_labels = sorted(set(cluster_labels))
@@ -259,11 +250,11 @@ class GPT2PivotClusterer:
         
         num_clusters = len(unique_labels)
         
-        # Calculate silhouette score if we have more than one cluster
-        if num_clusters > 1:
+        # Calculate silhouette score if we have more than one cluster and less than n_samples clusters
+        if num_clusters > 1 and num_clusters < len(activations):
             silhouette = silhouette_score(activations_array, cluster_labels)
         else:
-            silhouette = 0.0
+            silhouette = 0.0  # Can't calculate meaningful silhouette score
         
         # Store thresholds for interpretability
         self.last_ets_thresholds = thresholds

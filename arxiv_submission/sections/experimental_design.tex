@@ -1,12 +1,12 @@
 \section{Experimental Design (Blueprint)}
 
 \begin{itemize}
-    \item \textbf{Datasets}: Titanic (binary survival), UCI Heart Disease, Adult Income
-    \item \textbf{Models}: 2--3-layer MLPs and LLM feedforward substructures (e.g., MLP head blocks)
+    \item \textbf{Datasets}: Titanic (binary survival), UCI Heart Disease, GPT-2 Semantic Pivot (202 sentences), GPT-2 Semantic Subtypes (774 words)
+    \item \textbf{Models}: 2--3-layer MLPs and LLM architectures (GPT-2 117M parameters, 13 layers)
     \item \textbf{Metrics}: Silhouette, ARI, MI, path reproducibility, path purity, centroid similarity (cosine/Euclidean), Jaccard similarity, fragmentation scores, similarity-convergent path density, interestingness score
-    \item \textbf{Clustering}: k-means and ETS comparison
+    \item \textbf{Clustering}: K-means and ETS comparison with per-layer threshold optimization
     \item \textbf{Visuals}: Alluvial cluster-transition diagrams, stepped-layer PCA plots, cluster transition matrices, interactive visualizations (Plotly/Bokeh)
-    \item \textbf{Narrative}: LLM-generated archetypal path explanations
+    \item \textbf{Narrative}: LLM-generated archetypal path explanations and cluster interpretations
 \end{itemize}
 
 \subsection{Stepped-Layer Trajectory Visualization}
