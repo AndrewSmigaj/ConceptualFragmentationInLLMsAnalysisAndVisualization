@@ -178,11 +178,11 @@ class UnifiedCTAResultsManager:
         
         for i, result in enumerate(micro_results):
             summary['micro_cluster_summary'].append({
-                'macro_cluster_id': i,
-                'n_micro_clusters': result.get('n_micro_clusters', 0),
-                'n_anomalies': result.get('n_anomalies', 0),
-                'coverage': result.get('coverage', 0),
-                'purity': result.get('purity', 0)
+                'macro_cluster_id': int(i),
+                'n_micro_clusters': int(result.get('n_micro_clusters', 0)),
+                'n_anomalies': int(result.get('n_anomalies', 0)),
+                'coverage': float(result.get('coverage', 0)),
+                'purity': float(result.get('purity', 0))
             })
         
         summary_file = layer_dir / 'micro_clustering_summary.json'
@@ -208,10 +208,19 @@ class UnifiedCTAResultsManager:
                 'timestamp': datetime.now()
             }, f)
         
-        # Save path metrics as JSON
+        # Save path metrics as JSON (convert tuple keys to strings)
+        def convert_keys(obj):
+            if isinstance(obj, dict):
+                return {str(k): convert_keys(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_keys(item) for item in obj]
+            else:
+                return obj
+        
+        json_safe_metrics = convert_keys(path_metrics)
         metrics_file = self.subdirs['paths'] / 'path_metrics.json'
         with open(metrics_file, 'w') as f:
-            json.dump(path_metrics, f, indent=2)
+            json.dump(json_safe_metrics, f, indent=2)
         
         # Save archetypal paths as JSON
         paths_file = self.subdirs['paths'] / 'archetypal_paths.json'

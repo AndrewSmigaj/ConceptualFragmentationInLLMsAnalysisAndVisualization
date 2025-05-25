@@ -63,7 +63,10 @@
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"import scipy; print(f'scipy version: {scipy.__version__}')\")",
       "Bash(../../../venv311/Scripts/python.exe complete_analysis_enhanced.py:*)",
       "Bash(timeout:*)",
-      "Bash(../../../venv311/Scripts/python.exe:*)"
+      "Bash(../../../venv311/Scripts/python.exe:*)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"\nfrom visualization.unified_visualizer import UnifiedVisualizer\nprint('✓ UnifiedVisualizer imports successfully')\nprint('✓ Methods available:', [m for m in dir(UnifiedVisualizer) if not m.startswith('_')])\n\")",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"\nfrom pathlib import Path\nfrom visualization.unified_visualizer import UnifiedVisualizer\nprint(''✓ UnifiedVisualizer imports successfully'')\nvis = UnifiedVisualizer(Path(''test_output''))\nprint(''✓ UnifiedVisualizer instantiated'')\nmethods = [m for m in dir(vis) if not m.startswith(''_'') and callable(getattr(vis, m))]\nprint(f''✓ Available methods ({len(methods)}): {methods[:3]}...'')\n\")",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"\nfrom pathlib import Path\nfrom visualization.unified_visualizer import UnifiedVisualizer\nprint(''SUCCESS: UnifiedVisualizer imports successfully'')\nvis = UnifiedVisualizer(Path(''test_output''))\nprint(''SUCCESS: UnifiedVisualizer instantiated'')\nmethods = [m for m in dir(vis) if not m.startswith(''_'') and callable(getattr(vis, m))]\nprint(f''SUCCESS: Available methods: {len(methods)}'')\nfor m in methods[:5]:\n    print(f''  - {m}'')\n\")"
     ],
     "deny": []
   }

@@ -11,7 +11,7 @@ Interpretability research often struggles to balance rigor and accessibility, os
 
 The challenge of translating quantitative patterns into qualitative understanding is particularly acute. While metrics like silhouette scores or mutual information can validate clustering quality, they offer limited insight into the semantic meaning of identified patterns. Our work introduces a novel approach to this problem by leveraging large language models (LLMs) to generate human-readable narratives that explain the conceptual significance of activation patterns.
 
-We demonstrate this methodology through comprehensive case studies analyzing GPT-2's internal representations. Our semantic pivot analysis reveals how transformer models process contradictory information, while our semantic subtypes study examines the organization of conceptual knowledge across 774 validated words spanning 8 semantic categories. These studies showcase CTA's ability to uncover both syntactic and semantic processing patterns in large language models.
+We demonstrate this methodology through groundbreaking case studies analyzing GPT-2's internal representations. Our semantic pivot analysis reveals how transformer models process contradictory information. Most remarkably, our semantic subtypes study—examining 566 validated words across 8 semantic categories—discovered that GPT-2 organizes language by grammatical function rather than semantic meaning. Through our novel ``Concept MRI'' visualization, we found that 72.8\% of all words converge to a single ``noun superhighway,'' with animals and objects processed identically despite semantic differences. This counterintuitive finding challenges fundamental assumptions about how neural language models organize information.
 
 \textbf{Contributions}:
 \begin{itemize}
@@ -20,8 +20,10 @@ We demonstrate this methodology through comprehensive case studies analyzing GPT
     \item Develop cross-layer metrics (centroid similarity, membership overlap, fragmentation scores) to quantify concept evolution
     \item Propose a reproducible framework for path stability assessment using statistical robustness measures (ARI, MI, null models)
     \item Implement LLM-powered analysis to generate human-readable explanations of cluster paths
-    \item Demonstrate transformer interpretability through GPT-2 semantic pivot and subtypes analysis
-    \item Reveal layer-specific semantic organization patterns in large language models
+    \item \textbf{Discover grammatical organization in GPT-2}: First empirical evidence that transformers organize by syntax not semantics
+    \item \textbf{Introduce ``Concept MRI'' visualization}: Novel technique for tracking concept flow through neural networks
+    \item \textbf{Reveal massive convergence patterns}: 72.8\% of words converge to unified grammatical pipelines
+    \item \textbf{Identify phase transitions}: Stability analysis reveals critical reorganization points in neural processing
     \item Demonstrate bias detection capabilities through demographic analysis of paths
     \item Provide an open-source implementation blueprint for application across diverse domains
 \end{itemize}

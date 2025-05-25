@@ -245,13 +245,19 @@ class DirectInterpreter:
         
         return analysis
     
-    def _get_layer_context(self, layer: int) -> str:
+    def _get_layer_context(self, layer) -> str:
         """Get semantic context for a layer in GPT-2."""
-        if layer <= 2:
+        # Convert string layer to int if needed
+        if isinstance(layer, str) and layer.startswith('layer_'):
+            layer_idx = int(layer.split('_')[1])
+        else:
+            layer_idx = int(layer)
+            
+        if layer_idx <= 2:
             return "early_features"
-        elif layer <= 5:
+        elif layer_idx <= 5:
             return "basic_patterns"
-        elif layer <= 8:
+        elif layer_idx <= 8:
             return "abstract_concepts"
         else:
             return "high_level_semantics"
@@ -264,10 +270,16 @@ class DirectInterpreter:
         """Generate detailed interpretation of a cluster."""
         interpretations = []
         
-        # Layer-based interpretation
-        if layer <= 2:
+        # Layer-based interpretation  
+        # Convert string layer to int if needed
+        if isinstance(layer, str) and layer.startswith('layer_'):
+            layer_idx = int(layer.split('_')[1])
+        else:
+            layer_idx = int(layer)
+            
+        if layer_idx <= 2:
             interpretations.append("In early layers, this cluster captures surface-level features.")
-        elif layer <= 5:
+        elif layer_idx <= 5:
             interpretations.append("In middle layers, this cluster represents emerging patterns.")
         else:
             interpretations.append("In later layers, this cluster encodes abstract relationships.")

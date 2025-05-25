@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-2 Concept MRI Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        /* Full height layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 0.5rem 0;
+            flex-shrink: 0;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 300;
+        }
+        
+        .header .subtitle {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Content area */
+        .content-area {
+            flex: 1;
+            padding: 0.5rem;
+        }
+        
+        /* Metrics row */
+        .metrics-row {
+            flex-shrink: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #0d6efd;
+            margin: 0;
+        }
+        
+        .metric-label {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+        
+        /* Main content grid */
+        .visualization-grid {
+            margin-bottom: 2rem;
+        }
+        
+        /* Sankey container */
+        .sankey-col {
+            margin-bottom: 1rem;
+        }
+        
+        .sankey-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .sankey-card h5 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+            color: #2c3e50;
+        }
+        
+        .sankey-card p {
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sankey-frame {
+            border: 1px solid #e9ecef;
+            border-radius: 0.25rem;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        /* Path info section */
+        .path-info {
+            background: #f8f9fa;
+            border-radius: 0.25rem;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+        }
+        
+        .path-info h6 {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .path-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 0.25rem;
+            padding: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .path-sequence {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+        }
+        
+        .cluster-label {
+            color: #6c757d;
+            font-weight: normal;
+            font-size: 0.7rem;
+        }
+        
+        /* Analysis panel */
+        .analysis-panel {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            height: 100%;
+            overflow-y: auto;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .analysis-panel h5 {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.25rem;
+        }
+        
+        /* Finding boxes */
+        .finding-box {
+            background: #e7f3ff;
+            border-left: 3px solid #0d6efd;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+        
+        /* LLM insights */
+        .llm-insight {
+            background: #d4edda;
+            border-left: 3px solid #28a745;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 0.25rem;
+            font-size: 0.7rem;
+        }
+        
+        .llm-insight::before {
+            content: "🤖 ";
+            font-weight: bold;
+        }
+        
+        /* Cluster labels legend */
+        .cluster-legend {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 0.25rem;
+            padding: 0.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
+        }
+        
+        .cluster-legend-item {
+            display: inline-block;
+            margin-right: 0.75rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .cluster-id {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        /* Tabs */
+        .nav-tabs {
+            font-size: 0.8rem;
+        }
+        
+        .nav-tabs .nav-link {
+            padding: 0.25rem 0.75rem;
+        }
+        
+        .tab-content {
+            height: calc(100% - 32px);
+            overflow-y: auto;
+            padding-top: 0.5rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1400px) {
+            .path-info {
+                font-size: 0.8rem;
+            }
+            .metric-value {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Path stats */
+        .path-stats {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .path-stats span {
+            margin-right: 1rem;
+        }
+        
+        /* Grammar badges */
+        .badge-noun { background-color: #e3f2fd; color: #1565c0; }
+        .badge-adjective { background-color: #fff3e0; color: #e65100; }
+        .badge-adverb { background-color: #e8f5e9; color: #2e7d32; }
+        .badge-verb { background-color: #f3e5f5; color: #6a1b9a; }
+    </style>
+    
+    <script>
+        // LLM-generated cluster labels
+        const clusterLabels = {
+            // Layer 0 - Semantic Differentiation
+            "L0_C0": "Animate Creatures",
+            "L0_C1": "Tangible Objects", 
+            "L0_C2": "Scalar Properties",
+            "L0_C3": "Abstract & Relational",
+            
+            // Layers 1-3 - Binary Consolidation
+            "L1_C0": "Modifier Space",
+            "L1_C1": "Entity Space",
+            "L2_C0": "Property Attractor",
+            "L2_C1": "Object Attractor",
+            "L3_C0": "Property Attractor",
+            "L3_C1": "Object Attractor",
+            
+            // Layers 4-7 - Grammatical Highways
+            "L4_C0": "Adjective Gateway",
+            "L4_C1": "Noun Gateway",
+            "L5_C0": "Entity Pipeline",
+            "L5_C1": "Property Pipeline",
+            "L6_C0": "Entity Pipeline",
+            "L6_C1": "Property Pipeline",
+            "L7_C0": "Modifier Hub",
+            "L7_C1": "Entity Hub",
+            
+            // Layers 8-11 - Syntactic Superhighways
+            "L8_C0": "Modifier Entry",
+            "L8_C1": "Entity Entry",
+            "L9_C0": "Entity Stream",
+            "L9_C1": "Modifier Stream",
+            "L10_C0": "Entity Stream",
+            "L10_C1": "Modifier Stream",
+            "L11_C0": "Terminal Modifiers",
+            "L11_C1": "Terminal Entities"
+        };
+        
+        // Function to format cluster with label
+        function formatCluster(clusterId) {
+            const label = clusterLabels[clusterId] || clusterId;
+            return `${clusterId} <span class="cluster-label">(${label})</span>`;
+        }
+        
+        // Function to format path with labels
+        function formatPath(clusterSequence) {
+            return clusterSequence.map(c => formatCluster(c)).join(' → ');
+        }
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="d-inline me-3">GPT-2 Concept MRI Dashboard</h1>
+                        <span class="subtitle">Visualizing Semantic Organization Through Layer-wise Clustering</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content Area -->
+        <div class="content-area">
+            <!-- Key Metrics Row -->
+            <div class="metrics-row">
+                <div class="row g-2">
+                    <div class="col-md-8">
+                        <div class="finding-box mb-0">
+                            <strong>Key Finding:</strong> GPT-2 reorganizes from semantic categories (animals vs objects) to grammatical functions (nouns vs modifiers)
+                            <span class="ms-3"><strong>Path Reduction:</strong> 19→4</span>
+                            <span class="ms-3"><strong>Convergence:</strong> 72.8%</span>
+                            <span class="ms-3"><strong>Stability:</strong> 0.72→0.34</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <small class="text-muted">566 words • 8 categories • 12 layers</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Visualization Grid -->
+            <div class="visualization-grid">
+                <div class="row g-2">
+                    <!-- Early Window -->
+                    <div class="col-md-4 sankey-col">
+                        <div class="sankey-card">
+                            <h5><i class="bi bi-diagram-3"></i> Early Window (L0-L3)</h5>
+                            <p class="text-muted small mb-2">19 paths: Semantic differentiation phase</p>
+                            <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_early_enhanced.html" class="sankey-frame"></iframe>
+                            <div class="path-info">
+                                <h6 class="mb-2">Top Archetypal Paths:</h6>
+                                <div class="path-item">
+                                    <div class="path-sequence">L0_C1 (Tangible Objects) → L1_C1 (Entity Space) → L2_C1 (Object Attractor) → L3_C1 (Object Attractor)</div>
+                                    <div class="path-stats">
+                                        <span><strong>27.2%</strong> (154 words)</span>
+                                        <span class="badge badge-noun">Concrete Nouns</span>
+                                    </div>
+                                    <small class="text-muted">mouse, window, clock, computer, engine, sun, cookie, tool</small>
+                                </div>
+                                <div class="path-item">
+                                    <div class="path-sequence">L0_C0 (Animate Creatures) → L1_C1 (Entity Space) → L2_C1 (Object Attractor) → L3_C1 (Object Attractor)</div>
+                                    <div class="path-stats">
+                                        <span><strong>23.1%</strong> (131 words)</span>
+                                        <span class="badge badge-noun">Living Entities</span>
+                                    </div>
+                                    <small class="text-muted">cat, dog, bird, fish, horse, cow, rat, bear</small>
+                                    <div class="llm-insight mt-1">Living entities initially separate but merge with objects</div>
+                                </div>
+                                <div class="path-item">
+                                    <div class="path-sequence">L0_C2 (Scalar Properties) → L1_C0 (Modifier Space) → L2_C0 (Property Attractor) → L3_C0 (Property Attractor)</div>
+                                    <div class="path-stats">
+                                        <span><strong>15.9%</strong> (90 words)</span>
+                                        <span class="badge badge-adjective">Mixed Modifiers</span>
+                                    </div>
+                                    <small class="text-muted">small, large, tiny, huge, wrong, good, evil</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Middle Window -->
+                    <div class="col-md-4 sankey-col">
+                        <div class="sankey-card">
+                            <h5><i class="bi bi-diagram-3"></i> Middle Window (L4-L7)</h5>
+                            <p class="text-muted small mb-2">5 paths: Grammatical consolidation phase</p>
+                            <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_middle_enhanced.html" class="sankey-frame"></iframe>
+                            <div class="path-info">
+                                <h6 class="mb-2">Dominant Processing Pipelines:</h6>
+                                <div class="path-item">
+                                    <div class="path-sequence">L4_C1 (Noun Gateway) → L5_C0 (Entity Pipeline) → L6_C0 (Entity Pipeline) → L7_C1 (Entity Hub)</div>
+                                    <div class="path-stats">
+                                        <span><strong>72.8%</strong> (412 words)</span>
+                                        <span class="badge badge-noun">Universal Noun Highway</span>
+                                    </div>
+                                    <small class="text-muted">ALL nouns merge: animals + objects + abstracts + tools</small>
+                                    <div class="llm-insight mt-1">The Great Convergence: "cat" and "computer" travel the same path</div>
+                                </div>
+                                <div class="path-item">
+                                    <div class="path-sequence">L4_C0 (Adjective Gateway) → L5_C1 (Property Pipeline) → L6_C1 (Property Pipeline) → L7_C0 (Modifier Hub)</div>
+                                    <div class="path-stats">
+                                        <span><strong>25.8%</strong> (146 words)</span>
+                                        <span class="badge badge-adjective">Adjectives</span>
+                                        <span class="badge badge-adverb">Adverbs</span>
+                                    </div>
+                                    <small class="text-muted">Composition: physical adj (35%), degree adv (25%), emotive adj (20%), manner adv (15%)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Late Window -->
+                    <div class="col-md-4 sankey-col">
+                        <div class="sankey-card">
+                            <h5><i class="bi bi-diagram-3"></i> Late Window (L8-L11)</h5>
+                            <p class="text-muted small mb-2">4 paths: Syntactic superhighways</p>
+                            <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_late_enhanced.html" class="sankey-frame"></iframe>
+                            <div class="path-info">
+                                <h6 class="mb-2">Final Syntactic Organization:</h6>
+                                <div class="path-item">
+                                    <div class="path-sequence">L8_C1 (Entity Entry) → L9_C0 (Entity Stream) → L10_C0 (Entity Stream) → L11_C1 (Terminal Entities)</div>
+                                    <div class="path-stats">
+                                        <span><strong>72.8%</strong> (412 words)</span>
+                                        <span class="badge badge-noun">Noun Superhighway</span>
+                                    </div>
+                                    <small class="text-muted">Perfect stability (100%) - ALL semantic subtypes of nouns processed identically</small>
+                                </div>
+                                <div class="path-item">
+                                    <div class="path-sequence">L8_C0 (Modifier Entry) → L9_C1 (Modifier Stream) → L10_C1 (Modifier Stream) → L11_C0 (Terminal Modifiers)</div>
+                                    <div class="path-stats">
+                                        <span><strong>25.8%</strong> (146 words)</span>
+                                        <span class="badge badge-adjective">Modifier Highway</span>
+                                    </div>
+                                    <small class="text-muted">Adjectives & adverbs completely unified - no distinction</small>
+                                    <div class="llm-insight mt-1">GPT-2 treats ALL modifiers as one grammatical class</div>
+                                </div>
+                                <div class="path-item">
+                                    <div class="path-sequence">L8_C1 (Entity Entry) → L9_C1 (Modifier Stream) → L10_C1 (Modifier Stream) → L11_C1 (Terminal Entities)</div>
+                                    <div class="path-stats">
+                                        <span><strong>1.1%</strong> (6 words)</span>
+                                        <span class="badge badge-verb">Mixed/Ambiguous</span>
+                                    </div>
+                                    <small class="text-muted">mean, respected, weekly, near, enough, like</small>
+                                    <div class="llm-insight mt-1">Contains 2 verbs but still routes to entity cluster</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Analysis Panel -->
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="analysis-panel" style="padding: 1rem;">
+                        <ul class="nav nav-tabs nav-tabs-sm" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#summary-tab">Summary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#clusters-tab">All Cluster Labels</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#insights-tab">Full Insights</a>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="summary-tab">
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <h6>Cluster Count Evolution</h6>
+                                        <div class="finding-box">
+                                            <strong>Layer 0:</strong> 4 clusters (semantic differentiation)<br>
+                                            <strong>Layers 1-11:</strong> 2 clusters each (binary grammatical organization)<br>
+                                            <strong>Pattern:</strong> Rapid consolidation from semantic to syntactic
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>Path Evolution</h6>
+                                        <div class="finding-box">
+                                            <strong>Early (L0-L3):</strong> 19 paths<br>
+                                            <strong>Middle (L4-L7):</strong> 5 paths<br>
+                                            <strong>Late (L8-L11):</strong> 4 paths<br>
+                                            <strong>Convergence:</strong> 72.8% to noun superhighway
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="clusters-tab">
+                                <div class="cluster-legend mt-3">
+                                    <strong>Layer 0 (4 clusters - Semantic Differentiation):</strong><br>
+                                    <span class="cluster-legend-item"><span class="cluster-id">L0_C0</span> = Animate Creatures</span>
+                                    <span class="cluster-legend-item"><span class="cluster-id">L0_C1</span> = Tangible Objects</span>
+                                    <span class="cluster-legend-item"><span class="cluster-id">L0_C2</span> = Scalar Properties</span>
+                                    <span class="cluster-legend-item"><span class="cluster-id">L0_C3</span> = Abstract & Relational</span>
+                                </div>
+                                <div class="cluster-legend">
+                                    <strong>Layers 1-11 (2 clusters each - Binary Organization):</strong><br>
+                                    <span class="cluster-legend-item">C0 = Modifier/Property Space (adjectives, adverbs)</span><br>
+                                    <span class="cluster-legend-item">C1 = Entity/Object Space (nouns, noun-like words)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="insights-tab">
+                                <div class="llm-insight mt-3">
+                                    <strong>The Great Convergence:</strong> GPT-2 transforms from semantic awareness (animals vs objects vs properties) to pure grammatical organization (entities vs modifiers) through its layers.
+                                </div>
+                                <div class="finding-box">
+                                    <strong>No Verb Cluster:</strong> Even words with verbal meaning get routed through existing clusters - GPT-2 doesn't create a separate verb pathway.
+                                </div>
+                                <div class="finding-box">
+                                    <strong>Adjective-Adverb Unity:</strong> Complete merger of these categories suggests GPT-2 treats all modifiers as functionally equivalent.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
