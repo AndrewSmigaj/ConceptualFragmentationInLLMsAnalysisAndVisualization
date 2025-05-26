@@ -23,11 +23,7 @@ The architecture includes:
 
 \subsection{Semantic Cluster Labels}
 
-The cluster labeling process transforms abstract mathematical representations (centroids) into semantically meaningful concepts. Our experiments with the Titanic and Heart Disease datasets demonstrated that LLMs can generate consistent, meaningful labels even for similar clusters, distinguishing subtle differences in their representations.
-
-% Include generated cluster labels
-\input{sections/generated/titanic_labels}
-\input{sections/generated/heart_labels}
+The cluster labeling process transforms abstract mathematical representations (centroids) into semantically meaningful concepts. LLMs analyze cluster properties—including centroid values, dominant features, and datapoint characteristics—to generate interpretable labels. For instance, in medical applications, clusters might be labeled as "High-Risk Elderly" or "Low Cardiovascular Stress" based on their statistical properties. This automated labeling provides immediate interpretability while maintaining consistency across analyses.
 
 \subsection{Path Narratives}
 
@@ -59,94 +55,17 @@ The narrative generation process explains how concepts evolve as data traverses 
 % \input{sections/generated/titanic_bias}
 % \input{sections/generated/heart_bias}
 
-% Comprehensive GPT-4 reports
-\subsection{LLM Consolidated Reports}
-\input{sections/generated/titanic_report} % This should contain the cleaned Titanic narratives
-\input{sections/generated/heart_report}   % This should contain the cleaned Heart narratives
+% Note: Specific LLM-generated reports for case studies are included in their respective sections
 
-\subsection{Fragmentation Metrics Overview}
+\subsection{Integrating Metrics with Narratives}
 
-To ground the LLM narratives in quantitative evidence, we compute 
-three complementary fragmentation measures for every layer and for each
-archetypal path:
+The quantitative metrics defined in Section 3.6 (F, FC, CE, SA) are provided to the LLM as part of the prompt, enabling narrative explanations that tie qualitative descriptions to quantitative evidence. For example, the LLM can explain that "entropy drops sharply from layer 2 to layer 3, indicating that the network consolidates risk factors" or "the decreasing sub-space angles reveal progressive alignment between disease and healthy patient representations."
 
-\begin{description}
-    \item[Path--Centroid Fragmentation (\textit{FC})]  Measures how
-    dissimilar consecutive clusters are along a specific sample path.
-    It is defined as $\mathrm{FC}=1-\overline{\mathrm{sim}}$, where
-    $\overline{\mathrm{sim}}$ is the mean centroid similarity
-    (cosine) between successive clusters on the path.  High values
-    indicate that the representation for a data point ``jumps'' across
-    concept regions between layers; low values indicate a coherent,
-    incremental refinement.
-
-    \item[Intra--Class Cluster Entropy (\textit{CE})]  For every
-    layer we cluster activations and measure the Shannon entropy of
-    the resulting cluster distribution \emph{within} each ground--truth
-    class.  The entropy is normalised by $\log_2 k^*$ (the selected
-    number of clusters) so that $\textit{CE}=1$ means class features
-    are maximally dispersed, whereas $\textit{CE}=0$ means that each
-    class occupies a single, compact cluster.
-
-    \item[Sub--space Angle Fragmentation (\textit{SA})]  We compute
-    the principal components for the activations of each class and
-    evaluate the pair-wise principal angles between those subspaces.
-    Large mean angles ($\gg 0^\circ$) imply that the network embeds
-    classes in orthogonal directions—evidence of fragmentation—while
-    small angles suggest a shared, low–dimensional manifold.
-\end{description}
-
-The optimal cluster count $k^*$ chosen by the silhouette criterion is
-reported alongside the metrics.  Empirically we find:
-\begin{itemize}
-    \item Layers with \textit{CE} $\uparrow$ and \textit{SA} $\uparrow$
-          correlate with high \textit{FC} in their outgoing paths,
-          indicating simultaneous dispersion across samples and
-          conceptual jumps along individual trajectories.
-    \item Decreases in $k^*$ often coincide with lower entropy and
-          angle, signalling that the network is condensing disparate
-          features into fewer, more stable concepts as depth
-          increases.
-\end{itemize}
-
-All three metrics are provided to the LLM as part of the prompt so
-that narrative explanations can tie qualitative descriptions to
-quantitative evidence (e.g., ``\emph{entropy drops sharply from layer~2
- to layer~3, indicating that the network consolidates passenger class
- information}'').
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.32\textwidth]{figures/optimal_clusters.png}
-    \includegraphics[width=0.32\textwidth]{figures/cluster_entropy.png}
-    \includegraphics[width=0.32\textwidth]{figures/subspace_angle.png}
-    \caption{Layer-wise quantitative fragmentation metrics.
-    Left: optimal $k^*$ per layer;
-    middle: normalised intra-class cluster entropy (CE);
-    right: mean sub-space angle (SA).}
-    \label{fig:fragmentation_metrics}
-\end{figure}
 
 \begin{table}[h!]
 \centering
-\caption{Layer-wise fragmentation metrics for the Titanic dataset model.}
-\label{tab:fragmentation_metrics_titanic}
-\begin{tabular}{lcccc}
-\toprule
-Layer & $k^*$ & CE & SA ($^\circ$) & FC (path mean) \\
-\midrule
-Layer 1 & 10 & 0.818 & 39.6 & 0.432 \\
-Layer 2 &  2 & 0.784 & 33.5 & 0.432 \\
-Layer 3 &  2 & 0.779 & 25.7 & 0.432 \\
-Output  &  2 & 0.761 & 12.9 & 0.432 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\caption{Layer-wise fragmentation metrics for the Heart dataset model.}
-\label{tab:fragmentation_metrics_heart}
+\caption{Example layer-wise fragmentation metrics showing how different metrics capture complementary aspects of concept evolution.}
+\label{tab:fragmentation_metrics_example}
 \begin{tabular}{lcccc}
 \toprule
 Layer & $k^*$ & CE & SA ($^\circ$) & FC (path mean) \\
@@ -157,7 +76,7 @@ Layer 3 & 2 & 0.711 &  7.8 & 0.096 \\
 Output  & 2 & 0.702 &  3.1 & 0.096 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table}\footnote{In this example from a shallow network, the consistent FC value of 0.096 indicates stable cluster representations throughout. Low fragmentation coefficients suggest smooth concept evolution, with cluster centroids maintaining high similarity (approximately 90.4\% cosine similarity) between consecutive layers.}
 
 \subsection{Advantages and Limitations}
 

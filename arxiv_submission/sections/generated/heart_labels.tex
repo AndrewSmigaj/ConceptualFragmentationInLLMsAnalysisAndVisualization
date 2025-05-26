@@ -1,3 +1,27 @@
 \subsection{Cluster Labels for Heart Dataset}
+
+Our LLM analysis revealed semantically meaningful cluster labels that reflect the model's risk stratification strategy:
+
+\textbf{Layer 1 (Initial Risk Categorization):}
 \begin{itemize}
+    \item \textbf{L1C0}: ``High-Risk Older Males'' — Older, predominantly male patients with typical angina and elevated cholesterol
+    \item \textbf{L1C1}: ``Lower-Risk Younger Individuals'' — Younger, mixed-sex patients with asymptomatic or non-anginal chest pain
+\end{itemize}
+
+\textbf{Layer 2 (Cardiovascular Health Refinement):}
+\begin{itemize}
+    \item \textbf{L2C0}: ``Low Cardiovascular Stress'' — Patients with low blood pressure and healthy cardiovascular indicators
+    \item \textbf{L2C1}: ``Controlled High-Risk'' — Patients with controlled symptoms but underlying risks like high cholesterol
+\end{itemize}
+
+\textbf{Layer 3 (Abstract Risk Assessment):}
+\begin{itemize}
+    \item \textbf{L3C0}: ``Stress-Induced Risk'' — Patients with high blood pressure and exercise-induced angina
+    \item \textbf{L3C1}: ``Moderate-Risk Active'' — Patients with moderate risk factors and higher maximum heart rates
+\end{itemize}
+
+\textbf{Output Layer (Final Classification):}
+\begin{itemize}
+    \item \textbf{OutputC0}: ``No Heart Disease'' — Final prediction of absence of heart disease
+    \item \textbf{OutputC1}: ``Heart Disease Present'' — Final prediction of presence of heart disease
 \end{itemize}

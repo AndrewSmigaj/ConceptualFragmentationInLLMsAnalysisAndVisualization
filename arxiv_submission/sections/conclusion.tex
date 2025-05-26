@@ -1,18 +1,43 @@
 \section{Conclusion}
 
-Concept Trajectory Analysis (CTA) with LLM-powered interpretation represents a significant advancement in neural network interpretability, combining mathematical rigor with human-understandable explanations. Our work establishes a foundation for analyzing how concepts evolve and transform as they propagate through neural networks, providing insights into both the computational and semantic aspects of model behavior.
+Concept Trajectory Analysis (CTA) provides a method for understanding how neural networks organize and process information through their layers. Our analysis of GPT-2 with 1,228 words across 8 semantic categories reveals it organizes language primarily by grammatical function, with 48.5\% (95\% CI: 45.7\%–51.2\%) of words converging to what we term an ``entity superhighway.'' The highly significant grammatical clustering ($\chi^2 = 95.90$, $p < 0.0001$) demonstrates that neural language models develop organizational principles fundamentally different from semantic categorization.
 
-The integration of cross-layer metrics such as centroid similarity, membership overlap, and fragmentation scores provides a robust framework for quantifying concept evolution, while LLM-generated narratives translate these patterns into domain-meaningful explanations. Our experiments on traditional datasets (Titanic, Heart Disease) and comprehensive GPT-2 analysis demonstrate that this approach can identify nuanced decision processes, semantic organization patterns, and potential biases that might otherwise remain opaque.
+We developed this finding using our framework that combines mathematical analysis with LLM-generated interpretations. Using CTA within our Concept MRI visualization tool, we tracked how 1,228 words across 8 semantic categories move through GPT-2's layers, observing a reorganization from semantic differentiation (26 paths) to grammatical consolidation (5 paths). The stability analysis revealed phase transitions where semantic clustering gives way to syntactic organization.
 
-The GPT-2 case studies reveal how transformer models systematically organize semantic knowledge, progressing from syntactic to semantic representations across layers. Our semantic pivot analysis shows how models handle contradictory information, while the semantic subtypes study demonstrates layer-specific clustering strategies for different conceptual categories. The per-layer ETS threshold optimization reveals that optimal clustering criteria vary systematically across network depth, providing new insights into transformer interpretability.
+We also applied CTA to medical AI applications. Our heart disease diagnosis study shows how neural networks process patient data through distinct pathways. The analysis identified four primary pathways corresponding to different patient profiles: Archetype 1 tends to process younger, lower-risk patients; Archetype 4 typically handles elderly patients with elevated cholesterol, showing 71% disease prevalence in our dataset. Path fragmentation scores appear to correlate with diagnostic uncertainty—patients with ambiguous clinical indicators often show higher fragmentation. This analysis could help understand model behavior in medical contexts.
 
-By formalizing the conditions under which activation-space clustering is valid and establishing methods to assess path stability, we have addressed critical gaps in the theoretical foundation of cluster-based interpretability. The incorporation of Explainable Threshold Similarity (ETS) further enhances transparency by providing verbalizably transparent membership conditions that can be directly communicated to domain experts.
+Our integration of cross-layer metrics—centroid similarity ($\rho^c$), membership overlap ($J$), and trajectory fragmentation ($F$)—provides a mathematically grounded framework for quantifying concept evolution. The use of Gap statistic for optimal cluster determination ensures statistically valid groupings, while LLM-powered analysis translates complex patterns into domain-meaningful narratives. This combination addresses the longstanding challenge of making neural network internals both rigorously analyzable and humanly understandable.
 
-This work represents a step toward bridging the divide between mathematical precision and human understanding in interpretability research, offering tools that can help researchers, developers, and end-users better understand the internal workings of neural networks. As models continue to grow in complexity and impact, approaches like CTA that combine quantitative analysis with qualitative explanation will become increasingly important for ensuring transparency, fairness, and trustworthiness in AI systems.
+Our findings, while preliminary, suggest interesting directions for future research. If confirmed by larger studies, the observation that GPT-2 may prioritize grammatical over semantic organization could inform our understanding of neural network information processing. The relatively low computational overhead of CTA makes it practical for analyzing larger models, though more work is needed to validate its effectiveness across different architectures and domains.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/cluster_entropy.png}
-    \caption{Cluster entropy analysis showing the distribution of information across the network's internal representation spaces.}
-    \label{fig:cluster_entropy}
-\end{figure}
+As neural networks grow in complexity and impact, interpretability methods become increasingly important. Our work suggests that neural networks may organize information differently from human intuition. By making these organizational principles more visible, CTA contributes to the broader effort of developing interpretable AI systems.
+
+\subsection{Limitations and Failure Modes}
+
+While CTA provides valuable insights into neural network organization, several limitations and failure modes warrant discussion:
+
+\subsubsection{Technical Limitations}
+
+\begin{itemize}
+    \item \textbf{Clustering instability}: When activation spaces lack clear structure, clustering results may vary significantly across runs. Low silhouette scores or high variance in cluster assignments indicate unreliable trajectories.
+    \item \textbf{Scalability challenges}: Very deep networks (100+ layers) pose computational and interpretability challenges. Tracking trajectories through many layers can obscure rather than clarify patterns.
+    \item \textbf{High-dimensional curse}: In extremely high-dimensional activation spaces, distance metrics become less meaningful, potentially leading to arbitrary cluster assignments.
+\end{itemize}
+
+\subsubsection{Interpretation Risks}
+
+\begin{itemize}
+    \item \textbf{Spurious patterns}: Random fluctuations might appear as meaningful paths, especially with small sample sizes. Statistical validation (as we demonstrated with $\chi^2$ tests) is essential.
+    \item \textbf{LLM hallucination}: Generated narratives may sound plausible while misrepresenting actual patterns. Cross-validation with quantitative metrics is crucial.
+    \item \textbf{Correlation vs. causation}: CTA reveals organizational patterns but cannot establish causal relationships. Interventional studies are needed to verify causal claims.
+\end{itemize}
+
+\subsubsection{Application Boundaries}
+
+\begin{itemize}
+    \item \textbf{Architecture dependence}: CTA works best with feedforward architectures. Recurrent or highly branched architectures may require adaptation.
+    \item \textbf{Domain transfer}: Patterns discovered in one domain (e.g., language) may not transfer to others (e.g., vision) without careful validation.
+    \item \textbf{Training dynamics}: CTA analyzes trained models. Understanding how these patterns emerge during training requires additional analysis.
+\end{itemize}
+
+Despite these limitations, CTA's mathematical grounding, statistical validation, and empirical successes (discovering grammatical organization in GPT-2, identifying clinical pathways in medical AI) demonstrate its value as an interpretability tool. Responsible use involves acknowledging these limitations, validating findings through multiple approaches, and maintaining appropriate skepticism about generated narratives.

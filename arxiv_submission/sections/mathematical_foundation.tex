@@ -6,31 +6,62 @@ Let $A^l \in \mathbb{R}^{n \times d_l}$ denote the matrix of activations at laye
 
 \subsection{Metric Selection and Validity}
 
-We cluster $A^l$ into $k_l$ clusters, assigning layer-specific labels L$l$C0, L$l$C1, \dots, L$l$C$\{k_l-1\}$. A datapoint's path is a sequence $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, where $c_i^l = \text{L}l\text{C}k$ is the cluster assignment at layer $(l)$. We examine Euclidean, cosine, and Mahalanobis metrics. In high-dimensional spaces, Euclidean norms lose contrast; cosine and L1 often behave better. PCA or normalization can stabilize comparisons. In feedforward networks, paths are unidirectional, and apparent convergence (e.g., [L1C0 $\rightarrow$ L2C2 $\rightarrow$ L3C0]) is validated by computing cosine or Euclidean similarity between cluster centroids across layers, ensuring that any perceived similarity reflects geometric proximity in activation space rather than shared labels.
+We cluster $A^l$ into $k_l$ clusters, assigning unique layer-specific labels L$l$\_C0, L$l$\_C1, \dots, L$l$\_C$\{k_l-1\}$. This unique labeling scheme (e.g., L4\_C1 for layer 4, cluster 1) prevents cross-layer confusion and enables precise tracking of concept evolution. A datapoint's path is a sequence $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, where $c_i^l$ is the cluster assignment at layer $l$ in the format L$l$\_C$k$. 
 
-\subsection{Geometry Stability Across Training Seeds}
+We determine optimal $k_l$ using the Gap statistic, which compares within-cluster dispersion to that expected under a null reference distribution. For layer $l$, we compute:
+$$\text{Gap}(k) = \mathbb{E}[\log(W_k^*)] - \log(W_k)$$
+where $W_k$ is the within-cluster sum of squares and $W_k^*$ is its expectation under the null.
 
-We quantify stability with Earth Mover's Distance and adjusted Rand Index (ARI) across retrained models, pruning, and dropout. Stable archetypal paths indicate robustness to training noise. Cluster transition matrices are visualized and analyzed via entropy and sparsity. To assess whether paths exhibit similarity-convergent behavior (e.g., [L1C0 $\rightarrow$ L2C2 $\rightarrow$ L3C0] where L3C0 resembles L1C0), we compute centroids $\mathbf{c}_k^l$ for each cluster $(L_lC_k)$ as the mean of activation vectors $\mathbf{a}_i^l$ for datapoints $(i)$ in cluster $(k)$ at layer $(l)$. We calculate pairwise cosine similarity, $\text{cos}(\mathbf{c}_k^l, \mathbf{c}_j^m) = \frac{\mathbf{c}_k^l \cdot \mathbf{c}_j^m}{\|\mathbf{c}_k^l\| \|\mathbf{c}_j^m\|}$, or Euclidean distance, $d(\mathbf{c}_k^l, \mathbf{c}_j^m) = \|\mathbf{c}_k^l - \mathbf{c}_j^m\|_2$, between clusters across layers (e.g., L1C0 and L3C0). High similarity (e.g., $\text{cos}(\mathbf{c}_0^1, \mathbf{c}_0^3) > 0.9$) indicates a similarity-convergent path, suggesting semantic consistency.
+We examine Euclidean, cosine, and Mahalanobis metrics. In high-dimensional spaces, Euclidean norms lose contrast; cosine and L1 often behave better. PCA or normalization can stabilize comparisons. In feedforward networks, paths are unidirectional, and apparent convergence (e.g., [L1\_C0 $\rightarrow$ L2\_C2 $\rightarrow$ L3\_C0]) is validated by computing cosine or Euclidean similarity between cluster centroids across layers, ensuring that any perceived similarity reflects geometric proximity in activation space rather than shared labels.
 
-\subsection{Explainable Threshold Similarity (ETS)}
 
-Following \citet{kovalerchuk2024}, ETS declares two activations similar if $\bigl|a_{ij}^l - a_{kj}^l\bigr| \leq \tau_j$ for every dimension $j$. Cluster membership can therefore be verbalized as ``neuron $j$ differs by less than $\tau_j$,'' yielding transparent, per-dimension semantics. We propose ETS as satisfying desiderata that centroid-based methods lack:
+\subsection{Clustering Approaches}
+
+We primarily use k-means clustering with the Gap statistic for determining optimal cluster counts.
+
+\subsection{Within-Cluster Semantic Structure}
+
+While our primary analysis focuses on cluster-level trajectories, the position of datapoints within clusters carries semantic meaning. Following principles of distributional semantics, nearby points in activation space share semantic properties—even within the same cluster. For instance, within the entity superhighway (L4\_C1), "cat" and "dog" occupy closer positions than "cat" and "democracy," despite all being nouns. This suggests hierarchical organization where coarse clusters capture grammatical categories while fine-grained positions encode semantic relationships.
+
+Future work should explore micro-clustering within major pathways to reveal these semantic substructures. Techniques like hierarchical clustering or local neighborhood analysis could uncover how, for example, the entity superhighway subdivides into animate/inanimate or concrete/abstract regions while maintaining its overall grammatical coherence.
+
+\subsection{Windowed Trajectory Analysis}
+
+To capture phase transitions in neural processing, we introduce windowed analysis that segments the network into functional regions:
 \begin{itemize}
-    \item Dimension-wise interpretability
-    \item Explicit bounds on membership
-    \item Compatibility with heterogeneous feature scales
+    \item \textbf{Early Window} (layers 0-3): Initial feature extraction and semantic differentiation
+    \item \textbf{Middle Window} (layers 4-7): Conceptual reorganization and consolidation
+    \item \textbf{Late Window} (layers 8-11): Final representation and task-specific processing
 \end{itemize}
 
-\subsection{Concept-Based Cluster Annotation}
+For each window $w$, we compute stability metrics:
+$$S_w = \frac{1}{|P_w|} \sum_{p \in P_w} \frac{|\text{mode}(p)|}{|p|}$$
+where $P_w$ is the set of path segments in window $w$ and $\text{mode}(p)$ is the most frequent cluster transition. Changes in stability patterns across windows can indicate phase transitions in the network's organizational principles.
 
-To enhance interpretability, we integrate concept-based annotations using methods like Testing with Concept Activation Vectors (TCAV). For each cluster $(L_lC_k)$, we compute its alignment with human-defined concepts (e.g., ``positive sentiment,'' ``action verbs'') by measuring the sensitivity of activations to concept vectors. This allows us to label clusters with meaningful descriptors, enriching the interpretability of paths. For example, a path transitioning from a ``neutral'' cluster in layer 1 to a ``negative sentiment'' cluster in layer 3 can be narrated as reflecting a shift in the model's internal evaluation of the input.
 
-\subsection{Baseline Benchmarking}
+\subsection{Quantitative Metrics for Concept Evolution}
 
-To ensure CTA's added complexity is justified, we benchmark against:
-\begin{itemize}
-    \item Random clustering as a null model
-    \item Centroid-free ETS grouping
-    \item Simple attribution methods (saliency, IG) 
-\end{itemize}
-Improvements are validated via paired tests on silhouette and MI scores.
+To ground our analysis in quantitative evidence, we employ four complementary metrics that capture different aspects of concept evolution through neural networks:
+
+\subsubsection{Trajectory Fragmentation (F)}
+Measures path diversity for a semantic category:
+$$F = 1 - \frac{\text{count of most common path}}{\text{total paths in category}}$$
+High fragmentation indicates diverse processing strategies within a category. In our experiments, this metric proves essential for understanding convergence patterns—for instance, the expanded GPT-2 analysis shows fragmentation varying from 0.796 (early) to 0.499 (middle) to 0.669 (late), reflecting the complex dynamics of grammatical organization with a balanced dataset.
+
+\subsubsection{Path-Centroid Fragmentation (FC)}
+Measures how dissimilar consecutive clusters are along a specific sample path:
+$$FC = 1 - \overline{\text{sim}}$$
+where $\overline{\text{sim}}$ is the mean centroid similarity (cosine) between successive clusters on the path. High values indicate that representations "jump" across concept regions between layers; low values indicate coherent, incremental refinement. The heart disease model shows remarkably low FC=0.096, indicating smooth transitions.
+
+\subsubsection{Intra-Class Cluster Entropy (CE)}
+For every layer, we cluster activations and measure the Shannon entropy of the resulting cluster distribution within each ground-truth class:
+$$CE = \frac{H(C|Y)}{\log_2 k^*}$$
+where $H(C|Y)$ is the conditional entropy of clusters given class labels, normalized by $\log_2 k^*$ (the selected number of clusters). CE=1 means class features are maximally dispersed across clusters, while CE=0 means each class occupies a single, compact cluster.
+
+\subsubsection{Sub-space Angle Fragmentation (SA)}
+We compute the principal components for the activations of each class and evaluate the pair-wise principal angles between those subspaces. Large mean angles ($\gg 0°$) imply that the network embeds classes in orthogonal directions—evidence of fragmentation—while small angles suggest a shared, low-dimensional manifold. In GPT-2, we observe SA collapsing from 45-60° (semantic separation) to 5-10° (grammatical convergence).
+
+\subsection{Applying the Framework: From Theory to Practice}
+
+These metrics work in concert to reveal different aspects of neural organization. In Section \ref{sec:gpt2_case_study}, we apply them to uncover GPT-2's grammatical organization, where decreasing SA and CE values quantify the convergence from semantic to syntactic processing. In Section \ref{sec:heart_case_study}, consistently low FC values validate that medical diagnosis models maintain coherent patient representations throughout processing. The windowed analysis framework proves particularly powerful for identifying phase transitions—critical reorganization points where networks shift their organizational principles, as evidenced by stability metric drops in GPT-2's middle layers.
+

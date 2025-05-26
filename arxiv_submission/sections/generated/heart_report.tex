@@ -1,20 +1,23 @@
-\section*{Holistic System Analysis Report: Heart Dataset\n(Details for top 7 archetypes were included in the prompt)\n\n# 1. Holistic Interpretation}
+\section*{Holistic System Analysis Report: Heart Dataset}
+(Details for top 7 archetypes were included in the prompt)
+
+\subsection*{1. Holistic Interpretation}
 - The model appears to rely on a hierarchical processing strategy, where the input data is passed through successive layers of the network. At each layer, the model refines its understanding of the data, abstracting higher-level features by combining lower-level ones.
 - The mean Path-Centroid Fragmentation (FC) of 1.0 indicates that the model's processing is fairly consistent and stable. This means that the model is not splitting inputs into many diverse paths, but instead tends to channel inputs through a small number of common paths.
 
-\section*{2. Comparative Path Analysis}
+\subsection*{2. Comparative Path Analysis}
 - The different paths show variations in the age, sex, and cholesterol level of the inputs they process, as well as in their target distribution. For instance, Archetype 1 and Archetype 2 show a relatively balanced target distribution, while Archetype 3 and Archetype 4 have a majority of 'Present' cases.
 - While all paths start from the same cluster in Layer 0, they diverge at Layer 1. This suggests that the model uses the first layer to make critical decisions about which path an input should follow.
 
-\section*{3. Key Decision-Making Insights}
+\subsection*{3. Key Decision-Making Insights}
 - The model seems to use age, sex, and cholesterol level as key features for decision-making. For instance, Archetype 4, which has the highest mean age and cholesterol level, also has the highest percentage of 'Present' cases.
 - The model's decision-making process is not always linear or intuitive. For instance, Archetype 5, despite having a high mean age and cholesterol level, has a majority of 'Absent' cases.
 
-\section*{4. System-Wide Fairness \& Bias Assessment}
+\subsection*{4. System-Wide Fairness \& Bias Assessment}
 - The model does not seem to show a clear bias towards any specific demographic group. However, the fact that different paths process inputs with different demographic characteristics raises the possibility of bias.
 - If certain demographic groups are consistently routed through specific paths that have distinct fragmentation characteristics, this could suggest that the model is processing their data in a unique way. For instance, older individuals with higher cholesterol levels might consistently be routed through Archetype 4, which could be a potential source of bias.
 
-\section*{5. Synthesis and Story}
+\subsection*{5. Synthesis and Story}
 - The model processes heart data by passing it through a series of layers, each of which refines the model's understanding of the data. The model seems to rely heavily on age, sex, and cholesterol level to make its decisions, though the relationship between these features and the output is not always straightforward.
 - Archetype 1 is a well-traveled path that processes a wide range of individuals, with a slight majority of 'Absent' cases. Archetype 2, on the other hand, seems to handle individuals with slightly higher mean age and cholesterol levels, and has a more balanced distribution of 'Present' and 'Absent' cases.
 - Archetype 3 and 4 are less common paths that nevertheless play a crucial role in the model's processing. Archetype 3 handles a mix of individuals but leans towards 'Present' cases, while Archetype 4 seems to specialize in older individuals with high cholesterol levels, who are mostly 'Present'.

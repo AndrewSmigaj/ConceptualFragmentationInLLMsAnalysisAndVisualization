@@ -29,11 +29,44 @@ python generate_paper_figures.py --dataset <dataset>
 Full, runnable code is available in the public repository; all prompts and
 LLM responses are cached for deterministic builds.
 
-Interactive demos and full code implementation are available on our project repository.
+\subsection{LLM Prompts for Cluster Interpretation}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/subspace_angle.png}
-    \caption{Subspace angle analysis showing convergence and divergence patterns across layers. Lower angles represent more coherent trajectories.}
-    \label{fig:subspace_angle}
-\end{figure}
+To ensure reproducibility of our LLM-powered analysis, we document the key prompts used for cluster interpretation and path analysis:
+
+\paragraph{Cluster Labeling Prompt:}
+\begin{verbatim}
+You are analyzing clusters from a neural network. 
+For cluster L{layer}_C{cluster} containing these words:
+{sample_words}
+
+Category distribution: {category_counts}
+Cluster size: {size} words
+
+Provide a concise, interpretable label that captures 
+the semantic or grammatical essence of this cluster.
+\end{verbatim}
+
+\paragraph{Path Narrative Prompt:}
+\begin{verbatim}
+Analyze this concept trajectory through GPT-2:
+Path: {path}
+Window: {window_name}
+Grammatical distribution: {grammatical_counts}
+
+Explain how concepts evolve through these clusters,
+focusing on the transformation from semantic to 
+grammatical organization.
+\end{verbatim}
+
+\paragraph{Bias Analysis Prompt:}
+\begin{verbatim}
+Analyze potential biases in these neural pathways:
+Path: {path}
+Demographics: {demographic_stats}
+Outcome distribution: {outcomes}
+
+Identify any concerning patterns or biases in how
+different demographic groups are processed.
+\end{verbatim}
+
+Interactive demos and full code implementation are available on our project repository.

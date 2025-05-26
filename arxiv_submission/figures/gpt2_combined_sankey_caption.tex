@@ -1,0 +1,26 @@
+\begin{figure*}[ht]
+    \centering
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/gpt2_sankey_early.png}
+        \caption{Early Window (L0-L3): Semantic Differentiation}
+        \label{fig:gpt2_sankey_early}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/gpt2_sankey_middle.png}
+        \caption{Middle Window (L4-L7): Grammatical Convergence}
+        \label{fig:gpt2_sankey_middle}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/gpt2_sankey_late.png}
+        \caption{Late Window (L8-L11): Syntactic Superhighways}
+        \label{fig:gpt2_sankey_late}
+    \end{subfigure}
+    
+    \caption{Concept MRI visualization of GPT-2's semantic-to-grammatical reorganization across 1,228 words. The convergence from 26 diverse semantic paths (early window) to 8 paths (middle window) to 5 paths (late window) reveals how GPT-2 progressively develops grammatical organization. Path thickness indicates the proportion of words following each trajectory, with 50.1\% converging to dominant pathways in the middle layers. The visualization demonstrates that transformers develop grammatical organization as their primary macro-structure while maintaining semantic distinctions within these pathways, validated by highly significant grammatical clustering ($\chi^2 = 95.90$, $p < 0.0001$). The diversity of paths (5 even in late layers) and <50\% convergence rate indicate rich sub-organization within grammatical highways.}
+    \label{fig:gpt2_concept_mri}
+\end{figure*}

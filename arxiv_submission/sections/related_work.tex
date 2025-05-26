@@ -1,0 +1,55 @@
+\section{Related Work: Positioning CTA in the Interpretability Landscape}
+
+While neural network interpretability has seen significant advances, existing methods primarily focus on explaining individual predictions or visualizing static representations. We position Concept Trajectory Analysis (CTA) as addressing a critical gap: understanding how concepts dynamically evolve through neural network layers.
+
+\subsection{Attribution-Based Methods}
+
+Attribution methods like LIME \citep{ribeiro2016} and SHAP \citep{lundberg2017} decompose model predictions by assigning importance scores to input features. While valuable for understanding which inputs influence outputs, these methods treat the network as a black box, providing no insight into intermediate processing stages. Integrated Gradients \citep{sundararajan2017} traces attribution through the network but still focuses on input-output relationships rather than concept evolution.
+
+CTA differs fundamentally by tracking how representations transform across layers. Rather than asking "which pixels matter for this classification?", CTA asks "how does the concept of 'cat' evolve from pixels to semantic understanding to final prediction?" This shift from static attribution to dynamic trajectory analysis reveals organizational principles invisible to attribution methods.
+
+\subsection{Attention Mechanism Analysis}
+
+Attention visualization has become prominent in transformer interpretability, revealing which tokens the model focuses on during processing. However, attention weights show correlation, not causation, and often prove misleading about actual information flow. More critically, attention analysis remains locked to the token level, unable to capture higher-level concept organization.
+
+Consider our finding that GPT-2 routes 72.8\% of words through an "entity superhighway" regardless of semantic content. Attention analysis might show that "cat" attends to nearby determiners or adjectives, but it cannot reveal that "cat," "democracy," and "table" all follow identical processing pathways through the network's layers. While attention weights fluctuate based on context, the underlying organizational principle—grammatical categorization—remains invisible to attention-based methods.
+
+CTA transcends token-level analysis by clustering activations into meaningful concepts and tracking their evolution. Where attention asks "what does this token look at?", CTA asks "how does this concept transform?" This shift in perspective proved essential: the grammatical organization emerges not from examining individual attention patterns but from observing how hundreds of words converge to shared pathways despite starting from diverse semantic origins.
+
+\subsection{Activation and Representation Analysis}
+
+Prior work has examined neural activations through various lenses. Network Dissection \citep{bau2017} identifies neurons selective for visual concepts, while TCAV \citep{kim2018} tests concept presence using directional derivatives. Representation similarity analysis \citep{kornblith2019, raghu2017} compares activation spaces but typically focuses on single layers or layer pairs.
+
+These methods provide snapshots of representations but miss the dynamic story of concept evolution. CTA's innovation lies in:
+\begin{itemize}
+    \item \textbf{Trajectory tracking}: Following concepts through all layers, not just analyzing fixed points
+    \item \textbf{Path analysis}: Identifying archetypal routes through the network's processing pipeline
+    \item \textbf{Phase detection}: Discovering transitions like GPT-2's shift from semantic to grammatical organization
+    \item \textbf{Narrative generation}: Using LLMs to translate mathematical patterns into human understanding
+\end{itemize}
+
+\subsection{Clustering in Neural Networks}
+
+While clustering has been applied to neural activations, previous work typically clusters at single layers or uses clustering for compression rather than interpretation. Explainable clustering methods \citep{dasgupta2020} provide algorithmic transparency but haven't been systematically applied to track concept evolution through deep networks.
+
+CTA's contribution includes:
+\begin{itemize}
+    \item \textbf{Layer-specific labeling}: Our L$l$\_C$k$ notation prevents confusion and enables precise tracking
+    \item \textbf{Cross-layer metrics}: Quantifying concept evolution through centroid similarity, membership overlap, and trajectory fragmentation
+    \item \textbf{Windowed analysis}: Revealing phase transitions invisible to single-layer clustering
+\end{itemize}
+
+\subsection{The Interpretability Gap CTA Addresses}
+
+Existing interpretability methods excel at specific tasks—attribution for feature importance, attention for token relationships, activation analysis for concept detection. However, none address the fundamental question: How do neural networks organize and transform information as it flows through layers?
+
+CTA fills this gap by providing:
+\begin{enumerate}
+    \item \textbf{Dynamic analysis}: Tracking concept evolution rather than static snapshots
+    \item \textbf{Organizational insights}: Revealing principles like grammatical convergence in language models
+    \item \textbf{Multi-scale understanding}: From individual trajectories to population-level patterns
+    \item \textbf{Actionable interpretability}: Identifying bias patterns, uncertainty indicators, and decision pathways
+    \item \textbf{Narrative explanations}: Bridging mathematical analysis with human comprehension through LLM integration
+\end{enumerate}
+
+By shifting focus from "what" to "how"—from static attribution to dynamic trajectories—CTA opens new avenues for understanding neural networks as information processing systems rather than mere function approximators. This perspective proved essential for discovering that transformers organize language fundamentally differently than human linguistic intuitions suggest, a finding that emerged not from examining attention or attribution, but from tracking concepts as they journey through the network's layers.

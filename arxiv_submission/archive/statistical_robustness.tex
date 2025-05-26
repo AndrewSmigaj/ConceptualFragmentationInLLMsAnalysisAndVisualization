@@ -1,0 +1,21 @@
+\section{Statistical Robustness of Cluster Structures}
+
+This section extends the mathematical foundation (Section 4) with additional statistical analyses that validate the robustness of discovered cluster structures and paths.
+
+\subsection{Path Reproducibility Across Seeds}
+
+To assess structural stability, we define dominant archetypal paths as frequent cluster sequences across datapoints. We compute Jaccard overlap and recurrence frequency of these paths across different random seeds or bootstrapped model runs. High path recurrence suggests the presence of model-internal decision logic rather than sampling artifacts. 
+
+For clusters L$l$\_C$k$ and L$m$\_C$j$, let $S_k^l = \{i \mid \text{datapoint } i \text{ in cluster L}l\text{\_C}k\}$. We compute Jaccard similarity, $J(S_k^l, S_j^m) = \frac{|S_k^l \cap S_j^m|}{|S_k^l \cup S_j^m|}$, to measure datapoint retention across layers. High overlap between clusters -- with high centroid similarity suggests stable group trajectories. 
+
+We also compute the frequency of similarity-convergent paths by aggregating transitions where the final cluster resembles an earlier one, e.g., $[\text{L1\_C}k \rightarrow \text{L2\_C}j \rightarrow \text{L3\_C}m]$ where $\text{cos}(\mathbf{c}_k^1, \mathbf{c}_m^3) > 0.9$. Density is calculated as $D = \sum_{\text{similarity-convergent paths}} T^1_{kj} T^2_{jm} \cdot \mathbb{1}[\text{cos}(\mathbf{c}_k^1, \mathbf{c}_m^3) > \theta]$, where $T^l_{kj}$ is the transition count from L$l$\_C$k$ to L$(l+1)$\_C$j$. High density suggests latent funnels where datapoints converge to similar activation spaces.
+
+\subsection{Trajectory Coherence}
+
+For a datapoint $(i)$ with path $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, we compute the trajectory coherence score using subspace angles between consecutive centroid transitions: 
+\begin{align}
+TC_i = \frac{1}{L-2} \sum_{t=2}^{L-1} \arccos\left(\frac{(\mathbf{c}_{c_i^{t+1}}^{t+1} - \mathbf{c}_{c_i^t}^t) \cdot (\mathbf{c}_{c_i^t}^t - \mathbf{c}_{c_i^{t-1}}^{t-1})}{\|\mathbf{c}_{c_i^{t+1}}^{t+1} - \mathbf{c}_{c_i^t}^t\| \|\mathbf{c}_{c_i^t}^t - \mathbf{c}_{c_i^{t-1}}^{t-1}\|}\right)
+\end{align}
+
+Low $TC_i$ indicates coherent trajectories, especially in similarity-convergent paths. Note that this trajectory coherence metric differs from the trajectory fragmentation ($F$) defined in Section 2, which measures path diversity at the category level.
+

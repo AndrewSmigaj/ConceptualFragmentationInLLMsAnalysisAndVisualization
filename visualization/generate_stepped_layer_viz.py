@@ -17,6 +17,7 @@ import plotly.express as px
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.manifold import TSNE
+import umap
 import networkx as nx
 from typing import Dict, List, Tuple, Optional, Any, Union
 import argparse
@@ -373,9 +374,9 @@ def generate_stepped_layer_visualization(path_data: Dict,
         fig.update_layout(
             title="Archetypal Path Analysis: Stepped-Layer Visualization",
             scene=dict(
-                xaxis_title="PCA-1",
+                xaxis_title="UMAP-1",
                 yaxis_title="Layer",
-                zaxis_title="PCA-2",
+                zaxis_title="UMAP-2",
                 aspectmode='manual',
                 aspectratio=dict(x=1, y=2, z=1)
             ),

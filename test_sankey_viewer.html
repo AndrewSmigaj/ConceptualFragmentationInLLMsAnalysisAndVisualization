@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sankey Diagram Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .description {
+            color: #666;
+            margin: 10px 0;
+        }
+        .issue {
+            background-color: #ffe6e6;
+            padding: 10px;
+            border-left: 4px solid #ff0000;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sankey Diagram Inspection</h1>
+    
+    <div class="container">
+        <h2>Heart Disease Sankey</h2>
+        <p class="description">This should show 7 archetypal paths with cluster labels visible at each layer.</p>
+        <iframe src="arxiv_submission/figures/heart_sankey.html"></iframe>
+        <div class="issue">
+            <strong>Issues to check:</strong>
+            <ul>
+                <li>Are cluster labels visible? (e.g., "High-Risk Older Males", "Low CV Stress")</li>
+                <li>Is there sufficient vertical spacing between paths?</li>
+                <li>Are paths colored appropriately?</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>GPT-2 Early Window Sankey</h2>
+        <p class="description">Should show top 7 paths for layers 0-3 with semantic cluster labels.</p>
+        <iframe src="arxiv_submission/figures/gpt2_sankey_early.html"></iframe>
+        <div class="issue">
+            <strong>Issues to check:</strong>
+            <ul>
+                <li>Are cluster labels visible? (e.g., "Animate Creatures", "Tangible Objects")</li>
+                <li>Do labels align with the actual clusters?</li>
+                <li>Is the spacing adequate?</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>GPT-2 Middle Window Sankey</h2>
+        <p class="description">Should show top 7 paths for layers 4-7 with grammatical-leaning labels.</p>
+        <iframe src="arxiv_submission/figures/gpt2_sankey_middle.html"></iframe>
+    </div>
+    
+    <div class="container">
+        <h2>GPT-2 Late Window Sankey</h2>
+        <p class="description">Should show top 7 paths for layers 8-11 with grammatical highway labels.</p>
+        <iframe src="arxiv_submission/figures/gpt2_sankey_late.html"></iframe>
+    </div>
+</body>
+</html>

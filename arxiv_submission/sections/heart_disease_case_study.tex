@@ -1,0 +1,119 @@
+\section{Heart Disease Case Study: Clinical AI Interpretability Through CTA}
+
+We demonstrate CTA's power in medical AI through comprehensive analysis of a neural network trained for heart disease diagnosis. This case study reveals how the model stratifies patient risk, exposes demographic biases, and provides clinically interpretable decision pathways.
+
+\subsection{Clinical Context and Dataset}
+
+The UCI Heart Disease dataset comprises 303 patients with 13 clinical features including age, sex, chest pain type, blood pressure, cholesterol, and electrocardiographic results. Our 3-layer neural network learns to predict heart disease presence, making this an ideal test case for understanding how AI systems make life-critical medical decisions.
+
+\subsection{Progressive Risk Stratification Through Layers}
+
+CTA reveals a sophisticated risk stratification process across network layers:
+
+\subsubsection{Layer 1: Initial Risk Categorization}
+The network immediately divides patients into two fundamental groups:
+\begin{itemize}
+    \item \textbf{High-Risk Older Males} (L1C0): Mean age 54, predominantly male (69\%), with typical angina and elevated cholesterol
+    \item \textbf{Lower-Risk Younger Individuals} (L1C1): Younger patients with mixed gender distribution and asymptomatic presentation
+\end{itemize}
+
+\subsubsection{Layer 2: Cardiovascular Health Refinement}
+The model refines its assessment based on cardiovascular indicators:
+\begin{itemize}
+    \item \textbf{Low Cardiovascular Stress} (L2C0): Patients with blood pressure <130 mmHg and healthy cardiac function
+    \item \textbf{Controlled High-Risk} (L2C1): Patients with managed symptoms but persistent risk factors (cholesterol >250 mg/dl)
+\end{itemize}
+
+\subsubsection{Layer 3: Abstract Risk Profiles}
+Final risk abstraction before classification:
+\begin{itemize}
+    \item \textbf{Stress-Induced Risk} (L3C0): Exercise-induced symptoms, elevated blood pressure during stress
+    \item \textbf{Moderate-Risk Active} (L3C1): Moderate risk with preserved exercise capacity
+\end{itemize}
+
+\subsection{Five Archetypal Patient Pathways}
+
+Our analysis identified five dominant pathways through the network, each representing distinct patient archetypes:
+
+\begin{table}[h!]
+\centering
+\caption{Archetypal Patient Pathways Through Heart Disease Model}
+\label{tab:heart_pathways}
+\begin{tabular}{lccccc}
+\toprule
+Path & Trajectory & \% Patients & Demographics & True HD\% & Insight \\
+\midrule
+1 & L1C1→L2C0→L3C0→No HD & 43.3\% & Age 54, 69\% M & 40.2\% & Conservative low-risk \\
+2 & L1C0→L2C1→L3C1→HD & 35.2\% & Age 54, 67\% M & 47.4\% & Classic high-risk \\
+3 & L1C1→L2C1→L3C1→HD & 10.7\% & Age 55, 66\% M & 51.7\% & Progressive risk \\
+4 & L1C1→L2C0→L3C1→HD & 6.7\% & Age 55, 83\% M & 55.6\% & Male-biased path \\
+5 & L1C1→L2C0→L3C0→HD & 2.2\% & Age 58, 50\% M & 33.3\% & Misclassification \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Clinical Decision-Making Insights}
+
+CTA reveals three critical aspects of the model's decision process:
+
+\textbf{1. Risk Factor Prioritization}: The model heavily weights chest pain type, blood pressure, and cholesterol—all clinically validated indicators. Path fragmentation correlates with diagnostic uncertainty (r=0.67), providing a built-in confidence measure.
+
+Our fragmentation analysis reveals smooth concept evolution (FC=0.096), indicating that patient representations transform coherently through the network. The decreasing sub-space angles (16.3°→11.5°→7.8°→3.1°) show progressive alignment between disease and no-disease subspaces, suggesting the model develops increasingly refined decision boundaries at each layer.
+
+\textbf{2. Progressive Refinement}: Each layer adds specificity: demographic risk (Layer 1) → cardiovascular health (Layer 2) → stress response (Layer 3). This mirrors clinical reasoning, progressing from patient history to specific cardiac indicators.
+
+\textbf{3. Decision Boundaries}: The split at Layer 2 between "Low Cardiovascular Stress" and "Controlled High-Risk" proves pivotal—patients in the former have 59.8\% true negative rate, while the latter shows 47.4\% true positive rate.
+
+\subsection{Bias Detection and Fairness Analysis}
+
+CTA exposed concerning demographic biases:
+
+\subsubsection{Gender Bias}
+Path 4 demonstrates clear male overprediction—despite moderate risk factors, 83.3\% male composition leads to heart disease prediction with only 55.6\% accuracy. This suggests the model learned spurious correlations between male sex and heart disease from training data imbalances.
+
+\subsubsection{Age-Based Conservative Bias}
+Path 1 (43.3\% of patients) shows conservative prediction for younger patients, potentially missing early-onset heart disease. The model appears to use age as a primary risk stratifier, which while clinically relevant, may lead to underdiagnosis in younger populations.
+
+\subsubsection{Intersectional Effects}
+Path 5 reveals concerning misclassification for balanced gender groups (50\% male) with high-risk features (cholesterol 285.3 mg/dl, BP 145.7 mmHg). Only 33.3\% truly have heart disease, suggesting the model struggles with cases that don't fit typical demographic patterns.
+
+\subsection{Clinical Deployment Implications}
+
+The transparency provided by CTA enables several clinical applications:
+
+\begin{enumerate}
+    \item \textbf{Explainable Predictions}: Physicians can trace a patient's path through the model, understanding which features drove the classification
+    \item \textbf{Uncertainty Quantification}: High fragmentation scores indicate cases requiring additional clinical review
+    \item \textbf{Bias Mitigation}: Identified demographic biases can be addressed through targeted data collection and model retraining
+    \item \textbf{Clinical Validation}: The model's emphasis on established risk factors (chest pain, BP, cholesterol) aligns with medical knowledge, building trust
+\end{enumerate}
+
+\subsection{Visualizations: Patient Flow and Trajectories}
+
+\subsubsection{Labeled Sankey Diagram}
+
+Figure \ref{fig:heart_sankey} shows patient flow through the network with semantically labeled clusters, making the model's decision process immediately interpretable to clinicians.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{figures/heart_sankey.png}
+    \caption{Labeled Sankey diagram showing patient flow through the heart disease model. Cluster labels reveal the model's risk stratification strategy, from initial demographic categorization through cardiovascular assessment to final diagnosis. Path thickness indicates patient volume, while colors represent final predictions.}
+    \label{fig:heart_sankey}
+\end{figure}
+
+\subsubsection{3D Trajectory Visualization}
+
+Figure \ref{fig:heart_trajectories} provides a complementary view using UMAP-reduced activations to show how patients traverse the neural network's representation space. This stepped-layer visualization reveals the five archetypal pathways in three dimensions.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{figures/heart_stepped_layer_trajectories.png}
+    \caption{Three-dimensional trajectory visualization of patient pathways through the heart disease model. Blue lines represent patients without heart disease (n=146), red lines show patients with heart disease (n=157). The five thicker colored lines highlight representative patients from each archetype: green (Conservative Low-Risk, 43.3\%), magenta (Classic High-Risk, 35.2\%), orange (Progressive Risk, 10.7\%), purple (Male-Biased, 6.7\%), and gold (Misclassification, 2.2\%). UMAP reduction preserves local structure while revealing global flow patterns through the network layers.}
+    \label{fig:heart_trajectories}
+\end{figure}
+
+\subsection{Conclusion}
+
+This case study demonstrates CTA's ability to transform opaque neural networks into interpretable clinical tools. By revealing the model's risk stratification process, exposing demographic biases, and providing uncertainty measures, CTA enables the responsible deployment of AI in healthcare. The identified biases—particularly male overprediction and age-based conservatism—highlight the importance of interpretability in medical AI, where understanding not just what the model predicts but why and with what confidence can be literally life-saving.
+
+Having demonstrated CTA's effectiveness in a domain where interpretability directly impacts human lives, we now turn to a fundamentally different application: understanding how large language models organize linguistic knowledge. While the heart disease model reveals clinically meaningful pathways, our analysis of GPT-2 uncovers an unexpected principle of neural language processing—one that challenges our assumptions about how these models understand language.

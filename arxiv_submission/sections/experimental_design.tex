@@ -1,30 +1,40 @@
-\section{Experimental Design (Blueprint)}
+\section{Experimental Design}
+
+Our experiments validate CTA across diverse domains, from medical AI to language understanding:
+
+\subsection{Datasets and Models}
 
 \begin{itemize}
-    \item \textbf{Datasets}: Titanic (binary survival), UCI Heart Disease, GPT-2 Semantic Pivot (202 sentences), GPT-2 Semantic Subtypes (774 words)
-    \item \textbf{Models}: 2--3-layer MLPs and LLM architectures (GPT-2 117M parameters, 13 layers)
-    \item \textbf{Metrics}: Silhouette, ARI, MI, path reproducibility, path purity, centroid similarity (cosine/Euclidean), Jaccard similarity, fragmentation scores, similarity-convergent path density, interestingness score
-    \item \textbf{Clustering}: K-means and ETS comparison with per-layer threshold optimization
-    \item \textbf{Visuals}: Alluvial cluster-transition diagrams, stepped-layer PCA plots, cluster transition matrices, interactive visualizations (Plotly/Bokeh)
-    \item \textbf{Narrative}: LLM-generated archetypal path explanations and cluster interpretations
+    \item \textbf{Heart Disease Diagnosis}: UCI Heart Disease dataset (303 patients, 13 clinical features) with 3-layer MLP, demonstrating medical AI interpretability
+    \item \textbf{GPT-2 Semantic Subtypes}: 566 validated single-token words across 8 semantic categories, analyzed through GPT-2's 12 layers (embedding layer + 11 transformer blocks, 117M parameters)\footnote{We follow standard convention in numbering GPT-2's layers: Layer 0 is the embedding layer, and Layers 1-11 correspond to transformer blocks 1-11. The 12th transformer block was not analyzed in this study.}
+    \item \textbf{GPT-2 Semantic Pivot}: 202 sentences with contradictory information, tracking semantic processing
 \end{itemize}
 
-\subsection{Stepped-Layer Trajectory Visualization}
+\subsection{Unified CTA Methodology}
 
-PCA or UMAP reduces activations to 2-D; layers are offset along the y-axis so each datapoint traces a polyline $\mathbf{v}_i^l$ in $(x,y,z)$ space, revealing fragmentation, convergence, and drift. This 3D representation provides a direct way to observe how datapoints flow through the network, with each transition between layers showing how internal representations evolve. LLM-generated semantic labels are attached to each cluster centroid, making the visualization more interpretable by connecting abstract mathematical patterns to human-understandable concepts.
+We employ a three-phase approach:
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/labeled_trajectory.png}
-    \caption{Stepped-layer visualization of paths through activation space, with clusters labeled by LLM-generated semantic descriptions. Each layer is represented as a 2D plane stacked along the y-axis, with datapoints connected across layers to form trajectories. Colors indicate the endpoint cluster assignment, showing how datapoints with similar final representations may take different paths through the network. The LLM-generated labels provide human-interpretable descriptions of what each cluster might represent, enhancing the visualization's explanatory power.}
-    \label{fig:labeled_trajectory}
-\end{figure}
+\begin{enumerate}
+    \item \textbf{Optimal Clustering}: Gap statistic determines layer-specific cluster counts (e.g., k=4 for GPT-2 layer 0, k=2 for layers 1-11)
+    \item \textbf{Unique Labeling}: Every cluster receives globally unique ID (L\{layer\}\_C\{cluster\}) preventing cross-layer confusion
+    \item \textbf{Windowed Analysis}: Temporal segmentation into Early/Middle/Late windows reveals phase transitions
+\end{enumerate}
 
-For interactive exploration, we implement the visualization using Plotly, allowing users to rotate the view, zoom into specific regions, and click on paths to view similarity scores, fragmentation metrics, and detailed narratives. This interactive capability is particularly valuable for identifying interesting patterns that might be missed in static visualizations.
+\subsection{Metrics and Validation}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/trajectory_annotated.png}
-    \caption{Annotated visualization of paths through activation space, showing how datapoints move between clusters across layers. The paths are colored by their final classification outcome, revealing how the model progressively organizes information toward its decision boundary.}
-    \label{fig:trajectory_annotated}
-\end{figure}
+\begin{itemize}
+    \item \textbf{Cross-layer Metrics}: Centroid similarity ($\rho^c$), membership overlap ($J$), trajectory fragmentation ($F$)
+    \item \textbf{Stability Analysis}: Window-based stability scores revealing reorganization points
+    \item \textbf{Path Statistics}: Convergence ratios, diversity indices, archetype identification
+    \item \textbf{Clinical Validation}: For heart disease, correlation of fragmentation with diagnostic uncertainty
+\end{itemize}
+
+\subsection{Visualization Suite}
+
+\begin{itemize}
+    \item \textbf{Concept MRI Tool}: Software implementing CTA with interactive Sankey diagrams showing complete concept flow
+    \item \textbf{Stepped-layer Trajectories}: 3D UMAP projections with LLM-generated labels
+    \item \textbf{Clinical Dashboards}: Patient archetype visualization for medical interpretability
+    \item \textbf{Interactive Exploration}: Web-based interfaces for real-time analysis
+\end{itemize}
+

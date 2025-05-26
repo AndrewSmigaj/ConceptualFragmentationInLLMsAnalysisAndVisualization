@@ -1,29 +1,39 @@
 \section{Introduction}
 
-Interpretability research often struggles to balance rigor and accessibility, oscillating between visually compelling but loosely grounded ``quasi-explanations'' and mathematically sound but opaque theoretical analyses. Concept Trajectory Analysis (CTA) aims to bridge this gap by clustering datapoint activations at each layer of a trained network and tracing their transitions through activation space. This approach provides both mathematical precision and intuitive understanding of how neural networks process information, but its utility depends on addressing several foundational questions:
+Consider this question: when GPT-2 processes the words ``cat,'' ``computer,'' and ``democracy,'' does it group them by meaning (animal, machine, concept) or by function (all nouns)? Our analysis suggests neural networks may organize language differently than linguistic theory would predict.
+
+We present Concept Trajectory Analysis (CTA), an interpretability method that tracks how concepts move through clustered activation spaces in neural networks. In our analysis of 1,228 single-token words across 8 semantic categories with balanced grammatical distribution (33.1\% verbs), we observed a temporal progression: words initially cluster by semantic similarity in early layers, undergo a phase transition in middle layers, and ultimately converge to grammatical organization in later layers. By the final layers, 48.5\% (95\% CI: 45.7\%–51.2\%) of words follow a dominant pathway we term the ``entity superhighway,'' while others distribute across multiple pathways. This sequential reorganization—validated by highly significant grammatical clustering ($\chi^2 = 95.90$, $p < 0.0001$)—reveals that neural networks first process semantic features before reorganizing by grammatical function.
+
+This observation emerged from our framework that combines mathematical analysis with human interpretation. CTA tracks concepts through clustered activation spaces across neural network layers, using quantitative metrics alongside LLM-generated explanations. The method addresses several questions in interpretability research:
 
 \begin{itemize}
-    \item What makes activation geometry suitable for clustering?
-    \item Under what transformations are cluster paths stable?
-    \item Do cluster paths reflect genuine semantic or decision-relevant structure?
-    \item How can we translate mathematical patterns into domain-meaningful explanations?
+    \item How can we make neural organization both mathematically precise and humanly interpretable?
+    \item What organizational principles do neural networks discover that differ from human intuition?
+    \item Can we create real-time interpretability with negligible computational overhead?
+    \item How do we scale from analyzing hundreds to millions of concepts?
 \end{itemize}
 
-The challenge of translating quantitative patterns into qualitative understanding is particularly acute. While metrics like silhouette scores or mutual information can validate clustering quality, they offer limited insight into the semantic meaning of identified patterns. Our work introduces a novel approach to this problem by leveraging large language models (LLMs) to generate human-readable narratives that explain the conceptual significance of activation patterns.
+We validate CTA through experiments on both language models and traditional ML. Our windowed analysis (Early/Middle/Late) identifies phase transitions in neural processing, while unique cluster labeling (L{layer}_C{cluster}) enables precise tracking. By analyzing all trajectories rather than just dominant paths, we capture the full complexity of neural organization.
 
-We demonstrate this methodology through groundbreaking case studies analyzing GPT-2's internal representations. Our semantic pivot analysis reveals how transformer models process contradictory information. Most remarkably, our semantic subtypes study—examining 566 validated words across 8 semantic categories—discovered that GPT-2 organizes language by grammatical function rather than semantic meaning. Through our novel ``Concept MRI'' visualization, we found that 72.8\% of all words converge to a single ``noun superhighway,'' with animals and objects processed identically despite semantic differences. This counterintuitive finding challenges fundamental assumptions about how neural language models organize information.
+Beyond transformer analysis, CTA can be applied to traditional ML tasks. In heart disease diagnosis, trajectory analysis shows how neural networks process patient data, with different pathways emerging for various patient profiles. High-risk patients (older, elevated cholesterol) tend to route through specific neural pathways with higher fragmentation scores, potentially indicating model uncertainty. This medical AI application illustrates how CTA can help understand decision-making processes in healthcare domains.
+
+\subsection{Background: Concept Trajectory Analysis}
+
+Concept Trajectory Analysis (CTA) clusters datapoint activations in each layer's activation space (e.g., using k-means), assigning layer-specific cluster IDs denoted L$l$\_C$k$, where $l$ is the layer index and $k$ is the cluster index. Transitions between clusters are tracked across layers, forming trajectories $\pi_i = [c_i^1, c_i^2, \dots, c_i^L]$, interpreted as concept evolution through the network. In feedforward networks, trajectories are strictly unidirectional, and clusters with different layer-specific IDs (e.g., L1\_C0 and L3\_C0) are not assumed related unless validated by geometric similarity metrics. Large language models can then narrate these trajectories to provide interpretable insights.
+
+While activation spaces are emergent, high-dimensional representations whose coordinate systems may not map to semantically meaningful axes \citep{ribeiro2016, lundberg2017}, CTA addresses these concerns through rigorous mathematical validation and cross-layer metrics that verify genuine patterns rather than artifacts.
 
 \textbf{Contributions}:
 \begin{itemize}
     \item Formalize activation-space geometry for datapoint clustering with layer-specific labels and mathematical validation criteria
-    \item Introduce ETS-based clustering for dimension-wise explainability with verbalizably transparent membership conditions
+    \item Develop optimal clustering determination using Gap statistic with layer-specific cluster counts
     \item Develop cross-layer metrics (centroid similarity, membership overlap, fragmentation scores) to quantify concept evolution
     \item Propose a reproducible framework for path stability assessment using statistical robustness measures (ARI, MI, null models)
     \item Implement LLM-powered analysis to generate human-readable explanations of cluster paths
-    \item \textbf{Discover grammatical organization in GPT-2}: First empirical evidence that transformers organize by syntax not semantics
-    \item \textbf{Introduce ``Concept MRI'' visualization}: Novel technique for tracking concept flow through neural networks
-    \item \textbf{Reveal massive convergence patterns}: 72.8\% of words converge to unified grammatical pipelines
-    \item \textbf{Identify phase transitions}: Stability analysis reveals critical reorganization points in neural processing
+    \item Provide evidence that GPT-2 may organize words primarily by grammatical function rather than semantic similarity
+    \item Develop ``Concept MRI'' visualization tool for tracking concept flow through neural networks
+    \item Document convergence patterns where 72.8\% of analyzed words follow similar grammatical processing pathways
+    \item Identify potential phase transitions in neural processing through stability analysis
     \item Demonstrate bias detection capabilities through demographic analysis of paths
     \item Provide an open-source implementation blueprint for application across diverse domains
 \end{itemize}
