@@ -1,6 +1,6 @@
-\section{GPT-2 Semantic Subtypes Case Study: Revealing Grammatical Organization Using CTA}
+\section{GPT-2 Case Study: Grammatical Organization in Neural Language Models}
 
-Where medical AI models organize patients by clinical risk factors, language models face a different challenge: how to organize the vast complexity of human language. We present a comprehensive analysis revealing that GPT-2 organizes language by grammatical function rather than semantic meaning—a finding that challenges conventional assumptions about neural language models. Using CTA within a Concept MRI tool, we tracked 1,228 validated single-token words across 8 semantic categories through GPT-2's layers, discovering a convergence from semantic differentiation to grammatical organization.
+We analyze how GPT-2 organizes linguistic information by tracking 1,228 single-token words across 8 semantic categories through the model's layers. Our analysis indicates that GPT-2 primarily organizes words by grammatical function rather than semantic meaning, with evidence of convergence from initial semantic differentiation to grammatical organization in later layers.
 
 \subsection{Experimental Design}
 
@@ -29,20 +29,20 @@ Our analysis introduced several key innovations:
     \item \textbf{Unified CTA with Gap Statistic}: Optimal k determination using Gap statistic (k=4 for layer 0, k=2 for layers 1-11)
     \item \textbf{Windowed Analysis}: Novel temporal segmentation into Early (L0-L3), Middle (L4-L7), and Late (L8-L11) windows
     \item \textbf{Unique Cluster Labeling}: Every cluster assigned unique ID (e.g., L4\_C1) to prevent cross-layer confusion
-    \item \textbf{``Concept MRI'' Visualization}: Interactive Sankey diagrams showing complete concept flow through network
+    \item \textbf{Trajectory Visualization}: Sankey diagrams showing concept flow through network
     \item \textbf{Comprehensive Path Analysis}: Tracking ALL paths (not just archetypal), revealing 26→8→5 path convergence
 \end{itemize}
 
 \subsection{Key Findings}
 
-\subsubsection{The Grammar-Semantics Inversion}
+\subsubsection{Grammatical Organization Patterns}
 
-Our most striking discovery: GPT-2 organizes words by grammatical function, not semantic meaning. The evidence is compelling:
+Our analysis suggests that GPT-2 organizes words primarily by grammatical function rather than semantic meaning:
 
 \begin{itemize}
     \item \textbf{Layer 0}: 4 clusters showing semantic differentiation (animals, objects, properties, abstracts)
     \item \textbf{Layers 1-11}: Rapid consolidation to just 2 clusters (entities vs. modifiers)
-    \item \textbf{Convergence rate}: 48.5\% (95\% CI: 45.7\%–51.2\%) of all words converge to a single ``entity superhighway''
+    \item \textbf{Convergence rate}: 48.5\% (95\% CI: 45.7\%–51.2\%) of all words converge to the most common pathway
     \item \textbf{Path reduction}: 26 unique paths → 8 paths → 5 paths across windows
 \end{itemize}
 
@@ -63,18 +63,18 @@ Late & L8-L11 & 5 & 33.1\% \\
 
 \subsubsection{Statistical Validation}
 
-To verify that the convergence to grammatical organization is not due to chance, we performed a chi-square test comparing the observed distribution of grammatical categories in the dominant pathways against the expected distribution if words were randomly assigned to paths. The test revealed highly significant grammatical organization ($\chi^2 = 95.90$, $df = 3$, $p < 0.0001$), with a moderate effect size (Cramér's $V = 0.279$). This confirms that GPT-2's tendency to route words based on grammatical function rather than semantic meaning represents a genuine organizational principle, not a statistical artifact.
+To verify that the convergence to grammatical organization is not due to chance, we performed a chi-square test comparing the observed distribution of grammatical categories in the primary pathways against the expected distribution if words were randomly assigned to paths. The test revealed highly significant grammatical organization ($\chi^2 = 95.90$, $df = 3$, $p < 0.0001$), with a moderate effect size (Cramér's $V = 0.279$). This confirms that GPT-2's tendency to route words based on grammatical function rather than semantic meaning represents a genuine organizational principle, not a statistical artifact.
 
 \subsubsection{Grammatical Processing Pipelines}
 
-We identified multiple processing pathways with the dominant pattern being:
+We identified multiple processing pathways with the most frequent pattern being:
 
 \begin{enumerate}
-    \item \textbf{Entity Superhighway} (48.5\% of words):
+    \item \textbf{Primary Entity Pathway} (48.5\% of words):
     \begin{itemize}
         \item Path: L4\_C1 → L5\_C0 → L6\_C1 → L7\_C0
         \item Contains primarily nouns regardless of semantic type (animals, objects, abstracts)
-        \item Demonstrates grammatical organization as the dominant processing strategy
+        \item Demonstrates grammatical organization as a significant processing strategy
     \end{itemize}
     
     \item \textbf{Additional Pathways} (51.5\% of words):
@@ -87,7 +87,7 @@ We identified multiple processing pathways with the dominant pattern being:
 
 \subsubsection{Grammatical Organization as Primary Structure}
 
-While grammatical function emerges as the dominant organizing principle, semantic information is not erased but rather organized within grammatical highways:
+While grammatical function emerges as a primary organizing principle, semantic information is not erased but rather organized within grammatical highways:
 \begin{itemize}
     \item ``Cat'' and ``computer'' often travel the same major highway (both nouns), but may occupy different micro-clusters within that highway
     \item Concrete and abstract nouns converge to the same grammatical pathway while maintaining subtle distinctions in activation patterns
@@ -95,38 +95,12 @@ While grammatical function emerges as the dominant organizing principle, semanti
     \item The 48.5\% convergence rate means over half of words take alternative paths, indicating rich sub-organization
 \end{itemize}
 
-\subsection{Concept MRI Visualization}
+\subsection{Trajectory Visualization}
 
-Figure \ref{fig:gpt2_concept_mri} presents the Concept MRI tool's output showing the complete flow of 1,228 words through GPT-2's layers as analyzed by CTA. The Sankey diagrams reveal the convergence from semantic differentiation to grammatical organization across three windows.
+Figures \ref{fig:gpt2_sankey_early}, \ref{fig:gpt2_sankey_middle}, and \ref{fig:gpt2_sankey_late} present trajectory visualizations showing the flow of 1,228 words through GPT-2's layers. The Sankey diagrams illustrate the convergence from semantic differentiation to grammatical organization across three temporal windows.
 
 \input{figures/gpt2_combined_sankey_caption}
 
-\subsubsection{3D Stepped-Layer Visualization}
-
-To complement the Sankey diagrams, we visualize word trajectories through GPT-2's representation space using stepped-layer visualization. These 3D visualizations reveal the dramatic transformation from semantic to grammatical organization, with each layer positioned at a different height to show progression through the network:
-
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{figures/gpt2_stepped_layer_early.png}
-        \caption{Early Window (L0-L3)}
-        \label{fig:gpt2_traj_early}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{figures/gpt2_stepped_layer_middle.png}
-        \caption{Middle Window (L4-L7)}
-        \label{fig:gpt2_traj_middle}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{figures/gpt2_stepped_layer_late.png}
-        \caption{Late Window (L8-L11)}
-        \label{fig:gpt2_traj_late}
-    \end{subfigure}
-    \caption{GPT-2 stepped-layer trajectory visualizations across three windows (n=1,228). Each layer is positioned at a different height showing flow through the network. (a) Early window shows 26 diverse paths with high semantic diversity. (b) Middle window reveals convergence to 8 paths as grammatical organization emerges, with 50.1\% following the dominant pathway. (c) Late window shows 5 consolidated pathways reflecting mixed grammatical organization. The progression from semantic diversity to grammatical organization is clearly visible in the trajectory patterns.}
-    \label{fig:gpt2_trajectories}
-\end{figure}
 
 \subsubsection{Trajectory Stability Analysis}
 
@@ -147,7 +121,7 @@ Late & Dynamic & 0.669 & Mixed grammatical organization \\
 \end{tabular}
 \end{table}
 
-The dynamic processing across all windows reflects the increased diversity of the balanced dataset, with the middle window showing the highest convergence (50.1%) as grammatical organization emerges.
+The dynamic processing across all windows reflects the diversity of the balanced dataset, with the middle window showing notable convergence (50.1%) as grammatical organization becomes apparent.
 
 Our complete fragmentation analysis reveals the phase transition quantitatively:
 
@@ -166,7 +140,7 @@ Late (L8-L11) & 0.1-0.2 & 0.30 & 5-10 \\
 \end{tabular}
 \end{table}
 
-Path-Centroid Fragmentation (FC) drops dramatically, indicating increasingly coherent pathways. Intra-Class Cluster Entropy (CE) decreases from near-maximum to low values, showing words converging from distributed semantic clusters to concentrated grammatical highways. Most strikingly, Sub-space Angles (SA) between word categories collapse from well-separated semantic categories to merged grammatical functions, providing mathematical evidence for the grammar-semantics inversion.
+Path-Centroid Fragmentation (FC) drops dramatically, indicating increasingly coherent pathways. Intra-Class Cluster Entropy (CE) decreases from near-maximum to low values, showing words converging from distributed semantic clusters to concentrated grammatical highways. Most strikingly, Sub-space Angles (SA) between word categories collapse from well-separated semantic categories to merged grammatical functions, providing quantitative evidence for the transition from semantic to grammatical organization.
 
 \subsection{LLM-Generated Cluster Interpretations}
 
@@ -196,7 +170,7 @@ Our LLM analysis produced interpretable labels revealing the transformation from
     \item \textbf{L7\_C1}: ``Entity Hub'' -- Consolidated entity processing
 \end{itemize}
 
-\subsubsection{Layers 8-11: Syntactic Superhighways}
+\subsubsection{Layers 8-11: Final Processing Stages}
 \begin{itemize}
     \item \textbf{L8-L9}: Maintain entity/modifier separation with stream processing
     \item \textbf{L10-L11}: Final processing stages
@@ -206,15 +180,15 @@ Our LLM analysis produced interpretable labels revealing the transformation from
     \end{itemize}
 \end{itemize}
 
-This hierarchical organization demonstrates GPT-2's systematic transformation from semantic categories in early layers to grammatical-dominant organization in later layers. While grammatical function becomes the primary organizing principle, the existence of multiple paths (5 in late layers) and the fact that only 48.5\% of words follow the dominant highway indicates that semantic distinctions persist within the grammatical framework.
+This hierarchical organization demonstrates GPT-2's systematic transformation from semantic categories in early layers to grammatically-oriented organization in later layers. While grammatical function becomes the primary organizing principle, the existence of multiple paths (5 in late layers) and the fact that only 48.5\% of words follow the primary highway indicates that semantic distinctions persist within the grammatical framework.
 
 \subsection{Temporal Nature of Reorganization}
 
-A critical aspect of our findings is that GPT-2's shift from semantic to grammatical organization occurs \textit{sequentially} rather than simultaneously. The evidence for temporal progression is compelling:
+Our analysis indicates that GPT-2's shift from semantic to grammatical organization occurs \textit{sequentially} rather than simultaneously. The evidence for temporal progression includes:
 
 \begin{itemize}
     \item \textbf{Clear phase boundaries}: Early layers (0-3) show high fragmentation (0.796) with semantic diversity, while late layers (8-11) maintain moderate fragmentation (0.669) with mixed organization
-    \item \textbf{Measurable transition point}: The middle layers (4-7) show the highest convergence (50.1% following dominant path), marking where grammatical organization emerges most strongly
+    \item \textbf{Measurable transition point}: The middle layers (4-7) show the highest convergence (50.1% following the most common path), marking where grammatical organization emerges most strongly
     \item \textbf{Progressive metric changes}: Sub-space angles collapse from 45-60° (semantic separation) to 5-10° (grammatical convergence) in a clear progression, not a sudden jump
     \item \textbf{Path consolidation pattern}: The reduction from 26 → 8 → 5 unique paths shows gradual convergence rather than immediate reorganization
 \end{itemize}
@@ -223,7 +197,7 @@ This temporal progression suggests that GPT-2 first extracts and organizes seman
 
 \subsection{Implications for Transformer Understanding}
 
-Our findings fundamentally challenge how we think about language models:
+These findings provide new insights into transformer language processing:
 
 \begin{enumerate}
     \item \textbf{Hierarchical Organization}: GPT-2 uses grammatical function as a primary organizing principle while maintaining semantic distinctions within this framework, suggesting a multi-scale representational strategy.
@@ -243,10 +217,12 @@ This work introduces several innovations:
     \item \textbf{``Concept MRI'' Visualization}: First comprehensive visualization of how concepts flow through transformer layers
     \item \textbf{Windowed Analysis}: Novel temporal segmentation revealing phase transitions in neural processing
     \item \textbf{Grammar-Semantics Discovery}: First empirical evidence that transformers use grammatical function as a primary organizing principle while maintaining semantic distinctions at finer scales
-    \item \textbf{Complete Path Tracking}: Analysis of ALL paths (not just dominant ones) revealing the full complexity of neural organization
+    \item \textbf{Complete Path Tracking}: Analysis of ALL paths (not just the most common ones) revealing the full complexity of neural organization
     \item \textbf{Interactive Dashboard}: Accessible visualization tools making complex neural dynamics interpretable
 \end{itemize}
 
 \subsection{Conclusion}
 
 The GPT-2 semantic subtypes analysis reveals a profound insight: neural language models develop hierarchical organization strategies that balance efficiency with expressiveness. By creating grammatical highways as primary organizational structures while maintaining semantic distinctions within them, GPT-2 achieves both computational efficiency and representational richness. This multi-scale organization—grammatical at the macro level, semantic at the micro level—demonstrates how transformers solve the challenge of processing diverse linguistic content. This discovery, enabled by CTA analysis within the Concept MRI tool, suggests that effective language models must balance structure with flexibility, using grammatical organization to create efficient pathways while preserving the semantic nuances necessary for understanding.
+
+It is important to note that these organizational patterns were observed specifically in GPT-2 and may vary across different transformer architectures. Future work should examine whether similar grammatical-semantic hierarchies emerge in other language models such as BERT, T5, or more recent LLMs, as architectural differences (e.g., encoder-only vs. decoder-only, model scale, training objectives) may lead to different organizational strategies.

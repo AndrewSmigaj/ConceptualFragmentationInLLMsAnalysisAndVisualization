@@ -1,0 +1,98 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bau et~al.(2017)Bau, Zhou, Khosla, Oliva, and Torralba]{bau2017}
+David Bau, Bolei Zhou, Aditya Khosla, Aude Oliva, and Antonio Torralba.
+\newblock Network dissection: Quantifying interpretability of deep visual
+  representations.
+\newblock \emph{Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 6541--6549, 2017.
+
+\bibitem[Dasgupta et~al.(2020)Dasgupta, Frost, and Moshkovitz]{dasgupta2020}
+Sanjoy Dasgupta, Nave Frost, and Michal Moshkovitz.
+\newblock Explainable k-means and k-medians clustering.
+\newblock \emph{International Conference on Machine Learning}, pages
+  2349--2358, 2020.
+
+\bibitem[Elhage et~al.(2022{\natexlab{a}})Elhage, Hume, Olsson, Nanda,
+  Henighan, Johnston, ElShowk, Joseph, DasSarma, Mann, Hernandez, Askell,
+  Ndousse, Jones, Drain, Chen, Bai, Ganguli, Lovitt, Hatfield-Dodds, Kernion,
+  Conerly, Kravec, Fort, Kadavath, Jacobson, Tran-Johnson, Kaplan, Clark,
+  Brown, McCandlish, Amodei, and Olah]{elhage2022superposition}
+Nelson Elhage, Tristan Hume, Catherine Olsson, Neel Nanda, Tom Henighan, Scott
+  Johnston, Sheer ElShowk, Nicholas Joseph, Nova DasSarma, Ben Mann, Danny
+  Hernandez, Amanda Askell, Kamal Ndousse, Andy Jones, Dawn Drain, Anna Chen,
+  Yuntao Bai, Deep Ganguli, Liane Lovitt, Zac Hatfield-Dodds, Jackson Kernion,
+  Tom Conerly, Shauna Kravec, Stanislav Fort, Saurav Kadavath, Josh Jacobson,
+  Eli Tran-Johnson, Jared Kaplan, Jack Clark, Tom Brown, Sam McCandlish, Dario
+  Amodei, and Christopher Olah.
+\newblock Softmax linear units.
+\newblock \emph{Transformer Circuits Thread}, 2022{\natexlab{a}}.
+\newblock URL \url{https://transformer-circuits.pub/2022/solu/index.html}.
+
+\bibitem[Elhage et~al.(2022{\natexlab{b}})Elhage, Hume, Olsson, Schiefer,
+  Henighan, Kravec, Hatfield-Dodds, Lasenby, Drain, Chen, Grosse, McCandlish,
+  Kaplan, Amodei, Wattenberg, and Olah]{elhage2022toy}
+Nelson Elhage, Tristan Hume, Catherine Olsson, Nicholas Schiefer, Tom Henighan,
+  Shauna Kravec, Zac Hatfield-Dodds, Robert Lasenby, Dawn Drain, Carol Chen,
+  Roger Grosse, Sam McCandlish, Jared Kaplan, Dario Amodei, Martin Wattenberg,
+  and Christopher Olah.
+\newblock Toy models of superposition.
+\newblock \emph{Transformer Circuits Thread}, 2022{\natexlab{b}}.
+\newblock URL \url{https://transformer-circuits.pub/2022/toy_model/index.html}.
+
+\bibitem[Kim et~al.(2018)Kim, Wattenberg, Gilmer, Cai, Wexler, Viegas, and
+  Sayres]{kim2018}
+Been Kim, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda
+  Viegas, and Rory Sayres.
+\newblock Interpretability beyond feature attribution: Quantitative testing
+  with concept activation vectors (tcav).
+\newblock \emph{International Conference on Machine Learning}, pages
+  2668--2677, 2018.
+
+\bibitem[Kornblith et~al.(2019)Kornblith, Norouzi, Lee, and
+  Hinton]{kornblith2019}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock \emph{International Conference on Machine Learning}, pages
+  3519--3529, 2019.
+
+\bibitem[Kovalerchuk and Huber(2024)]{kovalerchuk2024}
+Boris Kovalerchuk and James Huber.
+\newblock Explainable threshold similarity for transparent cluster definitions.
+\newblock \emph{IEEE Transactions on Artificial Intelligence}, 2024.
+\newblock to appear.
+
+\bibitem[Lundberg and Lee(2017)]{lundberg2017}
+Scott~M Lundberg and Su-In Lee.
+\newblock A unified approach to interpreting model predictions.
+\newblock \emph{Advances in Neural Information Processing Systems}, pages
+  4765--4774, 2017.
+
+\bibitem[Raghu et~al.(2017)Raghu, Gilmer, Yosinski, and
+  Sohl-Dickstein]{raghu2017}
+Maithra Raghu, Justin Gilmer, Jason Yosinski, and Jascha Sohl-Dickstein.
+\newblock Svcca: Singular vector canonical correlation analysis for deep
+  learning dynamics and interpretability.
+\newblock \emph{Advances in Neural Information Processing Systems}, pages
+  6076--6085, 2017.
+
+\bibitem[Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin]{ribeiro2016}
+Marco~Tulio Ribeiro, Sameer Singh, and Carlos Guestrin.
+\newblock "why should i trust you?": Explaining the predictions of any
+  classifier.
+\newblock \emph{Proceedings of the 22nd ACM SIGKDD International Conference on
+  Knowledge Discovery and Data Mining}, pages 1135--1144, 2016.
+
+\bibitem[Sundararajan et~al.(2017)Sundararajan, Taly, and
+  Yan]{sundararajan2017}
+Mukund Sundararajan, Ankur Taly, and Qiqi Yan.
+\newblock Axiomatic attribution for deep networks.
+\newblock \emph{International Conference on Machine Learning}, pages
+  3319--3328, 2017.
+
+\end{thebibliography}

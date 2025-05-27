@@ -1,10 +1,10 @@
-# Foundations of Archetypal Path Analysis: A Principled Geometry for Cluster-Based Neural Network Interpretability
+# Concept Trajectory Analysis (CTA)
 
-This repository contains the implementation for the ArXiv paper: **"Foundations of Archetypal Path Analysis: Toward a Principled Geometry for Cluster-Based Interpretability with LLM-Powered Narrative Explanation"**.
+This repository introduces **Concept Trajectory Analysis (CTA)** — a method for tracking how neural networks internally organize and evolve concepts across layers. CTA clusters activation vectors per layer, traces datapoint trajectories, and uses large language models to narrate the internal semantic transitions.
 
 ## Overview
 
-We introduce **Archetypal Path Analysis (APA)**, a principled framework for neural network interpretability that tracks datapoints through clustered activation spaces across layers. APA provides both mathematical rigor and intuitive understanding of how networks process information, with extensions to transformer architectures including GPT-2.
+CTA (formerly Archetypal Path Analysis/APA) provides a principled framework for neural network interpretability that tracks datapoints through clustered activation spaces across layers. Our method reveals how models construct and shift internal boundaries between concepts, providing both mathematical rigor and intuitive understanding of how networks process information.
 
 Our comprehensive approach combines:
 - **Principled clustering geometry** with layer-specific labels and mathematical validation
@@ -14,9 +14,25 @@ Our comprehensive approach combines:
 - **LLM-powered narrative generation** for human-readable explanations
 - **Interactive visualizations** for exploring activation patterns and attention flows
 
+## Key Contributions
+
+- 📊 **Concept Fragmentation Metrics**  
+  Measures like cluster entropy, silhouette, and subspace angles quantify how class-consistent datapoints split or drift in latent space.
+
+- 🔁 **Latent Path Analysis**  
+  By tracing datapoint cluster paths across layers, CTA reveals how models construct and shift internal boundaries between concepts.
+
+- 🧠 **Narrated Cluster Transitions**  
+  Uses GPT-style LLMs to convert path data into interpretable stories of how the model "sees" different datapoint subgroups.
+
+- 🧪 **Case Studies**  
+  - GPT-2 token behavior (1,228 words, analyzed by part-of-speech and semantics)  
+  - Titanic dataset cluster narratives and survival transitions  
+  - Heart disease prediction clusters with bias and subgroup drift analysis
+
 ## Key Features
 
-### Core APA Framework
+### Core CTA Framework
 - **Principled clustering** with layer-specific labels and geometric validation
 - **Cross-layer metrics** for centroid similarity, membership overlap, and fragmentation
 - **ETS clustering** for dimension-wise explainable cluster membership
@@ -34,9 +50,18 @@ Our comprehensive approach combines:
 - **LLM-powered narratives** for human-readable explanations of analysis results
 - **Automated report generation** combining quantitative metrics with qualitative insights
 
+### Recent Results: GPT-2 5000-Word Experiment
+
+Our latest experiment analyzed 3,262 common English words enriched with WordNet features:
+- **Grammatical > Semantic Organization**: Words cluster by part-of-speech rather than semantic similarity
+- **Hypernym Analysis**: Despite rich semantic hierarchies (avg 6.1 levels deep), clustering doesn't follow WordNet's IS-A relationships
+- **Phase Transitions**: Semantic categories fragment in middle layers (3-8) before partial grammatical convergence
+- **Polysemy Effects**: Words with multiple meanings (avg 7.48 senses) show similar trajectories to monosemous words
+
 ### Datasets and Applications
 - **Titanic and Heart Disease** case studies demonstrating bias detection
-- **GPT-2 text analysis** examples with attention pattern interpretation
+- **GPT-2 text analysis** examples with attention pattern interpretation  
+- **Enhanced WordNet integration** for semantic hierarchy analysis
 - **Extensible framework** for custom datasets and model architectures
 
 ## Project Structure
@@ -45,8 +70,8 @@ The project is organized into the following main components:
 
 ```
 concept_fragmentation/
-├── analysis/           # Core APA analysis tools and GPT-2 extensions
-│   ├── cluster_paths.py           # Main APA analysis functions
+├── analysis/           # Core CTA analysis tools and GPT-2 extensions
+│   ├── cluster_paths.py           # Main CTA analysis functions
 │   ├── similarity_metrics.py     # Cross-layer similarity calculations
 │   ├── gpt2_attention_integration.py  # Attention-weighted analysis
 │   └── gpt2_path_extraction.py   # Token path analysis for transformers
@@ -63,7 +88,7 @@ concept_fragmentation/
 visualization/          # Interactive visualization and dashboard components
 ├── dash_app.py         # Main dashboard application
 ├── gpt2_token_tab.py   # GPT-2 specific visualization components
-└── path_metrics_tab.py # APA metrics visualization
+└── path_metrics_tab.py # CTA metrics visualization
 
 docs/                   # Comprehensive documentation
 ├── gpt2_analysis_guide.md         # GPT-2 usage guide
@@ -156,7 +181,7 @@ pip install -e .
 
 ## Usage
 
-### Quick Start: Traditional APA Analysis
+### Quick Start: Traditional CTA Analysis
 
 For traditional neural network analysis on tabular data:
 
@@ -168,7 +193,7 @@ from concept_fragmentation.analysis.similarity_metrics import calculate_cross_la
 # Extract activations from each layer
 # activations = {"layer_0": ..., "layer_1": ..., "layer_2": ...}
 
-# Run APA analysis
+# Run CTA analysis
 results = analyze_layer_paths(activations, n_clusters=10)
 
 # Calculate cross-layer relationships
@@ -195,8 +220,8 @@ windows = adapter.extract_activations_for_windows(text, window_size=3)
 # Get attention patterns
 attention_patterns = adapter.get_attention_patterns(text)
 
-# Format for APA analysis
-apa_activations = adapter.get_apa_formatted_activations(text)
+# Format for CTA analysis
+cta_activations = adapter.get_apa_formatted_activations(text)  # Method name preserved for compatibility
 ```
 
 ### Running the Interactive Dashboard
@@ -208,7 +233,7 @@ python visualization/dash_app.py
 ```
 
 Navigate to http://127.0.0.1:8050/ to explore:
-- **Path Fragmentation**: Traditional APA analysis with trajectory visualization
+- **Path Fragmentation**: Traditional CTA analysis with trajectory visualization
 - **GPT-2 Token Analysis**: Transformer-specific analysis with attention patterns
 - **LLM Integration**: AI-powered explanations of analysis results
 
@@ -261,7 +286,7 @@ print(narratives[0])
 
 ## Documentation
 
-### Core APA Framework
+### Core CTA Framework
 - [Theoretical Foundation](docs/gpt2_apa_theoretical_foundation.md) - Mathematical foundations and principles
 - [Cross-Layer Metrics](docs/transformer_cross_layer.md) - Detailed metrics documentation
 - [Integration Tests Guide](docs/integration_tests_guide.md) - Testing and validation
@@ -279,26 +304,40 @@ print(narratives[0])
 - [GPT-2 Analysis Tutorials](docs/gpt2_analysis_tutorials.md) - Step-by-step tutorials
 - [Command Line Interface](docs/gpt2_analysis_cli.md) - CLI usage guide
 
-## Paper and Citation
+## Project Philosophy
 
-This implementation accompanies our ArXiv paper on principled neural network interpretability. If you use this code in your research, please cite:
+This work was developed through human-AI collaboration: a system of specialized AI agents—coders, critics, narrators—operating under direction of a single human researcher. It reflects a growing vision for interpretability driven by both creative insight and rigorous internal analysis.
+
+CTA is part of the broader **Discordant Colony Optimization** initiative, which explores how divergent agents can surface hidden patterns, test assumptions, and guide paradigm shifts in machine learning understanding.
+
+## Repository Contents
+
+- `arxiv_submission/` — Paper source and figures ready for arXiv submission  
+  - `main.tex` — Paper source  
+  - `main.bbl` — Compiled bibliography  
+  - `sections/` — All major paper sections, including case studies and generated LLM narratives  
+  - `figures/` — Diagrams used in the paper (e.g., GPT-2 Sankey flows)
+- `experiments/` — All experimental code and results
+  - `gpt2/semantic_subtypes/` — 5000-word WordNet experiment
+  - `heart_disease/` — Medical AI bias detection
+  - `titanic/` — Classic ML interpretability
+
+## Citation & Contact
+
+Author: **Andrew Smigaj**  
+Email: `smigaja@gmail.com`  
+Status: Preprint-ready, seeking collaboration or institutional support for further research.
+
+If you use or extend this method, attribution is appreciated:
 
 ```bibtex
-@article{archetypal_path_analysis_2025,
-    title={Foundations of Archetypal Path Analysis: Toward a Principled Geometry for Cluster-Based Interpretability with LLM-Powered Narrative Explanation},
+@article{concept_trajectory_analysis_2025,
+    title={How Neural Networks Organize Concepts: Introducing Concept Trajectory Analysis for Deep Learning Interpretability},
     author={Andrew Smigaj and Claude Anthropic and Grok xAI},
-    journal={ArXiv preprint},
-    year={2025},
-    note={Implementation available at: https://github.com/yourusername/ConceptualFragmentationInLLMsAnalysisAndVisualization}
+    journal={arXiv preprint},
+    year={2025}
 }
 ```
-
-### Key Contributions
-
-1. **Mathematical Framework**: Formal foundations for activation-space clustering with layer-specific labels
-2. **GPT-2 Extension**: Attention-weighted path analysis for transformer architectures
-3. **LLM Integration**: AI-powered narrative generation for interpretable explanations
-4. **Comprehensive Implementation**: Full framework with visualization and analysis tools
 
 ## Contributing
 

@@ -68,7 +68,10 @@
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"\nfrom pathlib import Path\nfrom visualization.unified_visualizer import UnifiedVisualizer\nprint(''✓ UnifiedVisualizer imports successfully'')\nvis = UnifiedVisualizer(Path(''test_output''))\nprint(''✓ UnifiedVisualizer instantiated'')\nmethods = [m for m in dir(vis) if not m.startswith(''_'') and callable(getattr(vis, m))]\nprint(f''✓ Available methods ({len(methods)}): {methods[:3]}...'')\n\")",
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -c \"\nfrom pathlib import Path\nfrom visualization.unified_visualizer import UnifiedVisualizer\nprint(''SUCCESS: UnifiedVisualizer imports successfully'')\nvis = UnifiedVisualizer(Path(''test_output''))\nprint(''SUCCESS: UnifiedVisualizer instantiated'')\nmethods = [m for m in dir(vis) if not m.startswith(''_'') and callable(getattr(vis, m))]\nprint(f''SUCCESS: Available methods: {len(methods)}'')\nfor m in methods[:5]:\n    print(f''  - {m}'')\n\")",
       "Bash(venv311/Scripts/python.exe experiments/heart_disease/generate_heart_trajectory_viz.py)",
-      "Bash(jq:*)"
+      "Bash(jq:*)",
+      "Bash(sudo dpkg:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -m subprocess run pdflatex -interaction=nonstopmode main.tex)"
     ],
     "deny": []
   }

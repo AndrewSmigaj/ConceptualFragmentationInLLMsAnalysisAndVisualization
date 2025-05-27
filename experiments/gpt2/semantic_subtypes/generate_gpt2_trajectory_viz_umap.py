@@ -14,6 +14,13 @@ from sklearn.preprocessing import StandardScaler
 from typing import Dict, List, Tuple
 import pickle
 
+# Import word lists for POS categorization
+try:
+    from gpt2_semantic_subtypes_wordlists_expanded import ALL_WORD_LISTS
+except ImportError:
+    print("Warning: Could not import word lists")
+    ALL_WORD_LISTS = {}
+
 # Define the three windows
 WINDOWS = {
     "early": {"layers": [0, 1, 2, 3], "title": "Early Layers (0-3): Semantic to Grammatical Transition"},
@@ -33,6 +40,14 @@ ARCHETYPAL_PATH_COLORS = {
     6: 'rgba(149, 165, 166, 0.8)',  # Gray - Path 7
 }
 
+# POS colors for word trajectories
+POS_COLORS = {
+    'nouns': 'rgba(46, 204, 113, 0.8)',      # Green
+    'verbs': 'rgba(231, 76, 60, 0.8)',       # Red
+    'adjectives': 'rgba(52, 152, 219, 0.8)', # Blue
+    'adverbs': 'rgba(241, 196, 15, 0.8)'     # Yellow
+}
+
 # Cluster labels
 CLUSTER_LABELS = {
     0: {0: "Animate Creatures", 1: "Tangible Objects", 2: "Scalar Properties", 3: "Abstract & Relational"},
@@ -48,6 +63,19 @@ CLUSTER_LABELS = {
     10: {0: "Primary Noun Route", 1: "Function Word Channel", 2: "Alternative Pathways"},
     11: {0: "Main Entity Highway", 1: "Auxiliary Channels"}
 }
+
+def get_word_pos(word):
+    """Get the POS category for a word."""
+    if ALL_WORD_LISTS:
+        if word in ALL_WORD_LISTS.get('concrete_nouns', []) or word in ALL_WORD_LISTS.get('abstract_nouns', []):
+            return 'nouns'
+        elif word in ALL_WORD_LISTS.get('action_verbs', []) or word in ALL_WORD_LISTS.get('stative_verbs', []):
+            return 'verbs'
+        elif word in ALL_WORD_LISTS.get('physical_adjectives', []) or word in ALL_WORD_LISTS.get('emotive_adjectives', []):
+            return 'adjectives'
+        elif word in ALL_WORD_LISTS.get('manner_adverbs', []) or word in ALL_WORD_LISTS.get('degree_adverbs', []):
+            return 'adverbs'
+    return 'nouns'  # Default
 
 def load_gpt2_data():
     """Load GPT-2 activations and clustering results."""
@@ -196,66 +224,35 @@ def create_gpt2_trajectory_viz(data, window_name):
     layer_separation = 3.0
     layer_positions = {layer_idx: i * layer_separation for i, layer_idx in enumerate(layers)}
     
-    # Plot trajectories for top archetypal paths
-    for path, path_idx in data["archetypal_paths"].items():
-        # Only plot paths that go through this window
-        window_path = path[layers[0]:layers[-1]+1]
-        
-        # Find all samples following this path
-        path_samples = []
-        for i in range(len(data["words"])):
-            if data["path_assignments"][i] == path_idx:
-                sample_path = tuple(data["cluster_assignments"][i, layers[0]:layers[-1]+1])
-                if sample_path == window_path:
-                    path_samples.append(i)
-        
-        if not path_samples:
+    # Plot trajectories colored by POS
+    # Group words by POS
+    pos_groups = {'nouns': [], 'verbs': [], 'adjectives': [], 'adverbs': []}
+    for i, word in enumerate(data["words"]):
+        pos = get_word_pos(word)
+        pos_groups[pos].append(i)
+    
+    # Plot trajectories for each POS group
+    for pos, indices in pos_groups.items():
+        if not indices:
             continue
         
-        # Get color for this path
-        color = ARCHETYPAL_PATH_COLORS.get(path_idx, 'rgba(100, 100, 100, 0.5)')
+        color = POS_COLORS[pos]
         
-        # Plot average trajectory for this path
-        avg_trajectory = []
-        for i, layer_idx in enumerate(layers):
-            # Get average position for this path at this layer
-            positions = reduced_activations[layer_idx][path_samples]
-            avg_pos = positions.mean(axis=0)
-            avg_trajectory.append([avg_pos[0], layer_positions[layer_idx], avg_pos[2]])
+        # Plot individual trajectories for this POS
+        # Sample some trajectories for clarity (or plot all if desired)
+        sample_size = min(100, len(indices))  # Limit to 100 per POS for clarity
+        sampled_indices = np.random.choice(indices, sample_size, replace=False)
         
-        avg_trajectory = np.array(avg_trajectory)
-        
-        # Plot main path line
-        path_count = len(path_samples)
-        percentage = (path_count / len(data["words"])) * 100
-        
-        fig.add_trace(go.Scatter3d(
-            x=avg_trajectory[:, 0],
-            y=avg_trajectory[:, 1],
-            z=avg_trajectory[:, 2],
-            mode='lines+markers',
-            line=dict(
-                color=color,
-                width=max(3, min(20, path_count / 10))
-            ),
-            marker=dict(
-                size=10,
-                color=color,
-                symbol='circle',
-                line=dict(color='black', width=1)
-            ),
-            name=f"Path {path_idx + 1} ({percentage:.1f}%)",
-            hovertemplate=f"Path {path_idx + 1}<br>Samples: {path_count} ({percentage:.1f}%)<extra></extra>"
-        ))
-        
-        # Add individual sample trajectories with low opacity
-        for sample_idx in path_samples[:20]:  # Limit to 20 samples per path for clarity
+        for idx in sampled_indices:
             trajectory = []
             for layer_idx in layers:
-                pos = reduced_activations[layer_idx][sample_idx]
-                trajectory.append([pos[0], layer_positions[layer_idx], pos[2]])
+                pos_3d = reduced_activations[layer_idx][idx]
+                trajectory.append([pos_3d[0], layer_positions[layer_idx], pos_3d[2]])
             
             trajectory = np.array(trajectory)
+            
+            # First trajectory in group gets legend entry
+            show_legend = bool(idx == sampled_indices[0])
             
             fig.add_trace(go.Scatter3d(
                 x=trajectory[:, 0],
@@ -264,12 +261,43 @@ def create_gpt2_trajectory_viz(data, window_name):
                 mode='lines',
                 line=dict(
                     color=color,
-                    width=1
+                    width=2
                 ),
-                opacity=0.1,
-                showlegend=False,
-                hoverinfo='skip'
+                opacity=0.4,
+                name=pos.capitalize() if show_legend else None,
+                showlegend=show_legend,
+                legendgroup=pos,
+                hovertemplate=f"{data['words'][idx]} ({pos})<extra></extra>"
             ))
+        
+        # Add thicker average trajectory for this POS
+        avg_trajectory = []
+        for layer_idx in layers:
+            positions = reduced_activations[layer_idx][indices]
+            avg_pos = positions.mean(axis=0)
+            avg_trajectory.append([avg_pos[0], layer_positions[layer_idx], avg_pos[2]])
+        
+        avg_trajectory = np.array(avg_trajectory)
+        
+        fig.add_trace(go.Scatter3d(
+            x=avg_trajectory[:, 0],
+            y=avg_trajectory[:, 1],
+            z=avg_trajectory[:, 2],
+            mode='lines+markers',
+            line=dict(
+                color=color,
+                width=8
+            ),
+            marker=dict(
+                size=12,
+                color=color,
+                symbol='circle',
+                line=dict(color='black', width=2)
+            ),
+            name=f"{pos.capitalize()} (avg, n={len(indices)})",
+            legendgroup=pos,
+            hovertemplate=f"{pos.capitalize()} average<br>{len(indices)} words<extra></extra>"
+        ))
     
     # Add layer planes and labels
     for layer_idx in layers:

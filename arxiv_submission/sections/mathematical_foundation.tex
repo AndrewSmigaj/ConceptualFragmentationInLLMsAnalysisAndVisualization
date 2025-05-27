@@ -21,9 +21,9 @@ We primarily use k-means clustering with the Gap statistic for determining optim
 
 \subsection{Within-Cluster Semantic Structure}
 
-While our primary analysis focuses on cluster-level trajectories, the position of datapoints within clusters carries semantic meaning. Following principles of distributional semantics, nearby points in activation space share semantic properties—even within the same cluster. For instance, within the entity superhighway (L4\_C1), "cat" and "dog" occupy closer positions than "cat" and "democracy," despite all being nouns. This suggests hierarchical organization where coarse clusters capture grammatical categories while fine-grained positions encode semantic relationships.
+While our primary analysis focuses on cluster-level trajectories, the position of datapoints within clusters may carry semantic meaning. Following principles of distributional semantics, nearby points in activation space often share semantic properties—even within the same cluster. For instance, within the dominant entity pathway (L4\_C1), "cat" and "dog" may occupy closer positions than "cat" and "democracy," despite all being nouns. This suggests potential hierarchical organization where coarse clusters capture grammatical categories while fine-grained positions encode semantic relationships.
 
-Future work should explore micro-clustering within major pathways to reveal these semantic substructures. Techniques like hierarchical clustering or local neighborhood analysis could uncover how, for example, the entity superhighway subdivides into animate/inanimate or concrete/abstract regions while maintaining its overall grammatical coherence.
+Future work could explore micro-clustering within major pathways to investigate these potential semantic substructures. Techniques like hierarchical clustering or local neighborhood analysis might reveal how dominant pathways subdivide into semantic regions while maintaining overall grammatical coherence.
 
 \subsection{Windowed Trajectory Analysis}
 
@@ -46,7 +46,7 @@ To ground our analysis in quantitative evidence, we employ four complementary me
 \subsubsection{Trajectory Fragmentation (F)}
 Measures path diversity for a semantic category:
 $$F = 1 - \frac{\text{count of most common path}}{\text{total paths in category}}$$
-High fragmentation indicates diverse processing strategies within a category. In our experiments, this metric proves essential for understanding convergence patterns—for instance, the expanded GPT-2 analysis shows fragmentation varying from 0.796 (early) to 0.499 (middle) to 0.669 (late), reflecting the complex dynamics of grammatical organization with a balanced dataset.
+High fragmentation indicates diverse processing strategies within a category. In our experiments, this metric helps quantify convergence patterns—for instance, the GPT-2 analysis shows fragmentation varying from 0.796 (early) to 0.499 (middle) to 0.669 (late), suggesting complex dynamics in the organization of the balanced dataset.
 
 \subsubsection{Path-Centroid Fragmentation (FC)}
 Measures how dissimilar consecutive clusters are along a specific sample path:

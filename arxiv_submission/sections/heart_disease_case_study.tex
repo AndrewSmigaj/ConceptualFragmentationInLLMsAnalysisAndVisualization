@@ -88,28 +88,16 @@ The transparency provided by CTA enables several clinical applications:
     \item \textbf{Clinical Validation}: The model's emphasis on established risk factors (chest pain, BP, cholesterol) aligns with medical knowledge, building trust
 \end{enumerate}
 
-\subsection{Visualizations: Patient Flow and Trajectories}
 
-\subsubsection{Labeled Sankey Diagram}
+\subsection{Visualization of Patient Flow}
 
-Figure \ref{fig:heart_sankey} shows patient flow through the network with semantically labeled clusters, making the model's decision process immediately interpretable to clinicians.
+The Sankey diagram in Figure~\ref{fig:heart_sankey} visualizes patient flow through the model's risk stratification layers, revealing how initial categorizations evolve into final diagnoses.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/heart_sankey.png}
-    \caption{Labeled Sankey diagram showing patient flow through the heart disease model. Cluster labels reveal the model's risk stratification strategy, from initial demographic categorization through cardiovascular assessment to final diagnosis. Path thickness indicates patient volume, while colors represent final predictions.}
+    \caption{Sankey diagram showing patient flow through the heart disease model's risk stratification layers. Each node displays the cluster's semantic label inline (e.g., "High-Risk Older Males", "Low CV Stress"), making the model's decision process immediately interpretable. The five archetypal pathways are color-coded: green for Conservative Low-Risk (43.3\%), red for Classic High-Risk (35.2\%), orange for Progressive Risk (10.7\%), purple for Male-Biased (6.7\%), and yellow for Misclassification (2.2\%). Path thickness represents patient count, with the diagram clearly showing how initial risk categorization flows through cardiovascular health assessment and risk profiling to reach final diagnosis. The visualization adopts the same structured style as the GPT-2 analysis for consistency.}
     \label{fig:heart_sankey}
-\end{figure}
-
-\subsubsection{3D Trajectory Visualization}
-
-Figure \ref{fig:heart_trajectories} provides a complementary view using UMAP-reduced activations to show how patients traverse the neural network's representation space. This stepped-layer visualization reveals the five archetypal pathways in three dimensions.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\textwidth]{figures/heart_stepped_layer_trajectories.png}
-    \caption{Three-dimensional trajectory visualization of patient pathways through the heart disease model. Blue lines represent patients without heart disease (n=146), red lines show patients with heart disease (n=157). The five thicker colored lines highlight representative patients from each archetype: green (Conservative Low-Risk, 43.3\%), magenta (Classic High-Risk, 35.2\%), orange (Progressive Risk, 10.7\%), purple (Male-Biased, 6.7\%), and gold (Misclassification, 2.2\%). UMAP reduction preserves local structure while revealing global flow patterns through the network layers.}
-    \label{fig:heart_trajectories}
 \end{figure}
 
 \subsection{Conclusion}

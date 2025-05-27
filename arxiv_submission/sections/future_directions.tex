@@ -44,12 +44,48 @@ Our discovery that GPT-2 organizes by grammatical function rather than semantic 
     \item \textbf{Comparative Visualization}: Build tools to compare pathways across different models, datasets, or time periods, revealing organizational differences and drift.
 \end{itemize}
 
+\subsection{Immediate Technical Improvements}
+
+Building on the current implementation, several technical enhancements would strengthen CTA's rigor and applicability:
+
+\subsubsection{Microcluster Lens Implementation}
+
+\begin{itemize}
+    \item \textbf{Hierarchical Sub-clustering}: Implement fine-grained analysis within highways to reveal semantic micro-organization. For instance, within the noun highway, identify sub-clusters for animate vs. inanimate entities, concrete vs. abstract concepts.
+    
+    \item \textbf{Adaptive Resolution}: Develop algorithms that automatically determine when to zoom into micro-clusters based on intra-cluster variance and task requirements.
+    
+    \item \textbf{Cross-Layer Micro-tracking}: Follow micro-cluster evolution to understand how fine-grained distinctions emerge, persist, or dissolve through network layers.
+\end{itemize}
+
+\subsubsection{Robustness and Validation}
+
+\begin{itemize}
+    \item \textbf{Cross-Seed Stability}: Run all experiments with multiple random seeds (N$\geq$5) to quantify variation in highway formation, cluster boundaries, and convergence rates. Report confidence intervals for all key metrics.
+    
+    \item \textbf{Clustering Quality Metrics}: Add silhouette scores, Davies-Bouldin indices, and Calinski-Harabasz scores to validate cluster coherence. Compare these across different k values to strengthen Gap statistic findings.
+    
+    \item \textbf{Inter-LLM Validation}: Use multiple LLMs (GPT-4, Claude, Gemini) for cluster interpretation and report agreement scores. Implement majority voting for final labels to reduce single-model bias.
+    
+    \item \textbf{Ablation Studies}: Systematically scramble POS tags, shuffle token positions, or randomize embeddings to verify that observed patterns disappear under null conditions, confirming they're not artifacts.
+\end{itemize}
+
+\subsubsection{Extended Analysis Capabilities}
+
+\begin{itemize}
+    \item \textbf{Multi-Token Context}: Extend beyond single-token analysis to study how context affects trajectories. Compare paths for "bank" in financial vs. river contexts, revealing context-dependent routing.
+    
+    \item \textbf{Training-Time Tracking}: Implement checkpointing to save activations at regular training intervals (every 1000 steps), enabling analysis of when grammatical organization emerges and how pathways form.
+    
+    \item \textbf{Quantitative Bias Metrics}: For medical AI, calculate demographic parity differences, equalized odds ratios, and disparate impact scores. Create pathway-based bias detection that identifies which neural routes exhibit unfair behavior.
+\end{itemize}
+
 \subsection{Advanced Applications for Language Models}
 
 \subsubsection{Scaling to Complete Neural Cartography}
 
 \begin{itemize}
-    \item \textbf{Full Vocabulary Mapping}: Extend analysis from 566 words to entire vocabularies, revealing the complete ``highway system'' of neural language processing. We hypothesize discovering 50-100 major pathways handling different linguistic functions.
+    \item \textbf{Full Vocabulary Mapping}: Extend analysis from 1,228 words to entire vocabularies, revealing the complete ``highway system'' of neural language processing. We hypothesize discovering 50-100 major pathways handling different linguistic functions.
     
     \item \textbf{Compositional Analysis}: Study how models process bigrams, trigrams, and phrases to understand compositional meaning construction. Investigate whether multi-word expressions follow predictable combinations of single-word pathways.
     
