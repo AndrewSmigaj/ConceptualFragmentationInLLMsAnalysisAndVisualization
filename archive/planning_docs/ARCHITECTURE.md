@@ -119,6 +119,26 @@ ConceptualFragmentationInLLMsAnalysisAndVisualization/
 ├── 🗃️ archive/                       # ARCHIVED CODE
 │   └── (old implementations)         # Moved here during cleanup
 │
+├── 📂 data/                          # CENTRALIZED DATA (New)
+│   ├── raw/                          # Original datasets
+│   ├── processed/                    # Preprocessed data
+│   └── activations/                  # Neural network activations
+│
+├── 📊 results/                       # EXPERIMENT RESULTS (New)
+│   ├── gpt2/                         # GPT-2 experiments
+│   ├── heart_disease/                # Medical AI results
+│   └── titanic/                      # Classic ML results
+│
+├── ⚙️ configs/                       # CONFIGURATION FILES (New)
+│   ├── experiments/                  # Experiment configs
+│   ├── models/                       # Model configs
+│   └── visualization/                # Viz settings
+│
+├── 🧪 tests/                         # CONSOLIDATED TESTS (New)
+│   ├── unit/                         # Unit tests
+│   ├── integration/                  # Integration tests
+│   └── legacy/                       # Old test files
+│
 └── 📦 Key Entry Points:
     ├── 🚀 python visualization/run_dashboard.py          # Launch dashboard
     ├── 🧪 python experiments/gpt2/semantic_subtypes/gpt2_semantic_subtypes_experiment.py
@@ -130,12 +150,17 @@ ConceptualFragmentationInLLMsAnalysisAndVisualization/
 ### ✅ Completed Phases
 1. **Phase 1**: Core directory structure with base classes
 2. **Phase 2**: Unified SankeyGenerator consolidation
-3. **Phase 3**: Unified TrajectoryVisualizer (in progress)
+3. **Phase 3**: Unified TrajectoryVisualizer (completed)
+4. **Phase 4**: Repository reorganization (in progress)
+   - Created centralized data/, results/, configs/, tests/ directories
+   - Updated documentation for CTA focus
+   - Structure designed to support future bigram experiments
 
 ### 🚧 Upcoming Phases
-4. **Phase 4**: Consolidate GPT-2 analysis scripts
-5. **Phase 5**: Unify dashboard components
-6. **Phase 6**: Clean up experiments/gpt2/all_tokens/
+5. **Phase 5**: Consolidate GPT-2 analysis scripts
+6. **Phase 6**: Unify dashboard components
+7. **Phase 7**: Clean up experiments/gpt2/all_tokens/
+8. **Phase 8**: Implement bigram experiment framework
 
 ## 📋 File Discipline Rules
 

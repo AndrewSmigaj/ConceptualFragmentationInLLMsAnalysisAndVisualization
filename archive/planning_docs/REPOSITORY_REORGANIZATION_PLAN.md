@@ -1,216 +1,191 @@
 # Repository Reorganization Plan
 
-## Current Issues
-- 40+ Python files cluttering the root directory
-- Mixed experiment files, utilities, and test scripts
-- GPT-2 specific files scattered throughout
-- No clear separation between experiments, tools, and results
-- Difficult to navigate and find relevant code
+## Overview
+This document outlines recommended improvements to the repository structure based on best practices and future needs (including bigram experiments).
 
-## Critical Dependencies to Preserve
-1. **Dashboard**: `visualization/run_dashboard.py` is called by `run_dashboard.bat`
-2. **ArXiv Paper**: References case study sections but no direct code dependencies
-3. **Core Package**: `concept_fragmentation/` imports must remain intact
-4. **Analysis Scripts**: Used by various workflows and experiments
+## Current Structure Analysis
 
-## Proposed New Structure
+### ✅ What's Working Well
+1. **Clear separation**: Library code (`concept_fragmentation/`) vs experiments
+2. **Modular design**: Well-organized submodules with clear purposes
+3. **Base abstractions**: Good use of inheritance and interfaces
+4. **Phased refactoring**: Systematic improvement approach
 
+### ❌ Issues to Address
+1. **Test file scatter**: Test files at root level instead of in test directories
+2. **Experiment bloat**: `experiments/gpt2/all_tokens/` is 2.5GB with many duplicates
+3. **Results management**: Outputs mixed with code
+4. **Configuration sprawl**: Hard-coded values in multiple places
+5. **Outdated documentation**: concept_fragmentation/README.md still references old framing
+
+## Proposed Reorganization
+
+### 1. Directory Structure
 ```
 ConceptualFragmentationInLLMsAnalysisAndVisualization/
-├── experiments/              # All experiment-specific code
-│   ├── gpt2/                # GPT-2 specific experiments
-│   │   ├── pivot/           # Pivot experiment files
-│   │   │   ├── gpt2_pivot_sentences.py
-│   │   │   ├── gpt2_pivot_clusterer.py
-│   │   │   ├── gpt2_pivot_llm_analysis_data.py
-│   │   │   ├── data/       # Pivot data files
-│   │   │   │   ├── gpt2_pivot_*.txt
-│   │   │   │   ├── gpt2_pivot_*.json
-│   │   │   │   └── gpt2_pivot_activations_metadata.json
-│   │   │   └── results/
-│   │   ├── pos/             # Part-of-speech experiment
-│   │   │   ├── gpt2_pos_experiment.py
-│   │   │   ├── data/       # POS data files
-│   │   │   │   ├── gpt2_pos_*.txt
-│   │   │   │   ├── gpt2_pos_*.json
-│   │   │   │   └── gpt2_pos_activations_metadata.json
-│   │   │   └── results/
-│   │   ├── semantic_subtypes/  # Semantic subtypes experiment
-│   │   │   ├── gpt2_semantic_subtypes_experiment.py
-│   │   │   ├── gpt2_semantic_subtypes_curator.py
-│   │   │   ├── gpt2_semantic_subtypes_statistics.py
-│   │   │   ├── gpt2_semantic_subtypes_wordlists.py
-│   │   │   ├── data/        # Curated word lists
-│   │   │   │   ├── gpt2_semantic_subtypes_curated.json
-│   │   │   │   ├── gpt2_semantic_subtypes_statistics.json
-│   │   │   │   ├── gpt2_semantic_subtypes_*.txt
-│   │   │   │   └── activations/
-│   │   │   └── results/
-│   │   └── shared/          # Shared GPT-2 utilities
-│   │       ├── gpt2_activation_extractor.py
-│   │       ├── gpt2_apa_metrics.py
-│   │       ├── gpt2_clustering_comparison.py
-│   │       └── gpt2_token_validator.py
-│   ├── heart_disease/       # Heart disease experiment
-│   │   ├── generate_heart_metrics_charts.py
-│   │   ├── data/
-│   │   │   └── analysis_results_heart_seed0.json
-│   │   └── results/
-│   └── titanic/             # Titanic experiment
-│       ├── data/
-│       │   └── analysis_results_titanic_seed0.json
-│       └── results/
 │
-├── scripts/                 # Utility scripts and tools
-│   ├── analysis/           # Analysis runners
-│   │   ├── run_analysis.py
-│   │   ├── run_cluster_paths.py
-│   │   ├── llm_analysis_example.py
-│   │   └── llm_path_analysis.py
-│   ├── visualization/      # Visualization generators
-│   │   ├── run_visualizations.py
-│   │   ├── generate_paper_figures.py
-│   │   ├── generate_labeled_paths_figure.py
-│   │   └── integrate_figures.py
-│   ├── utilities/          # General utilities
-│   │   ├── check_activations.py
-│   │   ├── debug_tokenization.py
-│   │   ├── verify_tokenization.py
-│   │   ├── create_layer4.py
-│   │   ├── fix_paths.py
-│   │   ├── enable_dimension_checks.py
-│   │   ├── enable_logging.py
-│   │   └── refresh_dashboard.py
-│   ├── maintenance/        # Maintenance scripts
-│   │   ├── clean-and-run-analysis.ps1
-│   │   ├── housekeeping.ps1
-│   │   ├── safe_cleanup.ps1
-│   │   ├── run_heart_analysis.ps1
-│   │   ├── run_full_pipeline.ps1
-│   │   └── generate_critical_metrics.ps1
-│   └── testing/            # Test scripts (stay in root for now)
+├── concept_fragmentation/          # Core CTA library [KEEP AS IS]
+│   ├── activation/                # Activation extraction
+│   ├── analysis/                  # Analysis algorithms
+│   │   ├── cluster_paths.py       # Core CTA
+│   │   ├── bigram_analysis.py    # NEW: For bigram support
+│   │   └── ...
+│   ├── clustering/                # Clustering implementations
+│   ├── visualization/             # Unified visualizers
+│   ├── llm/                      # LLM integration
+│   └── README.md                 # UPDATE: CTA-focused docs
 │
-├── sample_data/            # Example analysis results
-│   ├── sample_analysis_results.json
-│   └── mock_llm_analysis_results.json
+├── experiments/                   # Experiment implementations
+│   ├── gpt2/
+│   │   ├── semantic_subtypes/    # Main paper experiment [KEEP]
+│   │   ├── bigrams/             # NEW: Bigram experiments
+│   │   │   ├── config/
+│   │   │   ├── data/
+│   │   │   └── scripts/
+│   │   └── all_tokens/          # CLEANUP: Archive most
+│   ├── heart_disease/           # Medical AI [KEEP]
+│   └── titanic/                 # Classic ML [KEEP]
 │
-├── concept_fragmentation/  # Core package (keep as is)
-├── visualization/          # Visualization code (keep as is)
-├── arxiv_submission/       # Paper materials (keep as is)
-├── docs/                   # Documentation (keep as is)
-├── tools/                  # Build tools (keep as is)
-├── examples/               # Example scripts (keep as is)
-├── tests/                  # Main test suite (keep as is)
-├── logs/                   # Log files
-├── cache/                  # Cache directory
-├── data/                   # General data directory (keep existing)
-├── results/                # General results directory (keep existing)
-├── figures/                # Generated figures (keep existing)
-├── venv311/               # Virtual environment
+├── data/                        # NEW: Centralized data directory
+│   ├── raw/                     # Original datasets
+│   ├── processed/               # Preprocessed data
+│   └── activations/             # Extracted activations
 │
-├── config.py              # Main configuration (stays in root)
-├── requirements.txt       # Dependencies (stays in root)
-├── README.md              # Main readme (stays in root)
-├── README_LLM_TESTING.md  # LLM testing readme (stays in root)
-├── paper.md               # Paper markdown (stays in root)
-├── references.bib         # Bibliography (stays in root)
-├── run_dashboard.bat      # Dashboard launcher (stays in root)
-├── run_dashboard_with_paths.bat  # Alt launcher (stays in root)
-├── test_*.py              # Test files (temporarily stay in root)
-└── .gitignore            # Git ignore (stays in root)
+├── results/                     # NEW: Structured results
+│   ├── gpt2/
+│   │   ├── semantic_subtypes/
+│   │   └── bigrams/
+│   ├── heart_disease/
+│   └── titanic/
+│
+├── configs/                     # NEW: Centralized configs
+│   ├── experiments/
+│   ├── models/
+│   └── visualization/
+│
+├── tests/                       # CONSOLIDATE: All tests here
+│   ├── unit/
+│   ├── integration/
+│   └── experiments/
+│
+├── scripts/                     # Utility scripts [KEEP]
+├── visualization/               # Dashboard [KEEP]
+├── arxiv_submission/           # Paper materials [KEEP]
+├── archive/                    # Archived code [KEEP]
+├── docs/                       # Documentation [KEEP]
+└── venv311/                    # Virtual environment [KEEP]
 ```
 
-## Migration Steps
+### 2. Immediate Actions
 
-### Phase 1: Create Directory Structure (Non-Breaking)
+#### Phase 1: Clean Test Files
 ```bash
-# Create new directories
-mkdir -p experiments/gpt2/{pivot,pos,semantic_subtypes,shared}/{data,results}
-mkdir -p experiments/{heart_disease,titanic}/{data,results}
-mkdir -p scripts/{analysis,visualization,utilities,maintenance}
-mkdir -p sample_data
+# Move all root-level test files
+mkdir -p tests/legacy
+mv test_*.py tests/legacy/
+mv test_*.html tests/legacy/
 ```
 
-### Phase 2: Copy Files First (Test Safety)
-Instead of moving files immediately, copy them first to test:
+#### Phase 2: Create Data Structure
 ```bash
-# Copy GPT-2 files
-cp gpt2_pivot_*.py experiments/gpt2/pivot/
-cp gpt2_pos_*.py experiments/gpt2/pos/
-cp gpt2_semantic_subtypes_*.py experiments/gpt2/semantic_subtypes/
-cp gpt2_{activation_extractor,apa_metrics,clustering_comparison,token_validator}.py experiments/gpt2/shared/
+# Create centralized data directory
+mkdir -p data/{raw,processed,activations}
+mkdir -p results/{gpt2/{semantic_subtypes,bigrams},heart_disease,titanic}
+mkdir -p configs/{experiments,models,visualization}
 ```
 
-### Phase 3: Update Import Paths
-1. Create `__init__.py` files with backward compatibility imports
-2. Add the experiments directory to Python path in key scripts
-3. Update imports gradually with fallback imports
+#### Phase 3: Update Documentation
+- Update concept_fragmentation/README.md for CTA
+- Create configs/README.md for configuration guide
+- Update ARCHITECTURE.md with new structure
 
-### Phase 4: Move Data Files
-```bash
-# Move data files after code is working
-mv gpt2_pivot_*.{txt,json} experiments/gpt2/pivot/data/
-mv gpt2_pos_*.{txt,json} experiments/gpt2/pos/data/
-mv gpt2_semantic_subtypes_*.{json,txt} experiments/gpt2/semantic_subtypes/data/
-mv analysis_results_heart_*.json experiments/heart_disease/data/
-mv analysis_results_titanic_*.json experiments/titanic/data/
+### 3. Configuration Management
+
+Create YAML configs to replace hard-coded values:
+
+```yaml
+# configs/experiments/gpt2_bigrams.yaml
+experiment:
+  name: gpt2_bigrams
+  model: gpt2
+  data:
+    type: bigrams
+    source: data/raw/bigrams/
+  clustering:
+    method: kmeans
+    k_range: [3, 5, 10]
+  output:
+    dir: results/gpt2/bigrams/
 ```
 
-### Phase 5: Clean Up Root (After Verification)
-Only after everything is working:
-1. Remove duplicate files from root
-2. Update documentation
-3. Commit with clear message
+### 4. Bigram Experiment Setup
 
-## Safety Measures
+For the upcoming bigram experiments:
 
-### Import Compatibility Layer
-Create `experiments/__init__.py`:
-```python
-# Backward compatibility imports
-import sys
-from pathlib import Path
-
-# Add experiment directories to path
-sys.path.insert(0, str(Path(__file__).parent / "gpt2" / "shared"))
-sys.path.insert(0, str(Path(__file__).parent / "gpt2" / "pivot"))
-sys.path.insert(0, str(Path(__file__).parent / "gpt2" / "pos"))
-sys.path.insert(0, str(Path(__file__).parent / "gpt2" / "semantic_subtypes"))
+```
+experiments/gpt2/bigrams/
+├── config.yaml                    # Experiment configuration
+├── extract_bigram_activations.py  # Activation extraction
+├── analyze_bigram_paths.py        # CTA analysis
+├── generate_bigram_sankeys.py     # Visualization
+└── README.md                      # Experiment documentation
 ```
 
-### Testing Checklist
-Before removing any files from root:
-- [ ] Dashboard still launches correctly
-- [ ] All imports in concept_fragmentation/ work
-- [ ] GPT-2 semantic subtypes experiment runs
-- [ ] Analysis scripts find data files
-- [ ] ArXiv paper compiles
-- [ ] Unit tests pass
+### 5. Best Practices Implementation
+
+1. **Use `__main__.py`** for package execution:
+   ```python
+   # concept_fragmentation/__main__.py
+   if __name__ == "__main__":
+       from .cli import main
+       main()
+   ```
+
+2. **Centralized logging**:
+   ```python
+   # concept_fragmentation/utils/logging.py
+   import logging
+   logger = logging.getLogger("cta")
+   ```
+
+3. **Data registry**:
+   ```python
+   # concept_fragmentation/data/registry.py
+   class DataRegistry:
+       """Central registry for all datasets and results"""
+   ```
+
+4. **Experiment tracking**:
+   ```python
+   # concept_fragmentation/experiments/tracker.py
+   class ExperimentTracker:
+       """Track experiments, configs, and results"""
+   ```
+
+## Migration Strategy
+
+1. **Week 1**: Move test files, create directory structure
+2. **Week 2**: Implement configuration system
+3. **Week 3**: Update documentation
+4. **Week 4**: Set up bigram experiment framework
 
 ## Benefits
-- Clear separation of concerns
-- Easy to find experiment-specific code
-- Reusable components in shared directories
-- Cleaner root directory (but not empty)
-- Better organization for future experiments
-- Maintains backward compatibility
 
-## What Stays in Root
-- Configuration files (config.py, requirements.txt)
-- Documentation files (README.md, paper.md)
-- Launch scripts (run_dashboard.bat)
-- Test files (temporarily, can be moved later)
-- Critical workflow scripts
+1. **Cleaner structure**: Easier to navigate and understand
+2. **Better separation**: Code, data, and results clearly separated
+3. **Scalability**: Ready for bigram and future experiments
+4. **Maintainability**: Centralized configuration and data management
+5. **Reproducibility**: Clear experiment tracking and result storage
 
-## Priority Order
-1. **Phase 1-2**: Create structure and copy files (no breaking changes)
-2. **Phase 3**: Test everything works with copies
-3. **Phase 4**: Move data files (low risk)
-4. **Phase 5**: Clean up only after full verification
+## Risks and Mitigation
 
-## Notes
-- Use `git mv` to preserve history when moving files
-- Keep copies until verified working
-- Add clear README.md in each new directory
-- Document any path changes needed
-- Consider creating symlinks for backward compatibility if needed
+1. **Breaking changes**: Use symlinks during transition
+2. **Lost files**: Keep comprehensive archive mapping
+3. **Import errors**: Update all imports systematically
+4. **Documentation drift**: Update docs immediately after changes
+
+## Important Notes
+
+1. **Activation chunks**: The 1.8GB activation chunks in `experiments/gpt2/all_tokens/activations/` should be preserved but potentially moved to `data/activations/gpt2/all_tokens/`
+2. **Virtual environment**: Keep `venv311/` at root as per Python best practices
+3. **Git management**: Update `.gitignore` to exclude large data files in new directories
