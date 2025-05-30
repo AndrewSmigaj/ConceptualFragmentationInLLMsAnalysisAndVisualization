@@ -1,0 +1,382 @@
+[
+  {
+    "path": "L0_C1 \u2192 L1_C2 \u2192 L2_C1 \u2192 L3_C0",
+    "count": 2034,
+    "percentage": 20.34,
+    "example_tokens": [
+      "'",
+      ",",
+      "1",
+      "2",
+      "3",
+      "4",
+      "6",
+      "a",
+      "b",
+      "d"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C1 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 1589,
+    "percentage": 15.89,
+    "example_tokens": [
+      "\"",
+      "#",
+      "$",
+      "(",
+      ":",
+      "<",
+      "B",
+      "I",
+      "M",
+      "R"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C1 \u2192 L1_C1 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 1419,
+    "percentage": 14.19,
+    "example_tokens": [
+      "!",
+      "%",
+      "-",
+      ".",
+      "9",
+      "?",
+      "C",
+      "x",
+      "\n",
+      "st"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C2 \u2192 L2_C1 \u2192 L3_C0",
+    "count": 1149,
+    "percentage": 11.49,
+    "example_tokens": [
+      "0",
+      "A",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "N",
+      "O"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C0 \u2192 L1_C0 \u2192 L2_C0 \u2192 L3_C1",
+    "count": 925,
+    "percentage": 9.25,
+    "example_tokens": [
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C2 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 558,
+    "percentage": 5.58,
+    "example_tokens": [
+      ")",
+      "*",
+      "+",
+      "/",
+      ";",
+      "=",
+      "@",
+      "D",
+      "S",
+      "["
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C0 \u2192 L1_C1 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 534,
+    "percentage": 5.34,
+    "example_tokens": [
+      "F",
+      "\\",
+      " w",
+      " c",
+      " f",
+      " p",
+      "ou",
+      " m",
+      " th",
+      " l"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C1 \u2192 L1_C1 \u2192 L2_C1 \u2192 L3_C0",
+    "count": 436,
+    "percentage": 4.36,
+    "example_tokens": [
+      "c",
+      "er",
+      "id",
+      "ig",
+      "ac",
+      "ri",
+      "igh",
+      "op",
+      "ew",
+      "ort"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C1 \u2192 L1_C0 \u2192 L2_C0 \u2192 L3_C1",
+    "count": 210,
+    "percentage": 2.1,
+    "example_tokens": [
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C1 \u2192 L1_C2 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 195,
+    "percentage": 1.95,
+    "example_tokens": [
+      "5",
+      "8",
+      " a",
+      " to",
+      "ly",
+      "'s",
+      " we",
+      "nd",
+      "th",
+      "ally"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C0 \u2192 L2_C0 \u2192 L3_C1",
+    "count": 189,
+    "percentage": 1.8900000000000001,
+    "example_tokens": [
+      "&",
+      "}",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C1 \u2192 L2_C0 \u2192 L3_C1",
+    "count": 140,
+    "percentage": 1.4000000000000001,
+    "example_tokens": [
+      ">",
+      "\ufffd",
+      "\ufffd",
+      " b",
+      " act",
+      "In",
+      "==",
+      " |",
+      "It",
+      "ather"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C1 \u2192 L1_C0 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 96,
+    "percentage": 0.96,
+    "example_tokens": [
+      "rib",
+      " well",
+      "pr",
+      " serv",
+      " fil",
+      " contro",
+      " Rep",
+      "nect",
+      "idd",
+      "EN"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C0 \u2192 L1_C0 \u2192 L2_C2 \u2192 L3_C2",
+    "count": 88,
+    "percentage": 0.88,
+    "example_tokens": [
+      " im",
+      " pe",
+      " em",
+      " reg",
+      " imp",
+      " ac",
+      " op",
+      " che",
+      " Ad",
+      " dist"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C1 \u2192 L1_C1 \u2192 L2_C1 \u2192 L3_C2",
+    "count": 64,
+    "percentage": 0.64,
+    "example_tokens": [
+      "ident",
+      "cept",
+      " here",
+      "anc",
+      " bus",
+      "ised",
+      "ument",
+      "gr",
+      " space",
+      "eter"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C2 \u2192 L2_C2 \u2192 L3_C0",
+    "count": 57,
+    "percentage": 0.5700000000000001,
+    "example_tokens": [
+      "P",
+      " out",
+      " about",
+      "ates",
+      " help",
+      " around",
+      "the",
+      "**",
+      " /",
+      " left"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C2 \u2192 L1_C1 \u2192 L2_C1 \u2192 L3_C0",
+    "count": 49,
+    "percentage": 0.49,
+    "example_tokens": [
+      "X",
+      "imes",
+      " Is",
+      "lease",
+      " change",
+      " thing",
+      " word",
+      "ination",
+      " face",
+      " type"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C0 \u2192 L1_C1 \u2192 L2_C0 \u2192 L3_C1",
+    "count": 43,
+    "percentage": 0.43,
+    "example_tokens": [
+      " kn",
+      " tw",
+      " bl",
+      " sec",
+      " mon",
+      " stud",
+      " Al",
+      " Cl",
+      " ter",
+      " char"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C0 \u2192 L1_C2 \u2192 L2_C1 \u2192 L3_C0",
+    "count": 40,
+    "percentage": 0.4,
+    "example_tokens": [
+      "re",
+      "un",
+      "res",
+      "aj",
+      "eb",
+      "ortun",
+      "mb",
+      "su",
+      "hern",
+      "vil"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "L0_C0 \u2192 L1_C0 \u2192 L2_C0 \u2192 L3_C2",
+    "count": 25,
+    "percentage": 0.25,
+    "example_tokens": [
+      " re",
+      " Re",
+      "ex",
+      " Fr",
+      " occ",
+      " necess",
+      " Cour",
+      " consum",
+      "Pro",
+      " mis"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  }
+]

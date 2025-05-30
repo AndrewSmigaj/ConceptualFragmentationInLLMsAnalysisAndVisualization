@@ -1,0 +1,158 @@
+SEMANTIC PURITY ANALYSIS
+==================================================
+
+LAYER 0:
+------------------------------
+  C0: Concrete Nouns (50.0% estimated)
+  C1: Core Determiners (3.3% calculated)
+  C2: Grammar Connectives (43.3% calculated)
+  C3: Prefixes & Titles (50.0% estimated)
+  C4: Morphological Suffixes (23.3% calculated)
+  C5: Abstract Concepts (50.0% estimated)
+  C6: Core Prepositions (20.0% calculated)
+  C7: Human Collectives (6.7% calculated)
+  C8: Sentence Initiators (50.0% estimated)
+  C9: Secondary Prepositions (20.0% calculated)
+
+LAYER 1:
+------------------------------
+  C0: Number Words (50.0% estimated)
+  C1: Grammar Connectives (33.3% calculated)
+  C2: Core Prepositions (30.0% calculated)
+  C3: Quotes & Negations (6.7% calculated)
+  C4: Punctuation & Symbols (13.3% calculated)
+  C5: Personal Pronouns (23.3% calculated)
+  C6: Modal Auxiliaries (26.7% calculated)
+  C7: Subject Pronouns (30.0% calculated)
+  C8: Mixed Function (23.3% calculated)
+  C9: Auxiliary Verbs (0.0% calculated)
+
+LAYER 2:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 3:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 4:
+------------------------------
+  C0: Grammar Foundation (33.3% calculated)
+  C1: Abstract Nouns (50.0% estimated)
+  C2: Function Core (40.0% calculated)
+  C3: Discourse Markers (0.0% calculated)
+  C4: Auxiliary System (0.0% calculated)
+  C5: Content Words (50.0% estimated)
+  C6: Preposition Network (6.7% calculated)
+  C7: Pronoun System (0.0% calculated)
+  C8: Morphological Elements (10.0% calculated)
+  C9: Specialized Terms (50.0% estimated)
+
+LAYER 5:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 6:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 7:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 8:
+------------------------------
+  C0: Grammar Core (6.7% calculated)
+  C1: Abstract System (50.0% estimated)
+  C2: Function Infrastructure (3.3% calculated)
+  C3: Discourse System (6.7% calculated)
+  C4: Auxiliary Network (0.0% calculated)
+  C5: Content Core (50.0% estimated)
+  C6: Preposition Core (10.0% calculated)
+  C7: Pronoun Core (10.0% calculated)
+  C8: Morphological Core (20.0% calculated)
+  C9: Specialized Core (50.0% estimated)
+
+LAYER 9:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 10:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)
+
+LAYER 11:
+------------------------------
+  C0: Cluster 0 (50.0% estimated)
+  C1: Cluster 1 (50.0% estimated)
+  C2: Cluster 2 (50.0% estimated)
+  C3: Cluster 3 (50.0% estimated)
+  C4: Cluster 4 (50.0% estimated)
+  C5: Cluster 5 (50.0% estimated)
+  C6: Cluster 6 (50.0% estimated)
+  C7: Cluster 7 (50.0% estimated)
+  C8: Cluster 8 (50.0% estimated)
+  C9: Cluster 9 (50.0% estimated)

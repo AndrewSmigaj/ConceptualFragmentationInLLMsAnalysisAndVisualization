@@ -1,0 +1,103 @@
+K=5 CLUSTER LABEL CONSISTENCY REPORT
+==================================================
+
+FINAL CONSISTENT LABELS:
+------------------------------
+Cluster Position 0: Punctuation
+  Description: Punctuation marks and sentence boundaries
+Cluster Position 1: Punctuation
+  Description: Punctuation marks and sentence boundaries
+Cluster Position 2: Morphological Elements
+  Description: Suffixes, prefixes, and word-forming elements
+Cluster Position 3: Morphological Elements
+  Description: Suffixes, prefixes, and word-forming elements
+Cluster Position 4: Morphological Elements
+  Description: Suffixes, prefixes, and word-forming elements
+
+DETAILED ANALYSIS BY POSITION:
+------------------------------
+
+Cluster Position 0:
+  Layer  0: punctuation          -> Punctuation & Boundaries
+  Layer  1: connectives          -> Grammatical Connectives
+  Layer  2: punctuation          -> Punctuation & Boundaries
+  Layer  3: content_mixed        -> Mixed Content Words
+  Layer  4: punctuation          -> Punctuation & Boundaries
+  Layer  5: connectives          -> Grammatical Connectives
+  Layer  6: morphology           -> Morphological Elements
+  Layer  7: punctuation          -> Punctuation & Boundaries
+  Layer  8: content_mixed        -> Mixed Content Words
+  Layer  9: content_mixed        -> Mixed Content Words
+  Layer 10: content_mixed        -> Mixed Content Words
+  Layer 11: punctuation          -> Punctuation & Boundaries
+
+  Summary: {'punctuation': 5, 'connectives': 2, 'content_mixed': 4, 'morphology': 1}
+  Final: Punctuation
+
+Cluster Position 1:
+  Layer  0: punctuation          -> Punctuation & Boundaries
+  Layer  1: punctuation          -> Punctuation & Boundaries
+  Layer  2: punctuation          -> Punctuation & Boundaries
+  Layer  3: morphology           -> Morphological Elements
+  Layer  4: morphology           -> Morphological Elements
+  Layer  5: morphology           -> Morphological Elements
+  Layer  6: auxiliaries          -> Auxiliary Verbs
+  Layer  7: connectives          -> Grammatical Connectives
+  Layer  8: auxiliaries          -> Auxiliary Verbs
+  Layer  9: nouns                -> Common Nouns
+  Layer 10: nouns                -> Common Nouns
+  Layer 11: connectives          -> Grammatical Connectives
+
+  Summary: {'punctuation': 3, 'morphology': 3, 'auxiliaries': 2, 'connectives': 2, 'nouns': 2}
+  Final: Punctuation
+
+Cluster Position 2:
+  Layer  0: function_core        -> Core Function Words
+  Layer  1: punctuation          -> Punctuation & Boundaries
+  Layer  2: nouns                -> Common Nouns
+  Layer  3: morphology           -> Morphological Elements
+  Layer  4: content_mixed        -> Mixed Content Words
+  Layer  5: morphology           -> Morphological Elements
+  Layer  6: morphology           -> Morphological Elements
+  Layer  7: auxiliaries          -> Auxiliary Verbs
+  Layer  8: nouns                -> Common Nouns
+  Layer  9: prepositions         -> Prepositional Phrases
+  Layer 10: prepositions         -> Prepositional Phrases
+  Layer 11: connectives          -> Grammatical Connectives
+
+  Summary: {'function_core': 1, 'punctuation': 1, 'nouns': 2, 'morphology': 3, 'content_mixed': 1, 'auxiliaries': 1, 'prepositions': 2, 'connectives': 1}
+  Final: Morphological Elements
+
+Cluster Position 3:
+  Layer  0: morphology           -> Morphological Elements
+  Layer  1: prepositions         -> Prepositional Phrases
+  Layer  2: determiners          -> Determiners & Articles
+  Layer  3: auxiliaries          -> Auxiliary Verbs
+  Layer  4: auxiliaries          -> Auxiliary Verbs
+  Layer  5: auxiliaries          -> Auxiliary Verbs
+  Layer  6: punctuation          -> Punctuation & Boundaries
+  Layer  7: morphology           -> Morphological Elements
+  Layer  8: morphology           -> Morphological Elements
+  Layer  9: punctuation          -> Punctuation & Boundaries
+  Layer 10: punctuation          -> Punctuation & Boundaries
+  Layer 11: morphology           -> Morphological Elements
+
+  Summary: {'morphology': 4, 'prepositions': 1, 'determiners': 1, 'auxiliaries': 3, 'punctuation': 3}
+  Final: Morphological Elements
+
+Cluster Position 4:
+  Layer  0: morphology           -> Morphological Elements
+  Layer  1: auxiliaries          -> Auxiliary Verbs
+  Layer  2: pronouns             -> Personal Pronouns
+  Layer  3: punctuation          -> Punctuation & Boundaries
+  Layer  4: morphology           -> Morphological Elements
+  Layer  5: punctuation          -> Punctuation & Boundaries
+  Layer  6: connectives          -> Grammatical Connectives
+  Layer  7: morphology           -> Morphological Elements
+  Layer  8: punctuation          -> Punctuation & Boundaries
+  Layer  9: auxiliaries          -> Auxiliary Verbs
+  Layer 10: auxiliaries          -> Auxiliary Verbs
+  Layer 11: morphology           -> Morphological Elements
+
+  Summary: {'morphology': 4, 'auxiliaries': 3, 'pronouns': 1, 'punctuation': 3, 'connectives': 1}
+  Final: Morphological Elements

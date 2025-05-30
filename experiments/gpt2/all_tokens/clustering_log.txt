@@ -1,0 +1,56 @@
+[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\smiga\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     C:\Users\smiga\AppData\Roaming\nltk_data...
+[nltk_data]   Package averaged_perceptron_tagger is already up-to-
+[nltk_data]       date!
+2025-05-28 06:34:32,866 - INFO - Loading token analysis...
+2025-05-28 06:34:33,474 - INFO - Loaded info for 50257 tokens
+2025-05-28 06:34:33,474 - INFO - Found 18 morphological patterns
+2025-05-28 06:34:33,474 - INFO - Extracting WordNet features for complete words...
+WordNet extraction:   0%|          | 0/50257 [00:00<?, ?it/s]WordNet extraction:   1%|          | 279/50257 [00:03<11:29, 72.45it/s]WordNet extraction:   1%|          | 296/50257 [00:03<11:02, 75.40it/s]WordNet extraction:   1%|1         | 728/50257 [00:04<03:04, 267.93it/s]WordNet extraction:   5%|5         | 2544/50257 [00:04<00:34, 1373.63it/s]WordNet extraction:  10%|9         | 4800/50257 [00:04<00:14, 3090.04it/s]WordNet extraction:  14%|#3        | 6840/50257 [00:04<00:08, 4881.79it/s]WordNet extraction:  18%|#7        | 8941/50257 [00:04<00:05, 6953.59it/s]WordNet extraction:  21%|##1       | 10799/50257 [00:04<00:04, 8760.96it/s]WordNet extraction:  26%|##5       | 12962/50257 [00:04<00:03, 11079.25it/s]WordNet extraction:  30%|##9       | 14845/50257 [00:05<00:03, 9138.17it/s] WordNet extraction:  35%|###4      | 17368/50257 [00:05<00:02, 11932.55it/s]WordNet extraction:  39%|###9      | 19816/50257 [00:05<00:02, 14437.30it/s]WordNet extraction:  45%|####4     | 22615/50257 [00:05<00:01, 17443.42it/s]WordNet extraction:  52%|#####1    | 25917/50257 [00:05<00:01, 21141.48it/s]WordNet extraction:  58%|#####7    | 28969/50257 [00:05<00:00, 23507.89it/s]WordNet extraction:  63%|######3   | 31845/50257 [00:05<00:00, 24844.38it/s]WordNet extraction:  70%|#######   | 35416/50257 [00:05<00:00, 27762.97it/s]WordNet extraction:  76%|#######6  | 38398/50257 [00:06<00:00, 17522.55it/s]WordNet extraction:  83%|########3 | 41792/50257 [00:06<00:00, 20754.73it/s]WordNet extraction:  91%|######### | 45639/50257 [00:06<00:00, 24675.45it/s]WordNet extraction:  99%|#########9| 49957/50257 [00:06<00:00, 29118.34it/s]WordNet extraction: 100%|##########| 50257/50257 [00:06<00:00, 7863.08it/s] 
+2025-05-28 06:34:39,874 - INFO - Extracted WordNet features for 6454 tokens
+2025-05-28 06:34:39,883 - INFO - Loading all activation chunks...
+Loading chunks:   0%|          | 0/11 [00:00<?, ?it/s]Loading chunks:   9%|9         | 1/11 [00:01<00:13,  1.35s/it]Loading chunks:  18%|#8        | 2/11 [00:02<00:12,  1.37s/it]Loading chunks:  27%|##7       | 3/11 [00:04<00:11,  1.38s/it]Loading chunks:  36%|###6      | 4/11 [00:05<00:10,  1.46s/it]Loading chunks:  45%|####5     | 5/11 [00:07<00:08,  1.49s/it]Loading chunks:  55%|#####4    | 6/11 [00:08<00:07,  1.47s/it]Loading chunks:  64%|######3   | 7/11 [00:09<00:05,  1.41s/it]Loading chunks:  73%|#######2  | 8/11 [00:11<00:04,  1.36s/it]Loading chunks:  82%|########1 | 9/11 [00:12<00:02,  1.29s/it]Loading chunks:  91%|######### | 10/11 [00:13<00:01,  1.26s/it]Loading chunks: 100%|##########| 11/11 [00:13<00:00,  1.24s/it]
+2025-05-28 06:34:58,678 - INFO - Loaded activations shape: (50257, 12, 768)
+2025-05-28 06:34:59,326 - INFO - 
+============================================================
+2025-05-28 06:34:59,327 - INFO - LAYER 0 of 11 | Starting analysis...
+2025-05-28 06:34:59,327 - INFO - ============================================================
+2025-05-28 06:34:59,329 - INFO - 
+Finding optimal k for layer 0 using adaptive search...
+2025-05-28 06:34:59,329 - INFO - Phase 1: Testing 17 k values: [2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1000]
+Coarse search:   0%|          | 0/17 [00:00<?, ?it/s]2025-05-28 06:34:59,608 - INFO -     Clustering 50,257 tokens with k=2 clusters...
+2025-05-28 06:35:12,029 - INFO -     Clustering completed in 12.4s (4046 tokens/sec)
+2025-05-28 06:35:34,929 - INFO -   k=2: gap=2.0354, std=0.0001, silhouette=0.0525 (took 35.3s)
+Coarse search:   6%|5         | 1/17 [00:35<09:25, 35.32s/it]2025-05-28 06:35:34,929 - INFO -   Testing k=3 (2/17) - ETA: 9.5 min
+2025-05-28 06:35:34,930 - INFO -     Clustering 50,257 tokens with k=3 clusters...
+2025-05-28 06:35:42,384 - INFO -     Clustering completed in 7.5s (6742 tokens/sec)
+2025-05-28 06:36:17,663 - INFO -   k=3: gap=2.0454, std=0.0001, silhouette=0.0257 (took 42.7s)
+Coarse search:  12%|#1        | 2/17 [01:18<09:55, 39.68s/it]2025-05-28 06:36:17,663 - INFO -   Testing k=4 (3/17) - ETA: 9.8 min
+2025-05-28 06:36:17,664 - INFO -     Clustering 50,257 tokens with k=4 clusters...
+2025-05-28 06:36:26,030 - INFO -     Clustering completed in 8.4s (6007 tokens/sec)
+2025-05-28 06:37:19,111 - INFO -   k=4: gap=2.0548, std=0.0002, silhouette=0.0191 (took 61.4s)
+Coarse search:  18%|#7        | 3/17 [02:19<11:34, 49.62s/it]2025-05-28 06:37:19,111 - INFO -   Testing k=6 (4/17) - ETA: 10.9 min
+2025-05-28 06:37:19,112 - INFO -     Clustering 50,257 tokens with k=6 clusters...
+2025-05-28 06:37:35,605 - INFO -     Clustering completed in 16.5s (3047 tokens/sec)
+2025-05-28 06:38:48,295 - INFO -   k=6: gap=2.0633, std=0.0002, silhouette=0.0064 (took 89.2s)
+Coarse search:  24%|##3       | 4/17 [03:48<14:08, 65.24s/it]2025-05-28 06:38:48,295 - INFO -   Testing k=9 (5/17) - ETA: 12.4 min
+2025-05-28 06:38:48,295 - INFO -     Clustering 50,257 tokens with k=9 clusters...
+2025-05-28 06:39:09,928 - INFO -     Clustering completed in 21.6s (2323 tokens/sec)
+2025-05-28 06:40:38,951 - INFO -   k=9: gap=2.0774, std=0.0002, silhouette=-0.0157 (took 110.7s)
+Coarse search:  29%|##9       | 5/17 [05:39<16:19, 81.62s/it]2025-05-28 06:40:38,951 - INFO -   Testing k=13 (6/17) - ETA: 13.6 min
+2025-05-28 06:40:38,952 - INFO -     Clustering 50,257 tokens with k=13 clusters...
+2025-05-28 06:41:05,750 - INFO -     Clustering completed in 26.8s (1875 tokens/sec)
+2025-05-28 06:42:36,391 - INFO -   k=13: gap=2.0902, std=0.0002, silhouette=-0.0100 (took 117.4s)
+Coarse search:  35%|###5      | 6/17 [07:36<17:11, 93.80s/it]2025-05-28 06:42:36,391 - INFO -   Testing k=19 (7/17) - ETA: 14.0 min
+2025-05-28 06:42:36,391 - INFO -     Clustering 50,257 tokens with k=19 clusters...
+2025-05-28 06:43:20,175 - INFO -     Clustering completed in 43.8s (1148 tokens/sec)
+2025-05-28 06:45:26,664 - INFO -   k=19: gap=2.1063, std=0.0002, silhouette=-0.0063 (took 170.3s)
+Coarse search:  41%|####1     | 7/17 [10:27<19:47, 118.80s/it]2025-05-28 06:45:26,664 - INFO -   Testing k=28 (8/17) - ETA: 14.9 min
+2025-05-28 06:45:26,664 - INFO -     Clustering 50,257 tokens with k=28 clusters...
+2025-05-28 06:46:24,539 - INFO -     Clustering completed in 57.9s (868 tokens/sec)
+2025-05-28 06:49:13,156 - INFO -   k=28: gap=2.1234, std=0.0002, silhouette=-0.0009 (took 226.5s)
+Coarse search:  47%|####7     | 8/17 [14:13<22:57, 153.08s/it]2025-05-28 06:49:13,156 - INFO -   Testing k=42 (9/17) - ETA: 16.0 min
+2025-05-28 06:49:13,156 - INFO -     Clustering 50,257 tokens with k=42 clusters...

@@ -1,0 +1,596 @@
+GPT-2 K=5 CLUSTER ANALYSIS REQUEST
+============================================================
+
+Please analyze these clusters from GPT-2 model layers and provide:
+1. A short semantic label (2-4 words) for each cluster
+2. A brief description of what linguistic/grammatical patterns characterize each cluster
+
+These clusters contain the 10,000 most frequent tokens from the Brown corpus, clustered based on their activations at each layer.
+
+Focus on identifying linguistic patterns rather than just token types. Look for:
+- Grammatical categories (nouns, verbs, adjectives, etc.)
+- Syntactic roles (subjects, objects, modifiers)
+- Semantic groupings (abstract vs concrete, animate vs inanimate)
+- Morphological patterns (prefixes, suffixes, compound parts)
+- Functional categories (determiners, prepositions, conjunctions)
+
+Please format your response as a JSON object with the following structure:
+{
+  "layer_0": {
+    "L0_C0": {"label": "...", "description": "..."},
+    "L0_C1": {"label": "...", "description": "..."},
+    ...
+  },
+  "layer_1": {
+    ...
+  },
+  ...
+}
+
+
+CLUSTER DATA BY LAYER:
+----------------------------------------
+
+LAYER 0:
+
+  L0_C0:
+    Size: 2193 tokens (21.9%)
+    Dominant type: word_with_space
+    Top tokens:  the, -, .,  man,  me,  now, ly, ',  well,  world
+    Type distribution:
+      - word_with_space: 1396
+      - word: 678
+      - number_with_space: 64
+
+  L0_C1:
+    Size: 1994 tokens (19.9%)
+    Dominant type: word_with_space
+    Top tokens:  is,  was,  for,  '',  with, The,  be,  on,  ;,  by
+    Type distribution:
+      - word_with_space: 1624
+      - word: 347
+      - mixed_with_space: 12
+
+  L0_C2:
+    Size: 1777 tokens (17.8%)
+    Dominant type: word_with_space
+    Top tokens:  ,,  .,  of,  and,  to,  a,  in,  that,  as,  his
+    Type distribution:
+      - word_with_space: 1573
+      - word: 168
+      - number_with_space: 15
+
+  L0_C3:
+    Size: 1482 tokens (14.8%)
+    Dominant type: word_with_space
+    Top tokens:  he,  I,  (,  she, I, A,  Af, y, in, and
+    Type distribution:
+      - word_with_space: 951
+      - word: 529
+      - mixed_with_space: 1
+
+  L0_C4:
+    Size: 2554 tokens (25.5%)
+    Dominant type: word_with_space
+    Top tokens:  it,  they,  ),  we,  there,  time, ing,  years,  way, s
+    Type distribution:
+      - word_with_space: 2341
+      - word: 199
+      - number_with_space: 13
+
+LAYER 1:
+
+  L1_C0:
+    Size: 1958 tokens (19.6%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as, 's,  at,  from,  or
+    Type distribution:
+      - word_with_space: 1264
+      - word: 680
+      - number_with_space: 6
+
+  L1_C1:
+    Size: 1720 tokens (17.2%)
+    Dominant type: word_with_space
+    Top tokens:  .,  '', -,  he, The, .,  (,  she,  man,  Af
+    Type distribution:
+      - word_with_space: 836
+      - word: 730
+      - number_with_space: 83
+
+  L1_C2:
+    Size: 921 tokens (9.2%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``, He, I,  well,  Mr, For,  New,  Mrs,  don
+    Type distribution:
+      - word_with_space: 782
+      - word: 133
+      - mixed_with_space: 2
+
+  L1_C3:
+    Size: 3244 tokens (32.4%)
+    Dominant type: word_with_space
+    Top tokens:  to,  a,  in,  is,  for,  with,  it,  his,  on,  ;
+    Type distribution:
+      - word_with_space: 3031
+      - word: 204
+      - mixed_with_space: 4
+
+  L1_C4:
+    Size: 2157 tokens (21.6%)
+    Dominant type: word_with_space
+    Top tokens:  was,  be,  had,  ?,  I,  an,  has,  more, It,  can
+    Type distribution:
+      - word_with_space: 1972
+      - word: 174
+      - mixed_with_space: 4
+
+LAYER 2:
+
+  L2_C0:
+    Size: 1447 tokens (14.5%)
+    Dominant type: word_with_space
+    Top tokens:  ., -,  he, .,  ?,  I, He,  (,  we,  she
+    Type distribution:
+      - word_with_space: 893
+      - word: 432
+      - number_with_space: 65
+
+  L2_C1:
+    Size: 2468 tokens (24.7%)
+    Dominant type: word_with_space
+    Top tokens:  to,  in,  is,  was,  for,  '',  with, The,  his,  be
+    Type distribution:
+      - word_with_space: 2268
+      - word: 180
+      - number_with_space: 8
+
+  L2_C2:
+    Size: 1975 tokens (19.8%)
+    Dominant type: word_with_space
+    Top tokens:  which,  man,  now,  way,  year,  life,  us, y,  himself,  part
+    Type distribution:
+      - word_with_space: 1136
+      - word: 835
+      - number_with_space: 4
+
+  L2_C3:
+    Size: 3079 tokens (30.8%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  a,  that,  it,  as, 's,  ;
+    Type distribution:
+      - word_with_space: 2708
+      - word: 335
+      - number_with_space: 14
+
+  L2_C4:
+    Size: 1031 tokens (10.3%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, It, In, I,  well, There, They, If
+    Type distribution:
+      - word_with_space: 880
+      - word: 139
+      - other: 5
+
+LAYER 3:
+
+  L3_C0:
+    Size: 2817 tokens (28.2%)
+    Dominant type: word_with_space
+    Top tokens:  the,  and,  that,  as,  or,  this,  one,  but,  him,  )
+    Type distribution:
+      - word_with_space: 2160
+      - word: 618
+      - number: 19
+
+  L3_C1:
+    Size: 692 tokens (6.9%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, They, If,  came, For, When
+    Type distribution:
+      - word_with_space: 598
+      - word: 88
+      - mixed_with_space: 2
+
+  L3_C2:
+    Size: 1363 tokens (13.6%)
+    Dominant type: word_with_space
+    Top tokens:  which,  way, y,  himself,  number,  house, a, ers, man,  once
+    Type distribution:
+      - word_with_space: 769
+      - word: 593
+      - number_with_space: 1
+
+  L3_C3:
+    Size: 2092 tokens (20.9%)
+    Dominant type: word_with_space
+    Top tokens:  was,  be,  on,  by,  had,  I,  were, He,  their,  has
+    Type distribution:
+      - word_with_space: 1842
+      - word: 224
+      - number_with_space: 16
+
+  L3_C4:
+    Size: 3036 tokens (30.4%)
+    Dominant type: word_with_space
+    Top tokens:  ,,  .,  of,  to,  a,  in,  is,  for,  '', -
+    Type distribution:
+      - word_with_space: 2516
+      - word: 398
+      - number_with_space: 59
+
+LAYER 4:
+
+  L4_C0:
+    Size: 3029 tokens (30.3%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  for,  '', -,  with,  it
+    Type distribution:
+      - word_with_space: 2512
+      - word: 401
+      - number_with_space: 57
+
+  L4_C1:
+    Size: 1388 tokens (13.9%)
+    Dominant type: word_with_space
+    Top tokens:  which,  way,  life, y,  himself,  number,  house, a, ers, man
+    Type distribution:
+      - word_with_space: 788
+      - word: 599
+      - number_with_space: 1
+
+  L4_C2:
+    Size: 2855 tokens (28.5%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as,  or,  this,  one,  but
+    Type distribution:
+      - word_with_space: 2195
+      - word: 617
+      - number: 21
+
+  L4_C3:
+    Size: 2061 tokens (20.6%)
+    Dominant type: word_with_space
+    Top tokens:  was,  be,  on,  by,  had,  I,  were, He,  has,  more
+    Type distribution:
+      - word_with_space: 1813
+      - word: 220
+      - number_with_space: 18
+
+  L4_C4:
+    Size: 667 tokens (6.7%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If,  came, For, When,  New
+    Type distribution:
+      - word_with_space: 577
+      - word: 84
+      - mixed_with_space: 2
+
+LAYER 5:
+
+  L5_C0:
+    Size: 2866 tokens (28.7%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as,  or,  this,  one,  but
+    Type distribution:
+      - word_with_space: 2194
+      - word: 629
+      - number: 21
+
+  L5_C1:
+    Size: 1395 tokens (14.0%)
+    Dominant type: word_with_space
+    Top tokens:  which,  than,  way,  life, y,  himself,  number,  house, a, ers
+    Type distribution:
+      - word_with_space: 800
+      - word: 594
+      - number_with_space: 1
+
+  L5_C2:
+    Size: 666 tokens (6.7%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If,  came, For, When,  New
+    Type distribution:
+      - word_with_space: 576
+      - word: 84
+      - mixed_with_space: 2
+
+  L5_C3:
+    Size: 2058 tokens (20.6%)
+    Dominant type: word_with_space
+    Top tokens:  was,  be,  on,  by,  had,  I,  were, He,  has, It
+    Type distribution:
+      - word_with_space: 1808
+      - word: 220
+      - number_with_space: 20
+
+  L5_C4:
+    Size: 3015 tokens (30.1%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  for,  '', -,  with,  it
+    Type distribution:
+      - word_with_space: 2507
+      - word: 394
+      - number_with_space: 55
+
+LAYER 6:
+
+  L6_C0:
+    Size: 1394 tokens (13.9%)
+    Dominant type: word_with_space
+    Top tokens:  which,  than,  way,  life, y,  himself,  number,  house, a, ers
+    Type distribution:
+      - word_with_space: 797
+      - word: 596
+      - number_with_space: 1
+
+  L6_C1:
+    Size: 2086 tokens (20.9%)
+    Dominant type: word_with_space
+    Top tokens:  was,  be,  on,  by,  had,  I,  were, He,  has, It
+    Type distribution:
+      - word_with_space: 1830
+      - word: 225
+      - number_with_space: 21
+
+  L6_C2:
+    Size: 669 tokens (6.7%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If,  came, For, When,  New
+    Type distribution:
+      - word_with_space: 577
+      - word: 85
+      - mixed_with_space: 2
+
+  L6_C3:
+    Size: 3017 tokens (30.2%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  for,  '', -,  with,  it
+    Type distribution:
+      - word_with_space: 2514
+      - word: 392
+      - number_with_space: 54
+
+  L6_C4:
+    Size: 2834 tokens (28.3%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as, 's,  or,  this,  one
+    Type distribution:
+      - word_with_space: 2167
+      - word: 623
+      - number: 21
+
+LAYER 7:
+
+  L7_C0:
+    Size: 3024 tokens (30.2%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  for,  '', -,  with,  it
+    Type distribution:
+      - word_with_space: 2520
+      - word: 394
+      - number_with_space: 53
+
+  L7_C1:
+    Size: 2835 tokens (28.3%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as, 's,  or,  this,  one
+    Type distribution:
+      - word_with_space: 2167
+      - word: 623
+      - number: 21
+
+  L7_C2:
+    Size: 2081 tokens (20.8%)
+    Dominant type: word_with_space
+    Top tokens:  was,  be,  on,  by,  had,  I, He,  has, It,  can
+    Type distribution:
+      - word_with_space: 1826
+      - word: 224
+      - number_with_space: 21
+
+  L7_C3:
+    Size: 669 tokens (6.7%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If,  came, For, When,  New
+    Type distribution:
+      - word_with_space: 577
+      - word: 85
+      - mixed_with_space: 2
+
+  L7_C4:
+    Size: 1391 tokens (13.9%)
+    Dominant type: word_with_space
+    Top tokens:  which,  than,  way,  life, y,  himself,  number,  house, a, ers
+    Type distribution:
+      - word_with_space: 795
+      - word: 595
+      - number_with_space: 1
+
+LAYER 8:
+
+  L8_C0:
+    Size: 2935 tokens (29.3%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as, 's,  at,  or,  this
+    Type distribution:
+      - word_with_space: 2267
+      - word: 621
+      - number: 22
+
+  L8_C1:
+    Size: 1967 tokens (19.7%)
+    Dominant type: word_with_space
+    Top tokens:  be,  on,  by,  had,  I, He,  has, It,  can,  could
+    Type distribution:
+      - word_with_space: 1726
+      - word: 217
+      - number_with_space: 15
+
+  L8_C2:
+    Size: 1448 tokens (14.5%)
+    Dominant type: word_with_space
+    Top tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+    Type distribution:
+      - word_with_space: 829
+      - word: 618
+      - number_with_space: 1
+
+  L8_C3:
+    Size: 619 tokens (6.2%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If, For,  New, 'll,  Mrs
+    Type distribution:
+      - word_with_space: 534
+      - word: 79
+      - mixed_with_space: 2
+
+  L8_C4:
+    Size: 3031 tokens (30.3%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  was,  for,  '', -,  with
+    Type distribution:
+      - word_with_space: 2529
+      - word: 386
+      - number_with_space: 58
+
+LAYER 9:
+
+  L9_C0:
+    Size: 2960 tokens (29.6%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as, 's,  at,  are,  or
+    Type distribution:
+      - word_with_space: 2293
+      - word: 619
+      - number: 23
+
+  L9_C1:
+    Size: 1462 tokens (14.6%)
+    Dominant type: word_with_space
+    Top tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+    Type distribution:
+      - word_with_space: 838
+      - word: 623
+      - number_with_space: 1
+
+  L9_C2:
+    Size: 612 tokens (6.1%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If, For,  New, 'll,  Mrs
+    Type distribution:
+      - word_with_space: 528
+      - word: 78
+      - mixed_with_space: 2
+
+  L9_C3:
+    Size: 3031 tokens (30.3%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  was,  for,  '', -,  with
+    Type distribution:
+      - word_with_space: 2528
+      - word: 385
+      - number_with_space: 60
+
+  L9_C4:
+    Size: 1935 tokens (19.4%)
+    Dominant type: word_with_space
+    Top tokens:  be,  on,  by,  had,  I, He,  has, It,  can,  could
+    Type distribution:
+      - word_with_space: 1698
+      - word: 216
+      - number_with_space: 13
+
+LAYER 10:
+
+  L10_C0:
+    Size: 2968 tokens (29.7%)
+    Dominant type: word_with_space
+    Top tokens:  the,  ,,  of,  and,  that,  as, 's,  at,  are,  or
+    Type distribution:
+      - word_with_space: 2300
+      - word: 619
+      - number: 24
+
+  L10_C1:
+    Size: 1457 tokens (14.6%)
+    Dominant type: word_with_space
+    Top tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+    Type distribution:
+      - word_with_space: 835
+      - word: 621
+      - number_with_space: 1
+
+  L10_C2:
+    Size: 603 tokens (6.0%)
+    Dominant type: word_with_space
+    Top tokens:  ``, ``,  an, In, There, If, For,  New, 'll,  Mrs
+    Type distribution:
+      - word_with_space: 520
+      - word: 77
+      - mixed_with_space: 2
+
+  L10_C3:
+    Size: 3037 tokens (30.4%)
+    Dominant type: word_with_space
+    Top tokens:  .,  to,  a,  in,  is,  was,  for,  '', -,  with
+    Type distribution:
+      - word_with_space: 2534
+      - word: 386
+      - number_with_space: 60
+
+  L10_C4:
+    Size: 1935 tokens (19.4%)
+    Dominant type: word_with_space
+    Top tokens:  be,  on,  by,  had,  I, He,  has, It,  can,  could
+    Type distribution:
+      - word_with_space: 1696
+      - word: 218
+      - number_with_space: 13
+
+LAYER 11:
+
+  L11_C0:
+    Size: 1738 tokens (17.4%)
+    Dominant type: word
+    Top tokens:  .,  '', .,  ?,  ``, ``, He,  (,  :, In
+    Type distribution:
+      - word: 909
+      - word_with_space: 669
+      - number_with_space: 75
+
+  L11_C1:
+    Size: 3016 tokens (30.2%)
+    Dominant type: word_with_space
+    Top tokens:  ,,  a,  in,  as, The,  be,  on,  ;,  at,  an
+    Type distribution:
+      - word_with_space: 2773
+      - word: 219
+      - number_with_space: 18
+
+  L11_C2:
+    Size: 1579 tokens (15.8%)
+    Dominant type: word_with_space
+    Top tokens:  the,  of,  and,  to,  that,  is,  was,  for,  with,  it
+    Type distribution:
+      - word_with_space: 1529
+      - word: 43
+      - other: 7
+
+  L11_C3:
+    Size: 1085 tokens (10.8%)
+    Dominant type: word_with_space
+    Top tokens: -,  Af,  C,  P,  S,  un,  p,  M, t,  T
+    Type distribution:
+      - word_with_space: 754
+      - word: 329
+      - punctuation: 1
+
+  L11_C4:
+    Size: 2582 tokens (25.8%)
+    Dominant type: word_with_space
+    Top tokens:  over, ing, ly,  well,  long,  good,  under, If,  off,  old
+    Type distribution:
+      - word_with_space: 2160
+      - word: 421
+      - number: 1

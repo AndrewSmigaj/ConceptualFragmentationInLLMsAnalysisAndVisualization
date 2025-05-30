@@ -1,0 +1,75 @@
+Consistent Label Tracking Report
+================================
+
+Group 14 - Label: Content Words (General Nouns)
+Clusters: L1_C3, L2_C9
+Shared tokens (23): [' don', ' ``', ' Mrs', ' un', ' President', ' co', ' wouldn', 'An', ' cent', ' hadn', ' New', ' par', ' non', ' inter', 'By', ' didn', ' couldn', ' pre', ' sat', ' dis']
+
+Group 21 - Label: Core Function Words
+Clusters: L2_C0, L4_C0, L5_C4, L6_C7
+Shared tokens (20): [' said', ' out', ' of', "'s", ' ,', "'t", ' not', ' to', ' are', ' from', ' at', ' this', ' ;', ' his', ' you', ' her', ' a', ' )', ' all', ' up']
+
+Group 22 - Label: Past Tense Forms (-ed)
+Clusters: L2_C1, L4_C8, L5_C8, L6_C6
+Shared tokens (21): [' do', ' would', ' some', ' no', " ''", ' who', ' more', ' their', ' so', ' have', ' will', 'The', ' been', ' they', ' was', ' were', ' may', ' is', ' --', ' other']
+
+Group 23 - Label: Content Words (General Nouns)
+Clusters: L2_C2, L3_C0, L4_C3, L5_C5, L6_C2, L7_C8, L8_C0, L9_C7, L10_C1
+Shared tokens (18): ['ley', ' matter', 't', 'ors', 'ol', 'us', 'man', ' stage', 'men', ' words', ' society', ' others', ' experience', ' least', 'et', 'ous', 'as', ' system']
+
+Group 24 - Label: Plural Forms
+Clusters: L2_C3, L3_C6
+Shared tokens (24): [' now', ' program', ' present', ' set', ' life', ' me', ' part', ' him', ' course', ' which', ' still', ' number', 'ers', ' them', ' night', ' year', ' house', ' work', ' time', ' days']
+
+Group 25 - Label: Content Words (General Nouns)
+Clusters: L2_C4, L5_C7
+Shared tokens (20): [' t', ' S', 'She', ' h', ' g', ' cl', ' He', ' r', ' w', ' f', ' Dr', ' m', ' Negro', 'I', 'He', ' $', ' p', ' s', ' St', ' l']
+
+Group 27 - Label: Content Words (General Nouns)
+Clusters: L2_C6, L4_C9, L5_C0, L6_C0, L7_C6, L8_C2, L9_C9, L10_C9
+Shared tokens (17): ['ist', ' 3', '-', ' M', 'th', ' C', ' .', 'C', 'ic', 'S', ' R', 'M', ' D', 'in', ' P', '.', ' B']
+
+Group 28 - Label: Content Words (General Nouns)
+Clusters: L2_C7, L3_C9
+Shared tokens (27): ['is', 'e', 'able', 'and', ' U', 'y', 'ie', 'at', 'o', 'it', ' 1', ' boy', ' God', ' H', "'", 'en', 'i', 'ine', 'le', 'an']
+
+Group 30 - Label: Content Words (General Nouns)
+Clusters: L3_C1, L4_C1, L5_C9, L6_C8, L7_C2, L8_C6, L9_C8, L10_C3
+Shared tokens (22): [' give', ' told', ' Mrs', ' un', ' President', 'On', ' gave', ' seemed', ' New', 'There', 'It', ' let', "'ll", "'m", ' an', 'If', ' looked', 'In', ' came', 'They']
+
+Group 31 - Label: Past Tense Forms (-ed)
+Clusters: L3_C2, L7_C9, L8_C7, L9_C5, L10_C0
+Shared tokens (20): [' would', ' some', ' no', ' who', ' so', ' have', ' will', ' with', "'t", ' not', ' to', ' been', ' is', ' two', ' in', ' for', ' --', ' all', ' other', ' there']
+
+Group 32 - Label: Plural Forms
+Clusters: L3_C3, L7_C0, L8_C8, L9_C3, L10_C5
+Shared tokens (23): [' like', ' its', ' into', ' about', ' then', ' out', ' said', ' what', ' if', ' it', ' of', "'s", ' ,', ' new', ' are', ' this', ' also', ' you', ' her', ' )']
+
+Group 33 - Label: Content Words (General Nouns)
+Clusters: L3_C4, L4_C7, L5_C2, L6_C3, L7_C4, L8_C4, L9_C2, L10_C2
+Shared tokens (27): [' ``', ' isn', ' co', ' ought', ' wouldn', 'An', ' cent', ' des', ' hadn', ' principal', ' according', ' inter', 'By', ' didn', ' couldn', ' pre', ' sat', ' tell', ' dis', ' con']
+
+Group 34 - Label: Content Words (General Nouns)
+Clusters: L3_C5, L4_C5, L6_C1
+Shared tokens (21): [' t', ' S', 'She', ' g', ' He', ' r', ' w', ' f', ' m', ' ten', 'He', ' John', ' I', ' p', ' Miss', ' We', ' St', ' Af', '(', ' l']
+
+Group 36 - Label: Past Tense Forms (-ed)
+Clusters: L3_C8, L4_C6, L5_C6, L6_C4
+Shared tokens (24): [' enough', ' head', ' most', ' far', ' get', ' had', ' can', ' per', 'This', ' be', ' on', ' by', 'And', ' United', ' something', ' took', ' well', ' should', 'His', ' got']
+
+Group 37 - Label: Plural Forms
+Clusters: L4_C2, L5_C3, L6_C9, L7_C5, L8_C3, L9_C6, L10_C7
+Shared tokens (26): [' and', ' now', ' the', ' world', ' me', ' day', ' 1', ' him', ' men', "'", ' but', ' still', ' them', ' work', ' see', ' through', ' over', ' that', ' time', 'ing']
+
+Group 38 - Label: Plural Forms
+Clusters: L4_C4, L5_C1, L6_C5, L7_C3, L8_C9, L9_C0, L10_C6
+Shared tokens (23): ['y', ' program', ' than', 'ie', ' city', ' life', 'a', ' later', 'i', ' which', ' things', ' number', 'ers', ' room', ' house', ' once', 'ness', 'on', ' way', 'ism']
+
+Group 39 - Label: Past Tense Forms (-ed)
+Clusters: L7_C1, L8_C5, L9_C4, L10_C4
+Shared tokens (27): [' do', ' my', ' most', " ''", ' more', 'She', ' she', ' long', ' make', ' had', ' can', ' must', ' be', ' on', ' where', ' by', ' !', 'And', ' they', ' was']
+
+Group 40 - Label: Past Tense Forms (-ed)
+Clusters: L7_C7, L8_C1, L9_C1, L10_C8
+Shared tokens (29): ['You', 'At', ' asked', ' head', ' far', ' get', ' per', 'This', ' knew', 'What', ' took', 'To', 'I', 'He', ' well', 'These', ' $', ' should', ' toward', ' look']
+

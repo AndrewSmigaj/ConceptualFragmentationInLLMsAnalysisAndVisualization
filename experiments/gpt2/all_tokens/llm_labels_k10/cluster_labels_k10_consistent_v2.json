@@ -1,0 +1,1476 @@
+{
+  "metadata": {
+    "generated_at": "2025-05-29T10:00:00",
+    "model": "deterministic_rules",
+    "k": 10,
+    "total_clusters": 120,
+    "method": "consistent_labeling_v2",
+    "description": "Labels generated using deterministic rules for consistency"
+  },
+  "labels": {
+    "layer_0": {
+      "L0_C0": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  she,  hand,  water,  head,  eyes",
+        "size": 1046,
+        "percentage": 10.459999999999999,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L0_C1": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples:  the, .,  me,  now,  well",
+        "size": 1198,
+        "percentage": 11.98,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L0_C2": {
+        "label": "Punctuation: Special",
+        "description": "Cluster contains 4/10 punctuation tokens. Examples:  ,,  .,  and,  to,  a",
+        "size": 1060,
+        "percentage": 10.6,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 punctuation tokens"
+        }
+      },
+      "L0_C3": {
+        "label": "Content: Secondary",
+        "description": "Cluster contains 6/10 content tokens. Examples:  (,  Af,  per,  Mrs,  un",
+        "size": 559,
+        "percentage": 5.59,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 content tokens"
+        }
+      },
+      "L0_C4": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 3/10 pronouns tokens. Examples: -,  he,  I, I, ing",
+        "size": 1107,
+        "percentage": 11.07,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 pronouns tokens"
+        }
+      },
+      "L0_C5": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples:  time,  years,  way,  work,  life",
+        "size": 1374,
+        "percentage": 13.74,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L0_C6": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 3/10 prepositions tokens. Examples:  of,  in,  that,  is,  was",
+        "size": 1118,
+        "percentage": 11.18,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 prepositions tokens"
+        }
+      },
+      "L0_C7": {
+        "label": "Content: Secondary",
+        "description": "Cluster contains 6/10 content tokens. Examples:  they,  we,  man,  people,  men",
+        "size": 814,
+        "percentage": 8.14,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 content tokens"
+        }
+      },
+      "L0_C8": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 3/10 pronouns tokens. Examples: He, In, A, She, We",
+        "size": 604,
+        "percentage": 6.04,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 pronouns tokens"
+        }
+      },
+      "L0_C9": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  for,  '',  with,  be,  on",
+        "size": 1120,
+        "percentage": 11.200000000000001,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      }
+    },
+    "layer_1": {
+      "L1_C0": {
+        "label": "Quantifiers",
+        "description": "Cluster contains 9/10 quantifiers tokens. Examples:  two,  1,  three,  2,  few",
+        "size": 212,
+        "percentage": 2.12,
+        "analysis": {
+          "primary_category": "Quantifiers",
+          "subcategory": "Primary",
+          "confidence": 90.0,
+          "reasoning": "Cluster contains 9/10 quantifiers tokens"
+        }
+      },
+      "L1_C1": {
+        "label": "Determiners: Special",
+        "description": "Cluster contains 3/10 determiners tokens. Examples:  the,  ,,  and,  that,  or",
+        "size": 1372,
+        "percentage": 13.719999999999999,
+        "analysis": {
+          "primary_category": "Determiners",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 determiners tokens"
+        }
+      },
+      "L1_C2": {
+        "label": "Prepositions: Secondary",
+        "description": "Cluster contains 6/10 prepositions tokens. Examples:  of,  to,  in,  is,  was",
+        "size": 1289,
+        "percentage": 12.889999999999999,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 prepositions tokens"
+        }
+      },
+      "L1_C3": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples:  ``,  New,  Mrs,  don,  didn",
+        "size": 521,
+        "percentage": 5.21,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L1_C4": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 4/10 capitalized tokens. Examples:  ., -,  Af,  $,  B",
+        "size": 756,
+        "percentage": 7.5600000000000005,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 capitalized tokens"
+        }
+      },
+      "L1_C5": {
+        "label": "Pronouns: Secondary",
+        "description": "Cluster contains 6/10 pronouns tokens. Examples:  it,  one,  you,  they,  him",
+        "size": 1883,
+        "percentage": 18.83,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 pronouns tokens"
+        }
+      },
+      "L1_C6": {
+        "label": "Auxiliaries: Special",
+        "description": "Cluster contains 4/10 auxiliaries tokens. Examples:  be, ``,  an,  has, It",
+        "size": 1310,
+        "percentage": 13.100000000000001,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 auxiliaries tokens"
+        }
+      },
+      "L1_C7": {
+        "label": "Pronouns",
+        "description": "Cluster contains 7/10 pronouns tokens. Examples:  he, .,  I, He,  she",
+        "size": 743,
+        "percentage": 7.430000000000001,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 pronouns tokens"
+        }
+      },
+      "L1_C8": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples:  (, A, y, in, and",
+        "size": 985,
+        "percentage": 9.85,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L1_C9": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 4/10 pronouns tokens. Examples:  a, The,  his,  her,  their",
+        "size": 929,
+        "percentage": 9.29,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 pronouns tokens"
+        }
+      }
+    },
+    "layer_2": {
+      "L2_C0": {
+        "label": "Prepositions: Secondary",
+        "description": "Cluster contains 5/10 prepositions tokens. Examples:  the,  ,,  of,  and,  to",
+        "size": 1093,
+        "percentage": 10.93,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 prepositions tokens"
+        }
+      },
+      "L2_C1": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 6/10 auxiliaries tokens. Examples:  is,  was,  '', The,  had",
+        "size": 1633,
+        "percentage": 16.33,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 auxiliaries tokens"
+        }
+      },
+      "L2_C2": {
+        "label": "Content",
+        "description": "Cluster contains 9/10 content tokens. Examples: a, man,  once,  system,  room",
+        "size": 675,
+        "percentage": 6.75,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 90.0,
+          "reasoning": "Cluster contains 9/10 content tokens"
+        }
+      },
+      "L2_C3": {
+        "label": "Content: Secondary",
+        "description": "Cluster contains 6/10 content tokens. Examples:  which,  one,  him,  them,  time",
+        "size": 1437,
+        "percentage": 14.37,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 content tokens"
+        }
+      },
+      "L2_C4": {
+        "label": "Content: Secondary",
+        "description": "Cluster contains 5/10 content tokens. Examples: He, I, She,  well,  $",
+        "size": 680,
+        "percentage": 6.800000000000001,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 content tokens"
+        }
+      },
+      "L2_C5": {
+        "label": "Prepositions: Combined",
+        "description": "Cluster contains 3/10 prepositions tokens. Examples:  be,  on,  by,  an, It",
+        "size": 907,
+        "percentage": 9.07,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 prepositions tokens"
+        }
+      },
+      "L2_C6": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 6/10 punctuation tokens. Examples:  ., -,  he, .,  ?",
+        "size": 944,
+        "percentage": 9.44,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 punctuation tokens"
+        }
+      },
+      "L2_C7": {
+        "label": "Content: Secondary",
+        "description": "Cluster contains 5/10 content tokens. Examples:  man, A, ',  1, y",
+        "size": 842,
+        "percentage": 8.42,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 content tokens"
+        }
+      },
+      "L2_C8": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  it,  back,  years, ly, s",
+        "size": 1428,
+        "percentage": 14.280000000000001,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L2_C9": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples:  ``, ``, For,  New,  Mrs",
+        "size": 361,
+        "percentage": 3.61,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      }
+    },
+    "layer_3": {
+      "L3_C0": {
+        "label": "Content",
+        "description": "Cluster contains 9/10 content tokens. Examples: a, man,  once,  system,  possible",
+        "size": 761,
+        "percentage": 7.61,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 90.0,
+          "reasoning": "Cluster contains 9/10 content tokens"
+        }
+      },
+      "L3_C1": {
+        "label": "Pronouns: Combined",
+        "description": "Cluster contains 3/10 pronouns tokens. Examples: ``,  an, It, In, There",
+        "size": 684,
+        "percentage": 6.84,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 pronouns tokens"
+        }
+      },
+      "L3_C2": {
+        "label": "Prepositions: Secondary",
+        "description": "Cluster contains 5/10 prepositions tokens. Examples:  to,  in,  is,  was,  for",
+        "size": 1722,
+        "percentage": 17.22,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 prepositions tokens"
+        }
+      },
+      "L3_C3": {
+        "label": "Punctuation: Special",
+        "description": "Cluster contains 2/10 punctuation tokens. Examples:  ,,  of,  that,  it,  as",
+        "size": 1872,
+        "percentage": 18.72,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Special",
+          "confidence": 20.0,
+          "reasoning": "Cluster contains 2/10 punctuation tokens"
+        }
+      },
+      "L3_C4": {
+        "label": "Content: Secondary",
+        "description": "Cluster contains 6/10 content tokens. Examples:  ``, For,  don,  didn,  tell",
+        "size": 221,
+        "percentage": 2.21,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 content tokens"
+        }
+      },
+      "L3_C5": {
+        "label": "Pronouns: Secondary",
+        "description": "Cluster contains 5/10 pronouns tokens. Examples:  '',  I, He,  she, I",
+        "size": 621,
+        "percentage": 6.21,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 pronouns tokens"
+        }
+      },
+      "L3_C6": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples:  and,  which,  one,  him,  than",
+        "size": 1341,
+        "percentage": 13.41,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L3_C7": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 6/10 punctuation tokens. Examples:  .,  a, -,  he, .",
+        "size": 906,
+        "percentage": 9.06,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 punctuation tokens"
+        }
+      },
+      "L3_C8": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 6/10 auxiliaries tokens. Examples:  be,  on,  by,  had,  has",
+        "size": 1101,
+        "percentage": 11.01,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 auxiliaries tokens"
+        }
+      },
+      "L3_C9": {
+        "label": "Determiners: Combined",
+        "description": "Cluster contains 3/10 determiners tokens. Examples:  the,  man, A, ing, '",
+        "size": 771,
+        "percentage": 7.71,
+        "analysis": {
+          "primary_category": "Determiners",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 determiners tokens"
+        }
+      }
+    },
+    "layer_4": {
+      "L4_C0": {
+        "label": "Punctuation: Combined",
+        "description": "Cluster contains 3/10 punctuation tokens. Examples:  ,,  of,  to,  a,  it",
+        "size": 1702,
+        "percentage": 17.02,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 punctuation tokens"
+        }
+      },
+      "L4_C1": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 3/10 pronouns tokens. Examples: ``,  an, It, In, There",
+        "size": 709,
+        "percentage": 7.090000000000001,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 pronouns tokens"
+        }
+      },
+      "L4_C2": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  as,  or",
+        "size": 1702,
+        "percentage": 17.02,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      },
+      "L4_C3": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 421,
+        "percentage": 4.21,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L4_C4": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  year,  life",
+        "size": 1066,
+        "percentage": 10.66,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L4_C5": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 4/10 capitalized tokens. Examples:  I, He,  Af, She,  Mr",
+        "size": 543,
+        "percentage": 5.43,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 capitalized tokens"
+        }
+      },
+      "L4_C6": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  be,  on,  by,  had,  has",
+        "size": 1088,
+        "percentage": 10.879999999999999,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L4_C7": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  don,  didn,  tell,  stood",
+        "size": 210,
+        "percentage": 2.1,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L4_C8": {
+        "label": "Auxiliaries: Special",
+        "description": "Cluster contains 4/10 auxiliaries tokens. Examples:  in,  is,  was,  for,  ''",
+        "size": 1727,
+        "percentage": 17.27,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 auxiliaries tokens"
+        }
+      },
+      "L4_C9": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 5/10 punctuation tokens. Examples:  ., -, .,  ?,  we",
+        "size": 832,
+        "percentage": 8.32,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 punctuation tokens"
+        }
+      }
+    },
+    "layer_5": {
+      "L5_C0": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 6/10 punctuation tokens. Examples:  ., -,  he, .,  ?",
+        "size": 819,
+        "percentage": 8.19,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 punctuation tokens"
+        }
+      },
+      "L5_C1": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  each,  year",
+        "size": 1173,
+        "percentage": 11.73,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L5_C2": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  don,  didn,  tell,  stood",
+        "size": 204,
+        "percentage": 2.04,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L5_C3": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  as,  or",
+        "size": 1747,
+        "percentage": 17.47,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      },
+      "L5_C4": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  ,,  of,  to,  a,  in",
+        "size": 1714,
+        "percentage": 17.14,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      },
+      "L5_C5": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 456,
+        "percentage": 4.5600000000000005,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L5_C6": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  be,  on,  by,  had,  can",
+        "size": 1027,
+        "percentage": 10.27,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L5_C7": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 4/10 pronouns tokens. Examples:  I, He, I,  Af, She",
+        "size": 526,
+        "percentage": 5.26,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 pronouns tokens"
+        }
+      },
+      "L5_C8": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  is,  was,  for,  '', The",
+        "size": 1652,
+        "percentage": 16.520000000000003,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L5_C9": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 3/10 capitalized tokens. Examples: ``,  an, It, In, There",
+        "size": 682,
+        "percentage": 6.819999999999999,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 capitalized tokens"
+        }
+      }
+    },
+    "layer_6": {
+      "L6_C0": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 6/10 punctuation tokens. Examples:  ., -,  he, .,  ?",
+        "size": 805,
+        "percentage": 8.05,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 punctuation tokens"
+        }
+      },
+      "L6_C1": {
+        "label": "Pronouns: Combined",
+        "description": "Cluster contains 3/10 pronouns tokens. Examples:  I, He,  Af, She,  $",
+        "size": 511,
+        "percentage": 5.11,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 pronouns tokens"
+        }
+      },
+      "L6_C2": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 450,
+        "percentage": 4.5,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L6_C3": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  don,  didn,  tell,  stood",
+        "size": 208,
+        "percentage": 2.08,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L6_C4": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  be,  on,  by,  had,  can",
+        "size": 1038,
+        "percentage": 10.38,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L6_C5": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  each,  year",
+        "size": 1151,
+        "percentage": 11.51,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L6_C6": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  is,  was,  for,  '', The",
+        "size": 1666,
+        "percentage": 16.66,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L6_C7": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  ,,  of,  to,  a,  in",
+        "size": 1759,
+        "percentage": 17.59,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      },
+      "L6_C8": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 3/10 pronouns tokens. Examples: ``,  an, It, In, There",
+        "size": 699,
+        "percentage": 6.99,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 pronouns tokens"
+        }
+      },
+      "L6_C9": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  as,  or",
+        "size": 1713,
+        "percentage": 17.130000000000003,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      }
+    },
+    "layer_7": {
+      "L7_C0": {
+        "label": "Punctuation: Special",
+        "description": "Cluster contains 3/10 punctuation tokens. Examples:  ,,  of,  it,  as, 's",
+        "size": 1627,
+        "percentage": 16.27,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 punctuation tokens"
+        }
+      },
+      "L7_C1": {
+        "label": "Auxiliaries: Special",
+        "description": "Cluster contains 4/10 auxiliaries tokens. Examples:  was,  '', The,  be,  on",
+        "size": 1423,
+        "percentage": 14.23,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 auxiliaries tokens"
+        }
+      },
+      "L7_C2": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 3/10 capitalized tokens. Examples: ``,  an, It, In, There",
+        "size": 564,
+        "percentage": 5.64,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 capitalized tokens"
+        }
+      },
+      "L7_C3": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  each,  life",
+        "size": 1035,
+        "percentage": 10.35,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L7_C4": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  didn,  tell, An, By",
+        "size": 182,
+        "percentage": 1.82,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L7_C5": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  or,  one",
+        "size": 1573,
+        "percentage": 15.73,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      },
+      "L7_C6": {
+        "label": "Punctuation: Special",
+        "description": "Cluster contains 4/10 punctuation tokens. Examples:  ., -,  he, .,  (",
+        "size": 704,
+        "percentage": 7.04,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 punctuation tokens"
+        }
+      },
+      "L7_C7": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples: He,  could, I, This,  should",
+        "size": 1071,
+        "percentage": 10.71,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L7_C8": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 406,
+        "percentage": 4.06,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L7_C9": {
+        "label": "Prepositions: Secondary",
+        "description": "Cluster contains 5/10 prepositions tokens. Examples:  to,  a,  in,  is,  for",
+        "size": 1415,
+        "percentage": 14.149999999999999,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 prepositions tokens"
+        }
+      }
+    },
+    "layer_8": {
+      "L8_C0": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 416,
+        "percentage": 4.16,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L8_C1": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples: He,  could, I, This,  should",
+        "size": 1062,
+        "percentage": 10.620000000000001,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L8_C2": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 5/10 punctuation tokens. Examples:  ., -, .,  (,  we",
+        "size": 702,
+        "percentage": 7.02,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 punctuation tokens"
+        }
+      },
+      "L8_C3": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  as,  or",
+        "size": 1599,
+        "percentage": 15.989999999999998,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      },
+      "L8_C4": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  didn,  tell, An, By",
+        "size": 180,
+        "percentage": 1.7999999999999998,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L8_C5": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  was,  '',  be,  on,  by",
+        "size": 1394,
+        "percentage": 13.94,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L8_C6": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 3/10 capitalized tokens. Examples: ``,  an, It, In, There",
+        "size": 572,
+        "percentage": 5.72,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 capitalized tokens"
+        }
+      },
+      "L8_C7": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  to,  in,  is,  for,  with",
+        "size": 1406,
+        "percentage": 14.06,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      },
+      "L8_C8": {
+        "label": "Punctuation: Combined",
+        "description": "Cluster contains 3/10 punctuation tokens. Examples:  ,,  of,  a,  it,  his",
+        "size": 1619,
+        "percentage": 16.189999999999998,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 punctuation tokens"
+        }
+      },
+      "L8_C9": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  each,  life",
+        "size": 1050,
+        "percentage": 10.5,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      }
+    },
+    "layer_9": {
+      "L9_C0": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  each,  life",
+        "size": 1043,
+        "percentage": 10.43,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L9_C1": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples: He,  could, I, This,  should",
+        "size": 1051,
+        "percentage": 10.51,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L9_C2": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  didn,  tell, An, By",
+        "size": 180,
+        "percentage": 1.7999999999999998,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L9_C3": {
+        "label": "Punctuation: Combined",
+        "description": "Cluster contains 3/10 punctuation tokens. Examples:  ,,  of,  a,  it,  his",
+        "size": 1625,
+        "percentage": 16.25,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 punctuation tokens"
+        }
+      },
+      "L9_C4": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  was,  '',  be,  on,  by",
+        "size": 1401,
+        "percentage": 14.01,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L9_C5": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  to,  in,  is,  for,  with",
+        "size": 1396,
+        "percentage": 13.96,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      },
+      "L9_C6": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  as,  or",
+        "size": 1599,
+        "percentage": 15.989999999999998,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      },
+      "L9_C7": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 412,
+        "percentage": 4.12,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L9_C8": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 3/10 capitalized tokens. Examples: ``,  an, It, In, There",
+        "size": 581,
+        "percentage": 5.81,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 capitalized tokens"
+        }
+      },
+      "L9_C9": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 5/10 punctuation tokens. Examples:  ., -,  he, .,  (",
+        "size": 712,
+        "percentage": 7.12,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 punctuation tokens"
+        }
+      }
+    },
+    "layer_10": {
+      "L10_C0": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  to,  in,  is,  for,  with",
+        "size": 1413,
+        "percentage": 14.13,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      },
+      "L10_C1": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples: man,  system,  least,  matter,  others",
+        "size": 417,
+        "percentage": 4.17,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L10_C2": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  ``,  didn,  tell, An, By",
+        "size": 180,
+        "percentage": 1.7999999999999998,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L10_C3": {
+        "label": "Capitalized: Special",
+        "description": "Cluster contains 3/10 capitalized tokens. Examples: ``,  an, It, In, There",
+        "size": 565,
+        "percentage": 5.65,
+        "analysis": {
+          "primary_category": "Capitalized",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 capitalized tokens"
+        }
+      },
+      "L10_C4": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  was,  '',  be,  on,  by",
+        "size": 1384,
+        "percentage": 13.84,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      },
+      "L10_C5": {
+        "label": "Punctuation: Combined",
+        "description": "Cluster contains 3/10 punctuation tokens. Examples:  ,,  of,  a,  it,  his",
+        "size": 1639,
+        "percentage": 16.39,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Combined",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 punctuation tokens"
+        }
+      },
+      "L10_C6": {
+        "label": "Content",
+        "description": "Cluster contains 8/10 content tokens. Examples:  which,  than,  way,  each,  life",
+        "size": 1049,
+        "percentage": 10.489999999999998,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 80.0,
+          "reasoning": "Cluster contains 8/10 content tokens"
+        }
+      },
+      "L10_C7": {
+        "label": "Conjunctions: Special",
+        "description": "Cluster contains 3/10 conjunctions tokens. Examples:  the,  and,  that,  as,  or",
+        "size": 1598,
+        "percentage": 15.98,
+        "analysis": {
+          "primary_category": "Conjunctions",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 conjunctions tokens"
+        }
+      },
+      "L10_C8": {
+        "label": "Content: Special",
+        "description": "Cluster contains 4/10 content tokens. Examples: He,  could, I, This,  should",
+        "size": 1035,
+        "percentage": 10.35,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 content tokens"
+        }
+      },
+      "L10_C9": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 5/10 punctuation tokens. Examples:  ., -,  he, .,  (",
+        "size": 720,
+        "percentage": 7.199999999999999,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 punctuation tokens"
+        }
+      }
+    },
+    "layer_11": {
+      "L11_C0": {
+        "label": "Content",
+        "description": "Cluster contains 9/10 content tokens. Examples:  as,  other,  time,  if,  two",
+        "size": 1310,
+        "percentage": 13.100000000000001,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 90.0,
+          "reasoning": "Cluster contains 9/10 content tokens"
+        }
+      },
+      "L11_C1": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 5/10 punctuation tokens. Examples:  ., .,  ?, He, In",
+        "size": 1223,
+        "percentage": 12.23,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 punctuation tokens"
+        }
+      },
+      "L11_C2": {
+        "label": "Content",
+        "description": "Cluster contains 10/10 content tokens. Examples:  un,  self,  non,  re,  inter",
+        "size": 527,
+        "percentage": 5.27,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 100.0,
+          "reasoning": "Cluster contains 10/10 content tokens"
+        }
+      },
+      "L11_C3": {
+        "label": "Prepositions: Special",
+        "description": "Cluster contains 4/10 prepositions tokens. Examples:  the,  of,  and,  for,  with",
+        "size": 796,
+        "percentage": 7.960000000000001,
+        "analysis": {
+          "primary_category": "Prepositions",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 prepositions tokens"
+        }
+      },
+      "L11_C4": {
+        "label": "Punctuation: Special",
+        "description": "Cluster contains 3/10 punctuation tokens. Examples:  ,,  in, The,  ;,  at",
+        "size": 1130,
+        "percentage": 11.3,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Special",
+          "confidence": 30.0,
+          "reasoning": "Cluster contains 3/10 punctuation tokens"
+        }
+      },
+      "L11_C5": {
+        "label": "Pronouns: Special",
+        "description": "Cluster contains 4/10 pronouns tokens. Examples:  a,  he,  his,  be,  on",
+        "size": 966,
+        "percentage": 9.66,
+        "analysis": {
+          "primary_category": "Pronouns",
+          "subcategory": "Special",
+          "confidence": 40.0,
+          "reasoning": "Cluster contains 4/10 pronouns tokens"
+        }
+      },
+      "L11_C6": {
+        "label": "Content",
+        "description": "Cluster contains 9/10 content tokens. Examples:  under,  high,  hand,  head,  end",
+        "size": 1225,
+        "percentage": 12.25,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 90.0,
+          "reasoning": "Cluster contains 9/10 content tokens"
+        }
+      },
+      "L11_C7": {
+        "label": "Content",
+        "description": "Cluster contains 7/10 content tokens. Examples:  no,  over, ing,  well,  long",
+        "size": 1604,
+        "percentage": 16.04,
+        "analysis": {
+          "primary_category": "Content",
+          "subcategory": "Primary",
+          "confidence": 70.0,
+          "reasoning": "Cluster contains 7/10 content tokens"
+        }
+      },
+      "L11_C8": {
+        "label": "Punctuation: Secondary",
+        "description": "Cluster contains 6/10 punctuation tokens. Examples:  '', -,  ``, ``,  (",
+        "size": 712,
+        "percentage": 7.12,
+        "analysis": {
+          "primary_category": "Punctuation",
+          "subcategory": "Secondary",
+          "confidence": 60.0,
+          "reasoning": "Cluster contains 6/10 punctuation tokens"
+        }
+      },
+      "L11_C9": {
+        "label": "Auxiliaries: Secondary",
+        "description": "Cluster contains 5/10 auxiliaries tokens. Examples:  to,  that,  is,  was,  it",
+        "size": 507,
+        "percentage": 5.07,
+        "analysis": {
+          "primary_category": "Auxiliaries",
+          "subcategory": "Secondary",
+          "confidence": 50.0,
+          "reasoning": "Cluster contains 5/10 auxiliaries tokens"
+        }
+      }
+    }
+  }
+}

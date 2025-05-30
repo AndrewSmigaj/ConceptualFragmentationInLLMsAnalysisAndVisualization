@@ -1,0 +1,4183 @@
+{
+  "task": "Analyze GPT-2 token clusters and provide semantic labels",
+  "instructions": "Please analyze these clusters from GPT-2 model layers and provide semantic labels.\n\nIMPORTANT REQUIREMENTS:\n1. Labels should be DIFFERENTIATED - show what makes each cluster unique\n2. Labels should be CONSISTENT - same concepts get same names across layers\n3. Focus on linguistic/semantic categories (grammar, syntax, semantics)\n4. Be specific about what distinguishes each cluster\n5. With k=10, expect finer-grained distinctions than with smaller k\n\nFor each cluster, provide:\n- A concise semantic label (2-4 words)\n- A brief description of what tokens it contains\n\nExample good labels:\n- \"Modal Auxiliaries\" (not just \"Auxiliary Verbs\")\n- \"Sentence-Initial Capitals\" (not just \"Capitals\")\n- \"Mathematical Operators\" (not just \"Symbols\")\n\nAnalyze these 10 clusters per layer across 12 layers:",
+  "cluster_data": {
+    "layer_0": {
+      "C0": {
+        "size": 1046,
+        "percentage": "10.5%",
+        "common_tokens": [
+          " she",
+          " hand",
+          " water",
+          " head",
+          " eyes",
+          " car",
+          " line",
+          " body",
+          " feet",
+          " moment",
+          " air",
+          " wife",
+          " voice",
+          " sound",
+          " land"
+        ],
+        "token_types": {
+          "word_with_space": 996,
+          "word": 50
+        },
+        "linguistic_features": {
+          "has_space": "95.2%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C1": {
+        "size": 1198,
+        "percentage": "12.0%",
+        "common_tokens": [
+          " the",
+          ".",
+          " me",
+          " now",
+          " well",
+          " year",
+          " us",
+          ",",
+          " himself",
+          " old",
+          " state",
+          " American",
+          " home",
+          " high",
+          " New"
+        ],
+        "token_types": {
+          "word_with_space": 864,
+          "punctuation": 3,
+          "number_with_space": 42,
+          "word": 276,
+          "number": 13
+        },
+        "linguistic_features": {
+          "has_space": "75.6%",
+          "alphabetic": "95.2%",
+          "punctuation": "0.3%",
+          "numeric": "4.6%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C2": {
+        "size": 1060,
+        "percentage": "10.6%",
+        "common_tokens": [
+          " ,",
+          " .",
+          " and",
+          " to",
+          " a",
+          " his",
+          "'s",
+          " ?",
+          " not",
+          " or",
+          " this",
+          " an",
+          " one",
+          " her",
+          " but"
+        ],
+        "token_types": {
+          "mixed_with_space": 3,
+          "word_with_space": 961,
+          "other": 3,
+          "number": 1,
+          "word": 90,
+          "punctuation": 1,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "91.0%",
+          "alphabetic": "99.2%",
+          "punctuation": "0.1%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 559,
+        "percentage": "5.6%",
+        "common_tokens": [
+          " (",
+          " Af",
+          " per",
+          " Mrs",
+          " un",
+          " cent",
+          " Dr",
+          " inter",
+          " sl",
+          " dis",
+          " c",
+          " fl",
+          " pre",
+          " Car",
+          " imp"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 463,
+          "word": 94
+        },
+        "linguistic_features": {
+          "has_space": "83.2%",
+          "alphabetic": "99.6%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 1107,
+        "percentage": "11.1%",
+        "common_tokens": [
+          "-",
+          " he",
+          " I",
+          "I",
+          "ing",
+          "ly",
+          "'",
+          "s",
+          " 1",
+          " here",
+          "y",
+          "in",
+          " 2",
+          "es",
+          "er"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 258,
+          "word": 767,
+          "number_with_space": 33,
+          "number": 47
+        },
+        "linguistic_features": {
+          "has_space": "26.3%",
+          "alphabetic": "92.6%",
+          "punctuation": "0.2%",
+          "numeric": "7.2%",
+          "uppercase": "0.6%"
+        }
+      },
+      "C5": {
+        "size": 1374,
+        "percentage": "13.7%",
+        "common_tokens": [
+          " time",
+          " years",
+          " way",
+          " work",
+          " life",
+          " day",
+          " number",
+          " course",
+          " program",
+          " side",
+          " face",
+          " days",
+          " point",
+          " form",
+          " order"
+        ],
+        "token_types": {
+          "word_with_space": 1284,
+          "word": 90
+        },
+        "linguistic_features": {
+          "has_space": "93.4%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C6": {
+        "size": 1118,
+        "percentage": "11.2%",
+        "common_tokens": [
+          " of",
+          " in",
+          " that",
+          " is",
+          " was",
+          " it",
+          " as",
+          "The",
+          " at",
+          " you",
+          " would",
+          " him",
+          " been",
+          " )",
+          " will"
+        ],
+        "token_types": {
+          "word_with_space": 1015,
+          "word": 93,
+          "mixed_with_space": 2,
+          "other": 4,
+          "punctuation": 4
+        },
+        "linguistic_features": {
+          "has_space": "91.0%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.4%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C7": {
+        "size": 814,
+        "percentage": "8.1%",
+        "common_tokens": [
+          " they",
+          " we",
+          " man",
+          " people",
+          " men",
+          " world",
+          " Mr",
+          " States",
+          " house",
+          " group",
+          " U",
+          " business",
+          " children",
+          " God",
+          " country"
+        ],
+        "token_types": {
+          "word_with_space": 776,
+          "word": 22,
+          "number_with_space": 16
+        },
+        "linguistic_features": {
+          "has_space": "97.3%",
+          "alphabetic": "98.0%",
+          "punctuation": "0.0%",
+          "numeric": "2.0%",
+          "uppercase": "0.4%"
+        }
+      },
+      "C8": {
+        "size": 604,
+        "percentage": "6.0%",
+        "common_tokens": [
+          "He",
+          "In",
+          "A",
+          "She",
+          "We",
+          "and",
+          " A",
+          " B",
+          " '",
+          "S",
+          " C",
+          " P",
+          "(",
+          "or",
+          "o"
+        ],
+        "token_types": {
+          "word": 210,
+          "word_with_space": 389,
+          "mixed_with_space": 3,
+          "punctuation": 2
+        },
+        "linguistic_features": {
+          "has_space": "64.9%",
+          "alphabetic": "99.2%",
+          "punctuation": "0.3%",
+          "numeric": "0.0%",
+          "uppercase": "7.8%"
+        }
+      },
+      "C9": {
+        "size": 1120,
+        "percentage": "11.2%",
+        "common_tokens": [
+          " for",
+          " ''",
+          " with",
+          " be",
+          " on",
+          " ;",
+          " by",
+          " had",
+          " ``",
+          " are",
+          " from",
+          "``",
+          " have",
+          " which",
+          " were"
+        ],
+        "token_types": {
+          "word_with_space": 879,
+          "mixed_with_space": 8,
+          "punctuation": 3,
+          "word": 229,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "79.3%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      }
+    },
+    "layer_1": {
+      "C0": {
+        "size": 212,
+        "percentage": "2.1%",
+        "common_tokens": [
+          " two",
+          " 1",
+          " three",
+          " 2",
+          " few",
+          "000",
+          " four",
+          " several",
+          " 3",
+          "th",
+          " five",
+          " 18",
+          " 4",
+          "1",
+          "2"
+        ],
+        "token_types": {
+          "word_with_space": 44,
+          "number_with_space": 90,
+          "number": 61,
+          "word": 17
+        },
+        "linguistic_features": {
+          "has_space": "63.2%",
+          "alphabetic": "28.8%",
+          "punctuation": "0.0%",
+          "numeric": "71.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C1": {
+        "size": 1372,
+        "percentage": "13.7%",
+        "common_tokens": [
+          " the",
+          " ,",
+          " and",
+          " that",
+          " or",
+          " this",
+          " which",
+          " )",
+          " than",
+          " only",
+          " now",
+          " before",
+          " through",
+          " way",
+          "'"
+        ],
+        "token_types": {
+          "word_with_space": 1065,
+          "mixed_with_space": 4,
+          "punctuation": 2,
+          "word": 300,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "78.0%",
+          "alphabetic": "99.5%",
+          "punctuation": "0.1%",
+          "numeric": "0.1%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C2": {
+        "size": 1289,
+        "percentage": "12.9%",
+        "common_tokens": [
+          " of",
+          " to",
+          " in",
+          " is",
+          " was",
+          " for",
+          " ''",
+          " with",
+          " as",
+          " on",
+          "'s",
+          " ;",
+          " by",
+          " had",
+          " at"
+        ],
+        "token_types": {
+          "word_with_space": 1125,
+          "mixed_with_space": 7,
+          "other": 2,
+          "word": 152,
+          "punctuation": 3
+        },
+        "linguistic_features": {
+          "has_space": "87.8%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.2%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 521,
+        "percentage": "5.2%",
+        "common_tokens": [
+          " ``",
+          " New",
+          " Mrs",
+          " don",
+          " didn",
+          " un",
+          " President",
+          " non",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " re",
+          " inter"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 445,
+          "word": 74
+        },
+        "linguistic_features": {
+          "has_space": "85.8%",
+          "alphabetic": "99.6%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 756,
+        "percentage": "7.6%",
+        "common_tokens": [
+          " .",
+          "-",
+          " Af",
+          " $",
+          " B",
+          " per",
+          " C",
+          "At",
+          " P",
+          "(",
+          " D",
+          " S",
+          "C",
+          " p",
+          " car"
+        ],
+        "token_types": {
+          "mixed_with_space": 3,
+          "punctuation": 2,
+          "word_with_space": 539,
+          "word": 212
+        },
+        "linguistic_features": {
+          "has_space": "71.7%",
+          "alphabetic": "99.3%",
+          "punctuation": "0.3%",
+          "numeric": "0.0%",
+          "uppercase": "2.4%"
+        }
+      },
+      "C5": {
+        "size": 1883,
+        "percentage": "18.8%",
+        "common_tokens": [
+          " it",
+          " one",
+          " you",
+          " they",
+          " him",
+          " we",
+          " there",
+          " them",
+          " time",
+          " man",
+          " me",
+          " back",
+          " years",
+          "s",
+          " people"
+        ],
+        "token_types": {
+          "word_with_space": 1812,
+          "word": 69,
+          "punctuation": 2
+        },
+        "linguistic_features": {
+          "has_space": "96.2%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.1%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C6": {
+        "size": 1310,
+        "percentage": "13.1%",
+        "common_tokens": [
+          " be",
+          "``",
+          " an",
+          " has",
+          "It",
+          " can",
+          "In",
+          " !",
+          " could",
+          " do",
+          " may",
+          " did",
+          " should",
+          " well",
+          "There"
+        ],
+        "token_types": {
+          "word_with_space": 1176,
+          "punctuation": 2,
+          "word": 126,
+          "mixed_with_space": 1,
+          "other": 5
+        },
+        "linguistic_features": {
+          "has_space": "89.8%",
+          "alphabetic": "99.4%",
+          "punctuation": "0.2%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C7": {
+        "size": 743,
+        "percentage": "7.4%",
+        "common_tokens": [
+          " he",
+          ".",
+          " I",
+          "He",
+          " she",
+          "I",
+          "She",
+          " Mr",
+          "We",
+          " home",
+          " United",
+          "His",
+          " school",
+          "er",
+          " States"
+        ],
+        "token_types": {
+          "word_with_space": 642,
+          "punctuation": 2,
+          "word": 97,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "86.7%",
+          "alphabetic": "99.5%",
+          "punctuation": "0.3%",
+          "numeric": "0.3%",
+          "uppercase": "0.7%"
+        }
+      },
+      "C8": {
+        "size": 985,
+        "percentage": "9.8%",
+        "common_tokens": [
+          " (",
+          "A",
+          "y",
+          "in",
+          "and",
+          " A",
+          "es",
+          "a",
+          "ers",
+          "man",
+          "S",
+          "ie",
+          " U",
+          "the",
+          "en"
+        ],
+        "token_types": {
+          "mixed_with_space": 1,
+          "word": 786,
+          "word_with_space": 196,
+          "punctuation": 2
+        },
+        "linguistic_features": {
+          "has_space": "20.0%",
+          "alphabetic": "99.7%",
+          "punctuation": "0.2%",
+          "numeric": "0.0%",
+          "uppercase": "3.8%"
+        }
+      },
+      "C9": {
+        "size": 929,
+        "percentage": "9.3%",
+        "common_tokens": [
+          " a",
+          "The",
+          " his",
+          " her",
+          " their",
+          " more",
+          " no",
+          " its",
+          " other",
+          " some",
+          " first",
+          " these",
+          " my",
+          " our",
+          "This"
+        ],
+        "token_types": {
+          "word_with_space": 841,
+          "word": 88
+        },
+        "linguistic_features": {
+          "has_space": "90.5%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      }
+    },
+    "layer_2": {
+      "C0": {
+        "size": 1093,
+        "percentage": "10.9%",
+        "common_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " to",
+          " a",
+          " in",
+          " that",
+          " for",
+          " with",
+          " as",
+          " his",
+          "'s",
+          " ;",
+          " at"
+        ],
+        "token_types": {
+          "word_with_space": 943,
+          "mixed_with_space": 6,
+          "other": 2,
+          "word": 138,
+          "punctuation": 3,
+          "number": 1
+        },
+        "linguistic_features": {
+          "has_space": "86.8%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C1": {
+        "size": 1633,
+        "percentage": "16.3%",
+        "common_tokens": [
+          " is",
+          " was",
+          " ''",
+          "The",
+          " had",
+          " have",
+          " were",
+          " --",
+          " they",
+          " would",
+          " their",
+          " been",
+          " has",
+          " will",
+          " who"
+        ],
+        "token_types": {
+          "word_with_space": 1536,
+          "mixed_with_space": 3,
+          "word": 91,
+          "punctuation": 2,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "94.3%",
+          "alphabetic": "99.6%",
+          "punctuation": "0.1%",
+          "numeric": "0.1%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C2": {
+        "size": 675,
+        "percentage": "6.8%",
+        "common_tokens": [
+          "a",
+          "man",
+          " once",
+          " system",
+          " room",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "ings",
+          "men",
+          "as"
+        ],
+        "token_types": {
+          "word": 413,
+          "word_with_space": 262
+        },
+        "linguistic_features": {
+          "has_space": "38.8%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C3": {
+        "size": 1437,
+        "percentage": "14.4%",
+        "common_tokens": [
+          " which",
+          " one",
+          " him",
+          " them",
+          " time",
+          " me",
+          " now",
+          " way",
+          " work",
+          " men",
+          " still",
+          " year",
+          " life",
+          " us",
+          " himself"
+        ],
+        "token_types": {
+          "word_with_space": 1317,
+          "word": 117,
+          "number_with_space": 3
+        },
+        "linguistic_features": {
+          "has_space": "91.9%",
+          "alphabetic": "99.8%",
+          "punctuation": "0.0%",
+          "numeric": "0.2%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C4": {
+        "size": 680,
+        "percentage": "6.8%",
+        "common_tokens": [
+          "He",
+          "I",
+          "She",
+          " well",
+          " $",
+          " head",
+          " per",
+          " S",
+          " p",
+          " York",
+          " am",
+          " St",
+          " t",
+          " b",
+          " m"
+        ],
+        "token_types": {
+          "word": 108,
+          "word_with_space": 566,
+          "mixed_with_space": 1,
+          "number_with_space": 5
+        },
+        "linguistic_features": {
+          "has_space": "84.1%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.0%",
+          "numeric": "0.7%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C5": {
+        "size": 907,
+        "percentage": "9.1%",
+        "common_tokens": [
+          " be",
+          " on",
+          " by",
+          " an",
+          "It",
+          "In",
+          " could",
+          "This",
+          " most",
+          " should",
+          "There",
+          "They",
+          " get",
+          " between",
+          "If"
+        ],
+        "token_types": {
+          "word_with_space": 787,
+          "word": 110,
+          "other": 5,
+          "mixed_with_space": 1,
+          "number_with_space": 2,
+          "punctuation": 2
+        },
+        "linguistic_features": {
+          "has_space": "87.1%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.2%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C6": {
+        "size": 944,
+        "percentage": "9.4%",
+        "common_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " ?",
+          " I",
+          " (",
+          " we",
+          " she",
+          " !",
+          " Af",
+          "in",
+          " Mr",
+          " 2",
+          " United"
+        ],
+        "token_types": {
+          "mixed_with_space": 5,
+          "punctuation": 6,
+          "word_with_space": 560,
+          "word": 253,
+          "number_with_space": 72,
+          "number": 48
+        },
+        "linguistic_features": {
+          "has_space": "67.5%",
+          "alphabetic": "86.1%",
+          "punctuation": "0.6%",
+          "numeric": "12.7%",
+          "uppercase": "3.3%"
+        }
+      },
+      "C7": {
+        "size": 842,
+        "percentage": "8.4%",
+        "common_tokens": [
+          " man",
+          "A",
+          "'",
+          " 1",
+          "y",
+          "and",
+          " A",
+          "es",
+          "er",
+          "ie",
+          " U",
+          "en",
+          "on",
+          "or",
+          "o"
+        ],
+        "token_types": {
+          "word_with_space": 231,
+          "word": 592,
+          "punctuation": 1,
+          "number_with_space": 6,
+          "number": 12
+        },
+        "linguistic_features": {
+          "has_space": "28.1%",
+          "alphabetic": "97.7%",
+          "punctuation": "0.1%",
+          "numeric": "2.1%",
+          "uppercase": "2.9%"
+        }
+      },
+      "C8": {
+        "size": 1428,
+        "percentage": "14.3%",
+        "common_tokens": [
+          " it",
+          " back",
+          " years",
+          "ly",
+          "s",
+          " people",
+          " world",
+          " day",
+          " here",
+          " state",
+          " home",
+          " place",
+          " thought",
+          " hand",
+          " water"
+        ],
+        "token_types": {
+          "word_with_space": 1375,
+          "word": 49,
+          "number_with_space": 4
+        },
+        "linguistic_features": {
+          "has_space": "96.6%",
+          "alphabetic": "99.7%",
+          "punctuation": "0.0%",
+          "numeric": "0.3%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C9": {
+        "size": 361,
+        "percentage": "3.6%",
+        "common_tokens": [
+          " ``",
+          "``",
+          "For",
+          " New",
+          " Mrs",
+          " don",
+          " didn",
+          " un",
+          " President",
+          " tell",
+          " stood",
+          " non",
+          "An",
+          "By",
+          " st"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "punctuation": 1,
+          "word": 50,
+          "word_with_space": 308
+        },
+        "linguistic_features": {
+          "has_space": "85.9%",
+          "alphabetic": "99.2%",
+          "punctuation": "0.3%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      }
+    },
+    "layer_3": {
+      "C0": {
+        "size": 761,
+        "percentage": "7.6%",
+        "common_tokens": [
+          "a",
+          "man",
+          " once",
+          " system",
+          " possible",
+          " room",
+          " things",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "ings"
+        ],
+        "token_types": {
+          "word": 408,
+          "word_with_space": 353
+        },
+        "linguistic_features": {
+          "has_space": "46.4%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C1": {
+        "size": 684,
+        "percentage": "6.8%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "We",
+          "When",
+          " New",
+          "'ll",
+          "'d",
+          " Mrs",
+          " told"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 590,
+          "word": 86,
+          "other": 4,
+          "mixed_with_space": 1,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "86.5%",
+          "alphabetic": "98.8%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C2": {
+        "size": 1722,
+        "percentage": "17.2%",
+        "common_tokens": [
+          " to",
+          " in",
+          " is",
+          " was",
+          " for",
+          " with",
+          "The",
+          " his",
+          " not",
+          " from",
+          " have",
+          " were",
+          " --",
+          " all",
+          " they"
+        ],
+        "token_types": {
+          "word_with_space": 1607,
+          "word": 107,
+          "mixed_with_space": 2,
+          "other": 1,
+          "punctuation": 2,
+          "number_with_space": 3
+        },
+        "linguistic_features": {
+          "has_space": "93.6%",
+          "alphabetic": "99.5%",
+          "punctuation": "0.1%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 1872,
+        "percentage": "18.7%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " that",
+          " it",
+          " as",
+          "'s",
+          " are",
+          " or",
+          " this",
+          " you",
+          " her",
+          " but",
+          " )",
+          " out",
+          " said"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 1746,
+          "other": 1,
+          "word": 118,
+          "punctuation": 1,
+          "number": 1,
+          "number_with_space": 3
+        },
+        "linguistic_features": {
+          "has_space": "93.5%",
+          "alphabetic": "99.6%",
+          "punctuation": "0.1%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 221,
+        "percentage": "2.2%",
+        "common_tokens": [
+          " ``",
+          "For",
+          " don",
+          " didn",
+          " tell",
+          " stood",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word": 32,
+          "word_with_space": 187
+        },
+        "linguistic_features": {
+          "has_space": "85.5%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C5": {
+        "size": 621,
+        "percentage": "6.2%",
+        "common_tokens": [
+          " ''",
+          " I",
+          "He",
+          " she",
+          "I",
+          " Af",
+          "She",
+          " $",
+          " '",
+          "(",
+          " John",
+          " S",
+          " p",
+          " car",
+          " You"
+        ],
+        "token_types": {
+          "mixed_with_space": 3,
+          "word_with_space": 471,
+          "word": 124,
+          "punctuation": 2,
+          "number_with_space": 19,
+          "number": 2
+        },
+        "linguistic_features": {
+          "has_space": "79.4%",
+          "alphabetic": "95.8%",
+          "punctuation": "0.3%",
+          "numeric": "3.4%",
+          "uppercase": "1.0%"
+        }
+      },
+      "C6": {
+        "size": 1341,
+        "percentage": "13.4%",
+        "common_tokens": [
+          " and",
+          " which",
+          " one",
+          " him",
+          " than",
+          " them",
+          " time",
+          " over",
+          " me",
+          " now",
+          " before",
+          " through",
+          " way",
+          " work",
+          " each"
+        ],
+        "token_types": {
+          "word_with_space": 1214,
+          "word": 124,
+          "number_with_space": 3
+        },
+        "linguistic_features": {
+          "has_space": "90.8%",
+          "alphabetic": "99.8%",
+          "punctuation": "0.0%",
+          "numeric": "0.2%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C7": {
+        "size": 906,
+        "percentage": "9.1%",
+        "common_tokens": [
+          " .",
+          " a",
+          "-",
+          " he",
+          ".",
+          " ;",
+          " at",
+          " ?",
+          " (",
+          " we",
+          " :",
+          "s",
+          " The",
+          " three",
+          "in"
+        ],
+        "token_types": {
+          "mixed_with_space": 8,
+          "word_with_space": 499,
+          "punctuation": 6,
+          "word": 292,
+          "number_with_space": 55,
+          "number": 46
+        },
+        "linguistic_features": {
+          "has_space": "62.0%",
+          "alphabetic": "87.3%",
+          "punctuation": "0.7%",
+          "numeric": "11.1%",
+          "uppercase": "3.6%"
+        }
+      },
+      "C8": {
+        "size": 1101,
+        "percentage": "11.0%",
+        "common_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " has",
+          " can",
+          " could",
+          " may",
+          " my",
+          "This",
+          " most",
+          " should",
+          " well",
+          "And",
+          " very"
+        ],
+        "token_types": {
+          "word_with_space": 1000,
+          "word": 96,
+          "other": 1,
+          "number_with_space": 3,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "91.1%",
+          "alphabetic": "99.5%",
+          "punctuation": "0.1%",
+          "numeric": "0.3%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C9": {
+        "size": 771,
+        "percentage": "7.7%",
+        "common_tokens": [
+          " the",
+          " man",
+          "A",
+          "ing",
+          "'",
+          " 1",
+          "y",
+          "and",
+          " A",
+          "es",
+          "ie",
+          " U",
+          "en",
+          "on",
+          "or"
+        ],
+        "token_types": {
+          "word_with_space": 218,
+          "word": 534,
+          "punctuation": 1,
+          "number_with_space": 6,
+          "number": 12
+        },
+        "linguistic_features": {
+          "has_space": "29.1%",
+          "alphabetic": "97.5%",
+          "punctuation": "0.1%",
+          "numeric": "2.3%",
+          "uppercase": "2.3%"
+        }
+      }
+    },
+    "layer_4": {
+      "C0": {
+        "size": 1702,
+        "percentage": "17.0%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " to",
+          " a",
+          " it",
+          " his",
+          "'s",
+          " ;",
+          " at",
+          " not",
+          " are",
+          " from",
+          " this",
+          " you",
+          " her"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1590,
+          "other": 2,
+          "word": 103,
+          "number": 1,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "93.8%",
+          "alphabetic": "99.5%",
+          "punctuation": "0.0%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C1": {
+        "size": 709,
+        "percentage": "7.1%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "We",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          "'d",
+          " Mrs"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 613,
+          "word": 87,
+          "other": 5,
+          "mixed_with_space": 1,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "86.7%",
+          "alphabetic": "98.7%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C2": {
+        "size": 1702,
+        "percentage": "17.0%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now"
+        ],
+        "token_types": {
+          "word_with_space": 1245,
+          "word": 435,
+          "punctuation": 2,
+          "number_with_space": 9,
+          "number": 10,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "73.7%",
+          "alphabetic": "98.7%",
+          "punctuation": "0.1%",
+          "numeric": "1.1%",
+          "uppercase": "0.8%"
+        }
+      },
+      "C3": {
+        "size": 421,
+        "percentage": "4.2%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 254,
+          "word_with_space": 167
+        },
+        "linguistic_features": {
+          "has_space": "39.7%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C4": {
+        "size": 1066,
+        "percentage": "10.7%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " year",
+          " life",
+          " us",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          " once",
+          "ie",
+          " program"
+        ],
+        "token_types": {
+          "word_with_space": 701,
+          "word": 364,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "65.9%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.1%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C5": {
+        "size": 543,
+        "percentage": "5.4%",
+        "common_tokens": [
+          " I",
+          "He",
+          " Af",
+          "She",
+          " Mr",
+          " '",
+          "(",
+          " John",
+          " S",
+          " p",
+          " car",
+          "Mr",
+          " St",
+          " t",
+          " m"
+        ],
+        "token_types": {
+          "word_with_space": 420,
+          "word": 109,
+          "mixed_with_space": 1,
+          "punctuation": 1,
+          "number_with_space": 11,
+          "number": 1
+        },
+        "linguistic_features": {
+          "has_space": "79.6%",
+          "alphabetic": "97.4%",
+          "punctuation": "0.2%",
+          "numeric": "2.2%",
+          "uppercase": "0.9%"
+        }
+      },
+      "C6": {
+        "size": 1088,
+        "percentage": "10.9%",
+        "common_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " has",
+          " can",
+          " could",
+          "I",
+          "This",
+          " most",
+          " should",
+          " well",
+          "And",
+          " very",
+          " get"
+        ],
+        "token_types": {
+          "word_with_space": 976,
+          "word": 103,
+          "mixed_with_space": 1,
+          "number_with_space": 7,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "90.4%",
+          "alphabetic": "99.2%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C7": {
+        "size": 210,
+        "percentage": "2.1%",
+        "common_tokens": [
+          " ``",
+          " don",
+          " didn",
+          " tell",
+          " stood",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 177,
+          "word": 31
+        },
+        "linguistic_features": {
+          "has_space": "85.2%",
+          "alphabetic": "99.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C8": {
+        "size": 1727,
+        "percentage": "17.3%",
+        "common_tokens": [
+          " in",
+          " is",
+          " was",
+          " for",
+          " ''",
+          " with",
+          " he",
+          "The",
+          " have",
+          " were",
+          " --",
+          " they",
+          " would",
+          " their",
+          " been"
+        ],
+        "token_types": {
+          "word_with_space": 1569,
+          "mixed_with_space": 4,
+          "word": 118,
+          "punctuation": 4,
+          "number_with_space": 26,
+          "number": 6
+        },
+        "linguistic_features": {
+          "has_space": "92.6%",
+          "alphabetic": "97.7%",
+          "punctuation": "0.2%",
+          "numeric": "1.9%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C9": {
+        "size": 832,
+        "percentage": "8.3%",
+        "common_tokens": [
+          " .",
+          "-",
+          ".",
+          " ?",
+          " we",
+          " :",
+          "s",
+          " The",
+          " three",
+          "in",
+          " 2",
+          " American",
+          "er",
+          " B",
+          "S"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "punctuation": 5,
+          "word_with_space": 427,
+          "word": 317,
+          "number_with_space": 36,
+          "number": 43
+        },
+        "linguistic_features": {
+          "has_space": "56.1%",
+          "alphabetic": "89.4%",
+          "punctuation": "0.6%",
+          "numeric": "9.5%",
+          "uppercase": "4.3%"
+        }
+      }
+    },
+    "layer_5": {
+      "C0": {
+        "size": 819,
+        "percentage": "8.2%",
+        "common_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " ?",
+          " (",
+          " we",
+          " :",
+          "s",
+          " three",
+          "in",
+          " Mr",
+          " 2",
+          " hand",
+          "er"
+        ],
+        "token_types": {
+          "mixed_with_space": 5,
+          "punctuation": 6,
+          "word_with_space": 435,
+          "word": 294,
+          "number_with_space": 37,
+          "number": 42
+        },
+        "linguistic_features": {
+          "has_space": "58.2%",
+          "alphabetic": "89.0%",
+          "punctuation": "0.7%",
+          "numeric": "9.6%",
+          "uppercase": "4.4%"
+        }
+      },
+      "C1": {
+        "size": 1173,
+        "percentage": "11.7%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " year",
+          " life",
+          " us",
+          "y",
+          " himself",
+          " number",
+          "es",
+          " house",
+          "a",
+          "ers",
+          " once"
+        ],
+        "token_types": {
+          "word_with_space": 775,
+          "word": 396,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "66.2%",
+          "alphabetic": "99.8%",
+          "punctuation": "0.0%",
+          "numeric": "0.2%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C2": {
+        "size": 204,
+        "percentage": "2.0%",
+        "common_tokens": [
+          " ``",
+          " don",
+          " didn",
+          " tell",
+          " stood",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 171,
+          "word": 31
+        },
+        "linguistic_features": {
+          "has_space": "84.8%",
+          "alphabetic": "99.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 1747,
+        "percentage": "17.5%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now"
+        ],
+        "token_types": {
+          "word_with_space": 1298,
+          "word": 425,
+          "punctuation": 2,
+          "number_with_space": 9,
+          "number": 12,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "74.9%",
+          "alphabetic": "98.6%",
+          "punctuation": "0.1%",
+          "numeric": "1.2%",
+          "uppercase": "0.7%"
+        }
+      },
+      "C4": {
+        "size": 1714,
+        "percentage": "17.1%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " to",
+          " a",
+          " in",
+          " with",
+          " it",
+          " his",
+          "'s",
+          " ;",
+          " at",
+          " not",
+          " are",
+          " from",
+          " this"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1585,
+          "other": 2,
+          "word": 117,
+          "number": 1,
+          "number_with_space": 5
+        },
+        "linguistic_features": {
+          "has_space": "93.0%",
+          "alphabetic": "99.3%",
+          "punctuation": "0.0%",
+          "numeric": "0.4%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C5": {
+        "size": 456,
+        "percentage": "4.6%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 266,
+          "word_with_space": 190
+        },
+        "linguistic_features": {
+          "has_space": "41.7%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C6": {
+        "size": 1027,
+        "percentage": "10.3%",
+        "common_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " can",
+          " could",
+          "This",
+          " most",
+          " should",
+          " well",
+          "And",
+          " get",
+          " between",
+          " right",
+          "We"
+        ],
+        "token_types": {
+          "word_with_space": 920,
+          "word": 97,
+          "other": 2,
+          "mixed_with_space": 1,
+          "number_with_space": 6,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "90.3%",
+          "alphabetic": "99.0%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C7": {
+        "size": 526,
+        "percentage": "5.3%",
+        "common_tokens": [
+          " I",
+          "He",
+          "I",
+          " Af",
+          "She",
+          " $",
+          " '",
+          "(",
+          " John",
+          " S",
+          " p",
+          "No",
+          " St",
+          " t",
+          " m"
+        ],
+        "token_types": {
+          "word_with_space": 411,
+          "word": 105,
+          "mixed_with_space": 2,
+          "punctuation": 1,
+          "number_with_space": 7
+        },
+        "linguistic_features": {
+          "has_space": "79.8%",
+          "alphabetic": "98.1%",
+          "punctuation": "0.2%",
+          "numeric": "1.3%",
+          "uppercase": "1.0%"
+        }
+      },
+      "C8": {
+        "size": 1652,
+        "percentage": "16.5%",
+        "common_tokens": [
+          " is",
+          " was",
+          " for",
+          " ''",
+          "The",
+          " have",
+          " were",
+          " --",
+          " they",
+          " would",
+          " their",
+          " been",
+          " has",
+          " will",
+          " who"
+        ],
+        "token_types": {
+          "word_with_space": 1504,
+          "mixed_with_space": 3,
+          "word": 110,
+          "punctuation": 3,
+          "number_with_space": 26,
+          "number": 6
+        },
+        "linguistic_features": {
+          "has_space": "92.8%",
+          "alphabetic": "97.7%",
+          "punctuation": "0.2%",
+          "numeric": "1.9%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C9": {
+        "size": 682,
+        "percentage": "6.8%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          " Mrs",
+          " told",
+          " give"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 596,
+          "word": 80,
+          "other": 3,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.5%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      }
+    },
+    "layer_6": {
+      "C0": {
+        "size": 805,
+        "percentage": "8.1%",
+        "common_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " ?",
+          " (",
+          " we",
+          " :",
+          " two",
+          "s",
+          " three",
+          "in",
+          " Mr",
+          " 2",
+          " hand"
+        ],
+        "token_types": {
+          "mixed_with_space": 5,
+          "punctuation": 6,
+          "word_with_space": 430,
+          "word": 289,
+          "number_with_space": 35,
+          "number": 40
+        },
+        "linguistic_features": {
+          "has_space": "58.4%",
+          "alphabetic": "89.3%",
+          "punctuation": "0.7%",
+          "numeric": "9.3%",
+          "uppercase": "4.5%"
+        }
+      },
+      "C1": {
+        "size": 511,
+        "percentage": "5.1%",
+        "common_tokens": [
+          " I",
+          "He",
+          " Af",
+          "She",
+          " $",
+          " '",
+          "(",
+          " John",
+          " S",
+          " p",
+          "No",
+          "Mr",
+          " St",
+          " t",
+          " m"
+        ],
+        "token_types": {
+          "word_with_space": 394,
+          "word": 103,
+          "mixed_with_space": 2,
+          "punctuation": 1,
+          "number_with_space": 11
+        },
+        "linguistic_features": {
+          "has_space": "79.6%",
+          "alphabetic": "97.3%",
+          "punctuation": "0.2%",
+          "numeric": "2.2%",
+          "uppercase": "0.8%"
+        }
+      },
+      "C2": {
+        "size": 450,
+        "percentage": "4.5%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 261,
+          "word_with_space": 189
+        },
+        "linguistic_features": {
+          "has_space": "42.0%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C3": {
+        "size": 208,
+        "percentage": "2.1%",
+        "common_tokens": [
+          " ``",
+          " don",
+          " didn",
+          " tell",
+          " stood",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 175,
+          "word": 31
+        },
+        "linguistic_features": {
+          "has_space": "85.1%",
+          "alphabetic": "99.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 1038,
+        "percentage": "10.4%",
+        "common_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " can",
+          " could",
+          "I",
+          "This",
+          " most",
+          " should",
+          " well",
+          "And",
+          " get",
+          " right",
+          " went"
+        ],
+        "token_types": {
+          "word_with_space": 931,
+          "word": 98,
+          "other": 1,
+          "mixed_with_space": 1,
+          "number_with_space": 6,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "90.4%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C5": {
+        "size": 1151,
+        "percentage": "11.5%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " year",
+          " life",
+          " us",
+          "y",
+          " himself",
+          " number",
+          "es",
+          " house",
+          "a",
+          "ers",
+          " once"
+        ],
+        "token_types": {
+          "word_with_space": 760,
+          "word": 389,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "66.2%",
+          "alphabetic": "99.8%",
+          "punctuation": "0.0%",
+          "numeric": "0.2%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C6": {
+        "size": 1666,
+        "percentage": "16.7%",
+        "common_tokens": [
+          " is",
+          " was",
+          " for",
+          " ''",
+          "The",
+          " have",
+          " were",
+          " --",
+          " they",
+          " would",
+          " their",
+          " been",
+          " has",
+          " will",
+          " who"
+        ],
+        "token_types": {
+          "word_with_space": 1517,
+          "mixed_with_space": 3,
+          "word": 112,
+          "punctuation": 3,
+          "number_with_space": 24,
+          "number": 7
+        },
+        "linguistic_features": {
+          "has_space": "92.7%",
+          "alphabetic": "97.8%",
+          "punctuation": "0.2%",
+          "numeric": "1.9%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C7": {
+        "size": 1759,
+        "percentage": "17.6%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " to",
+          " a",
+          " in",
+          " with",
+          " it",
+          " his",
+          "'s",
+          " ;",
+          " at",
+          " not",
+          " are",
+          " from",
+          " this"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1624,
+          "other": 2,
+          "word": 122,
+          "number": 2,
+          "number_with_space": 5
+        },
+        "linguistic_features": {
+          "has_space": "92.8%",
+          "alphabetic": "99.3%",
+          "punctuation": "0.0%",
+          "numeric": "0.4%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C8": {
+        "size": 699,
+        "percentage": "7.0%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "We",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          " Mrs",
+          " told"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 609,
+          "word": 83,
+          "other": 4,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.3%",
+          "alphabetic": "99.0%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C9": {
+        "size": 1713,
+        "percentage": "17.1%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now"
+        ],
+        "token_types": {
+          "word_with_space": 1256,
+          "word": 433,
+          "punctuation": 2,
+          "number_with_space": 9,
+          "number": 12,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "73.9%",
+          "alphabetic": "98.6%",
+          "punctuation": "0.1%",
+          "numeric": "1.2%",
+          "uppercase": "0.8%"
+        }
+      }
+    },
+    "layer_7": {
+      "C0": {
+        "size": 1627,
+        "percentage": "16.3%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " it",
+          " as",
+          "'s",
+          " ;",
+          " at",
+          " are",
+          " this",
+          " you",
+          " her",
+          " )",
+          " out",
+          " said",
+          " up"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1446,
+          "other": 1,
+          "word": 162,
+          "punctuation": 1,
+          "number_with_space": 9,
+          "number": 4
+        },
+        "linguistic_features": {
+          "has_space": "89.7%",
+          "alphabetic": "98.8%",
+          "punctuation": "0.1%",
+          "numeric": "0.8%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C1": {
+        "size": 1423,
+        "percentage": "14.2%",
+        "common_tokens": [
+          " was",
+          " ''",
+          "The",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          " they",
+          " their",
+          " has",
+          " more",
+          " she",
+          " can"
+        ],
+        "token_types": {
+          "word_with_space": 1241,
+          "mixed_with_space": 3,
+          "word": 139,
+          "punctuation": 2,
+          "number_with_space": 32,
+          "number": 6
+        },
+        "linguistic_features": {
+          "has_space": "89.7%",
+          "alphabetic": "97.0%",
+          "punctuation": "0.1%",
+          "numeric": "2.7%",
+          "uppercase": "0.4%"
+        }
+      },
+      "C2": {
+        "size": 564,
+        "percentage": "5.6%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          " Mrs",
+          " told",
+          " don"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 494,
+          "word": 65,
+          "other": 2,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.8%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.4%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 1035,
+        "percentage": "10.3%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          " once",
+          "ie",
+          " program",
+          "on"
+        ],
+        "token_types": {
+          "word_with_space": 670,
+          "word": 364,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "64.8%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.1%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C4": {
+        "size": 182,
+        "percentage": "1.8%",
+        "common_tokens": [
+          " ``",
+          " didn",
+          " tell",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat",
+          " co",
+          " pre"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 150,
+          "word": 30
+        },
+        "linguistic_features": {
+          "has_space": "83.5%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C5": {
+        "size": 1573,
+        "percentage": "15.7%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now",
+          "ing"
+        ],
+        "token_types": {
+          "word_with_space": 1122,
+          "word": 430,
+          "punctuation": 1,
+          "number_with_space": 8,
+          "number": 11,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "71.9%",
+          "alphabetic": "98.7%",
+          "punctuation": "0.1%",
+          "numeric": "1.2%",
+          "uppercase": "0.9%"
+        }
+      },
+      "C6": {
+        "size": 704,
+        "percentage": "7.0%",
+        "common_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " (",
+          " Af",
+          "s",
+          "in",
+          " Mr",
+          "er",
+          " B",
+          "S",
+          " C",
+          " P",
+          " four"
+        ],
+        "token_types": {
+          "mixed_with_space": 3,
+          "punctuation": 4,
+          "word_with_space": 363,
+          "word": 260,
+          "number_with_space": 34,
+          "number": 40
+        },
+        "linguistic_features": {
+          "has_space": "56.8%",
+          "alphabetic": "88.5%",
+          "punctuation": "0.6%",
+          "numeric": "10.5%",
+          "uppercase": "5.1%"
+        }
+      },
+      "C7": {
+        "size": 1071,
+        "percentage": "10.7%",
+        "common_tokens": [
+          "He",
+          " could",
+          "I",
+          "This",
+          " should",
+          " well",
+          " get",
+          " right",
+          "We",
+          " $",
+          " got",
+          "His",
+          " head",
+          " does",
+          " far"
+        ],
+        "token_types": {
+          "word": 130,
+          "word_with_space": 929,
+          "mixed_with_space": 2,
+          "other": 3,
+          "number_with_space": 6,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.5%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C8": {
+        "size": 406,
+        "percentage": "4.1%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 242,
+          "word_with_space": 164
+        },
+        "linguistic_features": {
+          "has_space": "40.4%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C9": {
+        "size": 1415,
+        "percentage": "14.1%",
+        "common_tokens": [
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " with",
+          " his",
+          " ?",
+          " not",
+          " from",
+          " have",
+          " --",
+          " all",
+          " would",
+          " been"
+        ],
+        "token_types": {
+          "word_with_space": 1306,
+          "mixed_with_space": 3,
+          "other": 1,
+          "word": 99,
+          "punctuation": 4,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "92.7%",
+          "alphabetic": "99.3%",
+          "punctuation": "0.3%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      }
+    },
+    "layer_8": {
+      "C0": {
+        "size": 416,
+        "percentage": "4.2%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 249,
+          "word_with_space": 167
+        },
+        "linguistic_features": {
+          "has_space": "40.1%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C1": {
+        "size": 1062,
+        "percentage": "10.6%",
+        "common_tokens": [
+          "He",
+          " could",
+          "I",
+          "This",
+          " should",
+          " well",
+          " get",
+          "We",
+          " $",
+          " got",
+          "His",
+          " head",
+          " does",
+          " far",
+          " per"
+        ],
+        "token_types": {
+          "word": 130,
+          "word_with_space": 920,
+          "mixed_with_space": 2,
+          "other": 3,
+          "number_with_space": 6,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.4%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C2": {
+        "size": 702,
+        "percentage": "7.0%",
+        "common_tokens": [
+          " .",
+          "-",
+          ".",
+          " (",
+          " we",
+          " :",
+          " Af",
+          "s",
+          "in",
+          "er",
+          " B",
+          "S",
+          " C",
+          " P",
+          " four"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "punctuation": 5,
+          "word_with_space": 360,
+          "word": 261,
+          "number_with_space": 32,
+          "number": 40
+        },
+        "linguistic_features": {
+          "has_space": "56.4%",
+          "alphabetic": "88.5%",
+          "punctuation": "0.7%",
+          "numeric": "10.3%",
+          "uppercase": "5.1%"
+        }
+      },
+      "C3": {
+        "size": 1599,
+        "percentage": "16.0%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now"
+        ],
+        "token_types": {
+          "word_with_space": 1148,
+          "word": 430,
+          "punctuation": 1,
+          "number_with_space": 8,
+          "number": 11,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "72.4%",
+          "alphabetic": "98.7%",
+          "punctuation": "0.1%",
+          "numeric": "1.2%",
+          "uppercase": "0.9%"
+        }
+      },
+      "C4": {
+        "size": 180,
+        "percentage": "1.8%",
+        "common_tokens": [
+          " ``",
+          " didn",
+          " tell",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat",
+          " co",
+          " pre"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 148,
+          "word": 30
+        },
+        "linguistic_features": {
+          "has_space": "83.3%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C5": {
+        "size": 1394,
+        "percentage": "13.9%",
+        "common_tokens": [
+          " was",
+          " ''",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          " they",
+          " has",
+          " more",
+          " she",
+          " can",
+          " !",
+          " do"
+        ],
+        "token_types": {
+          "word_with_space": 1215,
+          "mixed_with_space": 3,
+          "word": 135,
+          "punctuation": 2,
+          "number_with_space": 33,
+          "number": 6
+        },
+        "linguistic_features": {
+          "has_space": "89.7%",
+          "alphabetic": "96.8%",
+          "punctuation": "0.1%",
+          "numeric": "2.8%",
+          "uppercase": "0.4%"
+        }
+      },
+      "C6": {
+        "size": 572,
+        "percentage": "5.7%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          " Mrs",
+          " told",
+          " don"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 502,
+          "word": 65,
+          "other": 2,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.9%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.3%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C7": {
+        "size": 1406,
+        "percentage": "14.1%",
+        "common_tokens": [
+          " to",
+          " in",
+          " is",
+          " for",
+          " with",
+          " he",
+          "The",
+          " ?",
+          " not",
+          " have",
+          " --",
+          " all",
+          " would",
+          " their",
+          " been"
+        ],
+        "token_types": {
+          "word_with_space": 1296,
+          "word": 101,
+          "mixed_with_space": 2,
+          "other": 1,
+          "punctuation": 3,
+          "number_with_space": 3
+        },
+        "linguistic_features": {
+          "has_space": "92.5%",
+          "alphabetic": "99.4%",
+          "punctuation": "0.2%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C8": {
+        "size": 1619,
+        "percentage": "16.2%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " a",
+          " it",
+          " his",
+          "'s",
+          " ;",
+          " at",
+          " are",
+          " from",
+          " this",
+          " you",
+          " her",
+          " )",
+          " out"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1449,
+          "other": 1,
+          "word": 151,
+          "punctuation": 1,
+          "number_with_space": 9,
+          "number": 4
+        },
+        "linguistic_features": {
+          "has_space": "90.3%",
+          "alphabetic": "98.8%",
+          "punctuation": "0.1%",
+          "numeric": "0.8%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C9": {
+        "size": 1050,
+        "percentage": "10.5%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          " once",
+          "ie",
+          " program",
+          "on"
+        ],
+        "token_types": {
+          "word_with_space": 680,
+          "word": 369,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "64.9%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.1%",
+          "uppercase": "0.3%"
+        }
+      }
+    },
+    "layer_9": {
+      "C0": {
+        "size": 1043,
+        "percentage": "10.4%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          " once",
+          "ie",
+          " program",
+          "on"
+        ],
+        "token_types": {
+          "word_with_space": 678,
+          "word": 364,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "65.1%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.1%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C1": {
+        "size": 1051,
+        "percentage": "10.5%",
+        "common_tokens": [
+          "He",
+          " could",
+          "I",
+          "This",
+          " should",
+          " well",
+          " get",
+          "We",
+          " $",
+          " got",
+          "His",
+          " head",
+          " does",
+          " far",
+          " per"
+        ],
+        "token_types": {
+          "word": 126,
+          "word_with_space": 913,
+          "mixed_with_space": 2,
+          "other": 3,
+          "number_with_space": 6,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.6%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C2": {
+        "size": 180,
+        "percentage": "1.8%",
+        "common_tokens": [
+          " ``",
+          " didn",
+          " tell",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat",
+          " co",
+          " pre"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 148,
+          "word": 30
+        },
+        "linguistic_features": {
+          "has_space": "83.3%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 1625,
+        "percentage": "16.2%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " a",
+          " it",
+          " his",
+          "'s",
+          " ;",
+          " at",
+          " are",
+          " from",
+          " this",
+          " you",
+          " her",
+          " )",
+          " out"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1453,
+          "other": 1,
+          "word": 153,
+          "punctuation": 1,
+          "number_with_space": 9,
+          "number": 4
+        },
+        "linguistic_features": {
+          "has_space": "90.2%",
+          "alphabetic": "98.8%",
+          "punctuation": "0.1%",
+          "numeric": "0.8%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 1401,
+        "percentage": "14.0%",
+        "common_tokens": [
+          " was",
+          " ''",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          " they",
+          " has",
+          " more",
+          " she",
+          " can",
+          " !",
+          " do"
+        ],
+        "token_types": {
+          "word_with_space": 1223,
+          "mixed_with_space": 3,
+          "word": 135,
+          "punctuation": 2,
+          "number_with_space": 32,
+          "number": 6
+        },
+        "linguistic_features": {
+          "has_space": "89.8%",
+          "alphabetic": "96.9%",
+          "punctuation": "0.1%",
+          "numeric": "2.7%",
+          "uppercase": "0.4%"
+        }
+      },
+      "C5": {
+        "size": 1396,
+        "percentage": "14.0%",
+        "common_tokens": [
+          " to",
+          " in",
+          " is",
+          " for",
+          " with",
+          "The",
+          " ?",
+          " not",
+          " have",
+          " --",
+          " all",
+          " would",
+          " their",
+          " been",
+          " will"
+        ],
+        "token_types": {
+          "word_with_space": 1291,
+          "word": 97,
+          "mixed_with_space": 2,
+          "other": 1,
+          "punctuation": 3,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "92.8%",
+          "alphabetic": "99.4%",
+          "punctuation": "0.2%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C6": {
+        "size": 1599,
+        "percentage": "16.0%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now"
+        ],
+        "token_types": {
+          "word_with_space": 1143,
+          "word": 435,
+          "punctuation": 1,
+          "number_with_space": 8,
+          "number": 11,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "72.0%",
+          "alphabetic": "98.7%",
+          "punctuation": "0.1%",
+          "numeric": "1.2%",
+          "uppercase": "0.9%"
+        }
+      },
+      "C7": {
+        "size": 412,
+        "percentage": "4.1%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 248,
+          "word_with_space": 164
+        },
+        "linguistic_features": {
+          "has_space": "39.8%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C8": {
+        "size": 581,
+        "percentage": "5.8%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          " Mrs",
+          " told",
+          " don"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 507,
+          "word": 69,
+          "other": 2,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.4%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.3%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C9": {
+        "size": 712,
+        "percentage": "7.1%",
+        "common_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " (",
+          " we",
+          " :",
+          " Af",
+          "s",
+          "in",
+          "er",
+          " B",
+          "S",
+          " C",
+          " P"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "punctuation": 5,
+          "word_with_space": 365,
+          "word": 264,
+          "number_with_space": 34,
+          "number": 40
+        },
+        "linguistic_features": {
+          "has_space": "56.6%",
+          "alphabetic": "88.3%",
+          "punctuation": "0.7%",
+          "numeric": "10.4%",
+          "uppercase": "4.9%"
+        }
+      }
+    },
+    "layer_10": {
+      "C0": {
+        "size": 1413,
+        "percentage": "14.1%",
+        "common_tokens": [
+          " to",
+          " in",
+          " is",
+          " for",
+          " with",
+          "The",
+          " ?",
+          " not",
+          " have",
+          " --",
+          " all",
+          " would",
+          " their",
+          " been",
+          " will"
+        ],
+        "token_types": {
+          "word_with_space": 1305,
+          "word": 100,
+          "mixed_with_space": 2,
+          "other": 1,
+          "punctuation": 3,
+          "number_with_space": 2
+        },
+        "linguistic_features": {
+          "has_space": "92.6%",
+          "alphabetic": "99.4%",
+          "punctuation": "0.2%",
+          "numeric": "0.1%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C1": {
+        "size": 417,
+        "percentage": "4.2%",
+        "common_tokens": [
+          "man",
+          " system",
+          " least",
+          " matter",
+          " others",
+          " experience",
+          "t",
+          " words",
+          "et",
+          "men",
+          "as",
+          "ous",
+          "us",
+          "ley",
+          " society"
+        ],
+        "token_types": {
+          "word": 250,
+          "word_with_space": 167
+        },
+        "linguistic_features": {
+          "has_space": "40.0%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C2": {
+        "size": 180,
+        "percentage": "1.8%",
+        "common_tokens": [
+          " ``",
+          " didn",
+          " tell",
+          "An",
+          "By",
+          " cent",
+          " couldn",
+          " sat",
+          " inter",
+          " wasn",
+          " dis",
+          " wouldn",
+          " somewhat",
+          " co",
+          " pre"
+        ],
+        "token_types": {
+          "mixed_with_space": 2,
+          "word_with_space": 148,
+          "word": 30
+        },
+        "linguistic_features": {
+          "has_space": "83.3%",
+          "alphabetic": "98.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 565,
+        "percentage": "5.7%",
+        "common_tokens": [
+          "``",
+          " an",
+          "It",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New",
+          "'ll",
+          " Mrs",
+          " told",
+          " don"
+        ],
+        "token_types": {
+          "punctuation": 2,
+          "word_with_space": 493,
+          "word": 67,
+          "other": 2,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.4%",
+          "alphabetic": "99.1%",
+          "punctuation": "0.4%",
+          "numeric": "0.2%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 1384,
+        "percentage": "13.8%",
+        "common_tokens": [
+          " was",
+          " ''",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          " they",
+          " has",
+          " more",
+          " she",
+          " can",
+          " !",
+          " do"
+        ],
+        "token_types": {
+          "word_with_space": 1213,
+          "mixed_with_space": 3,
+          "word": 133,
+          "punctuation": 2,
+          "number_with_space": 28,
+          "number": 5
+        },
+        "linguistic_features": {
+          "has_space": "89.9%",
+          "alphabetic": "97.3%",
+          "punctuation": "0.1%",
+          "numeric": "2.4%",
+          "uppercase": "0.4%"
+        }
+      },
+      "C5": {
+        "size": 1639,
+        "percentage": "16.4%",
+        "common_tokens": [
+          " ,",
+          " of",
+          " a",
+          " it",
+          " his",
+          "'s",
+          " ;",
+          " at",
+          " are",
+          " from",
+          " this",
+          " you",
+          " her",
+          " )",
+          " out"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 1461,
+          "other": 1,
+          "word": 159,
+          "number_with_space": 9,
+          "number": 5
+        },
+        "linguistic_features": {
+          "has_space": "89.9%",
+          "alphabetic": "98.8%",
+          "punctuation": "0.0%",
+          "numeric": "0.9%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C6": {
+        "size": 1049,
+        "percentage": "10.5%",
+        "common_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          " once",
+          "ie",
+          " program",
+          "on"
+        ],
+        "token_types": {
+          "word_with_space": 681,
+          "word": 367,
+          "number_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "65.0%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.1%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C7": {
+        "size": 1598,
+        "percentage": "16.0%",
+        "common_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " one",
+          " but",
+          " him",
+          " them",
+          " time",
+          " over",
+          " man",
+          "A",
+          " me",
+          " now"
+        ],
+        "token_types": {
+          "word_with_space": 1147,
+          "word": 429,
+          "punctuation": 2,
+          "number_with_space": 8,
+          "number": 11,
+          "mixed_with_space": 1
+        },
+        "linguistic_features": {
+          "has_space": "72.3%",
+          "alphabetic": "98.6%",
+          "punctuation": "0.1%",
+          "numeric": "1.2%",
+          "uppercase": "0.9%"
+        }
+      },
+      "C8": {
+        "size": 1035,
+        "percentage": "10.3%",
+        "common_tokens": [
+          "He",
+          " could",
+          "I",
+          "This",
+          " should",
+          " well",
+          " get",
+          "We",
+          " $",
+          " got",
+          "His",
+          " head",
+          " does",
+          " far",
+          " per"
+        ],
+        "token_types": {
+          "word": 124,
+          "word_with_space": 899,
+          "mixed_with_space": 2,
+          "other": 3,
+          "number_with_space": 6,
+          "punctuation": 1
+        },
+        "linguistic_features": {
+          "has_space": "87.6%",
+          "alphabetic": "98.8%",
+          "punctuation": "0.1%",
+          "numeric": "0.6%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C9": {
+        "size": 720,
+        "percentage": "7.2%",
+        "common_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " (",
+          " we",
+          " :",
+          " Af",
+          "s",
+          "in",
+          " Mr",
+          " B",
+          "S",
+          " C",
+          " P"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "punctuation": 5,
+          "word_with_space": 371,
+          "word": 262,
+          "number_with_space": 38,
+          "number": 40
+        },
+        "linguistic_features": {
+          "has_space": "57.4%",
+          "alphabetic": "87.9%",
+          "punctuation": "0.7%",
+          "numeric": "10.8%",
+          "uppercase": "4.9%"
+        }
+      }
+    },
+    "layer_11": {
+      "C0": {
+        "size": 1310,
+        "percentage": "13.1%",
+        "common_tokens": [
+          " as",
+          " other",
+          " time",
+          " if",
+          " two",
+          " new",
+          " little",
+          " own",
+          " same",
+          " great",
+          " used",
+          " few",
+          " place",
+          " thought",
+          " say"
+        ],
+        "token_types": {
+          "word_with_space": 1234,
+          "word": 76
+        },
+        "linguistic_features": {
+          "has_space": "94.2%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.1%"
+        }
+      },
+      "C1": {
+        "size": 1223,
+        "percentage": "12.2%",
+        "common_tokens": [
+          " .",
+          ".",
+          " ?",
+          "He",
+          "In",
+          " !",
+          "A",
+          "ed",
+          "'",
+          "s",
+          " 1",
+          "y",
+          "in",
+          " Mr",
+          " 2"
+        ],
+        "token_types": {
+          "mixed_with_space": 7,
+          "punctuation": 8,
+          "word": 633,
+          "number_with_space": 68,
+          "word_with_space": 447,
+          "number": 60
+        },
+        "linguistic_features": {
+          "has_space": "42.7%",
+          "alphabetic": "88.3%",
+          "punctuation": "0.7%",
+          "numeric": "10.5%",
+          "uppercase": "0.8%"
+        }
+      },
+      "C2": {
+        "size": 527,
+        "percentage": "5.3%",
+        "common_tokens": [
+          " un",
+          " self",
+          " non",
+          " re",
+          " inter",
+          " anti",
+          " dis",
+          " co",
+          " pre",
+          " sp",
+          " par",
+          " Rhode",
+          " imp",
+          " se",
+          " sub"
+        ],
+        "token_types": {
+          "word_with_space": 435,
+          "word": 92
+        },
+        "linguistic_features": {
+          "has_space": "82.5%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C3": {
+        "size": 796,
+        "percentage": "8.0%",
+        "common_tokens": [
+          " the",
+          " of",
+          " and",
+          " for",
+          " with",
+          "'s",
+          " from",
+          " this",
+          " have",
+          " more",
+          " said",
+          " into",
+          " about",
+          " when",
+          " some"
+        ],
+        "token_types": {
+          "word_with_space": 777,
+          "other": 1,
+          "word": 18
+        },
+        "linguistic_features": {
+          "has_space": "97.6%",
+          "alphabetic": "99.9%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C4": {
+        "size": 1130,
+        "percentage": "11.3%",
+        "common_tokens": [
+          " ,",
+          " in",
+          "The",
+          " ;",
+          " at",
+          " an",
+          " --",
+          " all",
+          " out",
+          "It",
+          " up",
+          " so",
+          " :",
+          "I",
+          " man"
+        ],
+        "token_types": {
+          "mixed_with_space": 4,
+          "word_with_space": 942,
+          "word": 164,
+          "punctuation": 3,
+          "number": 1,
+          "number_with_space": 16
+        },
+        "linguistic_features": {
+          "has_space": "85.1%",
+          "alphabetic": "97.9%",
+          "punctuation": "0.3%",
+          "numeric": "1.5%",
+          "uppercase": "0.3%"
+        }
+      },
+      "C5": {
+        "size": 966,
+        "percentage": "9.7%",
+        "common_tokens": [
+          " a",
+          " he",
+          " his",
+          " be",
+          " on",
+          " by",
+          " I",
+          " or",
+          " one",
+          " her",
+          " him",
+          " )",
+          " she",
+          " there",
+          " its"
+        ],
+        "token_types": {
+          "word_with_space": 918,
+          "mixed_with_space": 1,
+          "word": 41,
+          "other": 1,
+          "number_with_space": 5
+        },
+        "linguistic_features": {
+          "has_space": "95.7%",
+          "alphabetic": "99.3%",
+          "punctuation": "0.0%",
+          "numeric": "0.5%",
+          "uppercase": "0.2%"
+        }
+      },
+      "C6": {
+        "size": 1225,
+        "percentage": "12.2%",
+        "common_tokens": [
+          " under",
+          " high",
+          " hand",
+          " head",
+          " end",
+          " per",
+          " half",
+          " light",
+          "ic",
+          " power",
+          " car",
+          " human",
+          " real",
+          " full",
+          " air"
+        ],
+        "token_types": {
+          "word_with_space": 915,
+          "word": 306,
+          "number_with_space": 4
+        },
+        "linguistic_features": {
+          "has_space": "75.0%",
+          "alphabetic": "99.7%",
+          "punctuation": "0.0%",
+          "numeric": "0.3%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C7": {
+        "size": 1604,
+        "percentage": "16.0%",
+        "common_tokens": [
+          " no",
+          " over",
+          "ing",
+          " well",
+          " long",
+          " good",
+          "If",
+          " off",
+          " old",
+          " state",
+          " use",
+          " small",
+          " part",
+          " fact",
+          " put"
+        ],
+        "token_types": {
+          "word_with_space": 1386,
+          "word": 218
+        },
+        "linguistic_features": {
+          "has_space": "86.4%",
+          "alphabetic": "100.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      },
+      "C8": {
+        "size": 712,
+        "percentage": "7.1%",
+        "common_tokens": [
+          " ''",
+          "-",
+          " ``",
+          "``",
+          " (",
+          " Af",
+          " $",
+          " B",
+          " '",
+          "S",
+          " C",
+          " P",
+          " U",
+          "(",
+          " D"
+        ],
+        "token_types": {
+          "mixed_with_space": 6,
+          "punctuation": 4,
+          "word_with_space": 337,
+          "word": 365
+        },
+        "linguistic_features": {
+          "has_space": "48.2%",
+          "alphabetic": "98.6%",
+          "punctuation": "0.6%",
+          "numeric": "0.0%",
+          "uppercase": "6.3%"
+        }
+      },
+      "C9": {
+        "size": 507,
+        "percentage": "5.1%",
+        "common_tokens": [
+          " to",
+          " that",
+          " is",
+          " was",
+          " it",
+          " had",
+          " not",
+          " are",
+          " which",
+          " were",
+          " you",
+          " but",
+          " they",
+          " would",
+          " their"
+        ],
+        "token_types": {
+          "word_with_space": 494,
+          "other": 5,
+          "word": 8
+        },
+        "linguistic_features": {
+          "has_space": "97.4%",
+          "alphabetic": "99.0%",
+          "punctuation": "0.0%",
+          "numeric": "0.0%",
+          "uppercase": "0.0%"
+        }
+      }
+    }
+  }
+}

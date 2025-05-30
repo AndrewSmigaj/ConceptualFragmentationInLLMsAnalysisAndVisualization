@@ -1,0 +1,178 @@
+Data-Driven Label Analysis Report
+=================================
+
+
+Label: Body & Physical Terms
+Clusters (1): L0_C0
+Sample tokens: [' she', ' hand', ' water', ' head', ' eyes', ' car', ' line', ' body', ' feet', ' moment', ' air', ' wife', ' voice', ' sound', ' land']
+Cluster sizes: [1046]
+
+Label: Capitalized Content Words
+Clusters (2): L0_C8, L11_C8
+Sample tokens: ['He', 'In', 'A', 'She', 'We', 'and', ' A', ' B', " '", 'S', ' C', ' P', '(', 'or', 'o']
+Cluster sizes: [604, 712]
+
+Label: Capitalized Content Words (L1)
+Clusters (1): L1_C4
+Sample tokens: [' .', '-', ' Af', ' $', ' B', ' per', ' C', 'At', ' P', '(', ' D', ' S', 'C', ' p', ' car']
+Cluster sizes: [756]
+
+Label: Core Function Words
+Clusters (1): L0_C9
+Sample tokens: [' for', " ''", ' with', ' be', ' on', ' ;', ' by', ' had', ' ``', ' are', ' from', '``', ' have', ' which', ' were']
+Cluster sizes: [1120]
+
+Label: Core Function Words (L1-10)
+Clusters (7): L10_C0, L1_C2, L2_C0, L3_C2, L7_C9, L8_C7, L9_C5
+Sample tokens: [' of', ' to', ' in', ' is', ' was', ' for', " ''", ' with', ' as', ' on', "'s", ' ;', ' by', ' had', ' at']
+Cluster sizes: [1289, 1093, 1722, 1415, 1406, 1396, 1413]
+
+Label: General Content Words
+Clusters (1): L0_C1
+Sample tokens: [' the', '.', ' me', ' now', ' well', ' year', ' us', ',', ' himself', ' old', ' state', ' American', ' home', ' high', ' New']
+Cluster sizes: [1198]
+
+Label: General Content Words (L0)
+Clusters (2): L0_C3, L0_C5
+Sample tokens: [' (', ' Af', ' per', ' Mrs', ' un', ' cent', ' Dr', ' inter', ' sl', ' dis', ' c', ' fl', ' pre', ' Car', ' imp']
+Cluster sizes: [559, 1374]
+
+Label: General Content Words (L1)
+Clusters (1): L1_C5
+Sample tokens: [' it', ' one', ' you', ' they', ' him', ' we', ' there', ' them', ' time', ' man', ' me', ' back', ' years', 's', ' people']
+Cluster sizes: [1883]
+
+Label: General Content Words (L1-10)
+Clusters (10): L10_C2, L1_C3, L2_C9, L3_C4, L4_C7, L5_C2, L6_C3, L7_C4, L8_C4, L9_C2
+Sample tokens: [' ``', ' New', ' Mrs', ' don', ' didn', ' un', ' President', ' non', 'An', 'By', ' cent', ' couldn', ' sat', ' re', ' inter']
+Cluster sizes: [521, 361, 221, 210, 204, 208, 182, 180, 180, 180]
+
+Label: General Content Words (L11)
+Clusters (3): L11_C2, L11_C6, L11_C7
+Sample tokens: [' un', ' self', ' non', ' re', ' inter', ' anti', ' dis', ' co', ' pre', ' sp', ' par', ' Rhode', ' imp', ' se', ' sub']
+Cluster sizes: [527, 1225, 1604]
+
+Label: General Content Words (L2-10)
+Clusters (9): L10_C1, L2_C2, L3_C0, L4_C3, L5_C5, L6_C2, L7_C8, L8_C0, L9_C7
+Sample tokens: ['a', 'man', ' once', ' system', ' room', ' least', ' matter', ' others', ' experience', 't', ' words', 'et', 'ings', 'men', 'as']
+Cluster sizes: [675, 761, 421, 456, 450, 406, 416, 412, 417]
+
+Label: General Content Words (L2-3)
+Clusters (2): L2_C3, L3_C6
+Sample tokens: [' which', ' one', ' him', ' them', ' time', ' me', ' now', ' way', ' work', ' men', ' still', ' year', ' life', ' us', ' himself']
+Cluster sizes: [1437, 1341]
+
+Label: General Content Words (L2-6)
+Clusters (5): L2_C5, L3_C8, L4_C6, L5_C6, L6_C4
+Sample tokens: [' be', ' on', ' by', ' an', 'It', 'In', ' could', 'This', ' most', ' should', 'There', 'They', ' get', ' between', 'If']
+Cluster sizes: [907, 1101, 1088, 1027, 1038]
+
+Label: General Content Words (L4-10)
+Clusters (7): L10_C6, L4_C4, L5_C1, L6_C5, L7_C3, L8_C9, L9_C0
+Sample tokens: [' which', ' than', ' way', ' year', ' life', ' us', 'y', ' himself', ' number', ' house', 'a', 'ers', ' once', 'ie', ' program']
+Cluster sizes: [1066, 1173, 1151, 1035, 1050, 1043, 1049]
+
+Label: General Content Words (L7-10)
+Clusters (4): L10_C8, L7_C7, L8_C1, L9_C1
+Sample tokens: ['He', ' could', 'I', 'This', ' should', ' well', ' get', ' right', 'We', ' $', ' got', 'His', ' head', ' does', ' far']
+Cluster sizes: [1071, 1062, 1051, 1035]
+
+Label: Human/Person Terms
+Clusters (1): L0_C7
+Sample tokens: [' they', ' we', ' man', ' people', ' men', ' world', ' Mr', ' States', ' house', ' group', ' U', ' business', ' children', ' God', ' country']
+Cluster sizes: [814]
+
+Label: Mixed Lexical Items
+Clusters (1): L0_C2
+Sample tokens: [' ,', ' .', ' and', ' to', ' a', ' his', "'s", ' ?', ' not', ' or', ' this', ' an', ' one', ' her', ' but']
+Cluster sizes: [1060]
+
+Label: Mixed Lexical Items (L0)
+Clusters (1): L0_C6
+Sample tokens: [' of', ' in', ' that', ' is', ' was', ' it', ' as', 'The', ' at', ' you', ' would', ' him', ' been', ' )', ' will']
+Cluster sizes: [1118]
+
+Label: Mixed Lexical Items (L1)
+Clusters (2): L1_C1, L1_C6
+Sample tokens: [' the', ' ,', ' and', ' that', ' or', ' this', ' which', ' )', ' than', ' only', ' now', ' before', ' through', ' way', "'"]
+Cluster sizes: [1372, 1310]
+
+Label: Mixed Lexical Items (L11)
+Clusters (3): L11_C4, L11_C5, L11_C9
+Sample tokens: [' ,', ' in', 'The', ' ;', ' at', ' an', ' --', ' all', ' out', 'It', ' up', ' so', ' :', 'I', ' man']
+Cluster sizes: [1130, 966, 507]
+
+Label: Mixed Lexical Items (L2-7)
+Clusters (5): L2_C1, L4_C8, L5_C8, L6_C6, L7_C1
+Sample tokens: [' is', ' was', " ''", 'The', ' had', ' have', ' were', ' --', ' they', ' would', ' their', ' been', ' has', ' will', ' who']
+Cluster sizes: [1633, 1727, 1652, 1666, 1423]
+
+Label: Mixed Lexical Items (L3-10)
+Clusters (8): L10_C5, L3_C3, L4_C0, L5_C4, L6_C7, L7_C0, L8_C8, L9_C3
+Sample tokens: [' ,', ' of', ' that', ' it', ' as', "'s", ' are', ' or', ' this', ' you', ' her', ' but', ' )', ' out', ' said']
+Cluster sizes: [1872, 1702, 1714, 1759, 1627, 1619, 1625, 1639]
+
+Label: Mixed Lexical Items (L4-10)
+Clusters (7): L10_C7, L4_C2, L5_C3, L6_C9, L7_C5, L8_C3, L9_C6
+Sample tokens: [' the', ' and', ' that', ' as', ' or', ' one', ' but', ' him', ' them', ' time', ' over', ' man', 'A', ' me', ' now']
+Cluster sizes: [1702, 1747, 1713, 1573, 1599, 1599, 1598]
+
+Label: Mixed Lexical Items (L8-10)
+Clusters (3): L10_C4, L8_C5, L9_C4
+Sample tokens: [' was', " ''", ' be', ' on', ' by', ' had', ' I', ' were', ' they', ' has', ' more', ' she', ' can', ' !', ' do']
+Cluster sizes: [1394, 1401, 1384]
+
+Label: Numeric Tokens
+Clusters (1): L1_C0
+Sample tokens: [' two', ' 1', ' three', ' 2', ' few', '000', ' four', ' several', ' 3', 'th', ' five', ' 18', ' 4', '1', '2']
+Cluster sizes: [212]
+
+Label: Quantity & Amount Terms
+Clusters (1): L1_C9
+Sample tokens: [' a', 'The', ' his', ' her', ' their', ' more', ' no', ' its', ' other', ' some', ' first', ' these', ' my', ' our', 'This']
+Cluster sizes: [929]
+
+Label: Quantity & Amount Terms (L11)
+Clusters (2): L11_C0, L11_C3
+Sample tokens: [' as', ' other', ' time', ' if', ' two', ' new', ' little', ' own', ' same', ' great', ' used', ' few', ' place', ' thought', ' say']
+Cluster sizes: [1310, 796]
+
+Label: Spatial & Location Terms
+Clusters (1): L2_C8
+Sample tokens: [' it', ' back', ' years', 'ly', 's', ' people', ' world', ' day', ' here', ' state', ' home', ' place', ' thought', ' hand', ' water']
+Cluster sizes: [1428]
+
+Label: Subword Units
+Clusters (1): L0_C4
+Sample tokens: ['-', ' he', ' I', 'I', 'ing', 'ly', "'", 's', ' 1', ' here', 'y', 'in', ' 2', 'es', 'er']
+Cluster sizes: [1107]
+
+Label: Subword Units (L1-3)
+Clusters (3): L1_C8, L2_C7, L3_C9
+Sample tokens: [' (', 'A', 'y', 'in', 'and', ' A', 'es', 'a', 'ers', 'man', 'S', 'ie', ' U', 'the', 'en']
+Cluster sizes: [985, 842, 771]
+
+Label: Subword Units (L11)
+Clusters (1): L11_C1
+Sample tokens: [' .', '.', ' ?', 'He', 'In', ' !', 'A', 'ed', "'", 's', ' 1', 'y', 'in', ' Mr', ' 2']
+Cluster sizes: [1223]
+
+Label: Subword Units (L3-10)
+Clusters (8): L10_C3, L3_C1, L4_C1, L5_C9, L6_C8, L7_C2, L8_C6, L9_C8
+Sample tokens: ['``', ' an', 'It', 'In', 'There', 'They', 'If', ' came', 'We', 'When', ' New', "'ll", "'d", ' Mrs', ' told']
+Cluster sizes: [684, 709, 682, 699, 564, 572, 581, 565]
+
+Label: Titles & Proper Names
+Clusters (1): L1_C7
+Sample tokens: [' he', '.', ' I', 'He', ' she', 'I', 'She', ' Mr', 'We', ' home', ' United', 'His', ' school', 'er', ' States']
+Cluster sizes: [743]
+
+Label: Titles & Proper Names (L2-10)
+Clusters (9): L10_C9, L2_C6, L3_C7, L4_C9, L5_C0, L6_C0, L7_C6, L8_C2, L9_C9
+Sample tokens: [' .', '-', ' he', '.', ' ?', ' I', ' (', ' we', ' she', ' !', ' Af', 'in', ' Mr', ' 2', ' United']
+Cluster sizes: [944, 906, 832, 819, 805, 704, 702, 712, 720]
+
+Label: Titles & Proper Names (L2-6)
+Clusters (5): L2_C4, L3_C5, L4_C5, L5_C7, L6_C1
+Sample tokens: ['He', 'I', 'She', ' well', ' $', ' head', ' per', ' S', ' p', ' York', ' am', ' St', ' t', ' b', ' m']
+Cluster sizes: [680, 621, 543, 526, 511]

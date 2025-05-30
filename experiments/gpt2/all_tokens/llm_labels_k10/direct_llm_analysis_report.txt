@@ -1,0 +1,167 @@
+DIRECT LLM ANALYSIS REPORT
+============================================================
+
+Model: claude - claude-3-opus-20240229
+Generated at: 2025-05-29T11:08:40.570111
+Total clusters: 120
+
+Label Distribution:
+  Error: Labeling failed: 120 clusters (100.0%)
+
+Total unique labels: 1
+Average clusters per label: 120.0
+
+Final Consistency Analysis:
+  High-similarity clusters (>70%) with different labels: 0
+  Consistency rate: 100.0%
+
+Cache Statistics:
+  Cache enabled: True
+  Total items: 0
+  Hit rate: N/A
+
+Layer-by-Layer Label Summary:
+
+Layer 0:
+  C0: Error: Labeling failed (1046 tokens)
+  C1: Error: Labeling failed (1198 tokens)
+  C2: Error: Labeling failed (1060 tokens)
+  C3: Error: Labeling failed (559 tokens)
+  C4: Error: Labeling failed (1107 tokens)
+  C5: Error: Labeling failed (1374 tokens)
+  C6: Error: Labeling failed (1118 tokens)
+  C7: Error: Labeling failed (814 tokens)
+  C8: Error: Labeling failed (604 tokens)
+  C9: Error: Labeling failed (1120 tokens)
+
+Layer 1:
+  C0: Error: Labeling failed (212 tokens)
+  C1: Error: Labeling failed (1372 tokens)
+  C2: Error: Labeling failed (1289 tokens)
+  C3: Error: Labeling failed (521 tokens)
+  C4: Error: Labeling failed (756 tokens)
+  C5: Error: Labeling failed (1883 tokens)
+  C6: Error: Labeling failed (1310 tokens)
+  C7: Error: Labeling failed (743 tokens)
+  C8: Error: Labeling failed (985 tokens)
+  C9: Error: Labeling failed (929 tokens)
+
+Layer 2:
+  C0: Error: Labeling failed (1093 tokens)
+  C1: Error: Labeling failed (1633 tokens)
+  C2: Error: Labeling failed (675 tokens)
+  C3: Error: Labeling failed (1437 tokens)
+  C4: Error: Labeling failed (680 tokens)
+  C5: Error: Labeling failed (907 tokens)
+  C6: Error: Labeling failed (944 tokens)
+  C7: Error: Labeling failed (842 tokens)
+  C8: Error: Labeling failed (1428 tokens)
+  C9: Error: Labeling failed (361 tokens)
+
+Layer 3:
+  C0: Error: Labeling failed (761 tokens)
+  C1: Error: Labeling failed (684 tokens)
+  C2: Error: Labeling failed (1722 tokens)
+  C3: Error: Labeling failed (1872 tokens)
+  C4: Error: Labeling failed (221 tokens)
+  C5: Error: Labeling failed (621 tokens)
+  C6: Error: Labeling failed (1341 tokens)
+  C7: Error: Labeling failed (906 tokens)
+  C8: Error: Labeling failed (1101 tokens)
+  C9: Error: Labeling failed (771 tokens)
+
+Layer 4:
+  C0: Error: Labeling failed (1702 tokens)
+  C1: Error: Labeling failed (709 tokens)
+  C2: Error: Labeling failed (1702 tokens)
+  C3: Error: Labeling failed (421 tokens)
+  C4: Error: Labeling failed (1066 tokens)
+  C5: Error: Labeling failed (543 tokens)
+  C6: Error: Labeling failed (1088 tokens)
+  C7: Error: Labeling failed (210 tokens)
+  C8: Error: Labeling failed (1727 tokens)
+  C9: Error: Labeling failed (832 tokens)
+
+Layer 5:
+  C0: Error: Labeling failed (819 tokens)
+  C1: Error: Labeling failed (1173 tokens)
+  C2: Error: Labeling failed (204 tokens)
+  C3: Error: Labeling failed (1747 tokens)
+  C4: Error: Labeling failed (1714 tokens)
+  C5: Error: Labeling failed (456 tokens)
+  C6: Error: Labeling failed (1027 tokens)
+  C7: Error: Labeling failed (526 tokens)
+  C8: Error: Labeling failed (1652 tokens)
+  C9: Error: Labeling failed (682 tokens)
+
+Layer 6:
+  C0: Error: Labeling failed (805 tokens)
+  C1: Error: Labeling failed (511 tokens)
+  C2: Error: Labeling failed (450 tokens)
+  C3: Error: Labeling failed (208 tokens)
+  C4: Error: Labeling failed (1038 tokens)
+  C5: Error: Labeling failed (1151 tokens)
+  C6: Error: Labeling failed (1666 tokens)
+  C7: Error: Labeling failed (1759 tokens)
+  C8: Error: Labeling failed (699 tokens)
+  C9: Error: Labeling failed (1713 tokens)
+
+Layer 7:
+  C0: Error: Labeling failed (1627 tokens)
+  C1: Error: Labeling failed (1423 tokens)
+  C2: Error: Labeling failed (564 tokens)
+  C3: Error: Labeling failed (1035 tokens)
+  C4: Error: Labeling failed (182 tokens)
+  C5: Error: Labeling failed (1573 tokens)
+  C6: Error: Labeling failed (704 tokens)
+  C7: Error: Labeling failed (1071 tokens)
+  C8: Error: Labeling failed (406 tokens)
+  C9: Error: Labeling failed (1415 tokens)
+
+Layer 8:
+  C0: Error: Labeling failed (416 tokens)
+  C1: Error: Labeling failed (1062 tokens)
+  C2: Error: Labeling failed (702 tokens)
+  C3: Error: Labeling failed (1599 tokens)
+  C4: Error: Labeling failed (180 tokens)
+  C5: Error: Labeling failed (1394 tokens)
+  C6: Error: Labeling failed (572 tokens)
+  C7: Error: Labeling failed (1406 tokens)
+  C8: Error: Labeling failed (1619 tokens)
+  C9: Error: Labeling failed (1050 tokens)
+
+Layer 9:
+  C0: Error: Labeling failed (1043 tokens)
+  C1: Error: Labeling failed (1051 tokens)
+  C2: Error: Labeling failed (180 tokens)
+  C3: Error: Labeling failed (1625 tokens)
+  C4: Error: Labeling failed (1401 tokens)
+  C5: Error: Labeling failed (1396 tokens)
+  C6: Error: Labeling failed (1599 tokens)
+  C7: Error: Labeling failed (412 tokens)
+  C8: Error: Labeling failed (581 tokens)
+  C9: Error: Labeling failed (712 tokens)
+
+Layer 10:
+  C0: Error: Labeling failed (1413 tokens)
+  C1: Error: Labeling failed (417 tokens)
+  C2: Error: Labeling failed (180 tokens)
+  C3: Error: Labeling failed (565 tokens)
+  C4: Error: Labeling failed (1384 tokens)
+  C5: Error: Labeling failed (1639 tokens)
+  C6: Error: Labeling failed (1049 tokens)
+  C7: Error: Labeling failed (1598 tokens)
+  C8: Error: Labeling failed (1035 tokens)
+  C9: Error: Labeling failed (720 tokens)
+
+Layer 11:
+  C0: Error: Labeling failed (1310 tokens)
+  C1: Error: Labeling failed (1223 tokens)
+  C2: Error: Labeling failed (527 tokens)
+  C3: Error: Labeling failed (796 tokens)
+  C4: Error: Labeling failed (1130 tokens)
+  C5: Error: Labeling failed (966 tokens)
+  C6: Error: Labeling failed (1225 tokens)
+  C7: Error: Labeling failed (1604 tokens)
+  C8: Error: Labeling failed (712 tokens)
+  C9: Error: Labeling failed (507 tokens)

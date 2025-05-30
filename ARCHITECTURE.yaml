@@ -1,0 +1,205 @@
+# Concept Fragmentation Architecture
+# Machine-readable architecture specification
+
+system:
+  name: "Concept Trajectory Analysis (CTA)"
+  version: "2.0"
+  description: "Neural network interpretability through activation trajectory analysis"
+
+modules:
+  core:
+    concept_fragmentation:
+      description: "Core library with single sources of truth"
+      
+      submodules:
+        clustering:
+          description: "Clustering algorithms and path extraction"
+          classes:
+            - BaseClusterer:
+                type: "interface"
+                methods: ["fit", "predict", "fit_predict"]
+            - KMeansClusterer:
+                extends: "BaseClusterer"
+                description: "K-means clustering implementation"
+            - PathExtractor:
+                description: "Extract token paths through layers"
+                methods: ["extract_paths", "find_archetypal_paths"]
+        
+        labeling:
+          description: "Cluster labeling and semantic analysis"
+          classes:
+            - BaseLabeler:
+                type: "interface"
+                methods: ["label_clusters"]
+            - ConsistentLabeler:
+                extends: "BaseLabeler"
+                description: "Primary/secondary labeling system"
+                config:
+                  overlap_threshold: 0.5
+                  use_alphabetical: true
+            - SemanticPurityCalculator:
+                description: "Calculate semantic purity scores"
+                methods: ["calculate_purity", "categorize_tokens"]
+        
+        visualization:
+          description: "All visualization components"
+          classes:
+            - SankeyGenerator:
+                description: "Single source for Sankey diagrams"
+                config:
+                  default_top_n: 25
+                  default_height: 800
+                  default_width: 1600
+                features:
+                  - colored_paths
+                  - semantic_labels
+                  - purity_percentages
+                  - configurable_layout
+            - TrajectoryVisualizer:
+                description: "3D/2D trajectory plots"
+                methods: ["plot_3d", "plot_umap", "plot_tsne"]
+            - SteppedLayerVisualizer:
+                description: "Layer-by-layer visualization"
+        
+        experiments:
+          description: "Experiment management framework"
+          classes:
+            - BaseExperiment:
+                type: "abstract"
+                methods: ["setup", "run", "analyze", "visualize"]
+            - ExperimentConfig:
+                description: "Configuration management"
+                fields: ["model", "k_values", "layers", "output_dir"]
+        
+        persistence:
+          description: "State management and caching"
+          classes:
+            - ExperimentState:
+                methods: ["save", "load", "checkpoint"]
+
+  experiments:
+    description: "Specific experiment implementations"
+    
+    gpt2:
+      all_tokens:
+        description: "10k most frequent GPT-2 tokens"
+        entry_point: "run_experiment.py"
+        config: "configs/gpt2_k10.yaml"
+        
+      semantic_subtypes:
+        description: "5k common words analysis"
+        entry_point: "run_experiment.py"
+        config: "configs/gpt2_semantic.yaml"
+    
+    heart_disease:
+      description: "UCI heart disease dataset"
+      entry_point: "run_experiment.py"
+      config: "configs/heart_disease.yaml"
+
+data_flow:
+  pipeline:
+    - step: "activation_extraction"
+      input: "model + tokens"
+      output: "activations by layer"
+      
+    - step: "clustering"
+      input: "activations"
+      output: "cluster assignments"
+      
+    - step: "path_extraction"
+      input: "cluster assignments"
+      output: "token paths"
+      
+    - step: "labeling"
+      input: "clusters + tokens"
+      output: "semantic labels"
+      
+    - step: "analysis"
+      input: "paths + labels"
+      output: "archetypal paths + metrics"
+      
+    - step: "visualization"
+      input: "analysis results"
+      output: "figures + interactive plots"
+
+key_files:
+  single_sources_of_truth:
+    sankey_generation:
+      location: "concept_fragmentation/visualization/sankey.py"
+      class: "SankeyGenerator"
+      replaces:
+        - "generate_sankey_diagrams.py"
+        - "generate_k10_sankeys.py"
+        - "generate_colored_sankeys_k10.py"
+        - "generate_enhanced_sankeys_k10.py"
+    
+    cluster_labeling:
+      location: "concept_fragmentation/labeling/consistent.py"
+      class: "ConsistentLabeler"
+      replaces:
+        - "create_primary_secondary_labels_k10.py"
+        - "create_consistent_labels_k10.py"
+        - "create_alphabetical_consistent_labels_k10.py"
+        - "All other create_*_labels_*.py files"
+    
+    path_analysis:
+      location: "concept_fragmentation/clustering/paths.py"
+      class: "PathExtractor"
+      data_format: "windowed_analysis_k{k}.json"
+
+configuration:
+  experiment_configs:
+    format: "yaml"
+    location: "experiments/configs/"
+    
+  visualization_defaults:
+    sankey:
+      top_n_paths: 25
+      show_purity: true
+      colored_paths: true
+      legend_position: "left"
+      last_layer_labels: "right"
+
+issues_fixed:
+  - description: "Multiple Sankey implementations"
+    solution: "Single SankeyGenerator class"
+    
+  - description: "Inconsistent cluster labeling"
+    solution: "ConsistentLabeler with primary/secondary system"
+    
+  - description: "Label overlap in visualizations"
+    solution: "Proper layout management in SankeyGenerator"
+    
+  - description: "Hard-coded parameters"
+    solution: "Configuration management system"
+    
+  - description: "10 labels for 7 visible clusters"
+    solution: "Dynamic label generation based on actual paths"
+
+testing:
+  unit_tests:
+    location: "tests/"
+    coverage_target: 80
+    
+  integration_tests:
+    location: "tests/integration/"
+    
+  visualization_tests:
+    location: "tests/visualization/"
+    includes_regression_tests: true
+
+documentation:
+  api_docs:
+    location: "docs/api/"
+    format: "sphinx"
+    
+  tutorials:
+    location: "docs/tutorials/"
+    includes:
+      - "quick_start.md"
+      - "custom_experiments.md"
+      - "visualization_guide.md"
+  
+  architecture:
+    location: "ARCHITECTURE.yaml"
+    purpose: "Machine-readable reference for each session"

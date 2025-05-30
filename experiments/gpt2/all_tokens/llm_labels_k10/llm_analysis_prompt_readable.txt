@@ -1,0 +1,538 @@
+Please analyze these clusters from GPT-2 model layers and provide semantic labels.
+
+IMPORTANT REQUIREMENTS:
+1. Labels should be DIFFERENTIATED - show what makes each cluster unique
+2. Labels should be CONSISTENT - same concepts get same names across layers
+3. Focus on linguistic/semantic categories (grammar, syntax, semantics)
+4. Be specific about what distinguishes each cluster
+5. With k=10, expect finer-grained distinctions than with smaller k
+
+For each cluster, provide:
+- A concise semantic label (2-4 words)
+- A brief description of what tokens it contains
+
+Example good labels:
+- "Modal Auxiliaries" (not just "Auxiliary Verbs")
+- "Sentence-Initial Capitals" (not just "Capitals")
+- "Mathematical Operators" (not just "Symbols")
+
+Analyze these 10 clusters per layer across 12 layers:
+
+CLUSTER DATA BY LAYER:
+==================================================
+
+LAYER 0:
+------------------------------
+
+C0: 1046 tokens (10.5%)
+Common tokens:  she,  hand,  water,  head,  eyes,  car,  line,  body,  feet,  moment
+Features: {'has_space': '95.2%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C1: 1198 tokens (12.0%)
+Common tokens:  the, .,  me,  now,  well,  year,  us, ,,  himself,  old
+Features: {'has_space': '75.6%', 'alphabetic': '95.2%', 'punctuation': '0.3%', 'numeric': '4.6%', 'uppercase': '0.3%'}
+
+C2: 1060 tokens (10.6%)
+Common tokens:  ,,  .,  and,  to,  a,  his, 's,  ?,  not,  or
+Features: {'has_space': '91.0%', 'alphabetic': '99.2%', 'punctuation': '0.1%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C3: 559 tokens (5.6%)
+Common tokens:  (,  Af,  per,  Mrs,  un,  cent,  Dr,  inter,  sl,  dis
+Features: {'has_space': '83.2%', 'alphabetic': '99.6%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C4: 1107 tokens (11.1%)
+Common tokens: -,  he,  I, I, ing, ly, ', s,  1,  here
+Features: {'has_space': '26.3%', 'alphabetic': '92.6%', 'punctuation': '0.2%', 'numeric': '7.2%', 'uppercase': '0.6%'}
+
+C5: 1374 tokens (13.7%)
+Common tokens:  time,  years,  way,  work,  life,  day,  number,  course,  program,  side
+Features: {'has_space': '93.4%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C6: 1118 tokens (11.2%)
+Common tokens:  of,  in,  that,  is,  was,  it,  as, The,  at,  you
+Features: {'has_space': '91.0%', 'alphabetic': '99.1%', 'punctuation': '0.4%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C7: 814 tokens (8.1%)
+Common tokens:  they,  we,  man,  people,  men,  world,  Mr,  States,  house,  group
+Features: {'has_space': '97.3%', 'alphabetic': '98.0%', 'punctuation': '0.0%', 'numeric': '2.0%', 'uppercase': '0.4%'}
+
+C8: 604 tokens (6.0%)
+Common tokens: He, In, A, She, We, and,  A,  B,  ', S
+Features: {'has_space': '64.9%', 'alphabetic': '99.2%', 'punctuation': '0.3%', 'numeric': '0.0%', 'uppercase': '7.8%'}
+
+C9: 1120 tokens (11.2%)
+Common tokens:  for,  '',  with,  be,  on,  ;,  by,  had,  ``,  are
+Features: {'has_space': '79.3%', 'alphabetic': '98.9%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+LAYER 1:
+------------------------------
+
+C0: 212 tokens (2.1%)
+Common tokens:  two,  1,  three,  2,  few, 000,  four,  several,  3, th
+Features: {'has_space': '63.2%', 'alphabetic': '28.8%', 'punctuation': '0.0%', 'numeric': '71.2%', 'uppercase': '0.0%'}
+
+C1: 1372 tokens (13.7%)
+Common tokens:  the,  ,,  and,  that,  or,  this,  which,  ),  than,  only
+Features: {'has_space': '78.0%', 'alphabetic': '99.5%', 'punctuation': '0.1%', 'numeric': '0.1%', 'uppercase': '0.1%'}
+
+C2: 1289 tokens (12.9%)
+Common tokens:  of,  to,  in,  is,  was,  for,  '',  with,  as,  on
+Features: {'has_space': '87.8%', 'alphabetic': '99.1%', 'punctuation': '0.2%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C3: 521 tokens (5.2%)
+Common tokens:  ``,  New,  Mrs,  don,  didn,  un,  President,  non, An, By
+Features: {'has_space': '85.8%', 'alphabetic': '99.6%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C4: 756 tokens (7.6%)
+Common tokens:  ., -,  Af,  $,  B,  per,  C, At,  P, (
+Features: {'has_space': '71.7%', 'alphabetic': '99.3%', 'punctuation': '0.3%', 'numeric': '0.0%', 'uppercase': '2.4%'}
+
+C5: 1883 tokens (18.8%)
+Common tokens:  it,  one,  you,  they,  him,  we,  there,  them,  time,  man
+Features: {'has_space': '96.2%', 'alphabetic': '99.9%', 'punctuation': '0.1%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C6: 1310 tokens (13.1%)
+Common tokens:  be, ``,  an,  has, It,  can, In,  !,  could,  do
+Features: {'has_space': '89.8%', 'alphabetic': '99.4%', 'punctuation': '0.2%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C7: 743 tokens (7.4%)
+Common tokens:  he, .,  I, He,  she, I, She,  Mr, We,  home
+Features: {'has_space': '86.7%', 'alphabetic': '99.5%', 'punctuation': '0.3%', 'numeric': '0.3%', 'uppercase': '0.7%'}
+
+C8: 985 tokens (9.8%)
+Common tokens:  (, A, y, in, and,  A, es, a, ers, man
+Features: {'has_space': '20.0%', 'alphabetic': '99.7%', 'punctuation': '0.2%', 'numeric': '0.0%', 'uppercase': '3.8%'}
+
+C9: 929 tokens (9.3%)
+Common tokens:  a, The,  his,  her,  their,  more,  no,  its,  other,  some
+Features: {'has_space': '90.5%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+LAYER 2:
+------------------------------
+
+C0: 1093 tokens (10.9%)
+Common tokens:  the,  ,,  of,  and,  to,  a,  in,  that,  for,  with
+Features: {'has_space': '86.8%', 'alphabetic': '98.9%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+C1: 1633 tokens (16.3%)
+Common tokens:  is,  was,  '', The,  had,  have,  were,  --,  they,  would
+Features: {'has_space': '94.3%', 'alphabetic': '99.6%', 'punctuation': '0.1%', 'numeric': '0.1%', 'uppercase': '0.1%'}
+
+C2: 675 tokens (6.8%)
+Common tokens: a, man,  once,  system,  room,  least,  matter,  others,  experience, t
+Features: {'has_space': '38.8%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.1%'}
+
+C3: 1437 tokens (14.4%)
+Common tokens:  which,  one,  him,  them,  time,  me,  now,  way,  work,  men
+Features: {'has_space': '91.9%', 'alphabetic': '99.8%', 'punctuation': '0.0%', 'numeric': '0.2%', 'uppercase': '0.1%'}
+
+C4: 680 tokens (6.8%)
+Common tokens: He, I, She,  well,  $,  head,  per,  S,  p,  York
+Features: {'has_space': '84.1%', 'alphabetic': '99.1%', 'punctuation': '0.0%', 'numeric': '0.7%', 'uppercase': '0.3%'}
+
+C5: 907 tokens (9.1%)
+Common tokens:  be,  on,  by,  an, It, In,  could, This,  most,  should
+Features: {'has_space': '87.1%', 'alphabetic': '98.9%', 'punctuation': '0.2%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C6: 944 tokens (9.4%)
+Common tokens:  ., -,  he, .,  ?,  I,  (,  we,  she,  !
+Features: {'has_space': '67.5%', 'alphabetic': '86.1%', 'punctuation': '0.6%', 'numeric': '12.7%', 'uppercase': '3.3%'}
+
+C7: 842 tokens (8.4%)
+Common tokens:  man, A, ',  1, y, and,  A, es, er, ie
+Features: {'has_space': '28.1%', 'alphabetic': '97.7%', 'punctuation': '0.1%', 'numeric': '2.1%', 'uppercase': '2.9%'}
+
+C8: 1428 tokens (14.3%)
+Common tokens:  it,  back,  years, ly, s,  people,  world,  day,  here,  state
+Features: {'has_space': '96.6%', 'alphabetic': '99.7%', 'punctuation': '0.0%', 'numeric': '0.3%', 'uppercase': '0.0%'}
+
+C9: 361 tokens (3.6%)
+Common tokens:  ``, ``, For,  New,  Mrs,  don,  didn,  un,  President,  tell
+Features: {'has_space': '85.9%', 'alphabetic': '99.2%', 'punctuation': '0.3%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+LAYER 3:
+------------------------------
+
+C0: 761 tokens (7.6%)
+Common tokens: a, man,  once,  system,  possible,  room,  things,  least,  matter,  others
+Features: {'has_space': '46.4%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.1%'}
+
+C1: 684 tokens (6.8%)
+Common tokens: ``,  an, It, In, There, They, If,  came, We, When
+Features: {'has_space': '86.5%', 'alphabetic': '98.8%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+C2: 1722 tokens (17.2%)
+Common tokens:  to,  in,  is,  was,  for,  with, The,  his,  not,  from
+Features: {'has_space': '93.6%', 'alphabetic': '99.5%', 'punctuation': '0.1%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C3: 1872 tokens (18.7%)
+Common tokens:  ,,  of,  that,  it,  as, 's,  are,  or,  this,  you
+Features: {'has_space': '93.5%', 'alphabetic': '99.6%', 'punctuation': '0.1%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C4: 221 tokens (2.2%)
+Common tokens:  ``, For,  don,  didn,  tell,  stood, An, By,  cent,  couldn
+Features: {'has_space': '85.5%', 'alphabetic': '99.1%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C5: 621 tokens (6.2%)
+Common tokens:  '',  I, He,  she, I,  Af, She,  $,  ', (
+Features: {'has_space': '79.4%', 'alphabetic': '95.8%', 'punctuation': '0.3%', 'numeric': '3.4%', 'uppercase': '1.0%'}
+
+C6: 1341 tokens (13.4%)
+Common tokens:  and,  which,  one,  him,  than,  them,  time,  over,  me,  now
+Features: {'has_space': '90.8%', 'alphabetic': '99.8%', 'punctuation': '0.0%', 'numeric': '0.2%', 'uppercase': '0.1%'}
+
+C7: 906 tokens (9.1%)
+Common tokens:  .,  a, -,  he, .,  ;,  at,  ?,  (,  we
+Features: {'has_space': '62.0%', 'alphabetic': '87.3%', 'punctuation': '0.7%', 'numeric': '11.1%', 'uppercase': '3.6%'}
+
+C8: 1101 tokens (11.0%)
+Common tokens:  be,  on,  by,  had,  has,  can,  could,  may,  my, This
+Features: {'has_space': '91.1%', 'alphabetic': '99.5%', 'punctuation': '0.1%', 'numeric': '0.3%', 'uppercase': '0.2%'}
+
+C9: 771 tokens (7.7%)
+Common tokens:  the,  man, A, ing, ',  1, y, and,  A, es
+Features: {'has_space': '29.1%', 'alphabetic': '97.5%', 'punctuation': '0.1%', 'numeric': '2.3%', 'uppercase': '2.3%'}
+
+LAYER 4:
+------------------------------
+
+C0: 1702 tokens (17.0%)
+Common tokens:  ,,  of,  to,  a,  it,  his, 's,  ;,  at,  not
+Features: {'has_space': '93.8%', 'alphabetic': '99.5%', 'punctuation': '0.0%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C1: 709 tokens (7.1%)
+Common tokens: ``,  an, It, In, There, They, If,  came, We, For
+Features: {'has_space': '86.7%', 'alphabetic': '98.7%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+C2: 1702 tokens (17.0%)
+Common tokens:  the,  and,  that,  as,  or,  one,  but,  him,  them,  time
+Features: {'has_space': '73.7%', 'alphabetic': '98.7%', 'punctuation': '0.1%', 'numeric': '1.1%', 'uppercase': '0.8%'}
+
+C3: 421 tokens (4.2%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '39.7%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C4: 1066 tokens (10.7%)
+Common tokens:  which,  than,  way,  year,  life,  us, y,  himself,  number,  house
+Features: {'has_space': '65.9%', 'alphabetic': '99.9%', 'punctuation': '0.0%', 'numeric': '0.1%', 'uppercase': '0.3%'}
+
+C5: 543 tokens (5.4%)
+Common tokens:  I, He,  Af, She,  Mr,  ', (,  John,  S,  p
+Features: {'has_space': '79.6%', 'alphabetic': '97.4%', 'punctuation': '0.2%', 'numeric': '2.2%', 'uppercase': '0.9%'}
+
+C6: 1088 tokens (10.9%)
+Common tokens:  be,  on,  by,  had,  has,  can,  could, I, This,  most
+Features: {'has_space': '90.4%', 'alphabetic': '99.2%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.3%'}
+
+C7: 210 tokens (2.1%)
+Common tokens:  ``,  don,  didn,  tell,  stood, An, By,  cent,  couldn,  sat
+Features: {'has_space': '85.2%', 'alphabetic': '99.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C8: 1727 tokens (17.3%)
+Common tokens:  in,  is,  was,  for,  '',  with,  he, The,  have,  were
+Features: {'has_space': '92.6%', 'alphabetic': '97.7%', 'punctuation': '0.2%', 'numeric': '1.9%', 'uppercase': '0.0%'}
+
+C9: 832 tokens (8.3%)
+Common tokens:  ., -, .,  ?,  we,  :, s,  The,  three, in
+Features: {'has_space': '56.1%', 'alphabetic': '89.4%', 'punctuation': '0.6%', 'numeric': '9.5%', 'uppercase': '4.3%'}
+
+LAYER 5:
+------------------------------
+
+C0: 819 tokens (8.2%)
+Common tokens:  ., -,  he, .,  ?,  (,  we,  :, s,  three
+Features: {'has_space': '58.2%', 'alphabetic': '89.0%', 'punctuation': '0.7%', 'numeric': '9.6%', 'uppercase': '4.4%'}
+
+C1: 1173 tokens (11.7%)
+Common tokens:  which,  than,  way,  each,  year,  life,  us, y,  himself,  number
+Features: {'has_space': '66.2%', 'alphabetic': '99.8%', 'punctuation': '0.0%', 'numeric': '0.2%', 'uppercase': '0.3%'}
+
+C2: 204 tokens (2.0%)
+Common tokens:  ``,  don,  didn,  tell,  stood, An, By,  cent,  couldn,  sat
+Features: {'has_space': '84.8%', 'alphabetic': '99.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C3: 1747 tokens (17.5%)
+Common tokens:  the,  and,  that,  as,  or,  one,  but,  him,  them,  time
+Features: {'has_space': '74.9%', 'alphabetic': '98.6%', 'punctuation': '0.1%', 'numeric': '1.2%', 'uppercase': '0.7%'}
+
+C4: 1714 tokens (17.1%)
+Common tokens:  ,,  of,  to,  a,  in,  with,  it,  his, 's,  ;
+Features: {'has_space': '93.0%', 'alphabetic': '99.3%', 'punctuation': '0.0%', 'numeric': '0.4%', 'uppercase': '0.0%'}
+
+C5: 456 tokens (4.6%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '41.7%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C6: 1027 tokens (10.3%)
+Common tokens:  be,  on,  by,  had,  can,  could, This,  most,  should,  well
+Features: {'has_space': '90.3%', 'alphabetic': '99.0%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.2%'}
+
+C7: 526 tokens (5.3%)
+Common tokens:  I, He, I,  Af, She,  $,  ', (,  John,  S
+Features: {'has_space': '79.8%', 'alphabetic': '98.1%', 'punctuation': '0.2%', 'numeric': '1.3%', 'uppercase': '1.0%'}
+
+C8: 1652 tokens (16.5%)
+Common tokens:  is,  was,  for,  '', The,  have,  were,  --,  they,  would
+Features: {'has_space': '92.8%', 'alphabetic': '97.7%', 'punctuation': '0.2%', 'numeric': '1.9%', 'uppercase': '0.0%'}
+
+C9: 682 tokens (6.8%)
+Common tokens: ``,  an, It, In, There, They, If,  came, For, When
+Features: {'has_space': '87.5%', 'alphabetic': '99.1%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+LAYER 6:
+------------------------------
+
+C0: 805 tokens (8.1%)
+Common tokens:  ., -,  he, .,  ?,  (,  we,  :,  two, s
+Features: {'has_space': '58.4%', 'alphabetic': '89.3%', 'punctuation': '0.7%', 'numeric': '9.3%', 'uppercase': '4.5%'}
+
+C1: 511 tokens (5.1%)
+Common tokens:  I, He,  Af, She,  $,  ', (,  John,  S,  p
+Features: {'has_space': '79.6%', 'alphabetic': '97.3%', 'punctuation': '0.2%', 'numeric': '2.2%', 'uppercase': '0.8%'}
+
+C2: 450 tokens (4.5%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '42.0%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C3: 208 tokens (2.1%)
+Common tokens:  ``,  don,  didn,  tell,  stood, An, By,  cent,  couldn,  sat
+Features: {'has_space': '85.1%', 'alphabetic': '99.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C4: 1038 tokens (10.4%)
+Common tokens:  be,  on,  by,  had,  can,  could, I, This,  most,  should
+Features: {'has_space': '90.4%', 'alphabetic': '99.1%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.3%'}
+
+C5: 1151 tokens (11.5%)
+Common tokens:  which,  than,  way,  each,  year,  life,  us, y,  himself,  number
+Features: {'has_space': '66.2%', 'alphabetic': '99.8%', 'punctuation': '0.0%', 'numeric': '0.2%', 'uppercase': '0.3%'}
+
+C6: 1666 tokens (16.7%)
+Common tokens:  is,  was,  for,  '', The,  have,  were,  --,  they,  would
+Features: {'has_space': '92.7%', 'alphabetic': '97.8%', 'punctuation': '0.2%', 'numeric': '1.9%', 'uppercase': '0.0%'}
+
+C7: 1759 tokens (17.6%)
+Common tokens:  ,,  of,  to,  a,  in,  with,  it,  his, 's,  ;
+Features: {'has_space': '92.8%', 'alphabetic': '99.3%', 'punctuation': '0.0%', 'numeric': '0.4%', 'uppercase': '0.0%'}
+
+C8: 699 tokens (7.0%)
+Common tokens: ``,  an, It, In, There, They, If,  came, We, For
+Features: {'has_space': '87.3%', 'alphabetic': '99.0%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+C9: 1713 tokens (17.1%)
+Common tokens:  the,  and,  that,  as,  or,  one,  but,  him,  them,  time
+Features: {'has_space': '73.9%', 'alphabetic': '98.6%', 'punctuation': '0.1%', 'numeric': '1.2%', 'uppercase': '0.8%'}
+
+LAYER 7:
+------------------------------
+
+C0: 1627 tokens (16.3%)
+Common tokens:  ,,  of,  it,  as, 's,  ;,  at,  are,  this,  you
+Features: {'has_space': '89.7%', 'alphabetic': '98.8%', 'punctuation': '0.1%', 'numeric': '0.8%', 'uppercase': '0.0%'}
+
+C1: 1423 tokens (14.2%)
+Common tokens:  was,  '', The,  be,  on,  by,  had,  I,  were,  they
+Features: {'has_space': '89.7%', 'alphabetic': '97.0%', 'punctuation': '0.1%', 'numeric': '2.7%', 'uppercase': '0.4%'}
+
+C2: 564 tokens (5.6%)
+Common tokens: ``,  an, It, In, There, They, If,  came, For, When
+Features: {'has_space': '87.8%', 'alphabetic': '99.1%', 'punctuation': '0.4%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C3: 1035 tokens (10.3%)
+Common tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+Features: {'has_space': '64.8%', 'alphabetic': '99.9%', 'punctuation': '0.0%', 'numeric': '0.1%', 'uppercase': '0.3%'}
+
+C4: 182 tokens (1.8%)
+Common tokens:  ``,  didn,  tell, An, By,  cent,  couldn,  sat,  inter,  wasn
+Features: {'has_space': '83.5%', 'alphabetic': '98.9%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C5: 1573 tokens (15.7%)
+Common tokens:  the,  and,  that,  or,  one,  but,  him,  them,  time,  over
+Features: {'has_space': '71.9%', 'alphabetic': '98.7%', 'punctuation': '0.1%', 'numeric': '1.2%', 'uppercase': '0.9%'}
+
+C6: 704 tokens (7.0%)
+Common tokens:  ., -,  he, .,  (,  Af, s, in,  Mr, er
+Features: {'has_space': '56.8%', 'alphabetic': '88.5%', 'punctuation': '0.6%', 'numeric': '10.5%', 'uppercase': '5.1%'}
+
+C7: 1071 tokens (10.7%)
+Common tokens: He,  could, I, This,  should,  well,  get,  right, We,  $
+Features: {'has_space': '87.5%', 'alphabetic': '98.9%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.2%'}
+
+C8: 406 tokens (4.1%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '40.4%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C9: 1415 tokens (14.1%)
+Common tokens:  to,  a,  in,  is,  for,  with,  his,  ?,  not,  from
+Features: {'has_space': '92.7%', 'alphabetic': '99.3%', 'punctuation': '0.3%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+LAYER 8:
+------------------------------
+
+C0: 416 tokens (4.2%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '40.1%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C1: 1062 tokens (10.6%)
+Common tokens: He,  could, I, This,  should,  well,  get, We,  $,  got
+Features: {'has_space': '87.4%', 'alphabetic': '98.9%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.2%'}
+
+C2: 702 tokens (7.0%)
+Common tokens:  ., -, .,  (,  we,  :,  Af, s, in, er
+Features: {'has_space': '56.4%', 'alphabetic': '88.5%', 'punctuation': '0.7%', 'numeric': '10.3%', 'uppercase': '5.1%'}
+
+C3: 1599 tokens (16.0%)
+Common tokens:  the,  and,  that,  as,  or,  one,  but,  him,  them,  time
+Features: {'has_space': '72.4%', 'alphabetic': '98.7%', 'punctuation': '0.1%', 'numeric': '1.2%', 'uppercase': '0.9%'}
+
+C4: 180 tokens (1.8%)
+Common tokens:  ``,  didn,  tell, An, By,  cent,  couldn,  sat,  inter,  wasn
+Features: {'has_space': '83.3%', 'alphabetic': '98.9%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C5: 1394 tokens (13.9%)
+Common tokens:  was,  '',  be,  on,  by,  had,  I,  were,  they,  has
+Features: {'has_space': '89.7%', 'alphabetic': '96.8%', 'punctuation': '0.1%', 'numeric': '2.8%', 'uppercase': '0.4%'}
+
+C6: 572 tokens (5.7%)
+Common tokens: ``,  an, It, In, There, They, If,  came, For, When
+Features: {'has_space': '87.9%', 'alphabetic': '99.1%', 'punctuation': '0.3%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C7: 1406 tokens (14.1%)
+Common tokens:  to,  in,  is,  for,  with,  he, The,  ?,  not,  have
+Features: {'has_space': '92.5%', 'alphabetic': '99.4%', 'punctuation': '0.2%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C8: 1619 tokens (16.2%)
+Common tokens:  ,,  of,  a,  it,  his, 's,  ;,  at,  are,  from
+Features: {'has_space': '90.3%', 'alphabetic': '98.8%', 'punctuation': '0.1%', 'numeric': '0.8%', 'uppercase': '0.0%'}
+
+C9: 1050 tokens (10.5%)
+Common tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+Features: {'has_space': '64.9%', 'alphabetic': '99.9%', 'punctuation': '0.0%', 'numeric': '0.1%', 'uppercase': '0.3%'}
+
+LAYER 9:
+------------------------------
+
+C0: 1043 tokens (10.4%)
+Common tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+Features: {'has_space': '65.1%', 'alphabetic': '99.9%', 'punctuation': '0.0%', 'numeric': '0.1%', 'uppercase': '0.3%'}
+
+C1: 1051 tokens (10.5%)
+Common tokens: He,  could, I, This,  should,  well,  get, We,  $,  got
+Features: {'has_space': '87.6%', 'alphabetic': '98.9%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.2%'}
+
+C2: 180 tokens (1.8%)
+Common tokens:  ``,  didn,  tell, An, By,  cent,  couldn,  sat,  inter,  wasn
+Features: {'has_space': '83.3%', 'alphabetic': '98.9%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C3: 1625 tokens (16.2%)
+Common tokens:  ,,  of,  a,  it,  his, 's,  ;,  at,  are,  from
+Features: {'has_space': '90.2%', 'alphabetic': '98.8%', 'punctuation': '0.1%', 'numeric': '0.8%', 'uppercase': '0.0%'}
+
+C4: 1401 tokens (14.0%)
+Common tokens:  was,  '',  be,  on,  by,  had,  I,  were,  they,  has
+Features: {'has_space': '89.8%', 'alphabetic': '96.9%', 'punctuation': '0.1%', 'numeric': '2.7%', 'uppercase': '0.4%'}
+
+C5: 1396 tokens (14.0%)
+Common tokens:  to,  in,  is,  for,  with, The,  ?,  not,  have,  --
+Features: {'has_space': '92.8%', 'alphabetic': '99.4%', 'punctuation': '0.2%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+C6: 1599 tokens (16.0%)
+Common tokens:  the,  and,  that,  as,  or,  one,  but,  him,  them,  time
+Features: {'has_space': '72.0%', 'alphabetic': '98.7%', 'punctuation': '0.1%', 'numeric': '1.2%', 'uppercase': '0.9%'}
+
+C7: 412 tokens (4.1%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '39.8%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C8: 581 tokens (5.8%)
+Common tokens: ``,  an, It, In, There, They, If,  came, For, When
+Features: {'has_space': '87.4%', 'alphabetic': '99.1%', 'punctuation': '0.3%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C9: 712 tokens (7.1%)
+Common tokens:  ., -,  he, .,  (,  we,  :,  Af, s, in
+Features: {'has_space': '56.6%', 'alphabetic': '88.3%', 'punctuation': '0.7%', 'numeric': '10.4%', 'uppercase': '4.9%'}
+
+LAYER 10:
+------------------------------
+
+C0: 1413 tokens (14.1%)
+Common tokens:  to,  in,  is,  for,  with, The,  ?,  not,  have,  --
+Features: {'has_space': '92.6%', 'alphabetic': '99.4%', 'punctuation': '0.2%', 'numeric': '0.1%', 'uppercase': '0.0%'}
+
+C1: 417 tokens (4.2%)
+Common tokens: man,  system,  least,  matter,  others,  experience, t,  words, et, men
+Features: {'has_space': '40.0%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.2%'}
+
+C2: 180 tokens (1.8%)
+Common tokens:  ``,  didn,  tell, An, By,  cent,  couldn,  sat,  inter,  wasn
+Features: {'has_space': '83.3%', 'alphabetic': '98.9%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C3: 565 tokens (5.7%)
+Common tokens: ``,  an, It, In, There, They, If,  came, For, When
+Features: {'has_space': '87.4%', 'alphabetic': '99.1%', 'punctuation': '0.4%', 'numeric': '0.2%', 'uppercase': '0.0%'}
+
+C4: 1384 tokens (13.8%)
+Common tokens:  was,  '',  be,  on,  by,  had,  I,  were,  they,  has
+Features: {'has_space': '89.9%', 'alphabetic': '97.3%', 'punctuation': '0.1%', 'numeric': '2.4%', 'uppercase': '0.4%'}
+
+C5: 1639 tokens (16.4%)
+Common tokens:  ,,  of,  a,  it,  his, 's,  ;,  at,  are,  from
+Features: {'has_space': '89.9%', 'alphabetic': '98.8%', 'punctuation': '0.0%', 'numeric': '0.9%', 'uppercase': '0.0%'}
+
+C6: 1049 tokens (10.5%)
+Common tokens:  which,  than,  way,  each,  life, y,  himself,  number,  house, a
+Features: {'has_space': '65.0%', 'alphabetic': '99.9%', 'punctuation': '0.0%', 'numeric': '0.1%', 'uppercase': '0.3%'}
+
+C7: 1598 tokens (16.0%)
+Common tokens:  the,  and,  that,  as,  or,  one,  but,  him,  them,  time
+Features: {'has_space': '72.3%', 'alphabetic': '98.6%', 'punctuation': '0.1%', 'numeric': '1.2%', 'uppercase': '0.9%'}
+
+C8: 1035 tokens (10.3%)
+Common tokens: He,  could, I, This,  should,  well,  get, We,  $,  got
+Features: {'has_space': '87.6%', 'alphabetic': '98.8%', 'punctuation': '0.1%', 'numeric': '0.6%', 'uppercase': '0.2%'}
+
+C9: 720 tokens (7.2%)
+Common tokens:  ., -,  he, .,  (,  we,  :,  Af, s, in
+Features: {'has_space': '57.4%', 'alphabetic': '87.9%', 'punctuation': '0.7%', 'numeric': '10.8%', 'uppercase': '4.9%'}
+
+LAYER 11:
+------------------------------
+
+C0: 1310 tokens (13.1%)
+Common tokens:  as,  other,  time,  if,  two,  new,  little,  own,  same,  great
+Features: {'has_space': '94.2%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.1%'}
+
+C1: 1223 tokens (12.2%)
+Common tokens:  ., .,  ?, He, In,  !, A, ed, ', s
+Features: {'has_space': '42.7%', 'alphabetic': '88.3%', 'punctuation': '0.7%', 'numeric': '10.5%', 'uppercase': '0.8%'}
+
+C2: 527 tokens (5.3%)
+Common tokens:  un,  self,  non,  re,  inter,  anti,  dis,  co,  pre,  sp
+Features: {'has_space': '82.5%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C3: 796 tokens (8.0%)
+Common tokens:  the,  of,  and,  for,  with, 's,  from,  this,  have,  more
+Features: {'has_space': '97.6%', 'alphabetic': '99.9%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C4: 1130 tokens (11.3%)
+Common tokens:  ,,  in, The,  ;,  at,  an,  --,  all,  out, It
+Features: {'has_space': '85.1%', 'alphabetic': '97.9%', 'punctuation': '0.3%', 'numeric': '1.5%', 'uppercase': '0.3%'}
+
+C5: 966 tokens (9.7%)
+Common tokens:  a,  he,  his,  be,  on,  by,  I,  or,  one,  her
+Features: {'has_space': '95.7%', 'alphabetic': '99.3%', 'punctuation': '0.0%', 'numeric': '0.5%', 'uppercase': '0.2%'}
+
+C6: 1225 tokens (12.2%)
+Common tokens:  under,  high,  hand,  head,  end,  per,  half,  light, ic,  power
+Features: {'has_space': '75.0%', 'alphabetic': '99.7%', 'punctuation': '0.0%', 'numeric': '0.3%', 'uppercase': '0.0%'}
+
+C7: 1604 tokens (16.0%)
+Common tokens:  no,  over, ing,  well,  long,  good, If,  off,  old,  state
+Features: {'has_space': '86.4%', 'alphabetic': '100.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}
+
+C8: 712 tokens (7.1%)
+Common tokens:  '', -,  ``, ``,  (,  Af,  $,  B,  ', S
+Features: {'has_space': '48.2%', 'alphabetic': '98.6%', 'punctuation': '0.6%', 'numeric': '0.0%', 'uppercase': '6.3%'}
+
+C9: 507 tokens (5.1%)
+Common tokens:  to,  that,  is,  was,  it,  had,  not,  are,  which,  were
+Features: {'has_space': '97.4%', 'alphabetic': '99.0%', 'punctuation': '0.0%', 'numeric': '0.0%', 'uppercase': '0.0%'}

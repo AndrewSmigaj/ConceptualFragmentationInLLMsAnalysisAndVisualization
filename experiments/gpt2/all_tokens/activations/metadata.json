@@ -1,0 +1,11 @@
+{
+  "model_name": "gpt2",
+  "vocab_size": 50257,
+  "n_layers": 12,
+  "hidden_dim": 768,
+  "chunk_size": 5000,
+  "n_chunks": 11,
+  "extraction_date": "2025-05-27T11:00:11.693275",
+  "total_extraction_time": 1872.7483413219452,
+  "average_tokens_per_second": 26.83596022545364
+}

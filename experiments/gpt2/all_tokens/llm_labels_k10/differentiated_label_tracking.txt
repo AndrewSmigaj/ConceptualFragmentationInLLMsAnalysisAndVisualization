@@ -1,0 +1,143 @@
+Differentiated Label Tracking Report
+===================================
+
+Label: Capitalized Terms
+Clusters: L0_C8, L11_C8
+Sample tokens: ['He', 'In', 'A', 'She', 'We', 'and', ' A', ' B', " '", 'S']
+Cluster sizes: [604, 712]
+
+Label: Capitalized Terms (L1)
+Clusters: L1_C4, L1_C7
+Sample tokens: [' .', '-', ' Af', ' $', ' B', ' per', ' C', 'At', ' P', '(']
+Cluster sizes: [756, 743]
+
+Label: Capitalized Terms (L2-L10)
+Clusters: L10_C9, L2_C6, L3_C7, L4_C9, L5_C0, L6_C0, L7_C6, L8_C2, L9_C9
+Sample tokens: [' .', '-', ' he', '.', ' ?', ' I', ' (', ' we', ' she', ' !']
+Cluster sizes: [944, 805, 819, 720, 712, 704, 702, 832, 906]
+
+Label: Capitalized Terms (L2-L6)
+Clusters: L2_C4, L3_C5, L4_C5, L5_C7, L6_C1
+Sample tokens: ['He', 'I', 'She', ' well', ' $', ' head', ' per', ' S', ' p', ' York']
+Cluster sizes: [680, 526, 511, 543, 621]
+
+Label: Capitalized Terms (L3-L10)
+Clusters: L10_C3, L3_C1, L4_C1, L5_C9, L6_C8, L7_C2, L8_C6, L9_C8
+Sample tokens: ['``', ' an', 'It', 'In', 'There', 'They', 'If', ' came', 'We', 'When']
+Cluster sizes: [684, 709, 699, 682, 565, 581, 572, 564]
+
+Label: Capitalized Terms (L7-L10)
+Clusters: L10_C8, L7_C7, L8_C1, L9_C1
+Sample tokens: ['He', ' could', 'I', 'This', ' should', ' well', ' get', ' right', 'We', ' $']
+Cluster sizes: [1071, 1035, 1051, 1062]
+
+Label: Determiners & Articles
+Clusters: L0_C2
+Sample tokens: [' ,', ' .', ' and', ' to', ' a', ' his', "'s", ' ?', ' not', ' or']
+Cluster sizes: [1060]
+
+Label: Determiners & Articles (L11)
+Clusters: L11_C9
+Sample tokens: [' to', ' that', ' is', ' was', ' it', ' had', ' not', ' are', ' which', ' were']
+Cluster sizes: [507]
+
+Label: Determiners & Articles (L2-L7)
+Clusters: L2_C1, L4_C8, L5_C8, L6_C6, L7_C1
+Sample tokens: [' is', ' was', " ''", 'The', ' had', ' have', ' were', ' --', ' they', ' would']
+Cluster sizes: [1633, 1652, 1666, 1727, 1423]
+
+Label: Early Layer Mixed Tokens
+Clusters: L0_C1
+Sample tokens: [' the', '.', ' me', ' now', ' well', ' year', ' us', ',', ' himself', ' old']
+Cluster sizes: [1198]
+
+Label: Early Layer Mixed Tokens (L0)
+Clusters: L0_C3, L0_C4, L0_C5, L0_C6
+Sample tokens: [' (', ' Af', ' per', ' Mrs', ' un', ' cent', ' Dr', ' inter', ' sl', ' dis']
+Cluster sizes: [559, 1107, 1374, 1118]
+
+Label: Early Layer Mixed Tokens (L1)
+Clusters: L1_C1, L1_C5, L1_C6, L1_C9
+Sample tokens: [' the', ' ,', ' and', ' that', ' or', ' this', ' which', ' )', ' than', ' only']
+Cluster sizes: [1372, 1883, 1310, 929]
+
+Label: Early Layer Mixed Tokens (L1-L10)
+Clusters: L10_C2, L1_C3, L2_C9, L3_C4, L4_C7, L5_C2, L6_C3, L7_C4, L8_C4, L9_C2
+Sample tokens: [' ``', ' New', ' Mrs', ' don', ' didn', ' un', ' President', ' non', 'An', 'By']
+Cluster sizes: [521, 361, 208, 204, 210, 221, 180, 180, 180, 182]
+
+Label: Early Layer Mixed Tokens (L1-L3)
+Clusters: L1_C8, L2_C7, L3_C9
+Sample tokens: [' (', 'A', 'y', 'in', 'and', ' A', 'es', 'a', 'ers', 'man']
+Cluster sizes: [985, 842, 771]
+
+Label: Early Layer Mixed Tokens (L11)
+Clusters: L11_C0, L11_C1, L11_C2, L11_C4, L11_C5, L11_C6, L11_C7
+Sample tokens: [' as', ' other', ' time', ' if', ' two', ' new', ' little', ' own', ' same', ' great']
+Cluster sizes: [1310, 1223, 527, 1130, 966, 1225, 1604]
+
+Label: Early Layer Mixed Tokens (L2-L10)
+Clusters: L10_C1, L2_C2, L3_C0, L4_C3, L5_C5, L6_C2, L7_C8, L8_C0, L9_C7
+Sample tokens: ['a', 'man', ' once', ' system', ' room', ' least', ' matter', ' others', ' experience', 't']
+Cluster sizes: [675, 761, 416, 450, 456, 421, 417, 412, 406]
+
+Label: Early Layer Mixed Tokens (L2-L3)
+Clusters: L2_C3, L3_C6
+Sample tokens: [' which', ' one', ' him', ' them', ' time', ' me', ' now', ' way', ' work', ' men']
+Cluster sizes: [1437, 1341]
+
+Label: Early Layer Mixed Tokens (L2-L6)
+Clusters: L2_C5, L3_C8, L4_C6, L5_C6, L6_C4
+Sample tokens: [' be', ' on', ' by', ' an', 'It', 'In', ' could', 'This', ' most', ' should']
+Cluster sizes: [907, 1027, 1038, 1088, 1101]
+
+Label: Early Layer Mixed Tokens (L4-L10)
+Clusters: L10_C6, L10_C7, L4_C2, L4_C4, L5_C1, L5_C3, L6_C5, L6_C9, L7_C3, L7_C5, L8_C3, L8_C9, L9_C0, L9_C6
+Sample tokens: [' the', ' and', ' that', ' as', ' or', ' one', ' but', ' him', ' them', ' time']
+Cluster sizes: [1702, 1598, 1599, 1599, 1713, 1747, 1573, 1066, 1151, 1173, 1049, 1043, 1050, 1035]
+
+Label: Early Layer Mixed Tokens (L8-L10)
+Clusters: L10_C4, L8_C5, L9_C4
+Sample tokens: [' was', " ''", ' be', ' on', ' by', ' had', ' I', ' were', ' they', ' has']
+Cluster sizes: [1394, 1384, 1401]
+
+Label: Numeric Tokens
+Clusters: L1_C0
+Sample tokens: [' two', ' 1', ' three', ' 2', ' few', '000', ' four', ' several', ' 3', 'th']
+Cluster sizes: [212]
+
+Label: Person References & Titles
+Clusters: L0_C7
+Sample tokens: [' they', ' we', ' man', ' people', ' men', ' world', ' Mr', ' States', ' house', ' group']
+Cluster sizes: [814]
+
+Label: Prepositions & Spatial Terms
+Clusters: L0_C9
+Sample tokens: [' for', " ''", ' with', ' be', ' on', ' ;', ' by', ' had', ' ``', ' are']
+Cluster sizes: [1120]
+
+Label: Prepositions & Spatial Terms (L1-L10)
+Clusters: L10_C0, L1_C2, L2_C0, L3_C2, L7_C9, L8_C7, L9_C5
+Sample tokens: [' of', ' to', ' in', ' is', ' was', ' for', " ''", ' with', ' as', ' on']
+Cluster sizes: [1289, 1722, 1415, 1093, 1413, 1396, 1406]
+
+Label: Prepositions & Spatial Terms (L11)
+Clusters: L11_C3
+Sample tokens: [' the', ' of', ' and', ' for', ' with', "'s", ' from', ' this', ' have', ' more']
+Cluster sizes: [796]
+
+Label: Prepositions & Spatial Terms (L3-L10)
+Clusters: L10_C5, L3_C3, L4_C0, L5_C4, L6_C7, L7_C0, L8_C8, L9_C3
+Sample tokens: [' ,', ' of', ' that', ' it', ' as', "'s", ' are', ' or', ' this', ' you']
+Cluster sizes: [1872, 1627, 1639, 1625, 1619, 1702, 1759, 1714]
+
+Label: Spatial & Location Terms
+Clusters: L0_C0
+Sample tokens: [' she', ' hand', ' water', ' head', ' eyes', ' car', ' line', ' body', ' feet', ' moment']
+Cluster sizes: [1046]
+
+Label: Spatial & Location Terms (L2)
+Clusters: L2_C8
+Sample tokens: [' it', ' back', ' years', 'ly', 's', ' people', ' world', ' day', ' here', ' state']
+Cluster sizes: [1428]
+

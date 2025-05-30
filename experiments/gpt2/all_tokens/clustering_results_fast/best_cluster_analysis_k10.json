@@ -1,0 +1,162 @@
+{
+  "1": {
+    "total": 4029,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 53.065276743608834,
+    "has_space_pct": 57.78108711839166,
+    "is_punctuation_pct": 2.1841648051625713,
+    "is_numeric_pct": 4.269049391908662,
+    "is_special_pct": 0.0,
+    "examples": [
+      "!",
+      "%",
+      ":",
+      ";",
+      "?"
+    ]
+  },
+  "0": {
+    "total": 3347,
+    "dominant_type": "word",
+    "dominant_type_pct": 31.341499850612486,
+    "has_space_pct": 28.14460711084553,
+    "is_punctuation_pct": 14.400956080071706,
+    "is_numeric_pct": 31.192112339408425,
+    "is_special_pct": 0.029877502240812665,
+    "examples": [
+      "\"",
+      "#",
+      "$",
+      "&",
+      "("
+    ]
+  },
+  "7": {
+    "total": 6199,
+    "dominant_type": "word",
+    "dominant_type_pct": 58.28359412808517,
+    "has_space_pct": 39.57089853202129,
+    "is_punctuation_pct": 0.6130020971124375,
+    "is_numeric_pct": 6.420390385546056,
+    "is_special_pct": 0.0,
+    "examples": [
+      "'",
+      "A",
+      "M",
+      "S",
+      "a"
+    ]
+  },
+  "9": {
+    "total": 5081,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 78.96083448140129,
+    "has_space_pct": 80.69277701239913,
+    "is_punctuation_pct": 0.7282031096240897,
+    "is_numeric_pct": 1.3383192284983272,
+    "is_special_pct": 0.0,
+    "examples": [
+      ")",
+      ",",
+      " a",
+      " in",
+      " be"
+    ]
+  },
+  "5": {
+    "total": 4419,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 56.82281059063137,
+    "has_space_pct": 57.70536320434487,
+    "is_punctuation_pct": 5.001131477709889,
+    "is_numeric_pct": 0.022629554197782304,
+    "is_special_pct": 0.0,
+    "examples": [
+      "-",
+      "C",
+      "G",
+      "P",
+      "T"
+    ]
+  },
+  "3": {
+    "total": 5476,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 50.25566106647188,
+    "has_space_pct": 50.58436815193572,
+    "is_punctuation_pct": 1.2965668371073777,
+    "is_numeric_pct": 0.1095690284879474,
+    "is_special_pct": 0.0,
+    "examples": [
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ]
+  },
+  "6": {
+    "total": 3405,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 79.91189427312774,
+    "has_space_pct": 80.08810572687224,
+    "is_punctuation_pct": 0.6754772393538914,
+    "is_numeric_pct": 0.02936857562408223,
+    "is_special_pct": 0.0,
+    "examples": [
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ]
+  },
+  "2": {
+    "total": 5102,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 94.47275578204626,
+    "has_space_pct": 94.60995687965503,
+    "is_punctuation_pct": 0.13720109760878088,
+    "is_numeric_pct": 0.0,
+    "is_special_pct": 0.0,
+    "examples": [
+      " the",
+      " to",
+      " of",
+      " and",
+      " is"
+    ]
+  },
+  "4": {
+    "total": 7131,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 70.34076567101388,
+    "has_space_pct": 70.39685878558407,
+    "is_punctuation_pct": 0.02804655728509325,
+    "is_numeric_pct": 0.014023278642546625,
+    "is_special_pct": 0.0,
+    "examples": [
+      "ing",
+      " an",
+      "ation",
+      "ate",
+      "ity"
+    ]
+  },
+  "8": {
+    "total": 6068,
+    "dominant_type": "word_with_space",
+    "dominant_type_pct": 89.23862887277522,
+    "has_space_pct": 89.28806855636124,
+    "is_punctuation_pct": 0.03295978905735003,
+    "is_numeric_pct": 0.016479894528675015,
+    "is_special_pct": 0.0,
+    "examples": [
+      "able",
+      " other",
+      " no",
+      " new",
+      " two"
+    ]
+  }
+}

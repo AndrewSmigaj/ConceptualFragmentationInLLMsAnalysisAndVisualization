@@ -71,8 +71,12 @@
       "Bash(jq:*)",
       "Bash(sudo dpkg:*)",
       "Bash(sudo apt-get install:*)",
-      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -m subprocess run pdflatex -interaction=nonstopmode main.tex)"
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe -m subprocess run pdflatex -interaction=nonstopmode main.tex)",
+      "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe cluster_all_tokens_per_layer.py)",
+      "Bash(kill:*)",
+      "Bash(venv311/Scripts/python.exe experiments/gpt2/all_tokens/cluster_top_10k_k3.py)"
     ],
     "deny": []
-  }
+  },
+  "enableAllProjectMcpServers": false
 }

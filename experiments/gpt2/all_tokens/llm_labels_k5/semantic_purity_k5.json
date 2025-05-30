@@ -1,0 +1,326 @@
+{
+  "layer_0": {
+    "L0_C0": {
+      "label": "Mixed Content & Punctuation",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L0_C1": {
+      "label": "Copulas & Prepositions",
+      "purity": 50.0,
+      "method": "calculated"
+    },
+    "L0_C2": {
+      "label": "Articles & Conjunctions",
+      "purity": 35.0,
+      "method": "calculated"
+    },
+    "L0_C3": {
+      "label": "Pronouns & Short Words",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L0_C4": {
+      "label": "Plural Pronouns & Time",
+      "purity": 50.0,
+      "method": "estimated"
+    }
+  },
+  "layer_1": {
+    "L1_C0": {
+      "label": "Grammar Connectives",
+      "purity": 85.0,
+      "method": "calculated"
+    },
+    "L1_C1": {
+      "label": "Punctuation & Capitals",
+      "purity": 25.0,
+      "method": "calculated"
+    },
+    "L1_C2": {
+      "label": "Quotes & Titles",
+      "purity": 15.0,
+      "method": "calculated"
+    },
+    "L1_C3": {
+      "label": "Core Prepositions",
+      "purity": 30.0,
+      "method": "calculated"
+    },
+    "L1_C4": {
+      "label": "Auxiliary System",
+      "purity": 60.0,
+      "method": "calculated"
+    }
+  },
+  "layer_2": {
+    "L2_C0": {
+      "label": "Punctuation & Pronouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L2_C1": {
+      "label": "Prepositions & Copulas",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L2_C2": {
+      "label": "Content Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L2_C3": {
+      "label": "Articles & Core Grammar",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L2_C4": {
+      "label": "Quotes & Sentence Starters",
+      "purity": 50.0,
+      "method": "estimated"
+    }
+  },
+  "layer_3": {
+    "L3_C0": {
+      "label": "Conjunctions & Determiners",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L3_C1": {
+      "label": "Sentence Initiators",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L3_C2": {
+      "label": "Human & Location Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L3_C3": {
+      "label": "Auxiliary System",
+      "purity": 55.0,
+      "method": "calculated"
+    },
+    "L3_C4": {
+      "label": "Punctuation & Prepositions",
+      "purity": 50.0,
+      "method": "estimated"
+    }
+  },
+  "layer_4": {
+    "L4_C0": {
+      "label": "Function Core",
+      "purity": 65.0,
+      "method": "calculated"
+    },
+    "L4_C1": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L4_C2": {
+      "label": "Grammar Connectives",
+      "purity": 80.0,
+      "method": "calculated"
+    },
+    "L4_C3": {
+      "label": "Auxiliary System",
+      "purity": 60.0,
+      "method": "calculated"
+    },
+    "L4_C4": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    }
+  },
+  "layer_5": {
+    "L5_C0": {
+      "label": "Grammar Connectives",
+      "purity": 80.0,
+      "method": "calculated"
+    },
+    "L5_C1": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L5_C2": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L5_C3": {
+      "label": "Auxiliary System",
+      "purity": 65.0,
+      "method": "calculated"
+    },
+    "L5_C4": {
+      "label": "Function Core",
+      "purity": 65.0,
+      "method": "calculated"
+    }
+  },
+  "layer_6": {
+    "L6_C0": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L6_C1": {
+      "label": "Auxiliary System",
+      "purity": 65.0,
+      "method": "calculated"
+    },
+    "L6_C2": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L6_C3": {
+      "label": "Function Core",
+      "purity": 75.0,
+      "method": "calculated"
+    },
+    "L6_C4": {
+      "label": "Grammar Connectives",
+      "purity": 80.0,
+      "method": "calculated"
+    }
+  },
+  "layer_7": {
+    "L7_C0": {
+      "label": "Function Core",
+      "purity": 75.0,
+      "method": "calculated"
+    },
+    "L7_C1": {
+      "label": "Grammar Connectives",
+      "purity": 80.0,
+      "method": "calculated"
+    },
+    "L7_C2": {
+      "label": "Auxiliary System",
+      "purity": 55.0,
+      "method": "calculated"
+    },
+    "L7_C3": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L7_C4": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    }
+  },
+  "layer_8": {
+    "L8_C0": {
+      "label": "Grammar Connectives",
+      "purity": 80.0,
+      "method": "calculated"
+    },
+    "L8_C1": {
+      "label": "Auxiliary System",
+      "purity": 40.0,
+      "method": "calculated"
+    },
+    "L8_C2": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L8_C3": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L8_C4": {
+      "label": "Function Core",
+      "purity": 70.0,
+      "method": "calculated"
+    }
+  },
+  "layer_9": {
+    "L9_C0": {
+      "label": "Grammar Connectives",
+      "purity": 85.0,
+      "method": "calculated"
+    },
+    "L9_C1": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L9_C2": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L9_C3": {
+      "label": "Function Core",
+      "purity": 70.0,
+      "method": "calculated"
+    },
+    "L9_C4": {
+      "label": "Auxiliary System",
+      "purity": 40.0,
+      "method": "calculated"
+    }
+  },
+  "layer_10": {
+    "L10_C0": {
+      "label": "Grammar Connectives",
+      "purity": 85.0,
+      "method": "calculated"
+    },
+    "L10_C1": {
+      "label": "Abstract Nouns",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L10_C2": {
+      "label": "Discourse Markers",
+      "purity": 20.0,
+      "method": "calculated"
+    },
+    "L10_C3": {
+      "label": "Function Core",
+      "purity": 70.0,
+      "method": "calculated"
+    },
+    "L10_C4": {
+      "label": "Auxiliary System",
+      "purity": 40.0,
+      "method": "calculated"
+    }
+  },
+  "layer_11": {
+    "L11_C0": {
+      "label": "Sentence Boundaries",
+      "purity": 50.0,
+      "method": "calculated"
+    },
+    "L11_C1": {
+      "label": "Grammar Connectives",
+      "purity": 70.0,
+      "method": "calculated"
+    },
+    "L11_C2": {
+      "label": "Function Core",
+      "purity": 85.0,
+      "method": "calculated"
+    },
+    "L11_C3": {
+      "label": "Short Forms",
+      "purity": 50.0,
+      "method": "estimated"
+    },
+    "L11_C4": {
+      "label": "Morphological Elements",
+      "purity": 30.0,
+      "method": "calculated"
+    }
+  }
+}

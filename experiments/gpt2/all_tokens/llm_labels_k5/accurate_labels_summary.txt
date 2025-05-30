@@ -1,0 +1,110 @@
+ACCURATE K=5 CLUSTER LABELS
+==================================================
+
+
+LAYER 0:
+------------------------------
+  C0: Content Nouns (21.9%)
+  C1: Core Function Words (19.9%)
+  C2: Core Function Words (17.8%)
+  C3: Core Function Words (14.8%)
+  C4: Content Nouns (25.5%)
+
+LAYER 1:
+------------------------------
+  C0: Core Function Words (19.6%)
+  C1: Punctuation (17.2%)
+  C2: Mixed Lexical Items (9.2%)
+  C3: Core Function Words (32.4%)
+  C4: Auxiliary Verbs (21.6%)
+
+LAYER 2:
+------------------------------
+  C0: Punctuation (14.5%)
+  C1: Core Function Words (24.7%)
+  C2: Content Nouns (19.8%)
+  C3: Core Function Words (30.8%)
+  C4: Pronouns (10.3%)
+
+LAYER 3:
+------------------------------
+  C0: Core Function Words (28.2%)
+  C1: Content Verbs (6.9%)
+  C2: Content Nouns (13.6%)
+  C3: Auxiliary Verbs (20.9%)
+  C4: Core Function Words (30.4%)
+
+LAYER 4:
+------------------------------
+  C0: Core Function Words (30.3%)
+  C1: Content Nouns (13.9%)
+  C2: Core Function Words (28.5%)
+  C3: Auxiliary Verbs (20.6%)
+  C4: Content Verbs (6.7%)
+
+LAYER 5:
+------------------------------
+  C0: Core Function Words (28.7%)
+  C1: Content Nouns (14.0%)
+  C2: Content Verbs (6.7%)
+  C3: Auxiliary Verbs (20.6%)
+  C4: Core Function Words (30.1%)
+
+LAYER 6:
+------------------------------
+  C0: Content Nouns (13.9%)
+  C1: Auxiliary Verbs (20.9%)
+  C2: Content Verbs (6.7%)
+  C3: Core Function Words (30.2%)
+  C4: Core Function Words (28.3%)
+
+LAYER 7:
+------------------------------
+  C0: Core Function Words (30.2%)
+  C1: Core Function Words (28.3%)
+  C2: Auxiliary Verbs (20.8%)
+  C3: Content Verbs (6.7%)
+  C4: Content Nouns (13.9%)
+
+LAYER 8:
+------------------------------
+  C0: Core Function Words (29.3%)
+  C1: Auxiliary Verbs (19.7%)
+  C2: Content Nouns (14.5%)
+  C3: Core Function Words (6.2%)
+  C4: Core Function Words (30.3%)
+
+LAYER 9:
+------------------------------
+  C0: Core Function Words (29.6%)
+  C1: Content Nouns (14.6%)
+  C2: Core Function Words (6.1%)
+  C3: Core Function Words (30.3%)
+  C4: Auxiliary Verbs (19.4%)
+
+LAYER 10:
+------------------------------
+  C0: Core Function Words (29.7%)
+  C1: Content Nouns (14.6%)
+  C2: Content Verbs (6.0%)
+  C3: Core Function Words (30.4%)
+  C4: Auxiliary Verbs (19.4%)
+
+LAYER 11:
+------------------------------
+  C0: Punctuation (17.4%)
+  C1: Core Function Words (30.2%)
+  C2: Core Function Words (15.8%)
+  C3: Mixed Lexical Items (10.8%)
+  C4: Content Nouns (25.8%)
+
+
+LABEL FREQUENCY ACROSS LAYERS:
+------------------------------
+  Core Function Words: appears in 27 clusters
+  Content Nouns: appears in 12 clusters
+  Auxiliary Verbs: appears in 9 clusters
+  Content Verbs: appears in 6 clusters
+  Punctuation: appears in 3 clusters
+  Mixed Lexical Items: appears in 2 clusters
+  Pronouns: appears in 1 clusters

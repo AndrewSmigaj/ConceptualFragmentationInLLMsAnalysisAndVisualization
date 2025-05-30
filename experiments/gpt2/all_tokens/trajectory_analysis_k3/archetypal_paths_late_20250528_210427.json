@@ -1,0 +1,305 @@
+[
+  {
+    "path": "",
+    "count": 2364,
+    "percentage": 23.64,
+    "example_tokens": [
+      "'",
+      "*",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "="
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 2178,
+    "percentage": 21.78,
+    "example_tokens": [
+      "!",
+      "\"",
+      "#",
+      "$",
+      "%",
+      "(",
+      "+",
+      ".",
+      "7",
+      "8"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1400,
+    "percentage": 14.000000000000002,
+    "example_tokens": [
+      ")",
+      " a",
+      " to",
+      " in",
+      " be",
+      " I",
+      " is",
+      " on",
+      " for",
+      " he"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1139,
+    "percentage": 11.39,
+    "example_tokens": [
+      ",",
+      " the",
+      " of",
+      " and",
+      " that",
+      "'s",
+      " as",
+      "ers",
+      " or",
+      " this"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "suffix_plural"
+  },
+  {
+    "path": "",
+    "count": 1100,
+    "percentage": 11.0,
+    "example_tokens": [
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1036,
+    "percentage": 10.36,
+    "example_tokens": [
+      "-",
+      "/",
+      "<",
+      "@",
+      "C",
+      "F",
+      "R",
+      "\\",
+      "_",
+      "j"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 339,
+    "percentage": 3.39,
+    "example_tokens": [
+      "G",
+      "P",
+      "T",
+      "V",
+      "c",
+      "d",
+      "f",
+      "g",
+      "m",
+      "p"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 300,
+    "percentage": 3.0,
+    "example_tokens": [
+      "&",
+      "}",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 106,
+    "percentage": 1.06,
+    "example_tokens": [
+      "'m",
+      "'ll",
+      " told",
+      " There",
+      " didn",
+      " able",
+      " tell",
+      " give",
+      " doesn",
+      " came"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 6,
+    "percentage": 0.06,
+    "example_tokens": [
+      "X",
+      " Can",
+      " Bank",
+      " van",
+      "RI",
+      "Mark"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 6,
+    "percentage": 0.06,
+    "example_tokens": [
+      "er",
+      "12",
+      "ential",
+      "200",
+      " edge",
+      "ederation"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 5,
+    "percentage": 0.05,
+    "example_tokens": [
+      " its",
+      "),",
+      " American",
+      " alleged",
+      "],"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 4,
+    "percentage": 0.04,
+    "example_tokens": [
+      "emies",
+      " strange",
+      " goods",
+      " exciting"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "suffix_plural"
+  },
+  {
+    "path": "",
+    "count": 3,
+    "percentage": 0.03,
+    "example_tokens": [
+      "ising",
+      " display",
+      " fly"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "suffix_ing"
+  },
+  {
+    "path": "",
+    "count": 2,
+    "percentage": 0.02,
+    "example_tokens": [
+      " char",
+      "found"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 2,
+    "percentage": 0.02,
+    "example_tokens": [
+      " recent",
+      " reports"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "prefix_re"
+  },
+  {
+    "path": "",
+    "count": 2,
+    "percentage": 0.02,
+    "example_tokens": [
+      " Court",
+      "ione"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1,
+    "percentage": 0.01,
+    "example_tokens": [
+      " cr"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1,
+    "percentage": 0.01,
+    "example_tokens": [
+      " draw"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1,
+    "percentage": 0.01,
+    "example_tokens": [
+      "ength"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  }
+]

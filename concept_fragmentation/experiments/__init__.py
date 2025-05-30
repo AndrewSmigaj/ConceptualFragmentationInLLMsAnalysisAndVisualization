@@ -1,12 +1,9 @@
-"""
-Experiments package for the Concept Fragmentation project.
+"""Experiment management framework."""
 
-This package provides scripts for running experiments, evaluating results,
-and generating visualizations for the concept fragmentation analysis.
-"""
-
-from . import train
+from .base import BaseExperiment
+from .config import ExperimentConfig
 
 __all__ = [
-    'train'
+    "BaseExperiment",
+    "ExperimentConfig",
 ]

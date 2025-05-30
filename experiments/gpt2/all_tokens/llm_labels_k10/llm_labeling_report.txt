@@ -1,0 +1,199 @@
+GPT-2 Cluster Labeling Report
+=============================
+
+
+Label: Complex/Technical Terms
+Clusters: L0_C2, L1_C9
+Sample tokens: [' a', 'The', ' his', ' her', ' their', ' more', ' no', ' its', ' other', ' some', ' first', ' these', ' my', ' our', 'This', ' new', ' most', 'ly', ' many', ' much']
+Function words: 1.94%
+Morphological: 20.02%
+Has space: 90.53%
+
+Label: Complex/Technical Terms (L0)
+Clusters: L0_C7
+Sample tokens: [' they', ' we', ' man', ' people', ' men', ' world', ' Mr', ' States', ' house', ' group', ' U', ' business', ' children', ' God', ' country', ' family', ' members', ' city', ' today', ' themselves']
+Function words: 0.00%
+Morphological: 33.29%
+Has space: 97.30%
+
+Label: Complex/Technical Terms (L0-1)
+Clusters: L0_C5, L1_C5
+Sample tokens: [' time', ' years', ' way', ' work', ' life', ' day', ' number', ' course', ' program', ' side', ' face', ' days', ' point', ' form', ' order', ' case', ' things', ' thing', ' mind', ' power']
+Function words: 0.00%
+Morphological: 33.48%
+Has space: 93.45%
+
+Label: Complex/Technical Terms (L11)
+Clusters: L11_C0, L11_C7
+Sample tokens: [' as', ' other', ' time', ' if', ' two', ' new', ' little', ' own', ' same', ' great', ' used', ' few', ' place', ' thought', ' say', ' left', ' upon', ' number', ' away', ' less']
+Function words: 0.31%
+Morphological: 39.24%
+Has space: 94.20%
+
+Label: Complex/Technical Terms (L2-10)
+Clusters: L10_C5, L2_C8, L3_C3, L7_C0, L8_C8, L9_C3
+Sample tokens: [' ,', ' of', ' a', ' it', ' his', "'s", ' ;', ' at', ' are', ' from', ' this', ' you', ' her', ' )', ' out', ' said', ' up', ' into', ' its', ' about']
+Function words: 1.48%
+Morphological: 35.45%
+Has space: 90.30%
+
+Label: Complex/Technical Terms (L2-6)
+Clusters: L2_C0, L4_C0, L5_C4, L6_C7
+Sample tokens: [' the', ' ,', ' of', ' and', ' to', ' a', ' in', ' that', ' for', ' with', ' as', ' his', "'s", ' ;', ' at', ' not', ' are', ' from', ' or', ' this']
+Function words: 3.66%
+Morphological: 51.42%
+Has space: 86.83%
+
+Label: Complex/Technical Terms (L7-10)
+Clusters: L10_C0, L7_C9, L8_C7, L9_C5
+Sample tokens: [' to', ' in', ' is', ' for', ' with', 'The', ' ?', ' not', ' have', ' --', ' all', ' would', ' their', ' been', ' will', ' who', "'t", ' there', ' no', ' so']
+Function words: 2.36%
+Morphological: 36.39%
+Has space: 92.77%
+
+Label: General Content Words
+Clusters: L0_C9
+Sample tokens: [' for', " ''", ' with', ' be', ' on', ' ;', ' by', ' had', ' ``', ' are', ' from', '``', ' have', ' which', ' were', ' --', ' has', ' who', 'It', ' :']
+Function words: 7.50%
+Morphological: 43.57%
+Has space: 79.29%
+
+Label: General Content Words (L0)
+Clusters: L0_C0
+Sample tokens: [' she', ' hand', ' water', ' head', ' eyes', ' car', ' line', ' body', ' feet', ' moment', ' air', ' wife', ' voice', ' sound', ' land', ' red', ' road', ' fire', ' stock', ' heart']
+Function words: 0.00%
+Morphological: 27.34%
+Has space: 95.22%
+
+Label: General Content Words (L0-11)
+Clusters: L0_C3, L11_C2, L1_C3
+Sample tokens: [' (', ' Af', ' per', ' Mrs', ' un', ' cent', ' Dr', ' inter', ' sl', ' dis', ' c', ' fl', ' pre', ' Car', ' imp', ' sub', ' Co', ' ex', ' Br', ' con']
+Function words: 0.18%
+Morphological: 6.44%
+Has space: 83.18%
+
+Label: General Content Words (L1-10)
+Clusters: L10_C8, L1_C6, L2_C5, L3_C8, L4_C6, L5_C6, L6_C4, L7_C7, L8_C1, L9_C1
+Sample tokens: ['He', ' could', 'I', 'This', ' should', ' well', ' get', 'We', ' $', ' got', 'His', ' head', ' does', ' far', ' per', ' took', "'d", ' knew', 'At', 'One']
+Function words: 2.45%
+Morphological: 31.07%
+Has space: 87.38%
+
+Label: General Content Words (L11)
+Clusters: L11_C6
+Sample tokens: [' under', ' high', ' hand', ' head', ' end', ' per', ' half', ' light', 'ic', ' power', ' car', ' human', ' real', ' full', ' air', 'al', ' short', ' hard', ' special', 'ant']
+Function words: 0.73%
+Morphological: 7.18%
+Has space: 75.02%
+
+Label: General Content Words (L2-10)
+Clusters: L10_C2, L10_C4, L10_C9, L2_C1, L2_C6, L2_C9, L3_C2, L3_C4, L3_C7, L4_C7, L4_C8, L4_C9, L5_C0, L5_C2, L5_C8, L6_C0, L6_C3, L6_C6, L7_C1, L7_C4, L7_C6, L8_C2, L8_C4, L8_C5, L9_C2, L9_C4, L9_C9
+Sample tokens: [' .', '-', '.', ' (', ' we', ' :', ' Af', 's', 'in', 'er', ' B', 'S', ' C', ' P', ' four', 'ist', ' D', 'C', ' 3', 'ic']
+Function words: 1.71%
+Morphological: 4.56%
+Has space: 56.41%
+
+Label: General Content Words (L3-10)
+Clusters: L10_C3, L3_C1, L4_C1, L5_C9, L6_C8, L7_C2, L8_C6, L9_C8
+Sample tokens: ['``', ' an', 'It', 'In', 'There', 'They', 'If', ' came', 'For', 'When', ' New', "'ll", ' Mrs', ' told', ' don', ' give', ' looked', ' seemed', ' un', ' let']
+Function words: 2.27%
+Morphological: 23.25%
+Has space: 87.94%
+
+Label: Human/Person References
+Clusters: L0_C4, L11_C1, L1_C8, L2_C7
+Sample tokens: ['-', ' he', ' I', 'I', 'ing', 'ly', "'", 's', ' 1', ' here', 'y', 'in', ' 2', 'es', 'er', 'a', 'ers', 'man', 'ie', 'en']
+Function words: 1.90%
+Morphological: 16.98%
+Has space: 26.29%
+
+Label: Human/Person References (L11)
+Clusters: L11_C4
+Sample tokens: [' ,', ' in', 'The', ' ;', ' at', ' an', ' --', ' all', ' out', 'It', ' up', ' so', ' :', 'I', ' man', 'But', ' me', ' back', 'ly', 'She']
+Function words: 2.39%
+Morphological: 31.86%
+Has space: 85.13%
+
+Label: Human/Person References (L2-10)
+Clusters: L10_C1, L2_C2, L4_C3, L5_C5, L6_C2, L7_C8, L8_C0, L9_C7
+Sample tokens: ['a', 'man', ' once', ' system', ' room', ' least', ' matter', ' others', ' experience', 't', ' words', 'et', 'ings', 'men', 'as', 'ous', 'us', 'ations', 'ley', ' society']
+Function words: 0.74%
+Morphological: 35.26%
+Has space: 38.81%
+
+Label: Numeric Tokens
+Clusters: L1_C0
+Sample tokens: [' two', ' 1', ' three', ' 2', ' few', '000', ' four', ' several', ' 3', 'th', ' five', ' 18', ' 4', '1', '2', ' 10', ' six', ' 5', ' ten', ' 6']
+Function words: 0.00%
+Morphological: 0.94%
+Has space: 63.21%
+
+Label: Past Tense Forms (-ed)
+Clusters: L0_C6, L1_C2
+Sample tokens: [' of', ' in', ' that', ' is', ' was', ' it', ' as', 'The', ' at', ' you', ' would', ' him', ' been', ' )', ' will', ' out', ' said', ' can', ' there', ' up']
+Function words: 2.33%
+Morphological: 64.76%
+Has space: 90.97%
+
+Label: Past Tense Forms (-ed) (L11)
+Clusters: L11_C3
+Sample tokens: [' the', ' of', ' and', ' for', ' with', "'s", ' from', ' this', ' have', ' more', ' said', ' into', ' about', ' when', ' some', ' any', ' first', ' like', ' these', ' such']
+Function words: 2.51%
+Morphological: 65.33%
+Has space: 97.61%
+
+Label: Plural Forms
+Clusters: L10_C6, L1_C1, L2_C3, L3_C0, L3_C6, L4_C4, L5_C1, L6_C5, L7_C3, L8_C9, L9_C0
+Sample tokens: ['a', 'man', ' once', ' system', ' possible', ' room', ' things', ' least', ' matter', ' others', ' experience', 't', ' words', 'et', 'ings', 'men', 'as', 'ous', 'us', ' level']
+Function words: 0.66%
+Morphological: 37.98%
+Has space: 46.39%
+
+Label: Plural Forms (L11)
+Clusters: L11_C5, L11_C9
+Sample tokens: [' to', ' that', ' is', ' was', ' it', ' had', ' not', ' are', ' which', ' were', ' you', ' but', ' they', ' would', ' their', ' been', ' has', ' will', ' who', "'t"]
+Function words: 5.72%
+Morphological: 70.81%
+Has space: 97.44%
+
+Label: Short Common Words
+Clusters: L0_C8
+Sample tokens: ['He', 'In', 'A', 'She', 'We', 'and', ' A', ' B', " '", 'S', ' C', ' P', '(', 'or', 'o', ' D', ' S', ' p', ' H', 'e']
+Function words: 4.47%
+Morphological: 6.95%
+Has space: 64.90%
+
+Label: Short Common Words (L1-11)
+Clusters: L11_C8, L1_C4, L2_C4, L3_C5, L4_C5, L5_C7, L6_C1
+Sample tokens: [" ''", ' I', 'He', ' she', 'I', ' Af', 'She', ' $', " '", '(', ' John', ' S', ' p', ' car', ' You', 'No', ' St', ' t', ' m', ' g']
+Function words: 1.29%
+Morphological: 4.19%
+Has space: 79.39%
+
+Label: Spatial/Location Terms
+Clusters: L1_C7
+Sample tokens: [' he', '.', ' I', 'He', ' she', 'I', 'She', ' Mr', 'We', ' home', ' United', 'His', ' school', 'er', ' States', 'One', ' John', 'ist', ' war', ' York']
+Function words: 0.67%
+Morphological: 9.29%
+Has space: 86.68%
+
+Label: Temporal Expressions
+Clusters: L0_C1
+Sample tokens: [' the', '.', ' me', ' now', ' well', ' year', ' us', ',', ' himself', ' old', ' state', ' American', ' home', ' high', ' New', ' small', ' again', ' part', ' United', ' school']
+Function words: 0.25%
+Morphological: 17.20%
+Has space: 75.63%
+
+Label: Temporal Expressions (L3-10)
+Clusters: L10_C7, L3_C9, L7_C5, L8_C3, L9_C6
+Sample tokens: [' the', ' and', ' that', ' or', ' one', ' but', ' him', ' them', ' time', ' over', ' man', 'A', ' me', ' now', 'ing', ' before', ' through', "'", ' work', ' little']
+Function words: 1.46%
+Morphological: 30.64%
+Has space: 71.90%
+
+Label: Temporal Expressions (L4-6)
+Clusters: L4_C2, L5_C3, L6_C9
+Sample tokens: [' the', ' and', ' that', ' as', ' or', ' one', ' but', ' him', ' them', ' time', ' over', ' man', 'A', ' me', ' now', 'ing', ' before', ' through', "'", ' work']
+Function words: 1.41%
+Morphological: 31.37%
+Has space: 73.74%

@@ -1,0 +1,722 @@
+{
+  "L0_C0": {
+    "label": "Body & Physical Terms",
+    "layer": 0,
+    "cluster": 0,
+    "full_label": "L0: Body & Physical Terms"
+  },
+  "L0_C1": {
+    "label": "General Content Words",
+    "layer": 0,
+    "cluster": 1,
+    "full_label": "L0: General Content Words"
+  },
+  "L0_C2": {
+    "label": "Mixed Lexical Items",
+    "layer": 0,
+    "cluster": 2,
+    "full_label": "L0: Mixed Lexical Items"
+  },
+  "L0_C3": {
+    "label": "General Content Words (L0)",
+    "layer": 0,
+    "cluster": 3,
+    "full_label": "L0: General Content Words (L0)"
+  },
+  "L0_C4": {
+    "label": "Subword Units",
+    "layer": 0,
+    "cluster": 4,
+    "full_label": "L0: Subword Units"
+  },
+  "L0_C5": {
+    "label": "General Content Words (L0)",
+    "layer": 0,
+    "cluster": 5,
+    "full_label": "L0: General Content Words (L0)"
+  },
+  "L0_C6": {
+    "label": "Mixed Lexical Items (L0)",
+    "layer": 0,
+    "cluster": 6,
+    "full_label": "L0: Mixed Lexical Items (L0)"
+  },
+  "L0_C7": {
+    "label": "Human/Person Terms",
+    "layer": 0,
+    "cluster": 7,
+    "full_label": "L0: Human/Person Terms"
+  },
+  "L0_C8": {
+    "label": "Capitalized Content Words",
+    "layer": 0,
+    "cluster": 8,
+    "full_label": "L0: Capitalized Content Words"
+  },
+  "L11_C8": {
+    "label": "Capitalized Content Words",
+    "layer": 11,
+    "cluster": 8,
+    "full_label": "L11: Capitalized Content Words"
+  },
+  "L0_C9": {
+    "label": "Core Function Words",
+    "layer": 0,
+    "cluster": 9,
+    "full_label": "L0: Core Function Words"
+  },
+  "L1_C0": {
+    "label": "Numeric Tokens",
+    "layer": 1,
+    "cluster": 0,
+    "full_label": "L1: Numeric Tokens"
+  },
+  "L1_C1": {
+    "label": "Mixed Lexical Items (L1)",
+    "layer": 1,
+    "cluster": 1,
+    "full_label": "L1: Mixed Lexical Items (L1)"
+  },
+  "L1_C2": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 1,
+    "cluster": 2,
+    "full_label": "L1: Core Function Words (L1-10)"
+  },
+  "L2_C0": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 2,
+    "cluster": 0,
+    "full_label": "L2: Core Function Words (L1-10)"
+  },
+  "L3_C2": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 3,
+    "cluster": 2,
+    "full_label": "L3: Core Function Words (L1-10)"
+  },
+  "L7_C9": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 7,
+    "cluster": 9,
+    "full_label": "L7: Core Function Words (L1-10)"
+  },
+  "L8_C7": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 8,
+    "cluster": 7,
+    "full_label": "L8: Core Function Words (L1-10)"
+  },
+  "L9_C5": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 9,
+    "cluster": 5,
+    "full_label": "L9: Core Function Words (L1-10)"
+  },
+  "L10_C0": {
+    "label": "Core Function Words (L1-10)",
+    "layer": 10,
+    "cluster": 0,
+    "full_label": "L10: Core Function Words (L1-10)"
+  },
+  "L1_C3": {
+    "label": "General Content Words (L1-10)",
+    "layer": 1,
+    "cluster": 3,
+    "full_label": "L1: General Content Words (L1-10)"
+  },
+  "L2_C9": {
+    "label": "General Content Words (L1-10)",
+    "layer": 2,
+    "cluster": 9,
+    "full_label": "L2: General Content Words (L1-10)"
+  },
+  "L3_C4": {
+    "label": "General Content Words (L1-10)",
+    "layer": 3,
+    "cluster": 4,
+    "full_label": "L3: General Content Words (L1-10)"
+  },
+  "L4_C7": {
+    "label": "General Content Words (L1-10)",
+    "layer": 4,
+    "cluster": 7,
+    "full_label": "L4: General Content Words (L1-10)"
+  },
+  "L5_C2": {
+    "label": "General Content Words (L1-10)",
+    "layer": 5,
+    "cluster": 2,
+    "full_label": "L5: General Content Words (L1-10)"
+  },
+  "L6_C3": {
+    "label": "General Content Words (L1-10)",
+    "layer": 6,
+    "cluster": 3,
+    "full_label": "L6: General Content Words (L1-10)"
+  },
+  "L7_C4": {
+    "label": "General Content Words (L1-10)",
+    "layer": 7,
+    "cluster": 4,
+    "full_label": "L7: General Content Words (L1-10)"
+  },
+  "L8_C4": {
+    "label": "General Content Words (L1-10)",
+    "layer": 8,
+    "cluster": 4,
+    "full_label": "L8: General Content Words (L1-10)"
+  },
+  "L9_C2": {
+    "label": "General Content Words (L1-10)",
+    "layer": 9,
+    "cluster": 2,
+    "full_label": "L9: General Content Words (L1-10)"
+  },
+  "L10_C2": {
+    "label": "General Content Words (L1-10)",
+    "layer": 10,
+    "cluster": 2,
+    "full_label": "L10: General Content Words (L1-10)"
+  },
+  "L1_C4": {
+    "label": "Capitalized Content Words (L1)",
+    "layer": 1,
+    "cluster": 4,
+    "full_label": "L1: Capitalized Content Words (L1)"
+  },
+  "L1_C5": {
+    "label": "General Content Words (L1)",
+    "layer": 1,
+    "cluster": 5,
+    "full_label": "L1: General Content Words (L1)"
+  },
+  "L1_C6": {
+    "label": "Mixed Lexical Items (L1)",
+    "layer": 1,
+    "cluster": 6,
+    "full_label": "L1: Mixed Lexical Items (L1)"
+  },
+  "L1_C7": {
+    "label": "Titles & Proper Names",
+    "layer": 1,
+    "cluster": 7,
+    "full_label": "L1: Titles & Proper Names"
+  },
+  "L1_C8": {
+    "label": "Subword Units (L1-3)",
+    "layer": 1,
+    "cluster": 8,
+    "full_label": "L1: Subword Units (L1-3)"
+  },
+  "L2_C7": {
+    "label": "Subword Units (L1-3)",
+    "layer": 2,
+    "cluster": 7,
+    "full_label": "L2: Subword Units (L1-3)"
+  },
+  "L3_C9": {
+    "label": "Subword Units (L1-3)",
+    "layer": 3,
+    "cluster": 9,
+    "full_label": "L3: Subword Units (L1-3)"
+  },
+  "L1_C9": {
+    "label": "Quantity & Amount Terms",
+    "layer": 1,
+    "cluster": 9,
+    "full_label": "L1: Quantity & Amount Terms"
+  },
+  "L2_C1": {
+    "label": "Mixed Lexical Items (L2-7)",
+    "layer": 2,
+    "cluster": 1,
+    "full_label": "L2: Mixed Lexical Items (L2-7)"
+  },
+  "L4_C8": {
+    "label": "Mixed Lexical Items (L2-7)",
+    "layer": 4,
+    "cluster": 8,
+    "full_label": "L4: Mixed Lexical Items (L2-7)"
+  },
+  "L5_C8": {
+    "label": "Mixed Lexical Items (L2-7)",
+    "layer": 5,
+    "cluster": 8,
+    "full_label": "L5: Mixed Lexical Items (L2-7)"
+  },
+  "L6_C6": {
+    "label": "Mixed Lexical Items (L2-7)",
+    "layer": 6,
+    "cluster": 6,
+    "full_label": "L6: Mixed Lexical Items (L2-7)"
+  },
+  "L7_C1": {
+    "label": "Mixed Lexical Items (L2-7)",
+    "layer": 7,
+    "cluster": 1,
+    "full_label": "L7: Mixed Lexical Items (L2-7)"
+  },
+  "L2_C2": {
+    "label": "General Content Words (L2-10)",
+    "layer": 2,
+    "cluster": 2,
+    "full_label": "L2: General Content Words (L2-10)"
+  },
+  "L3_C0": {
+    "label": "General Content Words (L2-10)",
+    "layer": 3,
+    "cluster": 0,
+    "full_label": "L3: General Content Words (L2-10)"
+  },
+  "L4_C3": {
+    "label": "General Content Words (L2-10)",
+    "layer": 4,
+    "cluster": 3,
+    "full_label": "L4: General Content Words (L2-10)"
+  },
+  "L5_C5": {
+    "label": "General Content Words (L2-10)",
+    "layer": 5,
+    "cluster": 5,
+    "full_label": "L5: General Content Words (L2-10)"
+  },
+  "L6_C2": {
+    "label": "General Content Words (L2-10)",
+    "layer": 6,
+    "cluster": 2,
+    "full_label": "L6: General Content Words (L2-10)"
+  },
+  "L7_C8": {
+    "label": "General Content Words (L2-10)",
+    "layer": 7,
+    "cluster": 8,
+    "full_label": "L7: General Content Words (L2-10)"
+  },
+  "L8_C0": {
+    "label": "General Content Words (L2-10)",
+    "layer": 8,
+    "cluster": 0,
+    "full_label": "L8: General Content Words (L2-10)"
+  },
+  "L9_C7": {
+    "label": "General Content Words (L2-10)",
+    "layer": 9,
+    "cluster": 7,
+    "full_label": "L9: General Content Words (L2-10)"
+  },
+  "L10_C1": {
+    "label": "General Content Words (L2-10)",
+    "layer": 10,
+    "cluster": 1,
+    "full_label": "L10: General Content Words (L2-10)"
+  },
+  "L2_C3": {
+    "label": "General Content Words (L2-3)",
+    "layer": 2,
+    "cluster": 3,
+    "full_label": "L2: General Content Words (L2-3)"
+  },
+  "L3_C6": {
+    "label": "General Content Words (L2-3)",
+    "layer": 3,
+    "cluster": 6,
+    "full_label": "L3: General Content Words (L2-3)"
+  },
+  "L2_C4": {
+    "label": "Titles & Proper Names (L2-6)",
+    "layer": 2,
+    "cluster": 4,
+    "full_label": "L2: Titles & Proper Names (L2-6)"
+  },
+  "L3_C5": {
+    "label": "Titles & Proper Names (L2-6)",
+    "layer": 3,
+    "cluster": 5,
+    "full_label": "L3: Titles & Proper Names (L2-6)"
+  },
+  "L4_C5": {
+    "label": "Titles & Proper Names (L2-6)",
+    "layer": 4,
+    "cluster": 5,
+    "full_label": "L4: Titles & Proper Names (L2-6)"
+  },
+  "L5_C7": {
+    "label": "Titles & Proper Names (L2-6)",
+    "layer": 5,
+    "cluster": 7,
+    "full_label": "L5: Titles & Proper Names (L2-6)"
+  },
+  "L6_C1": {
+    "label": "Titles & Proper Names (L2-6)",
+    "layer": 6,
+    "cluster": 1,
+    "full_label": "L6: Titles & Proper Names (L2-6)"
+  },
+  "L2_C5": {
+    "label": "General Content Words (L2-6)",
+    "layer": 2,
+    "cluster": 5,
+    "full_label": "L2: General Content Words (L2-6)"
+  },
+  "L3_C8": {
+    "label": "General Content Words (L2-6)",
+    "layer": 3,
+    "cluster": 8,
+    "full_label": "L3: General Content Words (L2-6)"
+  },
+  "L4_C6": {
+    "label": "General Content Words (L2-6)",
+    "layer": 4,
+    "cluster": 6,
+    "full_label": "L4: General Content Words (L2-6)"
+  },
+  "L5_C6": {
+    "label": "General Content Words (L2-6)",
+    "layer": 5,
+    "cluster": 6,
+    "full_label": "L5: General Content Words (L2-6)"
+  },
+  "L6_C4": {
+    "label": "General Content Words (L2-6)",
+    "layer": 6,
+    "cluster": 4,
+    "full_label": "L6: General Content Words (L2-6)"
+  },
+  "L2_C6": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 2,
+    "cluster": 6,
+    "full_label": "L2: Titles & Proper Names (L2-10)"
+  },
+  "L3_C7": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 3,
+    "cluster": 7,
+    "full_label": "L3: Titles & Proper Names (L2-10)"
+  },
+  "L4_C9": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 4,
+    "cluster": 9,
+    "full_label": "L4: Titles & Proper Names (L2-10)"
+  },
+  "L5_C0": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 5,
+    "cluster": 0,
+    "full_label": "L5: Titles & Proper Names (L2-10)"
+  },
+  "L6_C0": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 6,
+    "cluster": 0,
+    "full_label": "L6: Titles & Proper Names (L2-10)"
+  },
+  "L7_C6": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 7,
+    "cluster": 6,
+    "full_label": "L7: Titles & Proper Names (L2-10)"
+  },
+  "L8_C2": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 8,
+    "cluster": 2,
+    "full_label": "L8: Titles & Proper Names (L2-10)"
+  },
+  "L9_C9": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 9,
+    "cluster": 9,
+    "full_label": "L9: Titles & Proper Names (L2-10)"
+  },
+  "L10_C9": {
+    "label": "Titles & Proper Names (L2-10)",
+    "layer": 10,
+    "cluster": 9,
+    "full_label": "L10: Titles & Proper Names (L2-10)"
+  },
+  "L2_C8": {
+    "label": "Spatial & Location Terms",
+    "layer": 2,
+    "cluster": 8,
+    "full_label": "L2: Spatial & Location Terms"
+  },
+  "L3_C1": {
+    "label": "Subword Units (L3-10)",
+    "layer": 3,
+    "cluster": 1,
+    "full_label": "L3: Subword Units (L3-10)"
+  },
+  "L4_C1": {
+    "label": "Subword Units (L3-10)",
+    "layer": 4,
+    "cluster": 1,
+    "full_label": "L4: Subword Units (L3-10)"
+  },
+  "L5_C9": {
+    "label": "Subword Units (L3-10)",
+    "layer": 5,
+    "cluster": 9,
+    "full_label": "L5: Subword Units (L3-10)"
+  },
+  "L6_C8": {
+    "label": "Subword Units (L3-10)",
+    "layer": 6,
+    "cluster": 8,
+    "full_label": "L6: Subword Units (L3-10)"
+  },
+  "L7_C2": {
+    "label": "Subword Units (L3-10)",
+    "layer": 7,
+    "cluster": 2,
+    "full_label": "L7: Subword Units (L3-10)"
+  },
+  "L8_C6": {
+    "label": "Subword Units (L3-10)",
+    "layer": 8,
+    "cluster": 6,
+    "full_label": "L8: Subword Units (L3-10)"
+  },
+  "L9_C8": {
+    "label": "Subword Units (L3-10)",
+    "layer": 9,
+    "cluster": 8,
+    "full_label": "L9: Subword Units (L3-10)"
+  },
+  "L10_C3": {
+    "label": "Subword Units (L3-10)",
+    "layer": 10,
+    "cluster": 3,
+    "full_label": "L10: Subword Units (L3-10)"
+  },
+  "L3_C3": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 3,
+    "cluster": 3,
+    "full_label": "L3: Mixed Lexical Items (L3-10)"
+  },
+  "L4_C0": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 4,
+    "cluster": 0,
+    "full_label": "L4: Mixed Lexical Items (L3-10)"
+  },
+  "L5_C4": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 5,
+    "cluster": 4,
+    "full_label": "L5: Mixed Lexical Items (L3-10)"
+  },
+  "L6_C7": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 6,
+    "cluster": 7,
+    "full_label": "L6: Mixed Lexical Items (L3-10)"
+  },
+  "L7_C0": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 7,
+    "cluster": 0,
+    "full_label": "L7: Mixed Lexical Items (L3-10)"
+  },
+  "L8_C8": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 8,
+    "cluster": 8,
+    "full_label": "L8: Mixed Lexical Items (L3-10)"
+  },
+  "L9_C3": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 9,
+    "cluster": 3,
+    "full_label": "L9: Mixed Lexical Items (L3-10)"
+  },
+  "L10_C5": {
+    "label": "Mixed Lexical Items (L3-10)",
+    "layer": 10,
+    "cluster": 5,
+    "full_label": "L10: Mixed Lexical Items (L3-10)"
+  },
+  "L4_C2": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 4,
+    "cluster": 2,
+    "full_label": "L4: Mixed Lexical Items (L4-10)"
+  },
+  "L5_C3": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 5,
+    "cluster": 3,
+    "full_label": "L5: Mixed Lexical Items (L4-10)"
+  },
+  "L6_C9": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 6,
+    "cluster": 9,
+    "full_label": "L6: Mixed Lexical Items (L4-10)"
+  },
+  "L7_C5": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 7,
+    "cluster": 5,
+    "full_label": "L7: Mixed Lexical Items (L4-10)"
+  },
+  "L8_C3": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 8,
+    "cluster": 3,
+    "full_label": "L8: Mixed Lexical Items (L4-10)"
+  },
+  "L9_C6": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 9,
+    "cluster": 6,
+    "full_label": "L9: Mixed Lexical Items (L4-10)"
+  },
+  "L10_C7": {
+    "label": "Mixed Lexical Items (L4-10)",
+    "layer": 10,
+    "cluster": 7,
+    "full_label": "L10: Mixed Lexical Items (L4-10)"
+  },
+  "L4_C4": {
+    "label": "General Content Words (L4-10)",
+    "layer": 4,
+    "cluster": 4,
+    "full_label": "L4: General Content Words (L4-10)"
+  },
+  "L5_C1": {
+    "label": "General Content Words (L4-10)",
+    "layer": 5,
+    "cluster": 1,
+    "full_label": "L5: General Content Words (L4-10)"
+  },
+  "L6_C5": {
+    "label": "General Content Words (L4-10)",
+    "layer": 6,
+    "cluster": 5,
+    "full_label": "L6: General Content Words (L4-10)"
+  },
+  "L7_C3": {
+    "label": "General Content Words (L4-10)",
+    "layer": 7,
+    "cluster": 3,
+    "full_label": "L7: General Content Words (L4-10)"
+  },
+  "L8_C9": {
+    "label": "General Content Words (L4-10)",
+    "layer": 8,
+    "cluster": 9,
+    "full_label": "L8: General Content Words (L4-10)"
+  },
+  "L9_C0": {
+    "label": "General Content Words (L4-10)",
+    "layer": 9,
+    "cluster": 0,
+    "full_label": "L9: General Content Words (L4-10)"
+  },
+  "L10_C6": {
+    "label": "General Content Words (L4-10)",
+    "layer": 10,
+    "cluster": 6,
+    "full_label": "L10: General Content Words (L4-10)"
+  },
+  "L7_C7": {
+    "label": "General Content Words (L7-10)",
+    "layer": 7,
+    "cluster": 7,
+    "full_label": "L7: General Content Words (L7-10)"
+  },
+  "L8_C1": {
+    "label": "General Content Words (L7-10)",
+    "layer": 8,
+    "cluster": 1,
+    "full_label": "L8: General Content Words (L7-10)"
+  },
+  "L9_C1": {
+    "label": "General Content Words (L7-10)",
+    "layer": 9,
+    "cluster": 1,
+    "full_label": "L9: General Content Words (L7-10)"
+  },
+  "L10_C8": {
+    "label": "General Content Words (L7-10)",
+    "layer": 10,
+    "cluster": 8,
+    "full_label": "L10: General Content Words (L7-10)"
+  },
+  "L8_C5": {
+    "label": "Mixed Lexical Items (L8-10)",
+    "layer": 8,
+    "cluster": 5,
+    "full_label": "L8: Mixed Lexical Items (L8-10)"
+  },
+  "L9_C4": {
+    "label": "Mixed Lexical Items (L8-10)",
+    "layer": 9,
+    "cluster": 4,
+    "full_label": "L9: Mixed Lexical Items (L8-10)"
+  },
+  "L10_C4": {
+    "label": "Mixed Lexical Items (L8-10)",
+    "layer": 10,
+    "cluster": 4,
+    "full_label": "L10: Mixed Lexical Items (L8-10)"
+  },
+  "L11_C0": {
+    "label": "Quantity & Amount Terms (L11)",
+    "layer": 11,
+    "cluster": 0,
+    "full_label": "L11: Quantity & Amount Terms (L11)"
+  },
+  "L11_C1": {
+    "label": "Subword Units (L11)",
+    "layer": 11,
+    "cluster": 1,
+    "full_label": "L11: Subword Units (L11)"
+  },
+  "L11_C2": {
+    "label": "General Content Words (L11)",
+    "layer": 11,
+    "cluster": 2,
+    "full_label": "L11: General Content Words (L11)"
+  },
+  "L11_C3": {
+    "label": "Quantity & Amount Terms (L11)",
+    "layer": 11,
+    "cluster": 3,
+    "full_label": "L11: Quantity & Amount Terms (L11)"
+  },
+  "L11_C4": {
+    "label": "Mixed Lexical Items (L11)",
+    "layer": 11,
+    "cluster": 4,
+    "full_label": "L11: Mixed Lexical Items (L11)"
+  },
+  "L11_C5": {
+    "label": "Mixed Lexical Items (L11)",
+    "layer": 11,
+    "cluster": 5,
+    "full_label": "L11: Mixed Lexical Items (L11)"
+  },
+  "L11_C6": {
+    "label": "General Content Words (L11)",
+    "layer": 11,
+    "cluster": 6,
+    "full_label": "L11: General Content Words (L11)"
+  },
+  "L11_C7": {
+    "label": "General Content Words (L11)",
+    "layer": 11,
+    "cluster": 7,
+    "full_label": "L11: General Content Words (L11)"
+  },
+  "L11_C9": {
+    "label": "Mixed Lexical Items (L11)",
+    "layer": 11,
+    "cluster": 9,
+    "full_label": "L11: Mixed Lexical Items (L11)"
+  }
+}

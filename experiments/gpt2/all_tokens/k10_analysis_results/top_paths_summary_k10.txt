@@ -1,0 +1,236 @@
+TOP 15 ARCHETYPAL PATHS BY WINDOW (K=10)
+============================================================
+
+EARLY WINDOW
+----------------------------------------
+
+Path 1: 5 → 5 → 8 → 3
+Frequency: 435 tokens
+Semantic: Content Words (Temporal) → Pronouns (Personal) → Content Words (Temporal) → Punctuation (Mixed Punctuation)
+Examples: side, face, form, order, thing
+
+Path 2: 4 → 8 → 7 → 9
+Frequency: 360 tokens
+Semantic: Pronouns (Personal) → Function Words (Determiners) → Function Words (Determiners) → Function Words (Determiners)
+Examples: y, es, ie, en, on
+
+Path 3: 5 → 5 → 3 → 6
+Frequency: 291 tokens
+Semantic: Content Words (Temporal) → Pronouns (Personal) → Pronouns (Mixed) → Pronouns (Mixed)
+Examples: time, work, course, program, days
+
+Path 4: 2 → 9 → 1 → 2
+Frequency: 262 tokens
+Semantic: Punctuation (Mixed Punctuation) → Content Words (General) → Auxiliaries (Be-Forms) → Auxiliaries (Be-Forms)
+Examples: their, more, no, other, some
+
+Path 5: 6 → 2 → 0 → 3
+Frequency: 246 tokens
+Semantic: Short Tokens (Fragments) → Function Words (Prepositions) → Function Words (Determiners) → Punctuation (Mixed Punctuation)
+Examples: of, as, out, said, up
+
+Path 6: 5 → 1 → 3 → 6
+Frequency: 223 tokens
+Semantic: Content Words (Temporal) → Pronouns (Relative) → Pronouns (Mixed) → Pronouns (Mixed)
+Examples: way, life, number, areas, rate
+
+Path 7: 0 → 5 → 8 → 3
+Frequency: 201 tokens
+Semantic: Content Words (Physical/Concrete) → Pronouns (Personal) → Content Words (Temporal) → Punctuation (Mixed Punctuation)
+Examples: water, eyes, line, moment, air
+
+Path 8: 7 → 5 → 8 → 3
+Frequency: 151 tokens
+Semantic: Content Words (Spatial) → Pronouns (Personal) → Content Words (Temporal) → Punctuation (Mixed Punctuation)
+Examples: world, group, business, country, family
+
+Path 9: 6 → 6 → 5 → 8
+Frequency: 149 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Content Words (General) → Auxiliaries (Have-Forms)
+Examples: toward, look, turned, held, seems
+
+Path 10: 9 → 2 → 1 → 2
+Frequency: 147 tokens
+Semantic: Punctuation (Mixed Punctuation) → Function Words (Prepositions) → Auxiliaries (Be-Forms) → Auxiliaries (Be-Forms)
+Examples: have, were, --, who, must
+
+Path 11: 4 → 8 → 2 → 0
+Frequency: 142 tokens
+Semantic: Pronouns (Personal) → Function Words (Determiners) → Content Words (Human/Social) → Content Words (Human/Social)
+Examples: a, man, t, et, ley
+
+Path 12: 6 → 2 → 1 → 2
+Frequency: 141 tokens
+Semantic: Short Tokens (Fragments) → Function Words (Prepositions) → Auxiliaries (Be-Forms) → Auxiliaries (Be-Forms)
+Examples: is, was, would, been, will
+
+Path 13: 9 → 6 → 5 → 8
+Frequency: 138 tokens
+Semantic: Punctuation (Mixed Punctuation) → Punctuation (Quotes) → Content Words (General) → Auxiliaries (Have-Forms)
+Examples: be, could, should, get, went
+
+Path 14: 0 → 1 → 3 → 6
+Frequency: 138 tokens
+Semantic: Content Words (Physical/Concrete) → Pronouns (Relative) → Pronouns (Mixed) → Pronouns (Mixed)
+Examples: floor, building, plane, cars, race
+
+Path 15: 3 → 4 → 4 → 5
+Frequency: 133 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Brackets/Parens) → Pronouns (Personal) → Pronouns (Personal)
+Examples: Dr, c, fl, Car, imp
+
+MIDDLE WINDOW
+----------------------------------------
+
+Path 1: 2 → 3 → 9 → 5
+Frequency: 1367 tokens
+Semantic: Punctuation (Mixed Punctuation) → Content Words (General) → Content Words (General) → Pronouns (Personal)
+Examples: the, and, that, or, one
+
+Path 2: 0 → 4 → 7 → 0
+Frequency: 1163 tokens
+Semantic: Content Words (Physical/Concrete) → Punctuation (Brackets/Parens) → Function Words (Determiners) → Content Words (Human/Social)
+Examples: ,, of, it, 's, ;
+
+Path 3: 4 → 1 → 5 → 3
+Frequency: 974 tokens
+Semantic: Pronouns (Personal) → Pronouns (Relative) → Content Words (General) → Punctuation (Mixed Punctuation)
+Examples: which, than, way, life, y
+
+Path 4: 8 → 8 → 6 → 9
+Frequency: 835 tokens
+Semantic: Pronouns (Personal) → Function Words (Determiners) → Punctuation (Sentence-Final) → Function Words (Determiners)
+Examples: is, for, have, --, would
+
+Path 5: 8 → 8 → 6 → 1
+Frequency: 729 tokens
+Semantic: Pronouns (Personal) → Function Words (Determiners) → Punctuation (Sentence-Final) → Pronouns (Personal)
+Examples: was, '', The, were, they
+
+Path 6: 6 → 6 → 4 → 7
+Frequency: 711 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Pronouns (Personal) → Punctuation (Sentence-Final)
+Examples: could, This, should, well, get
+
+Path 7: 9 → 0 → 0 → 6
+Frequency: 631 tokens
+Semantic: Punctuation (Mixed Punctuation) → Numbers (Numeric) → Function Words (Determiners) → Pronouns (Mixed)
+Examples: ., -, ., s, in
+
+Path 8: 1 → 9 → 8 → 2
+Frequency: 534 tokens
+Semantic: Punctuation (Sentence-Final) → Content Words (General) → Content Words (Temporal) → Auxiliaries (Be-Forms)
+Examples: ``, an, It, In, There
+
+Path 9: 3 → 5 → 2 → 8
+Frequency: 398 tokens
+Semantic: Short Tokens (Fragments) → Pronouns (Personal) → Content Words (Human/Social) → Auxiliaries (Have-Forms)
+Examples: man, system, least, matter, others
+
+Path 10: 0 → 4 → 7 → 9
+Frequency: 387 tokens
+Semantic: Content Words (Physical/Concrete) → Punctuation (Brackets/Parens) → Function Words (Determiners) → Function Words (Determiners)
+Examples: to, a, his, not, from
+
+Path 11: 5 → 7 → 1 → 1
+Frequency: 298 tokens
+Semantic: Content Words (Temporal) → Punctuation (Sentence-Final) → Auxiliaries (Be-Forms) → Pronouns (Personal)
+Examples: I, She, ', (, John
+
+Path 12: 6 → 6 → 4 → 1
+Frequency: 292 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Pronouns (Personal) → Pronouns (Personal)
+Examples: be, on, by, had, can
+
+Path 13: 2 → 3 → 9 → 0
+Frequency: 190 tokens
+Semantic: Punctuation (Mixed Punctuation) → Content Words (General) → Content Words (General) → Content Words (Human/Social)
+Examples: as, ,, form, thing, hands
+
+Path 14: 7 → 2 → 3 → 4
+Frequency: 182 tokens
+Semantic: Content Words (Spatial) → Function Words (Prepositions) → Pronouns (Mixed) → Content Words (General)
+Examples: ``, didn, tell, An, By
+
+Path 15: 5 → 7 → 1 → 7
+Frequency: 159 tokens
+Semantic: Content Words (Temporal) → Punctuation (Sentence-Final) → Auxiliaries (Be-Forms) → Punctuation (Sentence-Final)
+Examples: He, p, St, cl, o
+
+LATE WINDOW
+----------------------------------------
+
+Path 1: 8 → 3 → 5 → 7
+Frequency: 362 tokens
+Semantic: Pronouns (Personal) → Content Words (General) → Content Words (General) → Punctuation (Sentence-Final)
+Examples: old, state, small, put, side
+
+Path 2: 7 → 5 → 0 → 7
+Frequency: 302 tokens
+Semantic: Content Words (Spatial) → Pronouns (Personal) → Function Words (Determiners) → Punctuation (Sentence-Final)
+Examples: no, good, off, young, general
+
+Path 3: 7 → 5 → 0 → 0
+Frequency: 282 tokens
+Semantic: Content Words (Spatial) → Pronouns (Personal) → Function Words (Determiners) → Content Words (Human/Social)
+Examples: other, two, great, thought, away
+
+Path 4: 8 → 3 → 5 → 0
+Frequency: 277 tokens
+Semantic: Pronouns (Personal) → Content Words (General) → Content Words (General) → Content Words (Human/Social)
+Examples: if, new, own, same, used
+
+Path 5: 3 → 6 → 7 → 7
+Frequency: 272 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Function Words (Determiners) → Punctuation (Sentence-Final)
+Examples: over, ing, part, set, able
+
+Path 6: 3 → 6 → 7 → 1
+Frequency: 229 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Function Words (Determiners) → Pronouns (Personal)
+Examples: A, ', 1, and, A
+
+Path 7: 2 → 9 → 9 → 1
+Frequency: 226 tokens
+Semantic: Punctuation (Mixed Punctuation) → Content Words (General) → Content Words (General) → Pronouns (Personal)
+Examples: ., ., s, in, ist
+
+Path 8: 5 → 4 → 4 → 7
+Frequency: 223 tokens
+Semantic: Content Words (Temporal) → Punctuation (Brackets/Parens) → Pronouns (Personal) → Punctuation (Sentence-Final)
+Examples: long, use, fact, find, social
+
+Path 9: 3 → 6 → 7 → 4
+Frequency: 220 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Function Words (Determiners) → Content Words (General)
+Examples: man, me, work, world, course
+
+Path 10: 2 → 9 → 9 → 8
+Frequency: 216 tokens
+Semantic: Punctuation (Mixed Punctuation) → Content Words (General) → Content Words (General) → Auxiliaries (Have-Forms)
+Examples: -, (, Af, B, S
+
+Path 11: 5 → 4 → 4 → 6
+Frequency: 210 tokens
+Semantic: Content Words (Temporal) → Punctuation (Brackets/Parens) → Pronouns (Personal) → Pronouns (Mixed)
+Examples: car, human, short, ten, black
+
+Path 12: 8 → 3 → 5 → 4
+Frequency: 198 tokens
+Semantic: Pronouns (Personal) → Content Words (General) → Content Words (General) → Content Words (General)
+Examples: ,, ;, at, out, up
+
+Path 13: 3 → 6 → 7 → 0
+Frequency: 192 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Function Words (Determiners) → Content Words (Human/Social)
+Examples: as, time, little, present, business
+
+Path 14: 8 → 3 → 5 → 5
+Frequency: 189 tokens
+Semantic: Pronouns (Personal) → Content Words (General) → Content Words (General) → Pronouns (Personal)
+Examples: a, his, her, ), its
+
+Path 15: 3 → 6 → 7 → 6
+Frequency: 186 tokens
+Semantic: Short Tokens (Fragments) → Punctuation (Quotes) → Function Words (Determiners) → Pronouns (Mixed)
+Examples: power, al, ant, ian, ent

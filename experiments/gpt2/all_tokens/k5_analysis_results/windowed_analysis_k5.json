@@ -1,0 +1,8335 @@
+{
+  "early": {
+    "window": "early",
+    "layers": [
+      0,
+      3
+    ],
+    "path_patterns": {
+      "n_unique_paths": 154,
+      "total_trajectories": 9255,
+      "path_diversity_by_layer": [
+        1.0,
+        0.8,
+        0.48
+      ],
+      "mean_diversity": 0.7600000000000001,
+      "path_frequencies": {
+        "(4, 3, 3, 0)": 684,
+        "(4, 0, 2, 2)": 526,
+        "(2, 4, 1, 3)": 437,
+        "(1, 4, 1, 3)": 428,
+        "(0, 0, 2, 2)": 405,
+        "(1, 3, 1, 4)": 291,
+        "(4, 3, 3, 4)": 280,
+        "(3, 1, 0, 4)": 270,
+        "(3, 2, 4, 1)": 254,
+        "(2, 3, 1, 4)": 241,
+        "(0, 3, 3, 0)": 234,
+        "(2, 3, 3, 4)": 227,
+        "(0, 1, 0, 4)": 218,
+        "(1, 3, 3, 4)": 197,
+        "(2, 3, 3, 0)": 188,
+        "(4, 0, 3, 0)": 178,
+        "(1, 0, 3, 0)": 150,
+        "(4, 0, 2, 0)": 139,
+        "(0, 1, 3, 0)": 138,
+        "(2, 4, 1, 4)": 136
+      },
+      "path_to_words": {
+        "(2, 0, 3, 0)": [
+          "the",
+          "his",
+          "than",
+          "only",
+          "two"
+        ],
+        "(0, 0, 3, 0)": [
+          ",",
+          "four",
+          "mother",
+          "London",
+          "hotel"
+        ],
+        "(0, 1, 0, 4)": [
+          ".",
+          "by",
+          "well",
+          "year",
+          "away"
+        ],
+        "(3, 1, 0, 0)": [
+          "of",
+          "P",
+          "war",
+          "un",
+          "p"
+        ],
+        "(3, 0, 3, 0)": [
+          "and",
+          "air",
+          "clay",
+          "ory",
+          "ast"
+        ],
+        "(0, 0, 2, 2)": [
+          "to",
+          "a",
+          "out",
+          "other",
+          "man"
+        ],
+        "(3, 1, 0, 4)": [
+          "in",
+          "we",
+          "Mr",
+          "B",
+          "C"
+        ],
+        "(1, 0, 3, 0)": [
+          "that",
+          "are",
+          "but",
+          "about",
+          "any"
+        ],
+        "(3, 1, 2, 0)": [
+          "is",
+          "it",
+          "he",
+          "be",
+          "at"
+        ],
+        "(1, 4, 1, 3)": [
+          "was",
+          "had",
+          "has",
+          "It",
+          "can"
+        ],
+        "(1, 1, 1, 4)": [
+          "for",
+          ":",
+          "Who",
+          "Chapter",
+          "ieth"
+        ],
+        "(1, 3, 1, 4)": [
+          "''",
+          "with",
+          "have",
+          "would",
+          ")"
+        ],
+        "(1, 1, 0, 4)": [
+          "-",
+          "you",
+          "they",
+          "if",
+          "And"
+        ],
+        "(3, 0, 2, 2)": [
+          "as",
+          "on",
+          "or",
+          "one",
+          "her"
+        ],
+        "(2, 3, 3, 4)": [
+          "The",
+          "also",
+          "even",
+          "same",
+          "used"
+        ],
+        "(2, 0, 3, 4)": [
+          "'s",
+          "this",
+          "first",
+          "three",
+          "000"
+        ],
+        "(1, 3, 3, 4)": [
+          ";",
+          "what",
+          "But",
+          "where",
+          "just"
+        ],
+        "(2, 4, 0, 4)": [
+          "?",
+          "pure",
+          "Actually",
+          "grim",
+          "tered"
+        ],
+        "(1, 2, 4, 1)": [
+          "``",
+          "don",
+          "didn",
+          "tell",
+          "An"
+        ],
+        "(2, 1, 1, 4)": [
+          "not",
+          "long",
+          "main",
+          "eight",
+          "fifteen"
+        ],
+        "(3, 2, 4, 3)": [
+          "I",
+          "ed",
+          "er",
+          "Mrs",
+          "St"
+        ],
+        "(1, 0, 1, 4)": [
+          "from",
+          "every",
+          "called",
+          "next",
+          "entire"
+        ],
+        "(3, 1, 3, 0)": [
+          "an",
+          "all",
+          "so",
+          "off",
+          "6"
+        ],
+        "(1, 0, 2, 2)": [
+          "which",
+          "rate",
+          "hope",
+          "V",
+          "account"
+        ],
+        "(1, 3, 1, 3)": [
+          "were",
+          "--",
+          "their",
+          "This",
+          "must"
+        ],
+        "(1, 1, 0, 3)": [
+          "He",
+          "She",
+          "s",
+          "y",
+          "S"
+        ],
+        "(2, 3, 3, 0)": [
+          "him",
+          "them",
+          "new",
+          "much",
+          "little"
+        ],
+        "(2, 3, 1, 4)": [
+          "been",
+          "'t",
+          "these",
+          "your",
+          "might"
+        ],
+        "(2, 1, 0, 4)": [
+          "more",
+          "very",
+          "how",
+          "week",
+          "five"
+        ],
+        "(1, 1, 1, 3)": [
+          "(",
+          "'",
+          "We",
+          "His",
+          "At"
+        ],
+        "(0, 1, 0, 0)": [
+          "she",
+          "my",
+          "hand",
+          "3",
+          "art"
+        ],
+        "(1, 3, 3, 0)": [
+          "said",
+          "see",
+          "means",
+          "seen",
+          "moment"
+        ],
+        "(3, 1, 0, 3)": [
+          "there",
+          "Af",
+          "John",
+          "th",
+          "l"
+        ],
+        "(2, 1, 3, 0)": [
+          "no",
+          "Now",
+          "June",
+          "1958",
+          "July"
+        ],
+        "(1, 0, 3, 4)": [
+          "into",
+          "some",
+          "since",
+          "during",
+          "behind"
+        ],
+        "(4, 0, 2, 2)": [
+          "its",
+          "way",
+          "number",
+          "set",
+          "things"
+        ],
+        "(3, 4, 1, 3)": [
+          "In",
+          "ant",
+          "dry",
+          "rain",
+          "snow"
+        ],
+        "(1, 4, 0, 4)": [
+          "!",
+          "get",
+          "As",
+          "name",
+          "read"
+        ],
+        "(4, 0, 3, 0)": [
+          "time",
+          "making",
+          "girls",
+          "boys",
+          "performance"
+        ],
+        "(3, 0, 2, 0)": [
+          "over",
+          "then",
+          "es",
+          "end",
+          "E"
+        ],
+        "(1, 4, 1, 4)": [
+          "do",
+          "did",
+          "know",
+          "fact",
+          "pay"
+        ],
+        "(2, 3, 1, 3)": [
+          "such",
+          "those",
+          "another",
+          "following",
+          "various"
+        ],
+        "(0, 3, 2, 0)": [
+          "now",
+          "course",
+          "present",
+          "members",
+          "pressure"
+        ],
+        "(4, 3, 3, 0)": [
+          "ing",
+          "group",
+          "days",
+          "order",
+          "case"
+        ],
+        "(4, 1, 3, 0)": [
+          "back",
+          "body",
+          "County",
+          "Company",
+          "Day"
+        ],
+        "(4, 4, 1, 4)": [
+          "years",
+          "students",
+          "college",
+          "purpose",
+          "research"
+        ],
+        "(0, 1, 3, 0)": [
+          "ly",
+          "1",
+          "day",
+          "2",
+          "old"
+        ],
+        "(0, 1, 2, 0)": [
+          "down",
+          "state",
+          "light",
+          "line",
+          "am"
+        ],
+        "(1, 4, 4, 3)": [
+          "There",
+          "However",
+          "&",
+          "lay",
+          "walked"
+        ],
+        "(2, 0, 2, 0)": [
+          "after",
+          "ish",
+          "ably",
+          "ied",
+          "planned"
+        ],
+        "(4, 3, 3, 4)": [
+          "people",
+          "eyes",
+          "face",
+          "country",
+          "action"
+        ],
+        "(2, 4, 1, 4)": [
+          "too",
+          "good",
+          "found",
+          "open",
+          "sure"
+        ],
+        "(0, 3, 2, 2)": [
+          "work",
+          "himself",
+          "point",
+          "control",
+          "evidence"
+        ],
+        "(0, 3, 3, 0)": [
+          "world",
+          "again",
+          "business",
+          "large",
+          "interest"
+        ],
+        "(4, 0, 2, 0)": [
+          "life",
+          "ity",
+          "stage",
+          "data",
+          "table"
+        ],
+        "(1, 4, 4, 1)": [
+          "came",
+          "told",
+          "give",
+          "looked",
+          "along"
+        ],
+        "(0, 4, 3, 4)": [
+          "home",
+          "morning",
+          "paper",
+          "peace",
+          "lead"
+        ],
+        "(0, 4, 0, 4)": [
+          "high",
+          "form",
+          "kind",
+          "English",
+          "dark"
+        ],
+        "(0, 2, 4, 1)": [
+          "New",
+          "President",
+          "et",
+          "cent",
+          "Rhode"
+        ],
+        "(2, 0, 2, 2)": [
+          "place",
+          "once",
+          "least",
+          "mean",
+          "else"
+        ],
+        "(0, 3, 3, 4)": [
+          "small",
+          "government",
+          "child",
+          "church",
+          "working"
+        ],
+        "(2, 4, 3, 4)": [
+          "thought",
+          "gone",
+          "tried",
+          "shown",
+          "Yet"
+        ],
+        "(0, 2, 0, 4)": [
+          "part",
+          "inter",
+          "umb",
+          "Post",
+          "Inc"
+        ],
+        "(0, 4, 0, 3)": [
+          "United",
+          "General",
+          "Negro",
+          "Church",
+          "bull"
+        ],
+        "(4, 1, 1, 4)": [
+          "school",
+          "wagon",
+          "1947",
+          "Orioles"
+        ],
+        "(0, 1, 2, 2)": [
+          "head",
+          "house",
+          "law",
+          "boy",
+          "low"
+        ],
+        "(4, 1, 3, 4)": [
+          "States",
+          "ement",
+          "Avenue",
+          "Speaker",
+          "autumn"
+        ],
+        "(2, 4, 4, 1)": [
+          "'ll",
+          "bright",
+          "closely",
+          "sick",
+          "tall"
+        ],
+        "(2, 4, 1, 3)": [
+          "far",
+          "enough",
+          "something",
+          "almost",
+          "toward"
+        ],
+        "(4, 1, 0, 4)": [
+          "night",
+          "State",
+          "cost",
+          "book",
+          "War"
+        ],
+        "(0, 3, 1, 4)": [
+          "public",
+          "general",
+          "individual",
+          "military",
+          "fiscal"
+        ],
+        "(2, 4, 4, 3)": [
+          "'d",
+          "turned",
+          "'re",
+          "'ve",
+          "based"
+        ],
+        "(4, 3, 2, 2)": [
+          "program",
+          "plan",
+          "process",
+          "values",
+          "conditions"
+        ],
+        "(0, 4, 1, 3)": [
+          "social",
+          "local",
+          "national",
+          "modern",
+          "black"
+        ],
+        "(1, 0, 2, 0)": [
+          "U",
+          "ode",
+          "purchase",
+          "oe",
+          "iors"
+        ],
+        "(3, 2, 4, 1)": [
+          "en",
+          "st",
+          "ent",
+          "ar",
+          "sat"
+        ],
+        "(4, 3, 2, 0)": [
+          "children",
+          "sense",
+          "example",
+          "result",
+          "problems"
+        ],
+        "(0, 4, 1, 4)": [
+          "young",
+          "human",
+          "close",
+          "common",
+          "subject"
+        ],
+        "(2, 1, 2, 2)": [
+          "ever"
+        ],
+        "(4, 1, 2, 0)": [
+          "God"
+        ],
+        "(4, 4, 3, 0)": [
+          "mind",
+          "problem",
+          "effect",
+          "product",
+          "consequence"
+        ],
+        "(2, 2, 4, 1)": [
+          "able",
+          "stood",
+          "non",
+          "couldn",
+          "won"
+        ],
+        "(0, 2, 1, 3)": [
+          "York",
+          "Christian",
+          "Pope",
+          "Daily",
+          "bastard"
+        ],
+        "(4, 4, 3, 4)": [
+          "show",
+          "death",
+          "job",
+          "reason",
+          "tax"
+        ],
+        "(1, 2, 4, 3)": [
+          "'m",
+          "win",
+          "ass",
+          "counter",
+          "sec"
+        ],
+        "(2, 3, 2, 0)": [
+          "times",
+          "try",
+          "Still",
+          "Later",
+          "anyway"
+        ],
+        "(4, 3, 1, 4)": [
+          "political",
+          "economic",
+          "minutes",
+          "center",
+          "nation"
+        ],
+        "(0, 4, 3, 0)": [
+          "hard",
+          "myself",
+          "sign",
+          "Association",
+          "ged"
+        ],
+        "(2, 3, 2, 2)": [
+          "necessary"
+        ],
+        "(0, 0, 2, 0)": [
+          "level",
+          "House",
+          "ling",
+          "summer",
+          "Europe"
+        ],
+        "(1, 1, 0, 0)": [
+          "O",
+          "ma",
+          "Dee"
+        ],
+        "(2, 1, 0, 0)": [
+          "5",
+          "0"
+        ],
+        "(4, 4, 0, 4)": [
+          "stock",
+          "sun",
+          "Act",
+          "oil",
+          "brother"
+        ],
+        "(0, 2, 4, 3)": [
+          "South",
+          "North",
+          "middle",
+          "brown",
+          "Virgin"
+        ],
+        "(4, 4, 1, 3)": [
+          "states",
+          "student",
+          "objective",
+          "success",
+          "inches"
+        ],
+        "(3, 1, 2, 2)": [
+          "os",
+          "ick",
+          "ov",
+          "ox",
+          "ker"
+        ],
+        "(0, 1, 3, 4)": [
+          "range",
+          "Government",
+          "born",
+          "Sunday",
+          "Chicago"
+        ],
+        "(3, 2, 0, 4)": [
+          "Dr",
+          "Hans",
+          "cab",
+          "Sc",
+          "dec"
+        ],
+        "(3, 3, 3, 0)": [
+          "bed",
+          "cry",
+          "ared",
+          "hood",
+          "wit"
+        ],
+        "(2, 3, 0, 4)": [
+          "%",
+          "thin",
+          "wild",
+          "cubic"
+        ],
+        "(0, 4, 4, 1)": [
+          "foreign",
+          "liberal",
+          "keen"
+        ],
+        "(2, 2, 4, 3)": [
+          "anti",
+          "Supreme",
+          "Could",
+          "null",
+          "appreci"
+        ],
+        "(3, 1, 1, 3)": [
+          "horse",
+          "Hear",
+          "fur",
+          "bow",
+          "Montgomery"
+        ],
+        "(0, 4, 4, 3)": [
+          "Soviet",
+          "Communist",
+          "Jewish",
+          "clinical",
+          "outdoor"
+        ],
+        "(0, 1, 0, 3)": [
+          "Federal",
+          "William",
+          "green",
+          "James",
+          "Old"
+        ],
+        "(1, 1, 3, 0)": [
+          "aid",
+          "ame",
+          "Him",
+          "Chandler",
+          "ias"
+        ],
+        "(3, 2, 0, 3)": [
+          "ab",
+          "Car",
+          "te",
+          "imp",
+          "sub"
+        ],
+        "(2, 1, 3, 4)": [
+          "ally",
+          "Dutch",
+          "aken"
+        ],
+        "(1, 3, 0, 4)": [
+          "couple",
+          "arc",
+          "Next",
+          "ping",
+          "shell"
+        ],
+        "(2, 4, 3, 0)": [
+          "post"
+        ],
+        "(0, 1, 1, 3)": [
+          "British",
+          "24",
+          "Chinese",
+          "38",
+          "Labor"
+        ],
+        "(2, 0, 0, 4)": [
+          "seven"
+        ],
+        "(4, 3, 1, 3)": [
+          "cattle",
+          "spiritual",
+          "chemical",
+          "strike",
+          "atomic"
+        ],
+        "(4, 3, 0, 4)": [
+          "sea",
+          "daughter",
+          "milk",
+          "oxygen",
+          "hills"
+        ],
+        "(4, 4, 4, 3)": [
+          "operating",
+          "thyroid",
+          "bath",
+          "chicken",
+          "saline"
+        ],
+        "(2, 1, 1, 3)": [
+          "fifty",
+          "forty",
+          "minute",
+          "ninth",
+          "Swiss"
+        ],
+        "(0, 1, 1, 4)": [
+          "Russian",
+          "inner",
+          "naval"
+        ],
+        "(3, 1, 1, 4)": [
+          "rock",
+          "wet"
+        ],
+        "(1, 1, 2, 0)": [
+          "Jones",
+          "aus"
+        ],
+        "(3, 3, 3, 4)": [
+          "liquid",
+          "roll",
+          "plug",
+          "peas",
+          "kick"
+        ],
+        "(4, 4, 4, 1)": [
+          "educational",
+          "coal",
+          "cholesterol",
+          "ballistic",
+          "ethnic"
+        ],
+        "(0, 2, 0, 3)": [
+          "deg",
+          "Joseph",
+          "Lincoln",
+          "Journal",
+          "Big"
+        ],
+        "(3, 4, 0, 4)": [
+          "hat",
+          "sang",
+          "damp",
+          "beg",
+          "sung"
+        ],
+        "(4, 4, 0, 3)": [
+          "author",
+          "Governor",
+          "ration",
+          "Law",
+          "Stalin"
+        ],
+        "(4, 2, 4, 1)": [
+          "motor",
+          "fruit",
+          "Attorney",
+          "freight",
+          "pulmonary"
+        ],
+        "(4, 1, 2, 2)": [
+          "ids",
+          "isman"
+        ],
+        "(3, 1, 3, 4)": [
+          "astic"
+        ],
+        "(3, 4, 4, 3)": [
+          "la",
+          "cotton",
+          "mut",
+          "cm",
+          "overt"
+        ],
+        "(4, 2, 1, 3)": [
+          "salt",
+          "invent",
+          "soap"
+        ],
+        "(2, 2, 1, 3)": [
+          "fool",
+          "exagger"
+        ],
+        "(1, 3, 2, 0)": [
+          "Are"
+        ],
+        "(3, 4, 3, 4)": [
+          "blow"
+        ],
+        "(4, 1, 1, 3)": [
+          "chlorine",
+          "Delaware",
+          "Brooklyn",
+          "NATO",
+          "1949"
+        ],
+        "(3, 4, 0, 3)": [
+          "Jane",
+          "pond",
+          "meteor",
+          "oot",
+          "organ"
+        ],
+        "(3, 1, 4, 3)": [
+          "fr",
+          "gymn",
+          "Bel",
+          "Ten"
+        ],
+        "(2, 4, 0, 3)": [
+          "High",
+          "Year"
+        ],
+        "(3, 4, 1, 4)": [
+          "resist"
+        ],
+        "(3, 3, 0, 4)": [
+          "tail",
+          "lap",
+          "dial",
+          "flash",
+          "crown"
+        ],
+        "(3, 3, 1, 4)": [
+          "leather",
+          "bail"
+        ],
+        "(2, 1, 0, 3)": [
+          "Four"
+        ],
+        "(4, 2, 4, 3)": [
+          "drug",
+          "Father",
+          "sheriff",
+          "Drug",
+          "solar"
+        ],
+        "(1, 4, 0, 3)": [
+          "Book"
+        ],
+        "(1, 3, 1, 1)": [
+          "whereby"
+        ],
+        "(1, 1, 4, 1)": [
+          "ather"
+        ],
+        "(3, 2, 1, 3)": [
+          "thunder"
+        ],
+        "(1, 2, 0, 3)": [
+          "Gov"
+        ],
+        "(2, 0, 1, 4)": [
+          "hastily",
+          "safely"
+        ],
+        "(1, 1, 4, 3)": [
+          "Ph",
+          "whe"
+        ],
+        "(0, 4, 0, 0)": [
+          "rum"
+        ],
+        "(4, 2, 0, 3)": [
+          "magnet",
+          "Water"
+        ],
+        "(3, 1, 4, 1)": [
+          "Sally"
+        ],
+        "(1, 4, 3, 4)": [
+          "tries"
+        ],
+        "(3, 4, 4, 1)": [
+          "deaf"
+        ],
+        "(1, 0, 0, 4)": [
+          "aster"
+        ]
+      },
+      "unique_paths": [
+        [
+          2,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          4
+        ],
+        [
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          3,
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          3,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          0,
+          4
+        ],
+        [
+          3,
+          0,
+          2,
+          2
+        ],
+        [
+          2,
+          3,
+          3,
+          4
+        ],
+        [
+          2,
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          3,
+          3,
+          4
+        ],
+        [
+          2,
+          4,
+          0,
+          4
+        ],
+        [
+          1,
+          2,
+          4,
+          1
+        ],
+        [
+          2,
+          1,
+          1,
+          4
+        ],
+        [
+          3,
+          2,
+          4,
+          3
+        ],
+        [
+          1,
+          0,
+          1,
+          4
+        ],
+        [
+          3,
+          1,
+          3,
+          0
+        ],
+        [
+          1,
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          3,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          0,
+          3
+        ],
+        [
+          2,
+          3,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          1,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          3,
+          0
+        ],
+        [
+          3,
+          1,
+          0,
+          3
+        ],
+        [
+          2,
+          1,
+          3,
+          0
+        ],
+        [
+          1,
+          0,
+          3,
+          4
+        ],
+        [
+          4,
+          0,
+          2,
+          2
+        ],
+        [
+          3,
+          4,
+          1,
+          3
+        ],
+        [
+          1,
+          4,
+          0,
+          4
+        ],
+        [
+          4,
+          0,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          1,
+          4
+        ],
+        [
+          2,
+          3,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          2,
+          0
+        ],
+        [
+          4,
+          3,
+          3,
+          0
+        ],
+        [
+          4,
+          1,
+          3,
+          0
+        ],
+        [
+          4,
+          4,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          3,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          4,
+          3
+        ],
+        [
+          2,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          3,
+          3,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          4
+        ],
+        [
+          0,
+          3,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          3,
+          0
+        ],
+        [
+          4,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          4,
+          1
+        ],
+        [
+          0,
+          4,
+          3,
+          4
+        ],
+        [
+          0,
+          4,
+          0,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          1
+        ],
+        [
+          2,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          3,
+          4
+        ],
+        [
+          2,
+          4,
+          3,
+          4
+        ],
+        [
+          0,
+          2,
+          0,
+          4
+        ],
+        [
+          0,
+          4,
+          0,
+          3
+        ],
+        [
+          4,
+          1,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          4,
+          1,
+          3,
+          4
+        ],
+        [
+          2,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ],
+        [
+          4,
+          1,
+          0,
+          4
+        ],
+        [
+          0,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          2
+        ],
+        [
+          0,
+          4,
+          1,
+          3
+        ],
+        [
+          1,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          2,
+          4,
+          1
+        ],
+        [
+          4,
+          3,
+          2,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          2,
+          2
+        ],
+        [
+          4,
+          1,
+          2,
+          0
+        ],
+        [
+          4,
+          4,
+          3,
+          0
+        ],
+        [
+          2,
+          2,
+          4,
+          1
+        ],
+        [
+          0,
+          2,
+          1,
+          3
+        ],
+        [
+          4,
+          4,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4,
+          3
+        ],
+        [
+          2,
+          3,
+          2,
+          0
+        ],
+        [
+          4,
+          3,
+          1,
+          4
+        ],
+        [
+          0,
+          4,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          4,
+          4,
+          0,
+          4
+        ],
+        [
+          0,
+          2,
+          4,
+          3
+        ],
+        [
+          4,
+          4,
+          1,
+          3
+        ],
+        [
+          3,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          2,
+          0,
+          4
+        ],
+        [
+          3,
+          3,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          0,
+          4
+        ],
+        [
+          0,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          2,
+          4,
+          3
+        ],
+        [
+          3,
+          1,
+          1,
+          3
+        ],
+        [
+          0,
+          4,
+          4,
+          3
+        ],
+        [
+          0,
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          1,
+          3,
+          0
+        ],
+        [
+          3,
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          3,
+          0,
+          4
+        ],
+        [
+          2,
+          4,
+          3,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          3
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          4,
+          3,
+          1,
+          3
+        ],
+        [
+          4,
+          3,
+          0,
+          4
+        ],
+        [
+          4,
+          4,
+          4,
+          3
+        ],
+        [
+          2,
+          1,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          1,
+          4
+        ],
+        [
+          3,
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          2,
+          0
+        ],
+        [
+          3,
+          3,
+          3,
+          4
+        ],
+        [
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          0,
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          4,
+          0,
+          4
+        ],
+        [
+          4,
+          4,
+          0,
+          3
+        ],
+        [
+          4,
+          2,
+          4,
+          1
+        ],
+        [
+          4,
+          1,
+          2,
+          2
+        ],
+        [
+          3,
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          4,
+          3
+        ],
+        [
+          4,
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          2,
+          0
+        ],
+        [
+          3,
+          4,
+          3,
+          4
+        ],
+        [
+          4,
+          1,
+          1,
+          3
+        ],
+        [
+          3,
+          4,
+          0,
+          3
+        ],
+        [
+          3,
+          1,
+          4,
+          3
+        ],
+        [
+          2,
+          4,
+          0,
+          3
+        ],
+        [
+          3,
+          4,
+          1,
+          4
+        ],
+        [
+          3,
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          0,
+          3
+        ],
+        [
+          4,
+          2,
+          4,
+          3
+        ],
+        [
+          1,
+          4,
+          0,
+          3
+        ],
+        [
+          1,
+          3,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          4,
+          1
+        ],
+        [
+          3,
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          4,
+          3
+        ],
+        [
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          1,
+          4,
+          1
+        ],
+        [
+          1,
+          4,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          4
+        ]
+      ]
+    },
+    "trajectory_metrics": {
+      "fragmentation": 0.16818384925098007,
+      "stability": 0.17233927606699082,
+      "convergence": 0.0,
+      "semantic_coherence": null,
+      "n_trajectories": 9255,
+      "n_layers": 4,
+      "transition_counts": {
+        "0": {
+          "(2, 0)": 169,
+          "(0, 0)": 464,
+          "(0, 1)": 670,
+          "(3, 1)": 558,
+          "(3, 0)": 129,
+          "(1, 0)": 262,
+          "(1, 4)": 655,
+          "(1, 1)": 109,
+          "(1, 3)": 714,
+          "(2, 3)": 709,
+          "(2, 4)": 681,
+          "(1, 2)": 91,
+          "(2, 1)": 62,
+          "(3, 2)": 481,
+          "(4, 0)": 843,
+          "(3, 4)": 70,
+          "(0, 3)": 452,
+          "(4, 3)": 1168,
+          "(4, 1)": 81,
+          "(4, 4)": 350,
+          "(0, 4)": 279,
+          "(0, 2)": 148,
+          "(2, 2)": 56,
+          "(3, 3)": 33,
+          "(4, 2)": 21
+        },
+        "1": {
+          "(0, 3)": 502,
+          "(1, 0)": 847,
+          "(0, 2)": 1350,
+          "(1, 2)": 281,
+          "(4, 1)": 1441,
+          "(1, 1)": 66,
+          "(3, 1)": 799,
+          "(3, 3)": 1993,
+          "(4, 0)": 179,
+          "(2, 4)": 641,
+          "(0, 1)": 13,
+          "(1, 3)": 278,
+          "(3, 2)": 250,
+          "(4, 4)": 266,
+          "(4, 3)": 149,
+          "(2, 0)": 145,
+          "(2, 1)": 11,
+          "(3, 0)": 34,
+          "(0, 0)": 2,
+          "(1, 4)": 8
+        },
+        "2": {
+          "(3, 0)": 1934,
+          "(0, 4)": 800,
+          "(0, 0)": 144,
+          "(2, 2)": 1301,
+          "(2, 0)": 580,
+          "(1, 3)": 1347,
+          "(1, 4)": 982,
+          "(3, 4)": 988,
+          "(4, 1)": 616,
+          "(4, 3)": 299,
+          "(0, 3)": 263,
+          "(1, 1)": 1
+        }
+      },
+      "avg_transitions_per_layer": {
+        "0": 25,
+        "1": 20,
+        "2": 12
+      },
+      "unique_clusters_per_layer": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "layer_entropies": [
+        1.5868322090627431,
+        1.5263895533057075,
+        1.5295112725115985,
+        1.5013050057601727
+      ]
+    },
+    "archetypal_paths": [
+      {
+        "path": [
+          4,
+          3,
+          3,
+          0
+        ],
+        "frequency": 684,
+        "percentage": 7.390599675850891,
+        "example_words": [
+          "ing",
+          "group",
+          "days",
+          "order",
+          "case",
+          "thing",
+          "power",
+          "area",
+          "family",
+          "development"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          4,
+          0,
+          2,
+          2
+        ],
+        "frequency": 526,
+        "percentage": 5.683414370610481,
+        "example_words": [
+          "its",
+          "way",
+          "number",
+          "set",
+          "things",
+          "ism",
+          "matter",
+          "ness",
+          "city",
+          "experience"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "frequency": 437,
+        "percentage": 4.721772015126959,
+        "example_words": [
+          "far",
+          "enough",
+          "something",
+          "almost",
+          "toward",
+          "felt",
+          "rather",
+          "quite",
+          "short",
+          "known"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          1,
+          3
+        ],
+        "frequency": 428,
+        "percentage": 4.624527282549973,
+        "example_words": [
+          "was",
+          "had",
+          "has",
+          "It",
+          "can",
+          "could",
+          "may",
+          "should",
+          "They",
+          "If"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "frequency": 405,
+        "percentage": 4.376012965964344,
+        "example_words": [
+          "to",
+          "a",
+          "out",
+          "other",
+          "man",
+          "our",
+          "own",
+          "men",
+          "us",
+          "use"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Words",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          1,
+          3,
+          1,
+          4
+        ],
+        "frequency": 291,
+        "percentage": 3.144246353322528,
+        "example_words": [
+          "''",
+          "with",
+          "have",
+          "would",
+          ")",
+          "will",
+          "who",
+          "when",
+          "because",
+          "being"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          3,
+          4
+        ],
+        "frequency": 280,
+        "percentage": 3.0253916801728797,
+        "example_words": [
+          "people",
+          "eyes",
+          "face",
+          "country",
+          "action",
+          "feet",
+          "woman",
+          "girl",
+          "sound",
+          "women"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          3,
+          1,
+          0,
+          4
+        ],
+        "frequency": 270,
+        "percentage": 2.9173419773095626,
+        "example_words": [
+          "in",
+          "we",
+          "Mr",
+          "B",
+          "C",
+          "ic",
+          "car",
+          "m",
+          "e",
+          "M"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "frequency": 254,
+        "percentage": 2.744462452728255,
+        "example_words": [
+          "en",
+          "st",
+          "ent",
+          "ar",
+          "sat",
+          "ter",
+          "dis",
+          "ag",
+          "pre",
+          "se"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      },
+      {
+        "path": [
+          2,
+          3,
+          1,
+          4
+        ],
+        "frequency": 241,
+        "percentage": 2.6039978390059426,
+        "example_words": [
+          "been",
+          "'t",
+          "these",
+          "your",
+          "might",
+          "never",
+          "great",
+          "always",
+          "better",
+          "however"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          3,
+          3,
+          0
+        ],
+        "frequency": 234,
+        "percentage": 2.528363047001621,
+        "example_words": [
+          "world",
+          "again",
+          "business",
+          "large",
+          "interest",
+          "door",
+          "itself",
+          "hands",
+          "real",
+          "today"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Words",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          3,
+          3,
+          4
+        ],
+        "frequency": 227,
+        "percentage": 2.452728254997299,
+        "example_words": [
+          "The",
+          "also",
+          "even",
+          "same",
+          "used",
+          "think",
+          "often",
+          "themselves",
+          "free",
+          "available"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          0,
+          4
+        ],
+        "frequency": 218,
+        "percentage": 2.3554835224203137,
+        "example_words": [
+          ".",
+          "by",
+          "well",
+          "year",
+          "away",
+          "ist",
+          "West",
+          "Washington",
+          "15",
+          "class"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          3,
+          3,
+          4
+        ],
+        "frequency": 197,
+        "percentage": 2.1285791464073474,
+        "example_words": [
+          ";",
+          "what",
+          "But",
+          "where",
+          "just",
+          "against",
+          "say",
+          "put",
+          "need",
+          "taken"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          2,
+          3,
+          3,
+          0
+        ],
+        "frequency": 188,
+        "percentage": 2.0313344138303617,
+        "example_words": [
+          "him",
+          "them",
+          "new",
+          "much",
+          "little",
+          "left",
+          "less",
+          "important",
+          "nothing",
+          "done"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          4,
+          0,
+          3,
+          0
+        ],
+        "frequency": 178,
+        "percentage": 1.9232847109670448,
+        "example_words": [
+          "time",
+          "making",
+          "girls",
+          "boys",
+          "performance",
+          "nations",
+          "hall",
+          "gas",
+          "race",
+          "opinion"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          0,
+          3,
+          0
+        ],
+        "frequency": 150,
+        "percentage": 1.6207455429497568,
+        "example_words": [
+          "that",
+          "are",
+          "but",
+          "about",
+          "any",
+          "like",
+          "A",
+          "made",
+          "before",
+          "through"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          4,
+          0,
+          2,
+          0
+        ],
+        "frequency": 139,
+        "percentage": 1.5018908698001079,
+        "example_words": [
+          "life",
+          "ity",
+          "stage",
+          "data",
+          "table",
+          "reading",
+          "deal",
+          "section",
+          "ence",
+          "activities"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          3,
+          0
+        ],
+        "frequency": 138,
+        "percentage": 1.4910858995137763,
+        "example_words": [
+          "ly",
+          "1",
+          "day",
+          "2",
+          "old",
+          "American",
+          "white",
+          "18",
+          "4",
+          "self"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          4,
+          1,
+          4
+        ],
+        "frequency": 136,
+        "percentage": 1.4694759589411128,
+        "example_words": [
+          "too",
+          "good",
+          "found",
+          "open",
+          "sure",
+          "feel",
+          "believe",
+          "strong",
+          "late",
+          "Not"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          4,
+          3
+        ],
+        "frequency": 132,
+        "percentage": 1.426256077795786,
+        "example_words": [
+          "I",
+          "ed",
+          "er",
+          "Mrs",
+          "St",
+          "em",
+          "sl",
+          "De",
+          "ac",
+          "pe"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          4,
+          4,
+          1,
+          3
+        ],
+        "frequency": 130,
+        "percentage": 1.4046461372231227,
+        "example_words": [
+          "states",
+          "student",
+          "objective",
+          "success",
+          "inches",
+          "pick",
+          "jazz",
+          "teacher",
+          "index",
+          "ice"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          1,
+          3,
+          1,
+          3
+        ],
+        "frequency": 117,
+        "percentage": 1.2641815235008105,
+        "example_words": [
+          "were",
+          "--",
+          "their",
+          "This",
+          "must",
+          "make",
+          "between",
+          "take",
+          "given",
+          "These"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          1
+        ],
+        "frequency": 110,
+        "percentage": 1.1885467314964884,
+        "example_words": [
+          "came",
+          "told",
+          "give",
+          "looked",
+          "along",
+          "seemed",
+          "On",
+          "gave",
+          "Some",
+          "Of"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Lexical Verbs",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          2,
+          0
+        ],
+        "frequency": 105,
+        "percentage": 1.1345218800648298,
+        "example_words": [
+          "down",
+          "state",
+          "light",
+          "line",
+          "am",
+          "ian",
+          "red",
+          "ig",
+          "1961",
+          "arm"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          3,
+          0
+        ],
+        "frequency": 96,
+        "percentage": 1.0372771474878444,
+        "example_words": [
+          "the",
+          "his",
+          "than",
+          "only",
+          "two",
+          "most",
+          "still",
+          "last",
+          "few",
+          "upon"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          3,
+          3,
+          0
+        ],
+        "frequency": 96,
+        "percentage": 1.0372771474878444,
+        "example_words": [
+          "said",
+          "see",
+          "means",
+          "seen",
+          "moment",
+          "anything",
+          "true",
+          "hours",
+          "reached",
+          "needs"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          2,
+          2
+        ],
+        "frequency": 95,
+        "percentage": 1.0264721772015126,
+        "example_words": [
+          "head",
+          "house",
+          "law",
+          "boy",
+          "low",
+          "cut",
+          "fire",
+          "ner",
+          "ort",
+          "ul"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          1,
+          3
+        ],
+        "frequency": 87,
+        "percentage": 0.940032414910859,
+        "example_words": [
+          "social",
+          "local",
+          "national",
+          "modern",
+          "black",
+          "century",
+          "cold",
+          "fine",
+          "religious",
+          "National"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          3,
+          0,
+          2,
+          2
+        ],
+        "frequency": 86,
+        "percentage": 0.9292274446245273,
+        "example_words": [
+          "as",
+          "on",
+          "or",
+          "one",
+          "her",
+          "up",
+          "me",
+          "under",
+          "um",
+          "r"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          0,
+          3
+        ],
+        "frequency": 85,
+        "percentage": 0.9184224743381956,
+        "example_words": [
+          "ab",
+          "Car",
+          "te",
+          "imp",
+          "sub",
+          "Red",
+          "Robert",
+          "Bar",
+          "po",
+          "iff"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Common Auxiliaries",
+          "Sentence Starters",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          3,
+          1,
+          0,
+          0
+        ],
+        "frequency": 80,
+        "percentage": 0.864397622906537,
+        "example_words": [
+          "of",
+          "P",
+          "war",
+          "un",
+          "p",
+          "H",
+          "T",
+          "G",
+          "L",
+          "b"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          3,
+          2,
+          0
+        ],
+        "frequency": 80,
+        "percentage": 0.864397622906537,
+        "example_words": [
+          "now",
+          "course",
+          "present",
+          "members",
+          "pressure",
+          "Department",
+          "market",
+          "growth",
+          "points",
+          "ened"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Verbal Phrases",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          2,
+          0
+        ],
+        "frequency": 79,
+        "percentage": 0.8535926526202053,
+        "example_words": [
+          "children",
+          "sense",
+          "example",
+          "result",
+          "problems",
+          "ization",
+          "effort",
+          "pattern",
+          "activity",
+          "effects"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          2,
+          4,
+          1
+        ],
+        "frequency": 76,
+        "percentage": 0.8211777417612101,
+        "example_words": [
+          "``",
+          "don",
+          "didn",
+          "tell",
+          "An",
+          "ch",
+          "By",
+          "wasn",
+          "wouldn",
+          "Han"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      },
+      {
+        "path": [
+          4,
+          4,
+          1,
+          4
+        ],
+        "frequency": 72,
+        "percentage": 0.7779578606158832,
+        "example_words": [
+          "years",
+          "students",
+          "college",
+          "purpose",
+          "research",
+          "test",
+          "decision",
+          "writing",
+          "officer",
+          "shows"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          4,
+          4,
+          3,
+          4
+        ],
+        "frequency": 70,
+        "percentage": 0.7563479200432199,
+        "example_words": [
+          "show",
+          "death",
+          "job",
+          "reason",
+          "tax",
+          "figure",
+          "design",
+          "principle",
+          "balance",
+          "failure"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Lexical Verbs",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          2,
+          4,
+          1
+        ],
+        "frequency": 69,
+        "percentage": 0.7455429497568882,
+        "example_words": [
+          "New",
+          "President",
+          "et",
+          "cent",
+          "Rhode",
+          "Well",
+          "principal",
+          "San",
+          "Central",
+          "civil"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      },
+      {
+        "path": [
+          3,
+          1,
+          0,
+          3
+        ],
+        "frequency": 68,
+        "percentage": 0.7347379794705564,
+        "example_words": [
+          "there",
+          "Af",
+          "John",
+          "th",
+          "l",
+          "el",
+          "Miss",
+          "c",
+          "cl",
+          "Her"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          1,
+          4
+        ],
+        "frequency": 68,
+        "percentage": 0.7347379794705564,
+        "example_words": [
+          "political",
+          "economic",
+          "minutes",
+          "center",
+          "nation",
+          "street",
+          "labor",
+          "manner",
+          "choice",
+          "patient"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "frequency": 65,
+        "percentage": 0.7023230686115614,
+        "example_words": [
+          "is",
+          "it",
+          "he",
+          "be",
+          "at",
+          "go",
+          "per",
+          "K",
+          "rest",
+          "N"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Sentence Elements",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          0,
+          4
+        ],
+        "frequency": 64,
+        "percentage": 0.6915180983252296,
+        "example_words": [
+          "high",
+          "form",
+          "kind",
+          "English",
+          "dark",
+          "1960",
+          "Secretary",
+          "president",
+          "central",
+          "news"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Words",
+          "Lexical Verbs",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          1,
+          4
+        ],
+        "frequency": 63,
+        "percentage": 0.6807131280388978,
+        "example_words": [
+          "do",
+          "did",
+          "know",
+          "fact",
+          "pay",
+          "trying",
+          "hear",
+          "start",
+          "increased",
+          "write"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          3,
+          3,
+          4
+        ],
+        "frequency": 63,
+        "percentage": 0.6807131280388978,
+        "example_words": [
+          "small",
+          "government",
+          "child",
+          "church",
+          "working",
+          "court",
+          "lack",
+          "growing",
+          "apparently",
+          "daily"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "frequency": 58,
+        "percentage": 0.6266882766072394,
+        "example_words": [
+          "she",
+          "my",
+          "hand",
+          "3",
+          "art",
+          "f",
+          "heart",
+          "est",
+          "7",
+          "Brown"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          1,
+          0,
+          4
+        ],
+        "frequency": 56,
+        "percentage": 0.605078336034576,
+        "example_words": [
+          "-",
+          "you",
+          "they",
+          "if",
+          "And",
+          "here",
+          "right",
+          "One",
+          "D",
+          "R"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          0,
+          2,
+          2
+        ],
+        "frequency": 53,
+        "percentage": 0.5726634251755808,
+        "example_words": [
+          "which",
+          "rate",
+          "hope",
+          "V",
+          "account",
+          "visit",
+          "ants",
+          "vote",
+          "vehicles",
+          "va"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          0,
+          3,
+          2,
+          2
+        ],
+        "frequency": 51,
+        "percentage": 0.5510534846029173,
+        "example_words": [
+          "work",
+          "himself",
+          "point",
+          "control",
+          "evidence",
+          "support",
+          "fear",
+          "parts",
+          "tradition",
+          "leadership"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Verbal Phrases",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          3,
+          1,
+          3,
+          0
+        ],
+        "frequency": 49,
+        "percentage": 0.529443544030254,
+        "example_words": [
+          "an",
+          "all",
+          "so",
+          "off",
+          "6",
+          "act",
+          "bar",
+          "ay",
+          "ell",
+          "ess"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Sentence Elements",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          1,
+          4
+        ],
+        "frequency": 47,
+        "percentage": 0.5078336034575904,
+        "example_words": [
+          "young",
+          "human",
+          "close",
+          "common",
+          "subject",
+          "sort",
+          "police",
+          "professional",
+          "quiet",
+          "independent"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          2,
+          2,
+          4,
+          1
+        ],
+        "frequency": 45,
+        "percentage": 0.48622366288492713,
+        "example_words": [
+          "able",
+          "stood",
+          "non",
+          "couldn",
+          "won",
+          "somewhat",
+          "pretty",
+          "wait",
+          "Democratic",
+          "stared"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      },
+      {
+        "path": [
+          4,
+          4,
+          0,
+          4
+        ],
+        "frequency": 45,
+        "percentage": 0.48622366288492713,
+        "example_words": [
+          "stock",
+          "sun",
+          "Act",
+          "oil",
+          "brother",
+          "editor",
+          "dog",
+          "leader",
+          "writer",
+          "band"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Lexical Verbs",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "frequency": 42,
+        "percentage": 0.45380875202593196,
+        "example_words": [
+          "'d",
+          "turned",
+          "'re",
+          "'ve",
+          "based",
+          "annual",
+          "relatively",
+          "hung",
+          "approximately",
+          "quietly"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Lexical Verbs",
+          "Punctuation & Quotes",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          2,
+          2
+        ],
+        "frequency": 41,
+        "percentage": 0.4430037817396002,
+        "example_words": [
+          "place",
+          "once",
+          "least",
+          "mean",
+          "else",
+          "simple",
+          "ered",
+          "chance",
+          "ary",
+          "actually"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Core Connectives",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          2,
+          4,
+          4,
+          1
+        ],
+        "frequency": 41,
+        "percentage": 0.4430037817396002,
+        "example_words": [
+          "'ll",
+          "bright",
+          "closely",
+          "sick",
+          "tall",
+          "firmly",
+          "engaged",
+          "considerably",
+          "rational",
+          "exists"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Lexical Verbs",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      },
+      {
+        "path": [
+          3,
+          4,
+          1,
+          3
+        ],
+        "frequency": 40,
+        "percentage": 0.4321988114532685,
+        "example_words": [
+          "In",
+          "ant",
+          "dry",
+          "rain",
+          "snow",
+          "shut",
+          "iron",
+          "bread",
+          "Long",
+          "sing"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Lexical Verbs",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          2,
+          3,
+          1,
+          3
+        ],
+        "frequency": 40,
+        "percentage": 0.4321988114532685,
+        "example_words": [
+          "such",
+          "those",
+          "another",
+          "following",
+          "various",
+          "greater",
+          "prepared",
+          "thousand",
+          "intellectual",
+          "initial"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          3
+        ],
+        "frequency": 40,
+        "percentage": 0.4321988114532685,
+        "example_words": [
+          "There",
+          "However",
+          "&",
+          "lay",
+          "walked",
+          "showed",
+          "fell",
+          "Let",
+          "hell",
+          "Both"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Lexical Verbs",
+          "Punctuation & Quotes",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          2,
+          0,
+          3
+        ],
+        "frequency": 39,
+        "percentage": 0.42139384116693684,
+        "example_words": [
+          "deg",
+          "Joseph",
+          "Lincoln",
+          "Journal",
+          "Big",
+          "Carl",
+          "Jim",
+          "Prince",
+          "Pacific",
+          "dem"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Common Auxiliaries",
+          "Sentence Starters",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          3,
+          4
+        ],
+        "frequency": 38,
+        "percentage": 0.41058887088060503,
+        "example_words": [
+          "home",
+          "morning",
+          "paper",
+          "peace",
+          "lead",
+          "istic",
+          "dust",
+          "kid",
+          "ified",
+          "wage"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Lexical Verbs",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          2,
+          0
+        ],
+        "frequency": 36,
+        "percentage": 0.3889789303079416,
+        "example_words": [
+          "level",
+          "House",
+          "ling",
+          "summer",
+          "Europe",
+          "ening",
+          "enter",
+          "base",
+          "France",
+          "Commission"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Words",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "frequency": 32,
+        "percentage": 0.3457590491626148,
+        "example_words": [
+          "range",
+          "Government",
+          "born",
+          "Sunday",
+          "Chicago",
+          "Providence",
+          "November",
+          "Monday",
+          "California",
+          "Protestant"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          0,
+          4
+        ],
+        "frequency": 31,
+        "percentage": 0.3349540788762831,
+        "example_words": [
+          "more",
+          "very",
+          "how",
+          "week",
+          "five",
+          "No",
+          "six",
+          "12",
+          "month",
+          "April"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          4,
+          1,
+          0,
+          4
+        ],
+        "frequency": 30,
+        "percentage": 0.3241491085899514,
+        "example_words": [
+          "night",
+          "State",
+          "cost",
+          "book",
+          "War",
+          "color",
+          "River",
+          "Georgia",
+          "ives",
+          "mile"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          2,
+          2
+        ],
+        "frequency": 30,
+        "percentage": 0.3241491085899514,
+        "example_words": [
+          "program",
+          "plan",
+          "process",
+          "values",
+          "conditions",
+          "programs",
+          "requirements",
+          "reality",
+          "principles",
+          "transfer"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          3,
+          0,
+          2,
+          0
+        ],
+        "frequency": 29,
+        "percentage": 0.3133441383036197,
+        "example_words": [
+          "over",
+          "then",
+          "es",
+          "end",
+          "E",
+          "fall",
+          "rees",
+          "gy",
+          "ith",
+          "ring"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          4,
+          1,
+          3,
+          0
+        ],
+        "frequency": 29,
+        "percentage": 0.3133441383036197,
+        "example_words": [
+          "back",
+          "body",
+          "County",
+          "Company",
+          "Day",
+          "Nations",
+          "governor",
+          "Hotel",
+          "Shakespeare",
+          "1962"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Sentence Elements",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          0,
+          3,
+          4
+        ],
+        "frequency": 26,
+        "percentage": 0.28092922744462456,
+        "example_words": [
+          "into",
+          "some",
+          "since",
+          "during",
+          "behind",
+          "considered",
+          "**",
+          "send",
+          "ace",
+          "ying"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          2,
+          4,
+          3
+        ],
+        "frequency": 26,
+        "percentage": 0.28092922744462456,
+        "example_words": [
+          "South",
+          "North",
+          "middle",
+          "brown",
+          "Virgin",
+          "spect",
+          "Middle",
+          "roph",
+          "ranc",
+          "Supp"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          3,
+          1,
+          4
+        ],
+        "frequency": 24,
+        "percentage": 0.2593192868719611,
+        "example_words": [
+          "public",
+          "general",
+          "individual",
+          "military",
+          "fiscal",
+          "broad",
+          "familiar",
+          "fellow",
+          "wooden",
+          "internal"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          3,
+          0
+        ],
+        "frequency": 23,
+        "percentage": 0.2485143165856294,
+        "example_words": [
+          ",",
+          "four",
+          "mother",
+          "London",
+          "hotel",
+          "nine",
+          "security",
+          "headquarters",
+          "childhood",
+          "safety"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Words",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          0,
+          2,
+          0
+        ],
+        "frequency": 21,
+        "percentage": 0.22690437601296598,
+        "example_words": [
+          "U",
+          "ode",
+          "purchase",
+          "oe",
+          "iors",
+          "challenge",
+          "king",
+          "variables",
+          "ails",
+          "rams"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          1,
+          1,
+          3
+        ],
+        "frequency": 17,
+        "percentage": 0.1836844948676391,
+        "example_words": [
+          "(",
+          "'",
+          "We",
+          "His",
+          "At",
+          "You",
+          "le",
+          "My",
+          "electron",
+          "ft"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Sentence Elements",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          0,
+          3
+        ],
+        "frequency": 17,
+        "percentage": 0.1836844948676391,
+        "example_words": [
+          "United",
+          "General",
+          "Negro",
+          "Church",
+          "bull",
+          "Dartmouth",
+          "Forest",
+          "Industrial",
+          "90",
+          "Fair"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Lexical Verbs",
+          "Sentence Starters",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          3,
+          4
+        ],
+        "frequency": 15,
+        "percentage": 0.1620745542949757,
+        "example_words": [
+          "'s",
+          "this",
+          "first",
+          "three",
+          "000",
+          "third",
+          "previous",
+          "fourteen",
+          "seventeen",
+          "sixteen"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          1,
+          0,
+          3
+        ],
+        "frequency": 15,
+        "percentage": 0.1620745542949757,
+        "example_words": [
+          "He",
+          "She",
+          "s",
+          "y",
+          "S",
+          "o",
+          "t",
+          "k",
+          "n",
+          "harm"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          2,
+          4,
+          3,
+          4
+        ],
+        "frequency": 15,
+        "percentage": 0.1620745542949757,
+        "example_words": [
+          "thought",
+          "gone",
+          "tried",
+          "shown",
+          "Yet",
+          "bit",
+          "check",
+          "proud",
+          "hoped",
+          "sad"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Lexical Verbs",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          0,
+          3
+        ],
+        "frequency": 15,
+        "percentage": 0.1620745542949757,
+        "example_words": [
+          "Federal",
+          "William",
+          "green",
+          "James",
+          "Old",
+          "23",
+          "Edward",
+          "grand",
+          "Arthur",
+          "Stanley"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Sentence Elements",
+          "Sentence Starters",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          1,
+          3
+        ],
+        "frequency": 15,
+        "percentage": 0.1620745542949757,
+        "example_words": [
+          "cattle",
+          "spiritual",
+          "chemical",
+          "strike",
+          "atomic",
+          "textile",
+          "ethical",
+          "aboard",
+          "timber",
+          "bargaining"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Core Grammar",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          3,
+          0,
+          3,
+          0
+        ],
+        "frequency": 14,
+        "percentage": 0.151269584008644,
+        "example_words": [
+          "and",
+          "air",
+          "clay",
+          "ory",
+          "ast",
+          "Hardy",
+          "cloth",
+          "ike",
+          "ural",
+          "ury"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Grammatical Connectives",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          2,
+          0
+        ],
+        "frequency": 14,
+        "percentage": 0.151269584008644,
+        "example_words": [
+          "after",
+          "ish",
+          "ably",
+          "ied",
+          "planned",
+          "ative",
+          "approved",
+          "uted",
+          "reserve",
+          "ned"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Core Connectives",
+          "Grammatical Connectives",
+          "Verbal Elements",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "frequency": 14,
+        "percentage": 0.151269584008644,
+        "example_words": [
+          "'m",
+          "win",
+          "ass",
+          "counter",
+          "sec",
+          "Jun",
+          "mess",
+          "Sure",
+          "Star",
+          "Yeah"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          3,
+          0
+        ],
+        "frequency": 14,
+        "percentage": 0.151269584008644,
+        "example_words": [
+          "hard",
+          "myself",
+          "sign",
+          "Association",
+          "ged",
+          "combination",
+          "worry",
+          "habit",
+          "dawn",
+          "ided"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Words",
+          "Lexical Verbs",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          3,
+          3,
+          3,
+          0
+        ],
+        "frequency": 14,
+        "percentage": 0.151269584008644,
+        "example_words": [
+          "bed",
+          "cry",
+          "ared",
+          "hood",
+          "wit",
+          "straw",
+          "lamp",
+          "hing",
+          "bend",
+          "drum"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          3,
+          4,
+          0,
+          4
+        ],
+        "frequency": 13,
+        "percentage": 0.14046461372231228,
+        "example_words": [
+          "hat",
+          "sang",
+          "damp",
+          "beg",
+          "sung",
+          "erect",
+          "dot",
+          "cheer",
+          "accord",
+          "Cut"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Lexical Verbs",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          0,
+          4
+        ],
+        "frequency": 12,
+        "percentage": 0.12965964343598055,
+        "example_words": [
+          "!",
+          "get",
+          "As",
+          "name",
+          "read",
+          "Under",
+          "Was",
+          "Out",
+          "Have",
+          "Kill"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Lexical Verbs",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          0,
+          4
+        ],
+        "frequency": 12,
+        "percentage": 0.12965964343598055,
+        "example_words": [
+          "sea",
+          "daughter",
+          "milk",
+          "oxygen",
+          "hills",
+          "fiber",
+          "mountain",
+          "cook",
+          "disk",
+          "noon"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Verbal Phrases",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          0,
+          1,
+          4
+        ],
+        "frequency": 11,
+        "percentage": 0.11885467314964883,
+        "example_words": [
+          "from",
+          "every",
+          "called",
+          "next",
+          "entire",
+          "whenever",
+          "Until",
+          "besides",
+          "entering",
+          "remembering"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Connectives",
+          "Core Grammar",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          1,
+          3,
+          0,
+          4
+        ],
+        "frequency": 11,
+        "percentage": 0.11885467314964883,
+        "example_words": [
+          "couple",
+          "arc",
+          "Next",
+          "ping",
+          "shell",
+          "spark",
+          "lag",
+          "okes",
+          "patch",
+          "shaft"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Function Words",
+          "Verbal Phrases",
+          "Sentence Starters",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "frequency": 10,
+        "percentage": 0.10804970286331712,
+        "example_words": [
+          "no",
+          "Now",
+          "June",
+          "1958",
+          "July",
+          "Little",
+          "ual",
+          "gentleman",
+          "illy",
+          "emic"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Core Connectives",
+          "Sentence Elements",
+          "Pronoun System",
+          "Function Word Core"
+        ]
+      },
+      {
+        "path": [
+          3,
+          1,
+          2,
+          2
+        ],
+        "frequency": 10,
+        "percentage": 0.10804970286331712,
+        "example_words": [
+          "os",
+          "ick",
+          "ov",
+          "ox",
+          "ker",
+          "zer",
+          "Nelson",
+          "Nam",
+          "Carroll",
+          "ez"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Sentence Elements",
+          "Verbal Elements",
+          "Content Lexicon"
+        ]
+      },
+      {
+        "path": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "frequency": 10,
+        "percentage": 0.10804970286331712,
+        "example_words": [
+          "operating",
+          "thyroid",
+          "bath",
+          "chicken",
+          "saline",
+          "sewage",
+          "interval",
+          "iodine",
+          "leisure",
+          "statewide"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Lexical Verbs",
+          "Punctuation & Quotes",
+          "Auxiliary System"
+        ]
+      },
+      {
+        "path": [
+          3,
+          3,
+          3,
+          4
+        ],
+        "frequency": 10,
+        "percentage": 0.10804970286331712,
+        "example_words": [
+          "liquid",
+          "roll",
+          "plug",
+          "peas",
+          "kick",
+          "bloom",
+          "helium",
+          "rubber",
+          "boil",
+          "slack"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Pronouns & Subjects",
+          "Verbal Phrases",
+          "Pronoun System",
+          "Pronominal Forms"
+        ]
+      },
+      {
+        "path": [
+          4,
+          2,
+          4,
+          1
+        ],
+        "frequency": 10,
+        "percentage": 0.10804970286331712,
+        "example_words": [
+          "motor",
+          "fruit",
+          "Attorney",
+          "freight",
+          "pulmonary",
+          "Professor",
+          "conjunction",
+          "respiratory",
+          "Student",
+          "dental"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Objects & Plurals",
+          "Common Auxiliaries",
+          "Punctuation & Quotes",
+          "Sentence Delimiters"
+        ]
+      }
+    ],
+    "layer_transitions": {
+      "layer_0_to_1": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 4.137064459470988,
+        "n_dominant_transitions": 0,
+        "dominant_transitions": [],
+        "total_transitions": 9255
+      },
+      "layer_1_to_2": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 3.4252603993568322,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 2,
+            "probability": 0.723085163363685,
+            "count": 1350
+          },
+          {
+            "from": 1,
+            "to": 0,
+            "probability": 0.5722972972972973,
+            "count": 847
+          },
+          {
+            "from": 2,
+            "to": 4,
+            "probability": 0.8042659974905897,
+            "count": 641
+          },
+          {
+            "from": 3,
+            "to": 3,
+            "probability": 0.6479193758127438,
+            "count": 1993
+          },
+          {
+            "from": 4,
+            "to": 1,
+            "probability": 0.7081081081081081,
+            "count": 1441
+          }
+        ],
+        "total_transitions": 9255
+      },
+      "layer_2_to_3": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 3.1793168895051513,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 4,
+            "probability": 0.6628003314001657,
+            "count": 800
+          },
+          {
+            "from": 1,
+            "to": 3,
+            "probability": 0.5781115879828326,
+            "count": 1347
+          },
+          {
+            "from": 2,
+            "to": 2,
+            "probability": 0.6916533758639022,
+            "count": 1301
+          },
+          {
+            "from": 3,
+            "to": 0,
+            "probability": 0.6618754277891855,
+            "count": 1934
+          },
+          {
+            "from": 4,
+            "to": 1,
+            "probability": 0.673224043715847,
+            "count": 616
+          }
+        ],
+        "total_transitions": 9255
+      }
+    }
+  },
+  "middle": {
+    "window": "middle",
+    "layers": [
+      4,
+      7
+    ],
+    "path_patterns": {
+      "n_unique_paths": 33,
+      "total_trajectories": 9255,
+      "path_diversity_by_layer": [
+        0.52,
+        0.52,
+        0.44
+      ],
+      "mean_diversity": 0.49333333333333335,
+      "path_frequencies": {
+        "(0, 4, 3, 0)": 2673,
+        "(2, 0, 4, 1)": 2604,
+        "(3, 3, 1, 2)": 1842,
+        "(1, 1, 0, 4)": 1306,
+        "(4, 2, 2, 3)": 585,
+        "(0, 0, 4, 1)": 34,
+        "(2, 0, 3, 0)": 33,
+        "(0, 4, 1, 2)": 23,
+        "(2, 4, 3, 0)": 20,
+        "(2, 1, 0, 4)": 16,
+        "(0, 3, 1, 2)": 16,
+        "(3, 4, 3, 0)": 14,
+        "(2, 0, 4, 0)": 10,
+        "(1, 0, 4, 1)": 9,
+        "(3, 3, 1, 0)": 8,
+        "(1, 1, 4, 1)": 7,
+        "(2, 0, 0, 4)": 7,
+        "(0, 4, 3, 1)": 6,
+        "(3, 2, 2, 3)": 5,
+        "(4, 3, 1, 2)": 5
+      },
+      "path_to_words": {
+        "(2, 0, 4, 1)": [
+          "the",
+          ",",
+          "of",
+          "and",
+          "that"
+        ],
+        "(0, 4, 3, 0)": [
+          ".",
+          "in",
+          "for",
+          "''",
+          "-"
+        ],
+        "(1, 1, 0, 4)": [
+          "to",
+          "a",
+          "as",
+          "on",
+          "or"
+        ],
+        "(3, 3, 1, 2)": [
+          "was",
+          "had",
+          "I",
+          "--",
+          "He"
+        ],
+        "(0, 4, 4, 1)": [
+          "'s",
+          "even",
+          "free",
+          "fourteen"
+        ],
+        "(4, 2, 2, 3)": [
+          "``",
+          "came",
+          "New",
+          "'ll",
+          "told"
+        ],
+        "(3, 3, 1, 0)": [
+          "were",
+          "whose",
+          "studying",
+          "exposed",
+          "Your"
+        ],
+        "(3, 4, 3, 0)": [
+          "their",
+          "Her",
+          "entered",
+          "Our",
+          "rural"
+        ],
+        "(2, 0, 3, 0)": [
+          "said",
+          "space",
+          "responsibility",
+          "Association",
+          "Sam"
+        ],
+        "(2, 1, 0, 4)": [
+          "than",
+          "ease",
+          "signals",
+          "talents",
+          "pupils"
+        ],
+        "(0, 0, 4, 1)": [
+          "into",
+          "some",
+          "just",
+          "three",
+          "during"
+        ],
+        "(1, 1, 0, 1)": [
+          "work",
+          "program",
+          "ever",
+          "contract"
+        ],
+        "(3, 3, 3, 0)": [
+          "another",
+          "Ter"
+        ],
+        "(0, 4, 1, 2)": [
+          "saw",
+          "strong",
+          "trying",
+          "decision",
+          "Act"
+        ],
+        "(1, 0, 4, 1)": [
+          "ness",
+          "cut",
+          "fire",
+          "wonder",
+          "magnitude"
+        ],
+        "(3, 3, 2, 3)": [
+          "'m",
+          "sheriff",
+          "Douglas",
+          "lic"
+        ],
+        "(0, 3, 1, 2)": [
+          "turn",
+          "says",
+          "appears",
+          "formed",
+          "laughed"
+        ],
+        "(0, 0, 3, 0)": [
+          "woman",
+          "pushed",
+          "simultaneously"
+        ],
+        "(1, 1, 4, 1)": [
+          "process",
+          "support",
+          "generation",
+          "axis",
+          "humanity"
+        ],
+        "(2, 0, 0, 4)": [
+          "required",
+          "ious",
+          "covering",
+          "iring",
+          "crossing"
+        ],
+        "(2, 0, 4, 4)": [
+          "ically",
+          "variables"
+        ],
+        "(2, 4, 3, 0)": [
+          "works",
+          "supply",
+          "discussion",
+          "Company",
+          "platform"
+        ],
+        "(2, 0, 4, 0)": [
+          "sign",
+          "product",
+          "conference",
+          "vision",
+          "iss"
+        ],
+        "(3, 2, 2, 3)": [
+          "wind",
+          "counter",
+          "Sand",
+          "cor",
+          "seam"
+        ],
+        "(0, 4, 3, 2)": [
+          "slight",
+          "collar",
+          "comb",
+          "Michael"
+        ],
+        "(0, 4, 3, 1)": [
+          "fly",
+          "normally",
+          "exciting",
+          "rendered",
+          "queen"
+        ],
+        "(4, 3, 1, 2)": [
+          "thorough",
+          "attracted",
+          "Dol",
+          "Bro",
+          "satisfying"
+        ],
+        "(3, 4, 1, 2)": [
+          "Further",
+          "mel",
+          "grotesque"
+        ],
+        "(4, 2, 1, 2)": [
+          "define",
+          "consist"
+        ],
+        "(3, 4, 1, 0)": [
+          "marry"
+        ],
+        "(0, 0, 3, 1)": [
+          "helium"
+        ],
+        "(4, 3, 2, 3)": [
+          "Pr"
+        ],
+        "(2, 1, 0, 1)": [
+          "specialist"
+        ]
+      },
+      "unique_paths": [
+        [
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          0,
+          4,
+          3,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          4
+        ],
+        [
+          3,
+          3,
+          1,
+          2
+        ],
+        [
+          0,
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          2,
+          2,
+          3
+        ],
+        [
+          3,
+          3,
+          1,
+          0
+        ],
+        [
+          3,
+          4,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          1
+        ],
+        [
+          3,
+          3,
+          3,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          2
+        ],
+        [
+          1,
+          0,
+          4,
+          1
+        ],
+        [
+          3,
+          3,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          1,
+          4,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          4,
+          4
+        ],
+        [
+          2,
+          4,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          3,
+          2
+        ],
+        [
+          0,
+          4,
+          3,
+          1
+        ],
+        [
+          4,
+          3,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          4,
+          2,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          4,
+          3,
+          2,
+          3
+        ],
+        [
+          2,
+          1,
+          0,
+          1
+        ]
+      ]
+    },
+    "trajectory_metrics": {
+      "fragmentation": 0.16414803325565364,
+      "stability": 0.1374392220421394,
+      "convergence": 0.0,
+      "semantic_coherence": null,
+      "n_trajectories": 9255,
+      "n_layers": 4,
+      "transition_counts": {
+        "0": {
+          "(2, 0)": 2656,
+          "(0, 4)": 2710,
+          "(1, 1)": 1317,
+          "(3, 3)": 1856,
+          "(4, 2)": 587,
+          "(3, 4)": 18,
+          "(2, 1)": 17,
+          "(0, 0)": 38,
+          "(1, 0)": 9,
+          "(0, 3)": 16,
+          "(2, 4)": 20,
+          "(3, 2)": 5,
+          "(4, 3)": 6
+        },
+        "1": {
+          "(0, 4)": 2659,
+          "(4, 3)": 2717,
+          "(1, 0)": 1327,
+          "(3, 1)": 1871,
+          "(4, 4)": 4,
+          "(2, 2)": 590,
+          "(0, 3)": 37,
+          "(3, 3)": 2,
+          "(4, 1)": 27,
+          "(3, 2)": 5,
+          "(1, 4)": 7,
+          "(0, 0)": 7,
+          "(2, 1)": 2
+        },
+        "2": {
+          "(4, 1)": 2658,
+          "(3, 0)": 2745,
+          "(0, 4)": 1329,
+          "(1, 2)": 1891,
+          "(2, 3)": 595,
+          "(1, 0)": 9,
+          "(0, 1)": 5,
+          "(4, 4)": 2,
+          "(4, 0)": 10,
+          "(3, 2)": 4,
+          "(3, 1)": 7
+        }
+      },
+      "avg_transitions_per_layer": {
+        "0": 13,
+        "1": 13,
+        "2": 11
+      },
+      "unique_clusters_per_layer": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "layer_entropies": [
+        1.4982734826509425,
+        1.498718756654097,
+        1.5000245698782626,
+        1.4995861054876793
+      ]
+    },
+    "archetypal_paths": [
+      {
+        "path": [
+          0,
+          4,
+          3,
+          0
+        ],
+        "frequency": 2673,
+        "percentage": 28.881685575364667,
+        "example_words": [
+          ".",
+          "in",
+          "for",
+          "''",
+          "-",
+          "with",
+          "The",
+          ";",
+          "by",
+          "?"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Syntactic Connectors",
+          "Pronominal System",
+          "Pronouns",
+          "Pronominal Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          4,
+          1
+        ],
+        "frequency": 2604,
+        "percentage": 28.13614262560778,
+        "example_words": [
+          "the",
+          ",",
+          "of",
+          "and",
+          "that",
+          "is",
+          "it",
+          "he",
+          "his",
+          "be"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronoun Cluster",
+          "Grammatical Core",
+          "Function Words",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          3,
+          3,
+          1,
+          2
+        ],
+        "frequency": 1842,
+        "percentage": 19.902755267423014,
+        "example_words": [
+          "was",
+          "had",
+          "I",
+          "--",
+          "He",
+          "has",
+          "(",
+          "It",
+          "can",
+          "there"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Verbal Auxiliaries",
+          "Verbal System",
+          "Verbal Forms",
+          "Verbal System"
+        ]
+      },
+      {
+        "path": [
+          1,
+          1,
+          0,
+          4
+        ],
+        "frequency": 1306,
+        "percentage": 14.111291193949215,
+        "example_words": [
+          "to",
+          "a",
+          "as",
+          "on",
+          "or",
+          "which",
+          "one",
+          "her",
+          "out",
+          "up"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Lexical Content",
+          "Content Words",
+          "Content Vocabulary",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          4,
+          2,
+          2,
+          3
+        ],
+        "frequency": 585,
+        "percentage": 6.3209076175040515,
+        "example_words": [
+          "``",
+          "came",
+          "New",
+          "'ll",
+          "told",
+          "don",
+          "didn",
+          "give",
+          "en",
+          "looked"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Boundaries & Quotes",
+          "Punctuation Marks",
+          "Special Markers",
+          "Punctuation System"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          4,
+          1
+        ],
+        "frequency": 34,
+        "percentage": 0.3673689897352782,
+        "example_words": [
+          "into",
+          "some",
+          "just",
+          "three",
+          "during",
+          "D",
+          "whether",
+          "behind",
+          "third",
+          "sent"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Syntactic Connectors",
+          "Grammatical Core",
+          "Function Words",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          3,
+          0
+        ],
+        "frequency": 33,
+        "percentage": 0.3565640194489465,
+        "example_words": [
+          "said",
+          "space",
+          "responsibility",
+          "Association",
+          "Sam",
+          "search",
+          "gr",
+          "credit",
+          "Tuesday",
+          "chairman"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronoun Cluster",
+          "Grammatical Core",
+          "Pronouns",
+          "Pronominal Core"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          1,
+          2
+        ],
+        "frequency": 23,
+        "percentage": 0.2485143165856294,
+        "example_words": [
+          "saw",
+          "strong",
+          "trying",
+          "decision",
+          "Act",
+          "Louis",
+          "relation",
+          "Tom",
+          "conclusion",
+          "congregation"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Syntactic Connectors",
+          "Pronominal System",
+          "Verbal Forms",
+          "Verbal System"
+        ]
+      },
+      {
+        "path": [
+          2,
+          4,
+          3,
+          0
+        ],
+        "frequency": 20,
+        "percentage": 0.21609940572663425,
+        "example_words": [
+          "works",
+          "supply",
+          "discussion",
+          "Company",
+          "platform",
+          "ms",
+          "bus",
+          "Earth",
+          "Em",
+          "consequence"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronoun Cluster",
+          "Pronominal System",
+          "Pronouns",
+          "Pronominal Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          0,
+          4
+        ],
+        "frequency": 16,
+        "percentage": 0.1728795245813074,
+        "example_words": [
+          "than",
+          "ease",
+          "signals",
+          "talents",
+          "pupils",
+          "negotiations",
+          "diplomacy",
+          "ote",
+          "priests",
+          "leap"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronoun Cluster",
+          "Content Words",
+          "Content Vocabulary",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "frequency": 16,
+        "percentage": 0.1728795245813074,
+        "example_words": [
+          "turn",
+          "says",
+          "appears",
+          "formed",
+          "laughed",
+          "issued",
+          "opposition",
+          "occur",
+          "clerk",
+          "Republic"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 4,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Syntactic Connectors",
+          "Verbal System",
+          "Verbal Forms",
+          "Verbal System"
+        ]
+      },
+      {
+        "path": [
+          3,
+          4,
+          3,
+          0
+        ],
+        "frequency": 14,
+        "percentage": 0.151269584008644,
+        "example_words": [
+          "their",
+          "Her",
+          "entered",
+          "Our",
+          "rural",
+          "hurt",
+          "survive",
+          "pal",
+          "nearest",
+          "pursue"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Verbal Auxiliaries",
+          "Pronominal System",
+          "Pronouns",
+          "Pronominal Core"
+        ]
+      },
+      {
+        "path": [
+          2,
+          0,
+          4,
+          0
+        ],
+        "frequency": 10,
+        "percentage": 0.10804970286331712,
+        "example_words": [
+          "sign",
+          "product",
+          "conference",
+          "vision",
+          "iss",
+          "employment",
+          "beach",
+          "tent",
+          "essay",
+          "carpet"
+        ],
+        "stability": 0.0,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronoun Cluster",
+          "Grammatical Core",
+          "Function Words",
+          "Pronominal Core"
+        ]
+      }
+    ],
+    "layer_transitions": {
+      "layer_0_to_1": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 2.2774208434973406,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 4,
+            "probability": 0.9804630969609262,
+            "count": 2710
+          },
+          {
+            "from": 1,
+            "to": 1,
+            "probability": 0.9932126696832579,
+            "count": 1317
+          },
+          {
+            "from": 2,
+            "to": 0,
+            "probability": 0.9862606758262161,
+            "count": 2656
+          },
+          {
+            "from": 3,
+            "to": 3,
+            "probability": 0.9877594465141033,
+            "count": 1856
+          },
+          {
+            "from": 4,
+            "to": 2,
+            "probability": 0.9898819561551433,
+            "count": 587
+          }
+        ],
+        "total_transitions": 9255
+      },
+      "layer_1_to_2": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 2.2453272211817916,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 4,
+            "probability": 0.9837217906030337,
+            "count": 2659
+          },
+          {
+            "from": 1,
+            "to": 0,
+            "probability": 0.9947526236881559,
+            "count": 1327
+          },
+          {
+            "from": 2,
+            "to": 2,
+            "probability": 0.9966216216216216,
+            "count": 590
+          },
+          {
+            "from": 3,
+            "to": 1,
+            "probability": 0.996272630457934,
+            "count": 1871
+          },
+          {
+            "from": 4,
+            "to": 3,
+            "probability": 0.9887190684133915,
+            "count": 2717
+          }
+        ],
+        "total_transitions": 9255
+      },
+      "layer_2_to_3": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 2.2032451810187124,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 4,
+            "probability": 0.9962518740629686,
+            "count": 1329
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "probability": 0.9952631578947368,
+            "count": 1891
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "probability": 1.0,
+            "count": 595
+          },
+          {
+            "from": 3,
+            "to": 0,
+            "probability": 0.9960087082728593,
+            "count": 2745
+          },
+          {
+            "from": 4,
+            "to": 1,
+            "probability": 0.9955056179775281,
+            "count": 2658
+          }
+        ],
+        "total_transitions": 9255
+      }
+    }
+  },
+  "late": {
+    "window": "late",
+    "layers": [
+      8,
+      11
+    ],
+    "path_patterns": {
+      "n_unique_paths": 70,
+      "total_trajectories": 9255,
+      "path_diversity_by_layer": [
+        0.4,
+        0.48,
+        1.0
+      ],
+      "mean_diversity": 0.6266666666666666,
+      "path_frequencies": {
+        "(0, 0, 0, 1)": 937,
+        "(4, 3, 3, 1)": 882,
+        "(4, 3, 3, 4)": 793,
+        "(0, 0, 0, 4)": 770,
+        "(1, 4, 4, 1)": 495,
+        "(0, 0, 0, 2)": 481,
+        "(1, 4, 4, 4)": 480,
+        "(4, 3, 3, 2)": 466,
+        "(0, 0, 0, 0)": 449,
+        "(2, 1, 1, 1)": 432,
+        "(4, 3, 3, 0)": 381,
+        "(2, 1, 1, 0)": 371,
+        "(1, 4, 4, 3)": 303,
+        "(2, 1, 1, 4)": 284,
+        "(3, 2, 2, 3)": 270,
+        "(2, 1, 1, 2)": 258,
+        "(1, 4, 4, 2)": 253,
+        "(1, 4, 4, 0)": 213,
+        "(4, 3, 3, 3)": 198,
+        "(0, 0, 0, 3)": 106
+      },
+      "path_to_words": {
+        "(0, 0, 0, 0)": [
+          "the",
+          "of",
+          "and",
+          "is",
+          "it"
+        ],
+        "(0, 0, 0, 1)": [
+          ",",
+          "that",
+          "new",
+          "little",
+          "world"
+        ],
+        "(4, 3, 3, 0)": [
+          ".",
+          "in",
+          "for",
+          "''",
+          "-"
+        ],
+        "(2, 1, 1, 0)": [
+          "to",
+          "a",
+          "as",
+          "on",
+          "or"
+        ],
+        "(4, 3, 3, 2)": [
+          "was",
+          "with",
+          "from",
+          "have",
+          "were"
+        ],
+        "(4, 3, 3, 1)": [
+          "The",
+          ";",
+          ")",
+          "do",
+          "But"
+        ],
+        "(0, 0, 0, 2)": [
+          "'s",
+          "him",
+          "said",
+          "them",
+          "into"
+        ],
+        "(1, 4, 4, 2)": [
+          "had",
+          "has",
+          "can",
+          "could",
+          "may"
+        ],
+        "(3, 2, 2, 0)": [
+          "``",
+          "New",
+          "don",
+          "On",
+          "President"
+        ],
+        "(4, 3, 3, 4)": [
+          "not",
+          "more",
+          "where",
+          "good",
+          "very"
+        ],
+        "(1, 4, 4, 0)": [
+          "I",
+          "He",
+          "(",
+          "there",
+          "In"
+        ],
+        "(2, 1, 1, 2)": [
+          "which",
+          "than",
+          "each",
+          "himself",
+          "possible"
+        ],
+        "(1, 4, 4, 1)": [
+          "It",
+          "There",
+          "If",
+          "take",
+          "United"
+        ],
+        "(2, 1, 1, 3)": [
+          "other",
+          "under",
+          "head",
+          "end",
+          "il"
+        ],
+        "(0, 0, 0, 4)": [
+          "only",
+          "time",
+          "some",
+          "two",
+          "like"
+        ],
+        "(1, 3, 3, 2)": [
+          "This",
+          "You",
+          "become",
+          "noticed",
+          "welcome"
+        ],
+        "(1, 4, 4, 3)": [
+          "Af",
+          "S",
+          "t",
+          "le",
+          "St"
+        ],
+        "(1, 3, 3, 0)": [
+          "'",
+          "green",
+          "Dark"
+        ],
+        "(2, 1, 1, 1)": [
+          "life",
+          "number",
+          "ers",
+          "once",
+          "system"
+        ],
+        "(2, 1, 1, 4)": [
+          "use",
+          "place",
+          "side",
+          "half",
+          "ous"
+        ],
+        "(4, 3, 3, 3)": [
+          "part",
+          "car",
+          "help",
+          "cost",
+          "el"
+        ],
+        "(0, 0, 0, 3)": [
+          "hand",
+          "per",
+          "P",
+          "un",
+          "p"
+        ],
+        "(3, 2, 2, 2)": [
+          "'ll",
+          "told",
+          "looked",
+          "gave",
+          "stood"
+        ],
+        "(1, 4, 4, 4)": [
+          "find",
+          "social",
+          "local",
+          "short",
+          "known"
+        ],
+        "(3, 2, 2, 1)": [
+          "didn",
+          "give",
+          "able",
+          "tell",
+          "couldn"
+        ],
+        "(3, 2, 2, 3)": [
+          "en",
+          "st",
+          "ent",
+          "non",
+          "ch"
+        ],
+        "(2, 1, 0, 0)": [
+          "ever"
+        ],
+        "(3, 4, 4, 2)": [
+          "seemed",
+          "deeply"
+        ],
+        "(3, 2, 2, 4)": [
+          "Some",
+          "cent",
+          "Most",
+          "principal",
+          "bright"
+        ],
+        "(2, 1, 0, 1)": [
+          "process",
+          "boro"
+        ],
+        "(3, 2, 4, 0)": [
+          "Of"
+        ],
+        "(0, 1, 0, 1)": [
+          "support"
+        ],
+        "(3, 4, 4, 4)": [
+          "foreign"
+        ],
+        "(4, 0, 0, 1)": [
+          "below",
+          "izing",
+          "platform",
+          "safe",
+          "lose"
+        ],
+        "(4, 3, 0, 0)": [
+          "100"
+        ],
+        "(0, 1, 0, 4)": [
+          "status"
+        ],
+        "(4, 3, 0, 1)": [
+          "standard",
+          "equipped"
+        ],
+        "(4, 3, 0, 2)": [
+          "citizens",
+          "eliminating"
+        ],
+        "(0, 1, 1, 1)": [
+          "smaller",
+          "Poland"
+        ],
+        "(4, 3, 0, 4)": [
+          "frame",
+          "foam",
+          "client",
+          "alike"
+        ],
+        "(2, 1, 0, 2)": [
+          "planned"
+        ],
+        "(4, 3, 4, 1)": [
+          "relation"
+        ],
+        "(4, 0, 0, 4)": [
+          "contact",
+          "skill",
+          "vacation",
+          "soul",
+          "consciousness"
+        ],
+        "(1, 4, 3, 4)": [
+          "lady",
+          "forest",
+          "Business",
+          "eccentric",
+          "compact"
+        ],
+        "(4, 0, 3, 0)": [
+          "bus"
+        ],
+        "(1, 3, 3, 1)": [
+          "missile",
+          "attractive",
+          "submarine",
+          "Brooklyn",
+          "blowing"
+        ],
+        "(1, 3, 4, 1)": [
+          "insisted"
+        ],
+        "(3, 2, 4, 2)": [
+          "holds"
+        ],
+        "(0, 0, 3, 1)": [
+          "Indeed"
+        ],
+        "(4, 0, 0, 2)": [
+          "objectives",
+          "reducing",
+          "Republicans"
+        ],
+        "(3, 4, 4, 1)": [
+          "jumped",
+          "hanging",
+          "Speaking"
+        ],
+        "(1, 4, 3, 1)": [
+          "advised",
+          "troubled",
+          "ethical",
+          "respective",
+          "bargaining"
+        ],
+        "(3, 2, 4, 4)": [
+          "thermal",
+          "colorful",
+          "convey"
+        ],
+        "(1, 3, 3, 3)": [
+          "mat",
+          "Gre"
+        ],
+        "(0, 1, 1, 2)": [
+          "Germans",
+          "istically",
+          "speakers"
+        ],
+        "(0, 1, 1, 4)": [
+          "reserve",
+          "ticket",
+          "ander",
+          "Egypt"
+        ],
+        "(0, 1, 1, 0)": [
+          "li",
+          "ny",
+          "lee"
+        ],
+        "(1, 3, 3, 4)": [
+          "noble",
+          "computed",
+          "planetary",
+          "glued",
+          "acquisition"
+        ],
+        "(3, 2, 4, 1)": [
+          "wherever"
+        ],
+        "(1, 4, 3, 2)": [
+          "hired"
+        ],
+        "(0, 0, 3, 3)": [
+          "ific",
+          "rum"
+        ],
+        "(1, 3, 4, 4)": [
+          "corrupt",
+          "stamped"
+        ],
+        "(4, 0, 0, 0)": [
+          "44",
+          "quit",
+          "Birds"
+        ],
+        "(4, 0, 3, 1)": [
+          "reflecting"
+        ],
+        "(3, 2, 4, 3)": [
+          "electro"
+        ],
+        "(4, 0, 3, 4)": [
+          "opium"
+        ],
+        "(1, 3, 4, 3)": [
+          "Ale",
+          "Jen"
+        ],
+        "(0, 0, 1, 4)": [
+          "lantern"
+        ],
+        "(4, 4, 4, 3)": [
+          "vig"
+        ],
+        "(3, 4, 4, 3)": [
+          "Aut"
+        ]
+      },
+      "unique_paths": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          4,
+          3,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          3,
+          3,
+          2
+        ],
+        [
+          4,
+          3,
+          3,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          1,
+          4,
+          4,
+          2
+        ],
+        [
+          3,
+          2,
+          2,
+          0
+        ],
+        [
+          4,
+          3,
+          3,
+          4
+        ],
+        [
+          1,
+          4,
+          4,
+          0
+        ],
+        [
+          2,
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          4,
+          4,
+          1
+        ],
+        [
+          2,
+          1,
+          1,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          1,
+          3,
+          3,
+          2
+        ],
+        [
+          1,
+          4,
+          4,
+          3
+        ],
+        [
+          1,
+          3,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          1,
+          4
+        ],
+        [
+          4,
+          3,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          3,
+          2,
+          2,
+          2
+        ],
+        [
+          1,
+          4,
+          4,
+          4
+        ],
+        [
+          3,
+          2,
+          2,
+          1
+        ],
+        [
+          3,
+          2,
+          2,
+          3
+        ],
+        [
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          3,
+          4,
+          4,
+          2
+        ],
+        [
+          3,
+          2,
+          2,
+          4
+        ],
+        [
+          2,
+          1,
+          0,
+          1
+        ],
+        [
+          3,
+          2,
+          4,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          3,
+          4,
+          4,
+          4
+        ],
+        [
+          4,
+          0,
+          0,
+          1
+        ],
+        [
+          4,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          4
+        ],
+        [
+          4,
+          3,
+          0,
+          1
+        ],
+        [
+          4,
+          3,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          4,
+          3,
+          0,
+          4
+        ],
+        [
+          2,
+          1,
+          0,
+          2
+        ],
+        [
+          4,
+          3,
+          4,
+          1
+        ],
+        [
+          4,
+          0,
+          0,
+          4
+        ],
+        [
+          1,
+          4,
+          3,
+          4
+        ],
+        [
+          4,
+          0,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          4,
+          1
+        ],
+        [
+          3,
+          2,
+          4,
+          2
+        ],
+        [
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          4,
+          0,
+          0,
+          2
+        ],
+        [
+          3,
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          4,
+          3,
+          1
+        ],
+        [
+          3,
+          2,
+          4,
+          4
+        ],
+        [
+          1,
+          3,
+          3,
+          3
+        ],
+        [
+          0,
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          3,
+          3,
+          4
+        ],
+        [
+          3,
+          2,
+          4,
+          1
+        ],
+        [
+          1,
+          4,
+          3,
+          2
+        ],
+        [
+          0,
+          0,
+          3,
+          3
+        ],
+        [
+          1,
+          3,
+          4,
+          4
+        ],
+        [
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          3,
+          1
+        ],
+        [
+          3,
+          2,
+          4,
+          3
+        ],
+        [
+          4,
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          3,
+          4,
+          3
+        ],
+        [
+          0,
+          0,
+          1,
+          4
+        ],
+        [
+          4,
+          4,
+          4,
+          3
+        ],
+        [
+          3,
+          4,
+          4,
+          3
+        ]
+      ]
+    },
+    "trajectory_metrics": {
+      "fragmentation": 0.16439839440330048,
+      "stability": 0.4885287232126778,
+      "convergence": 0.0,
+      "semantic_coherence": null,
+      "n_trajectories": 9255,
+      "n_layers": 4,
+      "transition_counts": {
+        "0": {
+          "(0, 0)": 2747,
+          "(4, 3)": 2730,
+          "(2, 1)": 1386,
+          "(1, 4)": 1758,
+          "(3, 2)": 543,
+          "(1, 3)": 36,
+          "(3, 4)": 7,
+          "(0, 1)": 14,
+          "(4, 0)": 33,
+          "(4, 4)": 1
+        },
+        "1": {
+          "(0, 0)": 2773,
+          "(3, 3)": 2751,
+          "(1, 1)": 1394,
+          "(4, 4)": 1752,
+          "(2, 2)": 536,
+          "(1, 0)": 6,
+          "(2, 4)": 7,
+          "(3, 0)": 9,
+          "(3, 4)": 6,
+          "(4, 3)": 14,
+          "(0, 3)": 6,
+          "(0, 1)": 1
+        },
+        "2": {
+          "(0, 0)": 454,
+          "(0, 1)": 958,
+          "(3, 0)": 385,
+          "(1, 0)": 374,
+          "(3, 2)": 475,
+          "(3, 1)": 901,
+          "(0, 2)": 487,
+          "(4, 2)": 256,
+          "(2, 0)": 54,
+          "(3, 4)": 808,
+          "(4, 0)": 214,
+          "(1, 2)": 261,
+          "(4, 1)": 501,
+          "(1, 3)": 37,
+          "(0, 4)": 783,
+          "(4, 3)": 308,
+          "(1, 1)": 434,
+          "(1, 4)": 289,
+          "(3, 3)": 202,
+          "(0, 3)": 106,
+          "(2, 2)": 34,
+          "(4, 4)": 486,
+          "(2, 1)": 78,
+          "(2, 3)": 270,
+          "(2, 4)": 100
+        }
+      },
+      "avg_transitions_per_layer": {
+        "0": 10,
+        "1": 12,
+        "2": 25
+      },
+      "unique_clusters_per_layer": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "layer_entropies": [
+        1.4919103230722364,
+        1.4903845901368553,
+        1.488724880199474,
+        1.5347292338165714
+      ]
+    },
+    "archetypal_paths": [
+      {
+        "path": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "frequency": 937,
+        "percentage": 10.124257158292815,
+        "example_words": [
+          ",",
+          "that",
+          "new",
+          "little",
+          "world",
+          "few",
+          "American",
+          "left",
+          "course",
+          "called"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Core",
+          "Function Core",
+          "Pronouns & Deixis"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          3,
+          1
+        ],
+        "frequency": 882,
+        "percentage": 9.52998379254457,
+        "example_words": [
+          "The",
+          ";",
+          ")",
+          "do",
+          "But",
+          "And",
+          "make",
+          "know",
+          "same",
+          "great"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns",
+          "Pronominal System",
+          "Pronouns",
+          "Pronouns & Deixis"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          3,
+          4
+        ],
+        "frequency": 793,
+        "percentage": 8.568341437061049,
+        "example_words": [
+          "not",
+          "more",
+          "where",
+          "good",
+          "very",
+          "year",
+          "high",
+          "small",
+          "As",
+          "away"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Pronouns",
+          "Pronominal System",
+          "Pronouns",
+          "Mixed Elements"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "frequency": 770,
+        "percentage": 8.319827120475418,
+        "example_words": [
+          "only",
+          "time",
+          "some",
+          "two",
+          "like",
+          "made",
+          "most",
+          "ing",
+          "ly",
+          "many"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Core",
+          "Function Core",
+          "Mixed Elements"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          1
+        ],
+        "frequency": 495,
+        "percentage": 5.348460291734198,
+        "example_words": [
+          "It",
+          "There",
+          "If",
+          "take",
+          "United",
+          "His",
+          "far",
+          "second",
+          "rather",
+          "along"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Verbal Elements",
+          "Verbal System",
+          "Verbal Forms",
+          "Pronouns & Deixis"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          0,
+          2
+        ],
+        "frequency": 481,
+        "percentage": 5.197190707725554,
+        "example_words": [
+          "'s",
+          "him",
+          "said",
+          "them",
+          "into",
+          "about",
+          "what",
+          "first",
+          "now",
+          "also"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Core",
+          "Function Core",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          4
+        ],
+        "frequency": 480,
+        "percentage": 5.186385737439222,
+        "example_words": [
+          "find",
+          "social",
+          "local",
+          "short",
+          "known",
+          "modern",
+          "black",
+          "century",
+          "cold",
+          "General"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Verbal Elements",
+          "Verbal System",
+          "Verbal Forms",
+          "Mixed Elements"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          3,
+          2
+        ],
+        "frequency": 466,
+        "percentage": 5.035116153430578,
+        "example_words": [
+          "was",
+          "with",
+          "from",
+          "have",
+          "were",
+          "they",
+          "would",
+          "been",
+          "will",
+          "who"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns",
+          "Pronominal System",
+          "Pronouns",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "frequency": 449,
+        "percentage": 4.851431658562939,
+        "example_words": [
+          "the",
+          "of",
+          "and",
+          "is",
+          "it",
+          "he",
+          "his",
+          "be",
+          "at",
+          "are"
+        ],
+        "stability": 1.0,
+        "n_unique_clusters": 1,
+        "is_stable": true,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Core",
+          "Function Core",
+          "Content Vocabulary"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          1,
+          1
+        ],
+        "frequency": 432,
+        "percentage": 4.667747163695299,
+        "example_words": [
+          "life",
+          "number",
+          "ers",
+          "once",
+          "system",
+          "program",
+          "ism",
+          "matter",
+          "city",
+          "experience"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Lexicon",
+          "Content Words",
+          "Lexical Content",
+          "Pronouns & Deixis"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          3,
+          0
+        ],
+        "frequency": 381,
+        "percentage": 4.116693679092383,
+        "example_words": [
+          ".",
+          "in",
+          "for",
+          "''",
+          "-",
+          "by",
+          "?",
+          "--",
+          "you",
+          "their"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns",
+          "Pronominal System",
+          "Pronouns",
+          "Content Vocabulary"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          1,
+          0
+        ],
+        "frequency": 371,
+        "percentage": 4.008643976229066,
+        "example_words": [
+          "to",
+          "a",
+          "as",
+          "on",
+          "or",
+          "one",
+          "her",
+          "out",
+          "up",
+          "its"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Lexicon",
+          "Content Words",
+          "Lexical Content",
+          "Content Vocabulary"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          3
+        ],
+        "frequency": 303,
+        "percentage": 3.273905996758509,
+        "example_words": [
+          "Af",
+          "S",
+          "t",
+          "le",
+          "St",
+          "ant",
+          "c",
+          "em",
+          "cl",
+          "anti"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Verbal Elements",
+          "Verbal System",
+          "Verbal Forms",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          1,
+          4
+        ],
+        "frequency": 284,
+        "percentage": 3.0686115613182063,
+        "example_words": [
+          "use",
+          "place",
+          "side",
+          "half",
+          "ous",
+          "control",
+          "rate",
+          "value",
+          "ground",
+          "view"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Lexicon",
+          "Content Words",
+          "Lexical Content",
+          "Mixed Elements"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          2,
+          3
+        ],
+        "frequency": 270,
+        "percentage": 2.9173419773095626,
+        "example_words": [
+          "en",
+          "st",
+          "ent",
+          "non",
+          "ch",
+          "ar",
+          "ter",
+          "dis",
+          "ag",
+          "pre"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Special Characters",
+          "Punctuation",
+          "Special Markers",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "frequency": 258,
+        "percentage": 2.787682333873582,
+        "example_words": [
+          "which",
+          "than",
+          "each",
+          "himself",
+          "possible",
+          "things",
+          "later",
+          "least",
+          "others",
+          "words"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Content Lexicon",
+          "Content Words",
+          "Lexical Content",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          2
+        ],
+        "frequency": 253,
+        "percentage": 2.7336574824419233,
+        "example_words": [
+          "had",
+          "has",
+          "can",
+          "could",
+          "may",
+          "should",
+          "They",
+          "between",
+          "came",
+          "We"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Verbal Elements",
+          "Verbal System",
+          "Verbal Forms",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          1,
+          4,
+          4,
+          0
+        ],
+        "frequency": 213,
+        "percentage": 2.301458670988655,
+        "example_words": [
+          "I",
+          "He",
+          "(",
+          "there",
+          "In",
+          "ed",
+          "She",
+          "y",
+          "For",
+          "$"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Verbal Elements",
+          "Verbal System",
+          "Verbal Forms",
+          "Content Vocabulary"
+        ]
+      },
+      {
+        "path": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "frequency": 198,
+        "percentage": 2.139384116693679,
+        "example_words": [
+          "part",
+          "car",
+          "help",
+          "cost",
+          "el",
+          "met",
+          "u",
+          "Dr",
+          "inter",
+          "color"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Pronouns",
+          "Pronominal System",
+          "Pronouns",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          0,
+          0,
+          0,
+          3
+        ],
+        "frequency": 106,
+        "percentage": 1.1453268503511616,
+        "example_words": [
+          "hand",
+          "per",
+          "P",
+          "un",
+          "p",
+          "self",
+          "type",
+          "rest",
+          "act",
+          "re"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Function Words",
+          "Grammatical Core",
+          "Function Core",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          2,
+          4
+        ],
+        "frequency": 100,
+        "percentage": 1.0804970286331712,
+        "example_words": [
+          "Some",
+          "cent",
+          "Most",
+          "principal",
+          "bright",
+          "warm",
+          "liberal",
+          "closely",
+          "Though",
+          "sick"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Special Characters",
+          "Punctuation",
+          "Special Markers",
+          "Mixed Elements"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          2,
+          1
+        ],
+        "frequency": 78,
+        "percentage": 0.8427876823338737,
+        "example_words": [
+          "didn",
+          "give",
+          "able",
+          "tell",
+          "couldn",
+          "won",
+          "somewhat",
+          "gives",
+          "according",
+          "pretty"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Special Characters",
+          "Punctuation",
+          "Special Markers",
+          "Pronouns & Deixis"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          2,
+          0
+        ],
+        "frequency": 54,
+        "percentage": 0.5834683954619124,
+        "example_words": [
+          "``",
+          "New",
+          "don",
+          "On",
+          "President",
+          "et",
+          "An",
+          "By",
+          "sat",
+          "wasn"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Special Characters",
+          "Punctuation",
+          "Special Markers",
+          "Content Vocabulary"
+        ]
+      },
+      {
+        "path": [
+          2,
+          1,
+          1,
+          3
+        ],
+        "frequency": 37,
+        "percentage": 0.3997839005942734,
+        "example_words": [
+          "other",
+          "under",
+          "head",
+          "end",
+          "il",
+          "ut",
+          "oc",
+          "ort",
+          "ose",
+          "ul"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Content Lexicon",
+          "Content Words",
+          "Lexical Content",
+          "Function Elements"
+        ]
+      },
+      {
+        "path": [
+          3,
+          2,
+          2,
+          2
+        ],
+        "frequency": 34,
+        "percentage": 0.3673689897352782,
+        "example_words": [
+          "'ll",
+          "told",
+          "looked",
+          "gave",
+          "stood",
+          "decided",
+          "wouldn",
+          "served",
+          "looks",
+          "stayed"
+        ],
+        "stability": 0.6666666666666666,
+        "n_unique_clusters": 2,
+        "is_stable": false,
+        "is_wandering": false,
+        "semantic_labels": [
+          "Special Characters",
+          "Punctuation",
+          "Special Markers",
+          "Lexical Items"
+        ]
+      },
+      {
+        "path": [
+          4,
+          0,
+          0,
+          1
+        ],
+        "frequency": 16,
+        "percentage": 0.1728795245813074,
+        "example_words": [
+          "below",
+          "izing",
+          "platform",
+          "safe",
+          "lose",
+          "extended",
+          "housing",
+          "ying",
+          "classic",
+          "shopping"
+        ],
+        "stability": 0.3333333333333333,
+        "n_unique_clusters": 3,
+        "is_stable": false,
+        "is_wandering": true,
+        "semantic_labels": [
+          "Pronouns",
+          "Grammatical Core",
+          "Function Core",
+          "Pronouns & Deixis"
+        ]
+      }
+    ],
+    "layer_transitions": {
+      "layer_0_to_1": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 2.2286969497816744,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 0,
+            "probability": 0.9949293734154292,
+            "count": 2747
+          },
+          {
+            "from": 1,
+            "to": 4,
+            "probability": 0.979933110367893,
+            "count": 1758
+          },
+          {
+            "from": 2,
+            "to": 1,
+            "probability": 1.0,
+            "count": 1386
+          },
+          {
+            "from": 3,
+            "to": 2,
+            "probability": 0.9872727272727273,
+            "count": 543
+          },
+          {
+            "from": 4,
+            "to": 3,
+            "probability": 0.9876989869753979,
+            "count": 2730
+          }
+        ],
+        "total_transitions": 9255
+      },
+      "layer_1_to_2": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 2.198937802263567,
+        "n_dominant_transitions": 5,
+        "dominant_transitions": [
+          {
+            "from": 0,
+            "to": 0,
+            "probability": 0.9974820143884892,
+            "count": 2773
+          },
+          {
+            "from": 1,
+            "to": 1,
+            "probability": 0.9957142857142857,
+            "count": 1394
+          },
+          {
+            "from": 2,
+            "to": 2,
+            "probability": 0.9871086556169429,
+            "count": 536
+          },
+          {
+            "from": 3,
+            "to": 3,
+            "probability": 0.9945770065075922,
+            "count": 2751
+          },
+          {
+            "from": 4,
+            "to": 4,
+            "probability": 0.9920724801812004,
+            "count": 1752
+          }
+        ],
+        "total_transitions": 9255
+      },
+      "layer_2_to_3": {
+        "n_from_clusters": 5,
+        "n_to_clusters": 5,
+        "transition_entropy": 4.277247940965251,
+        "n_dominant_transitions": 1,
+        "dominant_transitions": [
+          {
+            "from": 2,
+            "to": 3,
+            "probability": 0.503731343283582,
+            "count": 270
+          }
+        ],
+        "total_transitions": 9255
+      }
+    }
+  },
+  "cross_window": {
+    "archetypal_connections": {
+      "early_to_middle": [
+        {
+          "from_path": [
+            4,
+            3,
+            3,
+            0
+          ],
+          "to_path": [
+            2,
+            0,
+            4,
+            1
+          ],
+          "count": 652,
+          "percentage": 7.044840626688277
+        },
+        {
+          "from_path": [
+            4,
+            0,
+            2,
+            2
+          ],
+          "to_path": [
+            1,
+            1,
+            0,
+            4
+          ],
+          "count": 523,
+          "percentage": 5.650999459751485
+        },
+        {
+          "from_path": [
+            2,
+            4,
+            1,
+            3
+          ],
+          "to_path": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "count": 429,
+          "percentage": 4.635332252836305
+        },
+        {
+          "from_path": [
+            1,
+            4,
+            1,
+            3
+          ],
+          "to_path": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "count": 411,
+          "percentage": 4.4408427876823335
+        },
+        {
+          "from_path": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "to_path": [
+            1,
+            1,
+            0,
+            4
+          ],
+          "count": 404,
+          "percentage": 4.365207995678012
+        },
+        {
+          "from_path": [
+            1,
+            3,
+            1,
+            4
+          ],
+          "to_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "count": 291,
+          "percentage": 3.144246353322528
+        },
+        {
+          "from_path": [
+            3,
+            1,
+            0,
+            4
+          ],
+          "to_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "count": 266,
+          "percentage": 2.8741220961642355
+        },
+        {
+          "from_path": [
+            4,
+            3,
+            3,
+            4
+          ],
+          "to_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "count": 265,
+          "percentage": 2.863317125877904
+        },
+        {
+          "from_path": [
+            2,
+            3,
+            1,
+            4
+          ],
+          "to_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "count": 241,
+          "percentage": 2.6039978390059426
+        },
+        {
+          "from_path": [
+            3,
+            2,
+            4,
+            1
+          ],
+          "to_path": [
+            4,
+            2,
+            2,
+            3
+          ],
+          "count": 240,
+          "percentage": 2.593192868719611
+        }
+      ],
+      "middle_to_late": [
+        {
+          "from_path": [
+            2,
+            0,
+            4,
+            1
+          ],
+          "to_path": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "count": 860,
+          "percentage": 9.292274446245273
+        },
+        {
+          "from_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "to_path": [
+            4,
+            3,
+            3,
+            1
+          ],
+          "count": 815,
+          "percentage": 8.806050783360346
+        },
+        {
+          "from_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "to_path": [
+            4,
+            3,
+            3,
+            4
+          ],
+          "count": 756,
+          "percentage": 8.168557536466775
+        },
+        {
+          "from_path": [
+            2,
+            0,
+            4,
+            1
+          ],
+          "to_path": [
+            0,
+            0,
+            0,
+            4
+          ],
+          "count": 723,
+          "percentage": 7.811993517017828
+        },
+        {
+          "from_path": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "to_path": [
+            1,
+            4,
+            4,
+            1
+          ],
+          "count": 479,
+          "percentage": 5.175580767152891
+        },
+        {
+          "from_path": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "to_path": [
+            1,
+            4,
+            4,
+            4
+          ],
+          "count": 466,
+          "percentage": 5.035116153430578
+        },
+        {
+          "from_path": [
+            2,
+            0,
+            4,
+            1
+          ],
+          "to_path": [
+            0,
+            0,
+            0,
+            2
+          ],
+          "count": 441,
+          "percentage": 4.764991896272285
+        },
+        {
+          "from_path": [
+            0,
+            4,
+            3,
+            0
+          ],
+          "to_path": [
+            4,
+            3,
+            3,
+            2
+          ],
+          "count": 428,
+          "percentage": 4.624527282549973
+        },
+        {
+          "from_path": [
+            2,
+            0,
+            4,
+            1
+          ],
+          "to_path": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "count": 427,
+          "percentage": 4.613722312263642
+        },
+        {
+          "from_path": [
+            1,
+            1,
+            0,
+            4
+          ],
+          "to_path": [
+            2,
+            1,
+            1,
+            1
+          ],
+          "count": 407,
+          "percentage": 4.3976229065370065
+        }
+      ]
+    },
+    "stability_progression": [
+      0.17233927606699082,
+      0.1374392220421394,
+      0.4885287232126778
+    ],
+    "fragmentation_progression": [
+      0.16818384925098007,
+      0.16414803325565364,
+      0.16439839440330048
+    ]
+  }
+}
