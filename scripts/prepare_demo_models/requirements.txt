@@ -1,0 +1,21 @@
+# Requirements for training demo models
+# These are in addition to the main concept_fragmentation requirements
+
+# Core dependencies (should match concept_fragmentation versions)
+numpy>=1.20.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+torch>=1.10.0
+seaborn>=0.11.0  # For Titanic dataset
+tqdm>=4.62.0
+
+# Hyperparameter optimization
+optuna>=3.0.0
+
+# Additional utilities
+opendatasets>=0.1.20  # For downloading datasets from OpenML
+tabulate>=0.9.0  # For pretty printing results
+
+# Optional but recommended
+tensorboard>=2.10.0  # For training visualization
+matplotlib>=3.4.0  # For plotting optimization results

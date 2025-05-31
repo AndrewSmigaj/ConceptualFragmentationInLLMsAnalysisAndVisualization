@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 import torch
 import numpy as np
+import json
 
 # Add parent directory to path to import concept_fragmentation
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -58,9 +59,17 @@ class ModelInterface:
     def _load_pytorch_model(self, model_path: str) -> Dict[str, Any]:
         """Load a PyTorch model."""
         try:
-            # Load the model
-            self.model = torch.load(model_path, map_location='cpu')
+            # Load the model or checkpoint
+            checkpoint = torch.load(model_path, map_location='cpu')
             self.model_type = 'pytorch'
+            
+            # Check if it's a demo model format (with architecture info)
+            if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
+                # This is our demo model format
+                return self._load_demo_model(model_path, checkpoint)
+            
+            # Otherwise, treat as regular PyTorch model
+            self.model = checkpoint
             
             # If it's a state dict, we need the model architecture
             if isinstance(self.model, dict):
@@ -265,3 +274,107 @@ class ModelInterface:
     def get_layer_info(self) -> List[Dict[str, Any]]:
         """Get detailed layer information."""
         return self.layer_info
+    
+    def _load_demo_model(self, model_path: str, checkpoint: Dict[str, Any]) -> Dict[str, Any]:
+        """Load a demo model with saved architecture information."""
+        # Import model architectures from training scripts
+        sys.path.insert(0, str(Path(__file__).parent.parent.parent / 'scripts' / 'prepare_demo_models'))
+        from model_architectures import OptimizableFFNet
+        
+        # Extract architecture information
+        input_size = checkpoint['input_size']
+        output_size = checkpoint['output_size']
+        hidden_sizes = checkpoint['architecture']
+        activation = checkpoint.get('activation', 'relu')
+        dropout_rate = checkpoint.get('dropout_rate', 0.0)
+        
+        # Create model with saved architecture
+        self.model = OptimizableFFNet(
+            input_size=input_size,
+            hidden_sizes=hidden_sizes,
+            output_size=output_size,
+            activation=activation,
+            dropout_rate=dropout_rate
+        )
+        
+        # Load state dict
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.model.eval()
+        
+        # Extract layer information
+        self.layer_info = self._extract_pytorch_layers(self.model)
+        
+        # Create activation collector
+        self.activation_collector = ActivationCollector(
+            model=self.model,
+            layers=None
+        )
+        
+        # Calculate model statistics
+        total_params = sum(p.numel() for p in self.model.parameters())
+        trainable_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+        
+        # Load metadata if available
+        metadata = self._load_demo_metadata(model_path)
+        
+        return {
+            'type': 'PyTorch (Demo Model)',
+            'num_layers': len(self.layer_info),
+            'num_params': total_params,
+            'trainable_params': trainable_params,
+            'layers': self.layer_info,
+            'input_shape': (input_size,),
+            'output_shape': (output_size,),
+            'architecture': hidden_sizes,
+            'activation': activation,
+            'metadata': metadata
+        }
+    
+    def _load_demo_metadata(self, model_path: str) -> Optional[Dict[str, Any]]:
+        """Load metadata for demo model if available."""
+        # Look for metadata file with same base name
+        model_path = Path(model_path)
+        metadata_path = model_path.parent / f"metadata_{model_path.stem.replace('model_', '')}.json"
+        
+        if metadata_path.exists():
+            with open(metadata_path, 'r') as f:
+                return json.load(f)
+        return None
+    
+    @staticmethod
+    def list_demo_models() -> Dict[str, List[Dict[str, Any]]]:
+        """List all available demo models."""
+        demos_dir = Path(__file__).parent.parent.parent / 'concept_mri' / 'demos'
+        demo_models = {}
+        
+        if demos_dir.exists():
+            for dataset_dir in demos_dir.iterdir():
+                if dataset_dir.is_dir() and dataset_dir.name not in ['.', '..']:
+                    models = []
+                    
+                    # Look for model files
+                    for model_file in dataset_dir.glob('model_*.pt'):
+                        variant = model_file.stem.replace('model_', '')
+                        
+                        # Check for metadata
+                        metadata_file = dataset_dir / f'metadata_{variant}.json'
+                        if metadata_file.exists():
+                            with open(metadata_file, 'r') as f:
+                                metadata = json.load(f)
+                                description = metadata.get('architecture', {}).get('description', '')
+                                performance = metadata.get('performance', {})
+                        else:
+                            description = f"{variant} model"
+                            performance = {}
+                        
+                        models.append({
+                            'variant': variant,
+                            'path': str(model_file),
+                            'description': description,
+                            'performance': performance
+                        })
+                    
+                    if models:
+                        demo_models[dataset_dir.name] = models
+        
+        return demo_models
