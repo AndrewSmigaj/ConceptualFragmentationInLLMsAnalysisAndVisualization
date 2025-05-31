@@ -1,0 +1,1 @@
+"""Tab components for different analysis modes."""

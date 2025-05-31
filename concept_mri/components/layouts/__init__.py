@@ -1,0 +1,1 @@
+"""Layout components for organizing the application structure."""

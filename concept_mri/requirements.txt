@@ -1,0 +1,19 @@
+# Concept MRI UI Dependencies
+# Core analysis dependencies are in parent project
+
+# Dash framework
+dash==2.14.1
+dash-bootstrap-components==1.5.0
+dash-extensions==1.0.1
+
+# Visualization
+plotly==5.18.0
+
+# File upload handling
+dash-uploader==0.6.0
+
+# UI utilities
+dash-iconify==0.1.2
+
+# For development
+dash[dev]==2.14.1
