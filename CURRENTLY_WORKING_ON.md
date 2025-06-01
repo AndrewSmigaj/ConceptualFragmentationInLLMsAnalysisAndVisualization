@@ -21,43 +21,83 @@ We are developing **Concept MRI**, a web-based tool for analyzing and auditing n
    - Clustering configuration panel
    - Sankey diagram visualization wrapper
 
-2. **Demo Model Training Infrastructure** (separate from Concept MRI)
+2. **Component Verification** (Session: May 31, 2025)
+   - Fixed all import issues
+   - Installed missing dependencies
+   - All components now load and instantiate correctly
+   - Ready for enhancement
+
+3. **Demo Model Training Infrastructure** (separate from Concept MRI)
    - `ModelTrainer` class - reuses existing data loaders
    - `OptimizableFFNet` - flexible architecture (any number of layers)
-   - `model_presets.py` - configurations for different variants:
-     - optimal (via hyperparameter search)
-     - bottleneck (concept compression)
-     - overfit (fragmentation demo)
-     - underfit (poor concepts)
-     - unstable (erratic training)
-     - fragmented (redundant concepts)
-   - Optuna integration for hyperparameter optimization
+   - Multiple variants configured
    - CLI script: `train_demo_models.py`
 
-3. **Integration Updates**
-   - Enhanced `model_interface.py` to load demo models
-   - Auto-discovery of models in `concept_mri/demos/`
-   - Metadata loading support
+### 🔧 Currently Working On: Extending LLM Analysis for Bias Detection
 
-### 🚧 Next Steps (Priority Order)
+**What**: Refactoring the LLM analysis system to make comprehensive analysis across all archetypal paths in a single call, with support for multiple analysis categories including bias detection.
 
-1. **Train Demo Models** (Medium Priority)
+**Why**: 
+- Single API call is more efficient and allows LLM to see patterns across paths
+- Bias detection requires cross-path analysis to identify systematic patterns
+- Current system makes individual calls per path, limiting pattern detection
+
+**What's Been Done**:
+- Modified `concept_fragmentation/llm/analysis.py`
+- Changed `generate_path_narratives` to return a single comprehensive analysis string
+- Added `analysis_categories` parameter (defaults to `['interpretation', 'bias']`)
+- Removed backwards compatibility - doing it right this time
+- Bias analysis looks for:
+  - Systematic demographic routing differences
+  - Unexpected segregation patterns  
+  - Statistical anomalies across paths
+  - Potential unfair treatment patterns
+
+**Implementation Status**:
+- ✅ Fully refactored `generate_path_narratives` method
+- ✅ Removed old branching logic
+- ✅ Updated synchronous wrapper
+- ✅ Successfully tested with real API calls
+- ✅ Bias detection working correctly
+
+**Files Modified**:
+- `concept_fragmentation/llm/analysis.py` - Main changes to ClusterAnalysis class
+- `local_config.py` - Created for API keys (gitignored)
+- `local_config.py.example` - Template for others
+- `test_llm_comprehensive.py` - Test script demonstrating new API
+- `CLAUDE.md` - Created with environment instructions
+
+**Test Results**:
+- LLM successfully detected gender bias in heart disease paths
+- Identified age-related routing patterns
+- Found ethnicity correlations with disease classification
+- Analysis provided actionable insights
+
+**Note**: Layer Window Manager was completed in previous session
+
+### 🚧 Upcoming Tasks (Priority Order)
+
+1. **Integrate with Concept MRI** (High Priority - NEXT)
+   - Connect the new comprehensive analysis API to Concept MRI
+   - Update UI to display comprehensive analysis results
+   - Add analysis category selection to UI
+   - Create BiasAuditor component that uses the new API
+
+2. **Create Usage Documentation** (Medium Priority)
+   - Document the new comprehensive analysis API
+   - Create examples for different analysis categories
+   - Show how to interpret bias detection results
+
+3. **Train Demo Models** (Medium Priority)
    ```bash
    cd scripts/prepare_demo_models
    python train_demo_models.py --dataset titanic --variant optimal
-   python train_demo_models.py --dataset titanic --all  # All variants
    ```
 
-2. **Add Demo Model Dropdown** to FF tab (Medium Priority)
-   - Add to `ff_networks.py`
-   - Use `ModelInterface.list_demo_models()`
-
-3. **Create Validation Script** (Medium Priority)
-   - Test all models load correctly
-   - Verify activations can be extracted
-
-4. **Integration Testing** (High Priority)
-   - Full pipeline: train → save → load → analyze
+4. **Document New LLM Analysis API** (Medium Priority)
+   - Update docstrings
+   - Create usage examples
+   - Document analysis categories and their outputs
 
 ## 🏗️ Architecture Notes
 
@@ -122,9 +162,10 @@ You could use shorthand commands like:
 - Training Scripts: `scripts/prepare_demo_models/README.md`
 
 ## 📝 Last Updated
-- **Date**: May 30, 2025
-- **Last Task**: Completed demo model training infrastructure
-- **Next Task**: Train actual demo models or add UI dropdown
+- **Date**: May 31, 2025
+- **Last Task**: Completed LLM analysis refactoring - comprehensive multi-path analysis with bias detection now working
+- **Next Task**: Integrate the new comprehensive analysis API with Concept MRI UI
+- **Session Notes**: Successfully refactored to single API call, tested bias detection which correctly identified gender/age/ethnicity patterns in test data. Created CLAUDE.md with environment rules.
 
 ---
 

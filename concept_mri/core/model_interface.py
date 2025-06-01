@@ -13,7 +13,6 @@ import json
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from concept_fragmentation.activation.collector import ActivationCollector
-from concept_fragmentation.hooks.activation_hooks import get_activation
 
 class ModelInterface:
     """

@@ -14,7 +14,7 @@ import json
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 from concept_fragmentation.visualization.sankey import SankeyGenerator, SankeyConfig
-from config.settings import DEFAULT_TOP_N_PATHS, DEFAULT_SANKEY_HEIGHT, THEME_COLOR
+from concept_mri.config.settings import DEFAULT_TOP_N_PATHS, DEFAULT_SANKEY_HEIGHT, THEME_COLOR
 
 class SankeyWrapper:
     """
@@ -71,12 +71,10 @@ class SankeyWrapper:
                         dbc.Select(
                             id=f"{self.component_id}-window",
                             options=[
-                                {"label": "Full Network", "value": "full"},
-                                {"label": "Early Layers", "value": "early"},
-                                {"label": "Middle Layers", "value": "middle"},
-                                {"label": "Late Layers", "value": "late"}
+                                {"label": "Full Network", "value": "full"}
                             ],
-                            value="full"
+                            value="full",
+                            placeholder="Configure windows first"
                         )
                     ], width=3),
                     dbc.Col([
@@ -87,6 +85,23 @@ class SankeyWrapper:
                             className="mt-4"
                         )
                     ], width=3)
+                ], className="mb-3"),
+                
+                # Hierarchy level selector
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Label("Clustering Level", html_for=f"{self.component_id}-hierarchy"),
+                        dbc.RadioItems(
+                            id=f"{self.component_id}-hierarchy",
+                            options=[
+                                {"label": "Macro", "value": "macro"},
+                                {"label": "Meso", "value": "meso"}, 
+                                {"label": "Micro", "value": "micro"}
+                            ],
+                            value="meso",
+                            inline=True
+                        )
+                    ], width=12)
                 ], className="mb-3"),
                 
                 # Sankey diagram container
@@ -130,15 +145,17 @@ class SankeyWrapper:
         clustering_data: Dict[str, Any],
         path_data: Dict[str, Any],
         cluster_labels: Dict[str, str],
+        window_config: Optional[Dict[str, Any]] = None,
         config: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """
-        Generate Sankey diagram using existing SankeyGenerator.
+        Generate window-aware and hierarchy-aware Sankey diagram.
         
         Args:
             clustering_data: Clustering results
             path_data: Path analysis results
             cluster_labels: LLM-generated cluster labels
+            window_config: Window configuration from Layer Window Manager
             config: Optional configuration overrides
             
         Returns:
@@ -156,10 +173,25 @@ class SankeyWrapper:
             width="100%"
         )
         
-        # Prepare data for SankeyGenerator
-        # This would normally come from the actual clustering results
+        # Extract window and hierarchy settings
+        window_name = config.get('window', 'full') if config else 'full'
+        hierarchy_level = config.get('hierarchy', 'meso') if config else 'meso'
+        
+        # Filter paths based on window
         paths = path_data.get('paths', [])
-        window = config.get('window', 'full') if config else 'full'
+        if window_config and window_name != 'full':
+            window = window_config.get('windows', {}).get(window_name, {})
+            if window:
+                # Filter paths to only include transitions within the window
+                start_layer = window['start']
+                end_layer = window['end']
+                paths = self._filter_paths_by_window(paths, start_layer, end_layer)
+        
+        # Get appropriate clustering data for hierarchy level
+        if hierarchy_level in clustering_data.get('hierarchy_results', {}):
+            hierarchy_clustering = clustering_data['hierarchy_results'][hierarchy_level]
+        else:
+            hierarchy_clustering = clustering_data
         
         # Generate Sankey using existing generator
         # Note: In real implementation, this would use actual path data
@@ -167,7 +199,9 @@ class SankeyWrapper:
         mock_sankey_data = {
             'paths': paths[:sankey_config.top_n_paths],
             'labels': cluster_labels,
-            'window': window
+            'window': window_name,
+            'hierarchy': hierarchy_level,
+            'window_config': window_config
         }
         
         # The actual SankeyGenerator would be called here
@@ -175,6 +209,21 @@ class SankeyWrapper:
         fig = self._create_mock_sankey_figure(mock_sankey_data, sankey_config)
         
         return fig.to_dict()
+    
+    def _filter_paths_by_window(
+        self,
+        paths: List[Dict[str, Any]],
+        start_layer: int,
+        end_layer: int
+    ) -> List[Dict[str, Any]]:
+        """Filter paths to only include transitions within a window."""
+        filtered_paths = []
+        for path in paths:
+            # Check if all transitions in the path are within the window
+            transitions = path.get('transitions', [])
+            if all(start_layer <= t['layer'] <= end_layer for t in transitions):
+                filtered_paths.append(path)
+        return filtered_paths
     
     def _create_mock_sankey_figure(
         self,
@@ -232,6 +281,23 @@ class SankeyWrapper:
         """Register Dash callbacks for interactivity."""
         
         @app.callback(
+            [Output(f"{self.component_id}-window", "options"),
+             Output(f"{self.component_id}-window", "value")],
+            Input("window-config-store", "data"),
+            prevent_initial_call=False
+        )
+        def update_window_options(window_config):
+            """Update window dropdown options based on Layer Window Manager configuration."""
+            options = [{"label": "Full Network", "value": "full"}]
+            
+            if window_config and window_config.get('windows'):
+                for window_name, window_data in window_config['windows'].items():
+                    label = f"{window_name} (L{window_data['start']}-L{window_data['end']})"
+                    options.append({"label": label, "value": window_name})
+            
+            return options, "full"
+        
+        @app.callback(
             [Output(f"{self.component_id}-container", "children"),
              Output(f"{self.component_id}-path-collapse", "is_open")],
             [Input(f"{self.component_id}-update-btn", "n_clicks"),
@@ -239,12 +305,14 @@ class SankeyWrapper:
             [State(f"{self.component_id}-top-n", "value"),
              State(f"{self.component_id}-color-by", "value"),
              State(f"{self.component_id}-window", "value"),
+             State(f"{self.component_id}-hierarchy", "value"),
+             State("window-config-store", "data"),
              State("path-analysis-store", "data"),
              State("cluster-labels-store", "data")],
             prevent_initial_call=False
         )
         def update_sankey(n_clicks, clustering_data, top_n, color_by, window,
-                         path_data, cluster_labels):
+                         hierarchy, window_config, path_data, cluster_labels):
             """Update Sankey diagram based on settings."""
             if not clustering_data:
                 return dcc.Graph(
@@ -257,7 +325,8 @@ class SankeyWrapper:
             config = {
                 'top_n': top_n or DEFAULT_TOP_N_PATHS,
                 'color_by': color_by,
-                'window': window
+                'window': window,
+                'hierarchy': hierarchy
             }
             
             # Generate Sankey
@@ -265,6 +334,7 @@ class SankeyWrapper:
                 clustering_data,
                 path_data or {},
                 cluster_labels or {},
+                window_config,
                 config
             )
             

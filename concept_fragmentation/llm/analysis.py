@@ -271,7 +271,8 @@ class ClusterAnalysis:
         convergent_points: Optional[List[Tuple[str, str, float]]] = None,
         fragmentation_score: Optional[float] = None,
         demographic_info: Optional[Dict[str, Any]] = None,
-        cluster_stats: Optional[Dict[str, Dict[str, Any]]] = None
+        cluster_stats: Optional[Dict[str, Dict[str, Any]]] = None,
+        analysis_categories: Optional[List[str]] = None
     ) -> str:
         """
         Generate a human-readable narrative for a path through activation space.
@@ -284,6 +285,8 @@ class ClusterAnalysis:
             fragmentation_score: Optional fragmentation score for the path
             demographic_info: Optional demographic information about datapoints in this path
             cluster_stats: Optional dictionary mapping cluster IDs to cluster statistics
+            analysis_categories: Optional list of analysis types to include 
+                (e.g., ['interpretation', 'bias', 'efficiency', 'robustness'])
                 
         Returns:
             A human-readable narrative for the path
@@ -369,10 +372,10 @@ class ClusterAnalysis:
         fragmentation_scores: Optional[Dict[int, float]] = None,
         path_demographic_info: Optional[Dict[int, Dict[str, Any]]] = None,
         per_cluster_stats_for_paths: Optional[Dict[int, Dict[str, str]]] = None,
-        max_concurrency: int = 5
-    ) -> Dict[int, str]:
+        analysis_categories: Optional[List[str]] = None
+    ) -> str:
         """
-        Generate human-readable narratives for multiple paths.
+        Generate comprehensive analysis of multiple paths in a single LLM call.
         
         Args:
             paths: Dictionary mapping path IDs to lists of cluster IDs
@@ -381,43 +384,118 @@ class ClusterAnalysis:
             fragmentation_scores: Optional dictionary mapping path IDs to fragmentation scores
             path_demographic_info: Optional dictionary mapping path IDs to demographic information
             per_cluster_stats_for_paths: Optional dictionary mapping path IDs to cluster profiles
-            max_concurrency: Maximum number of concurrent API requests
+            analysis_categories: Optional list of analysis types to include 
+                (e.g., ['interpretation', 'bias', 'efficiency', 'robustness'])
                 
         Returns:
-            Dictionary mapping path IDs to narratives
+            Comprehensive analysis text covering all requested categories
         """
-        narratives = {}
-        if not paths: return narratives
+        if not paths: 
+            return ""
 
-        tasks = []
-        for path_id, path_list_of_cluster_ids in paths.items():
-            path_specific_convergent_points = convergent_points.get(path_id) if convergent_points else None
-            path_specific_fragmentation_score = fragmentation_scores.get(path_id) if fragmentation_scores else None
-            path_specific_demographic_info = path_demographic_info.get(path_id) if path_demographic_info else None
+        # Default analysis categories
+        if analysis_categories is None:
+            analysis_categories = ['interpretation', 'bias']
             
-            path_specific_cluster_profiles = {}
-            if per_cluster_stats_for_paths and path_id in per_cluster_stats_for_paths:
-                path_specific_cluster_profiles = per_cluster_stats_for_paths[path_id]
-
-            task = self.generate_path_narrative(
-                path=path_list_of_cluster_ids,
-                cluster_labels=cluster_labels,
-                convergent_points=path_specific_convergent_points,
-                fragmentation_score=path_specific_fragmentation_score,
-                demographic_info=path_specific_demographic_info,
-                cluster_stats=path_specific_cluster_profiles
-            )
-            tasks.append((path_id, task))
+        # Build comprehensive prompt with ALL paths for pattern detection
+        prompt_lines = [
+            "You are an AI expert analyzing neural network activation patterns.",
+            "I will provide you with multiple archetypal paths through activation clusters.",
+            "Analyze ALL paths together to identify patterns, especially those that only emerge when comparing paths.",
+            "",
+            f"Total archetypal paths to analyze: {len(paths)}",
+            ""
+        ]
         
-        results = await asyncio.gather(*(task for _, task in tasks), return_exceptions=True)
+        # Add all paths with their details
+        prompt_lines.append("=== ARCHETYPAL PATHS ===")
+        for path_id, path_clusters in paths.items():
+            # Build path description
+            path_desc = " → ".join([f"{cid} ({cluster_labels.get(cid, 'unlabeled')})" for cid in path_clusters])
+            prompt_lines.append(f"\nPath {path_id}: {path_desc}")
+            
+            # Add demographic info if available
+            if path_demographic_info and path_id in path_demographic_info:
+                demo_info = path_demographic_info[path_id]
+                prompt_lines.append("  Demographics for this path:")
+                for key, value in demo_info.items():
+                    if isinstance(value, dict):
+                        dist_str = ", ".join([f"{k}: {v:.1%}" if isinstance(v,float) else f"{k}: {v}" for k,v in value.items()])
+                        prompt_lines.append(f"    - {key}: {dist_str}")
+                    else:
+                        prompt_lines.append(f"    - {key}: {value}")
+            
+            # Add fragmentation score if available
+            if fragmentation_scores and path_id in fragmentation_scores:
+                prompt_lines.append(f"  Fragmentation score: {fragmentation_scores[path_id]:.3f}")
         
-        for i, (path_id, _) in enumerate(tasks):
-            if isinstance(results[i], Exception):
-                print(f"Error generating narrative for path {path_id}: {results[i]}")
-                narratives[path_id] = f"Error generating narrative: {str(results[i])}"
-            else:
-                narratives[path_id] = results[i]
-        return narratives
+        # Add cluster statistics summary
+        if per_cluster_stats_for_paths:
+            prompt_lines.append("\n=== CLUSTER STATISTICS ===")
+            all_clusters = {}
+            for path_id, cluster_stats in per_cluster_stats_for_paths.items():
+                for cluster_id, stats in cluster_stats.items():
+                    if cluster_id not in all_clusters:
+                        all_clusters[cluster_id] = stats
+            
+            for cluster_id, stats in sorted(all_clusters.items())[:20]:  # Limit to avoid token overflow
+                prompt_lines.append(f"Cluster {cluster_id} ({cluster_labels.get(cluster_id, 'unlabeled')}): {stats}")
+        
+        # Add analysis instructions based on categories
+        prompt_lines.append("\n=== ANALYSIS REQUIRED ===")
+        prompt_lines.append("Analyze the above paths and provide insights on:")
+        
+        if 'interpretation' in analysis_categories:
+            prompt_lines.extend([
+                "\nINTERPRETATION:",
+                "- What are the main conceptual paths through the network?",
+                "- How do concepts transform as they move through layers?",
+                "- What decision-making patterns emerge from these paths?"
+            ])
+        
+        if 'bias' in analysis_categories:
+            prompt_lines.extend([
+                "\nBIAS ANALYSIS:",
+                "- Are there systematic differences in how different demographic groups are routed through paths?",
+                "- Do you see unexpected segregation where similar inputs follow very different paths?",
+                "- Are certain paths predominantly associated with specific demographic characteristics?",
+                "- What patterns suggest potential unfair treatment or discrimination?",
+                "- Are there statistical anomalies in path distributions that indicate bias?"
+            ])
+        
+        if 'efficiency' in analysis_categories:
+            prompt_lines.extend([
+                "\nEFFICIENCY:",
+                "- Which paths seem redundant or could be consolidated?",
+                "- Are there inefficiencies in how information flows through the network?",
+                "- What opportunities exist for model compression?"
+            ])
+        
+        if 'robustness' in analysis_categories:
+            prompt_lines.extend([
+                "\nROBUSTNESS:",
+                "- Which paths appear most stable vs fragile?",
+                "- Are there paths that might be vulnerable to adversarial inputs?",
+                "- How consistent are the conceptual representations?"
+            ])
+        
+        prompt_lines.extend([
+            "\nProvide a comprehensive analysis addressing each category.",
+            "Be specific about which paths exhibit which patterns.",
+            "Focus on actionable insights and patterns that span multiple paths."
+        ])
+        
+        prompt = "\n".join(prompt_lines)
+        
+        # Make single API call with all data
+        response = await self._generate_with_cache(
+            prompt=prompt,
+            temperature=0.4,
+            max_tokens=1500,  # Increased for comprehensive analysis
+            system_prompt="You are an AI assistant specializing in neural network analysis, pattern recognition, and bias detection."
+        )
+        
+        return response.text.strip()
     
     def label_clusters_sync(
         self,
@@ -529,8 +607,8 @@ class ClusterAnalysis:
         fragmentation_scores: Optional[Dict[int, float]] = None,
         path_demographic_info: Optional[Dict[int, Dict[str, Any]]] = None,
         per_cluster_stats_for_paths: Optional[Dict[int, Dict[str, str]]] = None,
-        max_concurrency: int = 5
-    ) -> Dict[int, str]:
+        analysis_categories: Optional[List[str]] = None
+    ) -> str:
         """
         Synchronous wrapper for generate_path_narratives.
         
@@ -541,10 +619,11 @@ class ClusterAnalysis:
             fragmentation_scores: Optional dictionary mapping path IDs to fragmentation scores
             path_demographic_info: Optional dictionary mapping path IDs to demographic information
             per_cluster_stats_for_paths: Optional dictionary mapping path IDs to cluster profiles
-            max_concurrency: Maximum number of concurrent API requests
+            analysis_categories: Optional list of analysis types to include 
+                (e.g., ['interpretation', 'bias', 'efficiency', 'robustness'])
                 
         Returns:
-            Dictionary mapping path IDs to narratives
+            Comprehensive analysis text covering all requested categories
         """
         try:
             # Try to get the event loop
@@ -556,7 +635,8 @@ class ClusterAnalysis:
             
         return loop.run_until_complete(
             self.generate_path_narratives(
-                paths, cluster_labels, convergent_points, fragmentation_scores, path_demographic_info, per_cluster_stats_for_paths,
-                max_concurrency=max_concurrency
+                paths, cluster_labels, convergent_points, fragmentation_scores, 
+                path_demographic_info, per_cluster_stats_for_paths,
+                analysis_categories=analysis_categories
             )
         )

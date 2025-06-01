@@ -15,15 +15,21 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 # Import components with error handling
 try:
-    from components.controls.model_upload import ModelUploadPanel
-    from components.controls.dataset_upload import DatasetUploadPanel
-    from components.controls.clustering_panel import ClusteringPanel
-    from components.controls.api_keys_panel import APIKeysPanel
-    from components.visualizations.sankey_wrapper import SankeyWrapper
+    from concept_mri.components.controls.model_upload import ModelUploadPanel
+    from concept_mri.components.controls.dataset_upload import DatasetUploadPanel
+    from concept_mri.components.controls.clustering_panel import ClusteringPanel, register_clustering_panel_callbacks
+    from concept_mri.components.controls.api_keys_panel import APIKeysPanel
+    from concept_mri.components.controls.layer_window_manager import LayerWindowManager
+    from concept_mri.components.controls.window_callbacks import register_window_callbacks
+    from concept_mri.components.visualizations.sankey_wrapper import SankeyWrapper
+    from concept_mri.components.visualizations.stepped_trajectory import SteppedTrajectoryVisualization
+    from concept_mri.components.visualizations.cluster_cards import ClusterCards
 except ImportError as e:
     print(f"Warning: Could not import component: {e}")
     # Define mock classes if imports fail
     ModelUploadPanel = DatasetUploadPanel = ClusteringPanel = APIKeysPanel = SankeyWrapper = None
+    LayerWindowManager = SteppedTrajectoryVisualization = ClusterCards = None
+    register_clustering_panel_callbacks = register_window_callbacks = None
 
 
 def create_ff_networks_tab(model_data: Optional[Dict] = None, 
@@ -47,7 +53,10 @@ def create_ff_networks_tab(model_data: Optional[Dict] = None,
     dataset_upload = DatasetUploadPanel()
     clustering_panel = ClusteringPanel()
     api_keys_panel = APIKeysPanel()
+    layer_window_manager = LayerWindowManager() if LayerWindowManager else None
     sankey_wrapper = SankeyWrapper("ff-sankey")
+    stepped_trajectory = SteppedTrajectoryVisualization("ff-stepped") if SteppedTrajectoryVisualization else None
+    cluster_cards = ClusterCards("ff-cluster-cards") if ClusterCards else None
     
     # Calculate current progress
     progress = _calculate_progress(model_data, clustering_data)
@@ -93,7 +102,8 @@ def create_ff_networks_tab(model_data: Optional[Dict] = None,
                 _create_workflow_steps(model_data, clustering_data, 
                                      model_upload, dataset_upload, 
                                      clustering_panel, api_keys_panel,
-                                     sankey_wrapper)
+                                     layer_window_manager, sankey_wrapper,
+                                     stepped_trajectory, cluster_cards)
             ])
         ]),
         
@@ -114,7 +124,8 @@ def create_ff_networks_tab(model_data: Optional[Dict] = None,
 def _create_workflow_steps(model_data, clustering_data, 
                           model_upload, dataset_upload, 
                           clustering_panel, api_keys_panel,
-                          sankey_wrapper):
+                          layer_window_manager, sankey_wrapper,
+                          stepped_trajectory, cluster_cards):
     """Create the workflow steps based on current state."""
     current_step = _get_current_step(model_data, clustering_data)
     
@@ -139,13 +150,20 @@ def _create_workflow_steps(model_data, clustering_data,
     
     # Step 3: Configuration (only show if dataset is uploaded)
     if current_step >= 3:
-        config_content = dbc.Row([
-            dbc.Col([
-                api_keys_panel.create_component() if api_keys_panel else _create_placeholder("API Keys")
-            ], width=6),
-            dbc.Col([
-                clustering_panel.create_component() if clustering_panel else _create_placeholder("Clustering Config")
-            ], width=6)
+        config_content = html.Div([
+            dbc.Row([
+                dbc.Col([
+                    layer_window_manager.create_component() if layer_window_manager else _create_placeholder("Layer Window Manager")
+                ], width=12)
+            ], className="mb-3"),
+            dbc.Row([
+                dbc.Col([
+                    api_keys_panel.create_component() if api_keys_panel else _create_placeholder("API Keys")
+                ], width=6),
+                dbc.Col([
+                    clustering_panel.create_component() if clustering_panel else _create_placeholder("Clustering Config")
+                ], width=6)
+            ])
         ])
         
         steps.append(_create_step_card(
@@ -175,6 +193,12 @@ def _create_workflow_steps(model_data, clustering_data,
             dbc.Tab([
                 sankey_wrapper.create_component() if sankey_wrapper else _create_placeholder("Sankey Diagram")
             ], label="Concept Flow"),
+            dbc.Tab([
+                stepped_trajectory.create_component() if stepped_trajectory else _create_placeholder("Stepped Trajectory")
+            ], label="Trajectories"),
+            dbc.Tab([
+                cluster_cards.create_component() if cluster_cards else _create_placeholder("Cluster Cards")
+            ], label="Cluster Details"),
             dbc.Tab([
                 _create_metrics_dashboard(clustering_data)
             ], label="Metrics"),

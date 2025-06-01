@@ -7,10 +7,22 @@ import dash_uploader as du
 from pathlib import Path
 import json
 
-from config.settings import (
+from concept_mri.config.settings import (
     ALLOWED_MODEL_EXTENSIONS, MAX_UPLOAD_SIZE_MB,
     UPLOAD_FOLDER_ROOT, THEME_COLOR
 )
+
+
+class ModelUploadPanel:
+    """Model upload panel component."""
+    
+    def __init__(self):
+        """Initialize the model upload panel."""
+        self.id_prefix = "model"
+    
+    def create_component(self):
+        """Create and return the component layout."""
+        return create_model_upload()
 
 def create_model_upload():
     """Create the model upload interface."""

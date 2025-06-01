@@ -3,7 +3,7 @@ Main layout component for Concept MRI application.
 """
 from dash import dcc, html
 import dash_bootstrap_components as dbc
-from config.settings import APP_NAME, APP_SUBTITLE, THEME_COLOR
+from concept_mri.config.settings import APP_NAME, APP_SUBTITLE, THEME_COLOR
 
 def create_header():
     """Create the application header with clinical styling."""
@@ -77,10 +77,20 @@ def create_storage_components():
         dcc.Store(id='dataset-store', storage_type='session'),
         # Session storage for clustering results
         dcc.Store(id='clustering-store', storage_type='session'),
+        # Session storage for window configuration
+        dcc.Store(id='window-config-store', storage_type='session'),
+        # Session storage for path analysis results
+        dcc.Store(id='path-analysis-store', storage_type='session'),
+        # Session storage for cluster labels
+        dcc.Store(id='cluster-labels-store', storage_type='session'),
+        # Session storage for hierarchy results
+        dcc.Store(id='hierarchy-results-store', storage_type='session'),
         # Local storage for LLM API keys
         dcc.Store(id='api-keys-store', storage_type='local'),
         # Memory storage for temporary UI state
         dcc.Store(id='ui-state-store', storage_type='memory'),
+        # Download component for exports
+        dcc.Download(id='download-sankey'),
         # Interval for periodic tasks (if needed)
         dcc.Interval(id='interval-component', interval=60*1000, disabled=True)
     ])

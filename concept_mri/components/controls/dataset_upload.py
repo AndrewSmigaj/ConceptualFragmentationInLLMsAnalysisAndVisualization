@@ -1,6 +1,18 @@
 """
 Dataset upload component for Concept MRI.
 """
+
+
+class DatasetUploadPanel:
+    """Dataset upload panel component."""
+    
+    def __init__(self):
+        """Initialize the dataset upload panel."""
+        self.id_prefix = "dataset"
+    
+    def create_component(self):
+        """Create and return the component layout."""
+        return create_dataset_upload()
 from dash import dcc, html, Input, Output, State, callback, dash_table
 import dash_bootstrap_components as dbc
 import dash_uploader as du
@@ -9,7 +21,7 @@ import pandas as pd
 import numpy as np
 import json
 
-from config.settings import (
+from concept_mri.config.settings import (
     ALLOWED_DATA_EXTENSIONS, MAX_UPLOAD_SIZE_MB,
     UPLOAD_FOLDER_ROOT, THEME_COLOR
 )

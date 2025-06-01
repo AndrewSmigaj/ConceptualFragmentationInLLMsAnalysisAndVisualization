@@ -1,12 +1,24 @@
 """
 API keys configuration panel for LLM providers.
 """
+
+
+class APIKeysPanel:
+    """API keys panel component."""
+    
+    def __init__(self):
+        """Initialize the API keys panel."""
+        self.id_prefix = "api_keys"
+    
+    def create_component(self):
+        """Create and return the component layout."""
+        return create_api_keys_panel()
 from dash import dcc, html, Input, Output, State, callback, ALL
 import dash_bootstrap_components as dbc
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-from config.settings import LLM_PROVIDERS, DEFAULT_LLM_PROVIDER, THEME_COLOR
+from concept_mri.config.settings import LLM_PROVIDERS, DEFAULT_LLM_PROVIDER, THEME_COLOR
 
 def create_api_keys_panel():
     """Create the API keys configuration panel."""
