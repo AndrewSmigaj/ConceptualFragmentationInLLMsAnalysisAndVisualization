@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from concept_fragmentation.data import (
     TitanicDataset, HeartDiseaseDataset, DataPreprocessor
 )
-from concept_fragmentation.utils.helpers import set_seed
+from concept_fragmentation.utils.helpers import set_random_seed
 
 
 class ModelTrainer:
@@ -107,7 +107,7 @@ class ModelTrainer:
         """
         # Set seed for reproducibility
         if 'seed' in params:
-            set_seed(params['seed'])
+            set_random_seed(params['seed'])
         
         # Move model to device
         model = model.to(self.device)

@@ -17,6 +17,14 @@ import os
 import hashlib
 import pickle
 
+# Import pipeline base for the pipeline stage
+try:
+    from ..pipeline.stages import PipelineStageBase
+except ImportError:
+    # Define a dummy class if pipeline is not available
+    class PipelineStageBase:
+        pass
+
 # Conditionally import dimensionality reduction methods
 try:
     from sklearn.decomposition import PCA, TruncatedSVD, KernelPCA

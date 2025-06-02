@@ -2,16 +2,32 @@
 Feedforward Networks Analysis Tab for Concept MRI.
 Orchestrates components for analyzing generic feedforward networks.
 """
-from dash import dcc, html, Input, Output, State, callback, no_update, callback_context
+from dash import dcc, html
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 import sys
 from pathlib import Path
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+# Import callbacks
+from .ff_networks_callbacks import register_ff_networks_callbacks
+
+# Import workflow manager
+from concept_mri.components.workflow_manager import WorkflowManager
+
+# Import LLM analysis capabilities
+try:
+    from concept_fragmentation.llm.analysis import ClusterAnalysis
+    from local_config import OPENAI_KEY
+    LLM_AVAILABLE = True
+except ImportError:
+    LLM_AVAILABLE = False
+    ClusterAnalysis = None
+    OPENAI_KEY = None
 
 # Import components with error handling
 try:
@@ -49,17 +65,19 @@ def create_ff_networks_tab(model_data: Optional[Dict] = None,
         return _create_error_layout("Some components are not available. Please check imports.")
     
     # Initialize components
-    model_upload = ModelUploadPanel()
-    dataset_upload = DatasetUploadPanel()
-    clustering_panel = ClusteringPanel()
-    api_keys_panel = APIKeysPanel()
-    layer_window_manager = LayerWindowManager() if LayerWindowManager else None
-    sankey_wrapper = SankeyWrapper("ff-sankey")
-    stepped_trajectory = SteppedTrajectoryVisualization("ff-stepped") if SteppedTrajectoryVisualization else None
-    cluster_cards = ClusterCards("ff-cluster-cards") if ClusterCards else None
+    components = {
+        'model_upload': ModelUploadPanel(),
+        'dataset_upload': DatasetUploadPanel(),
+        'clustering_panel': ClusteringPanel(),
+        'api_keys_panel': APIKeysPanel(),
+        'layer_window_manager': LayerWindowManager() if LayerWindowManager else None,
+        'sankey_wrapper': SankeyWrapper("ff-sankey"),
+        'stepped_trajectory': SteppedTrajectoryVisualization("ff-stepped") if SteppedTrajectoryVisualization else None,
+        'cluster_cards': ClusterCards("ff-cluster-cards") if ClusterCards else None
+    }
     
-    # Calculate current progress
-    progress = _calculate_progress(model_data, clustering_data)
+    # Initialize workflow manager
+    workflow_manager = WorkflowManager(components, llm_available=LLM_AVAILABLE)
     
     # Create tab layout
     return dbc.Container([
@@ -75,41 +93,14 @@ def create_ff_networks_tab(model_data: Optional[Dict] = None,
             ])
         ], className="mb-4"),
         
-        # Progress tracker
-        dbc.Row([
-            dbc.Col([
-                html.Div([
-                    html.Span(f"Progress: {progress}%", className="mb-2 d-block"),
-                    dbc.Progress(
-                        id="ff-progress",
-                        value=progress,
-                        striped=True,
-                        animated=progress < 100,
-                        color=_get_progress_color(progress),
-                        className="mb-3"
-                    )
-                ])
-            ])
-        ]),
-        
         # Alert area for messages
         html.Div(id="ff-alert-area"),
         
-        # Main workflow area
-        dbc.Card([
-            dbc.CardBody([
-                # Workflow steps
-                _create_workflow_steps(model_data, clustering_data, 
-                                     model_upload, dataset_upload, 
-                                     clustering_panel, api_keys_panel,
-                                     layer_window_manager, sankey_wrapper,
-                                     stepped_trajectory, cluster_cards)
-            ])
-        ]),
+        # Main workflow area - managed by WorkflowManager
+        workflow_manager.create_layout(),
         
         # Hidden stores for state management
         dcc.Store(id="ff-analysis-results", data={}),
-        dcc.Store(id="ff-current-step", data=_get_current_step(model_data, clustering_data)),
         
         # Loading overlay
         dcc.Loading(
@@ -154,15 +145,12 @@ def _create_workflow_steps(model_data, clustering_data,
             dbc.Row([
                 dbc.Col([
                     layer_window_manager.create_component() if layer_window_manager else _create_placeholder("Layer Window Manager")
-                ], width=12)
-            ], className="mb-3"),
+                ], width=12, className="mb-3"),
+            ]),
             dbc.Row([
                 dbc.Col([
-                    api_keys_panel.create_component() if api_keys_panel else _create_placeholder("API Keys")
-                ], width=6),
-                dbc.Col([
                     clustering_panel.create_component() if clustering_panel else _create_placeholder("Clustering Config")
-                ], width=6)
+                ], width=12)
             ])
         ])
         
@@ -172,184 +160,66 @@ def _create_workflow_steps(model_data, clustering_data,
             is_active=(current_step == 3),
             is_complete=(current_step > 3)
         ))
-        
-        # Add Run Analysis button if on step 3
-        if current_step == 3:
-            steps.append(dbc.Row([
-                dbc.Col([
-                    dbc.Button(
-                        [html.I(className="fas fa-play me-2"), "Run Analysis"],
-                        id="ff-run-analysis-btn",
-                        color="primary",
-                        size="lg",
-                        className="w-100 mt-3"
-                    )
-                ], width={"size": 6, "offset": 3})
-            ]))
     
-    # Step 4: Results (only show if analysis is complete)
-    if current_step >= 4:
-        results_content = dbc.Tabs([
-            dbc.Tab([
-                sankey_wrapper.create_component() if sankey_wrapper else _create_placeholder("Sankey Diagram")
-            ], label="Concept Flow"),
-            dbc.Tab([
-                stepped_trajectory.create_component() if stepped_trajectory else _create_placeholder("Stepped Trajectory")
-            ], label="Trajectories"),
-            dbc.Tab([
-                cluster_cards.create_component() if cluster_cards else _create_placeholder("Cluster Cards")
-            ], label="Cluster Details"),
-            dbc.Tab([
-                _create_metrics_dashboard(clustering_data)
-            ], label="Metrics"),
-            dbc.Tab([
-                _create_export_panel()
-            ], label="Export")
-        ])
-        
+    # Step 4: Results (only show if clustering is complete)
+    if clustering_data and clustering_data.get('completed'):
+        results_content = _create_results_section(clustering_data, sankey_wrapper, 
+                                                 stepped_trajectory, cluster_cards)
         steps.append(_create_step_card(
             "4. Analysis Results",
             results_content,
-            is_active=(current_step == 4),
-            is_complete=False
+            is_active=True,
+            is_complete=True
         ))
     
     return html.Div(steps)
 
 
 def _create_step_card(title, content, is_active=False, is_complete=False):
-    """Create a card for a workflow step."""
+    """Create a styled step card."""
     # Determine styling based on state
     if is_complete:
-        header_color = "success"
+        border_color = "success"
+        header_bg = "success"
+        text_color = "white"
         icon = "fas fa-check-circle"
     elif is_active:
-        header_color = "primary"
-        icon = "fas fa-circle"
+        border_color = "primary"
+        header_bg = "primary"
+        text_color = "white"
+        icon = "fas fa-circle-notch fa-spin"
     else:
-        header_color = "secondary"
+        border_color = "secondary"
+        header_bg = "light"
+        text_color = "dark"
         icon = "fas fa-circle"
     
     return dbc.Card([
         dbc.CardHeader([
             html.I(className=f"{icon} me-2"),
             title
-        ], className=f"bg-{header_color} text-white"),
-        dbc.CardBody(content) if is_active or is_complete else None
-    ], className="mb-3")
+        ], className=f"bg-{header_bg} text-{text_color}"),
+        dbc.CardBody(content)
+    ], className=f"mb-3 border-{border_color}", style={"borderWidth": "2px"})
 
 
-def _create_placeholder(component_name):
-    """Create a placeholder for missing components."""
-    return dbc.Alert(
-        f"{component_name} component not available",
-        color="warning"
-    )
-
-
-def _create_error_layout(error_message):
-    """Create an error layout when components can't be loaded."""
-    return dbc.Container([
-        dbc.Alert([
-            html.H4("Component Loading Error", className="alert-heading"),
-            html.P(error_message)
-        ], color="danger")
-    ])
-
-
-def _create_metrics_dashboard(clustering_data):
-    """Create a simple metrics dashboard."""
-    if not clustering_data or not clustering_data.get('completed'):
-        return html.Div([
-            html.P("No analysis results available yet.", className="text-muted text-center")
-        ])
-    
-    # Extract metrics (using mock data for now)
-    metrics = clustering_data.get('metrics', {})
-    
-    return dbc.Row([
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H4("Total Clusters"),
-                    html.H2(metrics.get('total_clusters', 25))
+def _create_results_section(clustering_data, sankey_wrapper, stepped_trajectory, cluster_cards):
+    """Create the results visualization section."""
+    return dbc.Tabs([
+        dbc.Tab(label="Concept Flow", tab_id="sankey-tab"),
+        dbc.Tab(label="Trajectories", tab_id="trajectory-tab"),
+        dbc.Tab(label="Cluster Details", tab_id="clusters-tab"),
+        dbc.Tab(label="Metrics", tab_id="metrics-tab"),
+        dbc.Tab(label="LLM Analysis", tab_id="llm-tab")
+    ], id="results-tabs", active_tab="sankey-tab", children=[
+        dbc.Card([
+            dbc.CardBody([
+                html.Div(id="results-tab-content", children=[
+                    # Sankey diagram (default view)
+                    sankey_wrapper.create_component() if sankey_wrapper else _create_placeholder("Sankey Diagram")
                 ])
             ])
-        ], width=3),
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H4("Unique Paths"),
-                    html.H2(metrics.get('unique_paths', 150))
-                ])
-            ])
-        ], width=3),
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H4("Fragmentation"),
-                    html.H2(f"{metrics.get('fragmentation', 0.23):.2f}")
-                ])
-            ])
-        ], width=3),
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H4("Stability"),
-                    html.H2(f"{metrics.get('stability', 0.87):.2f}")
-                ])
-            ])
-        ], width=3)
-    ])
-
-
-def _create_export_panel():
-    """Create export options panel."""
-    return dbc.Card([
-        dbc.CardBody([
-            html.H5("Export Options"),
-            dbc.ListGroup([
-                dbc.ListGroupItem([
-                    html.Div([
-                        html.H6("Analysis Report (JSON)"),
-                        html.Small("Complete analysis results and metrics")
-                    ]),
-                    dbc.Button(
-                        [html.I(className="fas fa-download me-1"), "Download"],
-                        id="ff-export-json",
-                        size="sm",
-                        color="primary",
-                        className="float-end"
-                    )
-                ]),
-                dbc.ListGroupItem([
-                    html.Div([
-                        html.H6("Cluster Labels (CSV)"),
-                        html.Small("Cluster IDs and generated labels")
-                    ]),
-                    dbc.Button(
-                        [html.I(className="fas fa-download me-1"), "Download"],
-                        id="ff-export-csv",
-                        size="sm",
-                        color="primary",
-                        className="float-end"
-                    )
-                ]),
-                dbc.ListGroupItem([
-                    html.Div([
-                        html.H6("Visualizations (HTML)"),
-                        html.Small("Interactive charts and diagrams")
-                    ]),
-                    dbc.Button(
-                        [html.I(className="fas fa-download me-1"), "Download"],
-                        id="ff-export-html",
-                        size="sm",
-                        color="primary",
-                        className="float-end"
-                    )
-                ])
-            ])
-        ])
+        ], className="mt-3")
     ])
 
 
@@ -376,20 +246,6 @@ def _calculate_progress(model_data, clustering_data):
     return progress
 
 
-def _get_progress_color(progress):
-    """Get progress bar color based on percentage."""
-    if progress < 25:
-        return "danger"
-    elif progress < 50:
-        return "warning"
-    elif progress < 75:
-        return "info"
-    elif progress < 100:
-        return "primary"
-    else:
-        return "success"
-
-
 def _get_current_step(model_data, clustering_data):
     """Determine current workflow step."""
     if not model_data or not model_data.get('model_loaded'):
@@ -400,3 +256,102 @@ def _get_current_step(model_data, clustering_data):
         return 3  # Configuration
     else:
         return 4  # Results
+
+
+def _create_placeholder(name):
+    """Create a placeholder component."""
+    return dbc.Alert(
+        f"{name} component not available",
+        color="warning",
+        className="text-center"
+    )
+
+
+def _create_error_layout(message):
+    """Create an error layout."""
+    return dbc.Container([
+        dbc.Alert([
+            html.H4("Error Loading Tab", className="alert-heading"),
+            html.P(message)
+        ], color="danger")
+    ], className="p-4")
+
+
+def _create_llm_analysis_panel(clustering_data):
+    """Create LLM analysis panel with category selection and results display."""
+    if not LLM_AVAILABLE:
+        return dbc.Alert(
+            "LLM analysis not available. Please ensure concept_fragmentation and API keys are properly configured.",
+            color="warning"
+        )
+    
+    # Check if clustering data has paths
+    if not clustering_data or not clustering_data.get('paths'):
+        return dbc.Alert(
+            "No clustering results available. Please run clustering first.",
+            color="info"
+        )
+    
+    return dbc.Card([
+        dbc.CardHeader([
+            html.I(className="fas fa-brain me-2"),
+            "LLM-Powered Analysis"
+        ]),
+        dbc.CardBody([
+            # Analysis category selection
+            html.Div([
+                html.H6("Select Analysis Categories:"),
+                dbc.Checklist(
+                    id="llm-analysis-categories",
+                    options=[
+                        {"label": "Interpretation - Conceptual understanding of paths", "value": "interpretation"},
+                        {"label": "Bias Detection - Demographic routing patterns", "value": "bias"},
+                        {"label": "Efficiency - Computational considerations", "value": "efficiency"},
+                        {"label": "Robustness - Stability analysis", "value": "robustness"}
+                    ],
+                    value=["interpretation", "bias"],  # Default selections
+                    inline=False,
+                    className="mb-3"
+                )
+            ]),
+            
+            # Run analysis button
+            dbc.Button(
+                [html.I(className="fas fa-play me-2"), "Run LLM Analysis"],
+                id="run-llm-analysis-btn",
+                color="primary",
+                size="lg",
+                className="mb-3"
+            ),
+            
+            # Results display area
+            html.Div(id="llm-analysis-results"),
+            
+            # Store for analysis results
+            dcc.Store(id="llm-analysis-store")
+        ])
+    ])
+
+
+# Export the callback registration function
+def get_ff_networks_callbacks():
+    """Get callback registration function with closure over module variables."""
+    def register_callbacks(app):
+        # Register workflow callbacks
+        # We need to create a workflow manager instance for callbacks
+        components = {
+            'model_upload': ModelUploadPanel() if ModelUploadPanel else None,
+            'dataset_upload': DatasetUploadPanel() if DatasetUploadPanel else None,
+            'clustering_panel': ClusteringPanel() if ClusteringPanel else None,
+            'api_keys_panel': APIKeysPanel() if APIKeysPanel else None,
+            'layer_window_manager': LayerWindowManager() if LayerWindowManager else None,
+            'sankey_wrapper': SankeyWrapper("ff-sankey") if SankeyWrapper else None,
+            'stepped_trajectory': SteppedTrajectoryVisualization("ff-stepped") if SteppedTrajectoryVisualization else None,
+            'cluster_cards': ClusterCards("ff-cluster-cards") if ClusterCards else None
+        }
+        workflow_manager = WorkflowManager(components, llm_available=LLM_AVAILABLE)
+        workflow_manager.register_callbacks(app)
+        
+        # Register LLM analysis callbacks
+        register_ff_networks_callbacks(app, LLM_AVAILABLE, ClusterAnalysis, OPENAI_KEY)
+    return register_callbacks

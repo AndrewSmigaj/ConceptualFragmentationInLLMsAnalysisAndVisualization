@@ -25,11 +25,6 @@ from ..config import RANDOM_SEED, LOG_LEVEL
 
 # Setup module-level logger
 logger = logging.getLogger(__name__)
-logger.setLevel(LOG_LEVEL)
-if not logger.handlers:
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
-    logger.addHandler(handler)
 
 # Global flags to control activation behavior
 ACTIVATION_DIMENSION_LOGGING = False

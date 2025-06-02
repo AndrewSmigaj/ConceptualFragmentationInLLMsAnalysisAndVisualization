@@ -80,56 +80,61 @@ concept_mri/
 
 ## Implementation Phases
 
-### Phase 1: Core Infrastructure (Priority: High)
-1. Create `app.py` with basic Dash structure
-2. Implement `config/settings.py` for UI configuration
-3. Create `components/layouts/main_layout.py` with tab structure
-4. Set up `requirements.txt` with minimal dependencies
+### ✅ Phase 1: Core Infrastructure (COMPLETED)
+1. ✅ Created `app.py` with basic Dash structure
+2. ✅ Implemented `config/settings.py` for UI configuration
+3. ✅ Created `components/layouts/main_layout.py` with tab structure
+4. ✅ Set up `requirements.txt` with minimal dependencies
 
-### Phase 2: Data Input (Priority: High)
-1. Implement `components/controls/model_upload.py`
+### ✅ Phase 2: Data Input (COMPLETED)
+1. ✅ Implemented `components/controls/model_upload.py`
    - Support PyTorch (.pt, .pth), ONNX, TensorFlow
    - Show model architecture summary
    - Progress indicator for activation extraction
    
-2. Implement `components/controls/dataset_upload.py`
+2. ✅ Implemented `components/controls/dataset_upload.py`
    - CSV, NPZ, PKL support
    - Feature name extraction/mapping
    - Data preview functionality
 
-3. Implement `components/controls/clustering_panel.py`
-   - Algorithm selection (KMeans, DBSCAN)
+3. ✅ Implemented `components/controls/clustering_panel.py`
+   - Algorithm selection (KMeans, DBSCAN, **ETS**)
    - Metric selection (Gap, Silhouette)
    - Manual k override option
-   - Advanced settings (distance metrics, seeds)
+   - **Macro/Meso/Micro hierarchy control**
+   - **ETS threshold controls**
 
-### Phase 3: Visualization Components (Priority: High)
-1. Create `components/visualizations/sankey_wrapper.py`
-   - Integrate with existing SankeyGenerator
-   - Add interactivity callbacks
-   - Synchronize with other views
+### ✅ Phase 3: Visualization Components (COMPLETED)
+1. ✅ Created `components/visualizations/sankey_wrapper.py`
+   - Integrated with existing SankeyGenerator
+   - **Window-aware functionality**
+   - Added interactivity callbacks
+   - Synchronized with other views
 
-2. Create `components/visualizations/umap_stepped.py`
-   - Use existing dimensionality reducers
+2. ✅ Created `components/visualizations/stepped_trajectory.py`
+   - **Three visualization modes: individual, aggregated, heatmap**
    - Layer-by-layer visualization
+   - **Window and hierarchy aware**
    - Trajectory highlighting
 
-3. Implement `components/cards/cluster_card.py`
+3. ✅ Implemented `components/visualizations/cluster_cards.py`
+   - **Three card types: standard, ETS, hierarchical**
    - LLM-generated descriptions
    - Feature importance display
    - Flow information
    - Interactive highlighting
 
-### Phase 4: LLM Integration (Priority: High)
-1. Implement `components/controls/api_keys_panel.py`
+### ✅ Phase 4: LLM Integration (COMPLETED)
+1. ✅ Implemented `components/controls/api_keys_panel.py`
    - Secure API key input
    - Provider selection
    - Validation feedback
 
-2. Create `core/llm_adapter.py`
-   - Generic feature-based analysis
-   - Cluster labeling for any model type
-   - Path narrative generation
+2. ✅ **Refactored existing LLM infrastructure**
+   - **Comprehensive analysis in single API call**
+   - **Analysis categories: interpretation, bias, efficiency, robustness**
+   - **Proven bias detection capabilities**
+   - Uses `concept_fragmentation.llm.analysis.ClusterAnalysis`
 
 ### Phase 5: Main Integration (Priority: High)
 1. Implement `tabs/ff_networks.py`
@@ -143,6 +148,27 @@ concept_mri/
 2. Implement diagnostic scanner
 3. Add 3D trajectory viewer
 4. Create GPT placeholder tab
+
+## Completed Enhancements (Beyond Original Plan)
+
+### ✅ Layer Window Manager (COMPLETED)
+- Manual window configuration with presets
+- GPT-2 style, thirds, quarters, halves presets
+- Interactive window editing
+- Experimental auto-detection using metrics
+- Visual metric plots for guidance
+
+### ✅ Advanced Clustering Features (COMPLETED)
+- ETS (Explainable Threshold Similarity) integration
+- Threshold percentile controls
+- Macro/Meso/Micro hierarchy support
+- Adaptive K calculation
+
+### ✅ Comprehensive Testing Infrastructure (COMPLETED)
+- Component verification scripts
+- Test data generators
+- Integration tests
+- Manual testing guide
 
 ## Key Design Decisions
 
@@ -178,11 +204,17 @@ concept_mri/
 - Model comparison mode
 - GPT/Transformer support
 
-## Timeline Estimate
-- Phase 1-2: 2-3 days (infrastructure + data input)
-- Phase 3-4: 3-4 days (visualizations + LLM)
-- Phase 5-6: 2-3 days (integration + polish)
-- **Total: 7-10 days** for fully functional application
+## Timeline Update
+- ✅ Phase 1-2: COMPLETED (infrastructure + data input)
+- ✅ Phase 3-4: COMPLETED (visualizations + LLM)
+- ⏳ Phase 5: IN PROGRESS (main integration)
+- ⏳ Phase 6: TODO (polish)
+
+## Next Steps
+1. **Connect LLM Analysis to UI**: Wire up the comprehensive analysis to display results
+2. **Complete Tab Integration**: Finish orchestrating all components in ff_networks.py
+3. **Add Analysis Category Selection**: UI controls for choosing analysis types
+4. **Test End-to-End Flow**: Upload model → analyze → view bias detection results
 
 ## Notes
 - This is a fresh UI implementation that maximizes reuse of existing analysis code

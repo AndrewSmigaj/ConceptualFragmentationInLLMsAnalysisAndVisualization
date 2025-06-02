@@ -19,6 +19,14 @@ from concept_fragmentation.metrics.explainable_threshold_similarity import (
     compute_ets_statistics,
     explain_ets_similarity
 )
+from concept_fragmentation.analysis.cluster_paths import (
+    compute_cluster_paths, 
+    compute_path_archetypes,
+    compute_clusters_for_layer
+)
+
+# Import activation manager for retrieving stored activations
+from concept_mri.core.activation_manager import activation_manager
 
 
 class ClusteringPanel:
@@ -31,6 +39,34 @@ class ClusteringPanel:
     def create_component(self):
         """Create and return the component layout."""
         return create_clustering_panel()
+
+def _get_activations_from_model_data(model_data):
+    """Get activations from model data, handling both session storage and direct storage."""
+    if not model_data:
+        return None
+        
+    # Try to get from session storage first
+    session_id = model_data.get('activation_session_id')
+    if session_id:
+        activations = activation_manager.get_activations(session_id)
+        if activations is not None:
+            return activations
+    
+    # Fall back to direct storage
+    activations = model_data.get('activations', {})
+    
+    # Handle legacy list format
+    if activations and isinstance(activations, dict):
+        activations_np = {}
+        for layer_name, activation in activations.items():
+            if isinstance(activation, list):
+                activations_np[layer_name] = np.array(activation)
+            else:
+                activations_np[layer_name] = activation
+        return activations_np
+    
+    return activations
+
 
 def get_k_for_hierarchy(hierarchy_level, n_samples, algorithm='kmeans'):
     """Calculate appropriate k based on hierarchy level and sample size."""
@@ -259,11 +295,12 @@ def create_clustering_panel():
                 # ETS-specific visualizations
                 dbc.Row([
                     dbc.Col([
-                        dbc.FormGroup([
+                        html.Div([
                             dbc.Checkbox(
                                 id='ets-show-explanations',
                                 label='Show cluster explanations',
-                                value=True
+                                value=True,
+                                className='mb-2'
                             ),
                             dbc.Checkbox(
                                 id='ets-compute-similarity',
@@ -649,7 +686,9 @@ def register_clustering_panel_callbacks(app):
         if algorithm == 'ets':
             try:
                 # Extract activations from model data
-                activations = model_data.get('activations', {})
+                activations = _get_activations_from_model_data(model_data)
+                if not activations:
+                    return None, {'display': 'none'}, 0, "No activations found. Please ensure both model and dataset are loaded.", "danger", None
                 
                 # Adjust threshold based on hierarchy level
                 if ets_mode == 'auto':
@@ -705,42 +744,144 @@ def register_clustering_panel_callbacks(app):
                 return None, {'display': 'none'}, 0, f"ETS clustering failed: {str(e)}", "danger", None
         
         else:
-            # Mock clustering process for other algorithms
-            # Adjust k based on hierarchy if using automatic
-            n_samples = 100  # Mock sample size
-            if k_method != 'manual':
-                manual_k = get_k_for_hierarchy(hierarchy_level, n_samples, algorithm)
-            
-            # Mock results
-            clustering_results = {
-                'algorithm': algorithm,
-                'hierarchy': hierarchy_names[hierarchy_level],
-                'k_method': k_method,
-                'num_clusters': manual_k,
-                'distance_metric': distance,
-                'random_seed': seed,
-                'clusters_per_layer': {
-                    f'layer_{i}': {
-                        'n_clusters': manual_k,
-                        'silhouette_score': 0.7 - i * 0.05,
-                        'labels': [j % manual_k for j in range(100)]  # Mock labels
+            # Use existing clustering infrastructure
+            try:
+                # Get activations from model data
+                activations = _get_activations_from_model_data(model_data)
+                if not activations:
+                    return None, {'display': 'none'}, 0, "No activations found in model data. Please ensure both model and dataset are loaded.", "danger", None
+                
+                # Check if activations are valid
+                if not isinstance(activations, dict) or len(activations) == 0:
+                    return None, {'display': 'none'}, 0, "Invalid or empty activations. Please reload model and dataset.", "danger", None
+                
+                # Step 1: Compute clusters for each layer
+                layer_clusters = {}
+                for layer_name, layer_activations in activations.items():
+                    if not isinstance(layer_activations, np.ndarray):
+                        continue
+                    
+                    # Determine max_k based on hierarchy
+                    if k_method == 'manual':
+                        # For manual, use the specified k directly
+                        k = manual_k
+                        centers = None
+                        labels = None
+                        # Simple K-means with specified k
+                        from sklearn.cluster import KMeans
+                        kmeans = KMeans(n_clusters=k, random_state=seed, n_init=10)
+                        labels = kmeans.fit_predict(layer_activations)
+                        centers = kmeans.cluster_centers_
+                    else:
+                        # Use compute_clusters_for_layer which finds optimal k
+                        max_k = get_k_for_hierarchy(hierarchy_level, layer_activations.shape[0], 'kmeans')
+                        k, centers, labels = compute_clusters_for_layer(
+                            layer_activations,
+                            max_k=max_k,
+                            random_state=seed
+                        )
+                    
+                    layer_clusters[layer_name] = {
+                        'k': k,
+                        'centers': centers,
+                        'labels': labels,
+                        'activations': layer_activations
                     }
-                    for i in range(5)
+                
+                # Check if we have any valid clusters
+                if not layer_clusters:
+                    return None, {'display': 'none'}, 0, "No layers found for clustering.", "danger", None
+                
+                # Check if all layers have valid data
+                valid_layers = 0
+                for layer_name, layer_info in layer_clusters.items():
+                    if 'labels' in layer_info and len(layer_info['labels']) > 0:
+                        valid_layers += 1
+                
+                if valid_layers == 0:
+                    return None, {'display': 'none'}, 0, "No valid clustering results found.", "danger", None
+                
+                # Step 2: Compute cluster paths
+                unique_paths, layer_names, id_to_layer_cluster, original_paths, human_readable_paths = compute_cluster_paths(layer_clusters)
+                
+                # Step 3: Find most common paths and format for LLM
+                from collections import Counter
+                path_counter = Counter(tuple(path) for path in original_paths)
+                most_common_paths = path_counter.most_common(25)  # Top 25 paths
+                
+                # Format for LLM analysis
+                llm_paths = {}
+                cluster_labels_dict = {}
+                fragmentation_scores = {}
+                
+                for idx, (path_tuple, frequency) in enumerate(most_common_paths):
+                    # Find a sample that follows this path
+                    sample_idx = None
+                    for i, sample_path in enumerate(original_paths):
+                        if tuple(sample_path) == path_tuple:
+                            sample_idx = i
+                            break
+                    
+                    if sample_idx is not None:
+                        # Use the human readable path
+                        path_str = human_readable_paths[sample_idx]
+                        # Convert "L0C1→L1C2→L2C0" to ["L0_C1", "L1_C2", "L2_C0"]
+                        parts = path_str.split('→')
+                        llm_path = []
+                        for part in parts:
+                            # part is like "L0C1", convert to "L0_C1"
+                            if 'C' in part:
+                                c_index = part.index('C')
+                                layer_cluster = part[:c_index] + '_' + part[c_index:]
+                                llm_path.append(layer_cluster)
+                        llm_paths[idx] = llm_path
+                        
+                        # Create cluster labels
+                        for cluster_id in llm_path:
+                            if cluster_id not in cluster_labels_dict:
+                                # Parse layer and cluster number
+                                parts = cluster_id.split('_')
+                                layer_num = int(parts[0][1:])
+                                cluster_num = int(parts[1][1:])
+                                cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                        
+                        # Simple fragmentation score based on frequency
+                        total_samples = len(original_paths)
+                        path_frequency = frequency / total_samples
+                        fragmentation_scores[idx] = 1.0 - min(path_frequency * 5, 1.0)
+                
+                # Build final results
+                clustering_results = {
+                    'algorithm': algorithm,
+                    'hierarchy': hierarchy_names[hierarchy_level],
+                    'completed': True,
+                    'clusters_per_layer': {},
+                    # LLM-ready format
+                    'paths': llm_paths,
+                    'cluster_labels': cluster_labels_dict,
+                    'fragmentation_scores': fragmentation_scores,
+                    'metrics': {
+                        'total_clusters': sum(lc['k'] for lc in layer_clusters.values()),
+                        'unique_paths': len(set(tuple(path) for path in original_paths)),
+                        'total_samples': len(original_paths)
+                    }
                 }
-            }
-            
-            # Mock metric data
-            metric_data = {
-                'type': k_method if k_method != 'manual' else 'gap',
-                'k_values': list(range(2, 11)),
-                'gap_values': [0.2, 0.3, 0.5, 0.8, 0.9, 0.85, 0.8, 0.75, 0.7],
-                'optimal_k': 7,
-                'silhouette_scores': [0.3, 0.4, 0.5, 0.7, 0.8, 0.75, 0.7, 0.65, 0.6],
-                'inertia_values': [100, 80, 60, 45, 35, 30, 28, 27, 26]
-            }
-            
-            metric_viz = create_metric_visualization(metric_data)
-            status_msg = f"Clustering complete! Found optimal k={clustering_results['num_clusters']} clusters per layer."
+                
+                # Add per-layer info for UI
+                for layer_name, layer_info in layer_clusters.items():
+                    clustering_results['clusters_per_layer'][layer_name] = {
+                        'n_clusters': layer_info['k'],
+                        'labels': layer_info['labels'].tolist()
+                    }
+                
+                # Create simple metric visualization
+                metric_viz = None
+                status_msg = f"Clustering complete! Found {len(llm_paths)} archetypal paths across {len(layer_names)} layers."
+                
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                return None, {'display': 'none'}, 0, f"Clustering failed: {str(e)}", "danger", None
         
         return (
             clustering_results,

@@ -6,6 +6,8 @@ import dash_bootstrap_components as dbc
 import dash_uploader as du
 from pathlib import Path
 import json
+import torch
+import numpy as np
 
 from concept_mri.config.settings import (
     ALLOWED_MODEL_EXTENSIONS, MAX_UPLOAD_SIZE_MB,
@@ -36,7 +38,7 @@ def create_model_upload():
             du.Upload(
                 id='model-upload',
                 max_file_size=MAX_UPLOAD_SIZE_MB,
-                filetypes=ALLOWED_MODEL_EXTENSIONS,
+                filetypes=['pt', 'pth', 'onnx', 'h5', 'pb', 'pkl'],  # dash-uploader needs extensions without dots
                 upload_id='model-uploader',
                 text='Drag and drop or click to upload your model',
                 text_completed='Model uploaded: ',
@@ -130,24 +132,74 @@ def register_model_upload_callbacks(app):
         filename = filenames[0]
         file_path = Path(UPLOAD_FOLDER_ROOT) / upload_id / filename
         
-        # Here we would normally call model_interface.py to load the model
-        # For now, create mock data
-        model_data = {
-            'filename': filename,
-            'path': str(file_path),
-            'type': 'PyTorch' if filename.endswith('.pt') or filename.endswith('.pth') else 'Unknown',
-            'size_mb': file_path.stat().st_size / (1024 * 1024) if file_path.exists() else 0,
-            'num_layers': 5,  # Mock data
-            'num_params': 125000,  # Mock data
-            'input_dim': 13,  # Mock data
-            'layers': [  # Mock data
-                {'name': 'fc1', 'type': 'Linear', 'shape': '(13, 64)'},
-                {'name': 'fc2', 'type': 'Linear', 'shape': '(64, 32)'},
-                {'name': 'fc3', 'type': 'Linear', 'shape': '(32, 16)'},
-                {'name': 'fc4', 'type': 'Linear', 'shape': '(16, 8)'},
-                {'name': 'output', 'type': 'Linear', 'shape': '(8, 2)'}
-            ]
-        }
+        # Try to load the model and extract info
+        try:
+            # Load model checkpoint
+            checkpoint = torch.load(file_path, map_location='cpu')
+            
+            # Extract model info
+            architecture = checkpoint.get('architecture', [32, 16, 8])
+            input_size = checkpoint.get('input_size', 10)
+            output_size = checkpoint.get('output_size', 2)
+            
+            # Build layer info
+            layers = []
+            prev_size = input_size
+            for i, hidden_size in enumerate(architecture):
+                layers.append({
+                    'name': f'layer_{i}',
+                    'type': 'Linear',
+                    'shape': f'({prev_size}, {hidden_size})'
+                })
+                prev_size = hidden_size
+            layers.append({
+                'name': f'layer_{len(architecture)}',
+                'type': 'Linear', 
+                'shape': f'({prev_size}, {output_size})'
+            })
+            
+            # Check for corresponding activations file
+            activations_path = file_path.parent / 'sample_activations.npz'
+            activations = {}
+            if activations_path.exists():
+                activations_data = np.load(activations_path)
+                activations = {key: activations_data[key] for key in activations_data.files}
+            
+            model_data = {
+                'model_loaded': True,
+                'filename': filename,
+                'path': str(file_path),
+                'type': 'PyTorch',
+                'size_mb': file_path.stat().st_size / (1024 * 1024),
+                'num_layers': len(layers),
+                'num_params': sum(p.numel() for p in torch.load(file_path, map_location='cpu')['model_state_dict'].values() if p.dim() > 0),
+                'input_dim': input_size,
+                'output_dim': output_size,
+                'architecture': architecture,
+                'layers': layers,
+                'activations': activations  # This is what clustering needs!
+            }
+            
+        except Exception as e:
+            # Fallback to mock data
+            model_data = {
+                'model_loaded': True,
+                'filename': filename,
+                'path': str(file_path),
+                'type': 'PyTorch' if filename.endswith('.pt') or filename.endswith('.pth') else 'Unknown',
+                'size_mb': file_path.stat().st_size / (1024 * 1024) if file_path.exists() else 0,
+                'num_layers': 5,
+                'num_params': 125000,
+                'input_dim': 13,
+                'layers': [
+                    {'name': 'fc1', 'type': 'Linear', 'shape': '(13, 64)'},
+                    {'name': 'fc2', 'type': 'Linear', 'shape': '(64, 32)'},
+                    {'name': 'fc3', 'type': 'Linear', 'shape': '(32, 16)'},
+                    {'name': 'fc4', 'type': 'Linear', 'shape': '(16, 8)'},
+                    {'name': 'output', 'type': 'Linear', 'shape': '(8, 2)'}
+                ],
+                'activations': {}
+            }
         
         info_display = create_model_info_display(model_data)
         

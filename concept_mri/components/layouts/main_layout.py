@@ -70,7 +70,15 @@ def create_tabs():
 
 def create_storage_components():
     """Create storage components for state management."""
+    import uuid
+    from datetime import datetime
+    
+    # Generate a unique session ID
+    session_id = f"session_{uuid.uuid4().hex[:8]}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    
     return html.Div([
+        # Session ID store - this identifies the current session
+        dcc.Store(id='session-id-store', storage_type='session', data=session_id),
         # Session storage for model data
         dcc.Store(id='model-store', storage_type='session'),
         # Session storage for dataset info

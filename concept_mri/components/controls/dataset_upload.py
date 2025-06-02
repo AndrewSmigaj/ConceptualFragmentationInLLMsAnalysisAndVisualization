@@ -38,7 +38,7 @@ def create_dataset_upload():
             du.Upload(
                 id='dataset-upload',
                 max_file_size=MAX_UPLOAD_SIZE_MB,
-                filetypes=ALLOWED_DATA_EXTENSIONS,
+                filetypes=['csv', 'npz', 'pkl', 'json', 'parquet'],  # dash-uploader needs extensions without dots
                 upload_id='dataset-uploader',
                 text='Drag and drop or click to upload your dataset',
                 text_completed='Dataset uploaded: ',
@@ -165,8 +165,8 @@ def register_dataset_upload_callbacks(app):
          Output('dataset-alert', 'color'),
          Output('dataset-alert', 'is_open')],
         Input('dataset-upload', 'isCompleted'),
-        State('dataset-upload', 'fileNames'),
-        State('dataset-upload', 'upload_id'),
+        [State('dataset-upload', 'fileNames'),
+         State('dataset-upload', 'upload_id')],
         prevent_initial_call=True
     )
     def handle_dataset_upload(is_completed, filenames, upload_id):

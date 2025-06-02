@@ -75,7 +75,8 @@
       "Bash(/mnt/c/Repos/ConceptualFragmentationInLLMsAnalysisAndVisualization/venv311/Scripts/python.exe cluster_all_tokens_per_layer.py)",
       "Bash(kill:*)",
       "Bash(venv311/Scripts/python.exe experiments/gpt2/all_tokens/cluster_top_10k_k3.py)",
-      "Bash(./venv311/Scripts/pip.exe install dash-bootstrap-components==1.5.0 dash-uploader==0.6.0)"
+      "Bash(./venv311/Scripts/pip.exe install dash-bootstrap-components==1.5.0 dash-uploader==0.6.0)",
+      "Bash(./../../venv311/Scripts/python.exe train_demo_models.py --dataset titanic --variant bottleneck --quiet)"
     ],
     "deny": []
   },

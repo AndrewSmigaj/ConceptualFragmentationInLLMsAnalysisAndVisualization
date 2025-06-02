@@ -119,8 +119,8 @@ class ActivationCollector:
             include_patterns: Patterns to match layer names
             exclude_patterns: Patterns to exclude from layer names
         """
-        # If model is a ModelInterface, get the underlying model
-        if isinstance(model, ModelInterface):
+        # If model has a .model attribute (ModelInterface), get the underlying model
+        if hasattr(model, 'model') and isinstance(getattr(model, 'model'), nn.Module):
             underlying_model = model.model
         else:
             underlying_model = model
@@ -220,18 +220,32 @@ class ActivationCollector:
         # Non-streaming mode: collect all at once
         with torch.no_grad():
             # Forward pass to collect activations
-            if isinstance(model, ModelInterface):
-                model.forward(inputs)
-            else:
-                _ = model(inputs)
+            logger.debug("About to perform forward pass")
+            try:
+                if hasattr(model, 'forward') and hasattr(model, 'model'):
+                    model.forward(inputs)
+                else:
+                    _ = model(inputs)
+                logger.debug("Forward pass completed")
+            except Exception as e:
+                logger.error(f"Error during forward pass: {e}")
+                logger.debug("Traceback for forward pass error:", exc_info=True)
+                raise
             
             # Get activations
-            activations = self._process_activations(
-                hook=hook,
-                output_format=output_format,
-                device=device,
-                process_fn=process_fn
-            )
+            logger.debug("About to process activations")
+            try:
+                activations = self._process_activations(
+                    hook=hook,
+                    output_format=output_format,
+                    device=device,
+                    process_fn=process_fn
+                )
+                logger.debug(f"Activations processed, returning {len(activations) if isinstance(activations, dict) else 'non-dict'} activations")
+            except Exception as e:
+                logger.error(f"Error processing activations: {e}")
+                logger.debug("Traceback for activation processing error:", exc_info=True)
+                raise
             
             return activations
     
@@ -245,7 +259,19 @@ class ActivationCollector:
         """Process activations based on format and apply processing function."""
         # Get activations
         if output_format == ActivationFormat.NUMPY:
-            activations = hook.numpy_activations()
+            logger.debug("About to call hook.numpy_activations()")
+            try:
+                activations = hook.numpy_activations()
+                logger.debug(f"After numpy_activations, got type: {type(activations)}, keys: {activations.keys() if isinstance(activations, dict) else 'Not a dict'}")
+                
+                # DEBUG: Check what's in activations
+                if isinstance(activations, dict):
+                    for k, v in activations.items():
+                        logger.debug(f"activations[{k}] type: {type(v)}, shape: {v.shape if hasattr(v, 'shape') else 'NO SHAPE'}")
+            except Exception as e:
+                logger.error(f"Error in numpy_activations: {e}")
+                logger.debug("Traceback for numpy_activations error:", exc_info=True)
+                raise
         else:
             activations = {
                 k: v.to(device) for k, v in hook.layer_activations.items()
@@ -253,7 +279,14 @@ class ActivationCollector:
         
         # Apply processing function if provided
         if process_fn:
-            activations = process_fn(activations)
+            logger.debug(f"About to apply process_fn: {process_fn}")
+            try:
+                activations = process_fn(activations)
+                logger.debug(f"After process_fn, activations type: {type(activations)}")
+            except Exception as e:
+                logger.error(f"Error in process_fn: {e}")
+                logger.debug("Traceback for process_fn error:", exc_info=True)
+                raise
             
         return activations
     
@@ -289,7 +322,7 @@ class ActivationCollector:
                 
                 # Forward pass to collect activations
                 with torch.no_grad():
-                    if isinstance(model, ModelInterface):
+                    if hasattr(model, 'forward') and hasattr(model, 'model'):
                         model.forward(batch_inputs)
                     else:
                         _ = model(batch_inputs)
@@ -333,7 +366,7 @@ class ActivationCollector:
                 
                 # Forward pass to collect activations
                 with torch.no_grad():
-                    if isinstance(model, ModelInterface):
+                    if hasattr(model, 'forward') and hasattr(model, 'model'):
                         model.forward(batch_inputs)
                     else:
                         _ = model(batch_inputs)

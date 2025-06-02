@@ -17,33 +17,72 @@ Concept MRI is a web-based tool for analyzing neural networks using Concept Traj
 - **SteppedTrajectoryVisualization**: Multiple modes for trajectory analysis
 - **ClusterCards**: Rich cluster information display (standard, ETS, hierarchical)
 
-### 3. Analysis Components
+### 3. Storage & Session Management
 
-#### LLM Analysis Framework (New)
-Extensible system for different types of LLM-powered analyses:
+#### Activation Storage System
+The app uses a hybrid storage approach to handle numpy array activations that cannot be efficiently stored in Dash's JSON-based stores:
 
+**Components:**
+- **ActivationManager** (`core/activation_manager.py`): Central manager that handles both activation extraction and session-based storage
+  - Extracts activations from models using the concept_fragmentation pipeline
+  - Stores activations in memory with session-based access
+  - Provides memory management with configurable limits (default 2GB)
+  - Automatic cleanup of expired sessions (default 2 hour timeout)
+
+**Design Rationale:**
+- Dash stores serialize data to JSON, converting numpy arrays to lists
+- This causes type errors when passing to analysis functions expecting numpy arrays
+- Session storage keeps arrays in original format while providing multi-user support
+
+**Usage Pattern:**
+```python
+# Storing activations (in activation extraction callback)
+session_id = activation_manager.store_activations(
+    session_id=session_id,  # From session-id-store
+    activations=processed_activations,
+    metadata={...}
+)
+model_data['activation_session_id'] = session_id
+
+# Retrieving activations (in analysis callbacks)
+activations = activation_manager.get_activations(session_id)
+if activations is None:
+    # Fall back to direct storage for backward compatibility
+    activations = model_data.get('activations', {})
 ```
-LLMAnalyzer (base class)
-├── BiasAnalyzer: Detects unfair patterns and biases
-├── InterpretabilityAnalyzer: Explains what the network learned
-├── EfficiencyAnalyzer: Identifies optimization opportunities
-├── RobustnessAnalyzer: Assesses vulnerabilities
-└── CustomAnalyzer: User-defined analysis types
-```
+
+### 4. Analysis Components
+
+#### LLM Analysis Framework (Updated)
+Uses the refactored comprehensive analysis system from `concept_fragmentation.llm.analysis`:
 
 **Key Features:**
-- Standardized data format for all analyzers
-- Configuration-driven prompt templates
-- Consistent output format
-- Domain-aware analysis
-- Result caching
+- **Single API Call**: All archetypal paths analyzed together for better pattern detection
+- **Analysis Categories**: Supports multiple analysis types in one call
+  - `interpretation`: Conceptual understanding and decision patterns
+  - `bias`: Cross-path demographic analysis and fairness detection
+  - `efficiency`: Redundancy and optimization opportunities
+  - `robustness`: Stability and vulnerability assessment
+- **Comprehensive Context**: LLM sees all paths, demographics, and statistics at once
 
-**Data Flow:**
-1. Network analysis data (paths, clusters, metrics)
-2. Analyzer prepares and formats data
-3. Generates domain-specific prompts
-4. LLM provides interpretation
-5. Results parsed and displayed
+**Implementation:**
+```python
+# Using the refactored ClusterAnalysis
+analyzer = ClusterAnalysis(provider="openai", model="gpt-4")
+result = analyzer.generate_path_narratives_sync(
+    paths=archetypal_paths,
+    cluster_labels=labels,
+    path_demographic_info=demographics,
+    analysis_categories=['interpretation', 'bias']
+)
+# Returns comprehensive analysis string, not individual narratives
+```
+
+**Bias Detection Capabilities:**
+- Identifies systematic demographic routing differences
+- Detects unexpected segregation patterns
+- Finds statistical anomalies across paths
+- Provides actionable insights for fairness improvements
 
 ### 4. Data Flow
 
@@ -84,47 +123,62 @@ Each UI component is self-contained with:
 ## Integration Points
 
 ### With concept_fragmentation library:
-- Uses existing clustering algorithms
-- Leverages path extraction
-- Imports metrics calculations
+- Uses existing clustering algorithms (K-Means, DBSCAN, ETS)
+- Leverages path extraction and archetypal path analysis
+- Imports metrics calculations (fragmentation, purity, etc.)
 - Wraps visualization components
+- **Uses ClusterAnalysis for comprehensive LLM analysis**
 
 ### With LLM providers:
-- Supports multiple providers (OpenAI, Anthropic, etc.)
-- Unified interface through llm_client
-- Caching layer for responses
+- Supports multiple providers (OpenAI, Anthropic, Gemini, Grok/xAI)
+- Unified interface through `concept_fragmentation.llm.factory`
+- Built-in caching layer for responses
+- API keys configured via `local_config.py`
 
 ## Configuration
 
-### Analysis Configuration
-```yaml
-# analysis_configs.yaml
-bias:
-  name: "Bias Analysis"
-  required_metrics: ["path_distribution", "cluster_composition"]
-  prompt_template: "bias_analysis_v1"
-  
-interpretability:
-  name: "Interpretability Analysis"  
-  required_metrics: ["cluster_semantics", "layer_progression"]
-  prompt_template: "interpretability_v1"
+### API Configuration
+```python
+# local_config.py (gitignored)
+OPENAI_KEY = "your-key"
+XAI_API_KEY = "your-key"
+GEMINI_API_KEY = "your-key"
+MONGO_URI = "mongodb://..."
 ```
 
-### Prompt Templates
-- Versioned for reproducibility
-- Domain-aware placeholders
-- Standardized output format
+### Analysis Configuration
+- Analysis categories selected at runtime
+- No separate configuration files needed
+- Prompts are built dynamically based on:
+  - Selected analysis categories
+  - Available data (demographics, statistics, etc.)
+  - Network architecture (FF vs Transformer)
 
 ## Recent Enhancements
 
-### Phase A Additions:
-1. **ETS Clustering**: Explainable threshold-based clustering
-2. **Hierarchy Control**: Macro/Meso/Micro analysis levels
-3. **Window Management**: Analyze deep networks in segments
-4. **Enhanced Visualizations**: Richer, interactive displays
+### Phase A Completed:
+1. **Layer Window Manager**: 
+   - Manual presets (GPT-2, thirds, quarters, halves)
+   - Interactive window configuration
+   - Experimental auto-detection using metrics
+   - Visual metric plots for guidance
 
-### LLM Analysis Framework:
-1. **Extensible Design**: Easy to add new analysis types
-2. **Standardized Interface**: Consistent usage pattern
-3. **Domain Awareness**: Interprets based on application context
-4. **Configuration-Driven**: Prompts and parsers in config files
+2. **ETS Clustering Integration**:
+   - Threshold percentile controls
+   - Batch size configuration
+   - ETS-specific visualizations
+
+3. **Macro/Meso/Micro Hierarchy**:
+   - Adaptive K calculation based on hierarchy level
+   - Integrated with all visualizations
+
+4. **Enhanced Visualizations**:
+   - Window-aware Sankey diagrams
+   - Stepped trajectory visualization (3 modes)
+   - Enhanced cluster cards with confidence intervals
+
+### LLM Analysis Refactoring:
+1. **Comprehensive Analysis**: Single API call with all paths
+2. **Cross-Path Pattern Detection**: Essential for bias analysis
+3. **Flexible Categories**: Choose analysis types at runtime
+4. **Proven Bias Detection**: Successfully tested on heart disease data

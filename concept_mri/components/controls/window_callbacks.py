@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 import json
 from typing import Dict, Any, List, Optional
 import logging
+import numpy as np
 
 from .layer_window_manager import (
     compute_preset_windows, 
@@ -21,6 +22,9 @@ from .window_visualization import (
     create_window_config_from_boundaries
 )
 from .window_detection_utils import WindowDetectionMetrics
+
+# Import activation manager for retrieving stored activations
+from concept_mri.core.activation_manager import activation_manager
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +72,12 @@ def register_window_callbacks(app):
     )
     def compute_metrics_on_model_load(model_data, current_metrics):
         """Compute window detection metrics when model loads."""
-        if not model_data or not model_data.get('activations'):
+        if not model_data:
+            return current_metrics or {}
+        
+        # Check if we have activations (either directly or via session)
+        has_activations = model_data.get('activations') or model_data.get('activation_session_id')
+        if not has_activations:
             return current_metrics or {}
         
         # Check if we already computed metrics for this model
@@ -77,8 +86,36 @@ def register_window_callbacks(app):
             return current_metrics
         
         try:
-            # Get activations and optional clusters
-            activations = model_data.get('activations', {})
+            # Get activations - either from session storage or direct storage
+            activations = None
+            
+            # Try to get from session storage first
+            session_id = model_data.get('activation_session_id')
+            if session_id:
+                activations = activation_manager.get_activations(session_id)
+                if activations is None:
+                    logger.warning(f"Session {session_id} not found in activation manager")
+            
+            # Fall back to direct storage if no session or session not found
+            if activations is None:
+                activations = model_data.get('activations', {})
+                
+                # Handle the case where activations might be stored as lists (legacy)
+                if activations and isinstance(activations, dict):
+                    activations_np = {}
+                    for layer_name, activation in activations.items():
+                        if isinstance(activation, list):
+                            activations_np[layer_name] = np.array(activation)
+                        else:
+                            activations_np[layer_name] = activation
+                    activations = activations_np
+            
+            # If still no activations, return empty
+            if not activations:
+                logger.error("No activations found for metrics computation")
+                return current_metrics or {}
+            
+            # Get optional clusters
             clusters = model_data.get('clusters', None)
             
             # Compute metrics using existing code

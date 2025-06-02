@@ -117,7 +117,7 @@ class ActivationCollectionStage(PipelineStageBase[Dict[str, Any], Dict[str, Any]
                 streaming=self.streaming
             )
             
-            return {
+            result = {
                 'model': model,
                 'inputs': inputs,
                 'model_id': model_id,
@@ -125,6 +125,8 @@ class ActivationCollectionStage(PipelineStageBase[Dict[str, Any], Dict[str, Any]
                 'metadata': metadata,
                 'activations': activations
             }
+            logger.debug(f"ActivationCollectionStage returning result with activations of type: {type(activations)}")
+            return result
     
     def can_stream(self) -> bool:
         """Whether this stage can process data in a streaming fashion."""

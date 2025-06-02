@@ -9,7 +9,12 @@
      - Whether it reimplements existing functionality
    - State your review explicitly before proceeding
 
-2. **Session Start Protocol**
+2. **NEVER Run the App**
+   - Do NOT start the Concept MRI app or any other user applications
+   - The user maintains control over app execution
+   - Only provide code changes and explanations
+
+3. **Session Start Protocol**
    - At the beginning of every chat, read `ARCHITECTURE.yaml`
    - Read `CURRENTLY_WORKING_ON.md` to understand current context
    - Check for any `CLAUDE.md` updates
