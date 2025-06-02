@@ -151,21 +151,31 @@ class UMAPTrajectoryVisualization:
             replace=False
         )
         
-        # Collect activations for all layers
-        all_activations = []
-        layer_indices = []
+        # Run UMAP separately for each layer first, then combine
+        embeddings_list = []
         
         for layer_idx, layer_name in enumerate(layer_names):
             layer_acts = activations[layer_name][sample_indices]
-            all_activations.append(layer_acts)
+            
+            # Run UMAP on this layer
+            if layer_acts.shape[1] >= n_neighbors:  # Ensure enough features
+                reducer = UMAP(n_components=3, n_neighbors=min(n_neighbors, layer_acts.shape[1]-1), random_state=42)
+                layer_embeddings = reducer.fit_transform(layer_acts)
+            else:
+                # If too few features, use PCA or direct projection
+                from sklearn.decomposition import PCA
+                pca = PCA(n_components=3)
+                layer_embeddings = pca.fit_transform(layer_acts)
+            
+            embeddings_list.append(layer_embeddings)
+        
+        # Stack all embeddings
+        embeddings_3d = np.vstack(embeddings_list)
+        
+        # Create layer indices
+        layer_indices = []
+        for layer_idx in range(len(layer_names)):
             layer_indices.extend([layer_idx] * n_samples)
-        
-        # Stack all activations
-        all_activations = np.vstack(all_activations)
-        
-        # Run UMAP
-        reducer = UMAP(n_components=3, n_neighbors=n_neighbors, random_state=42)
-        embeddings_3d = reducer.fit_transform(all_activations)
         
         # Add layer offsets
         for i, layer_idx in enumerate(layer_indices):

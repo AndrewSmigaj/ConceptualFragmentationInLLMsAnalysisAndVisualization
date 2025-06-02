@@ -13,7 +13,7 @@ import json
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from concept_fragmentation.visualization.sankey import SankeyGenerator, SankeyConfig
+from concept_fragmentation.visualization.sankey import SankeyGenerator, SankeyConfig, PathInfo
 from concept_mri.config.settings import DEFAULT_TOP_N_PATHS, DEFAULT_SANKEY_HEIGHT, THEME_COLOR
 
 class SankeyWrapper:
@@ -23,7 +23,16 @@ class SankeyWrapper:
     
     def __init__(self, component_id: str = "sankey-diagram"):
         self.component_id = component_id
-        self.sankey_generator = SankeyGenerator()
+        # Create SankeyGenerator with colored paths enabled
+        self.sankey_config = SankeyConfig(
+            colored_paths=True,
+            show_purity=False,  # We don't have purity data in basic clustering
+            top_n_paths=DEFAULT_TOP_N_PATHS,
+            height=DEFAULT_SANKEY_HEIGHT,
+            width=1600,
+            generate_summary=False
+        )
+        self.sankey_generator = SankeyGenerator(config=self.sankey_config)
         self.current_data = None
         
     def create_component(self) -> dbc.Card:
@@ -168,14 +177,9 @@ class SankeyWrapper:
         if not path_data:
             path_data = clustering_data.get('paths', {})
         
-        # Create configuration
-        sankey_config = SankeyConfig(
-            top_n_paths=config.get('top_n', DEFAULT_TOP_N_PATHS) if config else DEFAULT_TOP_N_PATHS,
-            show_labels=True,
-            colored_paths=config.get('color_by', 'cluster') == 'cluster' if config else True,
-            height=DEFAULT_SANKEY_HEIGHT,
-            width="100%"
-        )
+        # Update configuration with user settings
+        self.sankey_config.top_n_paths = config.get('top_n', DEFAULT_TOP_N_PATHS) if config else DEFAULT_TOP_N_PATHS
+        self.sankey_config.colored_paths = config.get('color_by', 'cluster') == 'cluster' if config else True
         
         # Extract window and hierarchy settings
         window_name = config.get('window', 'full') if config else 'full'
@@ -197,10 +201,91 @@ class SankeyWrapper:
         else:
             hierarchy_clustering = clustering_data
         
-        # Create Sankey figure from clustering data
-        fig = self._create_sankey_from_paths(path_data, cluster_labels, clustering_data, sankey_config)
+        # Convert clustering data to format expected by unified SankeyGenerator
+        sankey_data = self._convert_to_sankey_format(
+            clustering_data, path_data, cluster_labels, hierarchy_level, window_name
+        )
         
-        return fig.to_dict()
+        # Use the unified SankeyGenerator
+        try:
+            fig = self.sankey_generator.create_sankey(sankey_data, window=window_name)
+            return fig.to_dict()
+        except Exception as e:
+            print(f"Error creating Sankey with unified generator: {e}")
+            # Fallback to simple version
+            fig = self._create_sankey_from_paths(path_data, cluster_labels, clustering_data, sankey_config)
+            return fig.to_dict()
+    
+    def _convert_to_sankey_format(
+        self,
+        clustering_data: Dict[str, Any],
+        path_data: Dict[str, List[str]],
+        cluster_labels: Dict[str, str],
+        hierarchy_level: str,
+        window_name: str
+    ) -> Dict[str, Any]:
+        """Convert Concept MRI clustering data to unified Sankey format."""
+        # Get layer names from clustering data
+        layer_names = sorted(clustering_data.get('clusters_per_layer', {}).keys())
+        layers = list(range(len(layer_names)))
+        
+        # Convert paths to the expected format
+        archetypal_paths = []
+        for path_id, path in path_data.items():
+            # Convert path from ["L0_C1", "L1_C2", ...] to [1, 2, ...]
+            numeric_path = []
+            for node in path:
+                # Extract cluster number from node ID (e.g., "L0_C1" -> 1)
+                parts = node.split('_')
+                if len(parts) == 2 and parts[1].startswith('C'):
+                    cluster_num = int(parts[1][1:])
+                    numeric_path.append(cluster_num)
+            
+            # Create PathInfo structure
+            path_info = {
+                'path': numeric_path,
+                'frequency': 1,  # Default frequency, could be enhanced
+                'representative_words': [],  # Not available in basic clustering
+                'semantic_labels': [cluster_labels.get(node, node) for node in path]
+            }
+            archetypal_paths.append(path_info)
+        
+        # Create windowed analysis structure
+        windowed_analysis = {
+            window_name: {
+                'layers': layers,
+                'total_paths': clustering_data.get('metrics', {}).get('total_samples', len(path_data)),
+                'unique_paths': len(path_data),
+                'archetypal_paths': archetypal_paths
+            }
+        }
+        
+        # Create labels structure
+        labels_dict = {}
+        for layer_idx, layer_name in enumerate(layer_names):
+            layer_key = f"layer_{layer_idx}"
+            labels_dict[layer_key] = {}
+            
+            # Get cluster info for this layer
+            if layer_name in clustering_data.get('clusters_per_layer', {}):
+                n_clusters = clustering_data['clusters_per_layer'][layer_name].get('n_clusters', 0)
+                for cluster_id in range(n_clusters):
+                    cluster_key = f"L{layer_idx}_C{cluster_id}"
+                    original_key = f"{layer_name.replace('layer_', 'L')}_C{cluster_id}"
+                    labels_dict[layer_key][cluster_key] = {
+                        'label': cluster_labels.get(original_key, f"Cluster {cluster_id}")
+                    }
+        
+        # Create the final data structure
+        sankey_data = {
+            'windowed_analysis': windowed_analysis,
+            'labels': {
+                'all': labels_dict  # The unified generator expects a config key
+            },
+            'purity_data': None  # Not available in basic clustering
+        }
+        
+        return sankey_data
     
     def _filter_paths_by_window(
         self,
@@ -348,6 +433,12 @@ class SankeyWrapper:
         def update_sankey(n_clicks, clustering_data, top_n, color_by, window,
                          hierarchy, window_config):
             """Update Sankey diagram based on settings."""
+            print(f"DEBUG Sankey: n_clicks={n_clicks}, has_clustering_data={bool(clustering_data)}")
+            if clustering_data:
+                print(f"DEBUG Sankey: clustering_data keys={list(clustering_data.keys())}")
+                print(f"DEBUG Sankey: completed={clustering_data.get('completed')}")
+                print(f"DEBUG Sankey: has paths={bool(clustering_data.get('paths'))}")
+                
             if not clustering_data:
                 return dcc.Graph(
                     figure=self._create_empty_figure(),

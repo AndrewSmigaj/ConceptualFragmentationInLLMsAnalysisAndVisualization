@@ -134,6 +134,7 @@ def register_all_callbacks(app):
     from concept_mri.components.controls.dataset_upload import register_dataset_upload_callbacks
     from concept_mri.components.visualizations.sankey_wrapper import SankeyWrapper
     from concept_mri.components.visualizations.stepped_trajectory import SteppedTrajectoryVisualization
+    from concept_mri.components.visualizations.umap_trajectory import UMAPTrajectoryVisualization
     from concept_mri.components.visualizations.cluster_cards import ClusterCards
     from concept_mri.tabs.ff_networks import get_ff_networks_callbacks
     from concept_mri.components.callbacks.activation_extraction_callback import register_activation_extraction_callback
@@ -157,6 +158,9 @@ def register_all_callbacks(app):
     
     stepped = SteppedTrajectoryVisualization("ff-stepped")
     stepped.register_callbacks(app)
+    
+    umap_traj = UMAPTrajectoryVisualization("ff-umap")
+    umap_traj.register_callbacks(app)
     
     cluster_cards = ClusterCards("ff-cluster-cards")
     cluster_cards.register_callbacks(app)
