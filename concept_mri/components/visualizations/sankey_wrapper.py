@@ -121,7 +121,15 @@ class SankeyWrapper:
                     children=[
                         html.Div(
                             id=f"{self.component_id}-container",
-                            style={"height": f"{DEFAULT_SANKEY_HEIGHT}px"}
+                            style={"height": f"{DEFAULT_SANKEY_HEIGHT}px"},
+                            children=[
+                                # Placeholder graph that will be updated by callback
+                                dcc.Graph(
+                                    id=f"{self.component_id}-graph",
+                                    figure=self._create_empty_figure(),
+                                    config={'displayModeBar': False}
+                                )
+                            ]
                         )
                     ]
                 ),
@@ -208,12 +216,12 @@ class SankeyWrapper:
         
         # Use the unified SankeyGenerator
         try:
-            fig = self.sankey_generator.create_sankey(sankey_data, window=window_name)
+            fig = self.sankey_generator.generate(sankey_data, window=window_name)
             return fig.to_dict()
         except Exception as e:
             print(f"Error creating Sankey with unified generator: {e}")
             # Fallback to simple version
-            fig = self._create_sankey_from_paths(path_data, cluster_labels, clustering_data, sankey_config)
+            fig = self._create_sankey_from_paths(path_data, cluster_labels, clustering_data, self.sankey_config)
             return fig.to_dict()
     
     def _convert_to_sankey_format(
@@ -419,7 +427,8 @@ class SankeyWrapper:
             return options, "full"
         
         @app.callback(
-            [Output(f"{self.component_id}-container", "children"),
+            [Output(f"{self.component_id}-graph", "figure"),
+             Output(f"{self.component_id}-graph", "config"),
              Output(f"{self.component_id}-path-collapse", "is_open")],
             [Input(f"{self.component_id}-update-btn", "n_clicks"),
              Input("clustering-store", "data")],
@@ -440,11 +449,7 @@ class SankeyWrapper:
                 print(f"DEBUG Sankey: has paths={bool(clustering_data.get('paths'))}")
                 
             if not clustering_data:
-                return dcc.Graph(
-                    figure=self._create_empty_figure(),
-                    id=f"{self.component_id}-graph",
-                    config={'displayModeBar': False}
-                ), False
+                return self._create_empty_figure(), {'displayModeBar': False}, False
             
             # Generate configuration
             config = {
@@ -467,17 +472,13 @@ class SankeyWrapper:
                 config
             )
             
-            graph = dcc.Graph(
-                figure=fig_data,
-                id=f"{self.component_id}-graph",
-                config={
-                    'displayModeBar': True,
-                    'displaylogo': False,
-                    'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
-                }
-            )
+            graph_config = {
+                'displayModeBar': True,
+                'displaylogo': False,
+                'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+            }
             
-            return graph, False
+            return fig_data, graph_config, False
         
         @app.callback(
             Output(f"{self.component_id}-path-info", "children"),
