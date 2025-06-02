@@ -6,6 +6,9 @@ import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 from typing import Dict, List, Any
 import numpy as np
+import logging
+
+logger = logging.getLogger(__name__)
 
 from concept_mri.config.settings import (
     DEFAULT_CLUSTERING_ALGORITHM, DEFAULT_METRIC,
@@ -737,8 +740,73 @@ def register_clustering_panel_callbacks(app):
                 }
                 metric_viz = create_ets_visualization(ets_viz_data)
                 
+                # Add the completed flag and compute paths for ETS
+                ets_results['completed'] = True
+                
+                # Compute paths for ETS clusters
+                try:
+                    # Convert ETS results to format expected by compute_cluster_paths
+                    ets_layer_clusters = {}
+                    for layer_name, layer_data in ets_results['clusters_per_layer'].items():
+                        ets_layer_clusters[layer_name] = {
+                            'labels': np.array(layer_data['labels']),
+                            'k': layer_data['n_clusters']
+                        }
+                    
+                    # Compute paths
+                    unique_paths, layer_names, id_to_layer_cluster, original_paths, human_readable_paths = compute_cluster_paths(ets_layer_clusters)
+                    
+                    # Format paths for visualization
+                    from collections import Counter
+                    path_counter = Counter(tuple(path) for path in original_paths)
+                    most_common_paths = path_counter.most_common(25)
+                    
+                    llm_paths = {}
+                    cluster_labels_dict = {}
+                    
+                    for idx, (path_tuple, frequency) in enumerate(most_common_paths):
+                        # Find a sample that follows this path
+                        sample_idx = None
+                        for i, sample_path in enumerate(original_paths):
+                            if tuple(sample_path) == path_tuple:
+                                sample_idx = i
+                                break
+                        
+                        if sample_idx is not None:
+                            path_str = human_readable_paths[sample_idx]
+                            parts = path_str.split('→')
+                            llm_path = []
+                            for part in parts:
+                                if 'C' in part:
+                                    c_index = part.index('C')
+                                    layer_cluster = part[:c_index] + '_' + part[c_index:]
+                                    llm_path.append(layer_cluster)
+                            llm_paths[idx] = llm_path
+                            
+                            # Create cluster labels
+                            for cluster_id in llm_path:
+                                if cluster_id not in cluster_labels_dict:
+                                    parts = cluster_id.split('_')
+                                    layer_num = int(parts[0][1:])
+                                    cluster_num = int(parts[1][1:])
+                                    cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                    
+                    # Add path data to results
+                    ets_results['paths'] = llm_paths
+                    ets_results['cluster_labels'] = cluster_labels_dict
+                    ets_results['metrics'] = {
+                        'total_clusters': sum(d['n_clusters'] for d in ets_results['clusters_per_layer'].values()),
+                        'unique_paths': len(set(tuple(path) for path in original_paths)),
+                        'total_samples': len(original_paths)
+                    }
+                except Exception as e:
+                    logger.warning(f"Failed to compute paths for ETS: {e}")
+                    # Still mark as completed even if paths fail
+                    ets_results['paths'] = {}
+                    ets_results['cluster_labels'] = {}
+                
                 clustering_results = ets_results
-                status_msg = f"ETS clustering complete! Found {stats['n_clusters']} explainable clusters."
+                status_msg = f"ETS clustering complete! Found {stats['n_clusters'] if stats else 'N/A'} explainable clusters."
                 
             except Exception as e:
                 return None, {'display': 'none'}, 0, f"ETS clustering failed: {str(e)}", "danger", None

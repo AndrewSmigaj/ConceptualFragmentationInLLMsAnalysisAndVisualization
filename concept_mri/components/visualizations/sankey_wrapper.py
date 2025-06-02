@@ -161,8 +161,12 @@ class SankeyWrapper:
         Returns:
             Plotly figure data
         """
-        if not clustering_data or not path_data:
+        if not clustering_data:
             return self._create_empty_figure()
+            
+        # Use paths from clustering data if path_data not provided separately
+        if not path_data:
+            path_data = clustering_data.get('paths', {})
         
         # Create configuration
         sankey_config = SankeyConfig(
@@ -193,20 +197,8 @@ class SankeyWrapper:
         else:
             hierarchy_clustering = clustering_data
         
-        # Generate Sankey using existing generator
-        # Note: In real implementation, this would use actual path data
-        # For now, create mock data structure expected by SankeyGenerator
-        mock_sankey_data = {
-            'paths': paths[:sankey_config.top_n_paths],
-            'labels': cluster_labels,
-            'window': window_name,
-            'hierarchy': hierarchy_level,
-            'window_config': window_config
-        }
-        
-        # The actual SankeyGenerator would be called here
-        # For now, create a mock Plotly figure
-        fig = self._create_mock_sankey_figure(mock_sankey_data, sankey_config)
+        # Create Sankey figure from clustering data
+        fig = self._create_sankey_from_paths(path_data, cluster_labels, clustering_data, sankey_config)
         
         return fig.to_dict()
     
@@ -225,33 +217,77 @@ class SankeyWrapper:
                 filtered_paths.append(path)
         return filtered_paths
     
-    def _create_mock_sankey_figure(
+    def _create_sankey_from_paths(
         self,
-        data: Dict[str, Any],
+        path_data: Dict[str, List[str]],
+        cluster_labels: Dict[str, str],
+        clustering_data: Dict[str, Any],
         config: SankeyConfig
     ) -> go.Figure:
-        """Create a mock Sankey figure for demonstration."""
-        # In real implementation, this would call:
-        # return self.sankey_generator.generate(data, config)
+        """Create Sankey figure from clustering paths."""
+        if not path_data:
+            return self._create_empty_figure()
+            
+        # Build node list and link data
+        nodes = []
+        node_map = {}
+        links = {'source': [], 'target': [], 'value': []}
         
-        # For now, create a simple mock
+        # Get unique nodes from paths
+        for path_id, path in path_data.items():
+            for node in path:
+                if node not in node_map:
+                    node_map[node] = len(nodes)
+                    # Use cluster label if available, otherwise use node ID
+                    label = cluster_labels.get(node, node)
+                    nodes.append(label)
+        
+        # Count transitions
+        transition_counts = {}
+        for path_id, path in path_data.items():
+            for i in range(len(path) - 1):
+                source = path[i]
+                target = path[i + 1]
+                key = (source, target)
+                transition_counts[key] = transition_counts.get(key, 0) + 1
+        
+        # Build links
+        for (source, target), count in transition_counts.items():
+            links['source'].append(node_map[source])
+            links['target'].append(node_map[target])
+            links['value'].append(count)
+        
+        # Create colors for nodes (by layer)
+        node_colors = []
+        for node in nodes:
+            if 'L0' in node or 'layer_0' in node:
+                node_colors.append('#1f77b4')
+            elif 'L1' in node or 'layer_1' in node:
+                node_colors.append('#ff7f0e')
+            elif 'L2' in node or 'layer_2' in node:
+                node_colors.append('#2ca02c')
+            else:
+                node_colors.append('#d62728')
+        
+        # Create Sankey figure
         fig = go.Figure(data=[go.Sankey(
             node=dict(
                 pad=15,
                 thickness=20,
                 line=dict(color="black", width=0.5),
-                label=["L1_C0", "L1_C1", "L2_C0", "L2_C1", "L3_C0"],
-                color=[THEME_COLOR] * 5
+                label=nodes,
+                color=node_colors
             ),
             link=dict(
-                source=[0, 0, 1, 1, 2, 2, 3, 3],
-                target=[2, 3, 2, 3, 4, 4, 4, 4],
-                value=[8, 4, 2, 8, 8, 4, 2, 2]
+                source=links['source'],
+                target=links['target'],
+                value=links['value']
             )
         )])
         
+        # Update layout
         fig.update_layout(
-            title="Concept Flow Through Network Layers",
+            title=f"Concept Flow Visualization (Top {len(path_data)} paths)",
             font_size=10,
             height=config.height
         )
@@ -306,13 +342,11 @@ class SankeyWrapper:
              State(f"{self.component_id}-color-by", "value"),
              State(f"{self.component_id}-window", "value"),
              State(f"{self.component_id}-hierarchy", "value"),
-             State("window-config-store", "data"),
-             State("path-analysis-store", "data"),
-             State("cluster-labels-store", "data")],
+             State("window-config-store", "data")],
             prevent_initial_call=False
         )
         def update_sankey(n_clicks, clustering_data, top_n, color_by, window,
-                         hierarchy, window_config, path_data, cluster_labels):
+                         hierarchy, window_config):
             """Update Sankey diagram based on settings."""
             if not clustering_data:
                 return dcc.Graph(
@@ -329,11 +363,15 @@ class SankeyWrapper:
                 'hierarchy': hierarchy
             }
             
+            # Extract path data and labels from clustering data
+            path_data = clustering_data.get('paths', {})
+            cluster_labels = clustering_data.get('cluster_labels', {})
+            
             # Generate Sankey
             fig_data = self.generate_sankey(
                 clustering_data,
-                path_data or {},
-                cluster_labels or {},
+                path_data,
+                cluster_labels,
                 window_config,
                 config
             )

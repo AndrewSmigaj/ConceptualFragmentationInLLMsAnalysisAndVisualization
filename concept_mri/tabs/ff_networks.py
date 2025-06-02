@@ -39,12 +39,13 @@ try:
     from concept_mri.components.controls.window_callbacks import register_window_callbacks
     from concept_mri.components.visualizations.sankey_wrapper import SankeyWrapper
     from concept_mri.components.visualizations.stepped_trajectory import SteppedTrajectoryVisualization
+    from concept_mri.components.visualizations.umap_trajectory import UMAPTrajectoryVisualization
     from concept_mri.components.visualizations.cluster_cards import ClusterCards
 except ImportError as e:
     print(f"Warning: Could not import component: {e}")
     # Define mock classes if imports fail
     ModelUploadPanel = DatasetUploadPanel = ClusteringPanel = APIKeysPanel = SankeyWrapper = None
-    LayerWindowManager = SteppedTrajectoryVisualization = ClusterCards = None
+    LayerWindowManager = SteppedTrajectoryVisualization = UMAPTrajectoryVisualization = ClusterCards = None
     register_clustering_panel_callbacks = register_window_callbacks = None
 
 
@@ -73,6 +74,7 @@ def create_ff_networks_tab(model_data: Optional[Dict] = None,
         'layer_window_manager': LayerWindowManager() if LayerWindowManager else None,
         'sankey_wrapper': SankeyWrapper("ff-sankey"),
         'stepped_trajectory': SteppedTrajectoryVisualization("ff-stepped") if SteppedTrajectoryVisualization else None,
+        'umap_trajectory': UMAPTrajectoryVisualization("ff-umap") if UMAPTrajectoryVisualization else None,
         'cluster_cards': ClusterCards("ff-cluster-cards") if ClusterCards else None
     }
     
@@ -347,6 +349,7 @@ def get_ff_networks_callbacks():
             'layer_window_manager': LayerWindowManager() if LayerWindowManager else None,
             'sankey_wrapper': SankeyWrapper("ff-sankey") if SankeyWrapper else None,
             'stepped_trajectory': SteppedTrajectoryVisualization("ff-stepped") if SteppedTrajectoryVisualization else None,
+            'umap_trajectory': UMAPTrajectoryVisualization("ff-umap") if UMAPTrajectoryVisualization else None,
             'cluster_cards': ClusterCards("ff-cluster-cards") if ClusterCards else None
         }
         workflow_manager = WorkflowManager(components, llm_available=LLM_AVAILABLE)

@@ -40,7 +40,10 @@ def register_activation_extraction_callback(app):
     """Register callback for automatic activation extraction."""
     
     @app.callback(
-        Output('model-store', 'data', allow_duplicate=True),
+        [Output('model-store', 'data', allow_duplicate=True),
+         Output('activation-status', 'children'),
+         Output('activation-status', 'color'),
+         Output('activation-status', 'is_open')],
         [Input('model-store', 'data'),
          Input('dataset-store', 'data')],
         State('session-id-store', 'data'),
@@ -54,16 +57,16 @@ def register_activation_extraction_callback(app):
         """
         # Check if we have both model and dataset
         if not model_data or not dataset_data:
-            return model_data
+            return model_data, None, None, False
         
         # Check if model is loaded and dataset has data
         if not model_data.get('model_loaded') or not dataset_data.get('filename'):
-            return model_data
+            return model_data, None, None, False
         
         # Check if activations already exist (either directly or via session)
         if model_data.get('activations') or model_data.get('activation_session_id'):
             logger.info("Activations already exist, skipping extraction")
-            return model_data
+            return model_data, "Activations already extracted!", "success", True
         
         logger.info("Both model and dataset available, extracting activations...")
         
@@ -72,13 +75,13 @@ def register_activation_extraction_callback(app):
             model = _load_pytorch_model(model_data)
             if model is None:
                 logger.error("Failed to load PyTorch model")
-                return model_data
+                return model_data, "Failed to load model for activation extraction", "danger", True
             
             # Get input data
             inputs = _get_input_tensor(dataset_data, model_data)
             if inputs is None:
                 logger.error("Failed to get input data")
-                return model_data
+                return model_data, "Failed to process dataset for activation extraction", "danger", True
             logger.debug(f"Input tensor shape: {inputs.shape}")
             
             # Create pipeline configuration
@@ -228,7 +231,7 @@ def register_activation_extraction_callback(app):
                 model_data['activations'] = mock_activations
                 model_data['activation_session_id'] = None
         
-        return model_data
+        return model_data, "Activations extracted successfully!", "success", True
 
 
 def _load_pytorch_model(model_data: Dict[str, Any]) -> Optional[nn.Module]:

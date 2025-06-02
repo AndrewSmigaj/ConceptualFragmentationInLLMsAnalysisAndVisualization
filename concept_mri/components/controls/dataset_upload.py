@@ -68,7 +68,17 @@ def create_dataset_upload():
                 color='info',
                 is_open=True,
                 className='mt-3'
-            )
+            ),
+            
+            # Activation extraction status
+            html.Div([
+                dbc.Alert(
+                    id='activation-status',
+                    is_open=False,
+                    dismissable=True,
+                    className='mt-3'
+                )
+            ])
         ])
     ])
 
