@@ -1,32 +1,13 @@
 \section{Reproducibility and Open Science}
 
 \begin{itemize}
-    \item Code and configs released under MIT license at \href{https://github.com/ConceptualFragmentationInLLMsAnalysisAndVisualization}{GitHub repository}
+    \item Code and configs released under MIT license at \href{https://github.com/AndrewSmigaj/conceptual-trajectory-analysis-LLM-intereptability-framework/}{GitHub repository}
     \item Seed lists and hyperparameters logged in JSON format
-    \item Dockerfile ensures environment parity across research teams
+    \item Python requirements.txt files ensure environment reproducibility
     \item Negative results and failed variants documented in appendices
     \item LLM prompts and responses cached for reproducibility
 \end{itemize}
 
-\paragraph{Key pipeline steps (pseudocode).}
-
-\begin{verbatim}
-# 1. Train baseline model and cache activations
-python train_baseline.py --dataset <dataset> --seed <seed>
-
-# 2. Compute cluster paths and metrics
-python concept_fragmentation/analysis/cluster_paths.py \
-       --dataset <dataset> --seed <seed> --compute_similarity
-
-# 3. Generate cluster labels and LLM narratives
-python llm_path_analysis.py --dataset <dataset> --seed <seed>
-
-# 4. Build LaTeX fragments & figures
-python tools/build_paper_tables.py
-python generate_paper_figures.py --dataset <dataset>
-\end{verbatim}
-
-Full, runnable code is available in the public repository; all prompts and
 LLM responses are cached for deterministic builds.
 
 \subsection{LLM Prompts for Cluster Interpretation}
@@ -69,4 +50,4 @@ Identify any concerning patterns or biases in how
 different demographic groups are processed.
 \end{verbatim}
 
-Interactive demos and full code implementation are available on our project repository.
+Full code implementation and example scripts are available on our project repository.

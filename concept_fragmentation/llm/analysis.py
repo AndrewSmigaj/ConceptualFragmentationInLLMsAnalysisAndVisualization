@@ -640,3 +640,233 @@ class ClusterAnalysis:
                 analysis_categories=analysis_categories
             )
         )
+    
+    async def analyze_and_label_clusters(
+        self,
+        paths: Dict[int, List[str]],
+        cluster_stats: Dict[str, str],
+        path_demographic_info: Optional[Dict[int, Dict[str, Any]]] = None,
+        per_cluster_stats_for_paths: Optional[Dict[int, Dict[str, str]]] = None,
+        fragmentation_scores: Optional[Dict[int, float]] = None,
+        analysis_categories: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
+        """
+        Comprehensive analysis that generates BOTH cluster labels AND path analysis in one call.
+        
+        Args:
+            paths: Dictionary mapping path IDs to lists of cluster IDs  
+            cluster_stats: Dictionary mapping cluster IDs to their statistical profiles
+            path_demographic_info: Optional dictionary mapping path IDs to demographic information
+            per_cluster_stats_for_paths: Optional dictionary mapping path IDs to cluster profiles
+            fragmentation_scores: Optional dictionary mapping path IDs to fragmentation scores
+            analysis_categories: Optional list of analysis types to include
+                
+        Returns:
+            Dictionary containing:
+                - cluster_labels: Dict mapping cluster IDs to semantic labels
+                - analysis: Comprehensive analysis text
+                - archetypal_paths: Optional path-specific insights
+        """
+        print(f"DEBUG analyze_and_label_clusters called with {len(paths)} paths")
+        print(f"DEBUG First path: {list(paths.values())[0] if paths else 'No paths'}")
+        print(f"DEBUG Cluster stats sample: {list(cluster_stats.items())[:2] if cluster_stats else 'No stats'}")
+        
+        if not paths:
+            return {"cluster_labels": {}, "analysis": "", "archetypal_paths": {}}
+
+        # Default analysis categories
+        if analysis_categories is None:
+            analysis_categories = ['interpretation', 'bias']
+
+        # Build comprehensive prompt
+        prompt_lines = [
+            "You are an AI expert analyzing neural network activation patterns.",
+            "I will provide you with archetypal paths through activation clusters.",
+            "Your task is to:",
+            "1. Generate semantic labels for each cluster based on its role in the paths",
+            "2. Provide comprehensive analysis of the patterns you observe",
+            "",
+            f"Total archetypal paths: {len(paths)}",
+            ""
+        ]
+
+        # Add cluster statistics
+        unique_clusters = set()
+        for path_clusters in paths.values():
+            unique_clusters.update(path_clusters)
+        
+        prompt_lines.append("=== CLUSTER PROFILES ===")
+        print(f"DEBUG: Building prompt with {len(unique_clusters)} clusters")
+        for cluster_id in sorted(unique_clusters):
+            if cluster_id in cluster_stats:
+                prompt_lines.append(f"{cluster_id}: {cluster_stats[cluster_id]}")
+            else:
+                print(f"DEBUG: Warning - no stats for cluster {cluster_id}")
+        
+        # Add paths
+        prompt_lines.append("\n=== ARCHETYPAL PATHS ===")
+        for path_id, path_clusters in paths.items():
+            path_desc = " → ".join(path_clusters)
+            prompt_lines.append(f"\nPath {path_id}: {path_desc}")
+            
+            # Add demographic info if available
+            if path_demographic_info and path_id in path_demographic_info:
+                demo_info = path_demographic_info[path_id]
+                prompt_lines.append("  Demographics:")
+                for key, value in demo_info.items():
+                    if isinstance(value, dict):
+                        dist_str = ", ".join([f"{k}: {v:.1%}" if isinstance(v,float) else f"{k}: {v}" for k,v in value.items()])
+                        prompt_lines.append(f"    - {key}: {dist_str}")
+                    else:
+                        prompt_lines.append(f"    - {key}: {value}")
+        
+        # Request structured output
+        prompt_lines.extend([
+            "\n=== TASK ===",
+            "Please provide:",
+            "1. CLUSTER LABELS - A semantic label (3-5 words) for each cluster that captures its role",
+            "   Format each as: CLUSTER_ID: semantic label",
+            "   Example: L0_C1: High-risk patients",
+            "",
+            "2. ANALYSIS - Comprehensive analysis covering:"
+        ])
+        
+        if 'interpretation' in analysis_categories:
+            prompt_lines.append("   - Interpretation: Main conceptual paths and transformations")
+        if 'bias' in analysis_categories:
+            prompt_lines.append("   - Bias: Demographic routing patterns and potential discrimination")
+        if 'efficiency' in analysis_categories:
+            prompt_lines.append("   - Efficiency: Redundancies and optimization opportunities")
+        if 'robustness' in analysis_categories:
+            prompt_lines.append("   - Robustness: Stability and vulnerability assessment")
+        
+        prompt_lines.extend([
+            "",
+            "Format your response EXACTLY as follows:",
+            "",
+            "CLUSTER LABELS:",
+            "L0_C0: Your semantic label here",
+            "L0_C1: Your semantic label here", 
+            "L1_C0: Your semantic label here",
+            "(continue for all clusters)",
+            "",
+            "ANALYSIS:",
+            "[Your comprehensive analysis here]",
+            "",
+            "IMPORTANT: For cluster labels, use EXACTLY the format 'CLUSTER_ID: Label Text' with no bullets, asterisks, or other formatting."
+        ])
+        
+        prompt = "\n".join(prompt_lines)
+        
+        # Make single API call
+        response = await self._generate_with_cache(
+            prompt=prompt,
+            temperature=0.4,
+            max_tokens=2000,
+            system_prompt="You are an AI assistant specializing in neural network analysis and pattern recognition."
+        )
+        
+        # Parse response
+        response_text = response.text.strip()
+        
+        print(f"DEBUG LLM Response (first 500 chars): {response_text[:500]}")
+        
+        # Extract cluster labels
+        cluster_labels = {}
+        analysis_text = ""
+        
+        if "CLUSTER LABELS:" in response_text and "ANALYSIS:" in response_text:
+            parts = response_text.split("ANALYSIS:")
+            labels_section = parts[0].split("CLUSTER LABELS:")[1].strip()
+            analysis_text = parts[1].strip() if len(parts) > 1 else ""
+            
+            print(f"DEBUG Labels section: {labels_section[:200]}")
+            
+            # Parse labels - looking for lines like "L0_C1: label text"
+            for line in labels_section.split("\n"):
+                line = line.strip()
+                if not line:  # Skip empty lines
+                    continue
+                print(f"DEBUG Parsing line: '{line}'")
+                # Look for pattern "L{number}_C{number}: label"
+                if ":" in line and "_C" in line and line.startswith("L"):
+                    try:
+                        cluster_id, label = line.split(":", 1)
+                        cluster_labels[cluster_id.strip()] = label.strip()
+                        print(f"DEBUG Found label: {cluster_id.strip()} -> {label.strip()}")
+                    except ValueError:
+                        print(f"DEBUG Failed to parse line: {line}")
+        else:
+            # Fallback parsing
+            print("DEBUG: CLUSTER LABELS or ANALYSIS not found in response")
+            analysis_text = response_text
+        
+        # Extract archetypal paths with their metadata
+        archetypal_paths = {}
+        if paths and path_demographic_info:
+            for path_id, path_clusters in paths.items():
+                path_info = {
+                    "path": path_clusters,
+                    "path_string": " → ".join(path_clusters)
+                }
+                
+                # Add demographic info if available
+                if path_id in path_demographic_info:
+                    demo_info = path_demographic_info[path_id]
+                    path_info["frequency"] = demo_info.get("sample_count", 0)
+                    path_info["dominant_routing"] = demo_info.get("dominant_routing", "unknown")
+                    path_info["dominant_variety"] = demo_info.get("dominant_variety", "unknown")
+                    path_info["routing_purity"] = demo_info.get("routing_purity", 0.0)
+                    path_info["variety_purity"] = demo_info.get("variety_purity", 0.0)
+                
+                # Add fragmentation score if available
+                if fragmentation_scores and path_id in fragmentation_scores:
+                    path_info["fragmentation_score"] = fragmentation_scores[path_id]
+                
+                # Apply cluster labels to path description
+                if cluster_labels:
+                    labeled_path = []
+                    for cluster_id in path_clusters:
+                        label = cluster_labels.get(cluster_id, cluster_id)
+                        labeled_path.append(f"{cluster_id} ({label})")
+                    path_info["labeled_path_string"] = " → ".join(labeled_path)
+                
+                archetypal_paths[path_id] = path_info
+        
+        return {
+            "cluster_labels": cluster_labels,
+            "analysis": analysis_text,
+            "archetypal_paths": archetypal_paths
+        }
+    
+    def analyze_and_label_clusters_sync(
+        self,
+        paths: Dict[int, List[str]],
+        cluster_stats: Dict[str, str],
+        path_demographic_info: Optional[Dict[int, Dict[str, Any]]] = None,
+        per_cluster_stats_for_paths: Optional[Dict[int, Dict[str, str]]] = None,
+        fragmentation_scores: Optional[Dict[int, float]] = None,
+        analysis_categories: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
+        """
+        Synchronous wrapper for analyze_and_label_clusters.
+        
+        Returns:
+            Dictionary containing:
+                - cluster_labels: Dict mapping cluster IDs to semantic labels
+                - analysis: Comprehensive analysis text
+                - archetypal_paths: Optional path-specific insights
+        """
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+        return loop.run_until_complete(
+            self.analyze_and_label_clusters(
+                paths, cluster_stats, path_demographic_info,
+                per_cluster_stats_for_paths, fragmentation_scores,
+                analysis_categories
+            )
+        )

@@ -1,0 +1,5 @@
+{
+  "layer_configs": {
+    "layer_0": {
+      "optimal_k": 4,
+      "kmeans_silhouette": 

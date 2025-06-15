@@ -1,0 +1,492 @@
+LABEL CONSISTENCY UPDATE REPORT
+============================================================
+
+Total changes made: 120
+
+Changes by original label:
+
+'Abstract Concepts' → 'Content: Abstract'
+  Affected clusters: 1
+  Clusters: L0_C5
+
+'Articles & Morphology' → 'Morphology: With Articles'
+  Affected clusters: 1
+  Clusters: L3_C9
+
+'Auxiliary Core' → 'Auxiliaries: Core'
+  Affected clusters: 2
+  Clusters: L6_C4, L8_C5
+
+'Auxiliary Infrastructure' → 'Auxiliaries: Infrastructure'
+  Affected clusters: 1
+  Clusters: L10_C4
+
+'Auxiliary Network' → 'Auxiliaries: Network'
+  Affected clusters: 2
+  Clusters: L4_C6, L9_C4
+
+'Auxiliary System' → 'Auxiliaries: System'
+  Affected clusters: 2
+  Clusters: L3_C8, L7_C1
+
+'Auxiliary Verbs' → 'Auxiliaries: Primary'
+  Affected clusters: 1
+  Clusters: L2_C1
+
+'Common Modifiers' → 'Content: Modifiers'
+  Affected clusters: 1
+  Clusters: L11_C0
+
+'Comparative & Relational' → 'Relational: Comparative'
+  Affected clusters: 1
+  Clusters: L5_C1
+
+'Comparative Network' → 'Relational: Comparative Network'
+  Affected clusters: 1
+  Clusters: L9_C0
+
+'Concrete Nouns' → 'Content: Concrete Nouns'
+  Affected clusters: 1
+  Clusters: L0_C0
+
+'Connective Core' → 'Function Words: Connectives'
+  Affected clusters: 1
+  Clusters: L10_C7
+
+'Connective Infrastructure' → 'Function Words: Connectives'
+  Affected clusters: 1
+  Clusters: L9_C6
+
+'Connective Network' → 'Function Words: Connectives'
+  Affected clusters: 1
+  Clusters: L6_C9
+
+'Connective System' → 'Function Words: Connectives'
+  Affected clusters: 1
+  Clusters: L8_C3
+
+'Content Base' → 'Content: Base'
+  Affected clusters: 3
+  Clusters: L6_C2, L7_C8, L9_C7
+
+'Content Core' → 'Content: Core'
+  Affected clusters: 1
+  Clusters: L4_C3
+
+'Content Foundation' → 'Content: Foundation'
+  Affected clusters: 3
+  Clusters: L5_C5, L8_C0, L10_C1
+
+'Content Vocabulary' → 'Content: Vocabulary'
+  Affected clusters: 1
+  Clusters: L3_C0
+
+'Content Words' → 'Content: General'
+  Affected clusters: 2
+  Clusters: L2_C2, L7_C3
+
+'Contracted Forms' → 'Morphology: Contractions'
+  Affected clusters: 1
+  Clusters: L6_C3
+
+'Contracted Negations' → 'Morphology: Negative Contractions'
+  Affected clusters: 1
+  Clusters: L9_C2
+
+'Contractions & Markers' → 'Morphology: Contractions'
+  Affected clusters: 1
+  Clusters: L3_C4
+
+'Core Connectives' → 'Function Words: Connectives'
+  Affected clusters: 2
+  Clusters: L1_C1, L5_C3
+
+'Core Determiners & Pronouns' → 'Mixed: Determiners & Pronouns'
+  Affected clusters: 1
+  Clusters: L0_C1
+
+'Core Function Words' → 'Function Words: Core'
+  Affected clusters: 3
+  Clusters: L4_C0, L9_C3, L11_C3
+
+'Core Grammar' → 'Grammar: Core'
+  Affected clusters: 3
+  Clusters: L0_C6, L3_C2, L11_C9
+
+'Determiners & Possessives' → 'Pronouns: Possessive'
+  Affected clusters: 1
+  Clusters: L1_C9
+
+'Discourse Beginnings' → 'Discourse: Beginnings'
+  Affected clusters: 1
+  Clusters: L8_C6
+
+'Discourse Elements' → 'Discourse: Elements'
+  Affected clusters: 2
+  Clusters: L4_C1, L7_C2
+
+'Discourse Markers' → 'Discourse: Markers'
+  Affected clusters: 2
+  Clusters: L2_C9, L5_C2
+
+'Discourse System' → 'Discourse: System'
+  Affected clusters: 2
+  Clusters: L6_C8, L9_C8
+
+'Discourse Transitions' → 'Discourse: Transitions'
+  Affected clusters: 1
+  Clusters: L10_C3
+
+'Function Core' → 'Function Words: Core'
+  Affected clusters: 1
+  Clusters: L7_C0
+
+'Function Foundation' → 'Function Words: Foundation'
+  Affected clusters: 1
+  Clusters: L6_C7
+
+'Function Infrastructure' → 'Function Words: Infrastructure'
+  Affected clusters: 2
+  Clusters: L5_C4, L8_C8
+
+'Function Network' → 'Function Words: Network'
+  Affected clusters: 1
+  Clusters: L10_C5
+
+'Function Word Core' → 'Function Words: Core'
+  Affected clusters: 1
+  Clusters: L2_C0
+
+'Function Words' → 'Function Words: Function Words'
+  Affected clusters: 1
+  Clusters: L3_C3
+
+'Function Words & Connectives' → 'Function Words: With Connectives'
+  Affected clusters: 1
+  Clusters: L0_C2
+
+'General Content' → 'Content: General Mixed'
+  Affected clusters: 1
+  Clusters: L2_C8
+
+'Grammar Core' → 'Grammar: Core'
+  Affected clusters: 2
+  Clusters: L5_C8, L10_C0
+
+'Grammar Foundation' → 'Grammar: Foundation'
+  Affected clusters: 1
+  Clusters: L8_C7
+
+'Grammar Infrastructure' → 'Grammar: Infrastructure'
+  Affected clusters: 1
+  Clusters: L6_C6
+
+'Grammar Network' → 'Function Words: Grammar Network'
+  Affected clusters: 2
+  Clusters: L4_C2, L7_C5
+
+'Grammar Support' → 'Grammar: Support Elements'
+  Affected clusters: 1
+  Clusters: L0_C9
+
+'Human References' → 'Content: Human References'
+  Affected clusters: 1
+  Clusters: L0_C7
+
+'Mixed Grammar' → 'Grammar: Mixed Elements'
+  Affected clusters: 2
+  Clusters: L3_C6, L4_C8
+
+'Mixed Morphology' → 'Morphology: Mixed'
+  Affected clusters: 1
+  Clusters: L1_C8
+
+'Mixed Punctuation' → 'Punctuation: Mixed'
+  Affected clusters: 1
+  Clusters: L2_C6
+
+'Modal & Prepositional' → 'Auxiliaries: Modal & Prepositional'
+  Affected clusters: 1
+  Clusters: L2_C5
+
+'Modal & Pronoun' → 'Auxiliaries: Modal & Pronoun'
+  Affected clusters: 1
+  Clusters: L7_C7
+
+'Modal System' → 'Auxiliaries: Modal'
+  Affected clusters: 2
+  Clusters: L1_C6, L5_C6
+
+'Modifier Network' → 'Content: Modifier Network'
+  Affected clusters: 1
+  Clusters: L11_C7
+
+'Morphological Patterns' → 'Morphology: Patterns'
+  Affected clusters: 1
+  Clusters: L2_C7
+
+'Negation Forms' → 'Morphology: Negations'
+  Affected clusters: 1
+  Clusters: L8_C4
+
+'Negation System' → 'Morphology: Negations'
+  Affected clusters: 1
+  Clusters: L10_C2
+
+'Negations' → 'Morphology: Negations'
+  Affected clusters: 1
+  Clusters: L7_C4
+
+'Negations & Contractions' → 'Morphology: Negations'
+  Affected clusters: 1
+  Clusters: L4_C7
+
+'Numbers & Quantifiers' → 'Content: Numbers & Quantifiers'
+  Affected clusters: 1
+  Clusters: L1_C0
+
+'Prefix System' → 'Morphology: Prefix System'
+  Affected clusters: 1
+  Clusters: L11_C2
+
+'Preposition Core' → 'Prepositions: Core'
+  Affected clusters: 1
+  Clusters: L9_C5
+
+'Preposition Network' → 'Prepositions: Network'
+  Affected clusters: 1
+  Clusters: L7_C9
+
+'Prepositions & Auxiliaries' → 'Prepositions: With Auxiliaries'
+  Affected clusters: 1
+  Clusters: L1_C2
+
+'Pronoun & Auxiliary Core' → 'Pronouns: With Auxiliaries'
+  Affected clusters: 1
+  Clusters: L11_C5
+
+'Pronoun Network' → 'Pronouns: Network'
+  Affected clusters: 1
+  Clusters: L5_C7
+
+'Pronoun System' → 'Pronouns: System'
+  Affected clusters: 1
+  Clusters: L4_C5
+
+'Pronouns & Morphology' → 'Mixed: Pronouns & Morphology'
+  Affected clusters: 1
+  Clusters: L0_C4
+
+'Pronouns & Quotes' → 'Mixed: Pronouns & Quotes'
+  Affected clusters: 1
+  Clusters: L3_C5
+
+'Pronouns & References' → 'Pronouns: With References'
+  Affected clusters: 2
+  Clusters: L1_C5, L2_C3
+
+'Proper Nouns' → 'Content: Proper Nouns'
+  Affected clusters: 1
+  Clusters: L2_C4
+
+'Punctuation & Discourse' → 'Punctuation: With Discourse'
+  Affected clusters: 1
+  Clusters: L11_C4
+
+'Punctuation & Morphology' → 'Punctuation: With Morphology'
+  Affected clusters: 1
+  Clusters: L11_C1
+
+'Punctuation & Symbols' → 'Punctuation: With Symbols'
+  Affected clusters: 2
+  Clusters: L1_C4, L4_C9
+
+'Punctuation Core' → 'Punctuation: Core'
+  Affected clusters: 1
+  Clusters: L6_C0
+
+'Punctuation Infrastructure' → 'Punctuation: Infrastructure'
+  Affected clusters: 1
+  Clusters: L8_C2
+
+'Punctuation Network' → 'Punctuation: Network'
+  Affected clusters: 1
+  Clusters: L9_C9
+
+'Punctuation System' → 'Punctuation: System'
+  Affected clusters: 4
+  Clusters: L3_C7, L5_C0, L7_C6, L10_C9
+
+'Quotes & Negations' → 'Punctuation: Quotes & Negations'
+  Affected clusters: 1
+  Clusters: L1_C3
+
+'Quotes & Symbols' → 'Punctuation: Quotes & Symbols'
+  Affected clusters: 1
+  Clusters: L11_C8
+
+'Relational System' → 'Relational: System'
+  Affected clusters: 1
+  Clusters: L8_C9
+
+'Relational Terms' → 'Relational: Terms'
+  Affected clusters: 1
+  Clusters: L10_C6
+
+'Relational Words' → 'Relational: General'
+  Affected clusters: 1
+  Clusters: L6_C5
+
+'Relative & Comparative' → 'Relational: Comparative'
+  Affected clusters: 1
+  Clusters: L4_C4
+
+'Sentence Beginnings' → 'Discourse: Sentence Beginnings'
+  Affected clusters: 1
+  Clusters: L5_C9
+
+'Sentence Initiators' → 'Discourse: Sentence Starters'
+  Affected clusters: 1
+  Clusters: L0_C8
+
+'Sentence Starters' → 'Discourse: Sentence Starters'
+  Affected clusters: 1
+  Clusters: L3_C1
+
+'Spatial & Descriptive' → 'Content: Spatial & Descriptive'
+  Affected clusters: 1
+  Clusters: L11_C6
+
+'Subject & Modal' → 'Auxiliaries: Subject & Modal'
+  Affected clusters: 1
+  Clusters: L8_C1
+
+'Subject Markers' → 'Pronouns: Subject'
+  Affected clusters: 2
+  Clusters: L1_C7, L10_C8
+
+'Subject System' → 'Pronouns: Subject'
+  Affected clusters: 2
+  Clusters: L6_C1, L9_C1
+
+'Titles & Prefixes' → 'Morphology: Prefixes & Titles'
+  Affected clusters: 1
+  Clusters: L0_C3
+
+
+Consistency groups:
+
+Content: 19 clusters
+  Layer 0: L0_C0, L0_C5, L0_C7
+  Layer 1: L1_C0
+  Layer 2: L2_C2, L2_C4, L2_C8
+  Layer 3: L3_C0
+  Layer 4: L4_C3
+  Layer 5: L5_C5
+  Layer 6: L6_C2
+  Layer 7: L7_C3, L7_C8
+  Layer 8: L8_C0
+  Layer 9: L9_C7
+  Layer 10: L10_C1
+  Layer 11: L11_C0, L11_C6, L11_C7
+
+Function Words: 19 clusters
+  Layer 0: L0_C2
+  Layer 1: L1_C1
+  Layer 2: L2_C0
+  Layer 3: L3_C3
+  Layer 4: L4_C0, L4_C2
+  Layer 5: L5_C3, L5_C4
+  Layer 6: L6_C7, L6_C9
+  Layer 7: L7_C0, L7_C5
+  Layer 8: L8_C3, L8_C8
+  Layer 9: L9_C3, L9_C6
+  Layer 10: L10_C5, L10_C7
+  Layer 11: L11_C3
+
+Punctuation: 14 clusters
+  Layer 1: L1_C3, L1_C4
+  Layer 2: L2_C6
+  Layer 3: L3_C7
+  Layer 4: L4_C9
+  Layer 5: L5_C0
+  Layer 6: L6_C0
+  Layer 7: L7_C6
+  Layer 8: L8_C2
+  Layer 9: L9_C9
+  Layer 10: L10_C9
+  Layer 11: L11_C1, L11_C4, L11_C8
+
+Auxiliaries: 13 clusters
+  Layer 1: L1_C6
+  Layer 2: L2_C1, L2_C5
+  Layer 3: L3_C8
+  Layer 4: L4_C6
+  Layer 5: L5_C6
+  Layer 6: L6_C4
+  Layer 7: L7_C1, L7_C7
+  Layer 8: L8_C1, L8_C5
+  Layer 9: L9_C4
+  Layer 10: L10_C4
+
+Morphology: 12 clusters
+  Layer 0: L0_C3
+  Layer 1: L1_C8
+  Layer 2: L2_C7
+  Layer 3: L3_C4, L3_C9
+  Layer 4: L4_C7
+  Layer 6: L6_C3
+  Layer 7: L7_C4
+  Layer 8: L8_C4
+  Layer 9: L9_C2
+  Layer 10: L10_C2
+  Layer 11: L11_C2
+
+Discourse: 11 clusters
+  Layer 0: L0_C8
+  Layer 2: L2_C9
+  Layer 3: L3_C1
+  Layer 4: L4_C1
+  Layer 5: L5_C2, L5_C9
+  Layer 6: L6_C8
+  Layer 7: L7_C2
+  Layer 8: L8_C6
+  Layer 9: L9_C8
+  Layer 10: L10_C3
+
+Grammar: 10 clusters
+  Layer 0: L0_C6, L0_C9
+  Layer 3: L3_C2, L3_C6
+  Layer 4: L4_C8
+  Layer 5: L5_C8
+  Layer 6: L6_C6
+  Layer 8: L8_C7
+  Layer 10: L10_C0
+  Layer 11: L11_C9
+
+Pronouns: 10 clusters
+  Layer 1: L1_C5, L1_C7, L1_C9
+  Layer 2: L2_C3
+  Layer 4: L4_C5
+  Layer 5: L5_C7
+  Layer 6: L6_C1
+  Layer 9: L9_C1
+  Layer 10: L10_C8
+  Layer 11: L11_C5
+
+Relational: 6 clusters
+  Layer 4: L4_C4
+  Layer 5: L5_C1
+  Layer 6: L6_C5
+  Layer 8: L8_C9
+  Layer 9: L9_C0
+  Layer 10: L10_C6
+
+Mixed: 3 clusters
+  Layer 0: L0_C1, L0_C4
+  Layer 3: L3_C5
+
+Prepositions: 3 clusters
+  Layer 1: L1_C2
+  Layer 7: L7_C9
+  Layer 9: L9_C5

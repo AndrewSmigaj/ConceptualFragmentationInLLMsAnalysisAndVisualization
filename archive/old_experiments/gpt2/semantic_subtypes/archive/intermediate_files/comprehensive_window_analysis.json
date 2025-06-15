@@ -1,0 +1,878 @@
+{
+  "cluster_counts": {
+    "kmeans": {
+      "layer_0": 2,
+      "layer_1": 2,
+      "layer_2": 2,
+      "layer_3": 2,
+      "layer_4": 2,
+      "layer_5": 2,
+      "layer_6": 2,
+      "layer_7": 2,
+      "layer_8": 2,
+      "layer_9": 2,
+      "layer_10": 2,
+      "layer_11": 2
+    },
+    "ets": {
+      "layer_0": 2,
+      "layer_1": 2,
+      "layer_2": 2,
+      "layer_3": 2,
+      "layer_4": 2,
+      "layer_5": 2,
+      "layer_6": 2,
+      "layer_7": 2,
+      "layer_8": 2,
+      "layer_9": 2,
+      "layer_10": 2,
+      "layer_11": 2
+    }
+  },
+  "window_metrics": {
+    "layers_0-2": {
+      "start_layer": 0,
+      "end_layer": 2,
+      "unique_paths": 8,
+      "entropy": 2.9243866212544836,
+      "fragmentation": 2.0,
+      "coverage": 1.0
+    },
+    "layers_1-3": {
+      "start_layer": 1,
+      "end_layer": 3,
+      "unique_paths": 8,
+      "entropy": 2.5359121617791502,
+      "fragmentation": 2.0,
+      "coverage": 1.0
+    },
+    "layers_2-4": {
+      "start_layer": 2,
+      "end_layer": 4,
+      "unique_paths": 7,
+      "entropy": 1.6584136887896308,
+      "fragmentation": 2.0,
+      "coverage": 1.0
+    },
+    "layers_3-5": {
+      "start_layer": 3,
+      "end_layer": 5,
+      "unique_paths": 7,
+      "entropy": 1.1776586485952103,
+      "fragmentation": 2.0,
+      "coverage": 1.0
+    },
+    "layers_4-6": {
+      "start_layer": 4,
+      "end_layer": 6,
+      "unique_paths": 5,
+      "entropy": 1.1394273333453366,
+      "fragmentation": 2.0,
+      "coverage": 1.0
+    },
+    "layers_5-7": {
+      "start_layer": 5,
+      "end_layer": 7,
+      "unique_paths": 3,
+      "entropy": 1.031256363630695,
+      "fragmentation": 1.5,
+      "coverage": 1.0
+    },
+    "layers_6-8": {
+      "start_layer": 6,
+      "end_layer": 8,
+      "unique_paths": 3,
+      "entropy": 1.0038239416021153,
+      "fragmentation": 1.0,
+      "coverage": 1.0
+    },
+    "layers_7-9": {
+      "start_layer": 7,
+      "end_layer": 9,
+      "unique_paths": 3,
+      "entropy": 1.0038239416021153,
+      "fragmentation": 1.5,
+      "coverage": 1.0
+    },
+    "layers_8-10": {
+      "start_layer": 8,
+      "end_layer": 10,
+      "unique_paths": 3,
+      "entropy": 1.0038239416021153,
+      "fragmentation": 1.5,
+      "coverage": 1.0
+    },
+    "layers_9-11": {
+      "start_layer": 9,
+      "end_layer": 11,
+      "unique_paths": 3,
+      "entropy": 1.0038239416021153,
+      "fragmentation": 1.5,
+      "coverage": 1.0
+    }
+  },
+  "interesting_windows": [
+    [
+      "layers_0-2",
+      5.848773242508967
+    ],
+    [
+      "layers_1-3",
+      5.0718243235583005
+    ],
+    [
+      "layers_2-4",
+      3.3168273775792616
+    ],
+    [
+      "layers_3-5",
+      2.3553172971904206
+    ],
+    [
+      "layers_4-6",
+      2.2788546666906733
+    ]
+  ],
+  "representative_paths": {
+    "ant": {
+      "subtype": "concrete_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "cow": {
+      "subtype": "concrete_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C0",
+        "L3CL3C0",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C0 -> L3CL3C0 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "ice": {
+      "subtype": "concrete_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "road": {
+      "subtype": "concrete_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "worm": {
+      "subtype": "concrete_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "age": {
+      "subtype": "abstract_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "end": {
+      "subtype": "abstract_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "memory": {
+      "subtype": "abstract_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "self": {
+      "subtype": "abstract_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C0",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C0 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "zen": {
+      "subtype": "abstract_nouns",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "aged": {
+      "subtype": "physical_adjectives",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "fixed": {
+      "subtype": "physical_adjectives",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "long": {
+      "subtype": "physical_adjectives",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "secure": {
+      "subtype": "physical_adjectives",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "young": {
+      "subtype": "manner_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "adult": {
+      "subtype": "emotive_adjectives",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "free": {
+      "subtype": "emotive_adjectives",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "odd": {
+      "subtype": "emotive_adjectives",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "smart": {
+      "subtype": "emotive_adjectives",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "actively": {
+      "subtype": "manner_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "fast": {
+      "subtype": "manner_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "near": {
+      "subtype": "manner_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "slow": {
+      "subtype": "manner_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "about": {
+      "subtype": "degree_adverbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "fully": {
+      "subtype": "degree_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "more": {
+      "subtype": "degree_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "small": {
+      "subtype": "degree_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "wrong": {
+      "subtype": "degree_adverbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "answer": {
+      "subtype": "action_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "enter": {
+      "subtype": "action_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "lift": {
+      "subtype": "action_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "set": {
+      "subtype": "action_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C0",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "write": {
+      "subtype": "action_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C0 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "able": {
+      "subtype": "stative_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "express": {
+      "subtype": "stative_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "love": {
+      "subtype": "stative_verbs",
+      "path": [
+        "L0CL0C1",
+        "L1CL1C1",
+        "L2CL2C1",
+        "L3CL3C0",
+        "L4CL4C1",
+        "L5CL5C0",
+        "L6CL6C0",
+        "L7CL7C0",
+        "L8CL8C1",
+        "L9CL9C1",
+        "L10CL10C1",
+        "L11CL11C1"
+      ],
+      "path_string": "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    },
+    "should": {
+      "subtype": "stative_verbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    },
+    "would": {
+      "subtype": "stative_verbs",
+      "path": [
+        "L0CL0C0",
+        "L1CL1C1",
+        "L2CL2C0",
+        "L3CL3C1",
+        "L4CL4C0",
+        "L5CL5C1",
+        "L6CL6C1",
+        "L7CL7C1",
+        "L8CL8C0",
+        "L9CL9C0",
+        "L10CL10C0",
+        "L11CL11C0"
+      ],
+      "path_string": "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    }
+  },
+  "subtype_patterns": {
+    "concrete_nouns": [
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C0 -> L3CL3C0 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    ],
+    "abstract_nouns": [
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C0 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    ],
+    "physical_adjectives": [
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    ],
+    "manner_adverbs": [
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    ],
+    "emotive_adjectives": [
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    ],
+    "degree_adverbs": [
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    ],
+    "action_verbs": [
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C0 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C0 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1"
+    ],
+    "stative_verbs": [
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C1 -> L1CL1C1 -> L2CL2C1 -> L3CL3C0 -> L4CL4C1 -> L5CL5C0 -> L6CL6C0 -> L7CL7C0 -> L8CL8C1 -> L9CL9C1 -> L10CL10C1 -> L11CL11C1",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0",
+      "L0CL0C0 -> L1CL1C1 -> L2CL2C0 -> L3CL3C1 -> L4CL4C0 -> L5CL5C1 -> L6CL6C1 -> L7CL7C1 -> L8CL8C0 -> L9CL9C0 -> L10CL10C0 -> L11CL11C0"
+    ]
+  }
+}

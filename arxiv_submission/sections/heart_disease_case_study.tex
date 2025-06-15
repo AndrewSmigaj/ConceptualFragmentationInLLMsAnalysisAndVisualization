@@ -56,9 +56,9 @@ Path & Trajectory & \% Patients & Demographics & True HD\% & Insight \\
 
 CTA reveals three critical aspects of the model's decision process:
 
-\textbf{1. Risk Factor Prioritization}: The model heavily weights chest pain type, blood pressure, and cholesterol—all clinically validated indicators. Path fragmentation correlates with diagnostic uncertainty (r=0.67), providing a built-in confidence measure.
+\textbf{1. Risk Factor Prioritization}: The model heavily weights chest pain type, blood pressure, and cholesterol—all clinically validated indicators. Path fragmentation (F, see Section 3.6) correlates with diagnostic uncertainty (r=0.67), providing a built-in confidence measure.
 
-Our fragmentation analysis reveals smooth concept evolution (FC=0.096), indicating that patient representations transform coherently through the network. The decreasing sub-space angles (16.3°→11.5°→7.8°→3.1°) show progressive alignment between disease and no-disease subspaces, suggesting the model develops increasingly refined decision boundaries at each layer.
+Our fragmentation analysis reveals smooth concept evolution (FC=0.096, see Section 3.6), indicating that patient representations transform coherently through the network. The decreasing SA values (16.3°→11.5°→7.8°→3.1°, see Section 3.6) show progressive alignment between disease and no-disease subspaces, suggesting the model develops increasingly refined decision boundaries at each layer.
 
 \textbf{2. Progressive Refinement}: Each layer adds specificity: demographic risk (Layer 1) → cardiovascular health (Layer 2) → stress response (Layer 3). This mirrors clinical reasoning, progressing from patient history to specific cardiac indicators.
 
@@ -83,7 +83,7 @@ The transparency provided by CTA enables several clinical applications:
 
 \begin{enumerate}
     \item \textbf{Explainable Predictions}: Physicians can trace a patient's path through the model, understanding which features drove the classification
-    \item \textbf{Uncertainty Quantification}: High fragmentation scores indicate cases requiring additional clinical review
+    \item \textbf{Uncertainty Quantification}: High fragmentation scores (F, see Section 3.6) indicate cases requiring additional clinical review
     \item \textbf{Bias Mitigation}: Identified demographic biases can be addressed through targeted data collection and model retraining
     \item \textbf{Clinical Validation}: The model's emphasis on established risk factors (chest pain, BP, cholesterol) aligns with medical knowledge, building trust
 \end{enumerate}
@@ -91,12 +91,12 @@ The transparency provided by CTA enables several clinical applications:
 
 \subsection{Visualization of Patient Flow}
 
-The Sankey diagram in Figure~\ref{fig:heart_sankey} visualizes patient flow through the model's risk stratification layers, revealing how initial categorizations evolve into final diagnoses.
+Figure~\ref{fig:heart_sankey} visualizes patient flow through the model's risk stratification layers using the standard Sankey diagram scheme (Section~\ref{sec:sankey_scheme}), revealing how initial categorizations evolve into final diagnoses.
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/heart_sankey.png}
-    \caption{Sankey diagram showing patient flow through the heart disease model's risk stratification layers. Each node displays the cluster's semantic label inline (e.g., "High-Risk Older Males", "Low CV Stress"), making the model's decision process immediately interpretable. The five archetypal pathways are color-coded: green for Conservative Low-Risk (43.3\%), red for Classic High-Risk (35.2\%), orange for Progressive Risk (10.7\%), purple for Male-Biased (6.7\%), and yellow for Misclassification (2.2\%). Path thickness represents patient count, with the diagram clearly showing how initial risk categorization flows through cardiovascular health assessment and risk profiling to reach final diagnosis. The visualization adopts the same structured style as the GPT-2 analysis for consistency.}
+    \caption{Patient flow through the heart disease model's risk stratification layers. The five archetypal pathways are color-coded: green for Conservative Low-Risk (43.3\%), red for Classic High-Risk (35.2\%), orange for Progressive Risk (10.7\%), purple for Male-Biased (6.7\%), and yellow for Misclassification (2.2\%). Semantic labels (e.g., "High-Risk Older Males", "Low CV Stress") make the model's decision process immediately interpretable, showing how initial risk categorization flows through cardiovascular health assessment to final diagnosis.}
     \label{fig:heart_sankey}
 \end{figure}
 

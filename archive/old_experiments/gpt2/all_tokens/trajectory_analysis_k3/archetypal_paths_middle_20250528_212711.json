@@ -1,0 +1,260 @@
+[
+  {
+    "path": "",
+    "count": 4563,
+    "percentage": 45.629999999999995,
+    "example_tokens": [
+      "!",
+      "\"",
+      "#",
+      "$",
+      "%",
+      "(",
+      ")",
+      "+",
+      "-",
+      "."
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 3784,
+    "percentage": 37.84,
+    "example_tokens": [
+      "'",
+      "*",
+      ",",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1506,
+    "percentage": 15.06,
+    "example_tokens": [
+      "&",
+      "}",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd",
+      "\ufffd"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 54,
+    "percentage": 0.54,
+    "example_tokens": [
+      "=",
+      "nd",
+      " into",
+      "000",
+      " ,",
+      " own",
+      " since",
+      " information",
+      "ional",
+      "aring"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 25,
+    "percentage": 0.25,
+    "example_tokens": [
+      " kn",
+      " bl",
+      " stud",
+      " Cl",
+      " cr",
+      " rep",
+      " commun",
+      "##",
+      " Apr",
+      "uesday"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 23,
+    "percentage": 0.22999999999999998,
+    "example_tokens": [
+      "X",
+      "er",
+      "art",
+      "arg",
+      "ren",
+      " word",
+      " feat",
+      "bit",
+      " article",
+      " July"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 9,
+    "percentage": 0.09,
+    "example_tokens": [
+      " just",
+      " during",
+      "aster",
+      " whether",
+      " training",
+      "',",
+      " effective",
+      "apped",
+      "usal"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 7,
+    "percentage": 0.06999999999999999,
+    "example_tokens": [
+      " recent",
+      "OT",
+      " note",
+      " Press",
+      "TR",
+      " edge",
+      "OO"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 6,
+    "percentage": 0.06,
+    "example_tokens": [
+      "7",
+      " here",
+      "ocr",
+      " recently",
+      " properties",
+      " subsection"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 6,
+    "percentage": 0.06,
+    "example_tokens": [
+      "iss",
+      "ener",
+      " sign",
+      "AS",
+      "onent",
+      " rum"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 6,
+    "percentage": 0.06,
+    "example_tokens": [
+      " upd",
+      " Star",
+      " profess",
+      " tim",
+      " diss",
+      " Steven"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 4,
+    "percentage": 0.04,
+    "example_tokens": [
+      " App",
+      " ON",
+      "Part",
+      "Att"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 2,
+    "percentage": 0.02,
+    "example_tokens": [
+      " Fr",
+      "Pro"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 2,
+    "percentage": 0.02,
+    "example_tokens": [
+      "->",
+      " honest"
+    ],
+    "dominant_type": "punctuation",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1,
+    "percentage": 0.01,
+    "example_tokens": [
+      " van"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "no_pattern"
+  },
+  {
+    "path": "",
+    "count": 1,
+    "percentage": 0.01,
+    "example_tokens": [
+      "aning"
+    ],
+    "dominant_type": "word",
+    "dominant_morph": "suffix_ing"
+  },
+  {
+    "path": "",
+    "count": 1,
+    "percentage": 0.01,
+    "example_tokens": [
+      " ships"
+    ],
+    "dominant_type": "word_with_space",
+    "dominant_morph": "suffix_plural"
+  }
+]

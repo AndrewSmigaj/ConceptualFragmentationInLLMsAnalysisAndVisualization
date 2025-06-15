@@ -1,0 +1,59 @@
+{
+  "0": {
+    "token": "!",
+    "grammatical": {
+      "pos": "PUNCT",
+      "subtype": "exclamation"
+    },
+    "semantic": {
+      "category": "punctuation",
+      "function": "emphasis"
+    },
+    "morphological": {
+      "role": "punctuation_mark"
+    },
+    "conceptual_hierarchy": [],
+    "usage_context": "Sentence-ending exclamation mark for emphasis or surprise"
+  },
+  "262": {
+    "token": "the",
+    "grammatical": {
+      "pos": "DET",
+      "subtype": "definite_article"
+    },
+    "semantic": {
+      "category": "function_word",
+      "subcategory": "determiner"
+    },
+    "morphological": {
+      "role": "root_word"
+    },
+    "conceptual_hierarchy": [
+      "determiner",
+      "function_word",
+      "linguistic_unit"
+    ],
+    "usage_context": "Definite article, most common word in English"
+  },
+  "278": {
+    "token": "ing",
+    "grammatical": {
+      "pos": "SUFFIX",
+      "subtype": "verbal_inflection"
+    },
+    "semantic": {
+      "category": "morpheme",
+      "subcategory": "inflectional_suffix"
+    },
+    "morphological": {
+      "role": "suffix",
+      "function": "progressive_aspect"
+    },
+    "conceptual_hierarchy": [
+      "verbal_suffix",
+      "inflectional_morpheme",
+      "morphological_unit"
+    ],
+    "usage_context": "Progressive/continuous aspect marker for verbs"
+  }
+}

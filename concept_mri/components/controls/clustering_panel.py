@@ -8,7 +8,8 @@ from typing import Dict, List, Any
 import numpy as np
 import logging
 
-logger = logging.getLogger(__name__)
+# Use the Concept MRI debug logger
+logger = logging.getLogger('concept_mri.debug')
 
 from concept_mri.config.settings import (
     DEFAULT_CLUSTERING_ALGORITHM, DEFAULT_METRIC,
@@ -30,6 +31,19 @@ from concept_fragmentation.analysis.cluster_paths import (
 
 # Import activation manager for retrieving stored activations
 from concept_mri.core.activation_manager import activation_manager
+
+# Import LLM analysis for automatic cluster labeling
+from concept_fragmentation.llm.analysis import ClusterAnalysis
+
+# Import local config for API keys
+try:
+    from local_config import OPENAI_KEY, XAI_API_KEY, GEMINI_API_KEY
+    logger.info(f"Loaded API keys from local_config - XAI_API_KEY: {'Present' if XAI_API_KEY else 'Missing'}")
+except ImportError as e:
+    OPENAI_KEY = None
+    XAI_API_KEY = None
+    GEMINI_API_KEY = None
+    logger.warning(f"Could not import API keys from local_config.py: {e}")
 
 
 class ClusteringPanel:
@@ -783,13 +797,83 @@ def register_clustering_panel_callbacks(app):
                                     llm_path.append(layer_cluster)
                             llm_paths[idx] = llm_path
                             
-                            # Create cluster labels
-                            for cluster_id in llm_path:
-                                if cluster_id not in cluster_labels_dict:
-                                    parts = cluster_id.split('_')
-                                    layer_num = int(parts[0][1:])
-                                    cluster_num = int(parts[1][1:])
-                                    cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                    # Prepare cluster statistics for LLM
+                    cluster_stats = {}
+                    unique_clusters = set()
+                    for path in llm_paths.values():
+                        unique_clusters.update(path)
+                    
+                    # Generate stats for ETS clusters
+                    for cluster_id in unique_clusters:
+                        parts = cluster_id.split('_')
+                        layer_num = int(parts[0][1:])
+                        cluster_num = int(parts[1][1:])
+                        cluster_stats[cluster_id] = f"ETS Layer {layer_num}, Cluster {cluster_num} (explainable threshold)"
+                    
+                    # Call LLM for analysis if API key available
+                    llm_analysis_result = None
+                    
+                    # Use only Grok
+                    llm_provider = None
+                    llm_model = None
+                    llm_api_key = None
+                    
+                    if XAI_API_KEY:
+                        llm_provider = "grok"
+                        llm_model = "grok-beta"
+                        llm_api_key = XAI_API_KEY
+                        logger.info("Using Grok for ETS LLM analysis")
+                    else:
+                        logger.warning("No XAI_API_KEY found - ETS LLM analysis will be skipped")
+                    
+                    if llm_provider:
+                        try:
+                            logger.info(f"Creating ETS ClusterAnalysis with provider={llm_provider}, model={llm_model}")
+                            analyzer = ClusterAnalysis(
+                                provider=llm_provider,
+                                model=llm_model,
+                                api_key=llm_api_key,
+                                use_cache=True
+                            )
+                            logger.info("ETS ClusterAnalysis created successfully")
+                            
+                            # Simple fragmentation scores
+                            fragmentation_scores = {}
+                            for idx in llm_paths:
+                                fragmentation_scores[idx] = 0.5  # Placeholder
+                            
+                            llm_analysis_result = analyzer.analyze_and_label_clusters_sync(
+                                paths=llm_paths,
+                                cluster_stats=cluster_stats,
+                                fragmentation_scores=fragmentation_scores,
+                                analysis_categories=['interpretation', 'bias']
+                            )
+                            
+                            if llm_analysis_result and 'cluster_labels' in llm_analysis_result:
+                                cluster_labels_dict = llm_analysis_result['cluster_labels']
+                            else:
+                                # Fallback
+                                for cluster_id in unique_clusters:
+                                    if cluster_id not in cluster_labels_dict:
+                                        parts = cluster_id.split('_')
+                                        layer_num = int(parts[0][1:])
+                                        cluster_num = int(parts[1][1:])
+                                        cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                        except Exception as e:
+                            logger.warning(f"LLM analysis failed for ETS: {e}")
+                            # Fallback labels
+                            for cluster_id in unique_clusters:
+                                parts = cluster_id.split('_')
+                                layer_num = int(parts[0][1:])
+                                cluster_num = int(parts[1][1:])
+                                cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                    else:
+                        # No API key, use placeholder labels
+                        for cluster_id in unique_clusters:
+                            parts = cluster_id.split('_')
+                            layer_num = int(parts[0][1:])
+                            cluster_num = int(parts[1][1:])
+                            cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
                     
                     # Add path data to results
                     ets_results['paths'] = llm_paths
@@ -799,6 +883,13 @@ def register_clustering_panel_callbacks(app):
                         'unique_paths': len(set(tuple(path) for path in original_paths)),
                         'total_samples': len(original_paths)
                     }
+                    
+                    # Add LLM analysis if available
+                    if llm_analysis_result:
+                        ets_results['llm_analysis'] = llm_analysis_result.get('analysis', '')
+                        ets_results['llm_generated'] = True
+                    else:
+                        ets_results['llm_generated'] = False
                 except Exception as e:
                     logger.warning(f"Failed to compute paths for ETS: {e}")
                     # Still mark as completed even if paths fail
@@ -904,19 +995,110 @@ def register_clustering_panel_callbacks(app):
                                 llm_path.append(layer_cluster)
                         llm_paths[idx] = llm_path
                         
-                        # Create cluster labels
-                        for cluster_id in llm_path:
-                            if cluster_id not in cluster_labels_dict:
-                                # Parse layer and cluster number
-                                parts = cluster_id.split('_')
-                                layer_num = int(parts[0][1:])
-                                cluster_num = int(parts[1][1:])
-                                cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                        if idx == 0:  # Debug first path
+                            print(f"DEBUG: First path conversion: {path_str} -> {llm_path}")
                         
                         # Simple fragmentation score based on frequency
                         total_samples = len(original_paths)
                         path_frequency = frequency / total_samples
                         fragmentation_scores[idx] = 1.0 - min(path_frequency * 5, 1.0)
+                
+                # Prepare cluster statistics for LLM
+                cluster_stats = {}
+                unique_clusters = set()
+                for path in llm_paths.values():
+                    unique_clusters.update(path)
+                
+                print(f"DEBUG: Unique clusters found: {unique_clusters}")
+                
+                # Generate simple stats for each cluster (can be enhanced with real demographics)
+                for cluster_id in unique_clusters:
+                    # Parse cluster info
+                    parts = cluster_id.split('_')
+                    layer_num = int(parts[0][1:])
+                    cluster_num = int(parts[1][1:])
+                    
+                    # Create a simple statistical profile
+                    # In a real implementation, this would include demographic data
+                    cluster_stats[cluster_id] = f"Layer {layer_num}, Cluster {cluster_num} with {frequency} samples"
+                
+                # Call LLM for comprehensive analysis and labeling
+                llm_analysis_result = None
+                
+                # Use only Grok
+                llm_provider = None
+                llm_model = None
+                llm_api_key = None
+                
+                if XAI_API_KEY:
+                    llm_provider = "grok"
+                    llm_model = "grok-beta"
+                    llm_api_key = XAI_API_KEY
+                    logger.info("Using Grok for LLM analysis")
+                    print(f"DEBUG: Using Grok for LLM analysis, key length: {len(llm_api_key)}")
+                else:
+                    logger.warning("No XAI_API_KEY found - LLM analysis will be skipped")
+                    print("DEBUG: No XAI_API_KEY found")
+                
+                if llm_provider:
+                    try:
+                        logger.info(f"Creating ClusterAnalysis with provider={llm_provider}, model={llm_model}")
+                        analyzer = ClusterAnalysis(
+                            provider=llm_provider,
+                            model=llm_model,
+                            api_key=llm_api_key,
+                            use_cache=True
+                        )
+                        logger.info("ClusterAnalysis created successfully")
+                        
+                        # Get comprehensive analysis with cluster labels
+                        logger.info(f"Calling analyze_and_label_clusters_sync with {len(llm_paths)} paths")
+                        logger.debug(f"Paths: {llm_paths}")
+                        logger.debug(f"Cluster stats: {cluster_stats}")
+                        print(f"DEBUG: About to call LLM with {len(llm_paths)} paths")
+                        
+                        llm_analysis_result = analyzer.analyze_and_label_clusters_sync(
+                            paths=llm_paths,
+                            cluster_stats=cluster_stats,
+                            fragmentation_scores=fragmentation_scores,
+                            analysis_categories=['interpretation', 'bias']
+                        )
+                        
+                        print(f"DEBUG: LLM call completed, got result: {bool(llm_analysis_result)}")
+                        logger.info(f"LLM analysis completed. Result keys: {list(llm_analysis_result.keys()) if llm_analysis_result else 'None'}")
+                        
+                        # Use LLM-generated labels
+                        if llm_analysis_result and 'cluster_labels' in llm_analysis_result:
+                            cluster_labels_dict = llm_analysis_result['cluster_labels']
+                            logger.info(f"Got {len(cluster_labels_dict)} cluster labels from LLM")
+                            logger.debug(f"LLM labels: {cluster_labels_dict}")
+                        else:
+                            logger.warning("No cluster labels in LLM result, using fallback")
+                            # Fallback to placeholder labels
+                            for cluster_id in unique_clusters:
+                                if cluster_id not in cluster_labels_dict:
+                                    parts = cluster_id.split('_')
+                                    layer_num = int(parts[0][1:])
+                                    cluster_num = int(parts[1][1:])
+                                    cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                            
+                    except Exception as e:
+                        logger.error(f"LLM analysis failed with error: {e}", exc_info=True)
+                        # Fallback to placeholder labels
+                        for cluster_id in unique_clusters:
+                            if cluster_id not in cluster_labels_dict:
+                                parts = cluster_id.split('_')
+                                layer_num = int(parts[0][1:])
+                                cluster_num = int(parts[1][1:])
+                                cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
+                else:
+                    logger.info("No API key configured, using placeholder labels")
+                    # No API key, use placeholder labels
+                    for cluster_id in unique_clusters:
+                        parts = cluster_id.split('_')
+                        layer_num = int(parts[0][1:])
+                        cluster_num = int(parts[1][1:])
+                        cluster_labels_dict[cluster_id] = f"Layer {layer_num} Cluster {cluster_num}"
                 
                 # Build final results
                 clustering_results = {
@@ -934,6 +1116,13 @@ def register_clustering_panel_callbacks(app):
                         'total_samples': len(original_paths)
                     }
                 }
+                
+                # Add LLM analysis result if available
+                if llm_analysis_result:
+                    clustering_results['llm_analysis'] = llm_analysis_result.get('analysis', '')
+                    clustering_results['llm_generated'] = True
+                else:
+                    clustering_results['llm_generated'] = False
                 
                 # Add per-layer info for UI
                 for layer_name, layer_info in layer_clusters.items():

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-2 Concept MRI: Complete Analysis with LLM Labels</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Main container */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Section styles */
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section h4 {
+            color: #34495e;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #3498db;
+            margin: 0.5rem 0;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Finding boxes */
+        .finding-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        /* LLM insights */
+        .llm-insight {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .llm-insight::before {
+            content: "🤖 LLM Insight: ";
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        /* Cluster label box */
+        .cluster-label-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .cluster-label {
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        /* Sankey container */
+        .sankey-wrapper {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .sankey-wrapper h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        /* Path item */
+        .path-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+        
+        .path-sequence {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .path-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+        
+        .path-examples {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .path-composition {
+            background: #f0f4f8;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .path-composition strong {
+            color: #2c3e50;
+        }
+        
+        /* Grammar badges */
+        .grammar-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .grammar-noun { background: #e3f2fd; color: #1565c0; }
+        .grammar-verb { background: #f3e5f5; color: #6a1b9a; }
+        .grammar-adjective { background: #fff3e0; color: #e65100; }
+        .grammar-adverb { background: #e8f5e9; color: #2e7d32; }
+        
+        /* Table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .data-table th {
+            background: #34495e;
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .data-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        /* Iframe styles */
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        
+        /* Cluster labels grid */
+        .cluster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .cluster-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .cluster-id {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        
+        .cluster-description {
+            color: #666;
+            font-size: 14px;
+            margin-top: 0.25rem;
+        }
+        
+        /* Hover info for Sankey */
+        .sankey-hover-info {
+            background: #fffbf0;
+            border: 1px solid #ffc107;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+    <script>
+        // LLM-generated cluster labels
+        const clusterLabels = {
+            // Layer 0 - Semantic Differentiation
+            "L0_C0": "Animate Creatures",
+            "L0_C1": "Tangible Objects", 
+            "L0_C2": "Scalar Properties",
+            "L0_C3": "Abstract & Relational",
+            
+            // Layers 1-3 - Binary Consolidation
+            "L1_C0": "Modifier Space",
+            "L1_C1": "Entity Space",
+            "L2_C0": "Property Attractor",
+            "L2_C1": "Object Attractor",
+            "L3_C0": "Property Attractor",
+            "L3_C1": "Object Attractor",
+            
+            // Layers 4-7 - Grammatical Highways
+            "L4_C0": "Adjective Gateway",
+            "L4_C1": "Noun Gateway",
+            "L5_C0": "Entity Pipeline",
+            "L5_C1": "Property Pipeline",
+            "L6_C0": "Entity Pipeline",
+            "L6_C1": "Property Pipeline",
+            "L7_C0": "Modifier Hub",
+            "L7_C1": "Entity Hub",
+            
+            // Layers 8-11 - Syntactic Superhighways
+            "L8_C0": "Modifier Entry",
+            "L8_C1": "Entity Entry",
+            "L9_C0": "Entity Stream",
+            "L9_C1": "Modifier Stream",
+            "L10_C0": "Entity Stream",
+            "L10_C1": "Modifier Stream",
+            "L11_C0": "Terminal Modifiers",
+            "L11_C1": "Terminal Entities",
+            "L11_C2": "Verb Remnant"
+        };
+        
+        // Function to get labeled path
+        function getLabeledPath(clusterSequence) {
+            return clusterSequence.map(c => `${c} (${clusterLabels[c] || c})`).join(' → ');
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>GPT-2 Concept MRI</h1>
+            <p class="subtitle">Complete Single-Page Visualization with LLM-Generated Cluster Labels</p>
+        </div>
+    </header>
+    
+    <!-- Main Container - EVERYTHING IN ONE SCROLLABLE PAGE -->
+    <div class="main-container">
+        
+        <!-- Executive Summary Section -->
+        <section class="section">
+            <h2>Executive Summary</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Total Words Analyzed</div>
+                    <div class="metric-value">566</div>
+                    <div class="metric-label">Across 8 semantic categories</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Convergence Rate</div>
+                    <div class="metric-value">72.8%</div>
+                    <div class="metric-label">To dominant path by layer 8</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Path Reduction</div>
+                    <div class="metric-value">19 → 4</div>
+                    <div class="metric-label">From early to late window</div>
+                </div>
+            </div>
+            
+            <div class="finding-box">
+                <strong>Primary Finding:</strong> GPT-2 organizes words by grammatical function rather than semantic meaning. By the final layers, 72.8% of all words—regardless of their semantic category—converge to a single "noun" pathway.
+            </div>
+            
+            <p>This analysis examined 566 carefully curated words across 8 semantic subtypes (concrete/abstract nouns, physical/emotive adjectives, manner/degree adverbs, action/stative verbs) through GPT-2's 12 transformer layers. Using windowed Archetypal Path Analysis (APA), we discovered massive convergence from diverse early representations (19 paths) to unified processing pipelines (5 paths) in middle layers.</p>
+            
+            <div class="llm-insight">
+                The massive convergence from 19 paths to just 4 reveals GPT-2 develops highly efficient, general-purpose processing pipelines that handle broad grammatical classes rather than maintaining fine-grained semantic distinctions.
+            </div>
+        </section>
+        
+        <!-- LLM Cluster Labels Section -->
+        <section class="section">
+            <h2>LLM-Generated Cluster Labels</h2>
+            <p>Each cluster has been analyzed and labeled based on its word membership patterns:</p>
+            
+            <h3>Layer 0: Semantic Differentiation</h3>
+            <div class="cluster-grid">
+                <div class="cluster-card">
+                    <div class="cluster-id">L0_C0</div>
+                    <div class="cluster-label">Animate Creatures</div>
+                    <div class="cluster-description">Living beings that move and act (cat, dog, bird, fish, horse)</div>
+                </div>
+                <div class="cluster-card">
+                    <div class="cluster-id">L0_C1</div>
+                    <div class="cluster-label">Tangible Objects</div>
+                    <div class="cluster-description">Physical items you can touch and use (window, clock, computer, tool)</div>
+                </div>
+                <div class="cluster-card">
+                    <div class="cluster-id">L0_C2</div>
+                    <div class="cluster-label">Scalar Properties</div>
+                    <div class="cluster-description">Words describing size, degree, and extent (small, large, huge, tiny)</div>
+                </div>
+                <div class="cluster-card">
+                    <div class="cluster-id">L0_C3</div>
+                    <div class="cluster-label">Abstract & Relational</div>
+                    <div class="cluster-description">Concepts, positions, and relationships (time, power, style, art)</div>
+                </div>
+            </div>
+            
+            <h3>Layers 4-7: Grammatical Highways</h3>
+            <div class="cluster-grid">
+                <div class="cluster-card">
+                    <div class="cluster-id">L4_C0 → L5_C1 → L6_C1 → L7_C0</div>
+                    <div class="cluster-label">Property Pipeline</div>
+                    <div class="cluster-description">Processing stream for all descriptive words (adjectives & adverbs)</div>
+                </div>
+                <div class="cluster-card">
+                    <div class="cluster-id">L4_C1 → L5_C0 → L6_C0 → L7_C1</div>
+                    <div class="cluster-label">Entity Pipeline</div>
+                    <div class="cluster-description">Processing stream for all object-like words (nouns)</div>
+                </div>
+            </div>
+            
+            <h3>Layers 8-11: Syntactic Superhighways</h3>
+            <div class="cluster-grid">
+                <div class="cluster-card">
+                    <div class="cluster-id">L11_C0</div>
+                    <div class="cluster-label">Terminal Modifiers</div>
+                    <div class="cluster-description">Final home for all descriptive words</div>
+                </div>
+                <div class="cluster-card">
+                    <div class="cluster-id">L11_C1</div>
+                    <div class="cluster-label">Terminal Entities</div>
+                    <div class="cluster-description">Final home for all object words</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Early Window Analysis -->
+        <section class="section">
+            <h2>Early Window Analysis (Layers 0-3)</h2>
+            <p>Initial differentiation phase: 19 unique paths emerge as GPT-2 begins processing different word types.</p>
+            
+            <div class="sankey-hover-info">
+                💡 <strong>Hover Note:</strong> When hovering over paths in the Sankey diagram, you'll see ALL semantic subtypes represented in that path, not just the dominant one.
+            </div>
+            
+            <div class="sankey-wrapper">
+                <h4>Sankey Diagram - Early Window</h4>
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_early_enhanced.html"></iframe>
+            </div>
+            
+            <h3>Top Archetypal Paths</h3>
+            
+            <div class="path-item">
+                <div class="path-sequence">L0_C1 (Tangible Objects) → L1_C1 (Entity Space) → L2_C1 (Object Attractor) → L3_C1 (Object Attractor)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 154 words (27.2%)</span>
+                    <span><strong>Stability:</strong> 100%</span>
+                </div>
+                <div class="path-examples">Examples: mouse, window, clock, computer, engine, sun, cookie, tool</div>
+                <div class="path-composition">
+                    <strong>Semantic Composition:</strong> Primarily concrete nouns (85%), some abstract nouns (10%), few nominalized adjectives (5%)
+                </div>
+                <div class="llm-insight">
+                    This path represents concrete objects and tools - things that can be physically manipulated or observed. The perfect stability suggests these are prototypical nouns.
+                </div>
+            </div>
+            
+            <div class="path-item">
+                <div class="path-sequence">L0_C0 (Animate Creatures) → L1_C1 (Entity Space) → L2_C1 (Object Attractor) → L3_C1 (Object Attractor)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 131 words (23.1%)</span>
+                    <span><strong>Stability:</strong> 66.7%</span>
+                </div>
+                <div class="path-examples">Examples: cat, dog, bird, fish, horse, cow, rat, bear</div>
+                <div class="path-composition">
+                    <strong>Semantic Composition:</strong> Concrete nouns - living entities (90%), some collective nouns (8%), few ambiguous terms (2%)
+                </div>
+                <div class="llm-insight">
+                    Living entities start separately but quickly merge with inanimate objects, showing early semantic awareness dissolving into grammatical categorization.
+                </div>
+            </div>
+            
+            <div class="path-item">
+                <div class="path-sequence">L0_C2 (Scalar Properties) → L1_C0 (Modifier Space) → L2_C0 (Property Attractor) → L3_C0 (Property Attractor)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 90 words (15.9%)</span>
+                    <span><strong>Stability:</strong> 66.7%</span>
+                </div>
+                <div class="path-examples">Examples: wrong, small, large, tiny, huge, mini, thin, tall</div>
+                <div class="path-composition">
+                    <strong>Semantic Composition:</strong> Physical adjectives (45%), degree adverbs (40%), emotive adjectives (10%), temporal modifiers (5%)
+                </div>
+                <div class="llm-insight">
+                    A mixed modifier path containing words that describe size, extent, and evaluation - showing early conflation of adjectives and adverbs.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Middle Window Analysis -->
+        <section class="section">
+            <h2>Middle Window Analysis (Layers 4-7)</h2>
+            <p>Consolidation phase: Paths reduce to 5 as grammatical categories begin to dominate.</p>
+            
+            <div class="sankey-wrapper">
+                <h4>Sankey Diagram - Middle Window</h4>
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_middle_enhanced.html"></iframe>
+            </div>
+            
+            <h3>Dominant Paths</h3>
+            
+            <div class="path-item">
+                <div class="path-sequence">L4_C1 (Noun Gateway) → L5_C0 (Entity Pipeline) → L6_C0 (Entity Pipeline) → L7_C1 (Entity Hub)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 412 words (72.79%)</span>
+                    <span><strong>Stability:</strong> 75%</span>
+                </div>
+                <div class="path-examples">Examples: cat, dog, bird, fish, horse, window, clock, computer, engine</div>
+                <div class="path-composition">
+                    <strong>Universal Noun Highway:</strong><br>
+                    - Concrete nouns: animals (25%), objects (35%), tools (15%)<br>
+                    - Abstract nouns: concepts (15%)<br>
+                    - Nominalized forms: derived nouns (8%)<br>
+                    - Ambiguous: words that can function as nouns (2%)
+                </div>
+                <div class="llm-insight">
+                    The Great Convergence: Both animate and inanimate nouns, concrete and abstract, merge into a single processing pipeline. Grammatical function completely overrides semantic distinctions.
+                </div>
+            </div>
+            
+            <div class="path-item">
+                <div class="path-sequence">L4_C0 (Adjective Gateway) → L5_C1 (Property Pipeline) → L6_C1 (Property Pipeline) → L7_C0 (Modifier Hub)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 146 words (25.8%)</span>
+                    <span><strong>Stability:</strong> 75%</span>
+                </div>
+                <div class="path-examples">Examples: orange, custom, right, wrong, good, evil, big, small, large, tiny</div>
+                <div class="path-composition">
+                    <strong>Modifier Mixture Path:</strong><br>
+                    - Physical adjectives: size/shape descriptors (35%)<br>
+                    - Emotive adjectives: evaluative terms (20%)<br>
+                    - Degree adverbs: intensifiers (25%)<br>
+                    - Manner adverbs: how-words (15%)<br>
+                    - Color terms: used as adjectives (5%)
+                </div>
+                <div class="llm-insight">
+                    Properties and modifiers maintain a separate pathway, but the distinction between adjectives and adverbs completely breaks down - they're processed identically.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Late Window Analysis -->
+        <section class="section">
+            <h2>Late Window Analysis (Layers 8-11)</h2>
+            <p>Final convergence: Only 4 paths remain, with 72.8% of words in the dominant noun pathway.</p>
+            
+            <div class="sankey-wrapper">
+                <h4>Sankey Diagram - Late Window</h4>
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_late_enhanced.html"></iframe>
+            </div>
+            
+            <h3>Final Paths</h3>
+            
+            <div class="path-item">
+                <div class="path-sequence">L8_C1 (Entity Entry) → L9_C0 (Entity Stream) → L10_C0 (Entity Stream) → L11_C1 (Terminal Entities)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 412 words (72.79%)</span>
+                    <span><strong>Stability:</strong> 100%</span>
+                </div>
+                <div class="path-examples">Examples: All nouns regardless of semantic category</div>
+                <div class="path-composition">
+                    <strong>The Noun Superhighway:</strong> Complete mixture of all noun-functioning words including concrete nouns, abstract nouns, nominalized adjectives, and any word that can serve as a noun in context
+                </div>
+                <div class="llm-insight">
+                    Complete stabilization: The noun superhighway processes nearly 3/4 of all vocabulary with perfect stability. Semantic meaning is completely irrelevant - only grammatical function matters.
+                </div>
+            </div>
+            
+            <div class="path-item">
+                <div class="path-sequence">L8_C0 (Modifier Entry) → L9_C1 (Modifier Stream) → L10_C1 (Modifier Stream) → L11_C0 (Terminal Modifiers)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 146 words (25.8%)</span>
+                    <span><strong>Stability:</strong> 100%</span>
+                </div>
+                <div class="path-examples">Examples: All adjectives and adverbs</div>
+                <div class="path-composition">
+                    <strong>The Adjective/Adverb Blend:</strong> Complete mixture of all modifier types - no distinction between adjectives and adverbs
+                </div>
+                <div class="llm-insight">
+                    The modifier pathway: Adjectives and adverbs fully merge, suggesting GPT-2 treats them as a single grammatical category - "things that modify other things."
+                </div>
+            </div>
+            
+            <div class="path-item">
+                <div class="path-sequence">L8_C0 (Modifier Entry) → L9_C0 (Entity Stream) → L10_C0 (Entity Stream) → L11_C2 (Verb Remnant)</div>
+                <div class="path-stats">
+                    <span><strong>Frequency:</strong> 5 words (0.88%)</span>
+                    <span><strong>Stability:</strong> 75%</span>
+                </div>
+                <div class="path-examples">Examples: appear, occur, detect, prevent, remain</div>
+                <div class="path-composition">
+                    <strong>Verb Isolation:</strong> Action verbs (60%), stative verbs (40%)
+                </div>
+                <div class="llm-insight">
+                    Verb marginalization: Action words are pushed to a tiny pathway, suggesting fundamentally different processing. These may be words that resist nominalization.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Comprehensive Analysis Report -->
+        <section class="section">
+            <h2>Comprehensive Analysis Report</h2>
+            
+            <h3>Key Findings</h3>
+            
+            <h4>1. Grammatical Over Semantic Organization</h4>
+            <p>GPT-2's clustering reflects parts of speech more than semantic categories:</p>
+            <div class="finding-box">
+                <strong>Path 1:</strong> Universal noun processor (72.79%) - mixes ALL noun types<br>
+                <strong>Path 2:</strong> Universal modifier processor (25.8%) - mixes ALL adjectives and adverbs<br>
+                <strong>Rare paths:</strong> Verb remnants and ambiguous words (&lt;1% each)
+            </div>
+            
+            <h4>2. The Convergence Pattern</h4>
+            <div class="finding-box">
+                <strong>Early layers (L0-L3):</strong> 19 unique paths - semantic awareness (animals vs objects vs properties)<br>
+                <strong>Middle layers (L4-L7):</strong> 5 paths - grammatical reorganization begins<br>
+                <strong>Late layers (L8-L11):</strong> 4 paths - pure syntactic organization
+            </div>
+            
+            <h4>3. Semantic Blindness in Clusters</h4>
+            <p>Analysis of path compositions reveals:</p>
+            <ul>
+                <li><strong>Animals and objects:</strong> Travel identical paths despite semantic differences</li>
+                <li><strong>Concrete and abstract nouns:</strong> No clustering distinction</li>
+                <li><strong>Physical and emotive adjectives:</strong> Processed identically</li>
+                <li><strong>Adjectives and adverbs:</strong> Complete merger by middle layers</li>
+            </ul>
+            
+            <h4>4. Layer-by-Layer Transformation</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Layer Range</th>
+                        <th>Organization Principle</th>
+                        <th>Key Clusters</th>
+                        <th>Insight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>L0</td>
+                        <td>Semantic Categories</td>
+                        <td>Animals, Objects, Properties, Abstract</td>
+                        <td>Initial semantic awareness</td>
+                    </tr>
+                    <tr>
+                        <td>L1-L3</td>
+                        <td>Binary Consolidation</td>
+                        <td>Entities vs Modifiers</td>
+                        <td>Simplification begins</td>
+                    </tr>
+                    <tr>
+                        <td>L4-L7</td>
+                        <td>Grammatical Highways</td>
+                        <td>Noun Pipeline, Property Pipeline</td>
+                        <td>Function over meaning</td>
+                    </tr>
+                    <tr>
+                        <td>L8-L11</td>
+                        <td>Syntactic Superhighways</td>
+                        <td>Terminal Entities, Terminal Modifiers</td>
+                        <td>Pure grammatical organization</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>5. Trajectory Stability Analysis</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Window</th>
+                        <th>Stability</th>
+                        <th>Fragmentation</th>
+                        <th>Interpretation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Early</td>
+                        <td>0.724</td>
+                        <td>0.124</td>
+                        <td>High stability, semantic clusters maintained</td>
+                    </tr>
+                    <tr>
+                        <td>Middle</td>
+                        <td>0.339</td>
+                        <td>0.091</td>
+                        <td>Major reorganization - semantic to syntactic</td>
+                    </tr>
+                    <tr>
+                        <td>Late</td>
+                        <td>0.341</td>
+                        <td>0.091</td>
+                        <td>Stabilized grammatical organization</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="llm-insight">
+                The dramatic drop in stability from early to middle layers (0.724 → 0.339) marks the critical transformation point where semantic organization gives way to grammatical structure. This is where GPT-2 "decides" that grammatical function is more important than meaning.
+            </div>
+            
+            <h3>Implications</h3>
+            
+            <h4>1. Syntax Before Semantics</h4>
+            <p>GPT-2's middle layers prioritize grammatical categorization over semantic meaning. The model learns to efficiently route words based on their grammatical function, not their meaning.</p>
+            
+            <h4>2. Universal Processing Pipelines</h4>
+            <p>The massive convergence (19→5→4 paths) reveals GPT-2 develops general-purpose pathways:</p>
+            <ul>
+                <li>One pipeline processes ALL things that can be nouns</li>
+                <li>Another processes ALL things that modify (adjectives/adverbs)</li>
+                <li>Tiny special handling for verbs that resist nominalization</li>
+            </ul>
+            
+            <h4>3. Efficiency Through Convergence</h4>
+            <p>The 72.79% dominance of a single path suggests remarkable efficiency - GPT-2 learns to process most vocabulary through a unified mechanism.</p>
+            
+            <div class="llm-insight">
+                This efficiency comes at a cost: semantic nuances must be encoded in more subtle ways (activation magnitudes, attention patterns) rather than through discrete cluster assignments. The model "knows" the difference between a cat and a computer, but that knowledge isn't reflected in the clustering.
+            </div>
+            
+            <h3>Surprising Insights</h3>
+            <ol>
+                <li><strong>Complete Semantic Blindness:</strong> Animals, objects, and abstract concepts are processed identically at the cluster level</li>
+                <li><strong>Adjective-Adverb Unity:</strong> No clustering distinction between these grammatical categories</li>
+                <li><strong>Verb Isolation:</strong> Verbs are pushed to marginal pathways (&lt;1% of words)</li>
+                <li><strong>Stability Cliff:</strong> The dramatic reorganization in middle layers suggests a phase transition</li>
+            </ol>
+            
+            <h3>Recommendations for Further Analysis</h3>
+            <ol>
+                <li><strong>ETS Micro-clustering:</strong> Apply within the dominant noun path to reveal potential semantic substructure</li>
+                <li><strong>Activation Magnitude Analysis:</strong> Semantic distinctions might be encoded in activation strengths rather than cluster membership</li>
+                <li><strong>Attention Pattern Analysis:</strong> Examine how attention heads treat different semantic categories</li>
+                <li><strong>Cross-model Comparison:</strong> Do other language models show similar grammatical convergence?</li>
+            </ol>
+            
+            <h3>Conclusion</h3>
+            <p>This analysis reveals that GPT-2's representational geometry is organized primarily by grammatical function rather than semantic category. The model develops highly efficient, general-purpose processing pipelines that handle broad grammatical classes rather than maintaining fine-grained semantic distinctions at the cluster level.</p>
+            
+            <div class="llm-insight">
+                The "Concept MRI" reveals GPT-2's brain organizes language like a highly efficient postal system: early layers sort by appearance (what things look like semantically), middle layers reorganize by function (how things behave grammatically), and late layers maintain stable superhighways for different parts of speech. The surprising insight is that a "cat" and a "computer" travel the same neural pathway - not because they're similar, but because they're both nouns. GPT-2 has discovered that grammatical function is a more efficient organizing principle than semantic meaning.
+            </div>
+        </section>
+        
+    </div>
+</body>
+</html>

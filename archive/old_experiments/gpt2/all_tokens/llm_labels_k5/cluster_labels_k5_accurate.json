@@ -1,0 +1,455 @@
+{
+  "metadata": {
+    "generated_at": "2025-05-29T00:00:00",
+    "model": "claude",
+    "k": 5,
+    "total_clusters": 60,
+    "method": "accurate_linguistic_analysis"
+  },
+  "labels": {
+    "layer_0": {
+      "L0_C0": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  the, -, .,  man,  me",
+        "category": "content_nouns",
+        "size": 2193,
+        "percentage": 21.93
+      },
+      "L0_C1": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  is,  was,  for,  '',  with",
+        "category": "core_function",
+        "size": 1994,
+        "percentage": 19.939999999999998
+      },
+      "L0_C2": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  ,,  .,  of,  and,  to",
+        "category": "core_function",
+        "size": 1777,
+        "percentage": 17.77
+      },
+      "L0_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  he,  I,  (,  she, I",
+        "category": "core_function",
+        "size": 1482,
+        "percentage": 14.82
+      },
+      "L0_C4": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  it,  they,  ),  we,  there",
+        "category": "content_nouns",
+        "size": 2554,
+        "percentage": 25.540000000000003
+      }
+    },
+    "layer_1": {
+      "L1_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 1958,
+        "percentage": 19.580000000000002
+      },
+      "L1_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and quotation markers. Examples:  .,  '', -,  he, The",
+        "category": "punctuation",
+        "size": 1720,
+        "percentage": 17.2
+      },
+      "L1_C2": {
+        "label": "Mixed Lexical Items",
+        "description": "Various word types and forms. Examples:  ``, ``, He, I,  well",
+        "category": "mixed",
+        "size": 921,
+        "percentage": 9.21
+      },
+      "L1_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  to,  a,  in,  is,  for",
+        "category": "core_function",
+        "size": 3244,
+        "percentage": 32.440000000000005
+      },
+      "L1_C4": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  had,  ?,  I",
+        "category": "auxiliaries",
+        "size": 2157,
+        "percentage": 21.57
+      }
+    },
+    "layer_2": {
+      "L2_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and quotation markers. Examples:  ., -,  he, .,  ?",
+        "category": "punctuation",
+        "size": 1447,
+        "percentage": 14.469999999999999
+      },
+      "L2_C1": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  to,  in,  is,  was,  for",
+        "category": "core_function",
+        "size": 2468,
+        "percentage": 24.68
+      },
+      "L2_C2": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  man,  now,  way,  year",
+        "category": "content_nouns",
+        "size": 1975,
+        "percentage": 19.75
+      },
+      "L2_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  a",
+        "category": "core_function",
+        "size": 3079,
+        "percentage": 30.79
+      },
+      "L2_C4": {
+        "label": "Pronouns",
+        "description": "Personal, possessive, and object pronouns. Examples:  ``, ``,  an, It, In",
+        "category": "pronouns",
+        "size": 1031,
+        "percentage": 10.31
+      }
+    },
+    "layer_3": {
+      "L3_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  and,  that,  as,  or",
+        "category": "core_function",
+        "size": 2817,
+        "percentage": 28.17
+      },
+      "L3_C1": {
+        "label": "Content Verbs",
+        "description": "Main action and state verbs. Examples:  ``, ``,  an, In, There",
+        "category": "content_verbs",
+        "size": 692,
+        "percentage": 6.92
+      },
+      "L3_C2": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  way, y,  himself,  number",
+        "category": "content_nouns",
+        "size": 1363,
+        "percentage": 13.63
+      },
+      "L3_C3": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "category": "auxiliaries",
+        "size": 2092,
+        "percentage": 20.919999999999998
+      },
+      "L3_C4": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  ,,  .,  of,  to,  a",
+        "category": "core_function",
+        "size": 3036,
+        "percentage": 30.36
+      }
+    },
+    "layer_4": {
+      "L4_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3029,
+        "percentage": 30.29
+      },
+      "L4_C1": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  way,  life, y,  himself",
+        "category": "content_nouns",
+        "size": 1388,
+        "percentage": 13.88
+      },
+      "L4_C2": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2855,
+        "percentage": 28.549999999999997
+      },
+      "L4_C3": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "category": "auxiliaries",
+        "size": 2061,
+        "percentage": 20.61
+      },
+      "L4_C4": {
+        "label": "Content Verbs",
+        "description": "Main action and state verbs. Examples:  ``, ``,  an, In, There",
+        "category": "content_verbs",
+        "size": 667,
+        "percentage": 6.67
+      }
+    },
+    "layer_5": {
+      "L5_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2866,
+        "percentage": 28.660000000000004
+      },
+      "L5_C1": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  than,  way,  life, y",
+        "category": "content_nouns",
+        "size": 1395,
+        "percentage": 13.950000000000001
+      },
+      "L5_C2": {
+        "label": "Content Verbs",
+        "description": "Main action and state verbs. Examples:  ``, ``,  an, In, There",
+        "category": "content_verbs",
+        "size": 666,
+        "percentage": 6.660000000000001
+      },
+      "L5_C3": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "category": "auxiliaries",
+        "size": 2058,
+        "percentage": 20.580000000000002
+      },
+      "L5_C4": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3015,
+        "percentage": 30.15
+      }
+    },
+    "layer_6": {
+      "L6_C0": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  than,  way,  life, y",
+        "category": "content_nouns",
+        "size": 1394,
+        "percentage": 13.94
+      },
+      "L6_C1": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "category": "auxiliaries",
+        "size": 2086,
+        "percentage": 20.86
+      },
+      "L6_C2": {
+        "label": "Content Verbs",
+        "description": "Main action and state verbs. Examples:  ``, ``,  an, In, There",
+        "category": "content_verbs",
+        "size": 669,
+        "percentage": 6.69
+      },
+      "L6_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3017,
+        "percentage": 30.17
+      },
+      "L6_C4": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2834,
+        "percentage": 28.34
+      }
+    },
+    "layer_7": {
+      "L7_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3024,
+        "percentage": 30.240000000000002
+      },
+      "L7_C1": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2835,
+        "percentage": 28.349999999999998
+      },
+      "L7_C2": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "category": "auxiliaries",
+        "size": 2081,
+        "percentage": 20.810000000000002
+      },
+      "L7_C3": {
+        "label": "Content Verbs",
+        "description": "Main action and state verbs. Examples:  ``, ``,  an, In, There",
+        "category": "content_verbs",
+        "size": 669,
+        "percentage": 6.69
+      },
+      "L7_C4": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  than,  way,  life, y",
+        "category": "content_nouns",
+        "size": 1391,
+        "percentage": 13.91
+      }
+    },
+    "layer_8": {
+      "L8_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2935,
+        "percentage": 29.349999999999998
+      },
+      "L8_C1": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  be,  on,  by,  had,  I",
+        "category": "auxiliaries",
+        "size": 1967,
+        "percentage": 19.67
+      },
+      "L8_C2": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  than,  way,  each,  life",
+        "category": "content_nouns",
+        "size": 1448,
+        "percentage": 14.48
+      },
+      "L8_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  ``, ``,  an, In, There",
+        "category": "core_function",
+        "size": 619,
+        "percentage": 6.1899999999999995
+      },
+      "L8_C4": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3031,
+        "percentage": 30.31
+      }
+    },
+    "layer_9": {
+      "L9_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2960,
+        "percentage": 29.599999999999998
+      },
+      "L9_C1": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  than,  way,  each,  life",
+        "category": "content_nouns",
+        "size": 1462,
+        "percentage": 14.62
+      },
+      "L9_C2": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  ``, ``,  an, In, There",
+        "category": "core_function",
+        "size": 612,
+        "percentage": 6.12
+      },
+      "L9_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3031,
+        "percentage": 30.31
+      },
+      "L9_C4": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  be,  on,  by,  had,  I",
+        "category": "auxiliaries",
+        "size": 1935,
+        "percentage": 19.35
+      }
+    },
+    "layer_10": {
+      "L10_C0": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  ,,  of,  and,  that",
+        "category": "core_function",
+        "size": 2968,
+        "percentage": 29.68
+      },
+      "L10_C1": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  which,  than,  way,  each,  life",
+        "category": "content_nouns",
+        "size": 1457,
+        "percentage": 14.57
+      },
+      "L10_C2": {
+        "label": "Content Verbs",
+        "description": "Main action and state verbs. Examples:  ``, ``,  an, In, There",
+        "category": "content_verbs",
+        "size": 603,
+        "percentage": 6.03
+      },
+      "L10_C3": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  .,  to,  a,  in,  is",
+        "category": "core_function",
+        "size": 3037,
+        "percentage": 30.37
+      },
+      "L10_C4": {
+        "label": "Auxiliary Verbs",
+        "description": "Modal and auxiliary verbs. Examples:  be,  on,  by,  had,  I",
+        "category": "auxiliaries",
+        "size": 1935,
+        "percentage": 19.35
+      }
+    },
+    "layer_11": {
+      "L11_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and quotation markers. Examples:  .,  '', .,  ?,  ``",
+        "category": "punctuation",
+        "size": 1738,
+        "percentage": 17.380000000000003
+      },
+      "L11_C1": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  ,,  a,  in,  as, The",
+        "category": "core_function",
+        "size": 3016,
+        "percentage": 30.159999999999997
+      },
+      "L11_C2": {
+        "label": "Core Function Words",
+        "description": "Articles, prepositions, conjunctions, and copulas. Examples:  the,  of,  and,  to,  that",
+        "category": "core_function",
+        "size": 1579,
+        "percentage": 15.790000000000001
+      },
+      "L11_C3": {
+        "label": "Mixed Lexical Items",
+        "description": "Various word types and forms. Examples: -,  Af,  C,  P,  S",
+        "category": "mixed",
+        "size": 1085,
+        "percentage": 10.85
+      },
+      "L11_C4": {
+        "label": "Content Nouns",
+        "description": "Common nouns referring to people, places, things, and concepts. Examples:  over, ing, ly,  well,  long",
+        "category": "content_nouns",
+        "size": 2582,
+        "percentage": 25.82
+      }
+    }
+  }
+}

@@ -1,0 +1,1565 @@
+{
+  "instructions": "Please provide semantic labels for these clusters based on their token composition.",
+  "layers": {
+    "layer_0": [
+      {
+        "cluster": "L0_C0",
+        "size": "2193 tokens (21.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          "-",
+          ".",
+          " man",
+          " me",
+          " now",
+          "ly",
+          "'",
+          " well",
+          " world"
+        ],
+        "type_distribution": {
+          "word_with_space": 1396,
+          "word": 678,
+          "number_with_space": 64,
+          "number": 49,
+          "punctuation": 5,
+          "mixed_with_space": 1
+        }
+      },
+      {
+        "cluster": "L0_C1",
+        "size": "1994 tokens (19.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " is",
+          " was",
+          " for",
+          " ''",
+          " with",
+          "The",
+          " be",
+          " on",
+          " ;",
+          " by"
+        ],
+        "type_distribution": {
+          "word_with_space": 1624,
+          "word": 347,
+          "mixed_with_space": 12,
+          "punctuation": 9,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L0_C2",
+        "size": "1777 tokens (17.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ,",
+          " .",
+          " of",
+          " and",
+          " to",
+          " a",
+          " in",
+          " that",
+          " as",
+          " his"
+        ],
+        "type_distribution": {
+          "word_with_space": 1573,
+          "word": 168,
+          "number_with_space": 15,
+          "number": 11,
+          "other": 6,
+          "mixed_with_space": 3,
+          "punctuation": 1
+        }
+      },
+      {
+        "cluster": "L0_C3",
+        "size": "1482 tokens (14.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " he",
+          " I",
+          " (",
+          " she",
+          "I",
+          "A",
+          " Af",
+          "y",
+          "in",
+          "and"
+        ],
+        "type_distribution": {
+          "word_with_space": 951,
+          "word": 529,
+          "mixed_with_space": 1,
+          "number": 1
+        }
+      },
+      {
+        "cluster": "L0_C4",
+        "size": "2554 tokens (25.5%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " it",
+          " they",
+          " )",
+          " we",
+          " there",
+          " time",
+          "ing",
+          " years",
+          " way",
+          "s"
+        ],
+        "type_distribution": {
+          "word_with_space": 2341,
+          "word": 199,
+          "number_with_space": 13,
+          "mixed_with_space": 1
+        }
+      }
+    ],
+    "layer_1": [
+      {
+        "cluster": "L1_C0",
+        "size": "1958 tokens (19.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          "'s",
+          " at",
+          " from",
+          " or"
+        ],
+        "type_distribution": {
+          "word_with_space": 1264,
+          "word": 680,
+          "number_with_space": 6,
+          "mixed_with_space": 3,
+          "punctuation": 2,
+          "number": 2,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L1_C1",
+        "size": "1720 tokens (17.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " ''",
+          "-",
+          " he",
+          "The",
+          ".",
+          " (",
+          " she",
+          " man",
+          " Af"
+        ],
+        "type_distribution": {
+          "word_with_space": 836,
+          "word": 730,
+          "number_with_space": 83,
+          "number": 59,
+          "punctuation": 7,
+          "mixed_with_space": 5
+        }
+      },
+      {
+        "cluster": "L1_C2",
+        "size": "921 tokens (9.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          "He",
+          "I",
+          " well",
+          " Mr",
+          "For",
+          " New",
+          " Mrs",
+          " don"
+        ],
+        "type_distribution": {
+          "word_with_space": 782,
+          "word": 133,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L1_C3",
+        "size": "3244 tokens (32.4%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " with",
+          " it",
+          " his",
+          " on",
+          " ;"
+        ],
+        "type_distribution": {
+          "word_with_space": 3031,
+          "word": 204,
+          "mixed_with_space": 4,
+          "punctuation": 4,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L1_C4",
+        "size": "2157 tokens (21.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " was",
+          " be",
+          " had",
+          " ?",
+          " I",
+          " an",
+          " has",
+          " more",
+          "It",
+          " can"
+        ],
+        "type_distribution": {
+          "word_with_space": 1972,
+          "word": 174,
+          "mixed_with_space": 4,
+          "other": 4,
+          "number_with_space": 3
+        }
+      }
+    ],
+    "layer_2": [
+      {
+        "cluster": "L2_C0",
+        "size": "1447 tokens (14.5%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          "-",
+          " he",
+          ".",
+          " ?",
+          " I",
+          "He",
+          " (",
+          " we",
+          " she"
+        ],
+        "type_distribution": {
+          "word_with_space": 893,
+          "word": 432,
+          "number_with_space": 65,
+          "number": 47,
+          "mixed_with_space": 5,
+          "punctuation": 5
+        }
+      },
+      {
+        "cluster": "L2_C1",
+        "size": "2468 tokens (24.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " to",
+          " in",
+          " is",
+          " was",
+          " for",
+          " ''",
+          " with",
+          "The",
+          " his",
+          " be"
+        ],
+        "type_distribution": {
+          "word_with_space": 2268,
+          "word": 180,
+          "number_with_space": 8,
+          "punctuation": 6,
+          "mixed_with_space": 5,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L2_C2",
+        "size": "1975 tokens (19.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " man",
+          " now",
+          " way",
+          " year",
+          " life",
+          " us",
+          "y",
+          " himself",
+          " part"
+        ],
+        "type_distribution": {
+          "word_with_space": 1136,
+          "word": 835,
+          "number_with_space": 4
+        }
+      },
+      {
+        "cluster": "L2_C3",
+        "size": "3079 tokens (30.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " a",
+          " that",
+          " it",
+          " as",
+          "'s",
+          " ;"
+        ],
+        "type_distribution": {
+          "word_with_space": 2708,
+          "word": 335,
+          "number_with_space": 14,
+          "number": 14,
+          "mixed_with_space": 5,
+          "punctuation": 2,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L2_C4",
+        "size": "1031 tokens (10.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "It",
+          "In",
+          "I",
+          " well",
+          "There",
+          "They",
+          "If"
+        ],
+        "type_distribution": {
+          "word_with_space": 880,
+          "word": 139,
+          "other": 5,
+          "mixed_with_space": 3,
+          "punctuation": 2,
+          "number_with_space": 2
+        }
+      }
+    ],
+    "layer_3": [
+      {
+        "cluster": "L3_C0",
+        "size": "2817 tokens (28.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " and",
+          " that",
+          " as",
+          " or",
+          " this",
+          " one",
+          " but",
+          " him",
+          " )"
+        ],
+        "type_distribution": {
+          "word_with_space": 2160,
+          "word": 618,
+          "number": 19,
+          "number_with_space": 16,
+          "mixed_with_space": 2,
+          "punctuation": 2
+        }
+      },
+      {
+        "cluster": "L3_C1",
+        "size": "692 tokens (6.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "They",
+          "If",
+          " came",
+          "For",
+          "When"
+        ],
+        "type_distribution": {
+          "word_with_space": 598,
+          "word": 88,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L3_C2",
+        "size": "1363 tokens (13.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " way",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          "man",
+          " once"
+        ],
+        "type_distribution": {
+          "word_with_space": 769,
+          "word": 593,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L3_C3",
+        "size": "2092 tokens (20.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " was",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          "He",
+          " their",
+          " has"
+        ],
+        "type_distribution": {
+          "word_with_space": 1842,
+          "word": 224,
+          "number_with_space": 16,
+          "other": 4,
+          "mixed_with_space": 3,
+          "punctuation": 3
+        }
+      },
+      {
+        "cluster": "L3_C4",
+        "size": "3036 tokens (30.4%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ,",
+          " .",
+          " of",
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " ''",
+          "-"
+        ],
+        "type_distribution": {
+          "word_with_space": 2516,
+          "word": 398,
+          "number_with_space": 59,
+          "number": 42,
+          "mixed_with_space": 11,
+          "punctuation": 8,
+          "other": 2
+        }
+      }
+    ],
+    "layer_4": [
+      {
+        "cluster": "L4_C0",
+        "size": "3029 tokens (30.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " ''",
+          "-",
+          " with",
+          " it"
+        ],
+        "type_distribution": {
+          "word_with_space": 2512,
+          "word": 401,
+          "number_with_space": 57,
+          "number": 40,
+          "mixed_with_space": 9,
+          "punctuation": 8,
+          "other": 2
+        }
+      },
+      {
+        "cluster": "L4_C1",
+        "size": "1388 tokens (13.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " way",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers",
+          "man"
+        ],
+        "type_distribution": {
+          "word_with_space": 788,
+          "word": 599,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L4_C2",
+        "size": "2855 tokens (28.5%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          " or",
+          " this",
+          " one",
+          " but"
+        ],
+        "type_distribution": {
+          "word_with_space": 2195,
+          "word": 617,
+          "number": 21,
+          "number_with_space": 16,
+          "mixed_with_space": 4,
+          "punctuation": 2
+        }
+      },
+      {
+        "cluster": "L4_C3",
+        "size": "2061 tokens (20.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " was",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          "He",
+          " has",
+          " more"
+        ],
+        "type_distribution": {
+          "word_with_space": 1813,
+          "word": 220,
+          "number_with_space": 18,
+          "other": 4,
+          "mixed_with_space": 3,
+          "punctuation": 3
+        }
+      },
+      {
+        "cluster": "L4_C4",
+        "size": "667 tokens (6.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New"
+        ],
+        "type_distribution": {
+          "word_with_space": 577,
+          "word": 84,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      }
+    ],
+    "layer_5": [
+      {
+        "cluster": "L5_C0",
+        "size": "2866 tokens (28.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          " or",
+          " this",
+          " one",
+          " but"
+        ],
+        "type_distribution": {
+          "word_with_space": 2194,
+          "word": 629,
+          "number": 21,
+          "number_with_space": 16,
+          "mixed_with_space": 4,
+          "punctuation": 2
+        }
+      },
+      {
+        "cluster": "L5_C1",
+        "size": "1395 tokens (14.0%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " than",
+          " way",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers"
+        ],
+        "type_distribution": {
+          "word_with_space": 800,
+          "word": 594,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L5_C2",
+        "size": "666 tokens (6.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New"
+        ],
+        "type_distribution": {
+          "word_with_space": 576,
+          "word": 84,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L5_C3",
+        "size": "2058 tokens (20.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " was",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          "He",
+          " has",
+          "It"
+        ],
+        "type_distribution": {
+          "word_with_space": 1808,
+          "word": 220,
+          "number_with_space": 20,
+          "other": 4,
+          "mixed_with_space": 3,
+          "punctuation": 3
+        }
+      },
+      {
+        "cluster": "L5_C4",
+        "size": "3015 tokens (30.1%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " ''",
+          "-",
+          " with",
+          " it"
+        ],
+        "type_distribution": {
+          "word_with_space": 2507,
+          "word": 394,
+          "number_with_space": 55,
+          "number": 40,
+          "mixed_with_space": 9,
+          "punctuation": 8,
+          "other": 2
+        }
+      }
+    ],
+    "layer_6": [
+      {
+        "cluster": "L6_C0",
+        "size": "1394 tokens (13.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " than",
+          " way",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers"
+        ],
+        "type_distribution": {
+          "word_with_space": 797,
+          "word": 596,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L6_C1",
+        "size": "2086 tokens (20.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " was",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          " were",
+          "He",
+          " has",
+          "It"
+        ],
+        "type_distribution": {
+          "word_with_space": 1830,
+          "word": 225,
+          "number_with_space": 21,
+          "mixed_with_space": 3,
+          "other": 3,
+          "punctuation": 3,
+          "number": 1
+        }
+      },
+      {
+        "cluster": "L6_C2",
+        "size": "669 tokens (6.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New"
+        ],
+        "type_distribution": {
+          "word_with_space": 577,
+          "word": 85,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 2,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L6_C3",
+        "size": "3017 tokens (30.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " ''",
+          "-",
+          " with",
+          " it"
+        ],
+        "type_distribution": {
+          "word_with_space": 2514,
+          "word": 392,
+          "number_with_space": 54,
+          "number": 39,
+          "mixed_with_space": 9,
+          "punctuation": 8,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L6_C4",
+        "size": "2834 tokens (28.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          "'s",
+          " or",
+          " this",
+          " one"
+        ],
+        "type_distribution": {
+          "word_with_space": 2167,
+          "word": 623,
+          "number": 21,
+          "number_with_space": 16,
+          "mixed_with_space": 4,
+          "punctuation": 2,
+          "other": 1
+        }
+      }
+    ],
+    "layer_7": [
+      {
+        "cluster": "L7_C0",
+        "size": "3024 tokens (30.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " for",
+          " ''",
+          "-",
+          " with",
+          " it"
+        ],
+        "type_distribution": {
+          "word_with_space": 2520,
+          "word": 394,
+          "number_with_space": 53,
+          "number": 39,
+          "mixed_with_space": 9,
+          "punctuation": 8,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L7_C1",
+        "size": "2835 tokens (28.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          "'s",
+          " or",
+          " this",
+          " one"
+        ],
+        "type_distribution": {
+          "word_with_space": 2167,
+          "word": 623,
+          "number": 21,
+          "number_with_space": 17,
+          "mixed_with_space": 4,
+          "punctuation": 2,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L7_C2",
+        "size": "2081 tokens (20.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " was",
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          "He",
+          " has",
+          "It",
+          " can"
+        ],
+        "type_distribution": {
+          "word_with_space": 1826,
+          "word": 224,
+          "number_with_space": 21,
+          "mixed_with_space": 3,
+          "other": 3,
+          "punctuation": 3,
+          "number": 1
+        }
+      },
+      {
+        "cluster": "L7_C3",
+        "size": "669 tokens (6.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          " came",
+          "For",
+          "When",
+          " New"
+        ],
+        "type_distribution": {
+          "word_with_space": 577,
+          "word": 85,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 2,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L7_C4",
+        "size": "1391 tokens (13.9%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " than",
+          " way",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a",
+          "ers"
+        ],
+        "type_distribution": {
+          "word_with_space": 795,
+          "word": 595,
+          "number_with_space": 1
+        }
+      }
+    ],
+    "layer_8": [
+      {
+        "cluster": "L8_C0",
+        "size": "2935 tokens (29.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          "'s",
+          " at",
+          " or",
+          " this"
+        ],
+        "type_distribution": {
+          "word_with_space": 2267,
+          "word": 621,
+          "number": 22,
+          "number_with_space": 18,
+          "mixed_with_space": 4,
+          "punctuation": 2,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L8_C1",
+        "size": "1967 tokens (19.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          "He",
+          " has",
+          "It",
+          " can",
+          " could"
+        ],
+        "type_distribution": {
+          "word_with_space": 1726,
+          "word": 217,
+          "number_with_space": 15,
+          "other": 4,
+          "mixed_with_space": 3,
+          "punctuation": 2
+        }
+      },
+      {
+        "cluster": "L8_C2",
+        "size": "1448 tokens (14.5%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a"
+        ],
+        "type_distribution": {
+          "word_with_space": 829,
+          "word": 618,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L8_C3",
+        "size": "619 tokens (6.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          "For",
+          " New",
+          "'ll",
+          " Mrs"
+        ],
+        "type_distribution": {
+          "word_with_space": 534,
+          "word": 79,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L8_C4",
+        "size": "3031 tokens (30.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " was",
+          " for",
+          " ''",
+          "-",
+          " with"
+        ],
+        "type_distribution": {
+          "word_with_space": 2529,
+          "word": 386,
+          "number_with_space": 58,
+          "number": 39,
+          "mixed_with_space": 9,
+          "punctuation": 9,
+          "other": 1
+        }
+      }
+    ],
+    "layer_9": [
+      {
+        "cluster": "L9_C0",
+        "size": "2960 tokens (29.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          "'s",
+          " at",
+          " are",
+          " or"
+        ],
+        "type_distribution": {
+          "word_with_space": 2293,
+          "word": 619,
+          "number": 23,
+          "number_with_space": 18,
+          "mixed_with_space": 4,
+          "punctuation": 2,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L9_C1",
+        "size": "1462 tokens (14.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a"
+        ],
+        "type_distribution": {
+          "word_with_space": 838,
+          "word": 623,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L9_C2",
+        "size": "612 tokens (6.1%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          "For",
+          " New",
+          "'ll",
+          " Mrs"
+        ],
+        "type_distribution": {
+          "word_with_space": 528,
+          "word": 78,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L9_C3",
+        "size": "3031 tokens (30.3%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " was",
+          " for",
+          " ''",
+          "-",
+          " with"
+        ],
+        "type_distribution": {
+          "word_with_space": 2528,
+          "word": 385,
+          "number_with_space": 60,
+          "number": 38,
+          "mixed_with_space": 10,
+          "punctuation": 9,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L9_C4",
+        "size": "1935 tokens (19.4%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          "He",
+          " has",
+          "It",
+          " can",
+          " could"
+        ],
+        "type_distribution": {
+          "word_with_space": 1698,
+          "word": 216,
+          "number_with_space": 13,
+          "other": 4,
+          "mixed_with_space": 2,
+          "punctuation": 2
+        }
+      }
+    ],
+    "layer_10": [
+      {
+        "cluster": "L10_C0",
+        "size": "2968 tokens (29.7%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " the",
+          " ,",
+          " of",
+          " and",
+          " that",
+          " as",
+          "'s",
+          " at",
+          " are",
+          " or"
+        ],
+        "type_distribution": {
+          "word_with_space": 2300,
+          "word": 619,
+          "number": 24,
+          "number_with_space": 18,
+          "mixed_with_space": 4,
+          "punctuation": 2,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L10_C1",
+        "size": "1457 tokens (14.6%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " which",
+          " than",
+          " way",
+          " each",
+          " life",
+          "y",
+          " himself",
+          " number",
+          " house",
+          "a"
+        ],
+        "type_distribution": {
+          "word_with_space": 835,
+          "word": 621,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L10_C2",
+        "size": "603 tokens (6.0%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ``",
+          "``",
+          " an",
+          "In",
+          "There",
+          "If",
+          "For",
+          " New",
+          "'ll",
+          " Mrs"
+        ],
+        "type_distribution": {
+          "word_with_space": 520,
+          "word": 77,
+          "mixed_with_space": 2,
+          "punctuation": 2,
+          "other": 1,
+          "number_with_space": 1
+        }
+      },
+      {
+        "cluster": "L10_C3",
+        "size": "3037 tokens (30.4%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " .",
+          " to",
+          " a",
+          " in",
+          " is",
+          " was",
+          " for",
+          " ''",
+          "-",
+          " with"
+        ],
+        "type_distribution": {
+          "word_with_space": 2534,
+          "word": 386,
+          "number_with_space": 60,
+          "number": 37,
+          "mixed_with_space": 10,
+          "punctuation": 9,
+          "other": 1
+        }
+      },
+      {
+        "cluster": "L10_C4",
+        "size": "1935 tokens (19.4%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " be",
+          " on",
+          " by",
+          " had",
+          " I",
+          "He",
+          " has",
+          "It",
+          " can",
+          " could"
+        ],
+        "type_distribution": {
+          "word_with_space": 1696,
+          "word": 218,
+          "number_with_space": 13,
+          "other": 4,
+          "mixed_with_space": 2,
+          "punctuation": 2
+        }
+      }
+    ],
+    "layer_11": [
+      {
+        "cluster": "L11_C0",
+        "size": "1738 tokens (17.4%)",
+        "dominant_type": "word",
+        "dominant_pattern": null,
+        "top_10_tokens": [
+          " .",
+          " ''",
+          ".",
+          " ?",
+          " ``",
+          "``",
+          "He",
+          " (",
+          " :",
+          "In"
+        ],
+        "type_distribution": {
+          "word": 909,
+          "word_with_space": 669,
+          "number_with_space": 75,
+          "number": 60,
+          "mixed_with_space": 13,
+          "punctuation": 12
+        }
+      },
+      {
+        "cluster": "L11_C1",
+        "size": "3016 tokens (30.2%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " ,",
+          " a",
+          " in",
+          " as",
+          "The",
+          " be",
+          " on",
+          " ;",
+          " at",
+          " an"
+        ],
+        "type_distribution": {
+          "word_with_space": 2773,
+          "word": 219,
+          "number_with_space": 18,
+          "mixed_with_space": 4,
+          "punctuation": 2
+        }
+      },
+      {
+        "cluster": "L11_C2",
+        "size": "1579 tokens (15.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "suffix_plural",
+        "top_10_tokens": [
+          " the",
+          " of",
+          " and",
+          " to",
+          " that",
+          " is",
+          " was",
+          " for",
+          " with",
+          " it"
+        ],
+        "type_distribution": {
+          "word_with_space": 1529,
+          "word": 43,
+          "other": 7
+        }
+      },
+      {
+        "cluster": "L11_C3",
+        "size": "1085 tokens (10.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          "-",
+          " Af",
+          " C",
+          " P",
+          " S",
+          " un",
+          " p",
+          " M",
+          "t",
+          " T"
+        ],
+        "type_distribution": {
+          "word_with_space": 754,
+          "word": 329,
+          "punctuation": 1,
+          "mixed_with_space": 1
+        }
+      },
+      {
+        "cluster": "L11_C4",
+        "size": "2582 tokens (25.8%)",
+        "dominant_type": "word_with_space",
+        "dominant_pattern": "prefix_space",
+        "top_10_tokens": [
+          " over",
+          "ing",
+          "ly",
+          " well",
+          " long",
+          " good",
+          " under",
+          "If",
+          " off",
+          " old"
+        ],
+        "type_distribution": {
+          "word_with_space": 2160,
+          "word": 421,
+          "number": 1
+        }
+      }
+    ]
+  }
+}

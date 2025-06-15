@@ -48,10 +48,10 @@ CTA combines geometric clustering with trajectory tracking to make neural organi
 - **Method**: Tracked patient trajectories through prediction layers
 - **Result**: Identified male overprediction bias (Path 4: 83% male composition)
 
-### 3. Titanic Survival Prediction
-- **Finding**: Model creates socioeconomic stratification pathways
-- **Method**: CTA with LLM-powered narrative generation
-- **Result**: Revealed how model separates passengers by class and demographic features
+### 3. Apple Quality Routing (In Progress)
+- **Finding**: Premium varieties (Honeycrisp) often misrouted to juice processing
+- **Method**: CTA analysis of quality routing neural network
+- **Result**: Economic impact analysis of variety misclassification
 
 ## 🛠️ Installation
 
@@ -99,37 +99,42 @@ experiment = GPT2SemanticSubtypesExperiment()
 results = experiment.run_analysis()
 ```
 
-### Interactive Dashboard
+### Concept MRI Dashboard
 ```bash
-# Launch the visualization dashboard
-python visualization/run_dashboard.py
+# Launch the Concept MRI tool
+cd concept_mri
+python app.py
 # Navigate to http://127.0.0.1:8050/
 ```
 
 ## 📁 Repository Structure
 
 ```
-├── arxiv_submission/           # Paper source and figures
+├── arxiv_submission/           # Submitted CTA paper
 │   ├── main.tex               # LaTeX source
 │   ├── figures/               # All paper figures
 │   └── sections/              # Paper sections
 │
-├── concept_fragmentation/      # Core CTA implementation
+├── arxiv_apple/               # Apple quality routing paper (in progress)
+│   ├── apple_cta_paper_final.md
+│   └── figures/              # Apple experiment figures
+│
+├── concept_mri/               # Web-based analysis tool
+│   ├── app.py                # Main application
+│   ├── tabs/                 # UI components
+│   └── demos/               # Demo models
+│
+├── concept_fragmentation/      # Core CTA library
 │   ├── analysis/              # Analysis algorithms
 │   ├── clustering/            # Clustering methods
-│   ├── visualization/         # Unified visualizers
+│   ├── visualization/         # Sankey & trajectory visualizers
 │   └── llm/                   # LLM integration
 │
-├── experiments/               # Experimental implementations
-│   ├── gpt2/                 # GPT-2 experiments
-│   │   ├── semantic_subtypes/ # Main 1,228-word experiment
-│   │   └── all_tokens/       # Full vocabulary analysis
-│   ├── heart_disease/        # Medical AI case study
-│   └── titanic/              # Classic ML example
+├── experiments/               # Active experiments
+│   └── apple_variety/        # Apple quality routing experiment
 │
-└── visualization/            # Interactive dashboard
-    ├── dash_app.py          # Main dashboard
-    └── run_dashboard.py     # Dashboard launcher
+└── scripts/                  # Utility scripts
+    └── prepare_demo_models/  # Demo model training
 ```
 
 ## 🔍 Key Features
@@ -156,29 +161,30 @@ python visualization/run_dashboard.py
 
 ## 🧪 Reproducing Results
 
-### GPT-2 Grammatical Highways
+### Apple Quality Routing Analysis
 ```bash
-cd experiments/gpt2/semantic_subtypes
-python gpt2_semantic_subtypes_experiment.py
+cd experiments/apple_variety
+python run_experiment.py --config config_test.yaml
 ```
 
-### Generate Paper Figures
+### Launch Concept MRI Tool
 ```bash
-cd arxiv_submission/figures
-python generate_all_gpt2_figures.py
+cd concept_mri
+python app.py
 ```
 
-### Run Full Analysis Pipeline
+### Train Demo Models
 ```bash
-python experiments/gpt2/semantic_subtypes/run_expanded_unified_cta.py
+cd scripts/prepare_demo_models
+python train_demo_models.py --dataset heart_disease --variant optimal
 ```
 
 ## 📖 Documentation
 
-- [Architecture Overview](ARCHITECTURE.md) - Repository structure and design
-- [GPT-2 Analysis Guide](docs/gpt2_analysis_guide.md) - Detailed usage instructions
-- [LLM Integration Guide](docs/llm_integration_guide.md) - Using AI for interpretability
-- [Theoretical Foundation](docs/gpt2_apa_theoretical_foundation.md) - Mathematical framework
+- [Architecture Overview](ARCHITECTURE.yaml) - Repository structure and design
+- [Current Work](CURRENTLY_WORKING_ON.md) - Active development status
+- [Claude Instructions](CLAUDE.md) - Development guidelines
+- [Concept MRI Guide](concept_mri/RUNNING_THE_APP.md) - Tool usage instructions
 
 ## 🤝 Contributing
 

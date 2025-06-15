@@ -14,7 +14,12 @@
    - The user maintains control over app execution
    - Only provide code changes and explanations
 
-3. **Session Start Protocol**
+3. **Wait for User Approval**
+   - When creating todo lists or planning work, STOP and wait for user approval
+   - Do NOT start implementation until the user explicitly tells you to proceed
+   - The user is NOT in auto mode for a reason - respect their control
+
+4. **Session Start Protocol**
    - At the beginning of every chat, read `ARCHITECTURE.yaml`
    - Read `CURRENTLY_WORKING_ON.md` to understand current context
    - Check for any `CLAUDE.md` updates

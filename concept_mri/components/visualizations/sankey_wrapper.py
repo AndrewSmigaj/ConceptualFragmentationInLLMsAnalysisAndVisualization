@@ -216,7 +216,7 @@ class SankeyWrapper:
         
         # Use the unified SankeyGenerator
         try:
-            fig = self.sankey_generator.generate(sankey_data, window=window_name)
+            fig = self.sankey_generator.create_figure(sankey_data, window=window_name)
             return fig.to_dict()
         except Exception as e:
             print(f"Error creating Sankey with unified generator: {e}")

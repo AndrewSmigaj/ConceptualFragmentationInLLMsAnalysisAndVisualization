@@ -1,0 +1,996 @@
+{
+  "metadata": {
+    "generated_at": "2025-05-29T13:07:27.568083",
+    "model": "primary_secondary_labeling",
+    "k": 10,
+    "total_clusters": 120,
+    "method": "consistent_primary_with_distinctive_secondary",
+    "description": "Primary labels for consistency, secondary labels for distinction"
+  },
+  "labels": {
+    "layer_0": {
+      "L0_C0": {
+        "label": "Content Words (Physical/Concrete)",
+        "primary_label": "Content Words",
+        "secondary_label": "Physical/Concrete",
+        "description": "Cluster containing tokens like: ' she', ' hand', ' water', ' head', ' eyes'",
+        "size": 1046,
+        "percentage": 10.459999999999999
+      },
+      "L0_C1": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' the', '.', ' me', ' now', ' well'",
+        "size": 1198,
+        "percentage": 11.98
+      },
+      "L0_C2": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' .', ' and', ' to', ' a'",
+        "size": 1060,
+        "percentage": 10.6
+      },
+      "L0_C3": {
+        "label": "Short Tokens (Fragments)",
+        "primary_label": "Short Tokens",
+        "secondary_label": "Fragments",
+        "description": "Cluster containing tokens like: ' (', ' Af', ' per', ' Mrs', ' un'",
+        "size": 559,
+        "percentage": 5.59
+      },
+      "L0_C4": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: '-', ' he', ' I', 'I', 'ing'",
+        "size": 1107,
+        "percentage": 11.07
+      },
+      "L0_C5": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' time', ' years', ' way', ' work', ' life'",
+        "size": 1374,
+        "percentage": 13.74
+      },
+      "L0_C6": {
+        "label": "Short Tokens (Fragments)",
+        "primary_label": "Short Tokens",
+        "secondary_label": "Fragments",
+        "description": "Cluster containing tokens like: ' of', ' in', ' that', ' is', ' was'",
+        "size": 1118,
+        "percentage": 11.18
+      },
+      "L0_C7": {
+        "label": "Content Words (Spatial)",
+        "primary_label": "Content Words",
+        "secondary_label": "Spatial",
+        "description": "Cluster containing tokens like: ' they', ' we', ' man', ' people', ' men'",
+        "size": 814,
+        "percentage": 8.14
+      },
+      "L0_C8": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: 'He', 'In', 'A', 'She', 'We'",
+        "size": 604,
+        "percentage": 6.04
+      },
+      "L0_C9": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' for', \" ''\", ' with', ' be', ' on'",
+        "size": 1120,
+        "percentage": 11.200000000000001
+      }
+    },
+    "layer_1": {
+      "L1_C0": {
+        "label": "Numbers (Numeric)",
+        "primary_label": "Numbers",
+        "secondary_label": "Numeric",
+        "description": "Cluster containing tokens like: ' two', ' 1', ' three', ' 2', ' few'",
+        "size": 212,
+        "percentage": 2.12
+      },
+      "L1_C1": {
+        "label": "Pronouns (Relative)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Relative",
+        "description": "Cluster containing tokens like: ' the', ' ,', ' and', ' that', ' or'",
+        "size": 1372,
+        "percentage": 13.719999999999999
+      },
+      "L1_C2": {
+        "label": "Function Words (Prepositions)",
+        "primary_label": "Function Words",
+        "secondary_label": "Prepositions",
+        "description": "Cluster containing tokens like: ' of', ' to', ' in', ' is', ' was'",
+        "size": 1289,
+        "percentage": 12.889999999999999
+      },
+      "L1_C3": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' New', ' Mrs', ' don', ' didn'",
+        "size": 521,
+        "percentage": 5.21
+      },
+      "L1_C4": {
+        "label": "Punctuation (Brackets/Parens)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Brackets/Parens",
+        "description": "Cluster containing tokens like: ' .', '-', ' Af', ' $', ' B'",
+        "size": 756,
+        "percentage": 7.5600000000000005
+      },
+      "L1_C5": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: ' it', ' one', ' you', ' they', ' him'",
+        "size": 1883,
+        "percentage": 18.83
+      },
+      "L1_C6": {
+        "label": "Punctuation (Quotes)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Quotes",
+        "description": "Cluster containing tokens like: ' be', '``', ' an', ' has', 'It'",
+        "size": 1310,
+        "percentage": 13.100000000000001
+      },
+      "L1_C7": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' he', '.', ' I', 'He', ' she'",
+        "size": 743,
+        "percentage": 7.430000000000001
+      },
+      "L1_C8": {
+        "label": "Function Words (Determiners)",
+        "primary_label": "Function Words",
+        "secondary_label": "Determiners",
+        "description": "Cluster containing tokens like: ' (', 'A', 'y', 'in', 'and'",
+        "size": 985,
+        "percentage": 9.85
+      },
+      "L1_C9": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' a', 'The', ' his', ' her', ' their'",
+        "size": 929,
+        "percentage": 9.29
+      }
+    },
+    "layer_2": {
+      "L2_C0": {
+        "label": "Function Words (Determiners)",
+        "primary_label": "Function Words",
+        "secondary_label": "Determiners",
+        "description": "Cluster containing tokens like: ' the', ' ,', ' of', ' and', ' to'",
+        "size": 1093,
+        "percentage": 10.93
+      },
+      "L2_C1": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' is', ' was', \" ''\", 'The', ' had'",
+        "size": 1633,
+        "percentage": 16.33
+      },
+      "L2_C2": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'a', 'man', ' once', ' system', ' room'",
+        "size": 675,
+        "percentage": 6.75
+      },
+      "L2_C3": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: ' which', ' one', ' him', ' them', ' time'",
+        "size": 1437,
+        "percentage": 14.37
+      },
+      "L2_C4": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: 'He', 'I', 'She', ' well', ' $'",
+        "size": 680,
+        "percentage": 6.800000000000001
+      },
+      "L2_C5": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' be', ' on', ' by', ' an', 'It'",
+        "size": 907,
+        "percentage": 9.07
+      },
+      "L2_C6": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', ' he', '.', ' ?'",
+        "size": 944,
+        "percentage": 9.44
+      },
+      "L2_C7": {
+        "label": "Function Words (Determiners)",
+        "primary_label": "Function Words",
+        "secondary_label": "Determiners",
+        "description": "Cluster containing tokens like: ' man', 'A', \"'\", ' 1', 'y'",
+        "size": 842,
+        "percentage": 8.42
+      },
+      "L2_C8": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' it', ' back', ' years', 'ly', 's'",
+        "size": 1428,
+        "percentage": 14.280000000000001
+      },
+      "L2_C9": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', '``', 'For', ' New', ' Mrs'",
+        "size": 361,
+        "percentage": 3.61
+      }
+    },
+    "layer_3": {
+      "L3_C0": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'a', 'man', ' once', ' system', ' possible'",
+        "size": 761,
+        "percentage": 7.61
+      },
+      "L3_C1": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 684,
+        "percentage": 6.84
+      },
+      "L3_C2": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' to', ' in', ' is', ' was', ' for'",
+        "size": 1722,
+        "percentage": 17.22
+      },
+      "L3_C3": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' that', ' it', ' as'",
+        "size": 1872,
+        "percentage": 18.72
+      },
+      "L3_C4": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', 'For', ' don', ' didn', ' tell'",
+        "size": 221,
+        "percentage": 2.21
+      },
+      "L3_C5": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: \" ''\", ' I', 'He', ' she', 'I'",
+        "size": 621,
+        "percentage": 6.21
+      },
+      "L3_C6": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: ' and', ' which', ' one', ' him', ' than'",
+        "size": 1341,
+        "percentage": 13.41
+      },
+      "L3_C7": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', ' a', '-', ' he', '.'",
+        "size": 906,
+        "percentage": 9.06
+      },
+      "L3_C8": {
+        "label": "Auxiliaries (Have-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Have-Forms",
+        "description": "Cluster containing tokens like: ' be', ' on', ' by', ' had', ' has'",
+        "size": 1101,
+        "percentage": 11.01
+      },
+      "L3_C9": {
+        "label": "Function Words (Determiners)",
+        "primary_label": "Function Words",
+        "secondary_label": "Determiners",
+        "description": "Cluster containing tokens like: ' the', ' man', 'A', 'ing', \"'\"",
+        "size": 771,
+        "percentage": 7.71
+      }
+    },
+    "layer_4": {
+      "L4_C0": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' to', ' a', ' it'",
+        "size": 1702,
+        "percentage": 17.02
+      },
+      "L4_C1": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 709,
+        "percentage": 7.090000000000001
+      },
+      "L4_C2": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' as', ' or'",
+        "size": 1702,
+        "percentage": 17.02
+      },
+      "L4_C3": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 421,
+        "percentage": 4.21
+      },
+      "L4_C4": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' year', ' life'",
+        "size": 1066,
+        "percentage": 10.66
+      },
+      "L4_C5": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: ' I', 'He', ' Af', 'She', ' Mr'",
+        "size": 543,
+        "percentage": 5.43
+      },
+      "L4_C6": {
+        "label": "Auxiliaries (Have-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Have-Forms",
+        "description": "Cluster containing tokens like: ' be', ' on', ' by', ' had', ' has'",
+        "size": 1088,
+        "percentage": 10.879999999999999
+      },
+      "L4_C7": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' don', ' didn', ' tell', ' stood'",
+        "size": 210,
+        "percentage": 2.1
+      },
+      "L4_C8": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' in', ' is', ' was', ' for', \" ''\"",
+        "size": 1727,
+        "percentage": 17.27
+      },
+      "L4_C9": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', '.', ' ?', ' we'",
+        "size": 832,
+        "percentage": 8.32
+      }
+    },
+    "layer_5": {
+      "L5_C0": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', ' he', '.', ' ?'",
+        "size": 819,
+        "percentage": 8.19
+      },
+      "L5_C1": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' each', ' year'",
+        "size": 1173,
+        "percentage": 11.73
+      },
+      "L5_C2": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' don', ' didn', ' tell', ' stood'",
+        "size": 204,
+        "percentage": 2.04
+      },
+      "L5_C3": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' as', ' or'",
+        "size": 1747,
+        "percentage": 17.47
+      },
+      "L5_C4": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' to', ' a', ' in'",
+        "size": 1714,
+        "percentage": 17.14
+      },
+      "L5_C5": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 456,
+        "percentage": 4.5600000000000005
+      },
+      "L5_C6": {
+        "label": "Content Words (Physical/Concrete)",
+        "primary_label": "Content Words",
+        "secondary_label": "Physical/Concrete",
+        "description": "Cluster containing tokens like: ' be', ' on', ' by', ' had', ' can'",
+        "size": 1027,
+        "percentage": 10.27
+      },
+      "L5_C7": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: ' I', 'He', 'I', ' Af', 'She'",
+        "size": 526,
+        "percentage": 5.26
+      },
+      "L5_C8": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' is', ' was', ' for', \" ''\", 'The'",
+        "size": 1652,
+        "percentage": 16.520000000000003
+      },
+      "L5_C9": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 682,
+        "percentage": 6.819999999999999
+      }
+    },
+    "layer_6": {
+      "L6_C0": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', ' he', '.', ' ?'",
+        "size": 805,
+        "percentage": 8.05
+      },
+      "L6_C1": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: ' I', 'He', ' Af', 'She', ' $'",
+        "size": 511,
+        "percentage": 5.11
+      },
+      "L6_C2": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 450,
+        "percentage": 4.5
+      },
+      "L6_C3": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' don', ' didn', ' tell', ' stood'",
+        "size": 208,
+        "percentage": 2.08
+      },
+      "L6_C4": {
+        "label": "Auxiliaries (Modals)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Modals",
+        "description": "Cluster containing tokens like: ' be', ' on', ' by', ' had', ' can'",
+        "size": 1038,
+        "percentage": 10.38
+      },
+      "L6_C5": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' each', ' year'",
+        "size": 1151,
+        "percentage": 11.51
+      },
+      "L6_C6": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' is', ' was', ' for', \" ''\", 'The'",
+        "size": 1666,
+        "percentage": 16.66
+      },
+      "L6_C7": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' to', ' a', ' in'",
+        "size": 1759,
+        "percentage": 17.59
+      },
+      "L6_C8": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 699,
+        "percentage": 6.99
+      },
+      "L6_C9": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' as', ' or'",
+        "size": 1713,
+        "percentage": 17.130000000000003
+      }
+    },
+    "layer_7": {
+      "L7_C0": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' it', ' as', \"'s\"",
+        "size": 1627,
+        "percentage": 16.27
+      },
+      "L7_C1": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' was', \" ''\", 'The', ' be', ' on'",
+        "size": 1423,
+        "percentage": 14.23
+      },
+      "L7_C2": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 564,
+        "percentage": 5.64
+      },
+      "L7_C3": {
+        "label": "Content Words (Spatial)",
+        "primary_label": "Content Words",
+        "secondary_label": "Spatial",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' each', ' life'",
+        "size": 1035,
+        "percentage": 10.35
+      },
+      "L7_C4": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' didn', ' tell', 'An', 'By'",
+        "size": 182,
+        "percentage": 1.82
+      },
+      "L7_C5": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' or', ' one'",
+        "size": 1573,
+        "percentage": 15.73
+      },
+      "L7_C6": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', ' he', '.', ' ('",
+        "size": 704,
+        "percentage": 7.04
+      },
+      "L7_C7": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: 'He', ' could', 'I', 'This', ' should'",
+        "size": 1071,
+        "percentage": 10.71
+      },
+      "L7_C8": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 406,
+        "percentage": 4.06
+      },
+      "L7_C9": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' to', ' a', ' in', ' is', ' for'",
+        "size": 1415,
+        "percentage": 14.149999999999999
+      }
+    },
+    "layer_8": {
+      "L8_C0": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 416,
+        "percentage": 4.16
+      },
+      "L8_C1": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: 'He', ' could', 'I', 'This', ' should'",
+        "size": 1062,
+        "percentage": 10.620000000000001
+      },
+      "L8_C2": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', '.', ' (', ' we'",
+        "size": 702,
+        "percentage": 7.02
+      },
+      "L8_C3": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' as', ' or'",
+        "size": 1599,
+        "percentage": 15.989999999999998
+      },
+      "L8_C4": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' didn', ' tell', 'An', 'By'",
+        "size": 180,
+        "percentage": 1.7999999999999998
+      },
+      "L8_C5": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' was', \" ''\", ' be', ' on', ' by'",
+        "size": 1394,
+        "percentage": 13.94
+      },
+      "L8_C6": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 572,
+        "percentage": 5.72
+      },
+      "L8_C7": {
+        "label": "Auxiliaries (Modals)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Modals",
+        "description": "Cluster containing tokens like: ' to', ' in', ' is', ' for', ' with'",
+        "size": 1406,
+        "percentage": 14.06
+      },
+      "L8_C8": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' a', ' it', ' his'",
+        "size": 1619,
+        "percentage": 16.189999999999998
+      },
+      "L8_C9": {
+        "label": "Content Words (Spatial)",
+        "primary_label": "Content Words",
+        "secondary_label": "Spatial",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' each', ' life'",
+        "size": 1050,
+        "percentage": 10.5
+      }
+    },
+    "layer_9": {
+      "L9_C0": {
+        "label": "Content Words (Spatial)",
+        "primary_label": "Content Words",
+        "secondary_label": "Spatial",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' each', ' life'",
+        "size": 1043,
+        "percentage": 10.43
+      },
+      "L9_C1": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: 'He', ' could', 'I', 'This', ' should'",
+        "size": 1051,
+        "percentage": 10.51
+      },
+      "L9_C2": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' didn', ' tell', 'An', 'By'",
+        "size": 180,
+        "percentage": 1.7999999999999998
+      },
+      "L9_C3": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' a', ' it', ' his'",
+        "size": 1625,
+        "percentage": 16.25
+      },
+      "L9_C4": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' was', \" ''\", ' be', ' on', ' by'",
+        "size": 1401,
+        "percentage": 14.01
+      },
+      "L9_C5": {
+        "label": "Auxiliaries (Modals)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Modals",
+        "description": "Cluster containing tokens like: ' to', ' in', ' is', ' for', ' with'",
+        "size": 1396,
+        "percentage": 13.96
+      },
+      "L9_C6": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' as', ' or'",
+        "size": 1599,
+        "percentage": 15.989999999999998
+      },
+      "L9_C7": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 412,
+        "percentage": 4.12
+      },
+      "L9_C8": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 581,
+        "percentage": 5.81
+      },
+      "L9_C9": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', ' he', '.', ' ('",
+        "size": 712,
+        "percentage": 7.12
+      }
+    },
+    "layer_10": {
+      "L10_C0": {
+        "label": "Auxiliaries (Modals)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Modals",
+        "description": "Cluster containing tokens like: ' to', ' in', ' is', ' for', ' with'",
+        "size": 1413,
+        "percentage": 14.13
+      },
+      "L10_C1": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: 'man', ' system', ' least', ' matter', ' others'",
+        "size": 417,
+        "percentage": 4.17
+      },
+      "L10_C2": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' ``', ' didn', ' tell', 'An', 'By'",
+        "size": 180,
+        "percentage": 1.7999999999999998
+      },
+      "L10_C3": {
+        "label": "Pronouns (Mixed)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Mixed",
+        "description": "Cluster containing tokens like: '``', ' an', 'It', 'In', 'There'",
+        "size": 565,
+        "percentage": 5.65
+      },
+      "L10_C4": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' was', \" ''\", ' be', ' on', ' by'",
+        "size": 1384,
+        "percentage": 13.84
+      },
+      "L10_C5": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' of', ' a', ' it', ' his'",
+        "size": 1639,
+        "percentage": 16.39
+      },
+      "L10_C6": {
+        "label": "Content Words (Spatial)",
+        "primary_label": "Content Words",
+        "secondary_label": "Spatial",
+        "description": "Cluster containing tokens like: ' which', ' than', ' way', ' each', ' life'",
+        "size": 1049,
+        "percentage": 10.489999999999998
+      },
+      "L10_C7": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' the', ' and', ' that', ' as', ' or'",
+        "size": 1598,
+        "percentage": 15.98
+      },
+      "L10_C8": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: 'He', ' could', 'I', 'This', ' should'",
+        "size": 1035,
+        "percentage": 10.35
+      },
+      "L10_C9": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '-', ' he', '.', ' ('",
+        "size": 720,
+        "percentage": 7.199999999999999
+      }
+    },
+    "layer_11": {
+      "L11_C0": {
+        "label": "Content Words (Temporal)",
+        "primary_label": "Content Words",
+        "secondary_label": "Temporal",
+        "description": "Cluster containing tokens like: ' as', ' other', ' time', ' if', ' two'",
+        "size": 1310,
+        "percentage": 13.100000000000001
+      },
+      "L11_C1": {
+        "label": "Punctuation (Sentence-Final)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Sentence-Final",
+        "description": "Cluster containing tokens like: ' .', '.', ' ?', 'He', 'In'",
+        "size": 1223,
+        "percentage": 12.23
+      },
+      "L11_C2": {
+        "label": "Content Words (General)",
+        "primary_label": "Content Words",
+        "secondary_label": "General",
+        "description": "Cluster containing tokens like: ' un', ' self', ' non', ' re', ' inter'",
+        "size": 527,
+        "percentage": 5.27
+      },
+      "L11_C3": {
+        "label": "Function Words (Determiners)",
+        "primary_label": "Function Words",
+        "secondary_label": "Determiners",
+        "description": "Cluster containing tokens like: ' the', ' of', ' and', ' for', ' with'",
+        "size": 796,
+        "percentage": 7.960000000000001
+      },
+      "L11_C4": {
+        "label": "Punctuation (Mixed Punctuation)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Mixed Punctuation",
+        "description": "Cluster containing tokens like: ' ,', ' in', 'The', ' ;', ' at'",
+        "size": 1130,
+        "percentage": 11.3
+      },
+      "L11_C5": {
+        "label": "Pronouns (Personal)",
+        "primary_label": "Pronouns",
+        "secondary_label": "Personal",
+        "description": "Cluster containing tokens like: ' a', ' he', ' his', ' be', ' on'",
+        "size": 966,
+        "percentage": 9.66
+      },
+      "L11_C6": {
+        "label": "Content Words (Human/Social)",
+        "primary_label": "Content Words",
+        "secondary_label": "Human/Social",
+        "description": "Cluster containing tokens like: ' under', ' high', ' hand', ' head', ' end'",
+        "size": 1225,
+        "percentage": 12.25
+      },
+      "L11_C7": {
+        "label": "Content Words (Physical/Concrete)",
+        "primary_label": "Content Words",
+        "secondary_label": "Physical/Concrete",
+        "description": "Cluster containing tokens like: ' no', ' over', 'ing', ' well', ' long'",
+        "size": 1604,
+        "percentage": 16.04
+      },
+      "L11_C8": {
+        "label": "Punctuation (Quotes)",
+        "primary_label": "Punctuation",
+        "secondary_label": "Quotes",
+        "description": "Cluster containing tokens like: \" ''\", '-', ' ``', '``', ' ('",
+        "size": 712,
+        "percentage": 7.12
+      },
+      "L11_C9": {
+        "label": "Auxiliaries (Be-Forms)",
+        "primary_label": "Auxiliaries",
+        "secondary_label": "Be-Forms",
+        "description": "Cluster containing tokens like: ' to', ' that', ' is', ' was', ' it'",
+        "size": 507,
+        "percentage": 5.07
+      }
+    }
+  }
+}

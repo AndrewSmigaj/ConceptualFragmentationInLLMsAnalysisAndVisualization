@@ -1,0 +1,395 @@
+{
+  "metadata": {
+    "generated_at": "2025-05-29T00:40:00",
+    "model": "claude",
+    "k": 5,
+    "total_clusters": 60,
+    "method": "consistent_differentiated_analysis"
+  },
+  "labels": {
+    "layer_0": {
+      "L0_C0": {
+        "label": "Mixed Content & Punctuation",
+        "description": "Articles (the), punctuation marks, and common nouns. Examples:  the, -, .,  man,  me",
+        "size": 2193,
+        "percentage": 21.93
+      },
+      "L0_C1": {
+        "label": "Copulas & Prepositions",
+        "description": "Be-verbs (is, was), prepositions (for, with, on, by). Examples:  is,  was,  for,  '',  with",
+        "size": 1994,
+        "percentage": 19.939999999999998
+      },
+      "L0_C2": {
+        "label": "Articles & Conjunctions",
+        "description": "Determiners (a, the), conjunctions (and, that, as), core prepositions (of, to, in). Examples:  ,,  .,  of,  and,  to",
+        "size": 1777,
+        "percentage": 17.77
+      },
+      "L0_C3": {
+        "label": "Pronouns & Short Words",
+        "description": "Personal pronouns (he, I, she) and very short tokens. Examples:  he,  I,  (,  she, I",
+        "size": 1482,
+        "percentage": 14.82
+      },
+      "L0_C4": {
+        "label": "Plural Pronouns & Time",
+        "description": "Plural pronouns (it, they, we) and temporal nouns (time, years). Examples:  it,  they,  ),  we,  there",
+        "size": 2554,
+        "percentage": 25.540000000000003
+      }
+    },
+    "layer_1": {
+      "L1_C0": {
+        "label": "Grammar Connectives",
+        "description": "Articles, prepositions (of, at, from), and conjunctions. Examples:  the,  ,,  of,  and,  that",
+        "size": 1958,
+        "percentage": 19.580000000000002
+      },
+      "L1_C1": {
+        "label": "Punctuation & Capitals",
+        "description": "Sentence punctuation, pronouns, and capitalized words. Examples:  .,  '', -,  he, The",
+        "size": 1720,
+        "percentage": 17.2
+      },
+      "L1_C2": {
+        "label": "Quotes & Titles",
+        "description": "Quotation marks and titles (Mr, Mrs). Examples:  ``, ``, He, I,  well",
+        "size": 921,
+        "percentage": 9.21
+      },
+      "L1_C3": {
+        "label": "Core Prepositions",
+        "description": "Primary prepositions (to, in, for, with, on) and pronouns. Examples:  to,  a,  in,  is,  for",
+        "size": 3244,
+        "percentage": 32.440000000000005
+      },
+      "L1_C4": {
+        "label": "Auxiliary System",
+        "description": "Auxiliary verbs (was, had, has) and modal verbs (can). Examples:  was,  be,  had,  ?,  I",
+        "size": 2157,
+        "percentage": 21.57
+      }
+    },
+    "layer_2": {
+      "L2_C0": {
+        "label": "Punctuation & Pronouns",
+        "description": "Punctuation marks and personal pronouns. Examples:  ., -,  he, .,  ?",
+        "size": 1447,
+        "percentage": 14.469999999999999
+      },
+      "L2_C1": {
+        "label": "Prepositions & Copulas",
+        "description": "Prepositions and be-verbs. Examples:  to,  in,  is,  was,  for",
+        "size": 2468,
+        "percentage": 24.68
+      },
+      "L2_C2": {
+        "label": "Content Nouns",
+        "description": "Common nouns (man, way, year, life, part). Examples:  which,  man,  now,  way,  year",
+        "size": 1975,
+        "percentage": 19.75
+      },
+      "L2_C3": {
+        "label": "Articles & Core Grammar",
+        "description": "Determiners and essential conjunctions. Examples:  the,  ,,  of,  and,  a",
+        "size": 3079,
+        "percentage": 30.79
+      },
+      "L2_C4": {
+        "label": "Quotes & Sentence Starters",
+        "description": "Quotation marks and capitalized sentence starters. Examples:  ``, ``,  an, It, In",
+        "size": 1031,
+        "percentage": 10.31
+      }
+    },
+    "layer_3": {
+      "L3_C0": {
+        "label": "Conjunctions & Determiners",
+        "description": "Connecting words (and, that, as, or, but) and determiners. Examples:  the,  and,  that,  as,  or",
+        "size": 2817,
+        "percentage": 28.17
+      },
+      "L3_C1": {
+        "label": "Sentence Initiators",
+        "description": "Capitalized sentence starters (In, There, They, If, When). Examples:  ``, ``,  an, In, There",
+        "size": 692,
+        "percentage": 6.92
+      },
+      "L3_C2": {
+        "label": "Human & Location Nouns",
+        "description": "Nouns for people and places. Examples:  which,  way, y,  himself,  number",
+        "size": 1363,
+        "percentage": 13.63
+      },
+      "L3_C3": {
+        "label": "Auxiliary System",
+        "description": "Copular verbs and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "size": 2092,
+        "percentage": 20.919999999999998
+      },
+      "L3_C4": {
+        "label": "Punctuation & Prepositions",
+        "description": "Sentence punctuation and basic prepositions. Examples:  ,,  .,  of,  to,  a",
+        "size": 3036,
+        "percentage": 30.36
+      }
+    },
+    "layer_4": {
+      "L4_C0": {
+        "label": "Function Core",
+        "description": "Essential grammatical connectives. Examples:  .,  to,  a,  in,  is",
+        "size": 3029,
+        "percentage": 30.29
+      },
+      "L4_C1": {
+        "label": "Abstract Nouns",
+        "description": "Abstract concepts and states (way, life, number). Examples:  which,  way,  life, y,  himself",
+        "size": 1388,
+        "percentage": 13.88
+      },
+      "L4_C2": {
+        "label": "Grammar Connectives",
+        "description": "Core determiners and function words. Examples:  the,  ,,  of,  and,  that",
+        "size": 2855,
+        "percentage": 28.549999999999997
+      },
+      "L4_C3": {
+        "label": "Auxiliary System",
+        "description": "Complete auxiliary verb system. Examples:  was,  be,  on,  by,  had",
+        "size": 2061,
+        "percentage": 20.61
+      },
+      "L4_C4": {
+        "label": "Discourse Markers",
+        "description": "Quotation marks and discourse markers. Examples:  ``, ``,  an, In, There",
+        "size": 667,
+        "percentage": 6.67
+      }
+    },
+    "layer_5": {
+      "L5_C0": {
+        "label": "Grammar Connectives",
+        "description": "Core grammatical infrastructure. Examples:  the,  ,,  of,  and,  that",
+        "size": 2866,
+        "percentage": 28.660000000000004
+      },
+      "L5_C1": {
+        "label": "Abstract Nouns",
+        "description": "Abstract nouns and concepts. Examples:  which,  than,  way,  life, y",
+        "size": 1395,
+        "percentage": 13.950000000000001
+      },
+      "L5_C2": {
+        "label": "Discourse Markers",
+        "description": "Quotation and discourse elements. Examples:  ``, ``,  an, In, There",
+        "size": 666,
+        "percentage": 6.660000000000001
+      },
+      "L5_C3": {
+        "label": "Auxiliary System",
+        "description": "Modal and auxiliary verbs. Examples:  was,  be,  on,  by,  had",
+        "size": 2058,
+        "percentage": 20.580000000000002
+      },
+      "L5_C4": {
+        "label": "Function Core",
+        "description": "Essential function words. Examples:  .,  to,  a,  in,  is",
+        "size": 3015,
+        "percentage": 30.15
+      }
+    },
+    "layer_6": {
+      "L6_C0": {
+        "label": "Abstract Nouns",
+        "description": "Abstract and conceptual nouns. Examples:  which,  than,  way,  life, y",
+        "size": 1394,
+        "percentage": 13.94
+      },
+      "L6_C1": {
+        "label": "Auxiliary System",
+        "description": "Auxiliary and modal verbs. Examples:  was,  be,  on,  by,  had",
+        "size": 2086,
+        "percentage": 20.86
+      },
+      "L6_C2": {
+        "label": "Discourse Markers",
+        "description": "Discourse and quotation markers. Examples:  ``, ``,  an, In, There",
+        "size": 669,
+        "percentage": 6.69
+      },
+      "L6_C3": {
+        "label": "Function Core",
+        "description": "Core grammatical elements. Examples:  .,  to,  a,  in,  is",
+        "size": 3017,
+        "percentage": 30.17
+      },
+      "L6_C4": {
+        "label": "Grammar Connectives",
+        "description": "Articles and determiners. Examples:  the,  ,,  of,  and,  that",
+        "size": 2834,
+        "percentage": 28.34
+      }
+    },
+    "layer_7": {
+      "L7_C0": {
+        "label": "Function Core",
+        "description": "Core function word system. Examples:  .,  to,  a,  in,  is",
+        "size": 3024,
+        "percentage": 30.240000000000002
+      },
+      "L7_C1": {
+        "label": "Grammar Connectives",
+        "description": "Grammatical connectives. Examples:  the,  ,,  of,  and,  that",
+        "size": 2835,
+        "percentage": 28.349999999999998
+      },
+      "L7_C2": {
+        "label": "Auxiliary System",
+        "description": "Auxiliary verb system. Examples:  was,  be,  on,  by,  had",
+        "size": 2081,
+        "percentage": 20.810000000000002
+      },
+      "L7_C3": {
+        "label": "Discourse Markers",
+        "description": "Discourse markers. Examples:  ``, ``,  an, In, There",
+        "size": 669,
+        "percentage": 6.69
+      },
+      "L7_C4": {
+        "label": "Abstract Nouns",
+        "description": "Abstract noun system. Examples:  which,  than,  way,  life, y",
+        "size": 1391,
+        "percentage": 13.91
+      }
+    },
+    "layer_8": {
+      "L8_C0": {
+        "label": "Grammar Connectives",
+        "description": "Central grammatical elements. Examples:  the,  ,,  of,  and,  that",
+        "size": 2935,
+        "percentage": 29.349999999999998
+      },
+      "L8_C1": {
+        "label": "Auxiliary System",
+        "description": "Auxiliary verb network. Examples:  be,  on,  by,  had,  I",
+        "size": 1967,
+        "percentage": 19.67
+      },
+      "L8_C2": {
+        "label": "Abstract Nouns",
+        "description": "Abstract concepts. Examples:  which,  than,  way,  each,  life",
+        "size": 1448,
+        "percentage": 14.48
+      },
+      "L8_C3": {
+        "label": "Discourse Markers",
+        "description": "Discourse elements. Examples:  ``, ``,  an, In, There",
+        "size": 619,
+        "percentage": 6.1899999999999995
+      },
+      "L8_C4": {
+        "label": "Function Core",
+        "description": "Function word system. Examples:  .,  to,  a,  in,  is",
+        "size": 3031,
+        "percentage": 30.31
+      }
+    },
+    "layer_9": {
+      "L9_C0": {
+        "label": "Grammar Connectives",
+        "description": "Core grammar. Examples:  the,  ,,  of,  and,  that",
+        "size": 2960,
+        "percentage": 29.599999999999998
+      },
+      "L9_C1": {
+        "label": "Abstract Nouns",
+        "description": "Abstract concepts. Examples:  which,  than,  way,  each,  life",
+        "size": 1462,
+        "percentage": 14.62
+      },
+      "L9_C2": {
+        "label": "Discourse Markers",
+        "description": "Discourse markers. Examples:  ``, ``,  an, In, There",
+        "size": 612,
+        "percentage": 6.12
+      },
+      "L9_C3": {
+        "label": "Function Core",
+        "description": "Function words. Examples:  .,  to,  a,  in,  is",
+        "size": 3031,
+        "percentage": 30.31
+      },
+      "L9_C4": {
+        "label": "Auxiliary System",
+        "description": "Auxiliary verbs. Examples:  be,  on,  by,  had,  I",
+        "size": 1935,
+        "percentage": 19.35
+      }
+    },
+    "layer_10": {
+      "L10_C0": {
+        "label": "Grammar Connectives",
+        "description": "Grammatical core. Examples:  the,  ,,  of,  and,  that",
+        "size": 2968,
+        "percentage": 29.68
+      },
+      "L10_C1": {
+        "label": "Abstract Nouns",
+        "description": "Abstract concepts. Examples:  which,  than,  way,  each,  life",
+        "size": 1457,
+        "percentage": 14.57
+      },
+      "L10_C2": {
+        "label": "Discourse Markers",
+        "description": "Discourse elements. Examples:  ``, ``,  an, In, There",
+        "size": 603,
+        "percentage": 6.03
+      },
+      "L10_C3": {
+        "label": "Function Core",
+        "description": "Function words. Examples:  .,  to,  a,  in,  is",
+        "size": 3037,
+        "percentage": 30.37
+      },
+      "L10_C4": {
+        "label": "Auxiliary System",
+        "description": "Auxiliary system. Examples:  be,  on,  by,  had,  I",
+        "size": 1935,
+        "percentage": 19.35
+      }
+    },
+    "layer_11": {
+      "L11_C0": {
+        "label": "Sentence Boundaries",
+        "description": "Punctuation and sentence delimiters. Examples:  .,  '', .,  ?,  ``",
+        "size": 1738,
+        "percentage": 17.380000000000003
+      },
+      "L11_C1": {
+        "label": "Grammar Connectives",
+        "description": "Core grammatical words. Examples:  ,,  a,  in,  as, The",
+        "size": 3016,
+        "percentage": 30.159999999999997
+      },
+      "L11_C2": {
+        "label": "Function Core",
+        "description": "Essential connectives. Examples:  the,  of,  and,  to,  that",
+        "size": 1579,
+        "percentage": 15.790000000000001
+      },
+      "L11_C3": {
+        "label": "Short Forms",
+        "description": "Abbreviated and short forms. Examples: -,  Af,  C,  P,  S",
+        "size": 1085,
+        "percentage": 10.85
+      },
+      "L11_C4": {
+        "label": "Morphological Elements",
+        "description": "Word endings and morphology. Examples:  over, ing, ly,  well,  long",
+        "size": 2582,
+        "percentage": 25.82
+      }
+    }
+  }
+}

@@ -17,13 +17,13 @@ We employ a three-phase approach:
 \begin{enumerate}
     \item \textbf{Optimal Clustering}: Gap statistic determines layer-specific cluster counts (e.g., k=4 for GPT-2 layer 0, k=2 for layers 1-11)
     \item \textbf{Unique Labeling}: Every cluster receives globally unique ID (L\{layer\}\_C\{cluster\}) preventing cross-layer confusion
-    \item \textbf{Windowed Analysis}: Temporal segmentation into Early/Middle/Late windows reveals phase transitions
+    \item \textbf{Windowed Analysis}: Temporal segmentation reveals phase transitions (see Section 3.5)
 \end{enumerate}
 
 \subsection{Metrics and Validation}
 
 \begin{itemize}
-    \item \textbf{Cross-layer Metrics}: Centroid similarity ($\rho^c$), membership overlap ($J$), trajectory fragmentation ($F$)
+    \item \textbf{Cross-layer Metrics}: Centroid similarity ($\rho^c$), membership overlap ($J$), trajectory fragmentation (F, see Section 3.6)
     \item \textbf{Stability Analysis}: Window-based stability scores revealing reorganization points
     \item \textbf{Path Statistics}: Convergence ratios, diversity indices, archetype identification
     \item \textbf{Clinical Validation}: For heart disease, correlation of fragmentation with diagnostic uncertainty
@@ -31,8 +31,25 @@ We employ a three-phase approach:
 
 \subsection{Visualization Suite}
 
+\subsubsection{Sankey Diagram Visualization Scheme}
+\label{sec:sankey_scheme}
+
+Throughout this paper, we employ Sankey diagrams as our primary visualization for concept trajectories through neural networks. In our standardized scheme:
+
 \begin{itemize}
-    \item \textbf{Concept MRI Tool}: Software implementing CTA with interactive Sankey diagrams showing complete concept flow
+    \item \textbf{Nodes}: Represent clusters at each layer, labeled with unique identifiers (e.g., L4\_C1) and semantic interpretations
+    \item \textbf{Links}: Show the flow of datapoints between clusters across consecutive layers
+    \item \textbf{Link Width}: Proportional to the number of datapoints following that path
+    \item \textbf{Colors}: Distinguish archetypal pathways or semantic categories
+    \item \textbf{Vertical Layout}: Layers progress from left (input) to right (output), providing intuitive flow visualization
+\end{itemize}
+
+This visualization enables immediate comprehension of how concepts reorganize through network layers, revealing convergence patterns, phase transitions, and dominant processing pathways.
+
+\subsubsection{Implementation Tools}
+
+\begin{itemize}
+    \item \textbf{Concept MRI Tool}: Software implementing CTA with interactive Sankey diagrams
     \item \textbf{Clinical Dashboards}: Patient archetype visualization for medical interpretability
     \item \textbf{Interactive Exploration}: Web-based interfaces for real-time analysis
 \end{itemize}

@@ -1,0 +1,1387 @@
+{
+  "0": {
+    "L0_C0": {
+      "size": 1715,
+      "percentage": 17.150000000000002,
+      "token_types": {
+        "word": 7,
+        "punctuation": 52,
+        "word_with_space": 41
+      },
+      "morphological_patterns": {
+        "other": 46,
+        "punctuation": 52,
+        "suffix_s": 1,
+        "suffix_er": 1
+      },
+      "sample_tokens": [
+        "F",
+        "\\",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L0_C1": {
+      "size": 4506,
+      "percentage": 45.06,
+      "token_types": {
+        "punctuation": 58,
+        "number": 9,
+        "word": 27,
+        "mixed_with_space": 1,
+        "word_with_space": 5
+      },
+      "morphological_patterns": {
+        "punctuation": 58,
+        "numeric": 9,
+        "other": 31,
+        "suffix_er": 1,
+        "suffix_ly": 1
+      },
+      "sample_tokens": [
+        "!",
+        "%",
+        "'",
+        ",",
+        "-",
+        ".",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "?",
+        "C",
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "L0_C2": {
+      "size": 3779,
+      "percentage": 37.79,
+      "token_types": {
+        "punctuation": 59,
+        "number": 1,
+        "word": 40
+      },
+      "morphological_patterns": {
+        "punctuation": 59,
+        "numeric": 1,
+        "other": 40
+      },
+      "sample_tokens": [
+        "\"",
+        "#",
+        "$",
+        "&",
+        "(",
+        ")",
+        "*",
+        "+",
+        "/",
+        "0",
+        ":",
+        ";",
+        "<",
+        "=",
+        ">",
+        "@",
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    }
+  },
+  "1": {
+    "L1_C0": {
+      "size": 1558,
+      "percentage": 15.58,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L1_C1": {
+      "size": 4373,
+      "percentage": 43.730000000000004,
+      "token_types": {
+        "punctuation": 24,
+        "number": 2,
+        "word": 34,
+        "word_with_space": 38,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 24,
+        "numeric": 2,
+        "other": 71,
+        "suffix_er": 1,
+        "suffix_ed": 1,
+        "suffix_s": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        "-",
+        ".",
+        "9",
+        ":",
+        "<",
+        ">",
+        "?",
+        "B",
+        "C",
+        "F",
+        "I",
+        "M",
+        "R",
+        "W"
+      ]
+    },
+    "L1_C2": {
+      "size": 4069,
+      "percentage": 40.69,
+      "token_types": {
+        "punctuation": 10,
+        "number": 9,
+        "word": 69,
+        "word_with_space": 11,
+        "other": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 10,
+        "numeric": 9,
+        "other": 78,
+        "suffix_ing": 1,
+        "suffix_ly": 1,
+        "suffix_er": 1
+      },
+      "sample_tokens": [
+        "'",
+        ")",
+        "*",
+        "+",
+        ",",
+        "/",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        ";",
+        "=",
+        "@",
+        "A",
+        "D"
+      ]
+    }
+  },
+  "2": {
+    "L2_C0": {
+      "size": 1581,
+      "percentage": 15.809999999999999,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        ">",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L2_C1": {
+      "size": 3799,
+      "percentage": 37.99,
+      "token_types": {
+        "punctuation": 2,
+        "number": 7,
+        "word": 83,
+        "word_with_space": 7,
+        "number_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 2,
+        "numeric": 8,
+        "other": 85,
+        "suffix_er": 3,
+        "suffix_ing": 1,
+        "suffix_s": 1
+      },
+      "sample_tokens": [
+        "'",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "6",
+        "7",
+        "A",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N",
+        "O",
+        "Q",
+        "T"
+      ]
+    },
+    "L2_C2": {
+      "size": 4620,
+      "percentage": 46.2,
+      "token_types": {
+        "punctuation": 30,
+        "number": 3,
+        "word": 28,
+        "word_with_space": 37,
+        "other": 1,
+        "mixed_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 30,
+        "numeric": 3,
+        "other": 65,
+        "suffix_ed": 1,
+        "suffix_ly": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "*",
+        "+",
+        "-",
+        ".",
+        "/",
+        "5",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        "=",
+        "?"
+      ]
+    }
+  },
+  "3": {
+    "L3_C0": {
+      "size": 3802,
+      "percentage": 38.019999999999996,
+      "token_types": {
+        "punctuation": 2,
+        "number": 6,
+        "word": 83,
+        "word_with_space": 7,
+        "number_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 2,
+        "numeric": 8,
+        "other": 85,
+        "suffix_er": 3,
+        "suffix_ing": 1,
+        "suffix_s": 1
+      },
+      "sample_tokens": [
+        "'",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "6",
+        "A",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "T"
+      ]
+    },
+    "L3_C1": {
+      "size": 1556,
+      "percentage": 15.559999999999999,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        ">",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L3_C2": {
+      "size": 4642,
+      "percentage": 46.42,
+      "token_types": {
+        "punctuation": 30,
+        "number": 4,
+        "word": 26,
+        "word_with_space": 38,
+        "other": 1,
+        "mixed_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 30,
+        "numeric": 4,
+        "other": 64,
+        "suffix_ed": 1,
+        "suffix_ly": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "*",
+        "+",
+        "-",
+        ".",
+        "/",
+        "5",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        "="
+      ]
+    }
+  },
+  "4": {
+    "L4_C0": {
+      "size": 3820,
+      "percentage": 38.2,
+      "token_types": {
+        "punctuation": 3,
+        "number": 7,
+        "word": 81,
+        "word_with_space": 7,
+        "number_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 3,
+        "numeric": 9,
+        "other": 83,
+        "suffix_er": 3,
+        "suffix_ing": 1,
+        "suffix_ly": 1
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "A",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N",
+        "O",
+        "P"
+      ]
+    },
+    "L4_C1": {
+      "size": 1539,
+      "percentage": 15.39,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L4_C2": {
+      "size": 4641,
+      "percentage": 46.410000000000004,
+      "token_types": {
+        "punctuation": 30,
+        "number": 3,
+        "word": 26,
+        "word_with_space": 38,
+        "other": 1,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 30,
+        "numeric": 3,
+        "other": 66,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        "=",
+        ">",
+        "?"
+      ]
+    }
+  },
+  "5": {
+    "L5_C0": {
+      "size": 3876,
+      "percentage": 38.76,
+      "token_types": {
+        "punctuation": 4,
+        "number": 8,
+        "word": 80,
+        "word_with_space": 7,
+        "number_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 4,
+        "numeric": 9,
+        "other": 82,
+        "suffix_er": 3,
+        "suffix_ing": 1,
+        "suffix_ly": 1
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "=",
+        "A",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N"
+      ]
+    },
+    "L5_C1": {
+      "size": 1508,
+      "percentage": 15.079999999999998,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L5_C2": {
+      "size": 4616,
+      "percentage": 46.160000000000004,
+      "token_types": {
+        "punctuation": 29,
+        "number": 2,
+        "word": 25,
+        "word_with_space": 41,
+        "other": 1,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 29,
+        "numeric": 2,
+        "other": 67,
+        "suffix_ed": 1,
+        "suffix_s": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        ">",
+        "?",
+        "@",
+        "B"
+      ]
+    }
+  },
+  "6": {
+    "L6_C0": {
+      "size": 1518,
+      "percentage": 15.18,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L6_C1": {
+      "size": 3847,
+      "percentage": 38.47,
+      "token_types": {
+        "punctuation": 4,
+        "number": 7,
+        "word": 80,
+        "word_with_space": 7,
+        "number_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 4,
+        "numeric": 9,
+        "other": 83,
+        "suffix_ing": 1,
+        "suffix_ly": 1,
+        "suffix_er": 2
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "=",
+        "A",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N",
+        "O"
+      ]
+    },
+    "L6_C2": {
+      "size": 4635,
+      "percentage": 46.35,
+      "token_types": {
+        "punctuation": 29,
+        "number": 3,
+        "word": 27,
+        "word_with_space": 38,
+        "other": 1,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 29,
+        "numeric": 3,
+        "other": 66,
+        "suffix_er": 1,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        ">",
+        "?",
+        "@"
+      ]
+    }
+  },
+  "7": {
+    "L7_C0": {
+      "size": 1518,
+      "percentage": 15.18,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L7_C1": {
+      "size": 4633,
+      "percentage": 46.33,
+      "token_types": {
+        "punctuation": 29,
+        "number": 3,
+        "word": 27,
+        "word_with_space": 38,
+        "other": 1,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 29,
+        "numeric": 3,
+        "other": 66,
+        "suffix_er": 1,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        ">",
+        "?",
+        "@"
+      ]
+    },
+    "L7_C2": {
+      "size": 3849,
+      "percentage": 38.49,
+      "token_types": {
+        "punctuation": 4,
+        "number": 7,
+        "word": 80,
+        "word_with_space": 7,
+        "number_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 4,
+        "numeric": 9,
+        "other": 83,
+        "suffix_ing": 1,
+        "suffix_ly": 1,
+        "suffix_er": 2
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "=",
+        "A",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N",
+        "O"
+      ]
+    }
+  },
+  "8": {
+    "L8_C0": {
+      "size": 3855,
+      "percentage": 38.550000000000004,
+      "token_types": {
+        "punctuation": 4,
+        "number": 7,
+        "word": 80,
+        "word_with_space": 7,
+        "other": 1,
+        "number_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 4,
+        "numeric": 8,
+        "other": 84,
+        "suffix_ing": 1,
+        "suffix_ly": 1,
+        "suffix_er": 2
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "=",
+        "A",
+        "D",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N"
+      ]
+    },
+    "L8_C1": {
+      "size": 1511,
+      "percentage": 15.110000000000001,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L8_C2": {
+      "size": 4634,
+      "percentage": 46.339999999999996,
+      "token_types": {
+        "punctuation": 30,
+        "number": 3,
+        "word": 25,
+        "word_with_space": 40,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 30,
+        "numeric": 3,
+        "other": 65,
+        "suffix_er": 1,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        ">",
+        "?",
+        "@"
+      ]
+    }
+  },
+  "9": {
+    "L9_C0": {
+      "size": 3857,
+      "percentage": 38.57,
+      "token_types": {
+        "punctuation": 4,
+        "number": 7,
+        "word": 80,
+        "word_with_space": 7,
+        "other": 1,
+        "number_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 4,
+        "numeric": 8,
+        "other": 84,
+        "suffix_ing": 1,
+        "suffix_ly": 1,
+        "suffix_er": 2
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "=",
+        "A",
+        "D",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N"
+      ]
+    },
+    "L9_C1": {
+      "size": 1510,
+      "percentage": 15.1,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L9_C2": {
+      "size": 4633,
+      "percentage": 46.33,
+      "token_types": {
+        "punctuation": 30,
+        "number": 3,
+        "word": 25,
+        "word_with_space": 40,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 30,
+        "numeric": 3,
+        "other": 65,
+        "suffix_er": 1,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        ">",
+        "?",
+        "@"
+      ]
+    }
+  },
+  "10": {
+    "L10_C0": {
+      "size": 3861,
+      "percentage": 38.61,
+      "token_types": {
+        "punctuation": 4,
+        "number": 7,
+        "word": 80,
+        "word_with_space": 7,
+        "other": 1,
+        "number_with_space": 1
+      },
+      "morphological_patterns": {
+        "punctuation": 4,
+        "numeric": 8,
+        "other": 83,
+        "suffix_er": 3,
+        "suffix_ing": 1,
+        "suffix_ly": 1
+      },
+      "sample_tokens": [
+        "'",
+        "*",
+        ",",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "=",
+        "A",
+        "D",
+        "E",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "N"
+      ]
+    },
+    "L10_C1": {
+      "size": 1508,
+      "percentage": 15.079999999999998,
+      "token_types": {
+        "punctuation": 100
+      },
+      "morphological_patterns": {
+        "punctuation": 100
+      },
+      "sample_tokens": [
+        "&",
+        "}",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd",
+        "\ufffd"
+      ]
+    },
+    "L10_C2": {
+      "size": 4631,
+      "percentage": 46.31,
+      "token_types": {
+        "punctuation": 30,
+        "number": 3,
+        "word": 25,
+        "word_with_space": 40,
+        "mixed_with_space": 2
+      },
+      "morphological_patterns": {
+        "punctuation": 30,
+        "numeric": 3,
+        "other": 66,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "(",
+        ")",
+        "+",
+        "-",
+        ".",
+        "/",
+        "7",
+        "8",
+        "9",
+        ":",
+        ";",
+        "<",
+        ">",
+        "?",
+        "@"
+      ]
+    }
+  },
+  "11": {
+    "L11_C0": {
+      "size": 2480,
+      "percentage": 24.8,
+      "token_types": {
+        "punctuation": 82,
+        "word": 18
+      },
+      "morphological_patterns": {
+        "punctuation": 82,
+        "other": 18
+      },
+      "sample_tokens": [
+        "-",
+        "/",
+        "<",
+        "@",
+        "C",
+        "F",
+        "G",
+        "P",
+        "R",
+        "T",
+        "V",
+        "\\",
+        "_",
+        "c",
+        "d",
+        "f",
+        "g",
+        "j",
+        "m",
+        "p"
+      ]
+    },
+    "L11_C1": {
+      "size": 2659,
+      "percentage": 26.590000000000003,
+      "token_types": {
+        "punctuation": 2,
+        "word_with_space": 93,
+        "other": 2,
+        "word": 3
+      },
+      "morphological_patterns": {
+        "punctuation": 2,
+        "other": 85,
+        "suffix_s": 8,
+        "suffix_er": 3,
+        "suffix_ly": 1,
+        "suffix_ed": 1
+      },
+      "sample_tokens": [
+        ")",
+        ",",
+        "a",
+        "the",
+        "to",
+        "of",
+        "in",
+        "and",
+        "be",
+        "I",
+        "is",
+        "on",
+        "that",
+        "for",
+        "'s",
+        "he",
+        "it",
+        "you",
+        "with",
+        "as"
+      ]
+    },
+    "L11_C2": {
+      "size": 4861,
+      "percentage": 48.61,
+      "token_types": {
+        "punctuation": 56,
+        "number": 10,
+        "word": 34
+      },
+      "morphological_patterns": {
+        "punctuation": 56,
+        "numeric": 10,
+        "other": 34
+      },
+      "sample_tokens": [
+        "!",
+        "\"",
+        "#",
+        "$",
+        "%",
+        "&",
+        "'",
+        "(",
+        "*",
+        "+",
+        ".",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    }
+  }
+}

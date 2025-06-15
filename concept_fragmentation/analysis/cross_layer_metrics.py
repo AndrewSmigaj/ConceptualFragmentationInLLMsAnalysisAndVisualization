@@ -18,6 +18,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import pairwise_distances
 from scipy.spatial.distance import cosine
 from scipy.stats import entropy
+from collections import Counter
 import warnings
 
 def validate_layer_order(
@@ -400,7 +401,6 @@ def compute_trajectory_fragmentation(
     path_tuples = [tuple(path) for path in paths]
     
     # Count occurrences of each unique path
-    from collections import Counter
     path_counts = Counter(path_tuples)
     
     # Compute overall entropy of paths

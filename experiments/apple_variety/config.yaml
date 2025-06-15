@@ -1,0 +1,109 @@
+# Configuration for Apple Variety Classification Experiment
+
+experiment:
+  name: "apple_quality_routing"
+  type: "classification"  
+  description: "CTA analysis of how neural networks route apple varieties through quality classifications"
+  output_dir: "results/apple_variety"
+  random_seed: 42
+
+dataset:
+  name: "apple_variety"
+  data_path: "../../arxiv_apple/apples_processed.csv"
+  # n_varieties: 10  # REMOVED - Now analyzing ALL 350+ varieties
+  test_size: 0.2
+  features:
+    - "brix_numeric"      # Sugar content
+    - "firmness_numeric"  # Texture measurement  
+    - "red_pct_numeric"   # Color percentage
+    - "size_numeric"      # Size score
+    - "season_numeric"    # Harvest timing
+    - "starch_numeric"    # Maturity indicator
+    # Derived features added by dataset loader:
+    # - "sweetness_ratio"  # Brix/acidity ratio
+    # - "quality_index"    # Combined quality score
+
+model:
+  type: "feedforward"
+  architecture:
+    input_dim: 8  # Number of features
+    hidden_dims: [32, 64, 32]  # Hidden layer dimensions
+    output_dim: 3  # Number of quality routing classes (fresh_premium, fresh_standard, juice)
+    activation: "relu"
+    dropout_rate: 0.3
+    batch_norm: true
+    
+training:
+  epochs: 300
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"
+  early_stopping:
+    patience: 30
+    min_delta: 0.001
+  
+clustering:
+  method: "kmeans"
+  k_selection: "gap"
+  k_min: 2
+  k_max: 10
+  random_state: 42
+
+llm:
+  provider: "openai"  # openai, claude, grok, gemini
+  model: "gpt-4"      # Model name for chosen provider
+  use_cache: true     # Cache LLM responses
+  debug: false        # Show prompts/responses
+  optimization_level: 1  # Prompt optimization (0-3)
+  analysis_categories:   # Types of analysis to perform
+    - "interpretation"
+    - "bias"
+  
+trajectory_analysis:
+  windows:
+    early: [0, 1]      # Layers 0-1
+    middle: [1, 2]     # Layers 1-2  
+    late: [2, 3]       # Layers 2-3
+  fragmentation:
+    compute: true
+    threshold: 0.5  # For uncertainty flagging
+    
+visualization:
+  sankey:
+    height: 800
+    width: 1600
+    top_n_paths: 15    # Show top N most common paths
+    show_variety_labels: true
+    color_by: "variety"  # Color paths by variety
+  trajectory:
+    method: "umap"
+    n_components: 3
+    min_dist: 0.1
+    n_neighbors: 15
+  save_format: ["html", "png", "pdf"]
+  
+analysis:
+  convergence:
+    compute_pairwise: true  # Check all variety pairs
+    focus_varieties: ["Honeycrisp", "Buckeye Gala", "Ambrosia"]
+  economic:
+    compute_impact: true
+    variety_prices:  # $/lb estimates
+      Honeycrisp: 2.50
+      Ambrosia: 2.20
+      Zestar!: 1.80
+      Macoun: 1.40
+      Buckeye Gala: 1.00
+      Liberty: 1.20
+      Blondee: 1.30
+      Lindamac McIntosh: 1.10
+      Lindamac: 1.10
+      Akane: 1.20
+
+output:
+  save_models: true
+  save_activations: true
+  save_trajectories: true
+  figure_dir: "../../arxiv_apple/figures"
+  results_format: "json"

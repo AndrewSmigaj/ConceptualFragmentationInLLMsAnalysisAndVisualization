@@ -1,0 +1,97 @@
+{
+  "Word Endings": [
+    "negations",
+    "prepositions",
+    "morphological",
+    "conjunctions",
+    "capitalized"
+  ],
+  "Object Pronouns": [
+    "conjunctions",
+    "numbers",
+    "pronouns",
+    "prepositions",
+    "morphological"
+  ],
+  "Sentence Starters": [
+    "punctuation",
+    "quotes",
+    "capitalized",
+    "morphological",
+    "pronouns"
+  ],
+  "Prepositional System": [
+    "punctuation",
+    "prepositions",
+    "articles",
+    "pronouns",
+    "morphological",
+    "auxiliaries",
+    "conjunctions",
+    "numbers"
+  ],
+  "Modal Auxiliaries": [
+    "prepositions",
+    "conjunctions",
+    "auxiliaries",
+    "morphological",
+    "pronouns",
+    "negations"
+  ],
+  "Short Words": [
+    "numbers",
+    "numeric",
+    "morphological"
+  ],
+  "Punctuation Marks": [
+    "articles",
+    "punctuation",
+    "conjunctions",
+    "morphological",
+    "prepositions",
+    "quotes",
+    "pronouns"
+  ],
+  "Subject Pronouns": [
+    "articles",
+    "pronouns",
+    "morphological",
+    "auxiliaries",
+    "prepositions",
+    "capitalized",
+    "conjunctions",
+    "numbers",
+    "punctuation"
+  ],
+  "Function Words": [
+    "articles",
+    "prepositions",
+    "conjunctions",
+    "morphological",
+    "auxiliaries",
+    "numbers",
+    "capitalized"
+  ],
+  "Conjunctions": [
+    "articles",
+    "conjunctions",
+    "morphological",
+    "numbers",
+    "pronouns",
+    "prepositions",
+    "capitalized",
+    "punctuation",
+    "quotes",
+    "numeric"
+  ],
+  "Be/Have Auxiliaries": [
+    "auxiliaries",
+    "morphological",
+    "punctuation",
+    "quotes",
+    "prepositions",
+    "pronouns",
+    "capitalized",
+    "conjunctions"
+  ]
+}

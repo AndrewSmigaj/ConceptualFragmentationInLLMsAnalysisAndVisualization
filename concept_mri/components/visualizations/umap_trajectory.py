@@ -19,7 +19,7 @@ class UMAPTrajectoryVisualization:
     def __init__(self, component_id: str = "umap-trajectory"):
         self.component_id = component_id
         self.current_data = None
-        self.LAYER_SEPARATION_OFFSET = 5.0  # Y-axis offset between layers
+        self.LAYER_SEPARATION_OFFSET = 10.0  # Y-axis offset between layers for better visual separation
         
     def create_component(self) -> dbc.Card:
         """Create the UMAP trajectory visualization component."""
@@ -83,9 +83,10 @@ class UMAPTrajectoryVisualization:
                                 {"label": "Show arrows", "value": "arrows"},
                                 {"label": "Show paths", "value": "paths"},
                                 {"label": "Show cluster centers", "value": "centers"},
-                                {"label": "Show layer planes", "value": "planes"}
+                                {"label": "Show layer planes", "value": "planes"},
+                                {"label": "Normalize embeddings", "value": "normalize"}
                             ],
-                            value=["arrows", "paths"],
+                            value=["arrows", "paths", "normalize"],
                             inline=True
                         )
                     ], width=12)
@@ -142,6 +143,16 @@ class UMAPTrajectoryVisualization:
         
         # Prepare data for UMAP
         layer_names = sorted(activations.keys())
+        
+        # Apply layer filtering if specified
+        layer_range = config.get('layer_range') if config else None
+        if layer_range:
+            start_idx, end_idx = layer_range
+            layer_names = layer_names[start_idx:end_idx]
+        
+        if not layer_names:
+            return self._create_empty_figure()
+        
         n_samples = min(n_samples, activations[layer_names[0]].shape[0])
         
         # Sample indices
@@ -166,6 +177,21 @@ class UMAPTrajectoryVisualization:
                 from sklearn.decomposition import PCA
                 pca = PCA(n_components=3)
                 layer_embeddings = pca.fit_transform(layer_acts)
+            
+            # Normalize embeddings if requested
+            if 'normalize' in show_options:
+                # Center the embeddings
+                layer_embeddings = layer_embeddings - np.mean(layer_embeddings, axis=0)
+                
+                # Scale to unit variance (this ensures consistent spread across layers)
+                std = np.std(layer_embeddings, axis=0)
+                std[std == 0] = 1  # Avoid division by zero
+                layer_embeddings = layer_embeddings / std
+                
+                # Further scale to a fixed radius for visual consistency
+                # This ensures all layers have the same visual size
+                target_radius = 3.0  # Adjust this for desired layer size
+                layer_embeddings = layer_embeddings * target_radius
             
             embeddings_list.append(layer_embeddings)
         

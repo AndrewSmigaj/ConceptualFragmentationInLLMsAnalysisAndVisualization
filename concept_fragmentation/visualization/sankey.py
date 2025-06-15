@@ -192,7 +192,7 @@ class SankeyGenerator(BaseVisualizer):
             for cluster in layer_clusters:
                 node_idx = len(nodes)
                 cluster_key = f"L{layer}_C{cluster}"
-                layer_key = f"layer_{layer}"
+                layer_key = f"L{layer}"
                 
                 # Get semantic label
                 label = f"C{cluster}"  # Default
@@ -203,6 +203,7 @@ class SankeyGenerator(BaseVisualizer):
                     
                     # Add purity if available and configured
                     if (self.config.show_purity and 
+                        purity_data is not None and
                         layer_key in purity_data and 
                         cluster_key in purity_data[layer_key]):
                         purity = purity_data[layer_key][cluster_key].get('purity', 0)
@@ -306,13 +307,10 @@ class SankeyGenerator(BaseVisualizer):
             )
         )])
         
-        # Get k value from labels if available
-        k_value = self._infer_k_value(nodes) if hasattr(self, '_infer_k_value') else 10
-        
         # Update layout
         fig.update_layout(
             title={
-                'text': f"K={k_value} Token Flow - {window.capitalize()} Window (Top {n_paths} Paths)",
+                'text': f"Apple Quality Routing Through Neural Network - {window.capitalize()} View (Top {n_paths} Paths)",
                 'x': 0.5,
                 'xanchor': 'center'
             },
@@ -436,13 +434,13 @@ class SankeyGenerator(BaseVisualizer):
             annotations.append(dict(
                 x=x_pos,
                 y=y_start - i * y_step,
-                text=f"<b>Path {i+1}:</b> {desc} ({freq} tokens)",
+                text=f"<b>Path {i+1}:</b> {desc} ({freq} samples)",
                 showarrow=False,
                 xref='paper',
                 yref='paper',
                 xanchor=x_anchor,
                 font=dict(
-                    size=9,
+                    size=12,
                     color=path_colors[i]
                 )
             ))

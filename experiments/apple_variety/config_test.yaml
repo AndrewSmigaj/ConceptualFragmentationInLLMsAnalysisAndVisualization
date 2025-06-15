@@ -1,0 +1,110 @@
+# Test Configuration for Apple Quality Routing Experiment
+# Reduced parameters for testing and debugging
+
+experiment:
+  name: "apple_quality_routing_test"
+  type: "classification"  
+  description: "TEST: CTA analysis of how neural networks route apple varieties through quality classifications"
+  output_dir: "results/apple_variety_test"
+  random_seed: 42
+
+dataset:
+  name: "apple_variety_test"
+  data_path: "arxiv_apple/apples_processed.csv"
+  # n_varieties: 5  # REMOVED - Now analyzing ALL 350+ varieties
+  test_size: 0.2
+  features:
+    - "brix_numeric"      # Sugar content
+    - "firmness_numeric"  # Texture measurement  
+    - "red_pct_numeric"   # Color percentage
+    - "size_numeric"      # Size score
+    - "season_numeric"    # Harvest timing
+    - "starch_numeric"    # Maturity indicator
+    # Derived features added by dataset loader:
+    # - "sweetness_ratio"  # Brix/acidity ratio
+    # - "quality_index"    # Combined quality score
+
+model:
+  type: "feedforward"
+  architecture:
+    input_dim: 8  # Number of features
+    hidden_dims: [32, 32, 32]  # Uniform dimensions for CTA cross-layer analysis
+    output_dim: 3  # Number of quality routing classes (fresh_premium, fresh_standard, juice)
+    activation: "relu"
+    dropout_rate: 0.2  # Reduced dropout
+    batch_norm: true
+    
+training:
+  epochs: 50  # Reduced from 300 for faster testing
+  batch_size: 16  # Smaller batch size
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"
+  early_stopping:
+    patience: 15  # Reduced patience
+    min_delta: 0.001
+  
+clustering:
+  method: "kmeans"
+  k_selection: "gap"
+  k_min: 2
+  k_max: 6  # Reduced from 10 for testing
+  random_state: 42
+
+llm:
+  provider: "grok"  # openai, claude, grok, gemini
+  model: "grok-3"  # Latest Grok model
+  use_cache: true     # Cache LLM responses
+  debug: true         # Show prompts/responses for testing
+  optimization_level: 1  # Prompt optimization (0-3)
+  analysis_categories:   # Types of analysis to perform
+    - "interpretation"
+    - "bias"
+  
+trajectory_analysis:
+  windows:
+    early: [0, 1]      # Layers 0-1
+    middle: [1, 2]     # Layers 1-2  
+    late: [2, 3]       # Layers 2-3
+  fragmentation:
+    compute: true
+    threshold: 0.5  # For uncertainty flagging
+    
+visualization:
+  sankey:
+    height: 800  # Increased for better visibility
+    width: 1600  # Increased for better legend
+    top_n_paths: 25    # Show top 25 paths
+    show_variety_labels: true
+    color_by: "variety"  # Color paths by variety
+  trajectory:
+    method: "umap"
+    n_components: 3
+    min_dist: 0.1
+    n_neighbors: 10  # Reduced for smaller dataset
+  save_format: ["html", "png"]  # Skip PDF for testing
+  
+analysis:
+  convergence:
+    compute_pairwise: true  # Check all variety pairs
+    focus_varieties: ["Honeycrisp", "Buckeye Gala", "Ambrosia"]
+  economic:
+    compute_impact: true
+    variety_prices:  # $/lb estimates
+      Honeycrisp: 2.50
+      Ambrosia: 2.20
+      "Zestar!": 1.80
+      Macoun: 1.40
+      "Buckeye Gala": 1.00
+      Liberty: 1.20
+      Blondee: 1.30
+      "Lindamac McIntosh": 1.10
+      Lindamac: 1.10
+      Akane: 1.20
+
+output:
+  save_models: true
+  save_activations: true
+  save_trajectories: true
+  figure_dir: "../../arxiv_apple/figures_test"
+  results_format: "json"

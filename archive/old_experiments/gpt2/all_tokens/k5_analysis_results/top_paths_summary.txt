@@ -1,0 +1,226 @@
+TOP ARCHETYPAL PATHS BY WINDOW
+============================================================
+
+EARLY WINDOW
+----------------------------------------
+
+Path 1: 4 → 3 → 3 → 0
+Frequency: 684 tokens
+Semantic: Objects & Plurals → Verbal Phrases → Pronoun System → Function Word Core
+Examples: ing, group, days, order, case
+
+Path 2: 4 → 0 → 2 → 2
+Frequency: 526 tokens
+Semantic: Objects & Plurals → Grammatical Connectives → Verbal Elements → Content Lexicon
+Examples: its, way, number, set, things
+
+Path 3: 2 → 4 → 1 → 3
+Frequency: 437 tokens
+Semantic: Core Connectives → Lexical Verbs → Core Grammar → Auxiliary System
+Examples: far, enough, something, almost, toward
+
+Path 4: 1 → 4 → 1 → 3
+Frequency: 428 tokens
+Semantic: Function Words → Lexical Verbs → Core Grammar → Auxiliary System
+Examples: was, had, has, It, can
+
+Path 5: 0 → 0 → 2 → 2
+Frequency: 405 tokens
+Semantic: Content Words → Grammatical Connectives → Verbal Elements → Content Lexicon
+Examples: to, a, out, other, man
+
+Path 6: 1 → 3 → 1 → 4
+Frequency: 291 tokens
+Semantic: Function Words → Verbal Phrases → Core Grammar → Pronominal Forms
+Examples: '', with, have, would, )
+
+Path 7: 4 → 3 → 3 → 4
+Frequency: 280 tokens
+Semantic: Objects & Plurals → Verbal Phrases → Pronoun System → Pronominal Forms
+Examples: people, eyes, face, country, action
+
+Path 8: 3 → 1 → 0 → 4
+Frequency: 270 tokens
+Semantic: Pronouns & Subjects → Sentence Elements → Sentence Starters → Pronominal Forms
+Examples: in, we, Mr, B, C
+
+Path 9: 3 → 2 → 4 → 1
+Frequency: 254 tokens
+Semantic: Pronouns & Subjects → Common Auxiliaries → Punctuation & Quotes → Sentence Delimiters
+Examples: en, st, ent, ar, sat
+
+Path 10: 2 → 3 → 1 → 4
+Frequency: 241 tokens
+Semantic: Core Connectives → Verbal Phrases → Core Grammar → Pronominal Forms
+Examples: been, 't, these, your, might
+
+Path 11: 0 → 3 → 3 → 0
+Frequency: 234 tokens
+Semantic: Content Words → Verbal Phrases → Pronoun System → Function Word Core
+Examples: world, again, business, large, interest
+
+Path 12: 2 → 3 → 3 → 4
+Frequency: 227 tokens
+Semantic: Core Connectives → Verbal Phrases → Pronoun System → Pronominal Forms
+Examples: The, also, even, same, used
+
+Path 13: 0 → 1 → 0 → 4
+Frequency: 218 tokens
+Semantic: Content Words → Sentence Elements → Sentence Starters → Pronominal Forms
+Examples: ., by, well, year, away
+
+Path 14: 1 → 3 → 3 → 4
+Frequency: 197 tokens
+Semantic: Function Words → Verbal Phrases → Pronoun System → Pronominal Forms
+Examples: ;, what, But, where, just
+
+Path 15: 2 → 3 → 3 → 0
+Frequency: 188 tokens
+Semantic: Core Connectives → Verbal Phrases → Pronoun System → Function Word Core
+Examples: him, them, new, much, little
+
+MIDDLE WINDOW
+----------------------------------------
+
+Path 1: 0 → 4 → 3 → 0
+Frequency: 2673 tokens
+Semantic: Syntactic Connectors → Pronominal System → Pronouns → Pronominal Core
+Examples: ., in, for, '', -
+
+Path 2: 2 → 0 → 4 → 1
+Frequency: 2604 tokens
+Semantic: Pronoun Cluster → Grammatical Core → Function Words → Function Elements
+Examples: the, ,, of, and, that
+
+Path 3: 3 → 3 → 1 → 2
+Frequency: 1842 tokens
+Semantic: Verbal Auxiliaries → Verbal System → Verbal Forms → Verbal System
+Examples: was, had, I, --, He
+
+Path 4: 1 → 1 → 0 → 4
+Frequency: 1306 tokens
+Semantic: Lexical Content → Content Words → Content Vocabulary → Lexical Items
+Examples: to, a, as, on, or
+
+Path 5: 4 → 2 → 2 → 3
+Frequency: 585 tokens
+Semantic: Boundaries & Quotes → Punctuation Marks → Special Markers → Punctuation System
+Examples: ``, came, New, 'll, told
+
+Path 6: 0 → 0 → 4 → 1
+Frequency: 34 tokens
+Semantic: Syntactic Connectors → Grammatical Core → Function Words → Function Elements
+Examples: into, some, just, three, during
+
+Path 7: 2 → 0 → 3 → 0
+Frequency: 33 tokens
+Semantic: Pronoun Cluster → Grammatical Core → Pronouns → Pronominal Core
+Examples: said, space, responsibility, Association, Sam
+
+Path 8: 0 → 4 → 1 → 2
+Frequency: 23 tokens
+Semantic: Syntactic Connectors → Pronominal System → Verbal Forms → Verbal System
+Examples: saw, strong, trying, decision, Act
+
+Path 9: 2 → 4 → 3 → 0
+Frequency: 20 tokens
+Semantic: Pronoun Cluster → Pronominal System → Pronouns → Pronominal Core
+Examples: works, supply, discussion, Company, platform
+
+Path 10: 2 → 1 → 0 → 4
+Frequency: 16 tokens
+Semantic: Pronoun Cluster → Content Words → Content Vocabulary → Lexical Items
+Examples: than, ease, signals, talents, pupils
+
+Path 11: 0 → 3 → 1 → 2
+Frequency: 16 tokens
+Semantic: Syntactic Connectors → Verbal System → Verbal Forms → Verbal System
+Examples: turn, says, appears, formed, laughed
+
+Path 12: 3 → 4 → 3 → 0
+Frequency: 14 tokens
+Semantic: Verbal Auxiliaries → Pronominal System → Pronouns → Pronominal Core
+Examples: their, Her, entered, Our, rural
+
+Path 13: 2 → 0 → 4 → 0
+Frequency: 10 tokens
+Semantic: Pronoun Cluster → Grammatical Core → Function Words → Pronominal Core
+Examples: sign, product, conference, vision, iss
+
+LATE WINDOW
+----------------------------------------
+
+Path 1: 0 → 0 → 0 → 1
+Frequency: 937 tokens
+Semantic: Function Words → Grammatical Core → Function Core → Pronouns & Deixis
+Examples: ,, that, new, little, world
+
+Path 2: 4 → 3 → 3 → 1
+Frequency: 882 tokens
+Semantic: Pronouns → Pronominal System → Pronouns → Pronouns & Deixis
+Examples: The, ;, ), do, But
+
+Path 3: 4 → 3 → 3 → 4
+Frequency: 793 tokens
+Semantic: Pronouns → Pronominal System → Pronouns → Mixed Elements
+Examples: not, more, where, good, very
+
+Path 4: 0 → 0 → 0 → 4
+Frequency: 770 tokens
+Semantic: Function Words → Grammatical Core → Function Core → Mixed Elements
+Examples: only, time, some, two, like
+
+Path 5: 1 → 4 → 4 → 1
+Frequency: 495 tokens
+Semantic: Verbal Elements → Verbal System → Verbal Forms → Pronouns & Deixis
+Examples: It, There, If, take, United
+
+Path 6: 0 → 0 → 0 → 2
+Frequency: 481 tokens
+Semantic: Function Words → Grammatical Core → Function Core → Lexical Items
+Examples: 's, him, said, them, into
+
+Path 7: 1 → 4 → 4 → 4
+Frequency: 480 tokens
+Semantic: Verbal Elements → Verbal System → Verbal Forms → Mixed Elements
+Examples: find, social, local, short, known
+
+Path 8: 4 → 3 → 3 → 2
+Frequency: 466 tokens
+Semantic: Pronouns → Pronominal System → Pronouns → Lexical Items
+Examples: was, with, from, have, were
+
+Path 9: 0 → 0 → 0 → 0
+Frequency: 449 tokens
+Semantic: Function Words → Grammatical Core → Function Core → Content Vocabulary
+Examples: the, of, and, is, it
+
+Path 10: 2 → 1 → 1 → 1
+Frequency: 432 tokens
+Semantic: Content Lexicon → Content Words → Lexical Content → Pronouns & Deixis
+Examples: life, number, ers, once, system
+
+Path 11: 4 → 3 → 3 → 0
+Frequency: 381 tokens
+Semantic: Pronouns → Pronominal System → Pronouns → Content Vocabulary
+Examples: ., in, for, '', -
+
+Path 12: 2 → 1 → 1 → 0
+Frequency: 371 tokens
+Semantic: Content Lexicon → Content Words → Lexical Content → Content Vocabulary
+Examples: to, a, as, on, or
+
+Path 13: 1 → 4 → 4 → 3
+Frequency: 303 tokens
+Semantic: Verbal Elements → Verbal System → Verbal Forms → Function Elements
+Examples: Af, S, t, le, St
+
+Path 14: 2 → 1 → 1 → 4
+Frequency: 284 tokens
+Semantic: Content Lexicon → Content Words → Lexical Content → Mixed Elements
+Examples: use, place, side, half, ous
+
+Path 15: 3 → 2 → 2 → 3
+Frequency: 270 tokens
+Semantic: Special Characters → Punctuation → Special Markers → Function Elements
+Examples: en, st, ent, non, ch

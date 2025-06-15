@@ -1,0 +1,1 @@
+"""Apple variety classification experiment using Concept Trajectory Analysis."""

@@ -1,0 +1,34 @@
+CONSISTENT LABELING REPORT
+============================================================
+
+Label Distribution:
+  Content: 30 clusters
+  Auxiliaries: Secondary: 11 clusters
+  Punctuation: Secondary: 10 clusters
+  Content: Special: 9 clusters
+  Prepositions: Special: 8 clusters
+  Pronouns: Special: 7 clusters
+  Capitalized: Special: 7 clusters
+  Conjunctions: Special: 7 clusters
+  Content: Secondary: 6 clusters
+  Punctuation: Special: 5 clusters
+  Prepositions: Secondary: 4 clusters
+  Punctuation: Combined: 4 clusters
+  Auxiliaries: Special: 3 clusters
+  Pronouns: Secondary: 2 clusters
+  Pronouns: Combined: 2 clusters
+  Quantifiers: 1 clusters
+  Determiners: Special: 1 clusters
+  Pronouns: 1 clusters
+  Prepositions: Combined: 1 clusters
+  Determiners: Combined: 1 clusters
+
+
+Cross-layer consistency:
+(Token groups that appear in multiple layers)
+
+
+Total token groups appearing multiple times: 15
+Consistent labeling: 15
+Inconsistent labeling: 0
+Consistency rate: 100.0%

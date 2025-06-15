@@ -1,0 +1,68 @@
+{
+  "timestamp": "2025-05-28T12:14:16.792166",
+  "method": "binary_search_silhouette",
+  "total_tokens": 10000,
+  "num_layers": 12,
+  "layer_results": {
+    "0": {
+      "optimal_k": 2,
+      "silhouette_score": 0.06655026227235794,
+      "method": "binary_search"
+    },
+    "1": {
+      "optimal_k": 2,
+      "silhouette_score": 0.20048300921916962,
+      "method": "binary_search"
+    },
+    "2": {
+      "optimal_k": 2,
+      "silhouette_score": 0.25402018427848816,
+      "method": "binary_search"
+    },
+    "3": {
+      "optimal_k": 2,
+      "silhouette_score": 0.33364158868789673,
+      "method": "binary_search"
+    },
+    "4": {
+      "optimal_k": 2,
+      "silhouette_score": 0.35815802216529846,
+      "method": "binary_search"
+    },
+    "5": {
+      "optimal_k": 2,
+      "silhouette_score": 0.3751361668109894,
+      "method": "binary_search"
+    },
+    "6": {
+      "optimal_k": 2,
+      "silhouette_score": 0.3837031424045563,
+      "method": "binary_search"
+    },
+    "7": {
+      "optimal_k": 2,
+      "silhouette_score": 0.3906025290489197,
+      "method": "binary_search"
+    },
+    "8": {
+      "optimal_k": 2,
+      "silhouette_score": 0.39649730920791626,
+      "method": "binary_search"
+    },
+    "9": {
+      "optimal_k": 2,
+      "silhouette_score": 0.398434042930603,
+      "method": "binary_search"
+    },
+    "10": {
+      "optimal_k": 2,
+      "silhouette_score": 0.3910355567932129,
+      "method": "binary_search"
+    },
+    "11": {
+      "optimal_k": 2,
+      "silhouette_score": 0.37769466638565063,
+      "method": "binary_search"
+    }
+  }
+}

@@ -1,0 +1,1343 @@
+{
+  "early": {
+    "layers": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "total_paths": 10000,
+    "unique_paths": 696,
+    "archetypal_paths": [
+      {
+        "path": [
+          5,
+          5,
+          8,
+          3
+        ],
+        "frequency": 435,
+        "representative_words": [
+          "side",
+          "face",
+          "form",
+          "order",
+          "thing"
+        ],
+        "example_words": [
+          "side",
+          "face",
+          "form",
+          "order",
+          "thing"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Pronouns (Personal)",
+          "Content Words (Temporal)",
+          "Punctuation (Mixed Punctuation)"
+        ]
+      },
+      {
+        "path": [
+          4,
+          8,
+          7,
+          9
+        ],
+        "frequency": 360,
+        "representative_words": [
+          "y",
+          "es",
+          "ie",
+          "en",
+          "on"
+        ],
+        "example_words": [
+          "y",
+          "es",
+          "ie",
+          "en",
+          "on"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Function Words (Determiners)",
+          "Function Words (Determiners)",
+          "Function Words (Determiners)"
+        ]
+      },
+      {
+        "path": [
+          5,
+          5,
+          3,
+          6
+        ],
+        "frequency": 291,
+        "representative_words": [
+          "time",
+          "work",
+          "course",
+          "program",
+          "days"
+        ],
+        "example_words": [
+          "time",
+          "work",
+          "course",
+          "program",
+          "days"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Pronouns (Personal)",
+          "Pronouns (Mixed)",
+          "Pronouns (Mixed)"
+        ]
+      },
+      {
+        "path": [
+          2,
+          9,
+          1,
+          2
+        ],
+        "frequency": 262,
+        "representative_words": [
+          "their",
+          "more",
+          "no",
+          "other",
+          "some"
+        ],
+        "example_words": [
+          "their",
+          "more",
+          "no",
+          "other",
+          "some"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Content Words (General)",
+          "Auxiliaries (Be-Forms)",
+          "Auxiliaries (Be-Forms)"
+        ]
+      },
+      {
+        "path": [
+          6,
+          2,
+          0,
+          3
+        ],
+        "frequency": 246,
+        "representative_words": [
+          "of",
+          "as",
+          "out",
+          "said",
+          "up"
+        ],
+        "example_words": [
+          "of",
+          "as",
+          "out",
+          "said",
+          "up"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Function Words (Prepositions)",
+          "Function Words (Determiners)",
+          "Punctuation (Mixed Punctuation)"
+        ]
+      },
+      {
+        "path": [
+          5,
+          1,
+          3,
+          6
+        ],
+        "frequency": 223,
+        "representative_words": [
+          "way",
+          "life",
+          "number",
+          "areas",
+          "rate"
+        ],
+        "example_words": [
+          "way",
+          "life",
+          "number",
+          "areas",
+          "rate"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Pronouns (Relative)",
+          "Pronouns (Mixed)",
+          "Pronouns (Mixed)"
+        ]
+      },
+      {
+        "path": [
+          0,
+          5,
+          8,
+          3
+        ],
+        "frequency": 201,
+        "representative_words": [
+          "water",
+          "eyes",
+          "line",
+          "moment",
+          "air"
+        ],
+        "example_words": [
+          "water",
+          "eyes",
+          "line",
+          "moment",
+          "air"
+        ],
+        "semantic_labels": [
+          "Content Words (Physical/Concrete)",
+          "Pronouns (Personal)",
+          "Content Words (Temporal)",
+          "Punctuation (Mixed Punctuation)"
+        ]
+      },
+      {
+        "path": [
+          7,
+          5,
+          8,
+          3
+        ],
+        "frequency": 151,
+        "representative_words": [
+          "world",
+          "group",
+          "business",
+          "country",
+          "family"
+        ],
+        "example_words": [
+          "world",
+          "group",
+          "business",
+          "country",
+          "family"
+        ],
+        "semantic_labels": [
+          "Content Words (Spatial)",
+          "Pronouns (Personal)",
+          "Content Words (Temporal)",
+          "Punctuation (Mixed Punctuation)"
+        ]
+      },
+      {
+        "path": [
+          6,
+          6,
+          5,
+          8
+        ],
+        "frequency": 149,
+        "representative_words": [
+          "toward",
+          "look",
+          "turned",
+          "held",
+          "seems"
+        ],
+        "example_words": [
+          "toward",
+          "look",
+          "turned",
+          "held",
+          "seems"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Content Words (General)",
+          "Auxiliaries (Have-Forms)"
+        ]
+      },
+      {
+        "path": [
+          9,
+          2,
+          1,
+          2
+        ],
+        "frequency": 147,
+        "representative_words": [
+          "have",
+          "were",
+          "--",
+          "who",
+          "must"
+        ],
+        "example_words": [
+          "have",
+          "were",
+          "--",
+          "who",
+          "must"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Function Words (Prepositions)",
+          "Auxiliaries (Be-Forms)",
+          "Auxiliaries (Be-Forms)"
+        ]
+      },
+      {
+        "path": [
+          4,
+          8,
+          2,
+          0
+        ],
+        "frequency": 142,
+        "representative_words": [
+          "a",
+          "man",
+          "t",
+          "et",
+          "ley"
+        ],
+        "example_words": [
+          "a",
+          "man",
+          "t",
+          "et",
+          "ley"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Function Words (Determiners)",
+          "Content Words (Human/Social)",
+          "Content Words (Human/Social)"
+        ]
+      },
+      {
+        "path": [
+          6,
+          2,
+          1,
+          2
+        ],
+        "frequency": 141,
+        "representative_words": [
+          "is",
+          "was",
+          "would",
+          "been",
+          "will"
+        ],
+        "example_words": [
+          "is",
+          "was",
+          "would",
+          "been",
+          "will"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Function Words (Prepositions)",
+          "Auxiliaries (Be-Forms)",
+          "Auxiliaries (Be-Forms)"
+        ]
+      },
+      {
+        "path": [
+          9,
+          6,
+          5,
+          8
+        ],
+        "frequency": 138,
+        "representative_words": [
+          "be",
+          "could",
+          "should",
+          "get",
+          "went"
+        ],
+        "example_words": [
+          "be",
+          "could",
+          "should",
+          "get",
+          "went"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Punctuation (Quotes)",
+          "Content Words (General)",
+          "Auxiliaries (Have-Forms)"
+        ]
+      },
+      {
+        "path": [
+          0,
+          1,
+          3,
+          6
+        ],
+        "frequency": 138,
+        "representative_words": [
+          "floor",
+          "building",
+          "plane",
+          "cars",
+          "race"
+        ],
+        "example_words": [
+          "floor",
+          "building",
+          "plane",
+          "cars",
+          "race"
+        ],
+        "semantic_labels": [
+          "Content Words (Physical/Concrete)",
+          "Pronouns (Relative)",
+          "Pronouns (Mixed)",
+          "Pronouns (Mixed)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          4,
+          4,
+          5
+        ],
+        "frequency": 133,
+        "representative_words": [
+          "Dr",
+          "c",
+          "fl",
+          "Car",
+          "imp"
+        ],
+        "example_words": [
+          "Dr",
+          "c",
+          "fl",
+          "Car",
+          "imp"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Brackets/Parens)",
+          "Pronouns (Personal)",
+          "Pronouns (Personal)"
+        ]
+      }
+    ]
+  },
+  "middle": {
+    "layers": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "total_paths": 10000,
+    "unique_paths": 90,
+    "archetypal_paths": [
+      {
+        "path": [
+          2,
+          3,
+          9,
+          5
+        ],
+        "frequency": 1367,
+        "representative_words": [
+          "the",
+          "and",
+          "that",
+          "or",
+          "one"
+        ],
+        "example_words": [
+          "the",
+          "and",
+          "that",
+          "or",
+          "one"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          7,
+          0
+        ],
+        "frequency": 1163,
+        "representative_words": [
+          ",",
+          "of",
+          "it",
+          "'s",
+          ";"
+        ],
+        "example_words": [
+          ",",
+          "of",
+          "it",
+          "'s",
+          ";"
+        ],
+        "semantic_labels": [
+          "Content Words (Physical/Concrete)",
+          "Punctuation (Brackets/Parens)",
+          "Function Words (Determiners)",
+          "Content Words (Human/Social)"
+        ]
+      },
+      {
+        "path": [
+          4,
+          1,
+          5,
+          3
+        ],
+        "frequency": 974,
+        "representative_words": [
+          "which",
+          "than",
+          "way",
+          "life",
+          "y"
+        ],
+        "example_words": [
+          "which",
+          "than",
+          "way",
+          "life",
+          "y"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Pronouns (Relative)",
+          "Content Words (General)",
+          "Punctuation (Mixed Punctuation)"
+        ]
+      },
+      {
+        "path": [
+          8,
+          8,
+          6,
+          9
+        ],
+        "frequency": 835,
+        "representative_words": [
+          "is",
+          "for",
+          "have",
+          "--",
+          "would"
+        ],
+        "example_words": [
+          "is",
+          "for",
+          "have",
+          "--",
+          "would"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Function Words (Determiners)",
+          "Punctuation (Sentence-Final)",
+          "Function Words (Determiners)"
+        ]
+      },
+      {
+        "path": [
+          8,
+          8,
+          6,
+          1
+        ],
+        "frequency": 729,
+        "representative_words": [
+          "was",
+          "''",
+          "The",
+          "were",
+          "they"
+        ],
+        "example_words": [
+          "was",
+          "''",
+          "The",
+          "were",
+          "they"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Function Words (Determiners)",
+          "Punctuation (Sentence-Final)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          6,
+          6,
+          4,
+          7
+        ],
+        "frequency": 711,
+        "representative_words": [
+          "could",
+          "This",
+          "should",
+          "well",
+          "get"
+        ],
+        "example_words": [
+          "could",
+          "This",
+          "should",
+          "well",
+          "get"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Pronouns (Personal)",
+          "Punctuation (Sentence-Final)"
+        ]
+      },
+      {
+        "path": [
+          9,
+          0,
+          0,
+          6
+        ],
+        "frequency": 631,
+        "representative_words": [
+          ".",
+          "-",
+          ".",
+          "s",
+          "in"
+        ],
+        "example_words": [
+          ".",
+          "-",
+          ".",
+          "s",
+          "in"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Numbers (Numeric)",
+          "Function Words (Determiners)",
+          "Pronouns (Mixed)"
+        ]
+      },
+      {
+        "path": [
+          1,
+          9,
+          8,
+          2
+        ],
+        "frequency": 534,
+        "representative_words": [
+          "``",
+          "an",
+          "It",
+          "In",
+          "There"
+        ],
+        "example_words": [
+          "``",
+          "an",
+          "It",
+          "In",
+          "There"
+        ],
+        "semantic_labels": [
+          "Punctuation (Sentence-Final)",
+          "Content Words (General)",
+          "Content Words (Temporal)",
+          "Auxiliaries (Be-Forms)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          5,
+          2,
+          8
+        ],
+        "frequency": 398,
+        "representative_words": [
+          "man",
+          "system",
+          "least",
+          "matter",
+          "others"
+        ],
+        "example_words": [
+          "man",
+          "system",
+          "least",
+          "matter",
+          "others"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Pronouns (Personal)",
+          "Content Words (Human/Social)",
+          "Auxiliaries (Have-Forms)"
+        ]
+      },
+      {
+        "path": [
+          0,
+          4,
+          7,
+          9
+        ],
+        "frequency": 387,
+        "representative_words": [
+          "to",
+          "a",
+          "his",
+          "not",
+          "from"
+        ],
+        "example_words": [
+          "to",
+          "a",
+          "his",
+          "not",
+          "from"
+        ],
+        "semantic_labels": [
+          "Content Words (Physical/Concrete)",
+          "Punctuation (Brackets/Parens)",
+          "Function Words (Determiners)",
+          "Function Words (Determiners)"
+        ]
+      },
+      {
+        "path": [
+          5,
+          7,
+          1,
+          1
+        ],
+        "frequency": 298,
+        "representative_words": [
+          "I",
+          "She",
+          "'",
+          "(",
+          "John"
+        ],
+        "example_words": [
+          "I",
+          "She",
+          "'",
+          "(",
+          "John"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Punctuation (Sentence-Final)",
+          "Auxiliaries (Be-Forms)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          6,
+          6,
+          4,
+          1
+        ],
+        "frequency": 292,
+        "representative_words": [
+          "be",
+          "on",
+          "by",
+          "had",
+          "can"
+        ],
+        "example_words": [
+          "be",
+          "on",
+          "by",
+          "had",
+          "can"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Pronouns (Personal)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          2,
+          3,
+          9,
+          0
+        ],
+        "frequency": 190,
+        "representative_words": [
+          "as",
+          ",",
+          "form",
+          "thing",
+          "hands"
+        ],
+        "example_words": [
+          "as",
+          ",",
+          "form",
+          "thing",
+          "hands"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Content Words (Human/Social)"
+        ]
+      },
+      {
+        "path": [
+          7,
+          2,
+          3,
+          4
+        ],
+        "frequency": 182,
+        "representative_words": [
+          "``",
+          "didn",
+          "tell",
+          "An",
+          "By"
+        ],
+        "example_words": [
+          "``",
+          "didn",
+          "tell",
+          "An",
+          "By"
+        ],
+        "semantic_labels": [
+          "Content Words (Spatial)",
+          "Function Words (Prepositions)",
+          "Pronouns (Mixed)",
+          "Content Words (General)"
+        ]
+      },
+      {
+        "path": [
+          5,
+          7,
+          1,
+          7
+        ],
+        "frequency": 159,
+        "representative_words": [
+          "He",
+          "p",
+          "St",
+          "cl",
+          "o"
+        ],
+        "example_words": [
+          "He",
+          "p",
+          "St",
+          "cl",
+          "o"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Punctuation (Sentence-Final)",
+          "Auxiliaries (Be-Forms)",
+          "Punctuation (Sentence-Final)"
+        ]
+      }
+    ]
+  },
+  "late": {
+    "layers": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "total_paths": 10000,
+    "unique_paths": 225,
+    "archetypal_paths": [
+      {
+        "path": [
+          8,
+          3,
+          5,
+          7
+        ],
+        "frequency": 362,
+        "representative_words": [
+          "old",
+          "state",
+          "small",
+          "put",
+          "side"
+        ],
+        "example_words": [
+          "old",
+          "state",
+          "small",
+          "put",
+          "side"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Punctuation (Sentence-Final)"
+        ]
+      },
+      {
+        "path": [
+          7,
+          5,
+          0,
+          7
+        ],
+        "frequency": 302,
+        "representative_words": [
+          "no",
+          "good",
+          "off",
+          "young",
+          "general"
+        ],
+        "example_words": [
+          "no",
+          "good",
+          "off",
+          "young",
+          "general"
+        ],
+        "semantic_labels": [
+          "Content Words (Spatial)",
+          "Pronouns (Personal)",
+          "Function Words (Determiners)",
+          "Punctuation (Sentence-Final)"
+        ]
+      },
+      {
+        "path": [
+          7,
+          5,
+          0,
+          0
+        ],
+        "frequency": 282,
+        "representative_words": [
+          "other",
+          "two",
+          "great",
+          "thought",
+          "away"
+        ],
+        "example_words": [
+          "other",
+          "two",
+          "great",
+          "thought",
+          "away"
+        ],
+        "semantic_labels": [
+          "Content Words (Spatial)",
+          "Pronouns (Personal)",
+          "Function Words (Determiners)",
+          "Content Words (Human/Social)"
+        ]
+      },
+      {
+        "path": [
+          8,
+          3,
+          5,
+          0
+        ],
+        "frequency": 277,
+        "representative_words": [
+          "if",
+          "new",
+          "own",
+          "same",
+          "used"
+        ],
+        "example_words": [
+          "if",
+          "new",
+          "own",
+          "same",
+          "used"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Content Words (Human/Social)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          6,
+          7,
+          7
+        ],
+        "frequency": 272,
+        "representative_words": [
+          "over",
+          "ing",
+          "part",
+          "set",
+          "able"
+        ],
+        "example_words": [
+          "over",
+          "ing",
+          "part",
+          "set",
+          "able"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Function Words (Determiners)",
+          "Punctuation (Sentence-Final)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          6,
+          7,
+          1
+        ],
+        "frequency": 229,
+        "representative_words": [
+          "A",
+          "'",
+          "1",
+          "and",
+          "A"
+        ],
+        "example_words": [
+          "A",
+          "'",
+          "1",
+          "and",
+          "A"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Function Words (Determiners)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          2,
+          9,
+          9,
+          1
+        ],
+        "frequency": 226,
+        "representative_words": [
+          ".",
+          ".",
+          "s",
+          "in",
+          "ist"
+        ],
+        "example_words": [
+          ".",
+          ".",
+          "s",
+          "in",
+          "ist"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          5,
+          4,
+          4,
+          7
+        ],
+        "frequency": 223,
+        "representative_words": [
+          "long",
+          "use",
+          "fact",
+          "find",
+          "social"
+        ],
+        "example_words": [
+          "long",
+          "use",
+          "fact",
+          "find",
+          "social"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Punctuation (Brackets/Parens)",
+          "Pronouns (Personal)",
+          "Punctuation (Sentence-Final)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          6,
+          7,
+          4
+        ],
+        "frequency": 220,
+        "representative_words": [
+          "man",
+          "me",
+          "work",
+          "world",
+          "course"
+        ],
+        "example_words": [
+          "man",
+          "me",
+          "work",
+          "world",
+          "course"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Function Words (Determiners)",
+          "Content Words (General)"
+        ]
+      },
+      {
+        "path": [
+          2,
+          9,
+          9,
+          8
+        ],
+        "frequency": 216,
+        "representative_words": [
+          "-",
+          "(",
+          "Af",
+          "B",
+          "S"
+        ],
+        "example_words": [
+          "-",
+          "(",
+          "Af",
+          "B",
+          "S"
+        ],
+        "semantic_labels": [
+          "Punctuation (Mixed Punctuation)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Auxiliaries (Have-Forms)"
+        ]
+      },
+      {
+        "path": [
+          5,
+          4,
+          4,
+          6
+        ],
+        "frequency": 210,
+        "representative_words": [
+          "car",
+          "human",
+          "short",
+          "ten",
+          "black"
+        ],
+        "example_words": [
+          "car",
+          "human",
+          "short",
+          "ten",
+          "black"
+        ],
+        "semantic_labels": [
+          "Content Words (Temporal)",
+          "Punctuation (Brackets/Parens)",
+          "Pronouns (Personal)",
+          "Pronouns (Mixed)"
+        ]
+      },
+      {
+        "path": [
+          8,
+          3,
+          5,
+          4
+        ],
+        "frequency": 198,
+        "representative_words": [
+          ",",
+          ";",
+          "at",
+          "out",
+          "up"
+        ],
+        "example_words": [
+          ",",
+          ";",
+          "at",
+          "out",
+          "up"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Content Words (General)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          6,
+          7,
+          0
+        ],
+        "frequency": 192,
+        "representative_words": [
+          "as",
+          "time",
+          "little",
+          "present",
+          "business"
+        ],
+        "example_words": [
+          "as",
+          "time",
+          "little",
+          "present",
+          "business"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Function Words (Determiners)",
+          "Content Words (Human/Social)"
+        ]
+      },
+      {
+        "path": [
+          8,
+          3,
+          5,
+          5
+        ],
+        "frequency": 189,
+        "representative_words": [
+          "a",
+          "his",
+          "her",
+          ")",
+          "its"
+        ],
+        "example_words": [
+          "a",
+          "his",
+          "her",
+          ")",
+          "its"
+        ],
+        "semantic_labels": [
+          "Pronouns (Personal)",
+          "Content Words (General)",
+          "Content Words (General)",
+          "Pronouns (Personal)"
+        ]
+      },
+      {
+        "path": [
+          3,
+          6,
+          7,
+          6
+        ],
+        "frequency": 186,
+        "representative_words": [
+          "power",
+          "al",
+          "ant",
+          "ian",
+          "ent"
+        ],
+        "example_words": [
+          "power",
+          "al",
+          "ant",
+          "ian",
+          "ent"
+        ],
+        "semantic_labels": [
+          "Short Tokens (Fragments)",
+          "Punctuation (Quotes)",
+          "Function Words (Determiners)",
+          "Pronouns (Mixed)"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "analysis_components": {
+    "1_cluster_interpretation": {
+      "goal": "Understand what semantic properties unite words in each cluster",
+      "key_questions": [
+        "What common semantic features do words in each cluster share?",
+        "How do these features differ from our predefined semantic subtypes?",
+        "Are there emergent semantic categories that GPT-2 has learned?"
+      ],
+      "data_needed": [
+        "cluster_contents_by_layer.json",
+        "cluster_semantic_profiles.json",
+        "unexpected_groupings.json"
+      ]
+    },
+    "2_layer_evolution": {
+      "goal": "Track how semantic organization evolves across layers",
+      "key_questions": [
+        "How does semantic granularity change from early to late layers?",
+        "Which layers show the most dramatic reorganization?",
+        "What semantic distinctions emerge or disappear across layers?"
+      ],
+      "data_needed": [
+        "semantic_trajectory_analysis.json",
+        "layer_transition_patterns.json",
+        "semantic_convergence_divergence.json"
+      ]
+    },
+    "3_method_comparison": {
+      "goal": "Compare K-means vs ETS clustering interpretations",
+      "key_questions": [
+        "Do K-means and ETS reveal different semantic organizations?",
+        "Which method better captures linguistic intuitions?",
+        "What do the differences tell us about geometric vs threshold-based clustering?"
+      ],
+      "data_needed": [
+        "method_agreement_analysis.json",
+        "method_specific_patterns.json"
+      ]
+    },
+    "4_outlier_analysis": {
+      "goal": "Understand words that don't fit expected patterns",
+      "key_questions": [
+        "Why is 'depend' consistently an outlier?",
+        "What makes certain words cluster unexpectedly?",
+        "Do outliers reveal special properties of GPT-2's representations?"
+      ],
+      "data_needed": [
+        "outlier_words_analysis.json",
+        "singleton_clusters.json"
+      ]
+    },
+    "5_semantic_hypothesis": {
+      "goal": "Form hypotheses about GPT-2's semantic organization",
+      "key_questions": [
+        "What alternative semantic taxonomy does GPT-2 use?",
+        "How does distributional learning create different categories than human intuitions?",
+        "What implications does this have for understanding LLM representations?"
+      ],
+      "data_needed": [
+        "emergent_categories.json",
+        "cross_subtype_patterns.json"
+      ]
+    }
+  },
+  "analysis_workflow": [
+    "1. Start with cluster interpretation at key layers (0, 5, 10)",
+    "2. Identify emergent semantic patterns",
+    "3. Track pattern evolution across layers",
+    "4. Compare K-means and ETS interpretations",
+    "5. Analyze outliers and unexpected groupings",
+    "6. Synthesize findings into semantic organization hypothesis"
+  ]
+}

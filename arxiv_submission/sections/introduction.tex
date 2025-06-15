@@ -14,29 +14,30 @@ Trajectory & The path a concept takes through cluster assignments across layers 
 Path & A specific sequence of clusters, e.g., L1\_C0→L2\_C1→L3\_C0 \\
 Highway & A meso-level bundle of similar paths traveled by many concepts \\
 Window & Temporal grouping of layers (Early: L0-3, Middle: L4-7, Late: L8-11) \\
-Fragmentation (F) & Metric measuring diversity of trajectories within a concept group \\
-FC & Path-Centroid Fragmentation: distance between paths and group centroid \\
-CE & Intra-Class Cluster Entropy: distribution of concepts across clusters \\
-SA & Sub-space Angle: angular separation between concept group representations \\
+F & Trajectory Fragmentation (see Section 3.6) \\
+FC & Path-Centroid Fragmentation (see Section 3.6) \\
+CE & Intra-Class Cluster Entropy (see Section 3.6) \\
+SA & Sub-space Angle (see Section 3.6) \\
 Microcluster & Fine-grained sub-structure within larger cluster (future work) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-In our analysis of 1,228 single-token words across 8 semantic categories with balanced grammatical distribution (33.1\% verbs), we observed a temporal progression: words initially cluster by semantic similarity in early layers, undergo a phase transition in middle layers, and ultimately converge to grammatical organization in later layers. By the final layers, 48.5\% (95\% CI: 45.7\%–51.2\%) of words follow the most common pathway, while others distribute across multiple pathways. This sequential reorganization—validated by highly significant grammatical clustering ($\chi^2 = 95.90$, $p < 0.0001$)—suggests that neural networks first process semantic features before reorganizing by grammatical function.
+Our analysis of 1,228 single-token words across 8 semantic categories reveals that GPT-2 develops a hierarchical organization strategy. Words initially cluster by semantic similarity in early layers, undergo a phase transition in middle layers, and converge to grammatical organization in later layers. This sequential reorganization—where a substantial portion of words ultimately follow common grammatical pathways—suggests that neural networks may first process semantic features before discovering grammatical function as an efficient organizing principle.
 
-This observation emerged from our framework that combines mathematical analysis with human interpretation. CTA tracks concepts through clustered activation spaces across neural network layers, using quantitative metrics alongside LLM-generated explanations. The method addresses several questions in interpretability research:
+This observation emerged from our framework that combines mathematical analysis with human interpretation. CTA tracks concepts through clustered activation spaces across neural network layers, using quantitative metrics alongside LLM-generated explanations. The method offers five core capabilities:
 
 \begin{itemize}
-    \item How can we make neural organization both mathematically precise and humanly interpretable?
-    \item What organizational principles do neural networks discover that differ from human intuition?
-    \item Can we create real-time interpretability with negligible computational overhead?
-    \item How do we scale from analyzing hundreds to millions of concepts?
+    \item \textbf{Dynamic analysis}: Tracking concept evolution through layers rather than static snapshots
+    \item \textbf{Organizational insights}: Revealing principles like grammatical convergence in language models
+    \item \textbf{Multi-scale understanding}: From individual trajectories to population-level patterns
+    \item \textbf{Actionable interpretability}: Identifying bias patterns, uncertainty indicators, and decision pathways
+    \item \textbf{Narrative explanations}: Bridging mathematical analysis with human comprehension through LLM integration
 \end{itemize}
 
 We validate CTA through experiments on both language models and traditional ML. Our windowed analysis (Early/Middle/Late) identifies phase transitions in neural processing, while unique cluster labeling (L\{layer\}\_C\{cluster\}) enables precise tracking. By analyzing all trajectories rather than just dominant paths, we capture the full complexity of neural organization.
 
-Beyond transformer analysis, CTA can be applied to traditional ML tasks. In heart disease diagnosis, trajectory analysis shows how neural networks process patient data, with different pathways emerging for various patient profiles. High-risk patients (older, elevated cholesterol) tend to route through specific neural pathways with higher fragmentation scores, potentially indicating model uncertainty. This medical AI application illustrates how CTA can help understand decision-making processes in healthcare domains.
+Beyond transformer analysis, CTA can be applied to traditional ML tasks. In heart disease diagnosis, trajectory analysis shows how neural networks process patient data, with different pathways emerging for various patient profiles. High-risk patients (older, elevated cholesterol) tend to route through specific neural pathways with higher fragmentation scores (see Section 3.6), potentially indicating model uncertainty. This medical AI application illustrates how CTA can help understand decision-making processes in healthcare domains.
 
 \subsection{Background: Concept Trajectory Analysis}
 

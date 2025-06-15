@@ -96,28 +96,59 @@ We are developing **Concept MRI**, a web-based tool for analyzing and auditing n
    - Removed all debug print statements
    - Archived old crash recovery note
 
-### 🎯 Remaining Tasks
+### 🎯 Current Focus: Network Explorer Interface
 
-**High Priority**:
-1. **UI Testing** - Manually verify the web interface displays results correctly
-   - Test model/dataset upload
-   - Verify clustering works without errors
-   - Check window detection metrics
-   - Test LLM analysis flow
+**What We're Building**:
+Creating a unified exploration interface that replaces the tabbed approach with a single-screen network explorer. See `concept_mri/NETWORK_EXPLORER_DESIGN.md` for full design.
 
-2. **Fix any UI bugs** found during manual testing
+**Key Features**:
+1. **Network Overview** - Multi-metric visualization across all layers
+2. **Window-based Exploration** - Select regions of interest
+3. **Unified Workspace** - Paths, visualization, and analysis on one screen
+4. **Interactive Details** - Click anything for detailed cards
+5. **Integrated LLM Analysis** - Insights in context, not separate tabs
 
-**Medium Priority**:
-3. **Create Video Demo**
-   - Record workflow: upload model → cluster → analyze → view results
-   - Show bias detection capabilities
-   - Demonstrate different analysis categories
+### ✅ Recent Fixes (June 2, 2025)
 
-**Low Priority**:
-4. **Performance Optimization**
-   - Add progress indicators for long-running operations
-   - Implement streaming for large analysis results
-   - Add result caching in UI
+1. **Fixed `activation-status` Component Error**
+   - Added hidden component to main layout
+   - Prevents callback errors on startup
+
+2. **Enhanced Trajectory Visualization**
+   - Added normalization checkbox option
+   - Increased layer separation (10.0)
+   - Proper scaling for consistent layer sizes
+
+3. **Fixed LLM Label Parsing**
+   - Updated prompt to specify exact format
+   - No more markdown parsing issues
+   - Labels now properly extracted
+
+4. **Improved API Key Loading**
+   - Fixed import paths for local_config
+   - Added comprehensive logging
+   - Supports Grok for LLM analysis
+
+### 🔄 In Progress Tasks
+
+**Phase 1: Core Explorer Implementation**
+1. Create NetworkExplorer main container
+2. Implement NetworkOverview with metrics chart
+3. Build ArchetypalPathsPanel with interactive paths
+4. Create unified DetailsPanel (EntityCard + Analysis)
+5. Implement SelectionManager for coordination
+
+**Phase 2: Integration**
+1. Integrate existing visualizations
+2. Connect LLM analysis to new interface
+3. Implement window-based filtering
+4. Add cross-component highlighting
+
+**Phase 3: Polish**
+1. Path evolution tracking
+2. Export functionality
+3. Annotation system
+4. Performance optimization
 
 ## 🏗️ Architecture Notes
 

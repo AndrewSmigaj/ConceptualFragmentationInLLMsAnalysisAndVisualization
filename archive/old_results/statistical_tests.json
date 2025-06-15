@@ -1,0 +1,336 @@
+{
+  "titanic": {
+    "w0.0_t0.07_thr0.0_layers[]": {
+      "final_test_accuracy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": NaN,
+          "p_value": NaN,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.7988826815642458,
+        "baseline_std": 0.004561433413004051,
+        "cohesion_mean": 0.7988826815642458,
+        "cohesion_std": 0.004561433413004051,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      },
+      "final_entropy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": NaN,
+          "p_value": NaN,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.6445119106589471,
+        "baseline_std": 0.0014387001247114766,
+        "cohesion_mean": 0.6445119106589471,
+        "cohesion_std": 0.0014387001247114766,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      },
+      "final_angle": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": NaN,
+          "p_value": NaN,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 8.865093072255453,
+        "baseline_std": 2.12440401916877,
+        "cohesion_mean": 8.865093072255453,
+        "cohesion_std": 2.12440401916877,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      }
+    },
+    "w0.1_t0.07_thr0.0_layers[]": {
+      "final_test_accuracy": {
+        "t_test": {
+          "type": "unpaired t-test",
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": null,
+        "baseline_mean": 0.7988826815642458,
+        "baseline_std": 0.004561433413004051,
+        "cohesion_mean": 0.7988826815642458,
+        "cohesion_std": 0.0,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      },
+      "final_entropy": {
+        "t_test": {
+          "type": "unpaired t-test",
+          "statistic": 2.307825790020619,
+          "p_value": 0.049320976297164816,
+          "significant_0.05": true
+        },
+        "wilcoxon_test": null,
+        "baseline_mean": 0.6445119106589471,
+        "baseline_std": 0.0014387001247114766,
+        "cohesion_mean": 0.6194553044120196,
+        "cohesion_std": 0.030573794829857042,
+        "mean_difference": -0.025056606246927515,
+        "percent_change": -3.88768707490754
+      },
+      "final_angle": {
+        "t_test": {
+          "type": "unpaired t-test",
+          "statistic": 1.1341370460431672,
+          "p_value": 0.3621872146681875,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": null,
+        "baseline_mean": 8.865093072255453,
+        "baseline_std": 2.12440401916877,
+        "cohesion_mean": 7.105855305989583,
+        "cohesion_std": 1.0939023223724595,
+        "mean_difference": -1.75923776626587,
+        "percent_change": -19.84454931185833
+      }
+    },
+    "w0.5_t0.07_thr0.0_layers[]": {
+      "final_test_accuracy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": 1.147367736208861e-14,
+          "p_value": 0.9999999999999919,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 1.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.7988826815642458,
+        "baseline_std": 0.004561433413004051,
+        "cohesion_mean": 0.7988826815642458,
+        "cohesion_std": 0.0,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      },
+      "final_entropy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": 1.1418131404541947,
+          "p_value": 0.37180816566168706,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 1.0,
+          "p_value": 0.5,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.6445119106589471,
+        "baseline_std": 0.0014387001247114766,
+        "cohesion_mean": 0.6194553044120196,
+        "cohesion_std": 0.030573794829857042,
+        "mean_difference": -0.025056606246927515,
+        "percent_change": -3.88768707490754
+      },
+      "final_angle": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": 1.022501915508371,
+          "p_value": 0.4140856922305107,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 1.0,
+          "p_value": 0.5,
+          "significant_0.05": false
+        },
+        "baseline_mean": 8.865093072255453,
+        "baseline_std": 2.12440401916877,
+        "cohesion_mean": 7.105855305989583,
+        "cohesion_std": 1.0939023223724595,
+        "mean_difference": -1.75923776626587,
+        "percent_change": -19.84454931185833
+      }
+    }
+  },
+  "heart": {
+    "w0.0_t0.07_thr0.0_layers[]": {
+      "final_test_accuracy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": NaN,
+          "p_value": NaN,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.8456790123456791,
+        "baseline_std": 0.008729713347982055,
+        "cohesion_mean": 0.8456790123456791,
+        "cohesion_std": 0.008729713347982055,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      },
+      "final_entropy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": NaN,
+          "p_value": NaN,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.6299126281996571,
+        "baseline_std": 0.01677656586557903,
+        "cohesion_mean": 0.6299126281996571,
+        "cohesion_std": 0.01677656586557903,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      },
+      "final_angle": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": NaN,
+          "p_value": NaN,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 18.651549021402996,
+        "baseline_std": 4.914361451269501,
+        "cohesion_mean": 18.651549021402996,
+        "cohesion_std": 4.914361451269501,
+        "mean_difference": 0.0,
+        "percent_change": 0.0
+      }
+    },
+    "w0.1_t0.07_thr0.0_layers[]": {
+      "final_test_accuracy": {
+        "t_test": {
+          "type": "unpaired t-test",
+          "statistic": -0.49999999999999345,
+          "p_value": 0.6280595308770043,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": null,
+        "baseline_mean": 0.8456790123456791,
+        "baseline_std": 0.008729713347982055,
+        "cohesion_mean": 0.8518518518518519,
+        "cohesion_std": 0.030240614108434295,
+        "mean_difference": 0.006172839506172756,
+        "percent_change": 0.7299270072992601
+      },
+      "final_entropy": {
+        "t_test": {
+          "type": "unpaired t-test",
+          "statistic": 3.1774145749902,
+          "p_value": 0.03592154898095456,
+          "significant_0.05": true
+        },
+        "wilcoxon_test": null,
+        "baseline_mean": 0.6299126281996571,
+        "baseline_std": 0.01677656586557903,
+        "cohesion_mean": 0.5851568790555307,
+        "cohesion_std": 0.021480628942235798,
+        "mean_difference": -0.04475574914412639,
+        "percent_change": -7.10507253554228
+      },
+      "final_angle": {
+        "t_test": {
+          "type": "unpaired t-test",
+          "statistic": -0.2540809803602193,
+          "p_value": 0.81041686145047,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": null,
+        "baseline_mean": 18.651549021402996,
+        "baseline_std": 4.914361451269501,
+        "cohesion_mean": 19.760212580362957,
+        "cohesion_std": 7.464053766596324,
+        "mean_difference": 1.108663558959961,
+        "percent_change": 5.944083023279992
+      }
+    },
+    "w0.5_t0.07_thr0.0_layers[]": {
+      "final_test_accuracy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": -0.27735009811261246,
+          "p_value": 0.8075499102701261,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 3.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.8456790123456791,
+        "baseline_std": 0.008729713347982055,
+        "cohesion_mean": 0.8518518518518517,
+        "cohesion_std": 0.0302406141084343,
+        "mean_difference": 0.006172839506172645,
+        "percent_change": 0.729927007299247
+      },
+      "final_entropy": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": 2.4030720687215297,
+          "p_value": 0.13816638530044995,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 0.0,
+          "p_value": 0.25,
+          "significant_0.05": false
+        },
+        "baseline_mean": 0.6299126281996571,
+        "baseline_std": 0.01677656586557903,
+        "cohesion_mean": 0.5851568790555307,
+        "cohesion_std": 0.021480628942235798,
+        "mean_difference": -0.04475574914412639,
+        "percent_change": -7.10507253554228
+      },
+      "final_angle": {
+        "t_test": {
+          "type": "paired t-test",
+          "statistic": -0.26507140439541405,
+          "p_value": 0.8157743342504346,
+          "significant_0.05": false
+        },
+        "wilcoxon_test": {
+          "statistic": 3.0,
+          "p_value": 1.0,
+          "significant_0.05": false
+        },
+        "baseline_mean": 18.651549021402996,
+        "baseline_std": 4.914361451269501,
+        "cohesion_mean": 19.760212580362957,
+        "cohesion_std": 7.464053766596324,
+        "mean_difference": 1.108663558959961,
+        "percent_change": 5.944083023279992
+      }
+    }
+  }
+}

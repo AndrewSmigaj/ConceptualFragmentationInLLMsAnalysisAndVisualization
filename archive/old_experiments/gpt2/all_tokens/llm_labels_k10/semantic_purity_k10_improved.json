@@ -1,0 +1,1222 @@
+{
+  "layer_0": {
+    "L0_C0": {
+      "label": "Word Endings",
+      "purity": 32.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 8,
+        "pronouns": 1
+      }
+    },
+    "L0_C1": {
+      "label": "Object Pronouns",
+      "purity": 16.666666666666668,
+      "method": "calculated",
+      "primary_categories": {
+        "pronouns": 3,
+        "capitalized": 3,
+        "punctuation": 2
+      }
+    },
+    "L0_C2": {
+      "label": "Word Endings",
+      "purity": 43.333333333333336,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "pronouns": 5,
+        "conjunctions": 4
+      }
+    },
+    "L0_C3": {
+      "label": "Sentence Starters",
+      "purity": 64.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 9,
+        "morphological": 6,
+        "punctuation": 1
+      }
+    },
+    "L0_C4": {
+      "label": "Word Endings",
+      "purity": 43.333333333333336,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "pronouns": 4,
+        "capitalized": 4
+      }
+    },
+    "L0_C5": {
+      "label": "Word Endings",
+      "purity": 39.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 10
+      }
+    },
+    "L0_C6": {
+      "label": "Prepositional System",
+      "purity": 96.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 7,
+        "auxiliaries": 7,
+        "morphological": 6
+      }
+    },
+    "L0_C7": {
+      "label": "Sentence Starters",
+      "purity": 50.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 6,
+        "morphological": 6,
+        "pronouns": 3
+      }
+    },
+    "L0_C8": {
+      "label": "Sentence Starters",
+      "purity": 100.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 22,
+        "pronouns": 3,
+        "articles": 2
+      }
+    },
+    "L0_C9": {
+      "label": "Modal Auxiliaries",
+      "purity": 73.33333333333331,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 9,
+        "prepositions": 7,
+        "punctuation": 6
+      }
+    }
+  },
+  "layer_1": {
+    "L1_C0": {
+      "label": "Short Words",
+      "purity": 100.0,
+      "method": "calculated",
+      "primary_categories": {
+        "numeric": 19,
+        "numbers": 9,
+        "morphological": 1
+      }
+    },
+    "L1_C1": {
+      "label": "Punctuation Marks",
+      "purity": 56.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "punctuation": 4,
+        "conjunctions": 4,
+        "morphological": 4
+      }
+    },
+    "L1_C2": {
+      "label": "Prepositional System",
+      "purity": 100.0,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 10,
+        "auxiliaries": 9,
+        "morphological": 4
+      }
+    },
+    "L1_C3": {
+      "label": "Sentence Starters",
+      "purity": 55.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 9,
+        "morphological": 3,
+        "punctuation": 1
+      }
+    },
+    "L1_C4": {
+      "label": "Sentence Starters",
+      "purity": 63.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 14,
+        "punctuation": 3,
+        "morphological": 2
+      }
+    },
+    "L1_C5": {
+      "label": "Subject Pronouns",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "pronouns": 8,
+        "morphological": 4,
+        "numbers": 1
+      }
+    },
+    "L1_C6": {
+      "label": "Modal Auxiliaries",
+      "purity": 56.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 8,
+        "capitalized": 8,
+        "conjunctions": 4
+      }
+    },
+    "L1_C7": {
+      "label": "Sentence Starters",
+      "purity": 100.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 17,
+        "pronouns": 9,
+        "morphological": 6
+      }
+    },
+    "L1_C8": {
+      "label": "Sentence Starters",
+      "purity": 46.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 8,
+        "articles": 4,
+        "morphological": 4
+      }
+    },
+    "L1_C9": {
+      "label": "Word Endings",
+      "purity": 36.666666666666664,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "pronouns": 6,
+        "articles": 3
+      }
+    }
+  },
+  "layer_2": {
+    "L2_C0": {
+      "label": "Function Words",
+      "purity": 76.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 9,
+        "conjunctions": 6,
+        "morphological": 5
+      }
+    },
+    "L2_C1": {
+      "label": "Modal Auxiliaries",
+      "purity": 80.0,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 14,
+        "morphological": 4,
+        "pronouns": 4
+      }
+    },
+    "L2_C2": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 11,
+        "articles": 1,
+        "conjunctions": 1
+      }
+    },
+    "L2_C3": {
+      "label": "Object Pronouns",
+      "purity": 39.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "pronouns": 5,
+        "morphological": 4,
+        "numbers": 1
+      }
+    },
+    "L2_C4": {
+      "label": "Sentence Starters",
+      "purity": 63.333333333333336,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 11,
+        "pronouns": 4,
+        "morphological": 4
+      }
+    },
+    "L2_C5": {
+      "label": "Sentence Starters",
+      "purity": 60.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 11,
+        "auxiliaries": 6,
+        "prepositions": 5
+      }
+    },
+    "L2_C6": {
+      "label": "Sentence Starters",
+      "purity": 86.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 14,
+        "punctuation": 6,
+        "pronouns": 4
+      }
+    },
+    "L2_C7": {
+      "label": "Sentence Starters",
+      "purity": 46.666666666666664,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 7,
+        "articles": 3,
+        "morphological": 3
+      }
+    },
+    "L2_C8": {
+      "label": "Word Endings",
+      "purity": 43.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 10,
+        "pronouns": 1,
+        "capitalized": 1
+      }
+    },
+    "L2_C9": {
+      "label": "Sentence Starters",
+      "purity": 53.333333333333336,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 8,
+        "morphological": 4,
+        "punctuation": 2
+      }
+    }
+  },
+  "layer_3": {
+    "L3_C0": {
+      "label": "Word Endings",
+      "purity": 43.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 10,
+        "articles": 1,
+        "conjunctions": 1
+      }
+    },
+    "L3_C1": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 13,
+        "pronouns": 4,
+        "prepositions": 4
+      }
+    },
+    "L3_C2": {
+      "label": "Modal Auxiliaries",
+      "purity": 80.00000000000001,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 7,
+        "prepositions": 5,
+        "morphological": 4
+      }
+    },
+    "L3_C3": {
+      "label": "Word Endings",
+      "purity": 56.666666666666664,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "prepositions": 5,
+        "conjunctions": 5
+      }
+    },
+    "L3_C4": {
+      "label": "Word Endings",
+      "purity": 40.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 3,
+        "prepositions": 2
+      }
+    },
+    "L3_C5": {
+      "label": "Sentence Starters",
+      "purity": 96.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 13,
+        "pronouns": 8,
+        "punctuation": 4
+      }
+    },
+    "L3_C6": {
+      "label": "Object Pronouns",
+      "purity": 49.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "pronouns": 5,
+        "morphological": 5,
+        "prepositions": 3
+      }
+    },
+    "L3_C7": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 9,
+        "punctuation": 7,
+        "morphological": 4
+      }
+    },
+    "L3_C8": {
+      "label": "Modal Auxiliaries",
+      "purity": 70.0,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 8,
+        "morphological": 7,
+        "capitalized": 4
+      }
+    },
+    "L3_C9": {
+      "label": "Sentence Starters",
+      "purity": 43.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 5,
+        "articles": 4,
+        "morphological": 4
+      }
+    }
+  },
+  "layer_4": {
+    "L4_C0": {
+      "label": "Prepositional System",
+      "purity": 90.0,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 8,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L4_C1": {
+      "label": "Sentence Starters",
+      "purity": 79.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 14,
+        "prepositions": 5,
+        "pronouns": 4
+      }
+    },
+    "L4_C2": {
+      "label": "Conjunctions",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "morphological": 3,
+        "pronouns": 3
+      }
+    },
+    "L4_C3": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 12,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L4_C4": {
+      "label": "Word Endings",
+      "purity": 35.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "pronouns": 3,
+        "articles": 1
+      }
+    },
+    "L4_C5": {
+      "label": "Sentence Starters",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 15,
+        "pronouns": 6,
+        "morphological": 4
+      }
+    },
+    "L4_C6": {
+      "label": "Modal Auxiliaries",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 7,
+        "morphological": 7,
+        "capitalized": 5
+      }
+    },
+    "L4_C7": {
+      "label": "Word Endings",
+      "purity": 39.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 3,
+        "punctuation": 1
+      }
+    },
+    "L4_C8": {
+      "label": "Modal Auxiliaries",
+      "purity": 76.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 9,
+        "punctuation": 4,
+        "pronouns": 4
+      }
+    },
+    "L4_C9": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 13,
+        "punctuation": 5,
+        "morphological": 3
+      }
+    }
+  },
+  "layer_5": {
+    "L5_C0": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 11,
+        "punctuation": 6,
+        "morphological": 3
+      }
+    },
+    "L5_C1": {
+      "label": "Word Endings",
+      "purity": 35.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "pronouns": 3,
+        "articles": 1
+      }
+    },
+    "L5_C2": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 2,
+        "punctuation": 1
+      }
+    },
+    "L5_C3": {
+      "label": "Conjunctions",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "morphological": 3,
+        "pronouns": 3
+      }
+    },
+    "L5_C4": {
+      "label": "Prepositional System",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 10,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L5_C5": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 12,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L5_C6": {
+      "label": "Modal Auxiliaries",
+      "purity": 63.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 7,
+        "morphological": 6,
+        "capitalized": 5
+      }
+    },
+    "L5_C7": {
+      "label": "Sentence Starters",
+      "purity": 96.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 15,
+        "pronouns": 7,
+        "morphological": 4
+      }
+    },
+    "L5_C8": {
+      "label": "Modal Auxiliaries",
+      "purity": 79.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 11,
+        "pronouns": 5,
+        "morphological": 4
+      }
+    },
+    "L5_C9": {
+      "label": "Sentence Starters",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "prepositions": 5,
+        "morphological": 4
+      }
+    }
+  },
+  "layer_6": {
+    "L6_C0": {
+      "label": "Sentence Starters",
+      "purity": 70.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 10,
+        "punctuation": 6,
+        "numbers": 3
+      }
+    },
+    "L6_C1": {
+      "label": "Sentence Starters",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 15,
+        "pronouns": 6,
+        "morphological": 4
+      }
+    },
+    "L6_C2": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 12,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L6_C3": {
+      "label": "Word Endings",
+      "purity": 39.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 3,
+        "punctuation": 1
+      }
+    },
+    "L6_C4": {
+      "label": "Modal Auxiliaries",
+      "purity": 63.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 7,
+        "capitalized": 6,
+        "morphological": 6
+      }
+    },
+    "L6_C5": {
+      "label": "Word Endings",
+      "purity": 35.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "pronouns": 3,
+        "articles": 1
+      }
+    },
+    "L6_C6": {
+      "label": "Modal Auxiliaries",
+      "purity": 83.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 11,
+        "pronouns": 5,
+        "morphological": 4
+      }
+    },
+    "L6_C7": {
+      "label": "Prepositional System",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 10,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L6_C8": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333334,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 13,
+        "prepositions": 5,
+        "morphological": 4
+      }
+    },
+    "L6_C9": {
+      "label": "Conjunctions",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "morphological": 3,
+        "pronouns": 3
+      }
+    }
+  },
+  "layer_7": {
+    "L7_C0": {
+      "label": "Word Endings",
+      "purity": 53.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 7,
+        "prepositions": 6,
+        "pronouns": 4
+      }
+    },
+    "L7_C1": {
+      "label": "Be/Have Auxiliaries",
+      "purity": 96.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 10,
+        "pronouns": 6,
+        "capitalized": 4
+      }
+    },
+    "L7_C2": {
+      "label": "Sentence Starters",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "morphological": 4,
+        "prepositions": 3
+      }
+    },
+    "L7_C3": {
+      "label": "Word Endings",
+      "purity": 40.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 8,
+        "pronouns": 2,
+        "articles": 1
+      }
+    },
+    "L7_C4": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 2,
+        "punctuation": 1
+      }
+    },
+    "L7_C5": {
+      "label": "Conjunctions",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "pronouns": 4,
+        "prepositions": 3
+      }
+    },
+    "L7_C6": {
+      "label": "Sentence Starters",
+      "purity": 76.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 15,
+        "punctuation": 4,
+        "morphological": 3
+      }
+    },
+    "L7_C7": {
+      "label": "Sentence Starters",
+      "purity": 70.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 11,
+        "pronouns": 5,
+        "morphological": 5
+      }
+    },
+    "L7_C8": {
+      "label": "Word Endings",
+      "purity": 56.00000000000001,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 13,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L7_C9": {
+      "label": "Prepositional System",
+      "purity": 79.99999999999999,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 5,
+        "auxiliaries": 5,
+        "morphological": 3
+      }
+    }
+  },
+  "layer_8": {
+    "L8_C0": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 12,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L8_C1": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "pronouns": 5,
+        "morphological": 5
+      }
+    },
+    "L8_C2": {
+      "label": "Sentence Starters",
+      "purity": 76.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 14,
+        "punctuation": 5,
+        "morphological": 3
+      }
+    },
+    "L8_C3": {
+      "label": "Conjunctions",
+      "purity": 76.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "morphological": 4,
+        "pronouns": 4
+      }
+    },
+    "L8_C4": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 2,
+        "punctuation": 1
+      }
+    },
+    "L8_C5": {
+      "label": "Be/Have Auxiliaries",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 10,
+        "pronouns": 5,
+        "prepositions": 3
+      }
+    },
+    "L8_C6": {
+      "label": "Sentence Starters",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "morphological": 4,
+        "prepositions": 3
+      }
+    },
+    "L8_C7": {
+      "label": "Modal Auxiliaries",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 5,
+        "prepositions": 4,
+        "morphological": 3
+      }
+    },
+    "L8_C8": {
+      "label": "Prepositional System",
+      "purity": 86.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 7,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L8_C9": {
+      "label": "Word Endings",
+      "purity": 40.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 8,
+        "pronouns": 2,
+        "articles": 1
+      }
+    }
+  },
+  "layer_9": {
+    "L9_C0": {
+      "label": "Word Endings",
+      "purity": 40.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 8,
+        "pronouns": 2,
+        "articles": 1
+      }
+    },
+    "L9_C1": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "pronouns": 5,
+        "morphological": 5
+      }
+    },
+    "L9_C2": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 2,
+        "punctuation": 1
+      }
+    },
+    "L9_C3": {
+      "label": "Prepositional System",
+      "purity": 86.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 7,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L9_C4": {
+      "label": "Be/Have Auxiliaries",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 10,
+        "pronouns": 5,
+        "prepositions": 3
+      }
+    },
+    "L9_C5": {
+      "label": "Modal Auxiliaries",
+      "purity": 63.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 5,
+        "prepositions": 4,
+        "morphological": 3
+      }
+    },
+    "L9_C6": {
+      "label": "Conjunctions",
+      "purity": 76.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "morphological": 4,
+        "pronouns": 4
+      }
+    },
+    "L9_C7": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 12,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L9_C8": {
+      "label": "Sentence Starters",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "morphological": 4,
+        "prepositions": 3
+      }
+    },
+    "L9_C9": {
+      "label": "Sentence Starters",
+      "purity": 76.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 13,
+        "punctuation": 5,
+        "morphological": 3
+      }
+    }
+  },
+  "layer_10": {
+    "L10_C0": {
+      "label": "Modal Auxiliaries",
+      "purity": 63.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 5,
+        "prepositions": 4,
+        "morphological": 3
+      }
+    },
+    "L10_C1": {
+      "label": "Word Endings",
+      "purity": 52.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 12,
+        "conjunctions": 1,
+        "pronouns": 1
+      }
+    },
+    "L10_C2": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 2,
+        "punctuation": 1
+      }
+    },
+    "L10_C3": {
+      "label": "Sentence Starters",
+      "purity": 66.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 12,
+        "morphological": 4,
+        "prepositions": 3
+      }
+    },
+    "L10_C4": {
+      "label": "Be/Have Auxiliaries",
+      "purity": 93.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 10,
+        "pronouns": 5,
+        "prepositions": 3
+      }
+    },
+    "L10_C5": {
+      "label": "Prepositional System",
+      "purity": 86.66666666666666,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 7,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L10_C6": {
+      "label": "Word Endings",
+      "purity": 40.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 8,
+        "pronouns": 2,
+        "articles": 1
+      }
+    },
+    "L10_C7": {
+      "label": "Conjunctions",
+      "purity": 80.0,
+      "method": "calculated",
+      "primary_categories": {
+        "conjunctions": 5,
+        "morphological": 4,
+        "pronouns": 4
+      }
+    },
+    "L10_C8": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 11,
+        "morphological": 6,
+        "pronouns": 5
+      }
+    },
+    "L10_C9": {
+      "label": "Sentence Starters",
+      "purity": 76.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 14,
+        "punctuation": 5,
+        "pronouns": 2
+      }
+    }
+  },
+  "layer_11": {
+    "L11_C0": {
+      "label": "Word Endings",
+      "purity": 43.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 10,
+        "conjunctions": 2,
+        "numbers": 2
+      }
+    },
+    "L11_C1": {
+      "label": "Sentence Starters",
+      "purity": 73.33333333333333,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 9,
+        "morphological": 6,
+        "punctuation": 5
+      }
+    },
+    "L11_C2": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "capitalized": 3
+      }
+    },
+    "L11_C3": {
+      "label": "Function Words",
+      "purity": 63.333333333333336,
+      "method": "calculated",
+      "primary_categories": {
+        "prepositions": 7,
+        "conjunctions": 4,
+        "morphological": 3
+      }
+    },
+    "L11_C4": {
+      "label": "Sentence Starters",
+      "purity": 56.66666666666667,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 7,
+        "punctuation": 5,
+        "prepositions": 5
+      }
+    },
+    "L11_C5": {
+      "label": "Subject Pronouns",
+      "purity": 93.33333333333334,
+      "method": "calculated",
+      "primary_categories": {
+        "pronouns": 9,
+        "morphological": 5,
+        "prepositions": 3
+      }
+    },
+    "L11_C6": {
+      "label": "Word Endings",
+      "purity": 27.999999999999996,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 6,
+        "prepositions": 1,
+        "numbers": 1
+      }
+    },
+    "L11_C7": {
+      "label": "Word Endings",
+      "purity": 36.0,
+      "method": "calculated",
+      "primary_categories": {
+        "morphological": 4,
+        "prepositions": 2,
+        "negations": 1
+      }
+    },
+    "L11_C8": {
+      "label": "Sentence Starters",
+      "purity": 100.0,
+      "method": "calculated",
+      "primary_categories": {
+        "capitalized": 16,
+        "punctuation": 7,
+        "quotes": 4
+      }
+    },
+    "L11_C9": {
+      "label": "Modal Auxiliaries",
+      "purity": 90.0,
+      "method": "calculated",
+      "primary_categories": {
+        "auxiliaries": 12,
+        "pronouns": 7,
+        "morphological": 4
+      }
+    }
+  }
+}

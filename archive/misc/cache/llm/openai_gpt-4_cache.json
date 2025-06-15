@@ -1,0 +1,59 @@
+{
+  "cache": {
+    "3967c249fd603f5e6ee01924fa8007c5": {
+      "response": {
+        "text": "INTERPRETATION:\n\nThe main conceptual paths through the network are:\n\n1. Path 0: Normal vitals \u2192 Healthy metabolism \u2192 Low risk profile \u2192 No disease\n2. Path 1: Elevated markers \u2192 Cardiovascular stress \u2192 High risk indicators \u2192 Heart disease\n3. Path 2: Abnormal readings \u2192 Multiple risk factors \u2192 Moderate risk \u2192 Heart disease\n4. Path 3: Normal vitals \u2192 Cardiovascular stress \u2192 Moderate risk \u2192 No disease\n\nAs the concepts move through layers, they appear to transition from general health indicators (L0) to specific health conditions (L1), then to risk levels (L2), and finally to disease outcomes (L3). The decision-making patterns suggest that the network is evaluating the risk of heart disease based on initial health readings, and then routing individuals through different paths based on these risks.\n\nBIAS ANALYSIS:\n\nThere are some notable differences in how different demographic groups are routed through paths. For instance:\n\n- Path 0, which leads to no disease, is predominantly associated with females and individuals under 40. This could suggest a potential bias towards younger individuals and females being classified as low risk.\n- Path 1 and 2, which lead to heart disease, are predominantly associated with males and individuals over 40. This could suggest bias towards older individuals and males being classified as high risk.\n- Path 3, which starts with normal vitals but still goes through cardiovascular stress and moderate risk, is evenly split between males and females, and has a more evenly distributed age group. This path could be seen as a 'false alarm' path, where individuals with normal vitals are still classified as moderate risk.\n\nThe fragmentation scores also suggest potential bias. Path 3 has the highest fragmentation score (0.750), indicating a high degree of variation in the path, which could lead to inconsistent or unfair treatment.\n\nIn terms of ethnicity, there's a higher proportion of black individuals in the paths leading to heart disease (Path 1 and 2). This could suggest potential bias in the network's classification of risk based on ethnicity.\n\nTo address these potential biases, it would be important to ensure the training data is representative of the population, and to consider using techniques to mitigate bias in the model. It may also be beneficial to explore why certain paths, such as Path 3, have higher fragmentation scores and whether this is leading to unfair treatment.",
+        "model": "gpt-4",
+        "provider": "openai",
+        "tokens_used": 1288,
+        "prompt_tokens": 804,
+        "completion_tokens": 484,
+        "finish_reason": "stop",
+        "raw_response": {
+          "id": "chatcmpl-BdR7s7r9JYo8BFFCW4rfqfKq8WYDi",
+          "object": "chat.completion",
+          "created": 1748738764,
+          "model": "gpt-4-0613",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "INTERPRETATION:\n\nThe main conceptual paths through the network are:\n\n1. Path 0: Normal vitals \u2192 Healthy metabolism \u2192 Low risk profile \u2192 No disease\n2. Path 1: Elevated markers \u2192 Cardiovascular stress \u2192 High risk indicators \u2192 Heart disease\n3. Path 2: Abnormal readings \u2192 Multiple risk factors \u2192 Moderate risk \u2192 Heart disease\n4. Path 3: Normal vitals \u2192 Cardiovascular stress \u2192 Moderate risk \u2192 No disease\n\nAs the concepts move through layers, they appear to transition from general health indicators (L0) to specific health conditions (L1), then to risk levels (L2), and finally to disease outcomes (L3). The decision-making patterns suggest that the network is evaluating the risk of heart disease based on initial health readings, and then routing individuals through different paths based on these risks.\n\nBIAS ANALYSIS:\n\nThere are some notable differences in how different demographic groups are routed through paths. For instance:\n\n- Path 0, which leads to no disease, is predominantly associated with females and individuals under 40. This could suggest a potential bias towards younger individuals and females being classified as low risk.\n- Path 1 and 2, which lead to heart disease, are predominantly associated with males and individuals over 40. This could suggest bias towards older individuals and males being classified as high risk.\n- Path 3, which starts with normal vitals but still goes through cardiovascular stress and moderate risk, is evenly split between males and females, and has a more evenly distributed age group. This path could be seen as a 'false alarm' path, where individuals with normal vitals are still classified as moderate risk.\n\nThe fragmentation scores also suggest potential bias. Path 3 has the highest fragmentation score (0.750), indicating a high degree of variation in the path, which could lead to inconsistent or unfair treatment.\n\nIn terms of ethnicity, there's a higher proportion of black individuals in the paths leading to heart disease (Path 1 and 2). This could suggest potential bias in the network's classification of risk based on ethnicity.\n\nTo address these potential biases, it would be important to ensure the training data is representative of the population, and to consider using techniques to mitigate bias in the model. It may also be beneficial to explore why certain paths, such as Path 3, have higher fragmentation scores and whether this is leading to unfair treatment.",
+                "refusal": null,
+                "annotations": []
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 804,
+            "completion_tokens": 484,
+            "total_tokens": 1288,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "service_tier": "default",
+          "system_fingerprint": null
+        }
+      },
+      "timestamp": 1748738778.2201276,
+      "prompt": "You are an AI expert analyzing neural network activation patterns.\nI will provide you with multiple archetypal paths through activation clusters.\nAnalyze ALL paths together to identify patterns, especially those that only emerge when comparing paths.\n\nTotal archetypal paths to analyze: 4\n\n=== ARCHETYPAL PATHS ===\n\nPath 0: L0_C1 (Normal vitals) \u2192 L1_C2 (Healthy metabolism) \u2192 L2_C1 (Low risk profile) \u2192 L3_C1 (No disease)\n  Demographics for this path:\n    - gender: male: 30.0%, female: 70.0%\n    - age_group: <40: 60.0%, 40-60: 30.0%, >60: 10.0%\n    - ethnicity: white: 50.0%, black: 20.0%, asian: 20.0%, other: 10.0%\n  Fragmentation score: 0.150\n\nPath 1: L0_C2 (Elevated markers) \u2192 L1_C1 (Cardiovascular stress) \u2192 L2_C3 (High risk indicators) \u2192 L3_C2 (Heart disease)\n  Demographics for this path:\n    - gender: male: 60.0%, female: 40.0%\n    - age_group: <40: 20.0%, 40-60: 50.0%, >60: 30.0%\n    - ethnicity: white: 40.0%, black: 30.0%, asian: 20.0%, other: 10.0%\n  Fragmentation score: 0.450\n\nPath 2: L0_C3 (Abnormal readings) \u2192 L1_C3 (Multiple risk factors) \u2192 L2_C2 (Moderate risk) \u2192 L3_C2 (Heart disease)\n  Demographics for this path:\n    - gender: male: 80.0%, female: 20.0%\n    - age_group: <40: 10.0%, 40-60: 30.0%, >60: 60.0%\n    - ethnicity: white: 30.0%, black: 40.0%, asian: 20.0%, other: 10.0%\n  Fragmentation score: 0.250\n\nPath 3: L0_C1 (Normal vitals) \u2192 L1_C1 (Cardiovascular stress) \u2192 L2_C2 (Moderate risk) \u2192 L3_C1 (No disease)\n  Demographics for this path:\n    - gender: male: 50.0%, female: 50.0%\n    - age_group: <40: 30.0%, 40-60: 40.0%, >60: 30.0%\n    - ethnicity: white: 40.0%, black: 30.0%, asian: 20.0%, other: 10.0%\n  Fragmentation score: 0.750\n\n=== ANALYSIS REQUIRED ===\nAnalyze the above paths and provide insights on:\n\nINTERPRETATION:\n- What are the main conceptual paths through the network?\n- How do concepts transform as they move through layers?\n- What decision-making patterns emerge from these paths?\n\nBIAS ANALYSIS:\n- Are there systematic differences in how different demographic groups are routed through paths?\n- Do you see unexpected segregation where similar inputs follow very different paths?\n- Are certain paths predominantly associated with specific demographic characteristics?\n- What patterns suggest potential unfair treatment or discrimination?\n- Are there statistical anomalies in path distributions that indicate bias?\n\nProvide a comprehensive analysis addressing each category.\nBe specific about which paths exhibit which patterns.\nFocus on actionable insights and patterns that span multiple paths.",
+      "params": {
+        "temperature": 0.4,
+        "max_tokens": 1500,
+        "system_prompt": "You are an AI assistant specializing in neural network analysis, pattern recognition, and bias detection."
+      }
+    }
+  },
+  "last_update": 1748738778.2300885
+}

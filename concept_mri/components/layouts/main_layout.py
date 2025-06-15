@@ -100,7 +100,9 @@ def create_storage_components():
         # Download component for exports
         dcc.Download(id='download-sankey'),
         # Interval for periodic tasks (if needed)
-        dcc.Interval(id='interval-component', interval=60*1000, disabled=True)
+        dcc.Interval(id='interval-component', interval=60*1000, disabled=True),
+        # Hidden alert for activation status (used by callbacks)
+        dbc.Alert(id='activation-status', is_open=False, dismissable=True, style={'display': 'none'})
     ])
 
 def create_modals():

@@ -1,0 +1,279 @@
+/* Network Explorer Styles */
+
+/* Main container */
+.network-explorer-container {
+    position: relative;
+    background-color: #f8f9fa;
+}
+
+/* Header */
+.network-explorer-header {
+    height: 48px;
+    z-index: 10;
+}
+
+/* Network Overview Section */
+.network-overview-section {
+    background-color: white;
+    position: relative;
+}
+
+/* Explorer Workspace */
+.explorer-workspace {
+    position: relative;
+    background-color: white;
+}
+
+/* Panel styles */
+.paths-panel,
+.viz-panel,
+.details-panel {
+    position: relative;
+    background-color: white;
+}
+
+/* Path cards */
+.path-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.path-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.path-card.selected {
+    border-color: #007bff;
+    background-color: #f0f8ff;
+}
+
+/* Entity cards */
+.entity-card-section {
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+    padding: 1rem;
+}
+
+/* Analysis section */
+.analysis-section {
+    padding: 1rem;
+}
+
+/* Scrollable containers */
+.path-list-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.analysis-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Visualization container */
+.viz-container {
+    position: relative;
+    background-color: #fafafa;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+/* Metric chart styles */
+.network-metrics-chart {
+    height: 100%;
+}
+
+/* Window selector buttons */
+.window-selector-btn {
+    min-width: 100px;
+}
+
+.window-selector-btn.active {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+/* Custom scrollbar */
+.path-list-container::-webkit-scrollbar,
+.analysis-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.path-list-container::-webkit-scrollbar-track,
+.analysis-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.path-list-container::-webkit-scrollbar-thumb,
+.analysis-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.path-list-container::-webkit-scrollbar-thumb:hover,
+.analysis-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive adjustments */
+@media (max-height: 768px) {
+    .network-overview-section {
+        height: 120px !important;
+    }
+    
+    .explorer-workspace {
+        height: calc(100vh - 168px) !important;
+    }
+}
+
+/* Loading states */
+.network-explorer-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #6c757d;
+}
+
+/* Highlight states */
+.highlighted-path {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+}
+
+.highlighted-cluster {
+    stroke: #ffc107;
+    stroke-width: 3;
+}
+
+/* Tooltips */
+.network-explorer-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Details Panel specific styles */
+.details-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-left: 1px solid #dee2e6;
+}
+
+.details-panel-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    flex-shrink: 0;
+}
+
+.details-panel-content {
+    flex: 1;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.details-panel-footer {
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Entity Card styling */
+.entity-card-section .card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #e9ecef;
+}
+
+.entity-card-section .card-header {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Analysis panel styling */
+.analysis-section .card {
+    height: 100%;
+    border: 1px solid #e9ecef;
+}
+
+.analysis-section .card-header {
+    background-color: #e7f3ff;
+    border-bottom: 1px solid #d1e7ff;
+}
+
+/* Badge styling for sequences */
+.badge.bg-primary {
+    background-color: #0066cc !important;
+}
+
+.badge.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+/* Smooth transitions */
+.details-panel .card {
+    transition: all 0.3s ease;
+}
+
+/* Selection indicator */
+#details-panel-selection-indicator {
+    background-color: #f0f8ff;
+    border-bottom: 1px solid #d1e7ff;
+    font-style: italic;
+}
+
+/* Cross-component highlighting */
+.highlighted-path {
+    background-color: #fff3cd !important;
+    border: 2px solid #ffc107 !important;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5) !important;
+    transition: all 0.3s ease;
+}
+
+.dimmed-path {
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.highlighted-cluster {
+    stroke: #ffc107 !important;
+    stroke-width: 3px !important;
+    filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.8));
+}
+
+.highlighted-sample {
+    r: 10 !important; /* Larger radius for scatter points */
+    stroke: #2ca02c !important;
+    stroke-width: 3px !important;
+    fill-opacity: 1 !important;
+}
+
+/* Sankey highlighting */
+.sankey-highlighted-node {
+    stroke: #ff7f0e !important;
+    stroke-width: 3px !important;
+}
+
+.sankey-highlighted-link {
+    opacity: 1 !important;
+}
+
+.sankey-dimmed-link {
+    opacity: 0.2 !important;
+}
+
+/* Trajectory highlighting */
+.trajectory-highlighted {
+    stroke-width: 4px !important;
+    opacity: 1 !important;
+}
+
+.trajectory-dimmed {
+    opacity: 0.3 !important;
+}

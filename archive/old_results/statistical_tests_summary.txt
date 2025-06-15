@@ -1,0 +1,144 @@
+# Statistical Test Results Summary
+
+## Dataset: titanic
+
+### Configuration: w0.0_t0.07_thr0.0_layers[]
+
+#### Metric: final_test_accuracy
+- Baseline: 0.7989 ± 0.0046
+- Cohesion: 0.7989 ± 0.0046
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=nan (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+#### Metric: final_entropy
+- Baseline: 0.6445 ± 0.0014
+- Cohesion: 0.6445 ± 0.0014
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=nan (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+#### Metric: final_angle
+- Baseline: 8.8651 ± 2.1244
+- Cohesion: 8.8651 ± 2.1244
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=nan (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+
+### Configuration: w0.1_t0.07_thr0.0_layers[]
+
+#### Metric: final_test_accuracy
+- Baseline: 0.7989 ± 0.0046
+- Cohesion: 0.7989 ± 0.0000
+- Difference: 0.0000 (0.00%)
+- T-test (unpaired t-test): p=1.0000 (not significant)
+
+#### Metric: final_entropy
+- Baseline: 0.6445 ± 0.0014
+- Cohesion: 0.6195 ± 0.0306
+- Difference: -0.0251 (-3.89%)
+- T-test (unpaired t-test): p=0.0493 (significant)
+
+#### Metric: final_angle
+- Baseline: 8.8651 ± 2.1244
+- Cohesion: 7.1059 ± 1.0939
+- Difference: -1.7592 (-19.84%)
+- T-test (unpaired t-test): p=0.3622 (not significant)
+
+
+### Configuration: w0.5_t0.07_thr0.0_layers[]
+
+#### Metric: final_test_accuracy
+- Baseline: 0.7989 ± 0.0046
+- Cohesion: 0.7989 ± 0.0000
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=1.0000 (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+#### Metric: final_entropy
+- Baseline: 0.6445 ± 0.0014
+- Cohesion: 0.6195 ± 0.0306
+- Difference: -0.0251 (-3.89%)
+- T-test (paired t-test): p=0.3718 (not significant)
+- Wilcoxon test: p=0.5000 (not significant)
+
+#### Metric: final_angle
+- Baseline: 8.8651 ± 2.1244
+- Cohesion: 7.1059 ± 1.0939
+- Difference: -1.7592 (-19.84%)
+- T-test (paired t-test): p=0.4141 (not significant)
+- Wilcoxon test: p=0.5000 (not significant)
+
+
+## Dataset: heart
+
+### Configuration: w0.0_t0.07_thr0.0_layers[]
+
+#### Metric: final_test_accuracy
+- Baseline: 0.8457 ± 0.0087
+- Cohesion: 0.8457 ± 0.0087
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=nan (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+#### Metric: final_entropy
+- Baseline: 0.6299 ± 0.0168
+- Cohesion: 0.6299 ± 0.0168
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=nan (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+#### Metric: final_angle
+- Baseline: 18.6515 ± 4.9144
+- Cohesion: 18.6515 ± 4.9144
+- Difference: 0.0000 (0.00%)
+- T-test (paired t-test): p=nan (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+
+### Configuration: w0.1_t0.07_thr0.0_layers[]
+
+#### Metric: final_test_accuracy
+- Baseline: 0.8457 ± 0.0087
+- Cohesion: 0.8519 ± 0.0302
+- Difference: 0.0062 (0.73%)
+- T-test (unpaired t-test): p=0.6281 (not significant)
+
+#### Metric: final_entropy
+- Baseline: 0.6299 ± 0.0168
+- Cohesion: 0.5852 ± 0.0215
+- Difference: -0.0448 (-7.11%)
+- T-test (unpaired t-test): p=0.0359 (significant)
+
+#### Metric: final_angle
+- Baseline: 18.6515 ± 4.9144
+- Cohesion: 19.7602 ± 7.4641
+- Difference: 1.1087 (5.94%)
+- T-test (unpaired t-test): p=0.8104 (not significant)
+
+
+### Configuration: w0.5_t0.07_thr0.0_layers[]
+
+#### Metric: final_test_accuracy
+- Baseline: 0.8457 ± 0.0087
+- Cohesion: 0.8519 ± 0.0302
+- Difference: 0.0062 (0.73%)
+- T-test (paired t-test): p=0.8075 (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+#### Metric: final_entropy
+- Baseline: 0.6299 ± 0.0168
+- Cohesion: 0.5852 ± 0.0215
+- Difference: -0.0448 (-7.11%)
+- T-test (paired t-test): p=0.1382 (not significant)
+- Wilcoxon test: p=0.2500 (not significant)
+
+#### Metric: final_angle
+- Baseline: 18.6515 ± 4.9144
+- Cohesion: 19.7602 ± 7.4641
+- Difference: 1.1087 (5.94%)
+- T-test (paired t-test): p=0.8158 (not significant)
+- Wilcoxon test: p=1.0000 (not significant)
+
+

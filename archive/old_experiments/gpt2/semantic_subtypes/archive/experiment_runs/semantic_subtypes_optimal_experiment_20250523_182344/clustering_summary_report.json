@@ -1,0 +1,181 @@
+{
+  "experiment": "semantic_subtypes_optimal_clustering",
+  "timestamp": "2025-05-23T18:26:51.877264",
+  "configuration": {
+    "0": {
+      "k": 4,
+      "ets_threshold": 0.99715
+    },
+    "1": {
+      "k": 3,
+      "ets_threshold": 0.9964
+    },
+    "2": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "3": {
+      "k": 3,
+      "ets_threshold": 0.99715
+    },
+    "4": {
+      "k": 3,
+      "ets_threshold": 0.9973
+    },
+    "5": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "6": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "7": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "8": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "9": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "10": {
+      "k": 3,
+      "ets_threshold": 0.9967
+    },
+    "11": {
+      "k": 3,
+      "ets_threshold": 0.9961
+    },
+    "12": {
+      "k": 3,
+      "ets_threshold": 0.99655
+    }
+  },
+  "results": {
+    "kmeans": {
+      "layer_0": {
+        "k": 4,
+        "silhouette": 0.005341298878192902
+      },
+      "layer_1": {
+        "k": 3,
+        "silhouette": 0.03925267234444618
+      },
+      "layer_2": {
+        "k": 3,
+        "silhouette": 0.055748965591192245
+      },
+      "layer_3": {
+        "k": 3,
+        "silhouette": 0.10302425175905228
+      },
+      "layer_4": {
+        "k": 3,
+        "silhouette": 0.16534297168254852
+      },
+      "layer_5": {
+        "k": 3,
+        "silhouette": 0.1892593801021576
+      },
+      "layer_6": {
+        "k": 3,
+        "silhouette": 0.20674334466457367
+      },
+      "layer_7": {
+        "k": 3,
+        "silhouette": 0.2232498824596405
+      },
+      "layer_8": {
+        "k": 3,
+        "silhouette": 0.22793462872505188
+      },
+      "layer_9": {
+        "k": 3,
+        "silhouette": 0.23116478323936462
+      },
+      "layer_10": {
+        "k": 3,
+        "silhouette": 0.2321818768978119
+      },
+      "layer_11": {
+        "k": 3,
+        "silhouette": 0.23138636350631714
+      },
+      "layer_12": {
+        "k": 3,
+        "silhouette": 0.17556628584861755
+      }
+    },
+    "ets": {
+      "layer_0": {
+        "threshold": 0.99715,
+        "num_clusters": 4,
+        "silhouette": 0.04815289005637169
+      },
+      "layer_1": {
+        "threshold": 0.9964,
+        "num_clusters": 3,
+        "silhouette": 0.07241269946098328
+      },
+      "layer_2": {
+        "threshold": 0.9967,
+        "num_clusters": 4,
+        "silhouette": 0.07426482439041138
+      },
+      "layer_3": {
+        "threshold": 0.99715,
+        "num_clusters": 3,
+        "silhouette": 0.12829697132110596
+      },
+      "layer_4": {
+        "threshold": 0.9973,
+        "num_clusters": 3,
+        "silhouette": 0.1536446511745453
+      },
+      "layer_5": {
+        "threshold": 0.9967,
+        "num_clusters": 3,
+        "silhouette": 0.16381357610225677
+      },
+      "layer_6": {
+        "threshold": 0.9967,
+        "num_clusters": 3,
+        "silhouette": 0.17040571570396423
+      },
+      "layer_7": {
+        "threshold": 0.9967,
+        "num_clusters": 3,
+        "silhouette": 0.17263366281986237
+      },
+      "layer_8": {
+        "threshold": 0.9967,
+        "num_clusters": 3,
+        "silhouette": 0.17403745651245117
+      },
+      "layer_9": {
+        "threshold": 0.9967,
+        "num_clusters": 3,
+        "silhouette": 0.17549610137939453
+      },
+      "layer_10": {
+        "threshold": 0.9967,
+        "num_clusters": 3,
+        "silhouette": 0.17787308990955353
+      },
+      "layer_11": {
+        "threshold": 0.9961,
+        "num_clusters": 3,
+        "silhouette": 0.1796705722808838
+      },
+      "layer_12": {
+        "threshold": 0.99655,
+        "num_clusters": 3,
+        "silhouette": 0.0434739887714386
+      }
+    }
+  }
+}

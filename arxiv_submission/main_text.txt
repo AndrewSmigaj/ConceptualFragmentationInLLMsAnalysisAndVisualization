@@ -1,0 +1,1400 @@
+Using PyPDF2...
+Document: arxiv_submission/main.pdf
+Pages: 37
+================================================================================
+
+--- Page 1 ---
+
+Ho w Neural Net w orks Organize Concepts:
+In tro ducing Concept T ra jectory Analysis for Deep
+Learning In terpretabilit y
+Andrew Smiga j1, Claude An thropic2, Grok xAI3
+1Institute of Discordan t Colon y Optimization,2An thropic Researc h,3xAI Corp
+July 2025
+Abstract
+W e presen t Concept T ra jectory Analysis (CT A), an in terpretabilit y
+metho d that trac ks ho w neural net w orks organize concepts b y follo wing
+their paths through clustered activ ation spaces across la y ers. Apply-
+ing CT A to GPT-2 with 1,228 single-tok en w ords rev ealed that the
+mo del organizes language primarily b y grammatical function rather
+than seman tic meaning, with 48.5% of w ords con v erging to common
+grammatical path w a ys where nounswhether animals, ob jects, or ab-
+stractstra v el together, while main taining seman tic distinctions at
+ner scales ( χ2= 95.90 ,p <0.0001 ).
+CT A quan ties concept o w through net w orks b y com bining ge-
+ometric clustering with tra jectory trac king. Key inno v ations include
+windo w ed analysis for phase transition detection (seman tic  grammatical
+in GPT-2) and LLM-p o w ered in terpretation. In medical AI, CT A
+exp osed patien t risk stratication path w a ys and demographic biases
+(male o v erprediction in P ath 4, 83% male comp osition).
+By making neural organization visible and quan tiable, CT A ad-
+v ances in terpretable AI through dynamic analysis, organizational in-
+sigh ts, and actionable in terpretabilit y . Our op en-source implemen ta-
+tion enables researc hers to apply CT A across domains.
+1 In tro duction
+Understanding ho w neural net w orks organize linguistic information remains
+a fundamen tal c hallenge in in terpretabilit y researc h. W e presen t Concept
+T ra jectory Analysis (CT A), a metho d that trac ks concept ev olution through
+neural net w orks b y analyzing mo v emen t patterns in clustered activ ation
+spaces. Application of this metho d to GPT-2 indicates that the mo del
+organizes w ords primarily b y grammatical function rather than seman tic
+similarit y , pro viding new insigh ts in to transformer language pro cessing.
+1
+================================================================================
+
+--- Page 2 ---
+
+T able 1: Key T erminology Used in This P ap er
+T erm Denition
+T ra jectory The path a concept tak es through cluster assignmen ts across la y ers
+P ath A sp ecic sequence of clusters, e.g., L1_C0  L2_C1  L3_C0
+High w a y A meso-lev el bundle of similar paths tra v eled b y man y concepts
+Windo w T emp oral grouping of la y ers (Early: L0-3, Middle: L4-7, Late: L8-11)
+F T ra jectory F ragmen tation (see Section 3.6)
+F C P ath-Cen troid F ragmen tation (see Section 3.6)
+CE In tra-Class Cluster En trop y (see Section 3.6)
+SA Sub-space Angle (see Section 3.6)
+Micro cluster Fine-grained sub-structure within larger cluster (future w ork)
+Our analysis of 1,228 single-tok en w ords across 8 seman tic categories
+rev eals that GPT-2 dev elops a hierarc hical organization strategy . W ords
+initially cluster b y seman tic similarit y in early la y ers, undergo a phase tran-
+sition in middle la y ers, and con v erge to grammatical organization in later
+la y ers. This sequen tial reorganizationwhere a substan tial p ortion of w ords
+ultimately follo w common grammatical path w a yssuggests that neural net-
+w orks ma y rst pro cess seman tic features b efore disco v ering grammatical
+function as an ecien t organizing principle.
+This observ ation emerged from our framew ork that com bines mathe-
+matical analysis with h uman in terpretation. CT A trac ks concepts through
+clustered activ ation spaces across neural net w ork la y ers, using quan titativ e
+metrics alongside LLM-generated explanations. The metho d oers v e core
+capabilities:
+ Dynamic analysis : T rac king concept ev olution through la y ers rather
+than static snapshots
+ Organizational insigh ts : Rev ealing principles lik e grammatical con-
+v ergence in language mo dels
+ Multi-scale understanding : F rom individual tra jectories to p opulation-
+lev el patterns
+ A ctionable in terpretabilit y : Iden tifying bias patterns, uncertain t y
+indicators, and decision path w a ys
+ Narrativ e explanations : Bridging mathematical analysis with h u-
+man comprehension through LLM in tegration
+W e v alidate CT A through exp erimen ts on b oth language mo dels and
+traditional ML. Our windo w ed analysis (Early/Middle/Late) iden ties phase
+2
+================================================================================
+
+--- Page 3 ---
+
+transitions in neural pro cessing, while unique cluster lab eling (L{la y er}_C{cluster})
+enables precise trac king. By analyzing all tra jectories rather than just dom-
+inan t paths, w e capture the full complexit y of neural organization.
+Bey ond transformer analysis, CT A can b e applied to traditional ML
+tasks. In heart disease diagnosis, tra jectory analysis sho ws ho w neural net-
+w orks pro cess patien t data, with dieren t path w a ys emerging for v arious pa-
+tien t proles. High-risk patien ts (older, elev ated c holesterol) tend to route
+through sp ecic neural path w a ys with higher fragmen tation scores (see Sec-
+tion 3.6), p oten tially indicating mo del uncertain t y . This medical AI appli-
+cation illustrates ho w CT A can help understand decision-making pro cesses
+in healthcare domains.
+1.1 Bac kground: Concept T ra jectory Analysis
+Concept T ra jectory Analysis (CT A) clusters datap oin t activ ations in eac h
+la y er's activ ation space (e.g., using k-means), assigning la y er-sp ecic cluster
+IDs denoted L l _Ck , where l is the la y er index and k is the cluster index.
+T ransitions b et w een clusters are trac k ed across la y ers, forming tra jectories
+πi= [c1
+i, c2
+i, . . . , cL
+i] , in terpreted as concept ev olution through the net w ork.
+In feedforw ard net w orks, tra jectories are strictly unidirectional, and clusters
+with dieren t la y er-sp ecic IDs (e.g., L1_C0 and L3_C0) are not assumed
+related unless v alidated b y geometric similarit y metrics. Large language
+mo dels can then narrate these tra jectories to pro vide in terpretable insigh ts.
+While activ ation spaces are emergen t, high-dimensional represen tations
+whose co ordinate systems ma y not map to seman tically meaningful axes
+[Rib eiro et al., 2016, Lundb erg and Lee, 2017], CT A addresses these concerns
+through rigorous mathematical v alidation and cross-la y er metrics that v erify
+gen uine patterns rather than artifacts.
+Con tributions :
+ F ormalize Concept T ra jectory Analysis with mathematical v alidation
+criteria and cross-la y er metrics
+ Dev elop optimal clustering determination using Gap statistic with la y er-
+sp ecic cluster coun ts
+ Implemen t tra jectory visualization and LLM-p o w ered in terpretabilit y
+for neural net w ork analysis
+ Pro vide evidence that GPT-2 organizes w ords primarily b y grammat-
+ical function in later la y ers
+ Demonstrate CT A's applicabilit y to b oth transformer mo dels and tra-
+ditional ML tasks
+ Release op en-source implemen tation for repro ducible neural net w ork
+in terpretabilit y researc h
+3
+================================================================================
+
+--- Page 4 ---
+
+2 Related W ork: P ositioning CT A in the In ter-
+pretabilit y Landscap e
+While neural net w ork in terpretabilit y has seen signican t adv ances, existing
+metho ds primarily fo cus on explaining individual predictions or visualizing
+static represen tations. W e p osition Concept T ra jectory Analysis (CT A) as
+addressing a critical gap: understanding ho w concepts dynamically ev olv e
+through neural net w ork la y ers.
+2.1 A ttribution-Based Metho ds
+A ttribution metho ds lik e LIME [Rib eiro et al., 2016] and SHAP [Lundb erg
+and Lee, 2017] decomp ose mo del predictions b y assigning imp ortance scores
+to input features. While v aluable for understanding whic h inputs inuence
+outputs, these metho ds treat the net w ork as a blac k b o x, pro viding no in-
+sigh t in to in termediate pro cessing stages. In tegrated Gradien ts [Sundarara-
+jan et al., 2017] traces attribution through the net w ork but still fo cuses on
+input-output relationships rather than concept ev olution.
+CT A diers fundamen tally b y trac king ho w represen tations transform
+across la y ers. Rather than asking "whic h pixels matter for this classica-
+tion?", CT A asks "ho w do es the concept of 'cat' ev olv e from pixels to se-
+man tic understanding to nal prediction?" This shift from static attribution
+to dynamic tra jectory analysis rev eals organizational principles in visible to
+attribution metho ds.
+2.2 A tten tion Mec hanism Analysis
+A tten tion visualization has b ecome prominen t in transformer in terpretabil-
+it y , rev ealing whic h tok ens the mo del fo cuses on during pro cessing. Ho w ev er,
+atten tion w eigh ts sho w correlation, not causation, and often pro v e mislead-
+ing ab out actual information o w. More critically , atten tion analysis remains
+lo c k ed to the tok en lev el, unable to capture higher-lev el concept organization.
+Consider our nding that GPT-2 routes 72.8% of w ords through a domi-
+nan t en tit y path w a y regardless of seman tic con ten t. A tten tion analysis migh t
+sho w that "cat" attends to nearb y determiners or adjectiv es, but it cannot
+rev eal that "cat," "demo cracy ," and "table" all follo w iden tical pro cessing
+path w a ys through the net w ork's la y ers. While atten tion w eigh ts uctuate
+based on con text, the underlying organizational principlegrammatical cat-
+egorizationremains in visible to atten tion-based metho ds.
+CT A transcends tok en-lev el analysis b y clustering activ ations in to mean-
+ingful concepts and trac king their ev olution. Where atten tion asks "what
+do es this tok en lo ok at?", CT A asks "ho w do es this concept transform?" This
+shift in p ersp ectiv e pro v ed essen tial: the grammatical organization emerges
+not from examining individual atten tion patterns but from observing ho w
+4
+================================================================================
+
+--- Page 5 ---
+
+h undreds of w ords con v erge to shared path w a ys despite starting from div erse
+seman tic origins.
+2.3 A ctiv ation and Represen tation Analysis
+Prior w ork has examined neural activ ations through v arious lenses. Net w ork
+Dissection [Bau et al., 2017] iden ties neurons selectiv e for visual concepts,
+while TCA V [Kim et al., 2018] tests concept presence using directional deriv a-
+tiv es. Recen t w ork from An thropic on p olyseman tic neurons and sup erp o-
+sition [Elhage et al., 2022b,a] rev eals ho w individual neurons can resp ond
+to m ultiple, unrelated conceptsa phenomenon that underscores the imp or-
+tance of analyzing distributed represen tations rather than individual units.
+Represen tation similarit y analysis [K orn blith et al., 2019, Ragh u et al., 2017]
+compares activ ation spaces but t ypically fo cuses on single la y ers or la y er
+pairs.
+These metho ds pro vide snapshots of represen tations but miss the dy-
+namic story of concept ev olution. CT A's inno v ation lies in:
+ T ra jectory trac king : F ollo wing concepts through all la y ers, not just
+analyzing xed p oin ts
+ P ath analysis : Iden tifying arc het ypal routes through the net w ork's
+pro cessing pip eline
+ Phase detection : Disco v ering transitions lik e GPT-2's shift from se-
+man tic to grammatical organization
+ Narrativ e generation : Using LLMs to translate mathematical pat-
+terns in to h uman understanding
+2.4 Clustering in Neural Net w orks
+While clustering has b een applied to neural activ ations, previous w ork t ypi-
+cally clusters at single la y ers or uses clustering for compression rather than
+in terpretation. Explainable clustering metho ds [Dasgupta et al., 2020] pro-
+vide algorithmic transparency but ha v en't b een systematically applied to
+trac k concept ev olution through deep net w orks.
+CT A's con tribution includes:
+ La y er-sp ecic lab eling : Our L l _Ck notation prev en ts confusion and
+enables precise trac king
+ Cross-la y er metrics : Quan tifying concept ev olution through cen-
+troid similarit y , mem b ership o v erlap, and tra jectory fragmen tation
+ Windo w ed analysis : Rev ealing phase transitions in visible to single-
+la y er clustering (Section 3.5)
+5
+================================================================================
+
+--- Page 6 ---
+
+2.5 The In terpretabilit y Gap CT A A ddresses
+Existing in terpretabilit y metho ds excel at sp ecic tasksattribution for fea-
+ture imp ortance, atten tion for tok en relationships, activ ation analysis for
+concept detection. Ho w ev er, none address the fundamen tal question: Ho w
+do neural net w orks organize and transform information as it o ws through
+la y ers?
+CT A lls this gap through the v e core capabilities detailed in the in tro-
+duction. By shifting fo cus from "what" to "ho w"from static attribution
+to dynamic tra jectoriesCT A op ens new a v en ues for understanding neu-
+ral net w orks as information pro cessing systems rather than mere function
+appro ximators. This p ersp ectiv e pro v ed essen tial for disco v ering that trans-
+formers organize language fundamen tally dieren tly than h uman linguistic
+in tuitions suggest, a nding that emerged not from examining atten tion or
+attribution, but from trac king concepts as they journey through the net-
+w ork's la y ers.
+3 Mathematical F oundation of La y erwise A ctiv a-
+tion Geometry
+3.1 What Is Being Clustered?
+LetAl∈Rn×dl denote the matrix of activ ations at la y er (l) , where eac h ro w
+al
+i is a datap oin t's activ ation v ector. Once the mo del is trained, Alpro vides
+a static represen tation space p er la y er.
+3.2 Metric Selection and V alidit y
+W e cluster Alin tokl clusters, assigning unique la y er-sp ecic lab els L l _C0,
+Ll _C1, . . . , L l _C{kl−1} . This unique lab eling sc heme (e.g., L4_C1 for
+la y er 4, cluster 1) prev en ts cross-la y er confusion and enables precise trac king
+of concept ev olution. A datap oin t's path is a sequence πi= [c1
+i, c2
+i, . . . , cL
+i] ,
+where cl
+i is the cluster assignmen t at la y er l in the format L l _Ck .
+W e determine optimal kl using the Gap statistic, whic h compares within-
+cluster disp ersion to that exp ected under a n ull reference distribution. F or
+la y er l , w e compute:
+Gap(k) =E[log(W∗
+k)]−log(Wk)
+where Wk is the within-cluster sum of squares and W∗
+kis its exp ectation
+under the n ull.
+W e examine Euclidean, cosine, and Mahalanobis metrics. In high-dimensional
+spaces, Euclidean norms lose con trast; cosine and L1 often b eha v e b etter.
+PCA or normalization can stabilize comparisons. In feedforw ard net w orks,
+paths are unidirectional, and apparen t con v ergence (e.g., [L1_C0 → L2_C2
+6
+================================================================================
+
+--- Page 7 ---
+
+→ L3_C0]) is v alidated b y computing cosine or Euclidean similarit y b et w een
+cluster cen troids across la y ers, ensuring that an y p erceiv ed similarit y reects
+geometric pro ximit y in activ ation space rather than shared lab els.
+3.3 Clustering Approac hes
+W e primarily use k-means clustering with the Gap statistic for determining
+optimal cluster coun ts.
+3.4 Within-Cluster Seman tic Structure
+While our primary analysis fo cuses on cluster-lev el tra jectories, the p osition
+of datap oin ts within clusters ma y carry seman tic meaning. F ollo wing princi-
+ples of distributional seman tics, nearb y p oin ts in activ ation space often share
+seman tic prop ertiesev en within the same cluster. F or instance, within the
+dominan t en tit y path w a y (L4_C1), "cat" and "dog" ma y o ccup y closer p o-
+sitions than "cat" and "demo cracy ," despite all b eing nouns. This suggests
+p oten tial hierarc hical organization where coarse clusters capture grammati-
+cal categories while ne-grained p ositions enco de seman tic relationships.
+F uture w ork could explore micro-clustering within ma jor path w a ys to in-
+v estigate these p oten tial seman tic substructures. T ec hniques lik e hierarc hical
+clustering or lo cal neigh b orho o d analysis migh t rev eal ho w dominan t path-
+w a ys sub divide in to seman tic regions while main taining o v erall grammatical
+coherence.
+3.5 Windo w ed T ra jectory Analysis
+T o capture phase transitions in neural pro cessing, w e in tro duce windo w ed
+analysis that segmen ts the net w ork in to functional regions:
+ Early Windo w (la y ers 0-3): Initial feature extraction and seman tic
+dieren tiation
+ Middle Windo w (la y ers 4-7): Conceptual reorganization and consol-
+idation
+ Late Windo w (la y ers 8-11): Final represen tation and task-sp ecic
+pro cessing
+F or eac h windo w w , w e compute stabilit y metrics:
+Sw=1
+|Pw|X
+p∈Pw| mo de (p)|
+|p|
+where Pw is the set of path segmen ts in windo w w and mo de (p) is the most
+frequen t cluster transition. Changes in stabilit y patterns across windo ws can
+indicate phase transitions in the net w ork's organizational principles.
+7
+================================================================================
+
+--- Page 8 ---
+
+3.6 Quan titativ e Metrics for Concept Ev olution
+T o ground our analysis in quan titativ e evidence, w e emplo y four comple-
+men tary metrics that capture dieren t asp ects of concept ev olution through
+neural net w orks:
+3.6.1 T ra jectory F ragmen tation (F)
+Measures path div ersit y for a seman tic category:
+F= 1−coun t of most common path
+total paths in category
+High fragmen tation indicates div erse pro cessing strategies within a category .
+In our exp erimen ts, this metric helps quan tify con v ergence patternsfor in-
+stance, the GPT-2 analysis sho ws fragmen tation v arying from 0.796 (early)
+to 0.499 (middle) to 0.669 (late), suggesting complex dynamics in the orga-
+nization of the balanced dataset.
+3.6.2 P ath-Cen troid F ragmen tation (F C)
+Measures ho w dissimilar consecutiv e clusters are along a sp ecic sample path:
+FC= 1− sim
+where sim is the mean cen troid similarit y (cosine) b et w een successiv e clusters
+on the path. High v alues indicate that represen tations "jump" across concept
+regions b et w een la y ers; lo w v alues indicate coheren t, incremen tal renemen t.
+The heart disease mo del sho ws remark ably lo w F C=0.096, indicating smo oth
+transitions.
+3.6.3 In tra-Class Cluster En trop y (CE)
+F or ev ery la y er, w e cluster activ ations and measure the Shannon en trop y of
+the resulting cluster distribution within eac h ground-truth class:
+CE=H(C|Y)
+log2k∗
+where H(C|Y) is the conditional en trop y of clusters giv en class lab els, nor-
+malized b y log2k∗(the selected n um b er of clusters). CE=1 means class
+features are maximally disp ersed across clusters, while CE=0 means eac h
+class o ccupies a single, compact cluster.
+8
+================================================================================
+
+--- Page 9 ---
+
+3.6.4 Sub-space Angle F ragmen tation (SA)
+W e compute the principal comp onen ts for the activ ations of eac h class and
+ev aluate the pair-wise principal angles b et w een those subspaces. Large mean
+angles ( ≫0 ) imply that the net w ork em b eds classes in orthogonal direc-
+tionsevidence of fragmen tationwhile small angles suggest a shared, lo w-
+dimensional manifold. In GPT-2, w e observ e SA collapsing from 45-60 °
+(seman tic separation) to 5-10 ° (grammatical con v ergence).
+3.7 Applying the F ramew ork: F rom Theory to Practice
+These metrics w ork in concert to rev eal dieren t asp ects of neural organiza-
+tion. In Section ?? , w e apply them to unco v er GPT-2's grammatical orga-
+nization, where decreasing SA and CE v alues quan tify the con v ergence from
+seman tic to syn tactic pro cessing. In Section ?? , consisten tly lo w F C v alues
+v alidate that medical diagnosis mo dels main tain coheren t patien t represen ta-
+tions throughout pro cessing. The windo w ed analysis framew ork pro v es par-
+ticularly p o w erful for iden tifying phase transitionscritical reorganization
+p oin ts where net w orks shift their organizational principles, as evidenced b y
+stabilit y metric drops in GPT-2's middle la y ers.
+4 Exp erimen tal Design
+Our exp erimen ts v alidate CT A across div erse domains, from medical AI to
+language understanding:
+4.1 Datasets and Mo dels
+ Heart Disease Diagnosis : UCI Heart Disease dataset (303 patien ts,
+13 clinical features) with 3-la y er MLP , demonstrating medical AI in-
+terpretabilit y
+ GPT-2 Seman tic Subt yp es : 1,228 v alidated single-tok en w ords
+across 8 seman tic categories, analyzed through GPT-2's 12 la y ers (em-
+b edding la y er + 11 transformer blo c ks, 117M parameters)1
+ GPT-2 Seman tic Piv ot : 202 sen tences with con tradictory informa-
+tion, trac king seman tic pro cessing
+4.2 Unied CT A Metho dology
+W e emplo y a three-phase approac h:
+1W e follo w standard con v en tion in n um b ering GPT-2's la y ers: La y er 0 is the em b edding
+la y er, and La y ers 1-11 corresp ond to transformer blo c ks 1-11. The 12th transformer blo c k
+w as not analyzed in this study .
+9
+================================================================================
+
+--- Page 10 ---
+
+1. Optimal Clustering : Gap statistic determines la y er-sp ecic cluster
+coun ts (e.g., k=4 for GPT-2 la y er 0, k=2 for la y ers 1-11)
+2. Unique Lab eling : Ev ery cluster receiv es globally unique ID (L{la y er}_C{cluster})
+prev en ting cross-la y er confusion
+3. Windo w ed Analysis : T emp oral segmen tation rev eals phase transi-
+tions (see Section 3.5)
+4.3 Metrics and V alidation
+ Cross-la y er Metrics : Cen troid similarit y ( ρc), mem b ership o v erlap
+(J ), tra jectory fragmen tation (F, see Section 3.6)
+ Stabilit y Analysis : Windo w-based stabilit y scores rev ealing reorga-
+nization p oin ts
+ P ath Statistics : Con v ergence ratios, div ersit y indices, arc het yp e iden-
+tication
+ Clinical V alidation : F or heart disease, correlation of fragmen tation
+with diagnostic uncertain t y
+4.4 Visualization Suite
+4.4.1 Sank ey Diagram Visualization Sc heme
+Throughout this pap er, w e emplo y Sank ey diagrams as our primary visual-
+ization for concept tra jectories through neural net w orks. In our standardized
+sc heme:
+ No des : Represen t clusters at eac h la y er, lab eled with unique iden ti-
+ers (e.g., L4_C1) and seman tic in terpretations
+ Links : Sho w the o w of datap oin ts b et w een clusters across consecutiv e
+la y ers
+ Link Width : Prop ortional to the n um b er of datap oin ts follo wing that
+path
+ Colors : Distinguish arc het ypal path w a ys or seman tic categories
+ V ertical La y out : La y ers progress from left (input) to righ t (output),
+pro viding in tuitiv e o w visualization
+This visualization enables immediate comprehension of ho w concepts re-
+organize through net w ork la y ers, rev ealing con v ergence patterns, phase tran-
+sitions, and dominan t pro cessing path w a ys.
+10
+================================================================================
+
+--- Page 11 ---
+
+4.4.2 Implemen tation T o ols
+ Concept MRI T o ol : Soft w are implemen ting CT A with in teractiv e
+Sank ey diagrams
+ Clinical Dash b oards : P atien t arc het yp e visualization for medical
+in terpretabilit y
+ In teractiv e Exploration : W eb-based in terfaces for real-time analysis
+5 LLM-P o w ered Analysis for Cluster P aths
+Recen t adv ances in large language mo dels (LLMs) pro vide new opp ortuni-
+ties for in terpreting neural net w ork b eha vior through the analysis of cluster
+paths. W e in tro duce a systematic framew ork for lev eraging LLMs to generate
+h uman-readable narrativ es and insigh ts ab out the in ternal decision pro cesses
+represen ted b y cluster paths.
+5.1 LLM In tegration Arc hitecture
+Our framew ork in tegrates LLMs in to the cluster path analysis pip eline through
+a mo dular arc hitecture with three primary comp onen ts:
+1. Cluster Lab eling : LLMs analyze cluster cen troids to generate mean-
+ingful seman tic lab els that describ e the concepts eac h cluster migh t
+represen t.
+2. P ath Narrativ e Generation : LLMs create coheren t narrativ es ex-
+plaining ho w concepts ev olv e through the net w ork as data p oin ts tra-
+v erse dieren t clusters.
+3. Bias Audit : LLMs analyze demographic statistics asso ciated with
+paths to iden tify p oten tial biases in mo del b eha vior.
+The arc hitecture includes:
+ Cac he Managemen t : Resp onses are cac hed to enable ecien t re-
+analysis and promote repro ducibilit y
+ Prompt Optimization : Sp ecialized prompting tec hniques that im-
+pro v e consistency and relev ance of generated con ten t
+ Batc h Pro cessing : Ecien t parallel pro cessing of m ultiple clusters
+and paths
+ Demograph y In tegration : Analysis of ho w cluster paths relate to
+demographic attributes
+11
+================================================================================
+
+--- Page 12 ---
+
+5.2 Seman tic Cluster Lab els
+The cluster lab eling pro cess transforms abstract mathematical represen ta-
+tions (cen troids) in to seman tically meaningful concepts. LLMs analyze clus-
+ter prop ertiesincluding cen troid v alues, dominan t features, and datap oin t
+c haracteristicsto generate in terpretable lab els. F or instance, in medical
+applications, clusters migh t b e lab eled as "High-Risk Elderly" or "Lo w Car-
+dio v ascular Stress" based on their statistical prop erties. This automated
+lab eling pro vides immediate in terpretabilit y while main taining consistency
+across analyses.
+5.3 P ath Narrativ es and Holistic Analysis
+The narrativ e generation pro cess represen ts a fundamen tal adv ancemen t in
+neural net w ork in terpretabilit y , transforming abstract mathematical pat-
+terns in to h uman-comprehensible stories ab out mo del b eha vior. Our frame-
+w ork lev erages LLMs' unique capabilities to pro vide m ulti-lev el analysis that
+w ould b e imp ossible through traditional metho ds alone.
+5.3.1 Core Narrativ e Generation Capabilities
+LLMs excel at syn thesizing complex, m ulti-dimensional information in to co-
+heren t explanations. When analyzing cluster paths, they pro vide:
+1. Multi-Lev el Syn thesis : LLMs sim ultaneously pro cess cluster statis-
+tics, path tra jectories, fragmen tation metrics, and demographic dis-
+tributions to iden tify patterns that span m ultiple lev els of abstraction.
+This holistic view rev eals emergen t b eha viors in visible when examining
+comp onen ts in isolation.
+2. Con textual P attern Recognition : By analyzing h undreds of paths
+sim ultaneously , LLMs iden tify recurring patterns, anomalies, and sys-
+tematic biases. They recognize when certain demographic groups con-
+sisten tly follo w sp ecic paths or when particular feature com binations
+trigger unexp ected routing.
+3. Narrativ e Coherence : LLMs transform disconnected data p oin ts
+in to o wing narrativ es that explain not just what happ ens, but wh y .
+They iden tify causal relationships, highligh t decision b oundaries, and
+explain ho w initial categorizations ev olv e in to nal predictions.
+4. Domain-A w are In terpretation : LLMs apply domain kno wledge to
+generate con textually appropriate explanations. In medical applica-
+tions, they relate cluster patterns to clinical concepts; in NLP tasks,
+they connect tra jectories to linguistic phenomena.
+12
+================================================================================
+
+--- Page 13 ---
+
+5.3.2 Comprehensiv e Analysis F ramew ork
+Our framew ork structures LLM analysis in to v e in terconnected comp onen ts:
+1. Cluster Seman tic Lab eling : LLMs analyze cluster cen troids, mem-
+b er statistics, and distinguishing features to generate meaningful lab els
+that capture eac h cluster's conceptual essence. These lab els form the
+foundation for all subsequen t narrativ e generation.
+2. Individual P ath Narrativ es : F or eac h arc het ypal path, LLMs create
+stories explaining the conceptual journey from input to output. These
+narrativ es in tegrate:
+ Initial cluster c haracteristics and wh y inputs start there
+ T ransition logic explaining mo v emen t b et w een clusters
+ Con v ergence/div ergence patterns and their implications
+ Final predictions and their relationship to the path tak en
+3. Comparativ e P ath Analysis : LLMs iden tify similarities and dier-
+ences across paths, rev ealing:
+ Common decision p oin ts where paths div erge
+ Demographic or feature patterns that determine routing
+ Unexp ected con v ergences suggesting shared pro cessing
+ P ath stabilit y and its correlation with prediction condence
+4. System-Wide Beha vioral Insigh ts : By analyzing all paths collec-
+tiv ely , LLMs unco v er:
+ Dominan t pro cessing strategies emplo y ed b y the mo del
+ Hierarc hical feature imp ortance across la y ers
+ Systematic biases in path assignmen t
+ Emergen t organizational principles
+5. Holistic Syn thesis Rep orts : LLMs generate comprehensiv e rep orts
+that w ea v e individual ndings in to unied explanations of mo del b e-
+ha vior. These rep orts connect quan titativ e metrics (F, F C, CE, SA
+from Section 3.6) with qualitativ e insigh ts to pro vide actionable un-
+derstanding.
+5.3.3 Narrativ e V alue Bey ond T raditional Analysis
+LLM-p o w ered narrativ es pro vide unique v alue that complemen ts quan tita-
+tiv e metrics:
+13
+================================================================================
+
+--- Page 14 ---
+
+ A ccessibilit y : T ec hnical metrics b ecome understandable to non-exp erts
+through story-based explanations
+ A ctionabilit y : Narrativ es suggest sp ecic in terv en tions for bias mit-
+igation or p erformance impro v emen t
+ T rust w orthiness : Explanations that align with domain kno wledge
+build stak eholder condence
+ Disco v ery : LLMs iden tify unexp ected patterns h umans migh t miss
+in ra w data
+5.4 In tegrating Metrics with Narrativ es
+The quan titativ e metrics dened in Section 3.6 (F, F C, CE, SA) are pro vided
+to the LLM as part of the prompt, enabling narrativ e explanations that tie
+qualitativ e descriptions to quan titativ e evidence. F or example, the LLM
+can explain that "CE drops sharply from la y er 2 to la y er 3, indicating that
+the net w ork consolidates risk factors" or "the decreasing SA v alues rev eal
+progressiv e alignmen t b et w een disease and health y patien t represen tations."
+T able 2: Example la y er-wise fragmen tation metrics (see Section 3.6 for def-
+initions) sho wing ho w dieren t metrics capture complemen tary asp ects of
+concept ev olution.
+La y er k∗CE SA (◦) F C (path mean)
+La y er 1 2 0.722 16.3 0.096
+La y er 2 2 0.713 11.5 0.096
+La y er 3 2 0.711 7.8 0.096
+Output 2 0.702 3.1 0.096
+2
+5.5 A dv an tages and Limitations
+A dv an tages :
+1. In terpretable Insigh ts : Con v erts complex mathematical patterns
+in to h uman-readable explanations.
+2. Multi-lev el Analysis : Pro vides insigh ts at cluster, path, and system-
+wide lev els.
+2In this example from a shallo w net w ork, the consisten t F C v alue of 0.096 indicates
+stable cluster represen tations throughout. Lo w fragmen tation co ecien ts suggest smo oth
+concept ev olution, with cluster cen troids main taining high similarit y (appro ximately 90.4%
+cosine similarit y) b et w een consecutiv e la y ers.
+14
+================================================================================
+
+--- Page 15 ---
+
+3. Bias Detection : Proactiv ely iden ties p oten tial fairness concerns in
+mo del b eha vior.
+4. In tegration with Metrics : Com bines qualitativ e narrativ es with
+quan titativ e fragmen tation and similarit y metrics.
+Limitations :
+1. P oten tial for Ov erin terpretation : LLMs migh t ascrib e meaning to
+patterns that are artifacts of the clustering pro cess.
+2. Domain Kno wledge Gaps : Analysis qualit y dep ends on the LLM's
+understanding of the sp ecic domain.
+3. Computational Cost : Generating narrativ es for man y paths can b e
+resource-in tensiv e.
+4. V alidation Challenges : V erifying the accuracy of generated narra-
+tiv es requires domain exp ertise.
+6 Heart Disease Case Study: Clinical AI In terpretabil-
+it y Through CT A
+W e demonstrate CT A's p o w er in medical AI through comprehensiv e analysis
+of a neural net w ork trained for heart disease diagnosis. This case study
+rev eals ho w the mo del straties patien t risk, exp oses demographic biases,
+and pro vides clinically in terpretable decision path w a ys.
+6.1 Clinical Con text and Dataset
+The UCI Heart Disease dataset comprises 303 patien ts with 13 clinical fea-
+tures including age, sex, c hest pain t yp e, blo o d pressure, c holesterol, and
+electro cardiographic results. Our 3-la y er neural net w ork learns to predict
+heart disease presence, making this an ideal test case for understanding ho w
+AI systems mak e life-critical medical decisions.
+6.2 Progressiv e Risk Stratication Through La y ers
+CT A rev eals a sophisticated risk stratication pro cess across net w ork la y ers:
+6.2.1 La y er 1: Initial Risk Categorization
+The net w ork immediately divides patien ts in to t w o fundamen tal groups:
+ High-Risk Older Males (L1C0): Mean age 54, predominan tly male
+(69%), with t ypical angina and elev ated c holesterol
+ Lo w er-Risk Y ounger Individuals (L1C1): Y ounger patien ts with
+mixed gender distribution and asymptomatic presen tation
+15
+================================================================================
+
+--- Page 16 ---
+
+6.2.2 La y er 2: Cardio v ascular Health Renemen t
+The mo del renes its assessmen t based on cardio v ascular indicators:
+ Lo w Cardio v ascular Stress (L2C0): P atien ts with blo o d pressure
+<130 mmHg and health y cardiac function
+ Con trolled High-Risk (L2C1): P atien ts with managed symptoms
+but p ersisten t risk factors (c holesterol >250 mg/dl)
+6.2.3 La y er 3: Abstract Risk Proles
+Final risk abstraction b efore classication:
+ Stress-Induced Risk (L3C0): Exercise-induced symptoms, elev ated
+blo o d pressure during stress
+ Mo derate-Risk A ctiv e (L3C1): Mo derate risk with preserv ed exer-
+cise capacit y
+6.3 Fiv e Arc het ypal P atien t P ath w a ys
+Our analysis iden tied v e dominan t path w a ys through the net w ork, eac h
+represen ting distinct patien t arc het yp es:
+T able 3: Arc het ypal P atien t P ath w a ys Through Heart Disease Mo del
+P ath T ra jectory % P atien ts Demographics T rue HD% Insigh t
+1 L1C1  L2C0  L3C0  No HD 43.3% Age 54, 69% M 40.2% Conserv ativ e lo w-risk
+2 L1C0  L2C1  L3C1  HD 35.2% Age 54, 67% M 47.4% Classic high-risk
+3 L1C1  L2C1  L3C1  HD 10.7% Age 55, 66% M 51.7% Progressiv e risk
+4 L1C1  L2C0  L3C1  HD 6.7% Age 55, 83% M 55.6% Male-biased path
+5 L1C1  L2C0  L3C0  HD 2.2% Age 58, 50% M 33.3% Misclassication
+6.4 Clinical Decision-Making Insigh ts
+CT A rev eals three critical asp ects of the mo del's decision pro cess:
+1. Risk F actor Prioritization : The mo del hea vily w eigh ts c hest
+pain t yp e, blo o d pressure, and c holesterolall clinically v alidated indica-
+tors. P ath fragmen tation (F, see Section 3.6) correlates with diagnostic un-
+certain t y (r=0.67), pro viding a built-in condence measure.
+Our fragmen tation analysis rev eals smo oth concept ev olution (F C=0.096,
+see Section 3.6), indicating that patien t represen tations transform coheren tly
+through the net w ork. The decreasing SA v alues (16.3 ° 11.5 ° 7.8 ° 3.1 ° ,
+see Section 3.6) sho w progressiv e alignmen t b et w een disease and no-disease
+16
+================================================================================
+
+--- Page 17 ---
+
+subspaces, suggesting the mo del dev elops increasingly rened decision b ound-
+aries at eac h la y er.
+2. Progressiv e Renemen t : Eac h la y er adds sp ecicit y: demographic
+risk (La y er 1)  cardio v ascular health (La y er 2)  stress resp onse (La y er 3).
+This mirrors clinical reasoning, progressing from patien t history to sp ecic
+cardiac indicators.
+3. Decision Boundaries : The split at La y er 2 b et w een "Lo w Car-
+dio v ascular Stress" and "Con trolled High-Risk" pro v es piv otalpatien ts in
+the former ha v e 59.8% true negativ e rate, while the latter sho ws 47.4% true
+p ositiv e rate.
+6.5 Bias Detection and F airness Analysis
+CT A exp osed concerning demographic biases:
+6.5.1 Gender Bias
+P ath 4 demonstrates clear male o v erpredictiondespite mo derate risk fac-
+tors, 83.3% male comp osition leads to heart disease prediction with only
+55.6% accuracy . This suggests the mo del learned spurious correlations b e-
+t w een male sex and heart disease from training data im balances.
+6.5.2 Age-Based Conserv ativ e Bias
+P ath 1 (43.3% of patien ts) sho ws conserv ativ e prediction for y ounger pa-
+tien ts, p oten tially missing early-onset heart disease. The mo del app ears to
+use age as a primary risk stratier, whic h while clinically relev an t, ma y lead
+to underdiagnosis in y ounger p opulations.
+6.5.3 In tersectional Eects
+P ath 5 rev eals concerning misclassication for balanced gender groups (50%
+male) with high-risk features (c holesterol 285.3 mg/dl, BP 145.7 mmHg).
+Only 33.3% truly ha v e heart disease, suggesting the mo del struggles with
+cases that don't t t ypical demographic patterns.
+6.6 Clinical Deplo ymen t Implications
+The transparency pro vided b y CT A enables sev eral clinical applications:
+1. Explainable Predictions : Ph ysicians can trace a patien t's path through
+the mo del, understanding whic h features dro v e the classication
+2. Uncertain t y Quan tication : High fragmen tation scores (F, see Sec-
+tion 3.6) indicate cases requiring additional clinical review
+17
+================================================================================
+
+--- Page 18 ---
+
+3. Bias Mitigation : Iden tied demographic biases can b e addressed
+through targeted data collection and mo del retraining
+4. Clinical V alidation : The mo del's emphasis on established risk fac-
+tors (c hest pain, BP , c holesterol) aligns with medical kno wledge, build-
+ing trust
+6.7 Visualization of P atien t Flo w
+Figure 1 visualizes patien t o w through the mo del's risk stratication la y ers
+using the standard Sank ey diagram sc heme (Section 4.4.1), rev ealing ho w
+initial categorizations ev olv e in to nal diagnoses.
+Figure 1: P atien t o w through the heart disease mo del's risk stratication
+la y ers. The v e arc het ypal path w a ys are color-co ded: green for Conserv ativ e
+Lo w-Risk (43.3%), red for Classic High-Risk (35.2%), orange for Progressiv e
+Risk (10.7%), purple for Male-Biased (6.7%), and y ello w for Misclassication
+(2.2%). Seman tic lab els (e.g., "High-Risk Older Males", "Lo w CV Stress")
+mak e the mo del's decision pro cess immediately in terpretable, sho wing ho w
+initial risk categorization o ws through cardio v ascular health assessmen t to
+nal diagnosis.
+18
+================================================================================
+
+--- Page 19 ---
+
+6.8 Conclusion
+This case study demonstrates CT A's abilit y to transform opaque neural net-
+w orks in to in terpretable clinical to ols. By rev ealing the mo del's risk strat-
+ication pro cess, exp osing demographic biases, and pro viding uncertain t y
+measures, CT A enables the resp onsible deplo ymen t of AI in healthcare.
+The iden tied biasesparticularly male o v erprediction and age-based con-
+serv atismhighligh t the imp ortance of in terpretabilit y in medical AI, where
+understanding not just what the mo del predicts but wh y and with what
+condence can b e literally life-sa ving.
+Ha ving demonstrated CT A's eectiv eness in a domain where in terpretabil-
+it y directly impacts h uman liv es, w e no w turn to a fundamen tally dieren t
+application: understanding ho w large language mo dels organize linguistic
+kno wledge. While the heart disease mo del rev eals clinically meaningful path-
+w a ys, our analysis of GPT-2 unco v ers an unexp ected principle of neural
+language pro cessingone that c hallenges our assumptions ab out ho w these
+mo dels understand language.
+7 GPT-2 Case Study: Grammatical Organization
+in Neural Language Mo dels
+W e analyze ho w GPT-2 organizes linguistic information b y trac king 1,228
+single-tok en w ords across 8 seman tic categories through the mo del's la y ers.
+Our analysis indicates that GPT-2 primarily organizes w ords b y grammatical
+function rather than seman tic meaning, with evidence of con v ergence from
+initial seman tic dieren tiation to grammatical organization in later la y ers.
+7.1 Exp erimen tal Design
+W e designed a systematic exp erimen t to study ho w GPT-2 organizes seman-
+tic kno wledge using 1,228 v alidated single-tok en w ords across 8 seman tically
+distinct categories with balanced grammatical represen tation:
+ Concrete Nouns : Ph ysical ob jects (e.g., table, moun tain, b o ok)
+ Abstract Nouns : Conceptual en tities (e.g., freedom, justice, emo-
+tion)
+ Ph ysical A djectiv es : Observ able prop erties (e.g., tall, smo oth,
+brigh t)
+ Emotiv e A djectiv es : Emotional descriptors (e.g., jo yful, melan-
+c holy, serene)
+ Manner A dv erbs : Ho w actions are p erformed (e.g., quic kly, care-
+fully, b oldly)
+19
+================================================================================
+
+--- Page 20 ---
+
+ Degree A dv erbs : In tensit y mo diers (e.g., extremely, barely, quite)
+ A ction V erbs : Dynamic pro cesses (e.g., run, create, destro y)
+ Stativ e V erbs : State descriptions (e.g., exist, b elong, resem ble)
+7.1.1 Dataset Construction
+W e curated 1,228 v alidated single-tok en w ords distributed across seman tic
+subt yp es through systematic linguistic analysis, ac hieving balanced gram-
+matical represen tation: 275 nouns (22.4
+7.1.2 No v el Metho dological Inno v ations
+Our analysis in tro duced sev eral k ey inno v ations:
+ Unied CT A with Gap Statistic : Optimal k determination using
+Gap statistic (k=4 for la y er 0, k=2 for la y ers 1-11)
+ Windo w ed Analysis : T emp oral segmen tation for phase transition
+detection (see Section 3.5)
+ Unique Cluster Lab eling : Ev ery cluster assigned unique ID (e.g.,
+L4_C1) to prev en t cross-la y er confusion
+ T ra jectory Visualization : Sank ey diagrams sho wing concept o w
+through net w ork
+ Comprehensiv e P ath Analysis : T rac king ALL paths (not just arc het y-
+pal), rev ealing 26  8  5 path con v ergence
+7.2 Key Findings
+7.2.1 Grammatical Organization P atterns
+Our analysis suggests that GPT-2 organizes w ords primarily b y grammatical
+function rather than seman tic meaning:
+ La y er 0 : 4 clusters sho wing seman tic dieren tiation (animals, ob jects,
+prop erties, abstracts)
+ La y ers 1-11 : Rapid consolidation to just 2 clusters (en tities vs. mo d-
+iers)
+ Con v ergence rate : 48.5% (95% CI: 45.7%51.2%) of all w ords con-
+v erge to the most common path w a y
+ P ath reduction : 26 unique paths  8 paths  5 paths across win-
+do ws
+20
+================================================================================
+
+--- Page 21 ---
+
+T able 4: Cluster Ev olution and P ath Con v ergence
+Windo w La y ers Unique P aths Dominan t P ath %
+Early L0-L3 26 16.4%
+Middle L4-L7 8 50.1%
+Late L8-L11 5 33.1%
+7.2.2 Statistical V alidation
+T o v erify that the con v ergence to grammatical organization is not due to
+c hance, w e p erformed a c hi-square test comparing the observ ed distribution
+of grammatical categories in the primary path w a ys against the exp ected dis-
+tribution if w ords w ere randomly assigned to paths. The test rev ealed highly
+signican t grammatical organization ( χ2= 95.90 ,d f= 3 ,p <0.0001 ), with
+a mo derate eect size (Cramér's V= 0.279 ). This conrms that GPT-2's
+tendency to route w ords based on grammatical function rather than seman-
+tic meaning represen ts a gen uine organizational principle, not a statistical
+artifact.
+7.2.3 Grammatical Pro cessing Pip elines
+W e iden tied m ultiple pro cessing path w a ys with the most frequen t pattern
+b eing:
+1. Primary En tit y P ath w a y (48.5% of w ords):
+ P ath: L4_C1  L5_C0  L6_C1  L7_C0
+ Con tains primarily nouns regardless of seman tic t yp e (animals,
+ob jects, abstracts)
+ Demonstrates grammatical organization as a signican t pro cess-
+ing strategy
+2. A dditional P ath w a ys (51.5% of w ords):
+ P ath: L4_C0  L5_C1  L6_C1  L7_C0
+ Complete merger of adjectiv es and adv erbs
+ No distinction b et w een big (adjectiv e) and quic kly (adv erb)
+7.2.4 Grammatical Organization as Primary Structure
+While grammatical function emerges as a primary organizing principle, se-
+man tic information is not erased but rather organized within grammatical
+path w a ys. T o use a high w a y metaphor: w ords tra v el on ma jor routes deter-
+mined b y their grammatical function, but main tain their seman tic iden tit y
+through p osition and micro-clustering within these routes:
+21
+================================================================================
+
+--- Page 22 ---
+
+ Cat and computer often tra v el the same ma jor route (b oth nouns),
+but ma y o ccup y dieren t micro-clusters within that path w a y
+ Concrete and abstract nouns con v erge to the same grammatical path-
+w a y while main taining subtle distinctions in activ ation patterns
+ Ph ysical and emotiv e adjectiv es share mo dier path w a ys but sho w dif-
+feren tiation at ner scales
+ The 48.5% con v ergence rate means o v er half of w ords tak e alternativ e
+paths, indicating ric h sub-organization
+7.3 T ra jectory Visualization
+Figures 2, 3, and 4 presen t tra jectory visualizations sho wing the o w of 1,228
+w ords through GPT-2's la y ers using the standard Sank ey diagram sc heme
+(Section 4.4.1). These visualizations capture the con v ergence from seman tic
+dieren tiation to grammatical organization across three temp oral windo ws.
+Figure 2: Concept MRI Early Windo w (L0-L3): Seman tic Dieren tiation.
+This visualization sho ws 1,228 w ords distributed across 4 initial clusters
+based on seman tic prop erties, with 26 unique paths emerging through these
+early la y ers.
+22
+================================================================================
+
+--- Page 23 ---
+
+Figure 3: Concept MRI Middle Windo w (L4-L7): Grammatical Con v er-
+gence. The phase transition b ecomes eviden t as seman tic clusters reorganize
+in to grammatical categories, with 50.1% of w ords con v erging to primary
+path w a ys. P ath coun t reduces from 26 to 8 as grammatical organization
+emerges.
+7.3.1 T ra jectory Stabilit y Analysis
+Our windo w ed analysis (Section 3.5) rev ealed a critical transformation p oin t:
+T able 5: Stabilit y and F ragmen tation A cross Windo ws
+Windo w Stabilit y F ragmen tation In terpretation
+Early Dynamic 0.796 High div ersit y , seman tic exploration
+Middle Dynamic 0.499 T ransition phase: seman tic to grammatical
+Late Dynamic 0.669 Mixed grammatical organization
+The dynamic pro cessing across all windo ws reects the div ersit y of the
+balanced dataset, with the middle windo w sho wing notable con v ergence (50.1
+Our complete fragmen tation analysis rev eals the phase transition quan-
+titativ ely:
+The metrics (dened in Section 3.6) rev eal a clear progression: F C drops
+dramatically , indicating increasingly coheren t path w a ys. CE decreases from
+near-maxim um to lo w v alues, sho wing w ords con v erging from distributed
+23
+================================================================================
+
+--- Page 24 ---
+
+Figure 4: Concept MRI Late Windo w (L8-L11): Syn tactic Sup erhigh w a ys.
+Final la y ers sho w consolidated grammatical organization with only 5 paths
+remaining. The visualization demonstrates that transformers dev elop gram-
+matical organization as their primary macro-structure while main taining se-
+man tic distinctions within these path w a ys, v alidated b y highly signican t
+grammatical clustering ( χ2= 95.90 ,p <0.0001 ).
+T able 6: F ragmen tation metrics across GPT-2 windo ws sho wing seman tic-
+to-grammatical transition
+Windo w F C CE SA ( ° )
+Early (L0-L3) 0.5-0.7 0.85-0.95 45-60
+Middle (L4-L7) 0.3-0.4 0.60 20-30
+Late (L8-L11) 0.1-0.2 0.30 5-10
+seman tic clusters to concen trated grammatical routes. Most strikingly , SA
+b et w een w ord categories collapse from w ell-separated seman tic categories
+to merged grammatical functions, pro viding quan titativ e evidence for the
+transition from seman tic to grammatical organization.
+24
+================================================================================
+
+--- Page 25 ---
+
+7.4 LLM-Generated Cluster In terpretations
+Our LLM analysis pro duced in terpretable lab els rev ealing the transformation
+from seman tic dieren tiation to grammatical organization across GPT-2's
+la y ers:
+7.4.1 La y er 0: Seman tic Dieren tiation (4 clusters)
+ L0_C0 : Animate Creatures  Con tains living en tities lik e animals
+(cat, dog, bird, sh, horse)
+ L0_C1 : T angible Ob jects  Ph ysical items and to ols (windo w, clo c k,
+computer, engine, table)
+ L0_C2 : Scalar Prop erties  Size and degree descriptors (small,
+large, tin y , h uge, massiv e)
+ L0_C3 : Abstract & Relational  Concepts and abstract terms (time,
+p o w er, st yle, freedom, justice)
+7.4.2 La y ers 1-3: Binary Consolidation
+ L1_C0 : Mo dier Space  All prop ert y-describing w ords con v erge
+ L1_C1 : En tit y Space  All ob ject and concept w ords con v erge
+ L2-L3 : Main tain the same binary organization with increasing consol-
+idation
+7.4.3 La y ers 4-7: Grammatical High w a ys
+ L4_C0 : A djectiv e Gatew a y  En try p oin t for all mo diers
+ L4_C1 : Noun Gatew a y  En try p oin t for all en tities
+ L5-L6 : En tit y/Prop ert y Pip elines  Stable grammatical pro cessing
+c hannels
+ L7_C0 : Mo dier Hub  Consolidated mo dier pro cessing
+ L7_C1 : En tit y Hub  Consolidated en tit y pro cessing
+7.4.4 La y ers 8-11: Final Pro cessing Stages
+ L8-L9 : Main tain en tit y/mo dier separation with stream pro cessing
+ L10-L11 : Final pro cessing stages
+ C0 : T erminal Mo diers  Final adjectiv e/adv erb pro cessing
+25
+================================================================================
+
+--- Page 26 ---
+
+ C1 : T erminal En tities  Final noun pro cessing
+This hierarc hical organization demonstrates GPT-2's systematic trans-
+formation from seman tic categories in early la y ers to grammatically-orien ted
+organization in later la y ers. While grammatical function b ecomes the pri-
+mary organizing principle, the existence of m ultiple paths (5 in late la y ers)
+and the fact that only 48.5% of w ords follo w the primary path w a y indicates
+that seman tic distinctions p ersist within the grammatical framew ork.
+7.5 T emp oral Nature of Reorganization
+Our analysis indicates that GPT-2's shift from seman tic to grammatical
+organization o ccurs se quential ly rather than sim ultaneously . The evidence
+for temp oral progression includes:
+ Clear phase b oundaries : Early la y ers (0-3) sho w high fragmen ta-
+tion (0.796) with seman tic div ersit y , while late la y ers (8-11) main tain
+mo derate fragmen tation (0.669) with mixed organization
+ Measurable transition p oin t : The middle la y ers (4-7) sho w the
+highest con v ergence (50.1
+ Progressiv e metric c hanges : SA v alues (see Section 3.6) collapse
+from 45-60 ° (seman tic separation) to 5-10 ° (grammatical con v ergence)
+in a clear progression, not a sudden jump
+ P ath consolidation pattern : The reduction from 26  8  5 unique
+paths sho ws gradual con v ergence rather than immediate reorganization
+This temp oral progression suggests that GPT-2 rst extracts and or-
+ganizes seman tic features b efore disco v ering that grammatical organization
+pro vides an ecien t macro-lev el represen tational sc heme. The phase transi-
+tion in middle la y ers represen ts a critical computational momen t where the
+net w ork b egins using grammatical function as the primary organizing prin-
+ciple while main taining seman tic distinctions at ner scales. This sequen tial
+pro cessing has imp ortan t implications: it suggests that seman tic understand-
+ing pro vides the foundation up on whic h grammatical organization is built,
+and that the net w ork dev elops a hierarc hical represen tation where grammat-
+ical path w a ys con tain seman tically-organized micro-structures.
+7.6 Implications for T ransformer Understanding
+These ndings pro vide new insigh ts in to transformer language pro cessing:
+1. Hierarc hical Organization : GPT-2 uses grammatical function as a
+primary organizing principle while main taining seman tic distinctions
+within this framew ork, suggesting a m ulti-scale represen tational strat-
+egy .
+26
+================================================================================
+
+--- Page 27 ---
+
+2. Ecien t Pro cessing Through Grammatical High w a ys : The 48.5%
+con v ergence rate com bined with highly signican t clustering ( χ2=
+95.90 ,p <0.0001 ) rev eals ho w GPT-2 creates ma jor grammatical path-
+w a ys while preserving exibilit y through alternativ e routes.
+3. Multi-Scale Seman tic Information : The co existence of grammat-
+ical macro-structure with seman tic micro-organization suggests that
+meaning is enco ded at m ultiple scalesb oth within cluster tra jecto-
+ries and through the div ersit y of paths tak en.
+4. Phase T ransition in Pro cessing : The middle windo w sho ws p eak
+con v ergence (50.1%), iden tifying where grammatical organization emerges
+most strongly .
+7.7 No v el Con tributions to the Field
+This w ork in tro duces sev eral inno v ations:
+ Concept MRI Visualization : First comprehensiv e visualization
+of ho w concepts o w through transformer la y ers
+ Windo w ed Analysis : T emp oral segmen tation rev ealing phase tran-
+sitions in neural pro cessing (Section 3.5)
+ Grammar-Seman tics Disco v ery : First empirical evidence that trans-
+formers use grammatical function as a primary organizing principle
+while main taining seman tic distinctions at ner scales
+ Complete P ath T rac king : Analysis of ALL paths (not just the most
+common ones) rev ealing the full complexit y of neural organization
+ In teractiv e Dash b oard : A ccessible visualization to ols making com-
+plex neural dynamics in terpretable
+7.8 Case Study Conclusions
+Our analysis of GPT-2's seman tic organization rev eals ho w this sp ecic
+transformer mo del balances computational eciency with linguistic expres-
+siv eness. The disco v ery that GPT-2 creates grammatical path w a ys as pri-
+mary organizational structures while main taining seman tic distinctions within
+them demonstrates one solution to pro cessing div erse linguistic con ten t. The
+k ey ndings from this case study include:
+1. T emp oral progression : GPT-2 transforms from seman tic dieren ti-
+ation (4 clusters in la y er 0) to grammatical organization (2 clusters in
+la y ers 1-11) through a measurable phase transition in middle la y ers.
+27
+================================================================================
+
+--- Page 28 ---
+
+2. Statistical v alidation : The grammatical organization is highly sig-
+nican t ( χ2= 95.90 ,p < 0.0001 ) with 48.5% of w ords follo wing the
+primary en tit y path w a y .
+3. Multi-scale structure : While grammatical function dominates macro-
+lev el organization, seman tic information p ersists in micro-clusters and
+alternativ e path w a ys (51.5% of w ords).
+4. Metho dological con tributions : The windo w ed analysis approac h
+and comprehensiv e path trac king rev ealed organizational dynamics
+that single-la y er analyses w ould miss.
+These ndings are sp ecic to GPT-2's arc hitecture and training. Dif-
+feren t transformer mo dels ma y dev elop alternativ e organizational strategies
+based on their design c hoices (enco der-only vs. deco der-only), scale, and
+training ob jectiv es. The CT A metho dology demonstrated here pro vides a
+framew ork for in v estigating these arc hitectural v ariations systematically .
+8 Repro ducibilit y and Op en Science
+ Co de and congs released under MIT license at GitHub rep ository
+ Seed lists and h yp erparameters logged in JSON format
+ Python requiremen ts.txt les ensure en vironmen t repro ducibilit y
+ Negativ e results and failed v arian ts do cumen ted in app endices
+ LLM prompts and resp onses cac hed for repro ducibilit y
+LLM resp onses are cac hed for deterministic builds.
+8.1 LLM Prompts for Cluster In terpretation
+T o ensure repro ducibilit y of our LLM-p o w ered analysis, w e do cumen t the
+k ey prompts used for cluster in terpretation and path analysis:
+Cluster Lab eling Prompt:
+You are analyzing clusters from a neural network.
+For cluster L{layer}_C{cluster} containing these words:
+{sample_words}
+Category distribution: {category_counts}
+Cluster size: {size} words
+Provide a concise, interpretable label that captures
+the semantic or grammatical essence of this cluster.
+28
+================================================================================
+
+--- Page 29 ---
+
+P ath Narrativ e Prompt:
+Analyze this concept trajectory through GPT-2:
+Path: {path}
+Window: {window_name}
+Grammatical distribution: {grammatical_counts}
+Explain how concepts evolve through these clusters,
+focusing on the transformation from semantic to
+grammatical organization.
+Bias Analysis Prompt:
+Analyze potential biases in these neural pathways:
+Path: {path}
+Demographics: {demographic_stats}
+Outcome distribution: {outcomes}
+Identify any concerning patterns or biases in how
+different demographic groups are processed.
+F ull co de implemen tation and example scripts are a v ailable on our pro ject
+rep ository .
+9 Conclusion
+Concept T ra jectory Analysis (CT A) represen ts a signican t adv ance in neu-
+ral net w ork in terpretabilit y b y pro viding a principled framew ork for under-
+standing ho w information o ws and transforms through net w ork la y ers. By
+com bining rigorous mathematical foundations with accessible visualization
+to ols, CT A bridges the gap b et w een tec hnical analysis and practical under-
+standing of neural net w ork b eha vior.
+The metho dology's core con tribution lies in its abilit y to trac k concept
+ev olution dynamically . Rather than analyzing individual la y ers in isolation,
+CT A rev eals ho w represen tations transform across the en tire net w ork, un-
+co v ering organizational principles that static analyses miss. The in tegra-
+tion of cross-la y er metricscen troid similarit y ( ρc), mem b ership o v erlap ( J ),
+and tra jectory fragmen tation (F)pro vides quan titativ e rigor, while LLM-
+p o w ered narrativ e generation ensures h uman in terpretabilit y .
+Our case studies demonstrate CT A's v ersatilit y across domains. In lan-
+guage mo dels, w e disco v ered unexp ected organizational principles that c hal-
+lenge assumptions ab out seman tic pro cessing. In medical AI, w e sho w ed ho w
+CT A can enhance trust and safet y b y rev ealing decision path w a ys and iden-
+tifying p oten tial biases. These applications v alidate CT A's practical v alue
+b ey ond theoretical in terest.
+29
+================================================================================
+
+--- Page 30 ---
+
+The op en-source Concept MRI to ol demo cratizes access to these in ter-
+pretabilit y metho ds. By pro viding in teractiv e visualizations and automated
+analysis pip elines, w e enable researc hers and practitioners to apply CT A to
+their o wn mo dels and domains. The to ol's mo dular arc hitecture supp orts
+extension to new net w ork t yp es and analysis tec hniques.
+As AI systems b ecome more prev alen t in critical applications, the need
+for in terpretabilit y gro ws urgen t. CT A oers a path forw ardnot just for
+understanding curren t mo dels, but for designing more in terpretable arc hi-
+tectures from the ground up. By rev ealing ho w neural net w orks organize
+information, w e mo v e closer to AI systems that are b oth p o w erful and trust-
+w orth y .
+9.1 Limitations and F ailure Mo des
+While CT A pro vides v aluable insigh ts in to neural net w ork organization, sev-
+eral limitations and failure mo des w arran t discussion:
+9.1.1 T ec hnical Limitations
+ Clustering instabilit y : When activ ation spaces lac k clear structure,
+clustering results ma y v ary signican tly across runs. Lo w silhouette
+scores or high v ariance in cluster assignmen ts indicate unreliable tra-
+jectories.
+ Scalabilit y c hallenges : V ery deep net w orks (100+ la y ers) p ose com-
+putational and in terpretabilit y c hallenges. T rac king tra jectories through
+man y la y ers can obscure rather than clarify patterns.
+ High-dimensional curse : In extremely high-dimensional activ ation
+spaces, distance metrics b ecome less meaningful, p oten tially leading to
+arbitrary cluster assignmen ts.
+9.1.2 In terpretation Risks
+ Spurious patterns : Random uctuations migh t app ear as meaning-
+ful paths, esp ecially with small sample sizes. Statistical v alidation (as
+w e demonstrated with χ2tests) is essen tial.
+ LLM hallucination : Generated narrativ es ma y sound plausible while
+misrepresen ting actual patterns. Cross-v alidation with quan titativ e
+metrics is crucial.
+ Correlation vs. causation : CT A rev eals organizational patterns
+but cannot establish causal relationships. In terv en tional studies are
+needed to v erify causal claims.
+30
+================================================================================
+
+--- Page 31 ---
+
+9.1.3 Application Boundaries
+ Arc hitecture dep endence : CT A w orks b est with feedforw ard ar-
+c hitectures. Recurren t or highly branc hed arc hitectures ma y require
+adaptation.
+ Domain transfer : P atterns disco v ered in one domain (e.g., language)
+ma y not transfer to others (e.g., vision) without careful v alidation.
+ T raining dynamics : CT A analyzes trained mo dels. Understanding
+ho w these patterns emerge during training requires additional analysis.
+Despite these limitations, CT A's mathematical grounding and statistical
+v alidation demonstrate its p oten tial as an in terpretabilit y to ol. The patterns
+observ ed in GPT-2 and medical AI applications w arran t further in v estiga-
+tion. Resp onsible use in v olv es ac kno wledging these limitations, v alidating
+ndings through m ultiple approac hes, and main taining appropriate sk epti-
+cism ab out generated narrativ es.
+10 F uture Directions for Concept T ra jectory Anal-
+ysis
+Our disco v ery that GPT-2 organizes b y grammatical function rather than
+seman tic meaning op ens rev olutionary p ossibilities for in terpretable AI. W e
+outline k ey areas for adv ancing b oth the theoretical foundations and practical
+applications of CT A.
+10.1 Metho dological F oundations
+10.1.1 A dv anced Metrics and Analysis
+ In ter-Cluster P ath Densit y (ICPD) : Dev elop metrics that analyze
+higher-order patterns in concept o w b y examining m ulti-step transi-
+tions. ICPD could iden tify common patterns lik e return paths (where
+concepts temp orarily div erge then recon v erge) and similar-destination
+paths (reac hing conceptually similar endp oin ts through dieren t routes).
+ P ath In terestingness Score : Create comp osite metrics that com-
+bine transition rarit y , similarit y con v ergence, and coherence to auto-
+matically iden tify the most notew orth y paths for analysis. This w ould
+prioritize paths that rev eal unexp ected mo del b eha vior or critical de-
+cision p oin ts.
+ F eature A ttribution for T ransitions : In tegrate metho ds lik e In te-
+grated Gradien ts or SHAP to understand whic h input features driv e
+31
+================================================================================
+
+--- Page 32 ---
+
+cluster transitions. F or text, this could rev eal whic h tok ens cause se-
+man tic shifts; for medical data, whic h symptoms trigger risk reassess-
+men t.
+10.1.2 Enhanced Clustering Approac hes
+ Explainable Threshold Similarit y (ETS) : A dv ance the implemen-
+tation of ETS clustering [K o v alerc h uk and Hub er, 2024] to pro vide
+dimension-wise explanations for cluster mem b ership. ETS declares ac-
+tiv ations similar if they dier b y less than threshold τj in eac h dimen-
+sionj , enabling transparen t statemen ts ab out cluster b oundaries.
+ Hierarc hical Clustering : Dev elop m ulti-scale cluster structures where
+coarse clusters use lo ose thresholds and ne-grained sub clusters use
+tigh ter b ounds, enabling analysis at dieren t lev els of gran ularit y .
+ A daptiv e Thresholds : Create metho ds to automatically determine
+optimal clustering thresholds p er dimension based on activ ation distri-
+butions and do wnstream task requiremen ts.
+10.1.3 Cluster Repro ducibilit y and V alidation
+ Cross-Arc hitecture Stabilit y : Extend repro ducibilit y analysis b e-
+y ond training seeds to dieren t mo del arc hitectures, assessing whether
+disco v ered path w a ys represen t fundamen tal computational patterns.
+ Statistical Signicance T esting : Dev elop rigorous statistical tests
+for path w a y signicance, distinguishing gen uine organizational pat-
+terns from noise.
+ Causal V alidation : Use in terv en tions and ablations to v erify that
+disco v ered path w a ys causally inuence mo del outputs rather than b e-
+ing mere correlations.
+10.1.4 In teractiv e Visualization T o ols
+ Cluster Cards : Dev elop in teractiv e visualizations that summarize
+eac h cluster's prop erties, including represen tativ e examples, outliers,
+transition probabilities, and LLM-generated descriptions.
+ Real-Time P ath T rac king : Create ligh t w eigh t to ols for monitoring
+activ ation paths during inference, enabling debugging and analysis of
+sp ecic mo del b eha viors.
+ Comparativ e Visualization : Build to ols to compare path w a ys across
+dieren t mo dels, datasets, or time p erio ds, rev ealing organizational dif-
+ferences and drift.
+32
+================================================================================
+
+--- Page 33 ---
+
+10.1.5 Theoretical F oundations
+ Mathematical Theory of Neural Organization : F ormalize wh y
+transformers con v erge to grammatical rather than seman tic organiza-
+tion, p oten tially rev ealing fundamen tal principles of ecien t informa-
+tion pro cessing.
+ Optimal P ath w a y Design : Dev elop theory for designing optimal
+path w a y structures for sp ecic tasks, mo ving from emergen t to engi-
+neered organization.
+ Cross-Domain T ransfer : Understand ho w path w a y structures en-
+able or inhibit transfer learning, using CT A to optimize mo del adap-
+tation.
+10.2 Immediate T ec hnical Impro v emen ts
+Building on the curren t implemen tation, sev eral tec hnical enhancemen ts
+w ould strengthen CT A's rigor and applicabilit y:
+10.2.1 Micro cluster Lens Implemen tation
+ Hierarc hical Sub-clustering : Implemen t ne-grained analysis within
+ma jor path w a ys to rev eal seman tic micro-organization. F or instance,
+within the noun path w a y , iden tify sub-clusters for animate vs. inani-
+mate en tities, concrete vs. abstract concepts.
+ A daptiv e Resolution : Dev elop algorithms that automatically deter-
+mine when to zo om in to micro-clusters based on in tra-cluster v ariance
+and task requiremen ts.
+ Cross-La y er Micro-trac king : F ollo w micro-cluster ev olution to un-
+derstand ho w ne-grained distinctions emerge, p ersist, or dissolv e through
+net w ork la y ers.
+10.2.2 Robustness and V alidation
+ Cross-Seed Stabilit y : Run all exp erimen ts with m ultiple random
+seeds (N ≥ 5) to quan tify v ariation in path w a y formation, cluster b ound-
+aries, and con v ergence rates. Rep ort condence in terv als for all k ey
+metrics.
+ Clustering Qualit y Metrics : A dd silhouette scores, Da vies-Bouldin
+indices, and Calinski-Harabasz scores to v alidate cluster coherence.
+Compare these across dieren t k v alues to strengthen Gap statistic
+ndings.
+33
+================================================================================
+
+--- Page 34 ---
+
+ In ter-LLM V alidation : Use m ultiple LLMs (GPT-4, Claude, Gem-
+ini) for cluster in terpretation and rep ort agreemen t scores. Implemen t
+ma jorit y v oting for nal lab els to reduce single-mo del bias.
+ Ablation Studies : Systematically scram ble POS tags, sh ue tok en
+p ositions, or randomize em b eddings to v erify that observ ed patterns
+disapp ear under n ull conditions, conrming they're not artifacts.
+10.2.3 Extended Analysis Capabilities
+ Multi-T ok en Con text : Extend b ey ond single-tok en analysis to study
+ho w con text aects tra jectories. Compare paths for "bank" in nancial
+vs. riv er con texts, rev ealing con text-dep enden t routing.
+ T raining-Time T rac king : Implemen t c hec kp oin ting to sa v e activ a-
+tions at regular training in terv als (ev ery 1000 steps), enabling analysis
+of when grammatical organization emerges and ho w path w a ys form.
+ Quan titativ e Bias Metrics : F or medical AI, calculate demographic
+parit y dierences, equalized o dds ratios, and disparate impact scores.
+Create path w a y-based bias detection that iden ties whic h neural routes
+exhibit unfair b eha vior.
+10.3 A dv anced Applications for Language Mo dels
+10.3.1 Scaling to Complete Neural Cartograph y
+ F ull V o cabulary Mapping : Extend analysis from 1,228 w ords to
+en tire v o cabularies, rev ealing the complete organizational structure of
+neural language pro cessing. W e h yp othesize disco v ering 50-100 ma jor
+path w a ys handling dieren t linguistic functions.
+ Comp ositional Analysis : Study ho w mo dels pro cess bigrams, tri-
+grams, and phrases to understand comp ositional meaning construction.
+In v estigate whether m ulti-w ord expressions follo w predictable com bi-
+nations of single-w ord path w a ys.
+ Cross-Mo del Univ ersal P atterns : Map path w a ys across dieren t
+mo del families (GPT, Claude, Gemini, LLaMA) to iden tify univ ersal
+organizational principles v ersus arc hitecture-sp ecic patterns.
+10.3.2 In terpretable P ath w a ys in Pro duction
+ Real-Time P ath w a y Logging : Implemen t ecien t path w a y trac k-
+ing in pro duction mo dels with minimal computational o v erhead (<0.1%),
+enabling mo dels to access their o wn reasoning paths during generation.
+34
+================================================================================
+
+--- Page 35 ---
+
+ Self-Debugging AI : Enable mo dels to detect and correct reasoning
+errors b y examining path w a y logs. F or instance, if a nancial term
+routes through an animal-related path w a y , the mo del could recognize
+and correct the misrouting.
+ P ath w a y-A w are Generation : Allo w mo dels to explicitly c ho ose
+path w a ys based on task requiremen tsrouting through logical rea-
+soning path w a ys for mathematics or creativ e syn thesis paths for story-
+telling.
+10.3.3 Meta-Analysis with A dv anced Mo dels
+Building on the LLM analysis framew ork established in Section 5, future
+enhancemen ts could include:
+ Scaled AI Understanding : Extend narrativ e generation to analyze
+millions of paths sim ultaneously , disco v ering meta-patterns and higher-
+order organizational principles that emerge at scale.
+ Automated Hyp othesis T esting : Enhance LLM capabilities to not
+only generate h yp otheses ab out path w a y formation but also design and
+execute exp erimen ts to v alidate these h yp otheses automatically .
+ T raining Dynamics Analysis : Dev elop sp ecialized prompting strate-
+gies for LLMs to analyze c hec kp oin t data and iden tify phase transitions
+in the emergence of grammatical organization.
+10.4 Broader Impact and Applications
+ In terpretabilit y-First Arc hitecture : Design new mo dels with built-
+in path w a y trac king and cluster organization, making in terpretabilit y
+a core feature rather than p ost-ho c analysis.
+ Bey ond Language Mo dels : Extend CT A to vision transformers,
+m ultimo dal mo dels, and reinforcemen t learning agen ts to understand
+their organizational principles.
+ Real-Time Mo del Monitoring : Deplo y CT A in pro duction to de-
+tect concept drift, iden tify emerging biases, and ensure mo dels main-
+tain exp ected organizational patterns.
+ P ersonalized Explanations : Generate user-sp ecic explanations b y
+translating path w a y information in to conceptual framew orks appropri-
+ate for dieren t exp ertise lev els.
+35
+================================================================================
+
+--- Page 36 ---
+
+10.5 Practical Use Cases
+ Prompt Strategy Ev aluation : Compare path densit y and fragmen-
+tation scores across prompt framings (e.g., So cratic vs. assertiv e) to
+rev eal shifts in in ternal pro cessing consistency .
+ La y erwise Am biguit y Detection : Iden tify prompt-tok en pairs with
+div ergen t paths across la y ers, highligh ting instabilit y or m ultiple plau-
+sible in terpretations.
+ Subgroup Drift Analysis : T rac k mem b ership o v erlap for datap oin t
+groups (e.g., p ositiv e vs. negativ e sen timen t) across la y ers to iden tify
+con v ergence patterns.
+ Enhanced Beha vioral Explanation : Extend the LLM analysis frame-
+w ork (Section 5) with real-time narrativ e generation and in teractiv e
+exploration of arc het ypal paths.
+ F ailure Mo de Disco v ery : Flag high-fragmen tation paths as p oten-
+tial errors, misclassications, or hallucinations.
+ Bias Detection : Analyze paths for inputs with demographic mark ers
+to detect div ergen t b eha vior patterns that ma y indicate unfair treat-
+men t.
+A c kno wledgmen ts
+This w ork w as created as part of an exploration of in terpretabilit y metho ds
+for neural net w orks. W e appreciate the op en-source comm unit y for dev elop-
+ing the libraries and to ols used in this researc h.
+References
+Da vid Bau, Bolei Zhou, A dit y a Khosla, Aude Oliv a, and An tonio T orralba.
+Net w ork dissection: Quan tifying in terpretabilit y of deep visual represen-
+tations. Pr o c e e dings of the IEEE Confer enc e on Computer Vision and
+Pattern R e c o gnition , pages 65416549, 2017.
+Sanjo y Dasgupta, Na v e F rost, and Mic hal Moshk o vitz. Explainable k-means
+and k-medians clustering. International Confer enc e on Machine L e arning ,
+pages 23492358, 2020.
+Nelson Elhage, T ristan Hume, Catherine Olsson, Neel Nanda, T om
+Henighan, Scott Johnston, Sheer ElSho wk, Nic holas Joseph, No v a Das-
+Sarma, Ben Mann, Dann y Hernandez, Amanda Ask ell, Kamal Ndousse,
+Andy Jones, Da wn Drain, Anna Chen, Y un tao Bai, Deep Ganguli, Liane
+36
+================================================================================
+
+--- Page 37 ---
+
+Lo vitt, Zac Hateld-Do dds, Jac kson Kernion, T om Conerly , Shauna
+Kra v ec, Stanisla v F ort, Saura v Kada v ath, Josh Jacobson, Eli T ran-
+Johnson, Jared Kaplan, Jac k Clark, T om Bro wn, Sam McCandlish, Dario
+Amo dei, and Christopher Olah. Softmax linear units. T r ansformer Cir-
+cuits Thr e ad , 2022a. URL https://transformer- circuits.pub/2022/
+solu/index.html .
+Nelson Elhage, T ristan Hume, Catherine Olsson, Nic holas Sc hiefer, T om
+Henighan, Shauna Kra v ec, Zac Hateld-Do dds, Rob ert Lasen b y , Da wn
+Drain, Carol Chen, Roger Grosse, Sam McCandlish, Jared Kaplan,
+Dario Amo dei, Martin W atten b erg, and Christopher Olah. T o y mo d-
+els of sup erp osition. T r ansformer Cir cuits Thr e ad , 2022b. URL https:
+//transformer- circuits.pub/2022/toy_model/index.html .
+Been Kim, Martin W atten b erg, Justin Gilmer, Carrie Cai, James W exler,
+F ernanda Viegas, and Rory Sa yres. In terpretabilit y b ey ond feature attri-
+bution: Quan titativ e testing with concept activ ation v ectors (tca v). In-
+ternational Confer enc e on Machine L e arning , pages 26682677, 2018.
+Simon K orn blith, Mohammad Norouzi, Honglak Lee, and Georey Hin ton.
+Similarit y of neural net w ork represen tations revisited. International Con-
+fer enc e on Machine L e arning , pages 35193529, 2019.
+Boris K o v alerc h uk and James Hub er. Explainable threshold similarit y for
+transparen t cluster denitions. IEEE T r ansactions on A rticial Intel li-
+genc e , 2024. to app ear.
+Scott M Lundb erg and Su-In Lee. A unied approac h to in terpreting mo del
+predictions. A dvanc es in Neur al Information Pr o c essing Systems , pages
+47654774, 2017.
+Maithra Ragh u, Justin Gilmer, Jason Y osinski, and Jasc ha Sohl-Dic kstein.
+Sv cca: Singular v ector canonical correlation analysis for deep learning
+dynamics and in terpretabilit y . A dvanc es in Neur al Information Pr o c essing
+Systems , pages 60766085, 2017.
+Marco T ulio Rib eiro, Sameer Singh, and Carlos Guestrin. "wh y should i trust
+y ou?": Explaining the predictions of an y classier. Pr o c e e dings of the
+22nd A CM SIGKDD International Confer enc e on Know le dge Disc overy
+and Data Mining , pages 11351144, 2016.
+Mukund Sundarara jan, Ankur T aly , and Qiqi Y an. Axiomatic attribution
+for deep net w orks. International Confer enc e on Machine L e arning , pages
+33193328, 2017.
+37
+================================================================================

@@ -1,0 +1,178 @@
+IMPROVED SEMANTIC PURITY ANALYSIS (K=10)
+==================================================
+
+LAYER 0:
+------------------------------
+  C0: Word Endings (32.0% calculated)
+  C1: Object Pronouns (16.7% calculated)
+  C2: Word Endings (43.3% calculated)
+  C3: Sentence Starters (64.0% calculated)
+  C4: Word Endings (43.3% calculated)
+  C5: Word Endings (40.0% calculated)
+  C6: Prepositional System (96.7% calculated)
+  C7: Sentence Starters (50.0% calculated)
+  C8: Sentence Starters (100.0% calculated)
+  C9: Modal Auxiliaries (73.3% calculated)
+  Layer average: 55.9%
+
+LAYER 1:
+------------------------------
+  C0: Short Words (100.0% calculated)
+  C1: Punctuation Marks (56.7% calculated)
+  C2: Prepositional System (100.0% calculated)
+  C3: Sentence Starters (56.0% calculated)
+  C4: Sentence Starters (63.3% calculated)
+  C5: Subject Pronouns (52.0% calculated)
+  C6: Modal Auxiliaries (56.7% calculated)
+  C7: Sentence Starters (100.0% calculated)
+  C8: Sentence Starters (46.7% calculated)
+  C9: Word Endings (36.7% calculated)
+  Layer average: 66.8%
+
+LAYER 2:
+------------------------------
+  C0: Function Words (76.7% calculated)
+  C1: Modal Auxiliaries (80.0% calculated)
+  C2: Word Endings (52.0% calculated)
+  C3: Object Pronouns (40.0% calculated)
+  C4: Sentence Starters (63.3% calculated)
+  C5: Sentence Starters (60.0% calculated)
+  C6: Sentence Starters (86.7% calculated)
+  C7: Sentence Starters (46.7% calculated)
+  C8: Word Endings (44.0% calculated)
+  C9: Sentence Starters (53.3% calculated)
+  Layer average: 60.3%
+
+LAYER 3:
+------------------------------
+  C0: Word Endings (44.0% calculated)
+  C1: Sentence Starters (73.3% calculated)
+  C2: Modal Auxiliaries (80.0% calculated)
+  C3: Word Endings (56.7% calculated)
+  C4: Word Endings (40.0% calculated)
+  C5: Sentence Starters (96.7% calculated)
+  C6: Object Pronouns (50.0% calculated)
+  C7: Sentence Starters (73.3% calculated)
+  C8: Modal Auxiliaries (70.0% calculated)
+  C9: Sentence Starters (43.3% calculated)
+  Layer average: 62.7%
+
+LAYER 4:
+------------------------------
+  C0: Prepositional System (90.0% calculated)
+  C1: Sentence Starters (80.0% calculated)
+  C2: Conjunctions (73.3% calculated)
+  C3: Word Endings (52.0% calculated)
+  C4: Word Endings (36.0% calculated)
+  C5: Sentence Starters (93.3% calculated)
+  C6: Modal Auxiliaries (66.7% calculated)
+  C7: Word Endings (40.0% calculated)
+  C8: Modal Auxiliaries (76.7% calculated)
+  C9: Sentence Starters (73.3% calculated)
+  Layer average: 68.1%
+
+LAYER 5:
+------------------------------
+  C0: Sentence Starters (73.3% calculated)
+  C1: Word Endings (36.0% calculated)
+  C2: Word Endings (36.0% calculated)
+  C3: Conjunctions (73.3% calculated)
+  C4: Prepositional System (93.3% calculated)
+  C5: Word Endings (52.0% calculated)
+  C6: Modal Auxiliaries (63.3% calculated)
+  C7: Sentence Starters (96.7% calculated)
+  C8: Modal Auxiliaries (80.0% calculated)
+  C9: Sentence Starters (66.7% calculated)
+  Layer average: 67.1%
+
+LAYER 6:
+------------------------------
+  C0: Sentence Starters (70.0% calculated)
+  C1: Sentence Starters (93.3% calculated)
+  C2: Word Endings (52.0% calculated)
+  C3: Word Endings (40.0% calculated)
+  C4: Modal Auxiliaries (63.3% calculated)
+  C5: Word Endings (36.0% calculated)
+  C6: Modal Auxiliaries (83.3% calculated)
+  C7: Prepositional System (93.3% calculated)
+  C8: Sentence Starters (73.3% calculated)
+  C9: Conjunctions (73.3% calculated)
+  Layer average: 67.8%
+
+LAYER 7:
+------------------------------
+  C0: Word Endings (53.3% calculated)
+  C1: Be/Have Auxiliaries (96.7% calculated)
+  C2: Sentence Starters (66.7% calculated)
+  C3: Word Endings (40.0% calculated)
+  C4: Word Endings (36.0% calculated)
+  C5: Conjunctions (73.3% calculated)
+  C6: Sentence Starters (76.7% calculated)
+  C7: Sentence Starters (70.0% calculated)
+  C8: Word Endings (56.0% calculated)
+  C9: Prepositional System (80.0% calculated)
+  Layer average: 64.9%
+
+LAYER 8:
+------------------------------
+  C0: Word Endings (52.0% calculated)
+  C1: Sentence Starters (73.3% calculated)
+  C2: Sentence Starters (76.7% calculated)
+  C3: Conjunctions (76.7% calculated)
+  C4: Word Endings (36.0% calculated)
+  C5: Be/Have Auxiliaries (93.3% calculated)
+  C6: Sentence Starters (66.7% calculated)
+  C7: Modal Auxiliaries (66.7% calculated)
+  C8: Prepositional System (86.7% calculated)
+  C9: Word Endings (40.0% calculated)
+  Layer average: 66.8%
+
+LAYER 9:
+------------------------------
+  C0: Word Endings (40.0% calculated)
+  C1: Sentence Starters (73.3% calculated)
+  C2: Word Endings (36.0% calculated)
+  C3: Prepositional System (86.7% calculated)
+  C4: Be/Have Auxiliaries (93.3% calculated)
+  C5: Modal Auxiliaries (63.3% calculated)
+  C6: Conjunctions (76.7% calculated)
+  C7: Word Endings (52.0% calculated)
+  C8: Sentence Starters (66.7% calculated)
+  C9: Sentence Starters (76.7% calculated)
+  Layer average: 66.5%
+
+LAYER 10:
+------------------------------
+  C0: Modal Auxiliaries (63.3% calculated)
+  C1: Word Endings (52.0% calculated)
+  C2: Word Endings (36.0% calculated)
+  C3: Sentence Starters (66.7% calculated)
+  C4: Be/Have Auxiliaries (93.3% calculated)
+  C5: Prepositional System (86.7% calculated)
+  C6: Word Endings (40.0% calculated)
+  C7: Conjunctions (80.0% calculated)
+  C8: Sentence Starters (73.3% calculated)
+  C9: Sentence Starters (76.7% calculated)
+  Layer average: 66.8%
+
+LAYER 11:
+------------------------------
+  C0: Word Endings (43.3% calculated)
+  C1: Sentence Starters (73.3% calculated)
+  C2: Word Endings (36.0% calculated)
+  C3: Function Words (63.3% calculated)
+  C4: Sentence Starters (56.7% calculated)
+  C5: Subject Pronouns (93.3% calculated)
+  C6: Word Endings (28.0% calculated)
+  C7: Word Endings (36.0% calculated)
+  C8: Sentence Starters (100.0% calculated)
+  C9: Modal Auxiliaries (90.0% calculated)
+  Layer average: 62.0%
+
+OVERALL STATISTICS:
+------------------------------
+Average purity: 64.6%
+Calculated purities: 120
+Estimated purities: 0
+Highest purity: 100.0%
+Lowest purity: 16.7%

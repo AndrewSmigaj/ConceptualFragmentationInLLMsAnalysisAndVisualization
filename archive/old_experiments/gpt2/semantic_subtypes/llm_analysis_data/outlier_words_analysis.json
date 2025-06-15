@@ -1,0 +1,276 @@
+{
+  "description": "Analysis of outlier words and singleton clusters",
+  "singleton_clusters": {
+    "kmeans": {},
+    "ets": {
+      "layer_0_cluster_1": {
+        "size": 1,
+        "words": [
+          "wine"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_0_cluster_2": {
+        "size": 1,
+        "words": [
+          "zen"
+        ],
+        "subtypes": [
+          "abstract_nouns"
+        ]
+      },
+      "layer_0_cluster_3": {
+        "size": 1,
+        "words": [
+          "unity"
+        ],
+        "subtypes": [
+          "abstract_nouns"
+        ]
+      },
+      "layer_1_cluster_1": {
+        "size": 1,
+        "words": [
+          "deal"
+        ],
+        "subtypes": [
+          "abstract_nouns"
+        ]
+      },
+      "layer_1_cluster_2": {
+        "size": 1,
+        "words": [
+          "improve"
+        ],
+        "subtypes": [
+          "action_verbs"
+        ]
+      },
+      "layer_2_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_2_cluster_2": {
+        "size": 2,
+        "words": [
+          "too",
+          "too"
+        ],
+        "subtypes": [
+          "degree_adverbs",
+          "degree_adverbs"
+        ]
+      },
+      "layer_2_cluster_3": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_3_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_3_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_4_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_4_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_5_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_5_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_6_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_6_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_7_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_7_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_8_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_8_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_9_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_9_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_10_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_10_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_11_cluster_1": {
+        "size": 1,
+        "words": [
+          "sun"
+        ],
+        "subtypes": [
+          "concrete_nouns"
+        ]
+      },
+      "layer_11_cluster_2": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_12_cluster_1": {
+        "size": 1,
+        "words": [
+          "depend"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      },
+      "layer_12_cluster_2": {
+        "size": 1,
+        "words": [
+          "express"
+        ],
+        "subtypes": [
+          "stative_verbs"
+        ]
+      }
+    }
+  },
+  "consistent_outliers": [
+    {
+      "word": "depend",
+      "subtype": "stative_verbs",
+      "outlier_frequency": 11,
+      "analysis_needed": "Why is 'depend' consistently an outlier?"
+    },
+    {
+      "word": "sun",
+      "subtype": "concrete_nouns",
+      "outlier_frequency": 10,
+      "analysis_needed": "Why is 'sun' consistently an outlier?"
+    }
+  ]
+}

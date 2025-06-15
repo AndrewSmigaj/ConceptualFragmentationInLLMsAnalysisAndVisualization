@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-2 Concept MRI: Semantic Organization Analysis</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 2rem;
+        }
+        
+        .nav-tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .nav-tab:hover {
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+        
+        .nav-tab.active {
+            color: #2c3e50;
+            border-bottom-color: #3498db;
+        }
+        
+        /* Main content */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Overview section */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .metric-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #3498db;
+            margin: 0.5rem 0;
+        }
+        
+        .metric-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Sankey section */
+        .sankey-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .sankey-container h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .sankey-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        
+        /* Path analysis iframe */
+        .path-frame-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: 80vh;
+        }
+        
+        .path-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        /* Insights section */
+        .insight-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .insight-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .insight-section h4 {
+            color: #34495e;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .finding-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .finding-box strong {
+            color: #2c3e50;
+        }
+        
+        /* Search section */
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .search-results {
+            margin-top: 2rem;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        /* Grammar badges */
+        .grammar-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+        
+        .grammar-noun { background: #e3f2fd; color: #1565c0; }
+        .grammar-verb { background: #f3e5f5; color: #6a1b9a; }
+        .grammar-adjective { background: #fff3e0; color: #e65100; }
+        .grammar-adverb { background: #e8f5e9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>GPT-2 Concept MRI</h1>
+            <p class="subtitle">Visualizing Semantic Organization Through Layer-wise Clustering</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+        <div class="nav-container">
+            <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
+            <div class="nav-tab" onclick="showTab('sankey')">Concept Flow</div>
+            <div class="nav-tab" onclick="showTab('paths')">Path Analysis</div>
+            <div class="nav-tab" onclick="showTab('insights')">Key Insights</div>
+            <div class="nav-tab" onclick="showTab('search')">Word Search</div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="overview-grid">
+                <div class="metric-card">
+                    <h3>Total Words Analyzed</h3>
+                    <div class="metric-value">566</div>
+                    <p class="metric-description">Across 8 semantic categories</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Convergence Rate</h3>
+                    <div class="metric-value">72.8%</div>
+                    <p class="metric-description">Words converging to dominant path by layer 8</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Path Reduction</h3>
+                    <div class="metric-value">19 → 4</div>
+                    <p class="metric-description">From early to late window</p>
+                </div>
+            </div>
+            
+            <div class="insight-section">
+                <h3>Executive Summary</h3>
+                <div class="finding-box">
+                    <strong>Primary Finding:</strong> GPT-2 organizes words by grammatical function rather than semantic meaning. By the final layers, 72.8% of all words—regardless of their semantic category—converge to a single "noun" pathway.
+                </div>
+                <p>This analysis examined 566 carefully curated words across 8 semantic subtypes (concrete/abstract nouns, physical/emotive adjectives, manner/degree adverbs, action/stative verbs) through GPT-2's 12 transformer layers. Using windowed analysis and unique cluster labeling, we tracked how different word types flow through the network's representational space.</p>
+            </div>
+        </div>
+        
+        <!-- Sankey Tab -->
+        <div id="sankey" class="tab-content">
+            <div class="sankey-container">
+                <h3>Early Window (Layers 0-3)</h3>
+                <p class="sankey-description">Initial differentiation phase: 19 unique paths emerge as GPT-2 begins processing different word types.</p>
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_early_enhanced.html" style="width: 100%; height: 600px; border: 1px solid #e0e0e0; border-radius: 4px;"></iframe>
+            </div>
+            
+            <div class="sankey-container">
+                <h3>Middle Window (Layers 4-7)</h3>
+                <p class="sankey-description">Consolidation phase: Paths reduce to 5 as grammatical categories begin to dominate.</p>
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_middle_enhanced.html" style="width: 100%; height: 600px; border: 1px solid #e0e0e0; border-radius: 4px;"></iframe>
+            </div>
+            
+            <div class="sankey-container">
+                <h3>Late Window (Layers 8-11)</h3>
+                <p class="sankey-description">Final convergence: Only 4 paths remain, with 72.8% of words in the dominant noun pathway.</p>
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/sankey_late_enhanced.html" style="width: 100%; height: 600px; border: 1px solid #e0e0e0; border-radius: 4px;"></iframe>
+            </div>
+        </div>
+        
+        <!-- Paths Tab -->
+        <div id="paths" class="tab-content">
+            <div class="path-frame-container">
+                <iframe src="results/unified_cta_config/unified_cta_20250524_073316/path_analysis_tables.html" class="path-frame"></iframe>
+            </div>
+        </div>
+        
+        <!-- Insights Tab -->
+        <div id="insights" class="tab-content">
+            <div class="insight-section">
+                <h3>Key Findings</h3>
+                
+                <h4>1. Grammatical Over Semantic Organization</h4>
+                <p>GPT-2's clustering reflects parts of speech more than semantic categories:</p>
+                <div class="finding-box">
+                    <strong>Path 1 (Dominant):</strong> Contains 72.79% of words by late layers<br>
+                    <strong>Composition:</strong> Primarily concrete nouns (85.2%) regardless of semantic type<br>
+                    <strong>Examples:</strong> "mouse", "computer", "cat", "dog", "art", "law"
+                </div>
+                
+                <h4>2. Adjective/Adverb Confusion</h4>
+                <p>The model shows systematic confusion between adjectives and adverbs:</p>
+                <div class="finding-box">
+                    <strong>Path 2:</strong> Contains 25.8% of words<br>
+                    <strong>Mixed composition:</strong> Physical adjectives (51.7%) + Degree adverbs (48.3%)<br>
+                    <strong>Examples:</strong> "wrong", "small", "large" (functioning as both adjectives and adverbs)
+                </div>
+                
+                <h4>3. Verb Marginalization</h4>
+                <p>Verbs are progressively marginalized to minor pathways:</p>
+                <div class="finding-box">
+                    <strong>Path 3:</strong> Only 0.88% of words<br>
+                    <strong>Primarily verbs:</strong> "appear", "occur", "detect", "prevent"<br>
+                    <strong>Interpretation:</strong> GPT-2 treats verbs as fundamentally different from nominal categories
+                </div>
+                
+                <h4>4. Progressive Convergence Pattern</h4>
+                <p>The analysis reveals a clear progression through the layers:</p>
+                <ul>
+                    <li><strong>Early (L0-L3):</strong> 19 paths - High differentiation, exploring representational space</li>
+                    <li><strong>Middle (L4-L7):</strong> 5 paths - Consolidation around grammatical categories</li>
+                    <li><strong>Late (L8-L11):</strong> 4 paths - Final convergence to grammar-based organization</li>
+                </ul>
+                
+                <h4>5. Stability Patterns</h4>
+                <p>Different grammatical categories show different stability patterns:</p>
+                <div class="finding-box">
+                    <strong>High stability (100%):</strong> Core noun pathway (L8-L11)<br>
+                    <strong>Moderate stability (66.7%):</strong> Mixed adjective/adverb pathways<br>
+                    <strong>Low stability (33.3%):</strong> Transitional paths between categories
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Tab -->
+        <div id="search" class="tab-content">
+            <div class="search-container">
+                <h3>Search for Words</h3>
+                <p style="margin-bottom: 1rem; color: #666;">Find how specific words flow through GPT-2's layers</p>
+                <input type="text" class="search-box" placeholder="Enter a word to search..." id="searchInput" onkeyup="searchWord(event)">
+                <div class="search-results" id="searchResults">
+                    <p>Enter a word above to see its path through the network</p>
+                    <p style="font-size: 0.9rem; margin-top: 1rem; color: #999;">(Search functionality coming soon)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from nav tabs
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+        }
+        
+        // Placeholder search function
+        function searchWord(event) {
+            if (event.key === 'Enter') {
+                const searchTerm = event.target.value.toLowerCase();
+                const resultsDiv = document.getElementById('searchResults');
+                
+                if (searchTerm) {
+                    resultsDiv.innerHTML = `
+                        <p>Searching for: <strong>${searchTerm}</strong></p>
+                        <p style="font-size: 0.9rem; margin-top: 1rem; color: #999;">Search functionality will be implemented in the next iteration</p>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <p>Enter a word above to see its path through the network</p>
+                        <p style="font-size: 0.9rem; margin-top: 1rem; color: #999;">(Search functionality coming soon)</p>
+                    `;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

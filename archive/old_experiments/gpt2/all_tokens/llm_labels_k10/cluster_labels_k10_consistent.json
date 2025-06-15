@@ -1,0 +1,722 @@
+{
+  "L0_C0": {
+    "label": "Plural Forms",
+    "layer": 0,
+    "cluster": 0,
+    "full_label": "L0: Plural Forms"
+  },
+  "L0_C1": {
+    "label": "Content Words (General Nouns)",
+    "layer": 0,
+    "cluster": 1,
+    "full_label": "L0: Content Words (General Nouns)"
+  },
+  "L0_C2": {
+    "label": "Morphological Variants",
+    "layer": 0,
+    "cluster": 2,
+    "full_label": "L0: Morphological Variants"
+  },
+  "L0_C3": {
+    "label": "Content Words (General Nouns)",
+    "layer": 0,
+    "cluster": 3,
+    "full_label": "L0: Content Words (General Nouns)"
+  },
+  "L0_C4": {
+    "label": "Content Words (General Nouns)",
+    "layer": 0,
+    "cluster": 4,
+    "full_label": "L0: Content Words (General Nouns)"
+  },
+  "L0_C5": {
+    "label": "Plural Forms",
+    "layer": 0,
+    "cluster": 5,
+    "full_label": "L0: Plural Forms"
+  },
+  "L0_C6": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 0,
+    "cluster": 6,
+    "full_label": "L0: Past Tense Forms (-ed)"
+  },
+  "L0_C7": {
+    "label": "Plural Forms",
+    "layer": 0,
+    "cluster": 7,
+    "full_label": "L0: Plural Forms"
+  },
+  "L0_C8": {
+    "label": "Content Words (General Nouns)",
+    "layer": 0,
+    "cluster": 8,
+    "full_label": "L0: Content Words (General Nouns)"
+  },
+  "L0_C9": {
+    "label": "Plural Forms",
+    "layer": 0,
+    "cluster": 9,
+    "full_label": "L0: Plural Forms"
+  },
+  "L1_C0": {
+    "label": "Numeric Tokens",
+    "layer": 1,
+    "cluster": 0,
+    "full_label": "L1: Numeric Tokens"
+  },
+  "L1_C1": {
+    "label": "Plural Forms",
+    "layer": 1,
+    "cluster": 1,
+    "full_label": "L1: Plural Forms"
+  },
+  "L1_C2": {
+    "label": "Function Words (Auxiliaries)",
+    "layer": 1,
+    "cluster": 2,
+    "full_label": "L1: Function Words (Auxiliaries)"
+  },
+  "L1_C3": {
+    "label": "Content Words (General Nouns)",
+    "layer": 1,
+    "cluster": 3,
+    "full_label": "L1: Content Words (General Nouns)"
+  },
+  "L2_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 2,
+    "cluster": 9,
+    "full_label": "L2: Content Words (General Nouns)"
+  },
+  "L1_C4": {
+    "label": "Content Words (General Nouns)",
+    "layer": 1,
+    "cluster": 4,
+    "full_label": "L1: Content Words (General Nouns)"
+  },
+  "L1_C5": {
+    "label": "Plural Forms",
+    "layer": 1,
+    "cluster": 5,
+    "full_label": "L1: Plural Forms"
+  },
+  "L1_C6": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 1,
+    "cluster": 6,
+    "full_label": "L1: Past Tense Forms (-ed)"
+  },
+  "L1_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 1,
+    "cluster": 7,
+    "full_label": "L1: Content Words (General Nouns)"
+  },
+  "L1_C8": {
+    "label": "Content Words (General Nouns)",
+    "layer": 1,
+    "cluster": 8,
+    "full_label": "L1: Content Words (General Nouns)"
+  },
+  "L1_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 1,
+    "cluster": 9,
+    "full_label": "L1: Content Words (General Nouns)"
+  },
+  "L2_C0": {
+    "label": "Core Function Words",
+    "layer": 2,
+    "cluster": 0,
+    "full_label": "L2: Core Function Words"
+  },
+  "L4_C0": {
+    "label": "Core Function Words",
+    "layer": 4,
+    "cluster": 0,
+    "full_label": "L4: Core Function Words"
+  },
+  "L5_C4": {
+    "label": "Core Function Words",
+    "layer": 5,
+    "cluster": 4,
+    "full_label": "L5: Core Function Words"
+  },
+  "L6_C7": {
+    "label": "Core Function Words",
+    "layer": 6,
+    "cluster": 7,
+    "full_label": "L6: Core Function Words"
+  },
+  "L2_C1": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 2,
+    "cluster": 1,
+    "full_label": "L2: Past Tense Forms (-ed)"
+  },
+  "L4_C8": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 4,
+    "cluster": 8,
+    "full_label": "L4: Past Tense Forms (-ed)"
+  },
+  "L5_C8": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 5,
+    "cluster": 8,
+    "full_label": "L5: Past Tense Forms (-ed)"
+  },
+  "L6_C6": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 6,
+    "cluster": 6,
+    "full_label": "L6: Past Tense Forms (-ed)"
+  },
+  "L2_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 2,
+    "cluster": 2,
+    "full_label": "L2: Content Words (General Nouns)"
+  },
+  "L3_C0": {
+    "label": "Content Words (General Nouns)",
+    "layer": 3,
+    "cluster": 0,
+    "full_label": "L3: Content Words (General Nouns)"
+  },
+  "L4_C3": {
+    "label": "Content Words (General Nouns)",
+    "layer": 4,
+    "cluster": 3,
+    "full_label": "L4: Content Words (General Nouns)"
+  },
+  "L5_C5": {
+    "label": "Content Words (General Nouns)",
+    "layer": 5,
+    "cluster": 5,
+    "full_label": "L5: Content Words (General Nouns)"
+  },
+  "L6_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 6,
+    "cluster": 2,
+    "full_label": "L6: Content Words (General Nouns)"
+  },
+  "L7_C8": {
+    "label": "Content Words (General Nouns)",
+    "layer": 7,
+    "cluster": 8,
+    "full_label": "L7: Content Words (General Nouns)"
+  },
+  "L8_C0": {
+    "label": "Content Words (General Nouns)",
+    "layer": 8,
+    "cluster": 0,
+    "full_label": "L8: Content Words (General Nouns)"
+  },
+  "L9_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 9,
+    "cluster": 7,
+    "full_label": "L9: Content Words (General Nouns)"
+  },
+  "L10_C1": {
+    "label": "Content Words (General Nouns)",
+    "layer": 10,
+    "cluster": 1,
+    "full_label": "L10: Content Words (General Nouns)"
+  },
+  "L2_C3": {
+    "label": "Plural Forms",
+    "layer": 2,
+    "cluster": 3,
+    "full_label": "L2: Plural Forms"
+  },
+  "L3_C6": {
+    "label": "Plural Forms",
+    "layer": 3,
+    "cluster": 6,
+    "full_label": "L3: Plural Forms"
+  },
+  "L2_C4": {
+    "label": "Content Words (General Nouns)",
+    "layer": 2,
+    "cluster": 4,
+    "full_label": "L2: Content Words (General Nouns)"
+  },
+  "L5_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 5,
+    "cluster": 7,
+    "full_label": "L5: Content Words (General Nouns)"
+  },
+  "L2_C5": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 2,
+    "cluster": 5,
+    "full_label": "L2: Past Tense Forms (-ed)"
+  },
+  "L2_C6": {
+    "label": "Content Words (General Nouns)",
+    "layer": 2,
+    "cluster": 6,
+    "full_label": "L2: Content Words (General Nouns)"
+  },
+  "L4_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 4,
+    "cluster": 9,
+    "full_label": "L4: Content Words (General Nouns)"
+  },
+  "L5_C0": {
+    "label": "Content Words (General Nouns)",
+    "layer": 5,
+    "cluster": 0,
+    "full_label": "L5: Content Words (General Nouns)"
+  },
+  "L6_C0": {
+    "label": "Content Words (General Nouns)",
+    "layer": 6,
+    "cluster": 0,
+    "full_label": "L6: Content Words (General Nouns)"
+  },
+  "L7_C6": {
+    "label": "Content Words (General Nouns)",
+    "layer": 7,
+    "cluster": 6,
+    "full_label": "L7: Content Words (General Nouns)"
+  },
+  "L8_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 8,
+    "cluster": 2,
+    "full_label": "L8: Content Words (General Nouns)"
+  },
+  "L9_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 9,
+    "cluster": 9,
+    "full_label": "L9: Content Words (General Nouns)"
+  },
+  "L10_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 10,
+    "cluster": 9,
+    "full_label": "L10: Content Words (General Nouns)"
+  },
+  "L2_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 2,
+    "cluster": 7,
+    "full_label": "L2: Content Words (General Nouns)"
+  },
+  "L3_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 3,
+    "cluster": 9,
+    "full_label": "L3: Content Words (General Nouns)"
+  },
+  "L2_C8": {
+    "label": "Plural Forms",
+    "layer": 2,
+    "cluster": 8,
+    "full_label": "L2: Plural Forms"
+  },
+  "L3_C1": {
+    "label": "Content Words (General Nouns)",
+    "layer": 3,
+    "cluster": 1,
+    "full_label": "L3: Content Words (General Nouns)"
+  },
+  "L4_C1": {
+    "label": "Content Words (General Nouns)",
+    "layer": 4,
+    "cluster": 1,
+    "full_label": "L4: Content Words (General Nouns)"
+  },
+  "L5_C9": {
+    "label": "Content Words (General Nouns)",
+    "layer": 5,
+    "cluster": 9,
+    "full_label": "L5: Content Words (General Nouns)"
+  },
+  "L6_C8": {
+    "label": "Content Words (General Nouns)",
+    "layer": 6,
+    "cluster": 8,
+    "full_label": "L6: Content Words (General Nouns)"
+  },
+  "L7_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 7,
+    "cluster": 2,
+    "full_label": "L7: Content Words (General Nouns)"
+  },
+  "L8_C6": {
+    "label": "Content Words (General Nouns)",
+    "layer": 8,
+    "cluster": 6,
+    "full_label": "L8: Content Words (General Nouns)"
+  },
+  "L9_C8": {
+    "label": "Content Words (General Nouns)",
+    "layer": 9,
+    "cluster": 8,
+    "full_label": "L9: Content Words (General Nouns)"
+  },
+  "L10_C3": {
+    "label": "Content Words (General Nouns)",
+    "layer": 10,
+    "cluster": 3,
+    "full_label": "L10: Content Words (General Nouns)"
+  },
+  "L3_C2": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 3,
+    "cluster": 2,
+    "full_label": "L3: Past Tense Forms (-ed)"
+  },
+  "L7_C9": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 7,
+    "cluster": 9,
+    "full_label": "L7: Past Tense Forms (-ed)"
+  },
+  "L8_C7": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 8,
+    "cluster": 7,
+    "full_label": "L8: Past Tense Forms (-ed)"
+  },
+  "L9_C5": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 9,
+    "cluster": 5,
+    "full_label": "L9: Past Tense Forms (-ed)"
+  },
+  "L10_C0": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 10,
+    "cluster": 0,
+    "full_label": "L10: Past Tense Forms (-ed)"
+  },
+  "L3_C3": {
+    "label": "Plural Forms",
+    "layer": 3,
+    "cluster": 3,
+    "full_label": "L3: Plural Forms"
+  },
+  "L7_C0": {
+    "label": "Plural Forms",
+    "layer": 7,
+    "cluster": 0,
+    "full_label": "L7: Plural Forms"
+  },
+  "L8_C8": {
+    "label": "Plural Forms",
+    "layer": 8,
+    "cluster": 8,
+    "full_label": "L8: Plural Forms"
+  },
+  "L9_C3": {
+    "label": "Plural Forms",
+    "layer": 9,
+    "cluster": 3,
+    "full_label": "L9: Plural Forms"
+  },
+  "L10_C5": {
+    "label": "Plural Forms",
+    "layer": 10,
+    "cluster": 5,
+    "full_label": "L10: Plural Forms"
+  },
+  "L3_C4": {
+    "label": "Content Words (General Nouns)",
+    "layer": 3,
+    "cluster": 4,
+    "full_label": "L3: Content Words (General Nouns)"
+  },
+  "L4_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 4,
+    "cluster": 7,
+    "full_label": "L4: Content Words (General Nouns)"
+  },
+  "L5_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 5,
+    "cluster": 2,
+    "full_label": "L5: Content Words (General Nouns)"
+  },
+  "L6_C3": {
+    "label": "Content Words (General Nouns)",
+    "layer": 6,
+    "cluster": 3,
+    "full_label": "L6: Content Words (General Nouns)"
+  },
+  "L7_C4": {
+    "label": "Content Words (General Nouns)",
+    "layer": 7,
+    "cluster": 4,
+    "full_label": "L7: Content Words (General Nouns)"
+  },
+  "L8_C4": {
+    "label": "Content Words (General Nouns)",
+    "layer": 8,
+    "cluster": 4,
+    "full_label": "L8: Content Words (General Nouns)"
+  },
+  "L9_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 9,
+    "cluster": 2,
+    "full_label": "L9: Content Words (General Nouns)"
+  },
+  "L10_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 10,
+    "cluster": 2,
+    "full_label": "L10: Content Words (General Nouns)"
+  },
+  "L3_C5": {
+    "label": "Content Words (General Nouns)",
+    "layer": 3,
+    "cluster": 5,
+    "full_label": "L3: Content Words (General Nouns)"
+  },
+  "L4_C5": {
+    "label": "Content Words (General Nouns)",
+    "layer": 4,
+    "cluster": 5,
+    "full_label": "L4: Content Words (General Nouns)"
+  },
+  "L6_C1": {
+    "label": "Content Words (General Nouns)",
+    "layer": 6,
+    "cluster": 1,
+    "full_label": "L6: Content Words (General Nouns)"
+  },
+  "L3_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 3,
+    "cluster": 7,
+    "full_label": "L3: Content Words (General Nouns)"
+  },
+  "L3_C8": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 3,
+    "cluster": 8,
+    "full_label": "L3: Past Tense Forms (-ed)"
+  },
+  "L4_C6": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 4,
+    "cluster": 6,
+    "full_label": "L4: Past Tense Forms (-ed)"
+  },
+  "L5_C6": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 5,
+    "cluster": 6,
+    "full_label": "L5: Past Tense Forms (-ed)"
+  },
+  "L6_C4": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 6,
+    "cluster": 4,
+    "full_label": "L6: Past Tense Forms (-ed)"
+  },
+  "L4_C2": {
+    "label": "Plural Forms",
+    "layer": 4,
+    "cluster": 2,
+    "full_label": "L4: Plural Forms"
+  },
+  "L5_C3": {
+    "label": "Plural Forms",
+    "layer": 5,
+    "cluster": 3,
+    "full_label": "L5: Plural Forms"
+  },
+  "L6_C9": {
+    "label": "Plural Forms",
+    "layer": 6,
+    "cluster": 9,
+    "full_label": "L6: Plural Forms"
+  },
+  "L7_C5": {
+    "label": "Plural Forms",
+    "layer": 7,
+    "cluster": 5,
+    "full_label": "L7: Plural Forms"
+  },
+  "L8_C3": {
+    "label": "Plural Forms",
+    "layer": 8,
+    "cluster": 3,
+    "full_label": "L8: Plural Forms"
+  },
+  "L9_C6": {
+    "label": "Plural Forms",
+    "layer": 9,
+    "cluster": 6,
+    "full_label": "L9: Plural Forms"
+  },
+  "L10_C7": {
+    "label": "Plural Forms",
+    "layer": 10,
+    "cluster": 7,
+    "full_label": "L10: Plural Forms"
+  },
+  "L4_C4": {
+    "label": "Plural Forms",
+    "layer": 4,
+    "cluster": 4,
+    "full_label": "L4: Plural Forms"
+  },
+  "L5_C1": {
+    "label": "Plural Forms",
+    "layer": 5,
+    "cluster": 1,
+    "full_label": "L5: Plural Forms"
+  },
+  "L6_C5": {
+    "label": "Plural Forms",
+    "layer": 6,
+    "cluster": 5,
+    "full_label": "L6: Plural Forms"
+  },
+  "L7_C3": {
+    "label": "Plural Forms",
+    "layer": 7,
+    "cluster": 3,
+    "full_label": "L7: Plural Forms"
+  },
+  "L8_C9": {
+    "label": "Plural Forms",
+    "layer": 8,
+    "cluster": 9,
+    "full_label": "L8: Plural Forms"
+  },
+  "L9_C0": {
+    "label": "Plural Forms",
+    "layer": 9,
+    "cluster": 0,
+    "full_label": "L9: Plural Forms"
+  },
+  "L10_C6": {
+    "label": "Plural Forms",
+    "layer": 10,
+    "cluster": 6,
+    "full_label": "L10: Plural Forms"
+  },
+  "L7_C1": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 7,
+    "cluster": 1,
+    "full_label": "L7: Past Tense Forms (-ed)"
+  },
+  "L8_C5": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 8,
+    "cluster": 5,
+    "full_label": "L8: Past Tense Forms (-ed)"
+  },
+  "L9_C4": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 9,
+    "cluster": 4,
+    "full_label": "L9: Past Tense Forms (-ed)"
+  },
+  "L10_C4": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 10,
+    "cluster": 4,
+    "full_label": "L10: Past Tense Forms (-ed)"
+  },
+  "L7_C7": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 7,
+    "cluster": 7,
+    "full_label": "L7: Past Tense Forms (-ed)"
+  },
+  "L8_C1": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 8,
+    "cluster": 1,
+    "full_label": "L8: Past Tense Forms (-ed)"
+  },
+  "L9_C1": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 9,
+    "cluster": 1,
+    "full_label": "L9: Past Tense Forms (-ed)"
+  },
+  "L10_C8": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 10,
+    "cluster": 8,
+    "full_label": "L10: Past Tense Forms (-ed)"
+  },
+  "L11_C0": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 11,
+    "cluster": 0,
+    "full_label": "L11: Past Tense Forms (-ed)"
+  },
+  "L11_C1": {
+    "label": "Content Words (General Nouns)",
+    "layer": 11,
+    "cluster": 1,
+    "full_label": "L11: Content Words (General Nouns)"
+  },
+  "L11_C2": {
+    "label": "Content Words (General Nouns)",
+    "layer": 11,
+    "cluster": 2,
+    "full_label": "L11: Content Words (General Nouns)"
+  },
+  "L11_C3": {
+    "label": "Past Tense Forms (-ed)",
+    "layer": 11,
+    "cluster": 3,
+    "full_label": "L11: Past Tense Forms (-ed)"
+  },
+  "L11_C4": {
+    "label": "Plural Forms",
+    "layer": 11,
+    "cluster": 4,
+    "full_label": "L11: Plural Forms"
+  },
+  "L11_C5": {
+    "label": "Plural Forms",
+    "layer": 11,
+    "cluster": 5,
+    "full_label": "L11: Plural Forms"
+  },
+  "L11_C6": {
+    "label": "Content Words (General Nouns)",
+    "layer": 11,
+    "cluster": 6,
+    "full_label": "L11: Content Words (General Nouns)"
+  },
+  "L11_C7": {
+    "label": "Content Words (General Nouns)",
+    "layer": 11,
+    "cluster": 7,
+    "full_label": "L11: Content Words (General Nouns)"
+  },
+  "L11_C8": {
+    "label": "Content Words (General Nouns)",
+    "layer": 11,
+    "cluster": 8,
+    "full_label": "L11: Content Words (General Nouns)"
+  },
+  "L11_C9": {
+    "label": "Plural Forms",
+    "layer": 11,
+    "cluster": 9,
+    "full_label": "L11: Plural Forms"
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "generated_at": "2025-05-28T23:55:00",
+    "model": "claude",
+    "k": 5,
+    "total_clusters": 60,
+    "method": "linguistically_informed_consistent_analysis"
+  },
+  "labels": {
+    "layer_0": {
+      "L0_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the, -, .,  man,  me"
+      },
+      "L0_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  is,  was,  for,  '',  with"
+      },
+      "L0_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ,,  .,  of,  and,  to"
+      },
+      "L0_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  he,  I,  (,  she, I"
+      },
+      "L0_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  it,  they,  ),  we,  there"
+      }
+    },
+    "layer_1": {
+      "L1_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L1_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  .,  '', -,  he, The"
+      },
+      "L1_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``, He, I,  well"
+      },
+      "L1_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  to,  a,  in,  is,  for"
+      },
+      "L1_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  was,  be,  had,  ?,  I"
+      }
+    },
+    "layer_2": {
+      "L2_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  ., -,  he, .,  ?"
+      },
+      "L2_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  to,  in,  is,  was,  for"
+      },
+      "L2_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  which,  man,  now,  way,  year"
+      },
+      "L2_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  the,  ,,  of,  and,  a"
+      },
+      "L2_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, It, In"
+      }
+    },
+    "layer_3": {
+      "L3_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  and,  that,  as,  or"
+      },
+      "L3_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L3_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  which,  way, y,  himself,  number"
+      },
+      "L3_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  was,  be,  on,  by,  had"
+      },
+      "L3_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ,,  .,  of,  to,  a"
+      }
+    },
+    "layer_4": {
+      "L4_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  .,  to,  a,  in,  is"
+      },
+      "L4_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  which,  way,  life, y,  himself"
+      },
+      "L4_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L4_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  was,  be,  on,  by,  had"
+      },
+      "L4_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      }
+    },
+    "layer_5": {
+      "L5_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L5_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  which,  than,  way,  life, y"
+      },
+      "L5_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L5_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  was,  be,  on,  by,  had"
+      },
+      "L5_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  .,  to,  a,  in,  is"
+      }
+    },
+    "layer_6": {
+      "L6_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  which,  than,  way,  life, y"
+      },
+      "L6_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  was,  be,  on,  by,  had"
+      },
+      "L6_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L6_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  .,  to,  a,  in,  is"
+      },
+      "L6_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  the,  ,,  of,  and,  that"
+      }
+    },
+    "layer_7": {
+      "L7_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  .,  to,  a,  in,  is"
+      },
+      "L7_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L7_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  was,  be,  on,  by,  had"
+      },
+      "L7_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L7_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  which,  than,  way,  life, y"
+      }
+    },
+    "layer_8": {
+      "L8_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L8_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  be,  on,  by,  had,  I"
+      },
+      "L8_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  which,  than,  way,  each,  life"
+      },
+      "L8_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L8_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  .,  to,  a,  in,  is"
+      }
+    },
+    "layer_9": {
+      "L9_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L9_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  which,  than,  way,  each,  life"
+      },
+      "L9_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L9_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  .,  to,  a,  in,  is"
+      },
+      "L9_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  be,  on,  by,  had,  I"
+      }
+    },
+    "layer_10": {
+      "L10_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  the,  ,,  of,  and,  that"
+      },
+      "L10_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  which,  than,  way,  each,  life"
+      },
+      "L10_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  ``, ``,  an, In, There"
+      },
+      "L10_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  .,  to,  a,  in,  is"
+      },
+      "L10_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  be,  on,  by,  had,  I"
+      }
+    },
+    "layer_11": {
+      "L11_C0": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  .,  '', .,  ?,  ``"
+      },
+      "L11_C1": {
+        "label": "Punctuation",
+        "description": "Punctuation marks and sentence boundaries. Examples in this layer:  ,,  a,  in,  as, The"
+      },
+      "L11_C2": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  the,  of,  and,  to,  that"
+      },
+      "L11_C3": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer: -,  Af,  C,  P,  S"
+      },
+      "L11_C4": {
+        "label": "Morphological Elements",
+        "description": "Suffixes, prefixes, and word-forming elements. Examples in this layer:  over, ing, ly,  well,  long"
+      }
+    }
+  }
+}

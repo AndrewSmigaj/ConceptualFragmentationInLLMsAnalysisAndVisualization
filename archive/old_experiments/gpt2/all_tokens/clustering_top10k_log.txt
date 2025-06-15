@@ -1,0 +1,83 @@
+[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\smiga\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     C:\Users\smiga\AppData\Roaming\nltk_data...
+[nltk_data]   Package averaged_perceptron_tagger is already up-to-
+[nltk_data]       date!
+2025-05-28 10:01:30,368 - INFO - Loading top 10k token analysis...
+2025-05-28 10:01:30,517 - INFO - Loaded info for 10000 tokens (top 10k)
+2025-05-28 10:01:30,517 - INFO - Token ID range: 0 - 9999
+2025-05-28 10:01:30,518 - INFO - Found 18 morphological patterns
+2025-05-28 10:01:30,518 - INFO - Extracting WordNet features for complete words...
+WordNet extraction:   0%|          | 0/10000 [00:00<?, ?it/s]WordNet extraction:   3%|2         | 279/10000 [00:05<02:59, 54.22it/s]WordNet extraction:   3%|2         | 296/10000 [00:05<02:51, 56.61it/s]WordNet extraction:   7%|7         | 741/10000 [00:05<00:42, 217.51it/s]WordNet extraction:  14%|#3        | 1371/10000 [00:05<00:17, 482.39it/s]WordNet extraction:  25%|##4       | 2468/10000 [00:05<00:06, 1130.90it/s]WordNet extraction:  39%|###9      | 3928/10000 [00:05<00:02, 2224.15it/s]WordNet extraction:  58%|#####7    | 5788/10000 [00:05<00:01, 3921.60it/s]WordNet extraction:  75%|#######4  | 7475/10000 [00:06<00:00, 5586.48it/s]WordNet extraction:  88%|########8 | 8826/10000 [00:06<00:00, 6819.19it/s]WordNet extraction: 100%|##########| 10000/10000 [00:06<00:00, 1591.60it/s]
+2025-05-28 10:01:36,810 - INFO - Extracted WordNet features for 948 tokens
+2025-05-28 10:01:36,813 - INFO - Loading top 10k activations...
+2025-05-28 10:01:37,059 - INFO - Loaded pre-extracted activations shape: (10000, 12, 768)
+2025-05-28 10:01:37,059 - INFO - 
+============================================================
+2025-05-28 10:01:37,060 - INFO - LAYER 0 of 11 | Starting analysis...
+2025-05-28 10:01:37,060 - INFO - ============================================================
+2025-05-28 10:01:37,060 - INFO - 
+Finding optimal k for layer 0 using three-phase adaptive search...
+2025-05-28 10:01:37,060 - INFO - Phase 1: Coarse sampling with 11 k values: [2, 5, 10, 20, 30, 50, 75, 100, 150, 200, 300]
+Phase 1: Coarse search:   0%|          | 0/11 [00:00<?, ?it/s]2025-05-28 10:01:37,061 - INFO -     Clustering 10,000 tokens with k=2 clusters...
+2025-05-28 10:01:44,022 - INFO -     Clustering completed in 7.0s (1437 tokens/sec)
+2025-05-28 10:01:50,383 - INFO -   k=2: gap=1.8242, std=0.0002, silhouette=0.0666 (took 13.3s)
+Phase 1: Coarse search:   9%|9         | 1/11 [00:13<02:13, 13.32s/it]2025-05-28 10:01:50,383 - INFO -   Testing k=5 (2/11) - ETA: 2.2 min
+2025-05-28 10:01:50,383 - INFO -     Clustering 10,000 tokens with k=5 clusters...
+2025-05-28 10:01:52,719 - INFO -     Clustering completed in 2.3s (4281 tokens/sec)
+2025-05-28 10:02:02,795 - INFO -   k=5: gap=1.8540, std=0.0002, silhouette=0.0132 (took 12.4s)
+Phase 1: Coarse search:  18%|#8        | 2/11 [00:25<01:55, 12.79s/it]2025-05-28 10:02:02,795 - INFO -   Testing k=10 (3/11) - ETA: 1.9 min
+2025-05-28 10:02:02,795 - INFO -     Clustering 10,000 tokens with k=10 clusters...
+2025-05-28 10:02:07,600 - INFO -     Clustering completed in 4.8s (2081 tokens/sec)
+2025-05-28 10:02:23,591 - INFO -   k=10: gap=1.8803, std=0.0003, silhouette=0.0087 (took 20.8s)
+Phase 1: Coarse search:  27%|##7       | 3/11 [00:46<02:11, 16.44s/it]2025-05-28 10:02:23,591 - INFO -   Testing k=20 (4/11) - ETA: 2.1 min
+2025-05-28 10:02:23,591 - INFO -     Clustering 10,000 tokens with k=20 clusters...
+2025-05-28 10:02:31,503 - INFO -     Clustering completed in 7.9s (1264 tokens/sec)
+2025-05-28 10:02:52,191 - INFO -   k=20: gap=1.9115, std=0.0003, silhouette=0.0118 (took 28.6s)
+Phase 1: Coarse search:  36%|###6      | 4/11 [01:15<02:28, 21.24s/it]2025-05-28 10:02:52,191 - INFO -   Testing k=30 (5/11) - ETA: 2.2 min
+2025-05-28 10:02:52,191 - INFO -     Clustering 10,000 tokens with k=30 clusters...
+2025-05-28 10:03:03,586 - INFO -     Clustering completed in 11.4s (878 tokens/sec)
+2025-05-28 10:03:29,170 - INFO -   k=30: gap=1.9354, std=0.0003, silhouette=0.0148 (took 37.0s)
+Phase 1: Coarse search:  45%|####5     | 5/11 [01:52<02:41, 26.92s/it]2025-05-28 10:03:29,170 - INFO -   Testing k=50 (6/11) - ETA: 2.2 min
+2025-05-28 10:03:29,170 - INFO -     Clustering 10,000 tokens with k=50 clusters...
+2025-05-28 10:03:46,592 - INFO -     Clustering completed in 17.4s (574 tokens/sec)
+2025-05-28 10:04:21,689 - INFO -   k=50: gap=1.9654, std=0.0002, silhouette=0.0026 (took 52.5s)
+Phase 1: Coarse search:  55%|#####4    | 6/11 [02:44<02:58, 35.62s/it]2025-05-28 10:04:21,689 - INFO -   Testing k=75 (7/11) - ETA: 2.3 min
+2025-05-28 10:04:21,689 - INFO -     Clustering 10,000 tokens with k=75 clusters...
+2025-05-28 10:04:43,832 - INFO -     Clustering completed in 22.1s (452 tokens/sec)
+2025-05-28 10:05:22,956 - INFO -   k=75: gap=1.9898, std=0.0003, silhouette=-0.0052 (took 61.3s)
+Phase 1: Coarse search:  64%|######3   | 7/11 [03:45<02:56, 44.01s/it]2025-05-28 10:05:22,956 - INFO -   Testing k=100 (8/11) - ETA: 2.2 min
+2025-05-28 10:05:22,956 - INFO -     Clustering 10,000 tokens with k=100 clusters...
+2025-05-28 10:05:52,229 - INFO -     Clustering completed in 29.3s (342 tokens/sec)
+2025-05-28 10:06:43,750 - INFO -   k=100: gap=2.0074, std=0.0002, silhouette=0.0078 (took 80.8s)
+Phase 1: Coarse search:  73%|#######2  | 8/11 [05:06<02:47, 55.72s/it]2025-05-28 10:06:43,750 - INFO -   Testing k=150 (9/11) - ETA: 1.9 min
+2025-05-28 10:06:43,750 - INFO -     Clustering 10,000 tokens with k=150 clusters...
+2025-05-28 10:07:09,556 - INFO -     Clustering completed in 25.8s (388 tokens/sec)
+2025-05-28 10:08:20,806 - INFO -   k=150: gap=2.0335, std=0.0003, silhouette=-0.0089 (took 97.1s)
+Phase 1: Coarse search:  82%|########1 | 9/11 [06:43<02:17, 68.64s/it]2025-05-28 10:08:20,807 - INFO -   Testing k=200 (10/11) - ETA: 1.5 min
+2025-05-28 10:08:20,807 - INFO -     Clustering 10,000 tokens with k=200 clusters...
+2025-05-28 10:08:54,570 - INFO -     Clustering completed in 33.8s (296 tokens/sec)
+2025-05-28 10:10:26,047 - INFO -   k=200: gap=2.0555, std=0.0003, silhouette=-0.0042 (took 125.2s)
+Phase 1: Coarse search:  91%|######### | 10/11 [08:48<01:26, 86.11s/it]2025-05-28 10:10:26,047 - INFO -   Testing k=300 (11/11) - ETA: 0.9 min
+2025-05-28 10:10:26,047 - INFO -     Clustering 10,000 tokens with k=300 clusters...
+2025-05-28 10:11:17,905 - INFO -     Clustering completed in 51.9s (193 tokens/sec)
+2025-05-28 10:13:28,883 - INFO -   k=300: gap=2.0860, std=0.0002, silhouette=0.0046 (took 182.8s)
+Phase 1: Coarse search: 100%|##########| 11/11 [11:51<00:00, 115.72s/it]Phase 1: Coarse search: 100%|##########| 11/11 [11:51<00:00, 64.71s/it] 
+2025-05-28 10:13:28,884 - INFO - No clear elbow in coarse search, using k with highest gap: 300
+2025-05-28 10:13:28,884 - INFO - 
+Phase 2: Refining search in 1 regions
+2025-05-28 10:13:28,884 - INFO -   Region 1: [210, 300]
+Phase 2: Region 1:   0%|          | 0/10 [00:00<?, ?it/s]2025-05-28 10:13:28,884 - INFO -     Clustering 10,000 tokens with k=210 clusters...
+2025-05-28 10:14:04,694 - INFO -     Clustering completed in 35.8s (279 tokens/sec)
+Phase 2: Region 1:  10%|#         | 1/10 [02:50<25:38, 170.96s/it]2025-05-28 10:16:19,847 - INFO -     Clustering 10,000 tokens with k=220 clusters...
+2025-05-28 10:16:57,678 - INFO -     Clustering completed in 37.8s (264 tokens/sec)
+Phase 2: Region 1:  20%|##        | 2/10 [05:57<24:00, 180.12s/it]2025-05-28 10:19:26,379 - INFO -     Clustering 10,000 tokens with k=230 clusters...
+2025-05-28 10:20:05,798 - INFO -     Clustering completed in 39.4s (254 tokens/sec)
+Phase 2: Region 1:  30%|###       | 3/10 [09:11<21:46, 186.69s/it]2025-05-28 10:22:40,876 - INFO -     Clustering 10,000 tokens with k=240 clusters...
+2025-05-28 10:23:22,464 - INFO -     Clustering completed in 41.6s (240 tokens/sec)
+Phase 2: Region 1:  40%|####      | 4/10 [12:44<19:40, 196.81s/it]2025-05-28 10:26:13,202 - INFO -     Clustering 10,000 tokens with k=250 clusters...
+2025-05-28 10:26:56,719 - INFO -     Clustering completed in 43.5s (230 tokens/sec)
+Phase 2: Region 1:  50%|#####     | 5/10 [16:24<17:06, 205.39s/it]2025-05-28 10:29:53,799 - INFO -     Clustering 10,000 tokens with k=260 clusters...
+2025-05-28 10:30:41,265 - INFO -     Clustering completed in 47.5s (211 tokens/sec)

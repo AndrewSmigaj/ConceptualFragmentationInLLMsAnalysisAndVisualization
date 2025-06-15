@@ -1,0 +1,80 @@
+{
+  "layer_0": {
+    "optimal_k": 4,
+    "silhouette": 0.005,
+    "ets_threshold": 0.99715,
+    "ets_n_clusters": 4
+  },
+  "layer_1": {
+    "optimal_k": 3,
+    "silhouette": 0.039,
+    "ets_threshold": 0.9964,
+    "ets_n_clusters": 3
+  },
+  "layer_2": {
+    "optimal_k": 3,
+    "silhouette": 0.056,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 4
+  },
+  "layer_3": {
+    "optimal_k": 3,
+    "silhouette": 0.103,
+    "ets_threshold": 0.99715,
+    "ets_n_clusters": 3
+  },
+  "layer_4": {
+    "optimal_k": 3,
+    "silhouette": 0.165,
+    "ets_threshold": 0.9973,
+    "ets_n_clusters": 3
+  },
+  "layer_5": {
+    "optimal_k": 3,
+    "silhouette": 0.189,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 3
+  },
+  "layer_6": {
+    "optimal_k": 3,
+    "silhouette": 0.207,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 3
+  },
+  "layer_7": {
+    "optimal_k": 3,
+    "silhouette": 0.223,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 3
+  },
+  "layer_8": {
+    "optimal_k": 3,
+    "silhouette": 0.228,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 3
+  },
+  "layer_9": {
+    "optimal_k": 3,
+    "silhouette": 0.231,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 3
+  },
+  "layer_10": {
+    "optimal_k": 3,
+    "silhouette": 0.232,
+    "ets_threshold": 0.9967,
+    "ets_n_clusters": 3
+  },
+  "layer_11": {
+    "optimal_k": 3,
+    "silhouette": 0.231,
+    "ets_threshold": 0.9961,
+    "ets_n_clusters": 3
+  },
+  "layer_12": {
+    "optimal_k": 3,
+    "silhouette": 0.176,
+    "ets_threshold": 0.99655,
+    "ets_n_clusters": 3
+  }
+}

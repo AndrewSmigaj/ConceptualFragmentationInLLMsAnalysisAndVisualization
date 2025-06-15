@@ -1,0 +1,105 @@
+CONSISTENT LABEL TRACKING ACROSS LAYERS
+==================================================
+
+
+Grammar Connectives:
+  Appears 9 times
+  Layer 1: C0
+  Layers 4-11: C2, C0, C4, C1, C0, C0, C0, C1
+
+Auxiliary System:
+  Appears 9 times
+  Layer 1: C4
+  Layers 3-10: C3, C3, C3, C1, C2, C1, C4, C4
+
+Function Core:
+  Appears 8 times
+  Layers 4-11: C0, C4, C3, C0, C4, C3, C3, C2
+
+Abstract Nouns:
+  Appears 7 times
+  Layers 4-10: C1, C1, C0, C4, C2, C1, C1
+
+Discourse Markers:
+  Appears 7 times
+  Layers 4-10: C4, C2, C2, C3, C3, C2, C2
+
+Mixed Content & Punctuation:
+  Appears 1 times
+  Layer 0: C0
+
+Copulas & Prepositions:
+  Appears 1 times
+  Layer 0: C1
+
+Articles & Conjunctions:
+  Appears 1 times
+  Layer 0: C2
+
+Pronouns & Short Words:
+  Appears 1 times
+  Layer 0: C3
+
+Plural Pronouns & Time:
+  Appears 1 times
+  Layer 0: C4
+
+Punctuation & Capitals:
+  Appears 1 times
+  Layer 1: C1
+
+Quotes & Titles:
+  Appears 1 times
+  Layer 1: C2
+
+Core Prepositions:
+  Appears 1 times
+  Layer 1: C3
+
+Punctuation & Pronouns:
+  Appears 1 times
+  Layer 2: C0
+
+Prepositions & Copulas:
+  Appears 1 times
+  Layer 2: C1
+
+Content Nouns:
+  Appears 1 times
+  Layer 2: C2
+
+Articles & Core Grammar:
+  Appears 1 times
+  Layer 2: C3
+
+Quotes & Sentence Starters:
+  Appears 1 times
+  Layer 2: C4
+
+Conjunctions & Determiners:
+  Appears 1 times
+  Layer 3: C0
+
+Sentence Initiators:
+  Appears 1 times
+  Layer 3: C1
+
+Human & Location Nouns:
+  Appears 1 times
+  Layer 3: C2
+
+Punctuation & Prepositions:
+  Appears 1 times
+  Layer 3: C4
+
+Sentence Boundaries:
+  Appears 1 times
+  Layer 11: C0
+
+Short Forms:
+  Appears 1 times
+  Layer 11: C3
+
+Morphological Elements:
+  Appears 1 times
+  Layer 11: C4

@@ -12,7 +12,7 @@ CTA differs fundamentally by tracking how representations transform across layer
 
 Attention visualization has become prominent in transformer interpretability, revealing which tokens the model focuses on during processing. However, attention weights show correlation, not causation, and often prove misleading about actual information flow. More critically, attention analysis remains locked to the token level, unable to capture higher-level concept organization.
 
-Consider our finding that GPT-2 routes 72.8\% of words through an "entity superhighway" regardless of semantic content. Attention analysis might show that "cat" attends to nearby determiners or adjectives, but it cannot reveal that "cat," "democracy," and "table" all follow identical processing pathways through the network's layers. While attention weights fluctuate based on context, the underlying organizational principle—grammatical categorization—remains invisible to attention-based methods.
+Consider our finding that GPT-2 routes 72.8\% of words through a dominant entity pathway regardless of semantic content. Attention analysis might show that "cat" attends to nearby determiners or adjectives, but it cannot reveal that "cat," "democracy," and "table" all follow identical processing pathways through the network's layers. While attention weights fluctuate based on context, the underlying organizational principle—grammatical categorization—remains invisible to attention-based methods.
 
 CTA transcends token-level analysis by clustering activations into meaningful concepts and tracking their evolution. Where attention asks "what does this token look at?", CTA asks "how does this concept transform?" This shift in perspective proved essential: the grammatical organization emerges not from examining individual attention patterns but from observing how hundreds of words converge to shared pathways despite starting from diverse semantic origins.
 
@@ -36,20 +36,11 @@ CTA's contribution includes:
 \begin{itemize}
     \item \textbf{Layer-specific labeling}: Our L$l$\_C$k$ notation prevents confusion and enables precise tracking
     \item \textbf{Cross-layer metrics}: Quantifying concept evolution through centroid similarity, membership overlap, and trajectory fragmentation
-    \item \textbf{Windowed analysis}: Revealing phase transitions invisible to single-layer clustering
+    \item \textbf{Windowed analysis}: Revealing phase transitions invisible to single-layer clustering (Section 3.5)
 \end{itemize}
 
 \subsection{The Interpretability Gap CTA Addresses}
 
 Existing interpretability methods excel at specific tasks—attribution for feature importance, attention for token relationships, activation analysis for concept detection. However, none address the fundamental question: How do neural networks organize and transform information as it flows through layers?
 
-CTA fills this gap by providing:
-\begin{enumerate}
-    \item \textbf{Dynamic analysis}: Tracking concept evolution rather than static snapshots
-    \item \textbf{Organizational insights}: Revealing principles like grammatical convergence in language models
-    \item \textbf{Multi-scale understanding}: From individual trajectories to population-level patterns
-    \item \textbf{Actionable interpretability}: Identifying bias patterns, uncertainty indicators, and decision pathways
-    \item \textbf{Narrative explanations}: Bridging mathematical analysis with human comprehension through LLM integration
-\end{enumerate}
-
-By shifting focus from "what" to "how"—from static attribution to dynamic trajectories—CTA opens new avenues for understanding neural networks as information processing systems rather than mere function approximators. This perspective proved essential for discovering that transformers organize language fundamentally differently than human linguistic intuitions suggest, a finding that emerged not from examining attention or attribution, but from tracking concepts as they journey through the network's layers.
+CTA fills this gap through the five core capabilities detailed in the introduction. By shifting focus from "what" to "how"—from static attribution to dynamic trajectories—CTA opens new avenues for understanding neural networks as information processing systems rather than mere function approximators. This perspective proved essential for discovering that transformers organize language fundamentally differently than human linguistic intuitions suggest, a finding that emerged not from examining attention or attribution, but from tracking concepts as they journey through the network's layers.
